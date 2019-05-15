@@ -72,13 +72,19 @@
           <HintPath>..\libraries\FPT.Framework.iOS.UI.Dropdown.dll</HintPath>
         </Reference>
         <Reference Include="XLPagerTabStrip">
-          <HintPath>..\..\..\EuroProduct-master\libraries\XLPagerTabStrip.dll</HintPath>
+          <HintPath>..\libraries\XLPagerTabStrip.dll</HintPath>
         </Reference>
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
       <PackageReference Include="Xamarin.FFImageLoading">
         <Version>2.4.9.961</Version>
+      </PackageReference>
+      <PackageReference Include="Newtonsoft.Json">
+        <Version>12.0.2</Version>
+      </PackageReference>
+      <PackageReference Include="Xam.Plugin.Connectivity">
+        <Version>3.2.0</Version>
       </PackageReference>
     </ItemGroup>
     <ItemGroup>
@@ -129,6 +135,8 @@
         <Folder Include="Resources\" />
         <Folder Include="MPDC\" />
         <Folder Include="ViewControllers\" />
+        <Folder Include="ViewControllers\LogIn And Registration\" />
+        <Folder Include="Utils\" />
     </ItemGroup>
     <ItemGroup>
         <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -146,6 +154,23 @@
             <DependentUpon>ViewController.cs</DependentUpon>
         </Compile>
         <Compile Include="MPDC\Extensions\ViewExtensions.cs" />
+        <Compile Include="ViewControllers\MainViewController.cs" />
+        <Compile Include="ViewControllers\MainViewController.designer.cs">
+          <DependentUpon>MainViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\LogIn And Registration\LogInViewController.cs" />
+        <Compile Include="ViewControllers\LogIn And Registration\LogInViewController.designer.cs">
+          <DependentUpon>LogInViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\LogIn And Registration\StudentRegistrationViewController.cs" />
+        <Compile Include="ViewControllers\LogIn And Registration\StudentRegistrationViewController.designer.cs">
+          <DependentUpon>StudentRegistrationViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\LogIn And Registration\ParentRegistrationViewController.cs" />
+        <Compile Include="ViewControllers\LogIn And Registration\ParentRegistrationViewController.designer.cs">
+          <DependentUpon>ParentRegistrationViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Utils\AppColors.cs" />
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />
@@ -193,6 +218,20 @@
       <BundleResource Include="Resources\Group 235.png" />
       <BundleResource Include="Resources\Group 248.png" />
       <BundleResource Include="Resources\Union 2.png" />
+      <BundleResource Include="Resources\izruneBg.png" />
+      <BundleResource Include="Resources\izruneBg%402x.png" />
+      <BundleResource Include="Resources\izruneBg%403x.png" />
+      <BundleResource Include="Resources\4.png" />
+      <BundleResource Include="Resources\4%402x.png" />
+      <BundleResource Include="Resources\4%403x.png" />
+      <BundleResource Include="Resources\bpg_mrgvlovani_2010.ttf" />
+      <BundleResource Include="Resources\bpg_mrgvlovani_caps_2010.ttf" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\IZrune.PCL\IZrune.PCL.csproj">
+        <Project>{2C4271EF-3C29-47C8-8210-757476B6B263}</Project>
+        <Name>IZrune.PCL</Name>
+      </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

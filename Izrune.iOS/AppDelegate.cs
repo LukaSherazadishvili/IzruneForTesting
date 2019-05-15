@@ -21,6 +21,17 @@ namespace Izrune.iOS
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
 
+            UIViewController rootvc = null;
+
+            IZrune.PCL.AppCore.Instance.InitServices();
+
+            this.Window = new UIWindow(UIScreen.MainScreen.Bounds);
+
+            rootvc = UIStoryboard.FromName("Main", null).InstantiateViewController(LogInViewController.StoryboardId);
+
+            Window.RootViewController = rootvc;
+
+            Window.MakeKeyAndVisible();
             return true;
         }
 
