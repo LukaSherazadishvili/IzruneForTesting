@@ -23,6 +23,9 @@ namespace Izrune.iOS
             InitUI();
 
             InitGestures();
+
+            ChcekTextField(userNameTextField, false);
+            ChcekTextField(passwordTextField, true);
         }
 
         private void InitGestures()
@@ -79,6 +82,12 @@ namespace Izrune.iOS
             //};
 
             //userNameTextField.AttributedPlaceholder = new NSAttributedString("სახელი", attr);
+        }
+
+        private void ChcekTextField (UITextField textField, bool isCorrect)
+        {
+            textField.Layer.BorderWidth = 2;
+            textField.Layer.BorderColor = isCorrect ? AppColors.Succesful.CGColor : AppColors.ErrorTitle.CGColor;
         }
     }
 }

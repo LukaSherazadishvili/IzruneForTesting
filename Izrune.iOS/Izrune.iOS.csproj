@@ -171,6 +171,10 @@
           <DependentUpon>ParentRegistrationViewController.cs</DependentUpon>
         </Compile>
         <Compile Include="Utils\AppColors.cs" />
+        <Compile Include="ViewControllers\ContactViewController.cs" />
+        <Compile Include="ViewControllers\ContactViewController.designer.cs">
+          <DependentUpon>ContactViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />
