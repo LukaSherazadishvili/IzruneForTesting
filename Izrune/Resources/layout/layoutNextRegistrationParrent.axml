@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:id="@+id/Container">
+	<ScrollView
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:fillViewport="true">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+	android:gravity="center"
+    android:orientation="vertical">
+   <ImageView
+				android:layout_marginTop="15dp"
+				android:layout_width="20dp"
+				android:layout_height="20dp"				
+				android:layout_gravity="center_horizontal"
+				android:src="@drawable/user"/>
+
+  <LinearLayout
+            android:layout_width="330dp"
+            android:paddingLeft="15dp"
+			android:layout_marginBottom="25dp"
+            android:paddingRight="15dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+			android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#AE71B7"
+                android:textSize="12dp"
+                android:gravity="center"
+				android:fontFamily="@font/bpg_mrgvlovani"
+                android:layout_marginBottom="20dp"
+                android:text="მშობლის (ან სხვა მზრუნველის) რეგისტრაცია"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="გამოიყენეთ ქართული ან ლათინური შრიფტი (*) აღნიშნული ველების შევსება სავალდებულოა"
+					android:layout_gravity="left"
+					android:textColor="#49B541"
+					android:fontFamily="@font/bpg_mrgvlovani"
+					android:textSize="8dp"
+					/>
+				<EditText
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:paddingLeft="15dp"
+            android:textColor="#6A6A6A"
+			android:fontFamily="@font/bpg_mrgvlovani"
+            android:hint="*ტელეფონი"
+			android:textSize="13dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/izrune_editext_back"
+            />
+				<TextView
+					android:layout_marginTop="5dp"
+					android:layout_marginBottom="5dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="მიუთითეთ მოქმედი მობილური ტელეფონის ნომერი"
+					android:layout_gravity="left"
+					android:textColor="#49B541"
+					android:fontFamily="@font/bpg_mrgvlovani"
+					android:textSize="8dp"
+					/>
+				<EditText
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:paddingLeft="15dp"
+            android:textColor="#6A6A6A"
+			android:fontFamily="@font/bpg_mrgvlovani"
+            android:hint="ელ. ფოსტა"
+			android:textSize="13dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/izrune_editext_back"
+            />
+			<TextView
+					android:layout_marginTop="5dp"
+					android:layout_marginBottom="5dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="შესავსებად სავალდებულო არ არის, თუმცა სასურველია"
+					android:layout_gravity="left"
+					android:textColor="#49B541"
+					android:fontFamily="@font/bpg_mrgvlovani"
+					android:textSize="8dp"
+					/>
+
+				<EditText
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:paddingLeft="15dp"
+            android:textColor="#6A6A6A"
+			android:fontFamily="@font/bpg_mrgvlovani"
+            android:hint="*მომხმარებლის სახელი"
+			android:textSize="13dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/izrune_editext_back"
+            />
+				<TextView
+					android:layout_marginTop="5dp"
+					android:layout_marginBottom="5dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="აკრიფეთ ნებისმიერი სახელი (ან სიტყვა) ლათინურად, რომელიც შედგება მინიმუმ 5 სიმბოლოსგან"
+					android:layout_gravity="left"
+					android:textColor="#49B541"
+					android:fontFamily="@font/bpg_mrgvlovani"
+					android:textSize="8dp"
+					/>
+				<EditText
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:paddingLeft="15dp"
+            android:textColor="#6A6A6A"
+			android:fontFamily="@font/bpg_mrgvlovani"
+            android:hint="*პაროლი"
+			android:textSize="13dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/izrune_editext_back"
+            />
+				
+				<EditText
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:paddingLeft="15dp"
+            android:textColor="#6A6A6A"
+			android:fontFamily="@font/bpg_mrgvlovani"
+            android:hint="*გაიმეორეთ პაროლი"
+			android:textSize="13dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/izrune_editext_back"
+            />
+				<TextView
+					android:layout_marginTop="5dp"
+					android:layout_marginBottom="5dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="პაროლი უნდა შედგებოდეს არანაკლებ 7 ლათინური სიმბოლოსგან (ასოები და/ან ციფრები)"
+					android:layout_gravity="left"
+					android:textColor="#49B541"
+					android:fontFamily="@font/bpg_mrgvlovani"
+					android:textSize="8dp"
+					/>
+        </LinearLayout>
+     
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+		android:layout_gravity="bottom"
+        >
+
+
+
+
+        <LinearLayout
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/background"/>
+        </LinearLayout>
+
+        <LinearLayout
+			android:id="@+id/NextButton"
+            android:elevation="5dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:gravity="center"
+            android:layout_marginTop="27dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/izrune_registration_buttonback"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="შემდეგი"
+                android:textColor="#ffffff"
+				android:fontFamily="@font/bpg_mrgvlovani"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="60dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="15dp"
+                android:gravity="center_horizontal">
+
+                <LinearLayout
+                    android:padding="6dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/izrunebackbuttinbackground">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/arrowback"
+                        />
+
+                </LinearLayout>
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#fff"
+					android:textSize="12dp"
+					android:fontFamily="@font/bpg_mrgvlovani"
+                    android:text="უკან დაბრუნება"/>
+				</LinearLayout>
+			 </LinearLayout>
+		</FrameLayout>
+	</LinearLayout>
+		</ScrollView>
+</FrameLayout>

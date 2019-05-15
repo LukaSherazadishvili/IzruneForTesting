@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/xmlfile1"
+    android:layout_margin="5dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="თარიღი "
+            android:textColor="#B8B8B8"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/CurrentDate"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="15 აპრილი 2019 11:44 სთ"
+            android:textAlignment="center"
+            android:textColor="#CB87D6"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+           />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="სწორი პასუხი"
+            android:textColor="#B8B8B8"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/CorrectAnswersCount"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:text="18"
+            android:textAlignment="center"
+            android:textColor="#49B541"
+            android:background="@drawable/xmlfile2"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+			 />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="არასწორი პასუხი"
+            android:textColor="#B8B8B8"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/IncorrectAnswersCount"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:text="2"
+            android:textAlignment="center"
+            android:textColor="#E74C3C"
+            android:background="@drawable/xmlfile2"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="გამოტოვებული კითხვა "
+            android:textColor="#B8B8B8"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/SkipedQuestionsCount"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:text="0"
+            android:textAlignment="center"
+            android:textColor="#CB87D6"
+            android:background="@drawable/xmlfile2"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+             />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="დახარჯული დრო"
+            android:textColor="#B8B8B8"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/TimeCost"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:text="04წთ 31წმ"
+            android:textAlignment="center"
+            android:background="@drawable/xmlfile2"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="დაგროვებული ქულა"
+            android:textColor="#B8B8B8"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/Points"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:text="90"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/xmlfile3"/>
+    </LinearLayout>
+</LinearLayout>

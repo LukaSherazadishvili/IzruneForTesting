@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	 xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+	android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp"
+    android:layout_height="wrap_content">
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="1">
+	<TextView
+		android:layout_marginTop="5dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="„ჩვენ გვიყვარს Izrune.ge“- თბილისის N106 საჯარო სკოლა „შვილებზე განსაკუთრებულად ზრუნვის დღეს“ ზეიმობს"
+		android:maxLines="3"
+		android:fontFamily="@font/bpg_mrgvlovani"
+		android:textSize="12dp"
+		android:textColor="#272727"/>
+
+		<TextView
+		android:layout_marginTop="10dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="31 მარტი, 2019"
+		android:maxLines="3"
+		android:fontFamily="@font/bpg_mrgvlovani"
+		android:textSize="8dp"
+		android:textColor="#6A6A6A"/>
+		</LinearLayout>
+	<android.support.v7.widget.CardView			
+		android:layout_width="100dp"
+		android:layout_height="90dp"
+		app:cardCornerRadius="10dp"
+		>
+			<ImageView
+			android:id="@+id/MainSmallImage"
+			android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:scaleType="centerCrop"
+				android:src="@drawable/chldimg"/>
+		</android.support.v7.widget.CardView>
+	</LinearLayout>
+	<View		
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:layout_marginTop="12dp"
+		android:background="#15272727"/>
+</LinearLayout>

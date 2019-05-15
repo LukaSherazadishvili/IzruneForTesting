@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+        <ProjectGuid>{84BC55D6-6F4E-465E-B3F2-78673C9C4C7F}</ProjectGuid>
+        <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+        <TemplateGuid>{edc1b0fa-90cd-4038-8fad-98fe74adb368}</TemplateGuid>
+        <OutputType>Exe</OutputType>
+        <RootNamespace>Izrune.iOS</RootNamespace>
+        <AssemblyName>Izrune.iOS</AssemblyName>
+        <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+        <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+        <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+        <DefineConstants>DEBUG</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <ConsolePause>false</ConsolePause>
+        <MtouchArch>x86_64</MtouchArch>
+        <MtouchLink>None</MtouchLink>
+        <MtouchDebug>true</MtouchDebug>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+        <DebugType>none</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <MtouchLink>None</MtouchLink>
+        <MtouchArch>x86_64</MtouchArch>
+        <ConsolePause>false</ConsolePause>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\iPhone\Debug</OutputPath>
+        <DefineConstants>DEBUG</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <ConsolePause>false</ConsolePause>
+        <MtouchArch>ARM64</MtouchArch>
+        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+        <CodesignKey>iPhone Developer</CodesignKey>
+        <MtouchDebug>true</MtouchDebug>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+        <DebugType>none</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\iPhone\Release</OutputPath>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+        <MtouchArch>ARM64</MtouchArch>
+        <ConsolePause>false</ConsolePause>
+        <CodesignKey>iPhone Developer</CodesignKey>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System" />
+        <Reference Include="System.Xml" />
+        <Reference Include="System.Core" />
+        <Reference Include="Xamarin.iOS" />
+        <Reference Include="System.Numerics" />
+        <Reference Include="System.Numerics.Vectors" />
+        <Reference Include="FPT.Framework.iOS.UI.Dropdown">
+          <HintPath>..\libraries\FPT.Framework.iOS.UI.Dropdown.dll</HintPath>
+        </Reference>
+        <Reference Include="XLPagerTabStrip">
+          <HintPath>..\..\..\EuroProduct-master\libraries\XLPagerTabStrip.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
+      <PackageReference Include="Xamarin.FFImageLoading">
+        <Version>2.4.9.961</Version>
+      </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon152.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Resources\" />
+        <Folder Include="MPDC\" />
+        <Folder Include="ViewControllers\" />
+    </ItemGroup>
+    <ItemGroup>
+        <InterfaceDefinition Include="LaunchScreen.storyboard" />
+        <InterfaceDefinition Include="Main.storyboard" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="Info.plist" />
+        <None Include="Entitlements.plist" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Main.cs" />
+        <Compile Include="AppDelegate.cs" />
+        <Compile Include="ViewController.cs" />
+        <Compile Include="ViewController.designer.cs">
+            <DependentUpon>ViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="MPDC\Extensions\ViewExtensions.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <BundleResource Include="Resources\1 – 2.png" />
+      <BundleResource Include="Resources\1 – 3.png" />
+      <BundleResource Include="Resources\1 – 4.png" />
+      <BundleResource Include="Resources\1 – 5.png" />
+      <BundleResource Include="Resources\1 – 6.png" />
+      <BundleResource Include="Resources\1 – 7.png" />
+      <BundleResource Include="Resources\1 – 8.png" />
+      <BundleResource Include="Resources\1 – 9.png" />
+      <BundleResource Include="Resources\1 – 10.png" />
+      <BundleResource Include="Resources\1 – 11.png" />
+      <BundleResource Include="Resources\1 – 12.png" />
+      <BundleResource Include="Resources\1 – 13.png" />
+      <BundleResource Include="Resources\1 – 14.png" />
+      <BundleResource Include="Resources\1 – 15.png" />
+      <BundleResource Include="Resources\1 – 16.png" />
+      <BundleResource Include="Resources\1 – 17.png" />
+      <BundleResource Include="Resources\1 – 18.png" />
+      <BundleResource Include="Resources\1 – 19.png" />
+      <BundleResource Include="Resources\1 – 20.png" />
+      <BundleResource Include="Resources\1 – 21.png" />
+      <BundleResource Include="Resources\1 – 22.png" />
+      <BundleResource Include="Resources\1 – 23.png" />
+      <BundleResource Include="Resources\1 – 24.png" />
+      <BundleResource Include="Resources\1 – 25.png" />
+      <BundleResource Include="Resources\1 – 26.png" />
+      <BundleResource Include="Resources\1 – 27.png" />
+      <BundleResource Include="Resources\1 – 28.png" />
+      <BundleResource Include="Resources\1 – 29.png" />
+      <BundleResource Include="Resources\1 – 30.png" />
+      <BundleResource Include="Resources\1 – 31.png" />
+      <BundleResource Include="Resources\1 – 32.png" />
+      <BundleResource Include="Resources\1 – 33.png" />
+      <BundleResource Include="Resources\1 – 34.png" />
+      <BundleResource Include="Resources\1 – 35.png" />
+      <BundleResource Include="Resources\1 – 36.png" />
+      <BundleResource Include="Resources\1 – 37.png" />
+      <BundleResource Include="Resources\15c1c1239c.png" />
+      <BundleResource Include="Resources\document.png" />
+      <BundleResource Include="Resources\Group 231.png" />
+      <BundleResource Include="Resources\Group 232.png" />
+      <BundleResource Include="Resources\Group 233.png" />
+      <BundleResource Include="Resources\Group 234.png" />
+      <BundleResource Include="Resources\Group 235.png" />
+      <BundleResource Include="Resources\Group 248.png" />
+      <BundleResource Include="Resources\Union 2.png" />
+    </ItemGroup>
+    <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>

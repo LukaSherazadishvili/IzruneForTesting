@@ -1,0 +1,121 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Android.Animation;
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Support.V4.View;
+using Android.Views;
+using Android.Widget;
+using Izrune.Activitys;
+using Izrune.Adapters.ViewPagerAdapter;
+using Izrune.Attributes;
+
+namespace Izrune.Fragments
+{
+    class ServiceFragment : MPDCBaseFragment
+    {
+        protected override int LayoutResource { get; } = Resource.Layout.layoutServices;
+
+
+        [MapControl(Resource.Id.backgroundAnimationView)]
+        View AnimatedView;
+
+
+        [MapControl(Resource.Id.MainPager)]
+        ViewPager pager;
+
+        [MapControl(Resource.Id.IndividualButton)]
+        LinearLayout IndividualButton;
+
+        [MapControl(Resource.Id.PromoButton)]
+        LinearLayout PromoButton;
+
+        [MapControl(Resource.Id.PromoTxt)]
+        TextView PromoText;
+
+        [MapControl(Resource.Id.IndividualTxt)]
+        TextView Individual;
+
+        [MapControl(Resource.Id.BodyContent)]
+        LinearLayout Body;
+
+
+        private List<MPDCBaseFragment> FragmentList = new List<MPDCBaseFragment>()
+        {
+            new IndividualServiceFragmentcs(),
+             new PromoFragment()
+        };
+
+        float Density;
+        private bool CurrentFragmnet = true;
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+           
+        }
+
+        public override void OnViewCreated(View view, Bundle savedInstanceState)
+        {
+            base.OnViewCreated(view, savedInstanceState);
+
+            Density = Resources.DisplayMetrics.Density;
+            PromoButton.Click += PromoButton_Click;
+            IndividualButton.Click += IndividualButton_Click;
+
+
+            var adapter = new ServiceViewPagerAdapter(ChildFragmentManager, FragmentList);
+            pager.Adapter = adapter;
+            pager.PageSelected += Pager_PageSelected;
+        }
+
+        private void Pager_PageSelected(object sender, ViewPager.PageSelectedEventArgs e)
+        {
+            if (e.Position == 1)
+            {
+                PromoButton_Click(null, null);
+            }
+            else
+            {
+                IndividualButton_Click(null, null);
+            }
+        }
+
+        private void IndividualButton_Click(object sender, EventArgs e)
+        {
+            if (CurrentFragmnet)
+                return;
+
+
+            ObjectAnimator animation = ObjectAnimator.OfFloat(AnimatedView, "x", IndividualButton.GetX());
+            animation.SetDuration(200);
+            animation.Start();
+            pager.PageSelected -= Pager_PageSelected;
+            pager.SetCurrentItem(0, true);
+            pager.PageSelected += Pager_PageSelected;
+            Individual.SetTextColor(Android.Graphics.Color.Rgb(255, 255, 255));
+            PromoText.SetTextColor(Android.Graphics.Color.Rgb(106, 106, 106));
+            CurrentFragmnet = true;
+        }
+
+        private void PromoButton_Click(object sender, EventArgs e)
+        {
+            if (!CurrentFragmnet)
+                return;
+
+
+            ObjectAnimator animation = ObjectAnimator.OfFloat(AnimatedView, "x", PromoButton.GetX() + Density);
+            animation.SetDuration(200);
+            animation.Start();
+            pager.PageSelected -= Pager_PageSelected;
+            pager.SetCurrentItem(1, true);
+            pager.PageSelected += Pager_PageSelected;
+            Individual.SetTextColor(Android.Graphics.Color.Rgb(106, 106, 106));
+            PromoText.SetTextColor(Android.Graphics.Color.Rgb(255, 255, 255));
+            CurrentFragmnet = false;
+        }
+    }
+}

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:id="@+id/Container">
+	<ScrollView
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:overScrollMode="never"
+	android:fillViewport="true">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+	android:gravity="center"
+    android:orientation="vertical">
+  
+
+		
+			<LinearLayout
+				 android:layout_width="330dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+			android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+			<TextView
+					android:textSize="13dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="პაკეტის გააქტიურება სკოლის ინდივიდუალური პრომო კოდით"
+					android:textColor="#AE71B7"
+					android:fontFamily="@font/bpg_mrgvlovani"
+					android:gravity="center"
+					android:layout_marginTop="15dp"/>
+
+				<TextView
+					android:textSize="10dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="თქვენი სკოლა არ არის izrune.ge-ს თანამოაზრე. იმისთვის, რომ ისარგებლოთ სოციალური პაკეტით სკოლის ადმინისტრაცია უნდა დაუკავშირდეს izrune.ge-ს ან etaloni.ge-ს გუნდს"
+					android:textColor="#E74C3C"
+					android:fontFamily="@font/bpg_mrgvlovani"
+					android:gravity="center"
+					android:layout_marginTop="40dp"/>
+
+				 <LinearLayout
+			android:layout_marginTop="40dp"
+			android:id="@+id/BodyContent"
+            android:layout_width="330dp"
+            android:paddingLeft="15dp"
+			android:layout_marginBottom="25dp"
+            android:paddingRight="15dp"
+            android:layout_gravity="center"
+			android:orientation="horizontal"
+            android:layout_height="wrap_content">
+          
+			<FrameLayout
+					android:background="@drawable/izrune_editext_back"
+					android:layout_width="0dp"
+					android:layout_marginRight="5dp"
+					android:layout_height="50dp"					
+					android:layout_weight="1">
+				<TextView
+						android:gravity="center"
+						android:layout_gravity="center"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="10 თვე"/>	
+				</FrameLayout>
+				<FrameLayout
+					android:layout_marginLeft="5dp"
+					android:background="@drawable/izrune_editext_back"
+					android:layout_width="0dp"
+					android:layout_height="50dp"
+					android:layout_weight="1">
+				<TextView
+							android:layout_gravity="center"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="10 თვე"/>	
+				</FrameLayout>
+        </LinearLayout>
+
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="1 თვე - 1 ₾"
+					android:textColor="#49B541"
+					android:fontFamily="@font/bpg_mrgvlovani"
+					android:gravity="center"
+					android:textSize="20dp"
+					android:layout_marginTop="20dp"/>
+
+				</LinearLayout>
+
+
+ 
+     
+		
+			<View
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1"/>
+
+    <FrameLayout
+		android:layout_marginTop="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="265dp"
+		android:layout_gravity="bottom"
+        >
+
+
+
+
+        <LinearLayout
+            android:layout_marginTop="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/background"/>
+        </LinearLayout>
+
+
+<LinearLayout
+			android:id="@+id/NextButton"
+            android:elevation="5dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bluebuttonbackgroundxml"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="დადასტურება"
+                android:textColor="#ffffff"
+				android:fontFamily="@font/bpg_mrgvlovani"
+                />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+			android:id="@+id/NextButton"
+            android:elevation="5dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:gravity="center"
+            android:layout_marginTop="57dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/izrune_registration_buttonback"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="შემდეგი"
+                android:textColor="#ffffff"
+				android:fontFamily="@font/bpg_mrgvlovani"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="60dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="15dp"
+                android:gravity="center_horizontal">
+
+                <LinearLayout
+                    android:padding="6dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/izrunebackbuttinbackground">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/arrowback"
+                        />
+
+                </LinearLayout>
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#fff"
+					android:textSize="12dp"
+					android:fontFamily="@font/bpg_mrgvlovani"
+                    android:text="უკან დაბრუნება"/>
+				</LinearLayout>
+			 </LinearLayout>
+		</FrameLayout>
+   
+	</LinearLayout>
+		</ScrollView>
+</FrameLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+	<FrameLayout
+		android:layout_marginTop="20dp"
+		
+		android:layout_gravity="center_horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@drawable/quezbuttondefaultbackground">
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+			
+				<FrameLayout
+				android:background="@drawable/quezchosebackgrounddefault"
+				android:paddingLeft="30dp"
+				android:paddingRight="30dp"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent">
+				<TextView
+					android:layout_gravity="center_vertical"
+					
+					android:fontFamily="@font/bpg_mrgvlovani"
+					android:textSize="14dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="#fff"
+				android:text="ა"
+				/>
+				</FrameLayout>
+
+			<TextView
+				android:id="@+id/AnswerTxt"
+				android:paddingTop="7dp"
+				android:paddingBottom="10dp"
+				android:textColor="#6A6A6A"
+				android:layout_gravity="center_vertical"
+				android:layout_marginLeft="5dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან მაქსიმალურად  მიახლოებული შაბლონი"
+				android:fontFamily="@font/bpg_mrgvlovani"/>
+			</LinearLayout>
+		</FrameLayout>
+</LinearLayout>

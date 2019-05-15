@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:id="@+id/Container">
+	<ScrollView
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:overScrollMode="never"
+	android:fillViewport="true">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+	android:gravity="center"
+    android:orientation="vertical">
+  
+
+			<FrameLayout
+				android:layout_marginTop="10dp"
+				android:layout_width="300dp"
+				android:layout_height="40dp"
+				android:background="@drawable/izrune_editext_back"
+				>
+
+				<View
+					android:id="@+id/backgroundAnimationView"
+					android:layout_width="150dp"
+					android:layout_height="match_parent"
+					android:background="@drawable/izrune_registration_buttonback"
+					/>
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:orientation="horizontal">
+						<LinearLayout
+							android:id="@+id/IndividualButton"
+							android:layout_width="0dp"
+							android:layout_height="match_parent"
+							android:layout_weight="1"
+							android:gravity="center">
+							<TextView 
+								android:fontFamily="@font/bpg_mrgvlovani"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="ინდივიდუალური"
+								android:layout_gravity="center"
+								android:textSize="11dp"
+								android:textColor="#fff"
+								android:id="@+id/IndividualTxt"
+								/>
+							</LinearLayout>
+
+						<LinearLayout
+							android:id="@+id/PromoButton"
+							android:layout_width="0dp"
+							android:layout_height="match_parent"
+							android:layout_weight="1"
+							android:gravity="center">
+							<TextView							
+								android:fontFamily="@font/bpg_mrgvlovani"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="პრომო კოდი"
+								android:layout_gravity="center"
+								android:textSize="11dp"
+								android:textColor="#6A6A6A"
+								android:id="@+id/PromoTxt"
+								/>
+							</LinearLayout>
+						</LinearLayout>
+			</FrameLayout>
+
+			
+  <LinearLayout
+			android:id="@+id/BodyContent"
+            android:layout_width="match_parent"         
+            android:layout_gravity="center"
+            android:gravity="center"
+			android:orientation="vertical"
+            android:layout_height="match_parent">
+           
+				<android.support.v4.view.ViewPager
+					android:id="@+id/MainPager"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:overScrollMode="never"
+					/>
+				
+        </LinearLayout>
+     
+		
+	</LinearLayout>
+		</ScrollView>
+</FrameLayout>

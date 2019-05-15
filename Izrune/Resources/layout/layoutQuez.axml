@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	>
+	
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+       <LinearLayout
+				android:paddingLeft="20dp"
+				android:paddingTop="10dp"
+				android:paddingBottom="10dp"
+				android:paddingRight="20dp"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="#ffffff"
+				android:orientation="horizontal">
+			
+				<FrameLayout
+				android:layout_width="120dp"
+				android:layout_height="120dp">
+					<ProgressBar
+					android:id="@+id/QuestionProgressbar"
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:indeterminate="false"
+							 android:background="@drawable/circleshape"
+							android:progressDrawable="@drawable/circularbar"
+							style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+							android:max="10000"
+							android:progress="60"
+							android:secondaryProgress="10000"
+							/>
+							<LinearLayout
+								android:layout_gravity="center" 
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:orientation="vertical">
+								<TextView
+							android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="დრო"
+								android:textColor="#AE71B7"
+								android:fontFamily="@font/bpg_mrgvlovani"
+								android:layout_gravity="center"/>
+							<TextView
+							android:textSize="22dp"
+							android:id="@+id/TimerText"
+							android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text=""
+								android:textColor="#49B541"
+								android:fontFamily="@font/bpg_mrgvlovani"
+								android:layout_gravity="center"/>
+							<TextView
+								android:layout_marginTop="-5dp"
+								android:textSize="10dp"
+							android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="წუთი   წამი"
+								android:textColor="#AE71B7"
+								android:fontFamily="@font/bpg_mrgvlovani"
+								android:layout_gravity="center"/>
+								</LinearLayout>
+							</FrameLayout>
+
+
+				<LinearLayout
+					android:gravity="center"
+					android:layout_width="0dp"
+					android:layout_weight="1"
+					android:layout_height="match_parent"
+					android:orientation="vertical">
+					<LinearLayout
+						
+						android:layout_gravity="right"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal">
+						<ImageView
+							android:layout_marginRight="5dp"
+							android:layout_width="14dp"
+							android:layout_height="14dp"
+							android:src="@drawable/img2"/>
+						
+						<ImageView
+							android:layout_marginRight="5dp"
+							android:layout_width="14dp"
+							android:layout_height="14dp"
+							android:src="@drawable/img2"/>
+						<ImageView
+							android:layout_marginRight="5dp"
+							android:layout_width="14dp"
+							android:layout_height="14dp"
+							android:src="@drawable/img2"/>
+						<ImageView
+							android:layout_marginRight="5dp"
+							android:layout_width="14dp"
+							android:layout_height="14dp"
+							android:src="@drawable/img2"/>
+						<ImageView
+							android:layout_marginRight="5dp"
+							android:layout_width="14dp"
+							android:layout_height="14dp"
+							android:src="@drawable/img2"/>
+						</LinearLayout>
+					<TextView
+						android:layout_marginTop="5dp"
+						android:fontFamily="@font/bpg_mrgvlovani"
+						android:layout_marginRight="7dp"
+						android:textSize="17dp"
+						android:textColor="#AE71B7"
+						android:layout_gravity="right"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="დავით პირველი"/>
+					</LinearLayout>
+			</LinearLayout>
+		<FrameLayout
+		
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"
+		android:id="@+id/ContainerQuestion"
+		/>
+		
+		
+		</LinearLayout>
+
+	
+</FrameLayout>
