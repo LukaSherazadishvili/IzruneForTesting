@@ -14,6 +14,7 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
+            //asdasdas
         }
 
         public override void DidReceiveMemoryWarning()
