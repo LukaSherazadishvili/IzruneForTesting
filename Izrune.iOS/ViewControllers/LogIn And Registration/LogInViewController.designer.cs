@@ -28,6 +28,9 @@ namespace Izrune.iOS
 		UIKit.UIView registrationView { get; set; }
 
 		[Outlet]
+		UIKit.UIImageView showPasswordIcon { get; set; }
+
+		[Outlet]
 		UIKit.UITextField userNameTextField { get; set; }
 		
 		void ReleaseDesignerOutlets ()
@@ -60,6 +63,11 @@ namespace Izrune.iOS
 			if (passwordTextField != null) {
 				passwordTextField.Dispose ();
 				passwordTextField = null;
+			}
+
+			if (showPasswordIcon != null) {
+				showPasswordIcon.Dispose ();
+				showPasswordIcon = null;
 			}
 		}
 	}

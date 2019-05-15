@@ -50,12 +50,24 @@ namespace Izrune.iOS
                     this.PresentViewController(alert, true, null);
                 }));
             }
+
+            if (showPasswordIcon.GestureRecognizers == null || showPasswordIcon.GestureRecognizers?.Count() == 0)
+            {
+                showPasswordIcon.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    //TODO
+                    passwordTextField.SecureTextEntry = !passwordTextField.SecureTextEntry;
+                }));
+            }
         }
 
         private void InitUI()
         {
             loginView.Layer.CornerRadius = 25;
             registrationView.Layer.CornerRadius = 25;
+
+            //userNameTextField.Layer.CornerRadius = 20;
+            //passwordTextField.Layer.CornerRadius = 20;
 
             loginView.BackgroundColor = AppColors.Succesful;
             registrationView.BackgroundColor = AppColors.Tint;
