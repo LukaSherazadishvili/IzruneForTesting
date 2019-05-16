@@ -496,7 +496,7 @@
                                     <constraint firstAttribute="trailing" secondItem="S3a-0Q-4L7" secondAttribute="trailing" constant="15" id="juz-KR-vKv"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ტელეფონის ნომერი" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="ONj-jv-sDs">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ტელეფონის ნომერი" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="ONj-jv-sDs">
                                 <rect key="frame" x="35" y="397.66666666666669" width="305" height="40"/>
                                 <color key="backgroundColor" red="0.95208579301834106" green="0.95280700922012329" blue="0.95219749212265015" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
