@@ -29,30 +29,7 @@ namespace Izrune.iOS
 
         private void InitGestures()
         {
-            //if(loginView.GestureRecognizers == null || loginView.GestureRecognizers?.Count() == 0)
-            //{
-            //    loginView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
-            //    {
-            //        //TODO
-            //        var alert = UIAlertController.Create("Attention", "LoginClicked", UIAlertControllerStyle.Alert);
-            //        alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
-            //        alert.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null));
-            //        this.PresentViewController(alert, true, null);
-            //    }));
-            //}
-
-            //if (registrationView.GestureRecognizers == null || registrationView.GestureRecognizers?.Count() == 0)
-            //{
-            //    registrationView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
-            //    {
-            //        //TODO
-            //        var alert = UIAlertController.Create("Attention", "RegistrationClicked", UIAlertControllerStyle.Alert);
-            //        alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
-            //        alert.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null));
-            //        this.PresentViewController(alert, true, null);
-            //    }));
-            //}
-
+        
             if (showPasswordIcon.GestureRecognizers == null || showPasswordIcon.GestureRecognizers?.Count() == 0)
             {
                 showPasswordIcon.AddGestureRecognizer(new UITapGestureRecognizer(() =>
@@ -104,16 +81,5 @@ namespace Izrune.iOS
             textField.Layer.BorderWidth = 2;
             textField.Layer.BorderColor = isCorrect ? AppColors.Succesful.CGColor : AppColors.ErrorTitle.CGColor;
         }
-
-        /*
-         * override func viewDidLoad() {
-            super.viewDidLoad()
-                
-            button.layer.shadowColor = UIColor.black.cgColor
-            button.layer.shadowOffset = CGSize(width: 5, height: 5)
-            button.layer.shadowRadius = 5
-            button.layer.shadowOpacity = 1.0  
-            }       
-        */
     }
 }
