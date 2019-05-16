@@ -19,22 +19,45 @@ namespace Izrune.iOS
 
         public string TitleText { get; set; }
 
+        public string ErrorText { get; set; }
+
+        bool IsError;
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
             InitUI();
+
+            phoneTextField.EditingDidBegin += delegate {
+                ShowError(false);
+            };
+
+            sendBtn.TouchUpInside += delegate {
+                ShowError(IsError);
+                IsError = !IsError;
+                this.View.EndEditing(true);
+            };
         }
 
 
         private void InitUI()
         {
-            sendView.ToCardView(25, 3, 0.2f, AppColors.Tint);
+            sendBtn.ToCardView(25, 3, 0.2f, AppColors.Tint);
             backView.Layer.CornerRadius = 25;
             backImageView.Image = backImageView.Image.GetImageWithColor(UIColor.FromRGB(63, 81, 181));
 
             phoneTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 17);
 
             titleLbl.Text = TitleText;
+            //errorLbl.Text = ErrorText;
+        }
+
+        private void ShowError(bool isError)
+        {
+            errorLbl.Hidden = !isError;
+
+            phoneTextField.AddBorderToTextField(isError? AppColors.ErrorTitle : UIColor.Clear);
+
+            phoneTextField.TextColor = isError ? AppColors.ErrorTitle : UIColor.Black;
         }
     }
 }

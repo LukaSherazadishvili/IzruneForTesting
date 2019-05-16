@@ -19,7 +19,13 @@ namespace Izrune.iOS
 		UIKit.UIView backView { get; set; }
 
 		[Outlet]
+		UIKit.UILabel errorLbl { get; set; }
+
+		[Outlet]
 		UIKit.UITextField phoneTextField { get; set; }
+
+		[Outlet]
+		UIKit.UIButton sendBtn { get; set; }
 
 		[Outlet]
 		UIKit.UIView sendView { get; set; }
@@ -52,6 +58,16 @@ namespace Izrune.iOS
 			if (titleLbl != null) {
 				titleLbl.Dispose ();
 				titleLbl = null;
+			}
+
+			if (errorLbl != null) {
+				errorLbl.Dispose ();
+				errorLbl = null;
+			}
+
+			if (sendBtn != null) {
+				sendBtn.Dispose ();
+				sendBtn = null;
 			}
 		}
 	}
