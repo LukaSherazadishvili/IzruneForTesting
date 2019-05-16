@@ -379,12 +379,94 @@
                     <view key="view" contentMode="scaleToFill" id="ab1-yg-XFL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1 – 6.png" translatesAutoresizingMaskIntoConstraints="NO" id="pAI-Kq-fjh">
+                                <rect key="frame" x="174.66666666666666" y="44" width="26" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="26" id="8Oi-gr-7sn"/>
+                                    <constraint firstAttribute="height" constant="26" id="odA-45-fgZ"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="მშობლის (ან სხვა მზრუნველის) რეგისტრაცია" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Asv-kk-TMl">
+                                <rect key="frame" x="20" y="80" width="335" height="37.333333333333343"/>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="16"/>
+                                <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="გამოიყენეთ ქართული ან ლათინური შრიფტი (*) აღნიშნული ველების შევსება სავალდებულოა" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVC-uj-MD8">
+                                <rect key="frame" x="20" y="132.33333333333334" width="335" height="28"/>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
+                                <color key="textColor" red="0.28627450980392155" green="0.70980392156862748" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="0vy-Ue-5eZ">
+                                <rect key="frame" x="0.0" y="608" width="375" height="170"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="170" id="ACG-HD-N32"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="უკან დაბრუნება" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8c6-vI-x8k">
+                                <rect key="frame" x="15" y="744" width="345" height="14"/>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ow9-NZ-d7u">
+                                <rect key="frame" x="162.66666666666666" y="674" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="3NX-XC-YfX"/>
+                                    <constraint firstAttribute="height" constant="50" id="aaj-au-z2v"/>
+                                </constraints>
+                                <state key="normal" image="1 – 4.png"/>
+                            </button>
+                            <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n38-dh-imU">
+                                <rect key="frame" x="0.0" y="160.33333333333334" width="375" height="447.66666666666663"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B9a-QQ-woc">
+                                <rect key="frame" x="93.333333333333329" y="583" width="188.33333333333337" height="50"/>
+                                <color key="backgroundColor" red="0.79607843140000001" green="0.52941176469999995" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="zrg-jH-Ise"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="15"/>
+                                <state key="normal" title="შემდეგი">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="n38-dh-imU" firstAttribute="top" secondItem="DVC-uj-MD8" secondAttribute="bottom" id="Bie-Ad-xbv"/>
+                            <constraint firstItem="Asv-kk-TMl" firstAttribute="top" secondItem="pAI-Kq-fjh" secondAttribute="bottom" constant="10" id="Emx-vw-2C2"/>
+                            <constraint firstAttribute="trailing" secondItem="0vy-Ue-5eZ" secondAttribute="trailing" id="IGy-gh-kvk"/>
+                            <constraint firstItem="DVC-uj-MD8" firstAttribute="leading" secondItem="Asv-kk-TMl" secondAttribute="leading" id="PA8-gN-XQF"/>
+                            <constraint firstItem="Asv-kk-TMl" firstAttribute="leading" secondItem="ab1-yg-XFL" secondAttribute="leading" constant="20" id="SV8-GV-7K8"/>
+                            <constraint firstItem="0vy-Ue-5eZ" firstAttribute="top" secondItem="n38-dh-imU" secondAttribute="bottom" id="Suf-C5-LZk"/>
+                            <constraint firstItem="B9a-QQ-woc" firstAttribute="centerX" secondItem="ab1-yg-XFL" secondAttribute="centerX" id="VEQ-vZ-38S"/>
+                            <constraint firstAttribute="trailing" secondItem="Asv-kk-TMl" secondAttribute="trailing" constant="20" id="Vy3-AF-ias"/>
+                            <constraint firstItem="n38-dh-imU" firstAttribute="leading" secondItem="ab1-yg-XFL" secondAttribute="leading" id="XPy-12-pIo"/>
+                            <constraint firstItem="0vy-Ue-5eZ" firstAttribute="leading" secondItem="ab1-yg-XFL" secondAttribute="leading" id="bAK-4v-hN3"/>
+                            <constraint firstItem="JNV-Y7-BYm" firstAttribute="top" secondItem="0vy-Ue-5eZ" secondAttribute="bottom" id="bbl-Mn-TPq"/>
+                            <constraint firstItem="DVC-uj-MD8" firstAttribute="top" secondItem="Asv-kk-TMl" secondAttribute="bottom" constant="15" id="bh6-Fb-Gru"/>
+                            <constraint firstItem="pAI-Kq-fjh" firstAttribute="top" secondItem="tAk-km-Qy9" secondAttribute="bottom" id="ca7-iM-KWf"/>
+                            <constraint firstItem="B9a-QQ-woc" firstAttribute="width" secondItem="ab1-yg-XFL" secondAttribute="width" multiplier="0.5" constant="1" id="cuj-mU-L3N"/>
+                            <constraint firstItem="pAI-Kq-fjh" firstAttribute="centerX" secondItem="ab1-yg-XFL" secondAttribute="centerX" id="dMz-t9-ufb"/>
+                            <constraint firstItem="B9a-QQ-woc" firstAttribute="top" secondItem="0vy-Ue-5eZ" secondAttribute="top" constant="-25" id="e8I-uz-rji"/>
+                            <constraint firstItem="ow9-NZ-d7u" firstAttribute="centerX" secondItem="ab1-yg-XFL" secondAttribute="centerX" id="kCS-U5-Sj0"/>
+                            <constraint firstItem="DVC-uj-MD8" firstAttribute="trailing" secondItem="Asv-kk-TMl" secondAttribute="trailing" id="lEC-Ry-2Ka"/>
+                            <constraint firstItem="8c6-vI-x8k" firstAttribute="leading" secondItem="ab1-yg-XFL" secondAttribute="leading" constant="15" id="lGd-w6-1zL"/>
+                            <constraint firstItem="8c6-vI-x8k" firstAttribute="top" secondItem="ow9-NZ-d7u" secondAttribute="bottom" constant="20" id="m3c-qg-G60"/>
+                            <constraint firstAttribute="trailing" secondItem="8c6-vI-x8k" secondAttribute="trailing" constant="15" id="o7e-lQ-Ayp"/>
+                            <constraint firstItem="JNV-Y7-BYm" firstAttribute="top" secondItem="8c6-vI-x8k" secondAttribute="bottom" constant="20" id="qOx-LA-sKN"/>
+                            <constraint firstAttribute="trailing" secondItem="n38-dh-imU" secondAttribute="trailing" id="rbA-At-wae"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9s-yO-zoq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1443" y="-54"/>
+            <point key="canvasLocation" x="-1444" y="-54.679802955665025"/>
         </scene>
         <!--Student Registration View Controller-->
         <scene sceneID="Ez3-3q-Xuv">
@@ -629,6 +711,7 @@
         <image name="1 – 19.png" width="25" height="25"/>
         <image name="1 – 26.png" width="25" height="25"/>
         <image name="1 – 4.png" width="25" height="25"/>
+        <image name="1 – 6.png" width="25" height="25"/>
         <image name="4.png" width="172" height="161"/>
         <image name="izruneBg.png" width="379" height="296"/>
     </resources>
