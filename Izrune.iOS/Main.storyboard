@@ -121,13 +121,6 @@
                                     <constraint firstItem="kOV-FA-XWA" firstAttribute="height" secondItem="VN0-gk-bHy" secondAttribute="height" id="1ry-9J-P7a"/>
                                 </constraints>
                             </stackView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1 – 10.png" translatesAutoresizingMaskIntoConstraints="NO" id="bhe-Zw-fhX">
-                                <rect key="frame" x="305" y="410.33333333333331" width="20" height="15"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="P1g-lL-C6e"/>
-                                    <constraint firstAttribute="height" constant="15" id="bmC-QB-LOp"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdI-d7-FSl">
                                 <rect key="frame" x="35" y="467.66666666666669" width="305" height="50.000000000000057"/>
                                 <color key="backgroundColor" red="0.28627450980392155" green="0.70980392156862748" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
@@ -159,7 +152,6 @@
                             <constraint firstItem="0KV-mn-PHJ" firstAttribute="top" secondItem="sJo-ye-Fef" secondAttribute="bottom" constant="15" id="648-zi-gfX"/>
                             <constraint firstItem="gdI-d7-FSl" firstAttribute="leading" secondItem="r2u-rP-uGH" secondAttribute="leading" constant="35" id="8Xy-bE-E9a"/>
                             <constraint firstItem="sJp-ey-F9L" firstAttribute="leading" secondItem="gdI-d7-FSl" secondAttribute="leading" id="9iG-bG-5HB"/>
-                            <constraint firstItem="bhe-Zw-fhX" firstAttribute="trailing" secondItem="kOV-FA-XWA" secondAttribute="trailing" constant="-15" id="KlP-g7-gzy"/>
                             <constraint firstItem="0KV-mn-PHJ" firstAttribute="leading" secondItem="r2u-rP-uGH" secondAttribute="leadingMargin" constant="15" id="Sr0-Fz-pKx"/>
                             <constraint firstItem="akE-b7-N8d" firstAttribute="top" secondItem="Krp-8l-7Ka" secondAttribute="bottom" id="UWz-67-V0Q"/>
                             <constraint firstAttribute="trailing" secondItem="gdI-d7-FSl" secondAttribute="trailing" constant="35" id="XCk-hf-Feg"/>
@@ -168,7 +160,6 @@
                             <constraint firstItem="sJo-ye-Fef" firstAttribute="leading" secondItem="r2u-rP-uGH" secondAttribute="leadingMargin" constant="15" id="hut-JI-nOJ"/>
                             <constraint firstItem="Krp-8l-7Ka" firstAttribute="height" secondItem="r2u-rP-uGH" secondAttribute="height" multiplier="0.35" constant="1" id="iar-SL-T8f"/>
                             <constraint firstItem="Krp-8l-7Ka" firstAttribute="leading" secondItem="r2u-rP-uGH" secondAttribute="leading" id="jCm-yk-WhP"/>
-                            <constraint firstItem="bhe-Zw-fhX" firstAttribute="centerY" secondItem="kOV-FA-XWA" secondAttribute="centerY" id="jP1-7q-Fko"/>
                             <constraint firstItem="akE-b7-N8d" firstAttribute="top" secondItem="0KV-mn-PHJ" secondAttribute="bottom" constant="21" id="ltr-pT-wqO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="sJo-ye-Fef" secondAttribute="trailing" constant="15" id="mSG-UL-CmO"/>
                             <constraint firstAttribute="trailing" secondItem="Krp-8l-7Ka" secondAttribute="trailing" id="nTP-6E-KTS"/>
@@ -184,7 +175,6 @@
                         <outlet property="logInBtn" destination="gdI-d7-FSl" id="1I1-w8-itR"/>
                         <outlet property="passwordTextField" destination="kOV-FA-XWA" id="lMb-fp-HYC"/>
                         <outlet property="registrationBtn" destination="TdS-Ja-u5r" id="Dj7-Vs-kgn"/>
-                        <outlet property="showPasswordIcon" destination="bhe-Zw-fhX" id="39q-dQ-1fa"/>
                         <outlet property="userNameTextField" destination="VN0-gk-bHy" id="Vjh-8V-qwT"/>
                     </connections>
                 </viewController>
@@ -533,7 +523,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1 – 10.png" width="25" height="25"/>
         <image name="1 – 18.png" width="25" height="25"/>
         <image name="1 – 19.png" width="25" height="25"/>
         <image name="1 – 26.png" width="25" height="25"/>

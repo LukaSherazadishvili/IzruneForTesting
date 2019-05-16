@@ -765,6 +765,21 @@ namespace MpdcViewExtentions
             textField.Layer.SublayerTransform = CATransform3D.MakeTranslation(textLeading, 0, 0);
         }
 
+        public static void AddBorderToTextField(this UITextField textField, UIColor borderColor = null)
+        {
+            textField.Layer.MasksToBounds = true;
+            textField.Layer.BorderWidth = 2;
+            textField.Layer.BorderColor = borderColor.CGColor;
+        }
+
+        public static void AddBorderAndBackgroundToTextField(this UITextField textField, UIColor backgroundColor = null, UIColor borderColor = null)
+        {
+            textField.Layer.MasksToBounds = true;
+            textField.Layer.BorderWidth = 2;
+            textField.Layer.BorderColor = borderColor.CGColor;
+            textField.Layer.BackgroundColor = backgroundColor.CGColor;
+        }
+
         #endregion
 
     }

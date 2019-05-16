@@ -17,7 +17,6 @@ namespace Izrune.iOS
 		}
 
         public static readonly NSString StoryboardId = new NSString("LogInViewControllerStoryboardId");
-        private bool isLogedIn;
 
         public override void ViewDidLoad()
         {
@@ -31,22 +30,8 @@ namespace Izrune.iOS
         private void InitGestures()
         {
         
-            if (showPasswordIcon.GestureRecognizers == null || showPasswordIcon.GestureRecognizers?.Count() == 0)
-            {
-                showPasswordIcon.AddGestureRecognizer(new UITapGestureRecognizer(() =>
-                {
-                    //TODO
-                    passwordTextField.SecureTextEntry = !passwordTextField.SecureTextEntry;
-                }));
-            }
-
             logInBtn.TouchUpInside += delegate {
-                if (isLogedIn)
-                {
-                    //TODO
-                }
-                else
-                    ShowLoginAlert();
+                ShowLoginAlert();
             };
 
             registrationBtn.TouchUpInside += delegate {
@@ -61,26 +46,12 @@ namespace Izrune.iOS
 
         private void InitUI()
         {
-           
-            //loginView.BackgroundColor = AppColors.Succesful;
-            //registrationView.BackgroundColor = AppColors.Tint;
 
             logInBtn.ToCardView(25, 10, 0.1f, UIColor.FromRGBA(0,0,0,0));
             registrationBtn.ToCardView(25, 3, 0.2f, AppColors.Tint);
 
             userNameTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 17);
             passwordTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 17);
-
-            //logInBtn.Layer.ShadowColor = AppColors.GreenShadow.CGColor;
-            //logInBtn.Layer.ShadowOffset = new CoreGraphics.CGSize(5, 5);
-            //logInBtn.Layer.ShadowRadius = 5;
-            //logInBtn.Layer.ShadowOpacity = 1.0f;
-        }
-
-        private void ChcekTextField(UITextField textField, bool isCorrect)
-        {
-            textField.Layer.BorderWidth = 2;
-            textField.Layer.BorderColor = isCorrect ? AppColors.Succesful.CGColor : AppColors.ErrorTitle.CGColor;
         }
 
         private void ShowLoginAlert()
