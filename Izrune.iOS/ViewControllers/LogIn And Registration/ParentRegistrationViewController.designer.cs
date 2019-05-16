@@ -13,6 +13,12 @@ namespace Izrune.iOS
 	partial class ParentRegistrationViewController
 	{
 		[Outlet]
+		UIKit.UIImageView headerImageView { get; set; }
+
+		[Outlet]
+		UIKit.UILabel headerTitleLbl { get; set; }
+
+		[Outlet]
 		UIKit.UIButton nextBtn { get; set; }
 
 		[Outlet]
@@ -36,6 +42,16 @@ namespace Izrune.iOS
 			if (viewForPager != null) {
 				viewForPager.Dispose ();
 				viewForPager = null;
+			}
+
+			if (headerImageView != null) {
+				headerImageView.Dispose ();
+				headerImageView = null;
+			}
+
+			if (headerTitleLbl != null) {
+				headerTitleLbl.Dispose ();
+				headerTitleLbl = null;
 			}
 		}
 	}

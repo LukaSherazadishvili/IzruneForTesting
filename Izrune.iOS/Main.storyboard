@@ -464,6 +464,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="headerImageView" destination="pAI-Kq-fjh" id="0TL-YQ-osv"/>
+                        <outlet property="headerTitleLbl" destination="Asv-kk-TMl" id="iMs-as-eAK"/>
                         <outlet property="nextBtn" destination="B9a-QQ-woc" id="lP1-tE-Ap9"/>
                         <outlet property="prewBtn" destination="ow9-NZ-d7u" id="Krs-kb-tmi"/>
                         <outlet property="viewForPager" destination="n38-dh-imU" id="XZd-Sf-fks"/>
