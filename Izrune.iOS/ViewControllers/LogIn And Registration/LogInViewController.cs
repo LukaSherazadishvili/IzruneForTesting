@@ -17,6 +17,7 @@ namespace Izrune.iOS
 		}
 
         public static readonly NSString StoryboardId = new NSString("LogInViewControllerStoryboardId");
+        private bool isLogedIn;
 
         public override void ViewDidLoad()
         {
@@ -40,12 +41,12 @@ namespace Izrune.iOS
             }
 
             logInBtn.TouchUpInside += delegate {
-                //TODO
-
-                var alert = UIAlertController.Create("Attention", "LoginClicked", UIAlertControllerStyle.Alert);
-                alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
-                alert.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null));
-                this.PresentViewController(alert, true, null);
+                if (isLogedIn)
+                {
+                    //TODO
+                }
+                else
+                    ShowLoginAlert();
             };
 
             registrationBtn.TouchUpInside += delegate {
@@ -80,6 +81,13 @@ namespace Izrune.iOS
         {
             textField.Layer.BorderWidth = 2;
             textField.Layer.BorderColor = isCorrect ? AppColors.Succesful.CGColor : AppColors.ErrorTitle.CGColor;
+        }
+
+        private void ShowLoginAlert()
+        {
+            var alert = UIAlertController.Create("შეცდომა", "მომხმარებელი ან პაროლი არასორია.", UIAlertControllerStyle.Alert);
+            alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+            this.PresentViewController(alert, true, null);
         }
     }
 }
