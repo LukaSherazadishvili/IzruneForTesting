@@ -12,9 +12,31 @@ namespace Izrune.iOS
 	[Register ("ParentRegistrationViewController")]
 	partial class ParentRegistrationViewController
 	{
+		[Outlet]
+		UIKit.UIButton nextBtn { get; set; }
+
+		[Outlet]
+		UIKit.UIButton prewBtn { get; set; }
+
+		[Outlet]
+		UIKit.UIView viewForPager { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (nextBtn != null) {
+				nextBtn.Dispose ();
+				nextBtn = null;
+			}
+
+			if (prewBtn != null) {
+				prewBtn.Dispose ();
+				prewBtn = null;
+			}
+
+			if (viewForPager != null) {
+				viewForPager.Dispose ();
+				viewForPager = null;
+			}
 		}
 	}
 }

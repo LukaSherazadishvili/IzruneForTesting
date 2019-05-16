@@ -463,6 +463,11 @@
                             <constraint firstAttribute="trailing" secondItem="n38-dh-imU" secondAttribute="trailing" id="rbA-At-wae"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="nextBtn" destination="B9a-QQ-woc" id="lP1-tE-Ap9"/>
+                        <outlet property="prewBtn" destination="ow9-NZ-d7u" id="Krs-kb-tmi"/>
+                        <outlet property="viewForPager" destination="n38-dh-imU" id="XZd-Sf-fks"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9s-yO-zoq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
