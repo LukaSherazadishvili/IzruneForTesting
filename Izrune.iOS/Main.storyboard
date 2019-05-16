@@ -524,6 +524,7 @@
                         <outlet property="backView" destination="fqy-A3-piP" id="m53-Oa-OYH"/>
                         <outlet property="phoneTextField" destination="ONj-jv-sDs" id="gxU-iD-x48"/>
                         <outlet property="sendView" destination="pG8-rI-af8" id="H55-Od-c0a"/>
+                        <outlet property="titleLbl" destination="gQ2-ib-E52" id="sQ2-Nf-Bfl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dyN-fi-NEq" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -23,6 +23,9 @@ namespace Izrune.iOS
 
 		[Outlet]
 		UIKit.UIView sendView { get; set; }
+
+		[Outlet]
+		UIKit.UILabel titleLbl { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -44,6 +47,11 @@ namespace Izrune.iOS
 			if (backImageView != null) {
 				backImageView.Dispose ();
 				backImageView = null;
+			}
+
+			if (titleLbl != null) {
+				titleLbl.Dispose ();
+				titleLbl = null;
 			}
 		}
 	}

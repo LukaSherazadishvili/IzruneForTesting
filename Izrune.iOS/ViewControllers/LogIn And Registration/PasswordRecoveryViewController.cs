@@ -17,6 +17,8 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("PasswordRecoveryStoryboardId");
 
+        public string TitleText { get; set; }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -31,6 +33,8 @@ namespace Izrune.iOS
             backImageView.Image = backImageView.Image.GetImageWithColor(UIColor.FromRGB(63, 81, 181));
 
             phoneTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 17);
+
+            titleLbl.Text = TitleText;
         }
     }
 }
