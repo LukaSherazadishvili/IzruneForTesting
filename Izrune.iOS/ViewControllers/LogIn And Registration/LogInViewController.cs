@@ -92,6 +92,11 @@ namespace Izrune.iOS
 
             userNameTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 17);
             passwordTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 17);
+
+            //logInBtn.Layer.ShadowColor = AppColors.GreenShadow.CGColor;
+            //logInBtn.Layer.ShadowOffset = new CoreGraphics.CGSize(5, 5);
+            //logInBtn.Layer.ShadowRadius = 5;
+            //logInBtn.Layer.ShadowOpacity = 1.0f;
         }
 
         private void ChcekTextField(UITextField textField, bool isCorrect)
@@ -99,5 +104,16 @@ namespace Izrune.iOS
             textField.Layer.BorderWidth = 2;
             textField.Layer.BorderColor = isCorrect ? AppColors.Succesful.CGColor : AppColors.ErrorTitle.CGColor;
         }
+
+        /*
+         * override func viewDidLoad() {
+            super.viewDidLoad()
+                
+            button.layer.shadowColor = UIColor.black.cgColor
+            button.layer.shadowOffset = CGSize(width: 5, height: 5)
+            button.layer.shadowRadius = 5
+            button.layer.shadowOpacity = 1.0  
+            }       
+        */
     }
 }
