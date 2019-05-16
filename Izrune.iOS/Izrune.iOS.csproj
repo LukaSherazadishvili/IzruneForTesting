@@ -179,6 +179,10 @@
         <Compile Include="ViewControllers\LogIn And Registration\PasswordRecoveryViewController.designer.cs">
           <DependentUpon>PasswordRecoveryViewController.cs</DependentUpon>
         </Compile>
+        <Compile Include="ViewControllers\SuccesViewController.cs" />
+        <Compile Include="ViewControllers\SuccesViewController.designer.cs">
+          <DependentUpon>SuccesViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />
