@@ -97,10 +97,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sJp-ey-F9L">
-                                <rect key="frame" x="51" y="337.66666666666669" width="273" height="100"/>
+                                <rect key="frame" x="35" y="337.66666666666669" width="305" height="100"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="სახელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VN0-gk-bHy">
-                                        <rect key="frame" x="0.0" y="0.0" width="273" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="305" height="40"/>
                                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="9cM-0b-1BB"/>
@@ -110,7 +110,7 @@
                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="პაროლი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kOV-FA-XWA">
-                                        <rect key="frame" x="0.0" y="60" width="273" height="40"/>
+                                        <rect key="frame" x="0.0" y="60" width="305" height="40"/>
                                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
@@ -121,94 +121,69 @@
                                     <constraint firstItem="kOV-FA-XWA" firstAttribute="height" secondItem="VN0-gk-bHy" secondAttribute="height" id="1ry-9J-P7a"/>
                                 </constraints>
                             </stackView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8XR-sd-LSK">
-                                <rect key="frame" x="51" y="467.66666666666669" width="273" height="50.000000000000057"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xcn-kv-CQ9">
-                                <rect key="frame" x="51" y="467.66666666666669" width="273" height="50.000000000000057"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="შესვლა" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G13-Hq-Ldr">
-                                        <rect key="frame" x="5" y="17.333333333333314" width="263" height="15.333333333333336"/>
-                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="13"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.28627450980392155" green="0.70980392156862748" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="G13-Hq-Ldr" secondAttribute="trailing" constant="5" id="7fY-9z-htw"/>
-                                    <constraint firstItem="G13-Hq-Ldr" firstAttribute="centerX" secondItem="Xcn-kv-CQ9" secondAttribute="centerX" id="CZP-Vi-JaA"/>
-                                    <constraint firstItem="G13-Hq-Ldr" firstAttribute="centerY" secondItem="Xcn-kv-CQ9" secondAttribute="centerY" id="Zta-O0-a7d"/>
-                                    <constraint firstAttribute="height" constant="50" id="heG-3x-blY"/>
-                                    <constraint firstItem="G13-Hq-Ldr" firstAttribute="leading" secondItem="Xcn-kv-CQ9" secondAttribute="leading" constant="5" id="qBd-jD-XVz"/>
-                                </constraints>
-                            </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FDS-ef-rSq">
-                                <rect key="frame" x="51" y="540.66666666666663" width="273" height="50"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="რეგისტრაციის გავლა" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfz-2X-Vmc">
-                                        <rect key="frame" x="5" y="17.333333333333371" width="263" height="15.333333333333336"/>
-                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="13"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.79607843137254897" green="0.52941176470588236" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="pfz-2X-Vmc" firstAttribute="leading" secondItem="FDS-ef-rSq" secondAttribute="leading" constant="5" id="2we-3G-d7D"/>
-                                    <constraint firstAttribute="height" constant="50" id="82n-cC-m10"/>
-                                    <constraint firstItem="pfz-2X-Vmc" firstAttribute="centerX" secondItem="FDS-ef-rSq" secondAttribute="centerX" id="Kv4-Lb-2hF"/>
-                                    <constraint firstAttribute="trailing" secondItem="pfz-2X-Vmc" secondAttribute="trailing" constant="5" id="VXQ-Dg-zrJ"/>
-                                    <constraint firstItem="pfz-2X-Vmc" firstAttribute="centerY" secondItem="FDS-ef-rSq" secondAttribute="centerY" id="fW5-7v-72n"/>
-                                </constraints>
-                            </view>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1 – 10.png" translatesAutoresizingMaskIntoConstraints="NO" id="bhe-Zw-fhX">
-                                <rect key="frame" x="289" y="410.33333333333331" width="20" height="15"/>
+                                <rect key="frame" x="305" y="410.33333333333331" width="20" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="P1g-lL-C6e"/>
                                     <constraint firstAttribute="height" constant="15" id="bmC-QB-LOp"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdI-d7-FSl">
+                                <rect key="frame" x="35" y="467.66666666666669" width="305" height="50.000000000000057"/>
+                                <color key="backgroundColor" red="0.28627450980392155" green="0.70980392156862748" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="It7-HQ-icK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="15"/>
+                                <state key="normal" title="შესვლა">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TdS-Ja-u5r">
+                                <rect key="frame" x="35" y="540.66666666666663" width="305" height="50"/>
+                                <color key="backgroundColor" red="0.79607843137254897" green="0.52941176470588236" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="KQA-zr-BVf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="15"/>
+                                <state key="normal" title="რეგისტრაციის გავლა">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Xcn-kv-CQ9" secondAttribute="trailing" constant="35" id="1k3-rn-MyZ"/>
+                            <constraint firstItem="TdS-Ja-u5r" firstAttribute="leading" secondItem="gdI-d7-FSl" secondAttribute="leading" id="126-ho-6rZ"/>
                             <constraint firstItem="JhC-gR-0mA" firstAttribute="centerX" secondItem="r2u-rP-uGH" secondAttribute="centerX" id="2Nh-BH-rjZ"/>
+                            <constraint firstItem="gdI-d7-FSl" firstAttribute="top" secondItem="Krp-8l-7Ka" secondAttribute="top" constant="-25" id="4pL-X7-JbV"/>
                             <constraint firstItem="0KV-mn-PHJ" firstAttribute="top" secondItem="sJo-ye-Fef" secondAttribute="bottom" constant="15" id="648-zi-gfX"/>
-                            <constraint firstItem="8XR-sd-LSK" firstAttribute="leading" secondItem="Xcn-kv-CQ9" secondAttribute="leading" id="6WP-8I-GTI"/>
-                            <constraint firstItem="FDS-ef-rSq" firstAttribute="trailing" secondItem="Xcn-kv-CQ9" secondAttribute="trailing" id="KeP-MO-FMZ"/>
+                            <constraint firstItem="gdI-d7-FSl" firstAttribute="leading" secondItem="r2u-rP-uGH" secondAttribute="leading" constant="35" id="8Xy-bE-E9a"/>
+                            <constraint firstItem="sJp-ey-F9L" firstAttribute="leading" secondItem="gdI-d7-FSl" secondAttribute="leading" id="9iG-bG-5HB"/>
                             <constraint firstItem="bhe-Zw-fhX" firstAttribute="trailing" secondItem="kOV-FA-XWA" secondAttribute="trailing" constant="-15" id="KlP-g7-gzy"/>
-                            <constraint firstItem="Xcn-kv-CQ9" firstAttribute="top" secondItem="sJp-ey-F9L" secondAttribute="bottom" constant="30" id="NF8-yk-RBr"/>
-                            <constraint firstItem="Xcn-kv-CQ9" firstAttribute="top" secondItem="Krp-8l-7Ka" secondAttribute="top" constant="-25" id="NSc-Tm-xbu"/>
                             <constraint firstItem="0KV-mn-PHJ" firstAttribute="leading" secondItem="r2u-rP-uGH" secondAttribute="leadingMargin" constant="15" id="Sr0-Fz-pKx"/>
                             <constraint firstItem="akE-b7-N8d" firstAttribute="top" secondItem="Krp-8l-7Ka" secondAttribute="bottom" id="UWz-67-V0Q"/>
-                            <constraint firstItem="8XR-sd-LSK" firstAttribute="bottom" secondItem="Xcn-kv-CQ9" secondAttribute="bottom" id="V6T-vY-PUh"/>
+                            <constraint firstAttribute="trailing" secondItem="gdI-d7-FSl" secondAttribute="trailing" constant="35" id="XCk-hf-Feg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0KV-mn-PHJ" secondAttribute="trailing" constant="15" id="YDh-nD-rxN"/>
-                            <constraint firstItem="8XR-sd-LSK" firstAttribute="top" secondItem="Xcn-kv-CQ9" secondAttribute="top" id="a7o-t0-mec"/>
-                            <constraint firstItem="Xcn-kv-CQ9" firstAttribute="leading" secondItem="r2u-rP-uGH" secondAttribute="leadingMargin" constant="35" id="adK-VZ-eBN"/>
-                            <constraint firstItem="sJp-ey-F9L" firstAttribute="leading" secondItem="Xcn-kv-CQ9" secondAttribute="leading" id="anf-ep-wdX"/>
-                            <constraint firstItem="FDS-ef-rSq" firstAttribute="top" secondItem="Xcn-kv-CQ9" secondAttribute="bottom" constant="23" id="c2i-rf-eXy"/>
+                            <constraint firstItem="gdI-d7-FSl" firstAttribute="top" secondItem="sJp-ey-F9L" secondAttribute="bottom" constant="30" id="drY-Je-Hcj"/>
                             <constraint firstItem="sJo-ye-Fef" firstAttribute="leading" secondItem="r2u-rP-uGH" secondAttribute="leadingMargin" constant="15" id="hut-JI-nOJ"/>
-                            <constraint firstItem="FDS-ef-rSq" firstAttribute="leading" secondItem="Xcn-kv-CQ9" secondAttribute="leading" id="iXo-GX-jpX"/>
                             <constraint firstItem="Krp-8l-7Ka" firstAttribute="height" secondItem="r2u-rP-uGH" secondAttribute="height" multiplier="0.35" constant="1" id="iar-SL-T8f"/>
                             <constraint firstItem="Krp-8l-7Ka" firstAttribute="leading" secondItem="r2u-rP-uGH" secondAttribute="leading" id="jCm-yk-WhP"/>
                             <constraint firstItem="bhe-Zw-fhX" firstAttribute="centerY" secondItem="kOV-FA-XWA" secondAttribute="centerY" id="jP1-7q-Fko"/>
                             <constraint firstItem="akE-b7-N8d" firstAttribute="top" secondItem="0KV-mn-PHJ" secondAttribute="bottom" constant="21" id="ltr-pT-wqO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="sJo-ye-Fef" secondAttribute="trailing" constant="15" id="mSG-UL-CmO"/>
                             <constraint firstAttribute="trailing" secondItem="Krp-8l-7Ka" secondAttribute="trailing" id="nTP-6E-KTS"/>
-                            <constraint firstItem="sJp-ey-F9L" firstAttribute="trailing" secondItem="Xcn-kv-CQ9" secondAttribute="trailing" id="phk-5b-g39"/>
+                            <constraint firstItem="TdS-Ja-u5r" firstAttribute="trailing" secondItem="gdI-d7-FSl" secondAttribute="trailing" id="nki-Ph-suc"/>
+                            <constraint firstItem="TdS-Ja-u5r" firstAttribute="top" secondItem="gdI-d7-FSl" secondAttribute="bottom" constant="23" id="ots-uq-9tw"/>
+                            <constraint firstItem="sJp-ey-F9L" firstAttribute="trailing" secondItem="gdI-d7-FSl" secondAttribute="trailing" id="qsh-GI-Ap3"/>
                             <constraint firstItem="sJp-ey-F9L" firstAttribute="top" secondItem="JhC-gR-0mA" secondAttribute="bottom" constant="50" id="r3u-M1-GzP"/>
-                            <constraint firstItem="8XR-sd-LSK" firstAttribute="trailing" secondItem="Xcn-kv-CQ9" secondAttribute="trailing" id="rZx-Ge-enQ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="forgotPasswordLbl" destination="sJo-ye-Fef" id="add-IY-q09"/>
                         <outlet property="forgotUserNameLbl" destination="0KV-mn-PHJ" id="ttE-oq-Igq"/>
-                        <outlet property="loginShadowVoew" destination="8XR-sd-LSK" id="Imu-i9-Nic"/>
-                        <outlet property="loginView" destination="Xcn-kv-CQ9" id="m6l-53-74H"/>
+                        <outlet property="logInBtn" destination="gdI-d7-FSl" id="1I1-w8-itR"/>
                         <outlet property="passwordTextField" destination="kOV-FA-XWA" id="lMb-fp-HYC"/>
-                        <outlet property="registrationView" destination="FDS-ef-rSq" id="m34-qC-xbX"/>
+                        <outlet property="registrationBtn" destination="TdS-Ja-u5r" id="Dj7-Vs-kgn"/>
                         <outlet property="showPasswordIcon" destination="bhe-Zw-fhX" id="39q-dQ-1fa"/>
                         <outlet property="userNameTextField" destination="VN0-gk-bHy" id="Vjh-8V-qwT"/>
                     </connections>

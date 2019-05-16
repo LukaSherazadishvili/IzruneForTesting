@@ -19,6 +19,9 @@ namespace Izrune.iOS
 		UIKit.UILabel forgotUserNameLbl { get; set; }
 
 		[Outlet]
+		UIKit.UIButton logInBtn { get; set; }
+
+		[Outlet]
 		UIKit.UIView loginShadowVoew { get; set; }
 
 		[Outlet]
@@ -26,6 +29,9 @@ namespace Izrune.iOS
 
 		[Outlet]
 		UIKit.UITextField passwordTextField { get; set; }
+
+		[Outlet]
+		UIKit.UIButton registrationBtn { get; set; }
 
 		[Outlet]
 		UIKit.UIView registrationView { get; set; }
@@ -76,6 +82,16 @@ namespace Izrune.iOS
 			if (loginShadowVoew != null) {
 				loginShadowVoew.Dispose ();
 				loginShadowVoew = null;
+			}
+
+			if (logInBtn != null) {
+				logInBtn.Dispose ();
+				logInBtn = null;
+			}
+
+			if (registrationBtn != null) {
+				registrationBtn.Dispose ();
+				registrationBtn = null;
 			}
 		}
 	}

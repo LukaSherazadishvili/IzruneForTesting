@@ -29,29 +29,29 @@ namespace Izrune.iOS
 
         private void InitGestures()
         {
-            if(loginView.GestureRecognizers == null || loginView.GestureRecognizers?.Count() == 0)
-            {
-                loginView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
-                {
-                    //TODO
-                    var alert = UIAlertController.Create("Attention", "LoginClicked", UIAlertControllerStyle.Alert);
-                    alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
-                    alert.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null));
-                    this.PresentViewController(alert, true, null);
-                }));
-            }
+            //if(loginView.GestureRecognizers == null || loginView.GestureRecognizers?.Count() == 0)
+            //{
+            //    loginView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+            //    {
+            //        //TODO
+            //        var alert = UIAlertController.Create("Attention", "LoginClicked", UIAlertControllerStyle.Alert);
+            //        alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
+            //        alert.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null));
+            //        this.PresentViewController(alert, true, null);
+            //    }));
+            //}
 
-            if (registrationView.GestureRecognizers == null || registrationView.GestureRecognizers?.Count() == 0)
-            {
-                registrationView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
-                {
-                    //TODO
-                    var alert = UIAlertController.Create("Attention", "RegistrationClicked", UIAlertControllerStyle.Alert);
-                    alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
-                    alert.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null));
-                    this.PresentViewController(alert, true, null);
-                }));
-            }
+            //if (registrationView.GestureRecognizers == null || registrationView.GestureRecognizers?.Count() == 0)
+            //{
+            //    registrationView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+            //    {
+            //        //TODO
+            //        var alert = UIAlertController.Create("Attention", "RegistrationClicked", UIAlertControllerStyle.Alert);
+            //        alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
+            //        alert.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null));
+            //        this.PresentViewController(alert, true, null);
+            //    }));
+            //}
 
             if (showPasswordIcon.GestureRecognizers == null || showPasswordIcon.GestureRecognizers?.Count() == 0)
             {
@@ -61,16 +61,34 @@ namespace Izrune.iOS
                     passwordTextField.SecureTextEntry = !passwordTextField.SecureTextEntry;
                 }));
             }
+
+            logInBtn.TouchUpInside += delegate {
+                //TODO
+
+                var alert = UIAlertController.Create("Attention", "LoginClicked", UIAlertControllerStyle.Alert);
+                alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
+                alert.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null));
+                this.PresentViewController(alert, true, null);
+            };
+
+            registrationBtn.TouchUpInside += delegate {
+
+                //TODO
+                var alert = UIAlertController.Create("Attention", "RegistrationClicked", UIAlertControllerStyle.Alert);
+                alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
+                alert.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null));
+                this.PresentViewController(alert, true, null);
+            };
         }
 
         private void InitUI()
         {
            
-            loginView.BackgroundColor = AppColors.Succesful;
-            registrationView.BackgroundColor = AppColors.Tint;
+            //loginView.BackgroundColor = AppColors.Succesful;
+            //registrationView.BackgroundColor = AppColors.Tint;
 
-            loginView.ToCardView(25, 10, 0.1f, UIColor.FromRGBA(0,0,0,0));
-            registrationView.ToCardView(25, 3, 0.2f, AppColors.Tint);
+            logInBtn.ToCardView(25, 10, 0.1f, UIColor.FromRGBA(0,0,0,0));
+            registrationBtn.ToCardView(25, 3, 0.2f, AppColors.Tint);
 
             userNameTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 17);
             passwordTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 17);
