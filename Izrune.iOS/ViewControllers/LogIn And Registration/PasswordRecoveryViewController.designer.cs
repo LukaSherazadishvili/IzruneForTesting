@@ -13,6 +13,9 @@ namespace Izrune.iOS
 	partial class PasswordRecoveryViewController
 	{
 		[Outlet]
+		UIKit.UIImageView backImageView { get; set; }
+
+		[Outlet]
 		UIKit.UIView backView { get; set; }
 
 		[Outlet]
@@ -36,6 +39,11 @@ namespace Izrune.iOS
 			if (backView != null) {
 				backView.Dispose ();
 				backView = null;
+			}
+
+			if (backImageView != null) {
+				backImageView.Dispose ();
+				backImageView = null;
 			}
 		}
 	}

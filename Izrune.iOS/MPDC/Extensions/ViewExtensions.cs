@@ -755,6 +755,17 @@ namespace MpdcViewExtentions
 
         #endregion
 
+        #region UITextField
+
+        public static void MakeRoundedTextField(this UITextField textField, float cornerRadius, UIColor backgroundColor = default(UIColor), float textLeading = 5)
+        {
+            textField.Layer.MasksToBounds = true;
+            textField.Layer.CornerRadius = cornerRadius;
+            textField.Layer.BackgroundColor = backgroundColor.CGColor;
+            textField.Layer.SublayerTransform = CATransform3D.MakeTranslation(textLeading, 0, 0);
+        }
+
+        #endregion
 
     }
 

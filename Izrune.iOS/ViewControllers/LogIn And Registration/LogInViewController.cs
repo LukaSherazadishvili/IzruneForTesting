@@ -2,6 +2,7 @@
 
 using System;
 using System.Linq;
+using CoreAnimation;
 using Foundation;
 using Izrune.iOS.Utils;
 using MpdcViewExtentions;
@@ -70,9 +71,12 @@ namespace Izrune.iOS
 
             loginView.ToCardView(25, 10, 0.1f, UIColor.FromRGBA(0,0,0,0));
             registrationView.ToCardView(25, 3, 0.2f, AppColors.Tint);
+
+            userNameTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 17);
+            passwordTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 17);
         }
 
-        private void ChcekTextField (UITextField textField, bool isCorrect)
+        private void ChcekTextField(UITextField textField, bool isCorrect)
         {
             textField.Layer.BorderWidth = 2;
             textField.Layer.BorderColor = isCorrect ? AppColors.Succesful.CGColor : AppColors.ErrorTitle.CGColor;

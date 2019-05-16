@@ -20,6 +20,7 @@ namespace Izrune.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            InitUI();
         }
 
 
@@ -27,6 +28,8 @@ namespace Izrune.iOS
         {
             sendView.ToCardView(25, 3, 0.2f, AppColors.Tint);
             backView.Layer.CornerRadius = 25;
+            //rgba(63, 81, 181, 1)
+            backImageView.Image = backImageView.Image.GetImageWithColor(UIColor.FromRGB(63, 81, 181));
         }
     }
 }

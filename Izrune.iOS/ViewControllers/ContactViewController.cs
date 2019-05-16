@@ -19,10 +19,16 @@ namespace Izrune.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            InitUI();
+        }
 
+        private void InitUI()
+        {
             phoneView.ToCardView(26);
             mailView.ToCardView(26);
             facebookView.ToCardView(26);
+
+
         }
     }
 }
