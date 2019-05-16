@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using Foundation;
 using Izrune.iOS.Utils;
+using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS
@@ -23,9 +24,6 @@ namespace Izrune.iOS
             InitUI();
 
             InitGestures();
-
-            ChcekTextField(userNameTextField, false);
-            ChcekTextField(passwordTextField, true);
         }
 
         private void InitGestures()
@@ -66,22 +64,12 @@ namespace Izrune.iOS
 
         private void InitUI()
         {
-            loginView.Layer.CornerRadius = 25;
-            registrationView.Layer.CornerRadius = 25;
-
-            //userNameTextField.Layer.CornerRadius = 20;
-            //passwordTextField.Layer.CornerRadius = 20;
-
+           
             loginView.BackgroundColor = AppColors.Succesful;
             registrationView.BackgroundColor = AppColors.Tint;
 
-            //var attr = new UIStringAttributes()
-            //{
-            //    ForegroundColor = AppColors.PlaceHolder,
-            //    Font = UIFont.FromName("BPG Mrgvlovani 2010", 14)
-            //};
-
-            //userNameTextField.AttributedPlaceholder = new NSAttributedString("სახელი", attr);
+            loginView.ToCardView(25, 10, 0.1f, UIColor.FromRGBA(0,0,0,0));
+            registrationView.ToCardView(25, 3, 0.2f, AppColors.Tint);
         }
 
         private void ChcekTextField (UITextField textField, bool isCorrect)

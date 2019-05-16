@@ -20,6 +20,9 @@ namespace Izrune.iOS.Utils
 
         public static UIColor TitleColor => UIColor.FromRGB(174, 113, 183);
 
+        public static UIColor GreenShadow => UIColor.FromRGBA(73, 181, 65, 0);
+
+        //rgba(73, 181, 65, 0.6)
         //public static UIColor ErrorTitle => UIColor.FromRGB(231, 76, 60);
     }
 }

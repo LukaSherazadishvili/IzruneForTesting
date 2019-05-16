@@ -281,12 +281,13 @@ namespace MpdcViewExtentions
 
         }
 
-        public static void ToCardView(this UIView mainView, float cornerRadius = 3.0f, float shadowRadius = 3.0f, float shadowOpacity = 0.2f)
+
+        public static void ToCardView(this UIView mainView, float cornerRadius = 3.0f, float shadowRadius = 3.0f, float shadowOpacity = 0.2f, UIColor shadowColor = default(UIColor))
         {
            // UIBezierPath shadowPath = UIBezierPath.FromRect(mainView.Bounds);
             mainView.Layer.MasksToBounds = false;
             mainView.Layer.CornerRadius = cornerRadius;
-            mainView.Layer.ShadowColor = UIColor.Black.CGColor;
+            mainView.Layer.ShadowColor = shadowColor.CGColor;
             mainView.Layer.ShadowOffset = new CGSize(2, 2);
             mainView.Layer.ShadowOpacity = shadowOpacity;
             mainView.Layer.ShadowRadius = shadowRadius;

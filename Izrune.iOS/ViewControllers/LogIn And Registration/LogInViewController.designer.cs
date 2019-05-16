@@ -19,6 +19,9 @@ namespace Izrune.iOS
 		UIKit.UILabel forgotUserNameLbl { get; set; }
 
 		[Outlet]
+		UIKit.UIView loginShadowVoew { get; set; }
+
+		[Outlet]
 		UIKit.UIView loginView { get; set; }
 
 		[Outlet]
@@ -50,9 +53,19 @@ namespace Izrune.iOS
 				loginView = null;
 			}
 
+			if (passwordTextField != null) {
+				passwordTextField.Dispose ();
+				passwordTextField = null;
+			}
+
 			if (registrationView != null) {
 				registrationView.Dispose ();
 				registrationView = null;
+			}
+
+			if (showPasswordIcon != null) {
+				showPasswordIcon.Dispose ();
+				showPasswordIcon = null;
 			}
 
 			if (userNameTextField != null) {
@@ -60,14 +73,9 @@ namespace Izrune.iOS
 				userNameTextField = null;
 			}
 
-			if (passwordTextField != null) {
-				passwordTextField.Dispose ();
-				passwordTextField = null;
-			}
-
-			if (showPasswordIcon != null) {
-				showPasswordIcon.Dispose ();
-				showPasswordIcon = null;
+			if (loginShadowVoew != null) {
+				loginShadowVoew.Dispose ();
+				loginShadowVoew = null;
 			}
 		}
 	}
