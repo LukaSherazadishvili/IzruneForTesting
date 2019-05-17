@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="bpg_mrgvlovani_2010.ttf">
+            <string>BPGMrgvlovani2010</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MenuCellIdentifier" id="cZE-iV-UFb" customClass="MenuCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KUx-8w-ohZ" userLabel="ContentView">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1 – 5.png" translatesAutoresizingMaskIntoConstraints="NO" id="E2l-Rs-wMc">
+                                <rect key="frame" x="30" y="15" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="6BN-Lp-PK4"/>
+                                    <constraint firstAttribute="height" constant="20" id="HeT-dK-Umr"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="შესვლა" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xng-ir-h90">
+                                <rect key="frame" x="65" y="16.5" width="200" height="17"/>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="15"/>
+                                <color key="textColor" red="0.68235294117647061" green="0.44313725490196076" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKe-PL-MIO">
+                                <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xng-ir-h90" firstAttribute="centerY" secondItem="KUx-8w-ohZ" secondAttribute="centerY" id="0Id-Yy-og5"/>
+                            <constraint firstItem="E2l-Rs-wMc" firstAttribute="leading" secondItem="KUx-8w-ohZ" secondAttribute="leading" constant="30" id="5Rv-yP-jVE"/>
+                            <constraint firstAttribute="bottom" secondItem="hKe-PL-MIO" secondAttribute="bottom" id="6fY-zB-oEc"/>
+                            <constraint firstItem="hKe-PL-MIO" firstAttribute="leading" secondItem="KUx-8w-ohZ" secondAttribute="leading" id="9nv-sq-WLA"/>
+                            <constraint firstItem="xng-ir-h90" firstAttribute="leading" secondItem="E2l-Rs-wMc" secondAttribute="trailing" constant="15" id="Ow4-HQ-wxy"/>
+                            <constraint firstItem="hKe-PL-MIO" firstAttribute="top" secondItem="KUx-8w-ohZ" secondAttribute="top" id="VKp-KT-uy0"/>
+                            <constraint firstItem="E2l-Rs-wMc" firstAttribute="centerY" secondItem="KUx-8w-ohZ" secondAttribute="centerY" id="axW-8G-7V0"/>
+                            <constraint firstAttribute="trailing" secondItem="hKe-PL-MIO" secondAttribute="trailing" id="pC5-v5-06T"/>
+                            <constraint firstAttribute="trailing" secondItem="xng-ir-h90" secondAttribute="trailing" constant="15" id="zd1-9N-OH2"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="KUx-8w-ohZ" secondAttribute="trailing" id="SVB-Vo-5FX"/>
+                <constraint firstAttribute="bottom" secondItem="KUx-8w-ohZ" secondAttribute="bottom" id="Y9u-2R-fKb"/>
+                <constraint firstItem="KUx-8w-ohZ" firstAttribute="leading" secondItem="cZE-iV-UFb" secondAttribute="leading" id="fPr-M5-681"/>
+                <constraint firstItem="KUx-8w-ohZ" firstAttribute="top" secondItem="cZE-iV-UFb" secondAttribute="top" id="mBx-Sb-1XR"/>
+            </constraints>
+            <size key="customSize" width="280" height="50"/>
+            <connections>
+                <outlet property="menuImage" destination="E2l-Rs-wMc" id="p7X-Mm-2Er"/>
+                <outlet property="titleLbl" destination="xng-ir-h90" id="g3r-sJ-RMu"/>
+                <outlet property="transparentView" destination="hKe-PL-MIO" id="GdB-uS-mPu"/>
+            </connections>
+            <point key="canvasLocation" x="200.00000000000003" y="53.571428571428569"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="1 – 5.png" width="25" height="25"/>
+    </resources>
+</document>

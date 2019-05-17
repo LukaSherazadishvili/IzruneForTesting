@@ -27,7 +27,7 @@ namespace Izrune.iOS
 
             this.Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            rootvc = UIStoryboard.FromName("Main", null).InstantiateViewController(PasswordRecoveryViewController.StoryboardId);
+            rootvc = UIStoryboard.FromName("Main", null).InstantiateViewController(MenuViewController.StoryboardId);
 
             Window.RootViewController = rootvc;
 

@@ -15,6 +15,18 @@ namespace Izrune.iOS.ViewControllers
 
         Dictionary<MenuType, Func<UIViewController>> menuViewControllerCreations;
 
+        public static MenuType CurrentMenu { get; private set; }
+
+        public MenuType SelectedMenu { get; set; } = MenuType.LogIn;
+
+
+        #region ViewControllerStoryboardIds
+
+        const string MenuViewControllerStoryboardId = "MainMenuStoryboardId";
+        const string LogInStoryboardId = "LogInViewControllerStoryboardId";
+
+        #endregion
+
         public MenuRootViewController()
         {
             _storyBoard = UIStoryboard.FromName("Main", null);

@@ -140,10 +140,14 @@
         <Folder Include="ViewControllers\" />
         <Folder Include="ViewControllers\LogIn And Registration\" />
         <Folder Include="Utils\" />
+        <Folder Include="ViewControllers\Menu\" />
+        <Folder Include="CollectionViewCells\" />
+        <Folder Include="Models\" />
     </ItemGroup>
     <ItemGroup>
         <InterfaceDefinition Include="LaunchScreen.storyboard" />
         <InterfaceDefinition Include="Main.storyboard" />
+        <InterfaceDefinition Include="CollectionViewCells\MenuCollectionViewCell.xib" />
     </ItemGroup>
     <ItemGroup>
         <None Include="Info.plist" />
@@ -190,7 +194,16 @@
         <Compile Include="ViewControllers\PacketViewController.designer.cs">
           <DependentUpon>PacketViewController.cs</DependentUpon>
         </Compile>
-        <Compile Include="ViewControllers\MenuRootViewController.cs" />
+        <Compile Include="ViewControllers\Menu\MenuRootViewController.cs" />
+        <Compile Include="ViewControllers\Menu\MenuViewController.cs" />
+        <Compile Include="ViewControllers\Menu\MenuViewController.designer.cs">
+          <DependentUpon>MenuViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CollectionViewCells\MenuCollectionViewCell.cs" />
+        <Compile Include="CollectionViewCells\MenuCollectionViewCell.designer.cs">
+          <DependentUpon>MenuCollectionViewCell.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\MenuItem.cs" />
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />
@@ -246,6 +259,7 @@
       <BundleResource Include="Resources\4%403x.png" />
       <BundleResource Include="Resources\bpg_mrgvlovani_2010.ttf" />
       <BundleResource Include="Resources\bpg_mrgvlovani_caps_2010.ttf" />
+      <BundleResource Include="Resources\mpdclogomini.png" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\IZrune.PCL\IZrune.PCL.csproj">
