@@ -31,6 +31,7 @@ namespace Izrune.iOS
             //rootvc = UIStoryboard.FromName("Main", null).InstantiateViewController(LogInViewController.StoryboardId);
 
             rootvc = new MenuRootViewController();
+
             Window.RootViewController = rootvc;
 
             Window.MakeKeyAndVisible();

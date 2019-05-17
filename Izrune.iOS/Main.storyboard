@@ -38,6 +38,7 @@
         <!--Main View Controller-->
         <scene sceneID="gmj-pt-4EA">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5wu-np-sM7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="MainViewControllerStoryboardId" id="b26-xw-SJZ" customClass="MainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gwZ-Ep-K7T"/>
@@ -61,7 +62,6 @@
                         </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5wu-np-sM7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1444" y="-769"/>
         </scene>
@@ -913,7 +913,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="პაროლი გაგზავნილია მითითებულ ტელეფონის ნომერზე" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIV-Ku-9vm">
-                                <rect key="frame" x="15" y="348" width="345" height="42"/>
+                                <rect key="frame" x="15" y="348" width="345" height="63"/>
                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="18"/>
                                 <color key="textColor" red="0.28627450980392155" green="0.70980392156862748" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

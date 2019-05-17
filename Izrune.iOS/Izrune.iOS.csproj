@@ -272,6 +272,9 @@
       <BundleResource Include="Resources\bpg_mrgvlovani_2010.ttf" />
       <BundleResource Include="Resources\bpg_mrgvlovani_caps_2010.ttf" />
       <BundleResource Include="Resources\mpdclogomini.png" />
+      <BundleResource Include="Resources\ichamburger.png" />
+      <BundleResource Include="Resources\ichamburger%402x.png" />
+      <BundleResource Include="Resources\ichamburger%403x.png" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\IZrune.PCL\IZrune.PCL.csproj">

@@ -18,7 +18,7 @@ namespace Izrune.iOS
 		{
 		}
 
-        bool IsLogedIn;
+        bool IsLogedIn = true;
 
         public static readonly NSString StoryboardId = new NSString("MenuViewControllerStoryboardId");
 
@@ -98,7 +98,7 @@ namespace Izrune.iOS
             }
         };
 
-        public Action<MenuItem, bool> MainMenuClicked { get; set; }
+        public Action<MenuItem> MainMenuClicked { get; set; }
 
         public override void ViewDidLoad()
         {
@@ -143,7 +143,7 @@ namespace Izrune.iOS
             cell.MenuClicked = (menu) =>
             {
                 SelectItem((IsLogedIn ? LogedInList : LogOutList), menu);
-                MainMenuClicked?.Invoke(menu, true);
+                MainMenuClicked?.Invoke(menu);
                 menuCollectionView.ReloadData();
                 //TODO Navigate To Page
             };

@@ -14,7 +14,7 @@ namespace Izrune.iOS.ViewControllers
 
         public SidebarController SideBarController { get; private set; }
 
-        Dictionary<MenuType, Func<UIViewController>> menuViewControllerCreations;
+        static public Dictionary<MenuType, Func<UIViewController>> menuViewControllerCreations;
 
         public static MenuType CurrentMenu { get; private set; }
 
@@ -32,6 +32,13 @@ namespace Izrune.iOS.ViewControllers
         public MenuRootViewController()
         {
             _storyBoard = UIStoryboard.FromName("Main", null);
+
+            menuViewControllerCreations = new Dictionary<MenuType, Func<UIViewController>>()
+            {
+                {MenuType.LogIn, () => CreateViewControllerByStoryboard(LogInStoryboardId)},
+                {MenuType.News, () => CreateViewControllerByStoryboard(NewsViewController.StoryboadrId)},
+                {MenuType.Contact, () => CreateViewControllerByStoryboard(ContactViewController.StoryboardId)}
+            };
         }
 
         public override void ViewDidLoad()
@@ -42,7 +49,16 @@ namespace Izrune.iOS.ViewControllers
 
             var mainVc = GetMainViewController();
 
-            menuVc.MainMenuClicked = (menu, b) =>
+
+            SideBarController = new SidebarController(this, mainVc, menuVc)
+            {
+                MenuLocation = MenuLocations.Left,
+                HasShadowing = true,
+                MenuWidth = 280
+            };
+
+
+            menuVc.MainMenuClicked = (menu) =>
             {
                 #region MenuClicks
 
@@ -105,15 +121,11 @@ namespace Izrune.iOS.ViewControllers
 
                 #endregion
 
+                CurrentMenu = menu.Type;
 
+                SideBarController.ChangeContentView(menuViewControllerCreations[menu.Type].Invoke());
             };
 
-            SideBarController = new SidebarController(this, mainVc, menuVc)
-            {
-                MenuLocation = MenuLocations.Left,
-                HasShadowing = true,
-                MenuWidth = 280
-            };
         }
 
         private void ShowMenu()
@@ -123,9 +135,17 @@ namespace Izrune.iOS.ViewControllers
 
         private UIViewController GetMainViewController()
         {
-            var mainVc = _storyBoard.InstantiateViewController(TestChooseViewController.StoryboardId) as TestChooseViewController;
+            //var mainVc = _storyBoard.InstantiateViewController(TestChooseViewController.StoryboardId) as TestChooseViewController;
 
-            return mainVc;
+            var MainPageVc = _storyBoard.InstantiateViewController(LogInViewController.StoryboardId).CreateWithNavigationControllerWithMenu(ToggleMenu,UIImage.FromBundle("4"),UIColor.Red);
+
+            var barImage = UIImage.FromBundle("ichamburger.png");
+            var barButton = new UIBarButtonItem();
+            barButton.Clicked += (sender, e) => ToggleMenu();
+
+            MainPageVc.ViewControllers[0].NavigationItem.LeftBarButtonItem = barButton;
+
+            return MainPageVc;
         }
 
         public override void DidReceiveMemoryWarning()
@@ -156,6 +176,19 @@ namespace Izrune.iOS.ViewControllers
         }
 
         void ToggleMenu() => SideBarController.ToggleMenu();
+
+        UIViewController CreateViewControllerByStoryboard(string storyboardId)
+        {
+            //var navVc = _storyBoard.InstantiateViewController(storyboardId).CreateWithNavigationControllerWithMenu(ToggleMenu);
+
+            var navVc = _storyBoard.InstantiateViewController(LogInViewController.StoryboardId).CreateWithNavigationControllerWithMenu(ToggleMenu, UIImage.FromBundle("4"), UIColor.Red);
+            //var notifyBarButton = new NotifyBarButtonItem("ichamburger.png", ToggleMenu, UIColor.Red, ThemeColors.BarAccentColor.RgbToUIColor());
+
+
+            // initNotifyWithIconOnNavBar(navVc.ViewControllers[0].NavigationItem,"ichamburger.png","0",ToggleMenu);
+
+            return navVc;
+        }
     }
 }
 
