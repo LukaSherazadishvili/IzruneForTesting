@@ -379,12 +379,72 @@
                     <view key="view" contentMode="scaleToFill" id="erI-H0-g4W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W7j-6o-Spv">
+                                <rect key="frame" x="56" y="74" width="263" height="38"/>
+                                <subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vJ-vU-vBg">
+                                        <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="38"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ინდივიდუალური" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYR-Ld-m2d">
+                                                <rect key="frame" x="3.0000000000000071" y="12.666666666666671" width="126.66666666666669" height="13"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="11"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.28627450980000002" green="0.70980392160000005" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="bYR-Ld-m2d" firstAttribute="leading" secondItem="6vJ-vU-vBg" secondAttribute="leading" constant="3" id="BG2-0U-MP4"/>
+                                            <constraint firstItem="bYR-Ld-m2d" firstAttribute="centerX" secondItem="6vJ-vU-vBg" secondAttribute="centerX" id="Pdp-S9-QRn"/>
+                                            <constraint firstItem="bYR-Ld-m2d" firstAttribute="centerY" secondItem="6vJ-vU-vBg" secondAttribute="centerY" id="Uk8-ys-82n"/>
+                                            <constraint firstAttribute="trailing" secondItem="bYR-Ld-m2d" secondAttribute="trailing" constant="3" id="uXH-M1-3EU"/>
+                                        </constraints>
+                                    </view>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5WL-eO-vl9">
+                                        <rect key="frame" x="132.66666666666663" y="0.0" width="130.33333333333337" height="38"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="პრომო კოდი" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPk-JT-nGX">
+                                                <rect key="frame" x="2.9999999999999929" y="12.666666666666671" width="124.33333333333331" height="13"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="11"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="YPk-JT-nGX" firstAttribute="centerX" secondItem="5WL-eO-vl9" secondAttribute="centerX" id="6yN-Cz-wfr"/>
+                                            <constraint firstItem="YPk-JT-nGX" firstAttribute="leading" secondItem="5WL-eO-vl9" secondAttribute="leading" constant="3" id="Jha-nm-FQQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="YPk-JT-nGX" secondAttribute="trailing" constant="3" id="O5d-5i-Drs"/>
+                                            <constraint firstItem="YPk-JT-nGX" firstAttribute="centerY" secondItem="5WL-eO-vl9" secondAttribute="centerY" id="X5a-pF-Sf0"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.95208579301834106" green="0.95280700922012329" blue="0.95219749212265015" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="5WL-eO-vl9" secondAttribute="trailing" id="GBZ-M9-MHM"/>
+                                    <constraint firstAttribute="height" constant="38" id="JJh-wf-thH"/>
+                                    <constraint firstItem="6vJ-vU-vBg" firstAttribute="width" secondItem="W7j-6o-Spv" secondAttribute="width" multiplier="0.5" constant="1" id="KOD-lq-FAs"/>
+                                    <constraint firstItem="5WL-eO-vl9" firstAttribute="top" secondItem="W7j-6o-Spv" secondAttribute="top" id="KdR-Gr-Eot"/>
+                                    <constraint firstItem="6vJ-vU-vBg" firstAttribute="leading" secondItem="W7j-6o-Spv" secondAttribute="leading" id="WTs-fu-zdu"/>
+                                    <constraint firstAttribute="bottom" secondItem="6vJ-vU-vBg" secondAttribute="bottom" id="bZi-n2-FYA"/>
+                                    <constraint firstItem="5WL-eO-vl9" firstAttribute="leading" secondItem="6vJ-vU-vBg" secondAttribute="trailing" id="dSz-nU-o2o"/>
+                                    <constraint firstAttribute="bottom" secondItem="5WL-eO-vl9" secondAttribute="bottom" id="kIF-Fg-yNg"/>
+                                    <constraint firstItem="6vJ-vU-vBg" firstAttribute="top" secondItem="W7j-6o-Spv" secondAttribute="top" id="xGm-os-UMi"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="W7j-6o-Spv" secondAttribute="trailing" constant="40" id="AjQ-Qa-DWE"/>
+                            <constraint firstItem="W7j-6o-Spv" firstAttribute="top" secondItem="EX3-GX-qhI" secondAttribute="bottom" constant="30" id="W4v-Um-CuN"/>
+                            <constraint firstItem="W7j-6o-Spv" firstAttribute="leading" secondItem="erI-H0-g4W" secondAttribute="leadingMargin" constant="40" id="lRb-v8-Tji"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cFM-AR-SfC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2143" y="1284"/>
+            <point key="canvasLocation" x="-2143.1999999999998" y="1283.497536945813"/>
         </scene>
         <!--Parent Registration View Controller-->
         <scene sceneID="xnA-EK-BwF">
