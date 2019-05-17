@@ -180,6 +180,24 @@
             </objects>
             <point key="canvasLocation" x="-730.39999999999998" y="-769.21182266009851"/>
         </scene>
+        <!--Test Choose View Controller-->
+        <scene sceneID="CIu-1t-wUP">
+            <objects>
+                <viewController storyboardIdentifier="TestChooseStoryboardId" id="PSU-rf-xFP" customClass="TestChooseViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4wT-JY-YsT"/>
+                        <viewControllerLayoutGuide type="bottom" id="egx-Cs-wvD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QbI-zW-rIJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mAt-1R-WQ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2" y="-769"/>
+        </scene>
         <!--Log In View Controller-->
         <scene sceneID="tzx-3v-Bm1">
             <objects>
@@ -485,6 +503,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xvz-Za-VG5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2142" y="616"/>
+        </scene>
+        <!--News View Controller-->
+        <scene sceneID="2o1-Cb-zOH">
+            <objects>
+                <viewController storyboardIdentifier="NewsViewControllerStoryboardId" id="bUg-zH-ACo" customClass="NewsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1Mz-fT-cL2"/>
+                        <viewControllerLayoutGuide type="bottom" id="BWf-Ij-UE5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="STK-DL-NpO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O8m-dq-s3d">
+                                <rect key="frame" x="164" y="395.66666666666669" width="47" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="O8m-dq-s3d" firstAttribute="centerX" secondItem="STK-DL-NpO" secondAttribute="centerX" id="oAY-9C-mXl"/>
+                            <constraint firstItem="O8m-dq-s3d" firstAttribute="centerY" secondItem="STK-DL-NpO" secondAttribute="centerY" id="smF-aK-Ttk"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P2M-0z-cGL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1444" y="616"/>
+        </scene>
+        <!--More Info View Controller-->
+        <scene sceneID="dBX-J9-HBl">
+            <objects>
+                <viewController storyboardIdentifier="MoreInfoViewControllerStoryboardId" id="WAd-uZ-1qY" customClass="MoreInfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="R8q-PI-JCf"/>
+                        <viewControllerLayoutGuide type="bottom" id="zTj-dn-nrC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BUR-y2-A9U">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaJ-Gk-G7Z">
+                                <rect key="frame" x="151" y="395.66666666666669" width="73" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vaJ-Gk-G7Z" firstAttribute="centerY" secondItem="BUR-y2-A9U" secondAttribute="centerY" id="FiX-Vm-x51"/>
+                            <constraint firstItem="vaJ-Gk-G7Z" firstAttribute="centerX" secondItem="BUR-y2-A9U" secondAttribute="centerX" id="VKC-TH-gPi"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G5q-MC-b7b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-730" y="616"/>
         </scene>
         <!--Packet View Controller-->
         <scene sceneID="Uvg-wW-e2j">
@@ -835,7 +913,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="პაროლი გაგზავნილია მითითებულ ტელეფონის ნომერზე" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIV-Ku-9vm">
-                                <rect key="frame" x="15" y="348" width="345" height="63"/>
+                                <rect key="frame" x="15" y="348" width="345" height="42"/>
                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="18"/>
                                 <color key="textColor" red="0.28627450980392155" green="0.70980392156862748" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

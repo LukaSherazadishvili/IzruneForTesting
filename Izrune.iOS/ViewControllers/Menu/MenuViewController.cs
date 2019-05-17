@@ -98,6 +98,7 @@ namespace Izrune.iOS
             }
         };
 
+        public Action<MenuItem, bool> MainMenuClicked { get; set; }
 
         public override void ViewDidLoad()
         {
@@ -142,6 +143,7 @@ namespace Izrune.iOS
             cell.MenuClicked = (menu) =>
             {
                 SelectItem((IsLogedIn ? LogedInList : LogOutList), menu);
+                MainMenuClicked?.Invoke(menu, true);
                 menuCollectionView.ReloadData();
                 //TODO Navigate To Page
             };

@@ -204,6 +204,18 @@
           <DependentUpon>MenuCollectionViewCell.cs</DependentUpon>
         </Compile>
         <Compile Include="Models\MenuItem.cs" />
+        <Compile Include="ViewControllers\TestChooseViewController.cs" />
+        <Compile Include="ViewControllers\TestChooseViewController.designer.cs">
+          <DependentUpon>TestChooseViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\MoreInfoViewController.cs" />
+        <Compile Include="ViewControllers\MoreInfoViewController.designer.cs">
+          <DependentUpon>MoreInfoViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\NewsViewController.cs" />
+        <Compile Include="ViewControllers\NewsViewController.designer.cs">
+          <DependentUpon>NewsViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />

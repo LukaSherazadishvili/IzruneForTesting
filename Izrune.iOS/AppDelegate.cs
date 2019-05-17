@@ -1,4 +1,5 @@
 ﻿using Foundation;
+using Izrune.iOS.ViewControllers;
 using UIKit;
 
 namespace Izrune.iOS
@@ -27,8 +28,9 @@ namespace Izrune.iOS
 
             this.Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            rootvc = UIStoryboard.FromName("Main", null).InstantiateViewController(MenuViewController.StoryboardId);
+            //rootvc = UIStoryboard.FromName("Main", null).InstantiateViewController(LogInViewController.StoryboardId);
 
+            rootvc = new MenuRootViewController();
             Window.RootViewController = rootvc;
 
             Window.MakeKeyAndVisible();
