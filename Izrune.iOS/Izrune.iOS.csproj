@@ -190,6 +190,7 @@
         <Compile Include="ViewControllers\PacketViewController.designer.cs">
           <DependentUpon>PacketViewController.cs</DependentUpon>
         </Compile>
+        <Compile Include="ViewControllers\MenuRootViewController.cs" />
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />
