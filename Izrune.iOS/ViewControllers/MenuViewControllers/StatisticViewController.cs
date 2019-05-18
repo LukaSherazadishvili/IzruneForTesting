@@ -12,5 +12,7 @@ namespace Izrune.iOS
 		public StatisticViewController (IntPtr handle) : base (handle)
 		{
 		}
-	}
+
+        public static readonly NSString StoryboardId = new NSString("StatisticStoryboardId");
+    }
 }

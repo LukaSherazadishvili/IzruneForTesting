@@ -36,14 +36,14 @@ namespace Izrune.iOS.ViewControllers
             menuViewControllerCreations = new Dictionary<MenuType, Func<UIViewController>>()
             {
                 {MenuType.LogIn, () => CreateViewControllerByStoryboard(LogInStoryboardId)},
-                {MenuType.News, () => CreateViewControllerByStoryboard(NewsViewController.StoryboadrId)},
+                {MenuType.News, () => CreateViewControllerByStoryboard(NewsViewController.StoryboardId)},
                 {MenuType.MoreInfo, () => CreateViewControllerByStoryboard(MoreInfoViewController.StoryboardId)},
                 {MenuType.Contact, () => CreateViewControllerByStoryboard(ContactViewController.StoryboardId)},
                 {MenuType.Main, () => CreateViewControllerByStoryboard(TestChooseViewController.StoryboardId)},
-                {MenuType.Statistic, () => CreateViewControllerByStoryboard(NewsViewController.StoryboadrId)},
-                {MenuType.UpdatePacket, () => CreateViewControllerByStoryboard(NewsViewController.StoryboadrId)},
-                {MenuType.EditProfile, () => CreateViewControllerByStoryboard(NewsViewController.StoryboadrId)},
-                {MenuType.LogOut, () => CreateViewControllerByStoryboard(NewsViewController.StoryboadrId)},
+                {MenuType.Statistic, () => CreateViewControllerByStoryboard(StatisticViewController.StoryboardId)},
+                {MenuType.UpdatePacket, () => CreateViewControllerByStoryboard(UpdatePacketViewController.StoryboardId)},
+                {MenuType.EditProfile, () => CreateViewControllerByStoryboard(EditProfileViewController.StoryboardId)},
+                {MenuType.LogOut, () => CreateViewControllerByStoryboard(NewsViewController.StoryboardId)},
             };
         }
 
@@ -66,70 +66,17 @@ namespace Izrune.iOS.ViewControllers
 
             menuVc.MainMenuClicked = (menu) =>
             {
-                #region MenuClicks
 
-                if (menu.Type == MenuType.Main)
+                try
                 {
-                    SideBarController.ChangeMenuView(mainVc);
-                }
+                    CurrentMenu = menu.Type;
 
-                if (menu.Type == MenuType.LogIn)
+                    SideBarController.ChangeContentView(menuViewControllerCreations[menu.Type].Invoke());
+                }
+                catch (Exception ex)
                 {
-                    //TODO
-                    SideBarController.ChangeMenuView(null);
+                    Console.WriteLine(ex.Message);
                 }
-
-                if (menu.Type == MenuType.News)
-                {
-                    //TODO
-                    SideBarController.ChangeMenuView(null);
-                }
-
-                if (menu.Type == MenuType.MoreInfo)
-                {
-                    var moreInfoVc = _storyBoard.InstantiateViewController(MoreInfoViewController.StoryboardId) as MoreInfoViewController;
-
-                    var navVc = PutVcInNav(moreInfoVc);
-                    SideBarController.ChangeMenuView(navVc);
-                }
-
-                if (menu.Type == MenuType.Contact)
-                {
-                    var aboutUsVc = _storyBoard.InstantiateViewController(ContactViewController.StoryboardId) as ContactViewController;
-
-                    var navVc = PutVcInNav(aboutUsVc);
-                    SideBarController.ChangeMenuView(navVc);
-                }
-
-                if (menu.Type == MenuType.Statistic)
-                {
-                    //TODO
-                    SideBarController.ChangeMenuView(null);
-                }
-
-                if (menu.Type == MenuType.UpdatePacket)
-                {
-                    //TODO
-                    SideBarController.ChangeMenuView(null);
-                }
-
-                if (menu.Type == MenuType.EditProfile)
-                {
-                    //TODO
-                    SideBarController.ChangeMenuView(null);
-                }
-
-                if (menu.Type == MenuType.LogOut)
-                {
-                    //TODO
-                    SideBarController.ChangeMenuView(null);
-                }
-
-                #endregion
-
-                CurrentMenu = menu.Type;
-
-                SideBarController.ChangeContentView(menuViewControllerCreations[menu.Type].Invoke());
             };
 
         }
@@ -143,7 +90,7 @@ namespace Izrune.iOS.ViewControllers
         {
             //var mainVc = _storyBoard.InstantiateViewController(TestChooseViewController.StoryboardId) as TestChooseViewController;
 
-            var MainPageVc = _storyBoard.InstantiateViewController(LogInViewController.StoryboardId).CreateWithNavigationControllerWithMenu(ToggleMenu,UIImage.FromBundle("4"),UIColor.Red);
+            var MainPageVc = _storyBoard.InstantiateViewController(LogInViewController.StoryboardId).CreateWithNavigationControllerWithMenu(ToggleMenu,UIImage.FromBundle("ichamburger.png"),UIColor.Red);
 
             var barImage = UIImage.FromBundle("ichamburger.png");
             var barButton = new UIBarButtonItem();
@@ -187,7 +134,7 @@ namespace Izrune.iOS.ViewControllers
         {
             //var navVc = _storyBoard.InstantiateViewController(storyboardId).CreateWithNavigationControllerWithMenu(ToggleMenu);
 
-            var navVc = _storyBoard.InstantiateViewController(LogInViewController.StoryboardId).CreateWithNavigationControllerWithMenu(ToggleMenu, UIImage.FromBundle("4"), UIColor.Red);
+            var navVc = _storyBoard.InstantiateViewController(LogInViewController.StoryboardId).CreateWithNavigationControllerWithMenu(ToggleMenu, UIImage.FromBundle("ichamburger.png"), UIColor.Red);
             //var notifyBarButton = new NotifyBarButtonItem("ichamburger.png", ToggleMenu, UIColor.Red, ThemeColors.BarAccentColor.RgbToUIColor());
 
 
