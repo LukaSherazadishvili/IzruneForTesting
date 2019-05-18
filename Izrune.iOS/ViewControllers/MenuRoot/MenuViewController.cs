@@ -18,7 +18,7 @@ namespace Izrune.iOS
 		{
 		}
 
-        bool IsLogedIn = true;
+        bool IsLogedIn;
 
         public static readonly NSString StoryboardId = new NSString("MenuViewControllerStoryboardId");
 

@@ -149,6 +149,8 @@
         <InterfaceDefinition Include="LaunchScreen.storyboard" />
         <InterfaceDefinition Include="Main.storyboard" />
         <InterfaceDefinition Include="CollectionViewCells\MenuCollectionViewCell.xib" />
+        <InterfaceDefinition Include="CollectionViewCells\TestCollectionViewCell.xib" />
+        <InterfaceDefinition Include="CollectionViewCells\AnswerCollectionViewCell.xib" />
     </ItemGroup>
     <ItemGroup>
         <None Include="Info.plist" />
@@ -157,10 +159,6 @@
     <ItemGroup>
         <Compile Include="Main.cs" />
         <Compile Include="AppDelegate.cs" />
-        <Compile Include="ViewController.cs" />
-        <Compile Include="ViewController.designer.cs">
-            <DependentUpon>ViewController.cs</DependentUpon>
-        </Compile>
         <Compile Include="MPDC\Extensions\ViewExtensions.cs" />
         <Compile Include="ViewControllers\MainViewController.cs" />
         <Compile Include="ViewControllers\MainViewController.designer.cs">
@@ -228,6 +226,18 @@
         <Compile Include="ViewControllers\MenuViewControllers\EditProfileViewController.cs" />
         <Compile Include="ViewControllers\MenuViewControllers\EditProfileViewController.designer.cs">
           <DependentUpon>EditProfileViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\TestViewController.cs" />
+        <Compile Include="ViewControllers\TestViewController.designer.cs">
+          <DependentUpon>TestViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CollectionViewCells\TestCollectionViewCell.cs" />
+        <Compile Include="CollectionViewCells\TestCollectionViewCell.designer.cs">
+          <DependentUpon>TestCollectionViewCell.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CollectionViewCells\AnswerCollectionViewCell.cs" />
+        <Compile Include="CollectionViewCells\AnswerCollectionViewCell.designer.cs">
+          <DependentUpon>AnswerCollectionViewCell.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup>

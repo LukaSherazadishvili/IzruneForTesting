@@ -64,14 +64,13 @@ namespace Izrune.iOS.ViewControllers
             SideBarController = new SidebarController(this, mainVc, menuVc)
             {
                 MenuLocation = MenuLocations.Left,
-                HasShadowing = true,
+                HasShadowing = false,
                 MenuWidth = 280
             };
 
 
             menuVc.MainMenuClicked = (menu) =>
             {
-
                 try
                 {
                     CurrentMenu = menu.Type;
