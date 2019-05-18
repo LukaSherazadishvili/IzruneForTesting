@@ -24,9 +24,9 @@ namespace Izrune.iOS
 
         private void InitUI()
         {
-            phoneView.ToCardView(26);
-            mailView.ToCardView(26);
-            facebookView.ToCardView(26);
+            phoneView.ToCardView(26, 3, 0.2f, UIColor.Black);
+            mailView.ToCardView(26, 3, 0.2f, UIColor.Black);
+            facebookView.ToCardView(26, 3, 0.2f, UIColor.Black);
 
 
         }

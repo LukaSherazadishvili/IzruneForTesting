@@ -51,6 +51,7 @@ namespace Izrune.iOS.ViewControllers
             };
         }
 
+        NewsViewController newsVc;
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -59,7 +60,7 @@ namespace Izrune.iOS.ViewControllers
 
             var mainVc = GetMainViewController();
 
-
+            newsVc = _storyBoard.InstantiateViewController(NewsViewController.StoryboardId) as NewsViewController;
             SideBarController = new SidebarController(this, mainVc, menuVc)
             {
                 MenuLocation = MenuLocations.Left,
@@ -75,7 +76,9 @@ namespace Izrune.iOS.ViewControllers
                 {
                     CurrentMenu = menu.Type;
 
-                    SideBarController.ChangeContentView(menuViewControllerCreations[menu.Type].Invoke());
+                    var asd = menuViewControllerCreations[menu.Type]?.Invoke();
+
+                    SideBarController.ChangeContentView(asd);
                 }
                 catch (Exception ex)
                 {
@@ -142,7 +145,7 @@ namespace Izrune.iOS.ViewControllers
         {
             //var navVc = _storyBoard.InstantiateViewController(storyboardId).CreateWithNavigationControllerWithMenu(ToggleMenu);
 
-            var navVc = _storyBoard.InstantiateViewController(LogInViewController.StoryboardId).CreateWithNavigationControllerWithMenu(ToggleMenu, UIImage.FromBundle("ichamburger.png"), AppColors.Tint, false);
+            var navVc = _storyBoard.InstantiateViewController(storyboardId).CreateWithNavigationControllerWithMenu(ToggleMenu, UIImage.FromBundle("ichamburger.png"), AppColors.Tint, false);
 
             return navVc;
         }
