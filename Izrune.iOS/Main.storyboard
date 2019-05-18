@@ -627,7 +627,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qny-id-Vxd">
                                 <rect key="frame" x="0.0" y="44" width="375" height="130"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2x-QI-Chq">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2x-QI-Chq">
                                         <rect key="frame" x="22" y="15" width="100" height="100"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="დრო" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcH-P0-HdN">
@@ -668,6 +668,11 @@
                                             <constraint firstItem="4Ye-E9-lbU" firstAttribute="trailing" secondItem="0JT-gx-cam" secondAttribute="trailing" id="sTL-Td-V2p"/>
                                             <constraint firstItem="4Ye-E9-lbU" firstAttribute="centerY" secondItem="W7d-nW-r7p" secondAttribute="centerY" id="vn9-Bc-775"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="50"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="დავით პირველი" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20c-Qw-hV8">
                                         <rect key="frame" x="137" y="15.000000000000002" width="220" height="18.666666666666671"/>
@@ -770,6 +775,9 @@
                     </view>
                     <connections>
                         <outlet property="questionCollectionView" destination="sY2-ss-6Oj" id="GDe-ra-1vp"/>
+                        <outlet property="skipQuestionBtn" destination="7Lx-yl-tRe" id="NGC-1J-LdY"/>
+                        <outlet property="timeLbl" destination="0JT-gx-cam" id="ha7-Yl-xEE"/>
+                        <outlet property="userNameLbl" destination="20c-Qw-hV8" id="q6I-Jx-kK3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ub-1l-r40" userLabel="First Responder" sceneMemberID="firstResponder"/>

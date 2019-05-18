@@ -55,7 +55,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="mnS-Jo-HrY" secondAttribute="bottom" id="0W9-Ie-Zn7"/>
                                     <constraint firstItem="mnS-Jo-HrY" firstAttribute="top" secondItem="fHc-ca-Wnb" secondAttribute="top" id="1ce-Nf-ZzC"/>
@@ -83,6 +83,12 @@
                 <constraint firstItem="bQL-NC-J2B" firstAttribute="top" secondItem="cZE-iV-UFb" secondAttribute="top" id="t1e-RA-PjB"/>
             </constraints>
             <size key="customSize" width="351" height="114"/>
+            <connections>
+                <outlet property="answerLbl" destination="q88-e7-BWk" id="Gl6-SQ-Oc6"/>
+                <outlet property="answerView" destination="fHc-ca-Wnb" id="Ei5-E7-kUX"/>
+                <outlet property="numberLbl" destination="8hv-ow-7rX" id="RW4-pQ-85X"/>
+                <outlet property="numberView" destination="mnS-Jo-HrY" id="M8M-Mb-tme"/>
+            </connections>
             <point key="canvasLocation" x="265.94202898550725" y="56.919642857142854"/>
         </collectionViewCell>
     </objects>

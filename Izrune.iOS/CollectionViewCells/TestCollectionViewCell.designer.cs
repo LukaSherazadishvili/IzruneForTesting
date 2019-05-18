@@ -13,6 +13,9 @@ namespace Izrune.iOS.CollectionViewCells
 	partial class TestCollectionViewCell
 	{
 		[Outlet]
+		UIKit.UICollectionView answerCollectionView { get; set; }
+
+		[Outlet]
 		UIKit.NSLayoutConstraint answerCollectionViewHeight { get; set; }
 
 		[Outlet]
@@ -26,6 +29,16 @@ namespace Izrune.iOS.CollectionViewCells
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (answerCollectionViewHeight != null) {
+				answerCollectionViewHeight.Dispose ();
+				answerCollectionViewHeight = null;
+			}
+
+			if (contentHeight != null) {
+				contentHeight.Dispose ();
+				contentHeight = null;
+			}
+
 			if (questionImagesCollectionView != null) {
 				questionImagesCollectionView.Dispose ();
 				questionImagesCollectionView = null;
@@ -36,14 +49,9 @@ namespace Izrune.iOS.CollectionViewCells
 				questionLbl = null;
 			}
 
-			if (answerCollectionViewHeight != null) {
-				answerCollectionViewHeight.Dispose ();
-				answerCollectionViewHeight = null;
-			}
-
-			if (contentHeight != null) {
-				contentHeight.Dispose ();
-				contentHeight = null;
+			if (answerCollectionView != null) {
+				answerCollectionView.Dispose ();
+				answerCollectionView = null;
 			}
 		}
 	}

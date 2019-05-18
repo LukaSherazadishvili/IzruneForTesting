@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="QuestionImageCellIdentifier" id="cZE-iV-UFb" customClass="QuestionImageCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="378" height="181"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="378" height="181"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jMF-dz-14G">
+                        <rect key="frame" x="0.0" y="0.0" width="378" height="181"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iCy-XV-BFh">
+                                <rect key="frame" x="0.0" y="0.0" width="378" height="181"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="fYN-2d-oUn">
+                                        <rect key="frame" x="0.0" y="0.0" width="378" height="181"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="fYN-2d-oUn" firstAttribute="leading" secondItem="iCy-XV-BFh" secondAttribute="leading" id="3SS-7k-2OM"/>
+                                    <constraint firstItem="fYN-2d-oUn" firstAttribute="top" secondItem="iCy-XV-BFh" secondAttribute="top" id="SUc-9g-WNh"/>
+                                    <constraint firstAttribute="bottom" secondItem="fYN-2d-oUn" secondAttribute="bottom" id="hOq-Em-P7B"/>
+                                    <constraint firstAttribute="trailing" secondItem="fYN-2d-oUn" secondAttribute="trailing" id="tgq-vb-TeC"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="iCy-XV-BFh" secondAttribute="bottom" id="52y-GM-Oa5"/>
+                            <constraint firstItem="iCy-XV-BFh" firstAttribute="top" secondItem="jMF-dz-14G" secondAttribute="top" id="Ned-mz-v2z"/>
+                            <constraint firstAttribute="trailing" secondItem="iCy-XV-BFh" secondAttribute="trailing" id="iKD-HX-VVj"/>
+                            <constraint firstItem="iCy-XV-BFh" firstAttribute="leading" secondItem="jMF-dz-14G" secondAttribute="leading" id="szD-Ec-ba4"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="jMF-dz-14G" firstAttribute="leading" secondItem="cZE-iV-UFb" secondAttribute="leading" id="CzN-BI-6av"/>
+                <constraint firstItem="jMF-dz-14G" firstAttribute="top" secondItem="cZE-iV-UFb" secondAttribute="top" id="PQV-vj-fM4"/>
+                <constraint firstAttribute="trailing" secondItem="jMF-dz-14G" secondAttribute="trailing" id="XPT-cg-WUp"/>
+                <constraint firstAttribute="bottom" secondItem="jMF-dz-14G" secondAttribute="bottom" id="ocD-9g-KYw"/>
+            </constraints>
+            <size key="customSize" width="378" height="181"/>
+            <connections>
+                <outlet property="questiomImageViewHolder" destination="iCy-XV-BFh" id="aPX-In-479"/>
+                <outlet property="questionImageView" destination="fYN-2d-oUn" id="kRn-Ru-9PW"/>
+            </connections>
+            <point key="canvasLocation" x="271.01449275362319" y="97.433035714285708"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="izruneBg.png" width="379" height="296"/>
+    </resources>
+</document>

@@ -14,11 +14,15 @@ namespace Izrune.iOS
 		{
 		}
 
+        public static readonly NSString StoryboardId = new NSString("TestViewControllerStoryboardId");
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
             InitCollectionView();
+
+            skipQuestionBtn.Layer.CornerRadius = 20;
         }
 
         private void InitCollectionView()

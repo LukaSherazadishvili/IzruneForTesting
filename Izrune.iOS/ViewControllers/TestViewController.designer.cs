@@ -14,12 +14,36 @@ namespace Izrune.iOS
 	{
 		[Outlet]
 		UIKit.UICollectionView questionCollectionView { get; set; }
+
+		[Outlet]
+		UIKit.UIButton skipQuestionBtn { get; set; }
+
+		[Outlet]
+		UIKit.UILabel timeLbl { get; set; }
+
+		[Outlet]
+		UIKit.UILabel userNameLbl { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
 			if (questionCollectionView != null) {
 				questionCollectionView.Dispose ();
 				questionCollectionView = null;
+			}
+
+			if (skipQuestionBtn != null) {
+				skipQuestionBtn.Dispose ();
+				skipQuestionBtn = null;
+			}
+
+			if (userNameLbl != null) {
+				userNameLbl.Dispose ();
+				userNameLbl = null;
+			}
+
+			if (timeLbl != null) {
+				timeLbl.Dispose ();
+				timeLbl = null;
 			}
 		}
 	}

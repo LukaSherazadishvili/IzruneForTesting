@@ -151,6 +151,7 @@
         <InterfaceDefinition Include="CollectionViewCells\MenuCollectionViewCell.xib" />
         <InterfaceDefinition Include="CollectionViewCells\TestCollectionViewCell.xib" />
         <InterfaceDefinition Include="CollectionViewCells\AnswerCollectionViewCell.xib" />
+        <InterfaceDefinition Include="CollectionViewCells\QuestionImageCollectionViewCell.xib" />
     </ItemGroup>
     <ItemGroup>
         <None Include="Info.plist" />
@@ -238,6 +239,10 @@
         <Compile Include="CollectionViewCells\AnswerCollectionViewCell.cs" />
         <Compile Include="CollectionViewCells\AnswerCollectionViewCell.designer.cs">
           <DependentUpon>AnswerCollectionViewCell.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CollectionViewCells\QuestionImageCollectionViewCell.cs" />
+        <Compile Include="CollectionViewCells\QuestionImageCollectionViewCell.designer.cs">
+          <DependentUpon>QuestionImageCollectionViewCell.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup>

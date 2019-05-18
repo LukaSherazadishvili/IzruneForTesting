@@ -21,5 +21,16 @@ namespace Izrune.iOS.CollectionViewCells
         {
             // Note: this .ctor should not contain any initialization logic.
         }
+
+        public override void AwakeFromNib()
+        {
+            base.AwakeFromNib();
+
+            answerView.Layer.CornerRadius = 20;
+            answerView.Layer.BorderWidth = 2;
+            answerView.Layer.BorderColor = UIColor.Red.CGColor;
+
+            numberView.Layer.CornerRadius = 20;
+        }
     }
 }
