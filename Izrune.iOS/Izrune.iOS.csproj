@@ -140,9 +140,10 @@
         <Folder Include="ViewControllers\" />
         <Folder Include="ViewControllers\LogIn And Registration\" />
         <Folder Include="Utils\" />
-        <Folder Include="ViewControllers\Menu\" />
+        <Folder Include="ViewControllers\MenuRoot\" />
         <Folder Include="CollectionViewCells\" />
         <Folder Include="Models\" />
+        <Folder Include="ViewControllers\MenuViewControllers\" />
     </ItemGroup>
     <ItemGroup>
         <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -178,10 +179,6 @@
           <DependentUpon>ParentRegistrationViewController.cs</DependentUpon>
         </Compile>
         <Compile Include="Utils\AppColors.cs" />
-        <Compile Include="ViewControllers\ContactViewController.cs" />
-        <Compile Include="ViewControllers\ContactViewController.designer.cs">
-          <DependentUpon>ContactViewController.cs</DependentUpon>
-        </Compile>
         <Compile Include="ViewControllers\LogIn And Registration\PasswordRecoveryViewController.cs" />
         <Compile Include="ViewControllers\LogIn And Registration\PasswordRecoveryViewController.designer.cs">
           <DependentUpon>PasswordRecoveryViewController.cs</DependentUpon>
@@ -194,9 +191,9 @@
         <Compile Include="ViewControllers\PacketViewController.designer.cs">
           <DependentUpon>PacketViewController.cs</DependentUpon>
         </Compile>
-        <Compile Include="ViewControllers\Menu\MenuRootViewController.cs" />
-        <Compile Include="ViewControllers\Menu\MenuViewController.cs" />
-        <Compile Include="ViewControllers\Menu\MenuViewController.designer.cs">
+        <Compile Include="ViewControllers\MenuRoot\MenuRootViewController.cs" />
+        <Compile Include="ViewControllers\MenuRoot\MenuViewController.cs" />
+        <Compile Include="ViewControllers\MenuRoot\MenuViewController.designer.cs">
           <DependentUpon>MenuViewController.cs</DependentUpon>
         </Compile>
         <Compile Include="CollectionViewCells\MenuCollectionViewCell.cs" />
@@ -208,13 +205,29 @@
         <Compile Include="ViewControllers\TestChooseViewController.designer.cs">
           <DependentUpon>TestChooseViewController.cs</DependentUpon>
         </Compile>
-        <Compile Include="ViewControllers\MoreInfoViewController.cs" />
-        <Compile Include="ViewControllers\MoreInfoViewController.designer.cs">
+        <Compile Include="ViewControllers\MenuViewControllers\ContactViewController.cs" />
+        <Compile Include="ViewControllers\MenuViewControllers\ContactViewController.designer.cs">
+          <DependentUpon>ContactViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\MenuViewControllers\MoreInfoViewController.cs" />
+        <Compile Include="ViewControllers\MenuViewControllers\MoreInfoViewController.designer.cs">
           <DependentUpon>MoreInfoViewController.cs</DependentUpon>
         </Compile>
-        <Compile Include="ViewControllers\NewsViewController.cs" />
-        <Compile Include="ViewControllers\NewsViewController.designer.cs">
+        <Compile Include="ViewControllers\MenuViewControllers\NewsViewController.cs" />
+        <Compile Include="ViewControllers\MenuViewControllers\NewsViewController.designer.cs">
           <DependentUpon>NewsViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\MenuViewControllers\StatisticViewController.cs" />
+        <Compile Include="ViewControllers\MenuViewControllers\StatisticViewController.designer.cs">
+          <DependentUpon>StatisticViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\MenuViewControllers\UpdatePacketViewController.cs" />
+        <Compile Include="ViewControllers\MenuViewControllers\UpdatePacketViewController.designer.cs">
+          <DependentUpon>UpdatePacketViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\MenuViewControllers\EditProfileViewController.cs" />
+        <Compile Include="ViewControllers\MenuViewControllers\EditProfileViewController.designer.cs">
+          <DependentUpon>EditProfileViewController.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup>
