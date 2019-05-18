@@ -12,9 +12,15 @@ namespace Izrune.iOS
 	[Register ("TestViewController")]
 	partial class TestViewController
 	{
+		[Outlet]
+		UIKit.UICollectionView questionCollectionView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (questionCollectionView != null) {
+				questionCollectionView.Dispose ();
+				questionCollectionView = null;
+			}
 		}
 	}
 }

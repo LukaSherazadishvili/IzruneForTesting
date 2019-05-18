@@ -692,10 +692,10 @@
                                     <constraint firstAttribute="height" constant="180" id="nZW-s1-gdP"/>
                                 </constraints>
                             </imageView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sY2-ss-6Oj">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sY2-ss-6Oj">
                                 <rect key="frame" x="0.0" y="174" width="375" height="424"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="94O-X3-wFt">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="94O-X3-wFt">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -768,6 +768,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Dm2-40-8IZ" secondAttribute="trailing" constant="15" id="xE8-QI-I4x"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="questionCollectionView" destination="sY2-ss-6Oj" id="GDe-ra-1vp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ub-1l-r40" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

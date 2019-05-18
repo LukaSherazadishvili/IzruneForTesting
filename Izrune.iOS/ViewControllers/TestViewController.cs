@@ -3,14 +3,49 @@
 using System;
 
 using Foundation;
+using Izrune.iOS.CollectionViewCells;
 using UIKit;
 
 namespace Izrune.iOS
 {
-	public partial class TestViewController : UIViewController
+	public partial class TestViewController : UIViewController, IUICollectionViewDelegate, IUICollectionViewDataSource, IUICollectionViewDelegateFlowLayout
 	{
 		public TestViewController (IntPtr handle) : base (handle)
 		{
 		}
-	}
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+
+            InitCollectionView();
+        }
+
+        private void InitCollectionView()
+        {
+            questionCollectionView.RegisterNibForCell(TestCollectionViewCell.Nib, TestCollectionViewCell.Identifier);
+
+            questionCollectionView.Delegate = this;
+            questionCollectionView.DataSource = this;
+        }
+
+        public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
+        {
+            var cell = questionCollectionView.DequeueReusableCell(TestCollectionViewCell.Identifier, indexPath) as TestCollectionViewCell;
+
+            return cell;
+        }
+
+        public nint GetItemsCount(UICollectionView collectionView, nint section)
+        {
+            return 7;
+        }
+
+        [Export("collectionView:layout:sizeForItemAtIndexPath:")]
+        public CoreGraphics.CGSize GetSizeForItem(UICollectionView collectionView, UICollectionViewLayout layout, NSIndexPath indexPath)
+        {
+            return new CoreGraphics.CGSize(collectionView.Frame.Width, collectionView.Frame.Height);
+        }
+
+    }
 }
