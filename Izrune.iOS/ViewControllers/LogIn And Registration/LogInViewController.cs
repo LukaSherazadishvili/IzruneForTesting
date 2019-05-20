@@ -40,6 +40,12 @@ namespace Izrune.iOS
 
                     var loginSevice = ServiceContainer.ServiceContainer.Instance.Get<ILoginServices>();
                     var isLogedIn = loginSevice.LoginUser(userName, passord).Result;
+
+                    if(isLogedIn)
+                    {
+                        var testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
+                        this.NavigationController.PushViewController(testVc, true);
+                    }
                 }
                 catch (Exception ex)
                 {

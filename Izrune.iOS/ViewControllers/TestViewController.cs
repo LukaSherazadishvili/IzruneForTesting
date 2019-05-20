@@ -2,10 +2,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Cavea.iOS.Utils;
 using Foundation;
 using Izrune.iOS.CollectionViewCells;
 using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Abstraction.Services;
 using UIKit;
 
 namespace Izrune.iOS
@@ -43,6 +46,15 @@ namespace Izrune.iOS
             };
         }
 
+        private async Task LoadDataAsync()
+        {
+            var testService = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
+
+            var data = (await testService.GetQuestionsAsync(1, IZrune.PCL.Enum.QuezCategory.QuezTest))?.ToList();
+
+            Questions = data;
+        }
+
         private void InitCollectionView()
         {
             questionCollectionView.RegisterNibForCell(TestCollectionViewCell.Nib, TestCollectionViewCell.Identifier);
@@ -73,6 +85,8 @@ namespace Izrune.iOS
             string title = "asdasdas";
 
             var titleHeight = title.GetSizeByText(UIFont.FromName("BPG Mrgvlovani Caps 2010", 17));
+
+
             return new CoreGraphics.CGSize(collectionView.Frame.Width, collectionView.Frame.Height * 0.5);
         }
     }
