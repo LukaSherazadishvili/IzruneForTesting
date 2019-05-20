@@ -5,6 +5,7 @@ using System.Linq;
 using CoreAnimation;
 using Foundation;
 using Izrune.iOS.Utils;
+using IZrune.PCL.Abstraction.Services;
 using MpdcViewExtentions;
 using UIKit;
 
@@ -31,7 +32,19 @@ namespace Izrune.iOS
         {
         
             logInBtn.TouchUpInside += delegate {
-                ShowLoginAlert();
+                //ShowLoginAlert();
+                try
+                {
+                    var userName = userNameTextField.Text;
+                    var passord = passwordTextField.Text;
+
+                    var loginSevice = ServiceContainer.ServiceContainer.Instance.Get<ILoginServices>();
+                    var isLogedIn = loginSevice.LoginUser(userName, passord).Result;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             };
 
             registrationBtn.TouchUpInside += delegate {
