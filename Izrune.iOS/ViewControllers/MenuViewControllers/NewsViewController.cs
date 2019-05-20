@@ -13,6 +13,6 @@ namespace Izrune.iOS
 		{
 		}
 
-        public static readonly NSString StoryboadrId = new NSString("NewsViewControllerStoryboardId");
+        public static readonly NSString StoryboardId = new NSString("NewsViewControllerStoryboardId");
     }
 }

@@ -140,14 +140,18 @@
         <Folder Include="ViewControllers\" />
         <Folder Include="ViewControllers\LogIn And Registration\" />
         <Folder Include="Utils\" />
-        <Folder Include="ViewControllers\Menu\" />
+        <Folder Include="ViewControllers\MenuRoot\" />
         <Folder Include="CollectionViewCells\" />
         <Folder Include="Models\" />
+        <Folder Include="ViewControllers\MenuViewControllers\" />
     </ItemGroup>
     <ItemGroup>
         <InterfaceDefinition Include="LaunchScreen.storyboard" />
         <InterfaceDefinition Include="Main.storyboard" />
         <InterfaceDefinition Include="CollectionViewCells\MenuCollectionViewCell.xib" />
+        <InterfaceDefinition Include="CollectionViewCells\TestCollectionViewCell.xib" />
+        <InterfaceDefinition Include="CollectionViewCells\AnswerCollectionViewCell.xib" />
+        <InterfaceDefinition Include="CollectionViewCells\QuestionImageCollectionViewCell.xib" />
     </ItemGroup>
     <ItemGroup>
         <None Include="Info.plist" />
@@ -156,10 +160,6 @@
     <ItemGroup>
         <Compile Include="Main.cs" />
         <Compile Include="AppDelegate.cs" />
-        <Compile Include="ViewController.cs" />
-        <Compile Include="ViewController.designer.cs">
-            <DependentUpon>ViewController.cs</DependentUpon>
-        </Compile>
         <Compile Include="MPDC\Extensions\ViewExtensions.cs" />
         <Compile Include="ViewControllers\MainViewController.cs" />
         <Compile Include="ViewControllers\MainViewController.designer.cs">
@@ -178,10 +178,6 @@
           <DependentUpon>ParentRegistrationViewController.cs</DependentUpon>
         </Compile>
         <Compile Include="Utils\AppColors.cs" />
-        <Compile Include="ViewControllers\ContactViewController.cs" />
-        <Compile Include="ViewControllers\ContactViewController.designer.cs">
-          <DependentUpon>ContactViewController.cs</DependentUpon>
-        </Compile>
         <Compile Include="ViewControllers\LogIn And Registration\PasswordRecoveryViewController.cs" />
         <Compile Include="ViewControllers\LogIn And Registration\PasswordRecoveryViewController.designer.cs">
           <DependentUpon>PasswordRecoveryViewController.cs</DependentUpon>
@@ -194,9 +190,9 @@
         <Compile Include="ViewControllers\PacketViewController.designer.cs">
           <DependentUpon>PacketViewController.cs</DependentUpon>
         </Compile>
-        <Compile Include="ViewControllers\Menu\MenuRootViewController.cs" />
-        <Compile Include="ViewControllers\Menu\MenuViewController.cs" />
-        <Compile Include="ViewControllers\Menu\MenuViewController.designer.cs">
+        <Compile Include="ViewControllers\MenuRoot\MenuRootViewController.cs" />
+        <Compile Include="ViewControllers\MenuRoot\MenuViewController.cs" />
+        <Compile Include="ViewControllers\MenuRoot\MenuViewController.designer.cs">
           <DependentUpon>MenuViewController.cs</DependentUpon>
         </Compile>
         <Compile Include="CollectionViewCells\MenuCollectionViewCell.cs" />
@@ -208,13 +204,45 @@
         <Compile Include="ViewControllers\TestChooseViewController.designer.cs">
           <DependentUpon>TestChooseViewController.cs</DependentUpon>
         </Compile>
-        <Compile Include="ViewControllers\MoreInfoViewController.cs" />
-        <Compile Include="ViewControllers\MoreInfoViewController.designer.cs">
+        <Compile Include="ViewControllers\MenuViewControllers\ContactViewController.cs" />
+        <Compile Include="ViewControllers\MenuViewControllers\ContactViewController.designer.cs">
+          <DependentUpon>ContactViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\MenuViewControllers\MoreInfoViewController.cs" />
+        <Compile Include="ViewControllers\MenuViewControllers\MoreInfoViewController.designer.cs">
           <DependentUpon>MoreInfoViewController.cs</DependentUpon>
         </Compile>
-        <Compile Include="ViewControllers\NewsViewController.cs" />
-        <Compile Include="ViewControllers\NewsViewController.designer.cs">
+        <Compile Include="ViewControllers\MenuViewControllers\NewsViewController.cs" />
+        <Compile Include="ViewControllers\MenuViewControllers\NewsViewController.designer.cs">
           <DependentUpon>NewsViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\MenuViewControllers\StatisticViewController.cs" />
+        <Compile Include="ViewControllers\MenuViewControllers\StatisticViewController.designer.cs">
+          <DependentUpon>StatisticViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\MenuViewControllers\UpdatePacketViewController.cs" />
+        <Compile Include="ViewControllers\MenuViewControllers\UpdatePacketViewController.designer.cs">
+          <DependentUpon>UpdatePacketViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\MenuViewControllers\EditProfileViewController.cs" />
+        <Compile Include="ViewControllers\MenuViewControllers\EditProfileViewController.designer.cs">
+          <DependentUpon>EditProfileViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\TestViewController.cs" />
+        <Compile Include="ViewControllers\TestViewController.designer.cs">
+          <DependentUpon>TestViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CollectionViewCells\TestCollectionViewCell.cs" />
+        <Compile Include="CollectionViewCells\TestCollectionViewCell.designer.cs">
+          <DependentUpon>TestCollectionViewCell.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CollectionViewCells\AnswerCollectionViewCell.cs" />
+        <Compile Include="CollectionViewCells\AnswerCollectionViewCell.designer.cs">
+          <DependentUpon>AnswerCollectionViewCell.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CollectionViewCells\QuestionImageCollectionViewCell.cs" />
+        <Compile Include="CollectionViewCells\QuestionImageCollectionViewCell.designer.cs">
+          <DependentUpon>QuestionImageCollectionViewCell.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup>
