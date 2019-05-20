@@ -82,9 +82,30 @@ namespace Izrune.iOS
 
             //TODO Calculate CellHeight
 
-            string title = "asdasdas";
+            var data = Questions?[indexPath.Row];
 
-            var titleHeight = title.GetSizeByText(UIFont.FromName("BPG Mrgvlovani Caps 2010", 17));
+            var appFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 17);
+
+            var titleHeight = (float)data.title.GetSizeByText(appFont).Height;
+
+            var ImagesCount = data?.images?.Count();
+
+            float imagesHeight = 0;
+
+            if (ImagesCount == 0)
+                imagesHeight = 0;
+            else if (ImagesCount > 0 || ImagesCount <= 2)
+                imagesHeight = 90;
+            else
+                imagesHeight = 180;
+            var spaceSumBetweenAnswers = 80;
+
+            float answersHeight = 0;
+            foreach (var item in data?.Answers)
+            {
+                answersHeight += (float)item?.title.GetSizeByText(appFont).Height;
+            }
+
 
 
             return new CoreGraphics.CGSize(collectionView.Frame.Width, collectionView.Frame.Height * 0.5);
