@@ -25,8 +25,8 @@ namespace Izrune.iOS.CollectionViewCells
         {
             base.AwakeFromNib();
 
-            questiomImageViewHolder.Layer.CornerRadius = 15;
-            questionImageView.Layer.CornerRadius = 15;
+            questiomImageViewHolder.Layer.CornerRadius = 20;
+            questionImageView.Layer.CornerRadius = 20;
         }
 
         public override void LayoutSubviews()
@@ -35,5 +35,6 @@ namespace Izrune.iOS.CollectionViewCells
 
             questionImageView.Frame = new CoreGraphics.CGRect(0, 0, Frame.Width, Frame.Height);
         }
+
     }
 }

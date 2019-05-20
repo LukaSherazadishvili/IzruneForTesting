@@ -9,5 +9,6 @@ namespace IZrune.PCL.Abstraction.Models
         string id { get; set; }
          string title { get; set; }
          string right { get; set; }
+        bool IsRight { get; set; }
     }
 }

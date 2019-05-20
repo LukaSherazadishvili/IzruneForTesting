@@ -22,10 +22,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="378" height="181"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iCy-XV-BFh">
-                                <rect key="frame" x="5" y="0.0" width="368" height="181"/>
+                                <rect key="frame" x="5" y="5" width="368" height="171"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="fYN-2d-oUn">
-                                        <rect key="frame" x="0.0" y="0.0" width="368" height="181"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="368" height="171"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -39,8 +39,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="iCy-XV-BFh" secondAttribute="bottom" id="52y-GM-Oa5"/>
-                            <constraint firstItem="iCy-XV-BFh" firstAttribute="top" secondItem="jMF-dz-14G" secondAttribute="top" id="Ned-mz-v2z"/>
+                            <constraint firstAttribute="bottom" secondItem="iCy-XV-BFh" secondAttribute="bottom" constant="5" id="52y-GM-Oa5"/>
+                            <constraint firstItem="iCy-XV-BFh" firstAttribute="top" secondItem="jMF-dz-14G" secondAttribute="top" constant="5" id="Ned-mz-v2z"/>
                             <constraint firstAttribute="trailing" secondItem="iCy-XV-BFh" secondAttribute="trailing" constant="5" id="iKD-HX-VVj"/>
                             <constraint firstItem="iCy-XV-BFh" firstAttribute="leading" secondItem="jMF-dz-14G" secondAttribute="leading" constant="5" id="szD-Ec-ba4"/>
                         </constraints>

@@ -692,15 +692,15 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="kMS-F6-WOd">
-                                <rect key="frame" x="0.0" y="598" width="375" height="180"/>
+                                <rect key="frame" x="0.0" y="648" width="375" height="130"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="nZW-s1-gdP"/>
+                                    <constraint firstAttribute="height" constant="130" id="nZW-s1-gdP"/>
                                 </constraints>
                             </imageView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sY2-ss-6Oj">
-                                <rect key="frame" x="0.0" y="174" width="375" height="424"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sY2-ss-6Oj">
+                                <rect key="frame" x="0.0" y="174" width="375" height="474"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="94O-X3-wFt">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="94O-X3-wFt">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -718,7 +718,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Lx-yl-tRe">
-                                <rect key="frame" x="51" y="573" width="273" height="50"/>
+                                <rect key="frame" x="51" y="623" width="273" height="50"/>
                                 <color key="backgroundColor" red="0.79607843140000001" green="0.52941176469999995" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="hzM-na-Xl6"/>
@@ -729,7 +729,7 @@
                                 </state>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Dm2-40-8IZ">
-                                <rect key="frame" x="31" y="701" width="313" height="52"/>
+                                <rect key="frame" x="31" y="711" width="313" height="52"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="სწორი პასუხი 5 ქულა" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTd-X8-rXu">
                                         <rect key="frame" x="0.0" y="0.0" width="313" height="14"/>
@@ -758,7 +758,7 @@
                             <constraint firstItem="Dm2-40-8IZ" firstAttribute="leading" secondItem="2KA-35-UOB" secondAttribute="leadingMargin" constant="15" id="5JM-sJ-yxJ"/>
                             <constraint firstItem="sY2-ss-6Oj" firstAttribute="top" secondItem="qny-id-Vxd" secondAttribute="bottom" id="Awa-9s-b7I"/>
                             <constraint firstItem="kMS-F6-WOd" firstAttribute="leading" secondItem="2KA-35-UOB" secondAttribute="leading" id="FUz-IV-8FG"/>
-                            <constraint firstItem="2Lc-DO-OaB" firstAttribute="top" secondItem="Dm2-40-8IZ" secondAttribute="bottom" constant="25" id="FY7-4Y-mAJ"/>
+                            <constraint firstItem="2Lc-DO-OaB" firstAttribute="top" secondItem="Dm2-40-8IZ" secondAttribute="bottom" constant="15" id="FY7-4Y-mAJ"/>
                             <constraint firstItem="kMS-F6-WOd" firstAttribute="top" secondItem="sY2-ss-6Oj" secondAttribute="bottom" id="FfX-Co-JC5"/>
                             <constraint firstItem="7Lx-yl-tRe" firstAttribute="leading" secondItem="2KA-35-UOB" secondAttribute="leadingMargin" constant="35" id="H8z-84-s7q"/>
                             <constraint firstItem="qny-id-Vxd" firstAttribute="top" secondItem="g6W-PB-Svp" secondAttribute="bottom" id="ImQ-a4-Ic8"/>
