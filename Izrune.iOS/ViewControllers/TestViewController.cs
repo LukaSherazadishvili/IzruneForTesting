@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using Cavea.iOS.Utils;
 using Foundation;
 using Izrune.iOS.CollectionViewCells;
 using IZrune.PCL.Abstraction.Models;
@@ -29,14 +30,16 @@ namespace Izrune.iOS
 
             skipQuestionBtn.TouchUpInside += delegate {
 
-                var indexPath = questionCollectionView.IndexPathsForVisibleItems[0];
+                //var indexPath = questionCollectionView.IndexPathsForVisibleItems[0];
 
-                var currIndex = indexPath.Row;
+                //var currIndex = indexPath.Row;
 
-                if(currIndex < 6)
-                {
-                    questionCollectionView.ScrollToItem(NSIndexPath.FromItemSection(currIndex+1, 0), UICollectionViewScrollPosition.Right, true);
-                };
+                //if(currIndex < 6)
+                //{
+                //    questionCollectionView.ScrollToItem(NSIndexPath.FromItemSection(currIndex+1, 0), UICollectionViewScrollPosition.Right, true);
+                //};
+
+                questionCollectionView.ReloadData();
             };
         }
 
@@ -64,7 +67,13 @@ namespace Izrune.iOS
         [Export("collectionView:layout:sizeForItemAtIndexPath:")]
         public CoreGraphics.CGSize GetSizeForItem(UICollectionView collectionView, UICollectionViewLayout layout, NSIndexPath indexPath)
         {
-            return new CoreGraphics.CGSize(collectionView.Frame.Width, collectionView.Frame.Height);
+
+            //TODO Calculate CellHeight
+
+            string title = "asdasdas";
+
+            var titleHeight = title.GetSizeByText(UIFont.FromName("BPG Mrgvlovani Caps 2010", 17));
+            return new CoreGraphics.CGSize(collectionView.Frame.Width, collectionView.Frame.Height * 0.5);
         }
     }
 }

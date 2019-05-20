@@ -32,6 +32,9 @@ namespace Izrune.iOS.CollectionViewCells
 
 		[Outlet]
 		UIKit.UILabel questionLbl { get; set; }
+
+		[Outlet]
+		UIKit.UIView scrollViewContentHeight { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -68,6 +71,11 @@ namespace Izrune.iOS.CollectionViewCells
 			if (answersColletionViewHeight != null) {
 				answersColletionViewHeight.Dispose ();
 				answersColletionViewHeight = null;
+			}
+
+			if (scrollViewContentHeight != null) {
+				scrollViewContentHeight.Dispose ();
+				scrollViewContentHeight = null;
 			}
 		}
 	}

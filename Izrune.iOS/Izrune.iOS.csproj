@@ -244,6 +244,7 @@
         <Compile Include="CollectionViewCells\QuestionImageCollectionViewCell.designer.cs">
           <DependentUpon>QuestionImageCollectionViewCell.cs</DependentUpon>
         </Compile>
+        <Compile Include="Utils\ExtentionHelper.cs" />
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />
@@ -303,6 +304,7 @@
       <BundleResource Include="Resources\ichamburger.png" />
       <BundleResource Include="Resources\ichamburger%402x.png" />
       <BundleResource Include="Resources\ichamburger%403x.png" />
+      <BundleResource Include="Resources\Views\AnswerClass" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\IZrune.PCL\IZrune.PCL.csproj">

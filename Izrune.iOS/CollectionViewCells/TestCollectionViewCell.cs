@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using CoreGraphics;
 using Foundation;
 using IZrune.PCL.Abstraction.Models;
 using UIKit;
@@ -15,8 +16,10 @@ namespace Izrune.iOS.CollectionViewCells
 
         const float pageSpacing = 10;
 
-        public float imagesCollectioHeight { get; set; } = 180;
-        public float answersCollectioHeight { get; set; }
+        public nfloat imagesCollectioHeight { get; set; } = 180;
+        public nfloat answersCollectioHeight { get; set; }
+
+        public static nfloat CellSize { get; set; }
 
         static TestCollectionViewCell()
         {
@@ -89,6 +92,9 @@ namespace Izrune.iOS.CollectionViewCells
 
             InitImagesCollectionViewLayout();
 
+            var height = questionLbl.Bounds.Size.Height;
+
+            CellSize = height + imagesCollectioHeight + answersCollectioHeight;
         }
 
         private void InitImagesCollectionViewLayout()
