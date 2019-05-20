@@ -60,66 +60,66 @@ namespace Izrune.iOS.ViewControllers
 
             menuVc.MainMenuClicked = (menu) =>
             {
-                #region MenuClicks
+                //#region MenuClicks
 
-                if (menu.Type == MenuType.Main)
-                {
-                    SideBarController.ChangeMenuView(mainVc);
-                }
+                //if (menu.Type == MenuType.Main)
+                //{
+                //    SideBarController.ChangeMenuView(mainVc);
+                //}
 
-                if (menu.Type == MenuType.LogIn)
-                {
-                    //TODO
-                    SideBarController.ChangeMenuView(null);
-                }
+                //if (menu.Type == MenuType.LogIn)
+                //{
+                //    //TODO
+                //    SideBarController.ChangeMenuView(null);
+                //}
 
-                if (menu.Type == MenuType.News)
-                {
-                    //TODO
-                    SideBarController.ChangeMenuView(null);
-                }
+                //if (menu.Type == MenuType.News)
+                //{
+                //    //TODO
+                //    SideBarController.ChangeMenuView(null);
+                //}
 
-                if (menu.Type == MenuType.MoreInfo)
-                {
-                    var moreInfoVc = _storyBoard.InstantiateViewController(MoreInfoViewController.StoryboardId) as MoreInfoViewController;
+                //if (menu.Type == MenuType.MoreInfo)
+                //{
+                //    var moreInfoVc = _storyBoard.InstantiateViewController(MoreInfoViewController.StoryboardId) as MoreInfoViewController;
 
-                    var navVc = PutVcInNav(moreInfoVc);
-                    SideBarController.ChangeMenuView(navVc);
-                }
+                //    var navVc = PutVcInNav(moreInfoVc);
+                //    SideBarController.ChangeMenuView(navVc);
+                //}
 
-                if (menu.Type == MenuType.Contact)
-                {
-                    var aboutUsVc = _storyBoard.InstantiateViewController(ContactViewController.StoryboardId) as ContactViewController;
+                //if (menu.Type == MenuType.Contact)
+                //{
+                //    var aboutUsVc = _storyBoard.InstantiateViewController(ContactViewController.StoryboardId) as ContactViewController;
 
-                    var navVc = PutVcInNav(aboutUsVc);
-                    SideBarController.ChangeMenuView(navVc);
-                }
+                //    var navVc = PutVcInNav(aboutUsVc);
+                //    SideBarController.ChangeMenuView(navVc);
+                //}
 
-                if (menu.Type == MenuType.Statistic)
-                {
-                    //TODO
-                    SideBarController.ChangeMenuView(null);
-                }
+                //if (menu.Type == MenuType.Statistic)
+                //{
+                //    //TODO
+                //    SideBarController.ChangeMenuView(null);
+                //}
 
-                if (menu.Type == MenuType.UpdatePacket)
-                {
-                    //TODO
-                    SideBarController.ChangeMenuView(null);
-                }
+                //if (menu.Type == MenuType.UpdatePacket)
+                //{
+                //    //TODO
+                //    SideBarController.ChangeMenuView(null);
+                //}
 
-                if (menu.Type == MenuType.EditProfile)
-                {
-                    //TODO
-                    SideBarController.ChangeMenuView(null);
-                }
+                //if (menu.Type == MenuType.EditProfile)
+                //{
+                //    //TODO
+                //    SideBarController.ChangeMenuView(null);
+                //}
 
-                if (menu.Type == MenuType.LogOut)
-                {
-                    //TODO
-                    SideBarController.ChangeMenuView(null);
-                }
+                //if (menu.Type == MenuType.LogOut)
+                //{
+                //    //TODO
+                //    SideBarController.ChangeMenuView(null);
+                //}
 
-                #endregion
+                //#endregion
 
                 CurrentMenu = menu.Type;
 
