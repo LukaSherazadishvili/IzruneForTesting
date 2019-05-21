@@ -2,6 +2,7 @@
 using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Enum;
 using IZrune.PCL.extensions;
+using IZrune.PCL.Helpers;
 using IZrune.PCL.Implementation.Models;
 using IZrune.PCL.WebUtils;
 using Newtonsoft.Json;
@@ -19,20 +20,20 @@ namespace IZrune.PCL.Implementation.Services
 
         private string TestCode;
 
-        public async Task<IEnumerable<IQuestion>> GetQuestionsAsync(int studentsId, QuezCategory TestType)
+        public async Task<IEnumerable<IQuestion>> GetQuestionsAsync( QuezCategory TestType)
         {
             IEnumerable<Question> QuestionLst;
             try
             {
                 if (AppCore.Instance.IsOnline)
                 {
-
+                    var rr = UserControl.Instance.CurrentStudent?.id.ToString();
 
                     var Resultttt = TestType.ConverEnumToInt();
 
                     var FormContent = new FormUrlEncodedContent(new[]
                     {
-                new KeyValuePair<string,string>("student_id",studentsId.ToString()),
+                new KeyValuePair<string,string>("student_id",UserControl.Instance.CurrentStudent?.id.ToString()),
                 new KeyValuePair<string, string>("test_type",TestType.ConverEnumToInt())
 
             });

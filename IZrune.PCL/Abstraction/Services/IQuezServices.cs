@@ -10,7 +10,7 @@ namespace IZrune.PCL.Abstraction.Services
    public interface IQuezServices
     {
 
-        Task<IEnumerable<IQuestion>> GetQuestionsAsync(int studentsId, QuezCategory TestType);
+        Task<IEnumerable<IQuestion>> GetQuestionsAsync( QuezCategory TestType);
 
         Task GetQuezResultAsync( int Duration, List<IQuestion> QuestionList);
        

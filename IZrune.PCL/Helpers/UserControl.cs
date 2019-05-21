@@ -2,6 +2,7 @@
 using IZrune.PCL.Abstraction.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MpdcContainer = ServiceContainer.ServiceContainer;
@@ -10,7 +11,7 @@ using MpdcContainer = ServiceContainer.ServiceContainer;
 namespace IZrune.PCL.Helpers
 {
    public class UserControl
-    {
+   {
         private static UserControl instance = null;
         private static readonly object padlock = new object();
 
@@ -26,6 +27,7 @@ namespace IZrune.PCL.Helpers
                     {
                         if (instance == null)
                         {
+                            AppCore.Instance.InitServices();
                             instance = new UserControl();
                         }
                     }
@@ -35,6 +37,8 @@ namespace IZrune.PCL.Helpers
         }
 
         private IParent Parent;
+
+        public IStudent CurrentStudent;
 
         public async Task<bool>  IsLogedIn()
         {
@@ -57,6 +61,7 @@ namespace IZrune.PCL.Helpers
         {
             try
             {
+                
                 var Result = await MpdcContainer.Instance.Get<ILoginServices>().LoginUser(UserName, Password);
 
                 return Result;
@@ -71,7 +76,7 @@ namespace IZrune.PCL.Helpers
         {
             try { 
             Parent = await MpdcContainer.Instance.Get<IUserServices>().GetUserAsync();
-
+            
             return Parent;
 
             }
@@ -81,6 +86,53 @@ namespace IZrune.PCL.Helpers
             }
         }
 
+        public async Task<IEnumerable<IStudent>> GetCurrentUserStudents()
+        {
+            try
+            {
+                if (Parent == null)
+                {
+                    Parent = await GetCurrentUser();
+                }
+                var Result = Parent?.Students;
 
-    }
+                if (Result?.ToList().Count > 0)
+                {
+                    return Result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+           
+        }
+
+        public async void SeTSelectedStudent(int StudentId)
+        {
+            try
+            {
+                if (Parent == null)
+                {
+                    Parent = await GetCurrentUser();
+                }
+
+              
+                    CurrentStudent = Parent?.Students.Where(i => i.id == StudentId)?.SingleOrDefault();
+              
+             
+            }
+            catch (Exception ex)
+            {
+              
+            }
+        }
+        
+
+
+   }
 }
