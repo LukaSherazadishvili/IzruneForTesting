@@ -19,6 +19,12 @@ namespace Izrune.iOS
 		UIKit.UIView summQuizTransparentView { get; set; }
 
 		[Outlet]
+		UIKit.UILabel test1TimerLbl { get; set; }
+
+		[Outlet]
+		UIKit.UILabel test2TimerLbl { get; set; }
+
+		[Outlet]
 		UIKit.UILabel userNameLbl { get; set; }
 
 		[Outlet]
@@ -29,19 +35,14 @@ namespace Izrune.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (summQuizTransparentView != null) {
-				summQuizTransparentView.Dispose ();
-				summQuizTransparentView = null;
-			}
-
 			if (exQuizTransparentView != null) {
 				exQuizTransparentView.Dispose ();
 				exQuizTransparentView = null;
 			}
 
-			if (userNameTransparentView != null) {
-				userNameTransparentView.Dispose ();
-				userNameTransparentView = null;
+			if (summQuizTransparentView != null) {
+				summQuizTransparentView.Dispose ();
+				summQuizTransparentView = null;
 			}
 
 			if (userNameLbl != null) {
@@ -49,9 +50,24 @@ namespace Izrune.iOS
 				userNameLbl = null;
 			}
 
+			if (userNameTransparentView != null) {
+				userNameTransparentView.Dispose ();
+				userNameTransparentView = null;
+			}
+
 			if (viewForDropDown != null) {
 				viewForDropDown.Dispose ();
 				viewForDropDown = null;
+			}
+
+			if (test1TimerLbl != null) {
+				test1TimerLbl.Dispose ();
+				test1TimerLbl = null;
+			}
+
+			if (test2TimerLbl != null) {
+				test2TimerLbl.Dispose ();
+				test2TimerLbl = null;
 			}
 		}
 	}

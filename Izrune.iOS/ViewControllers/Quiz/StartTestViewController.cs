@@ -9,6 +9,8 @@ using Izrune.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Helpers;
 using UIKit;
+using System.Timers;
+using MPDC.iOS.Utils;
 
 namespace Izrune.iOS
 {
@@ -44,16 +46,10 @@ namespace Izrune.iOS
             Students.Add(item);
             Students.Add(item); 
             Students.Add(item); 
-            Students.Add(item); 
-            Students.Add(item); 
             Students.Add(item);
-            Students.Add(item);
-            Students.Add(item);
-            Students.Add(item);
-            Students.Add(item);
-            Students.Add(item);
-            Students.Add(item);
-            Students.Add(item);
+
+            InitTimer();
+
             InitGestures();
 
             InitDroDown();
@@ -63,7 +59,7 @@ namespace Izrune.iOS
         {
             UserNameDropDown.AnchorView = new WeakReference<UIView>(viewForDropDown);
             UserNameDropDown.BottomOffset = new CoreGraphics.CGPoint(0, viewForDropDown.Bounds.Height);
-            UserNameDropDown.Width = this.View.Frame.Width;
+            UserNameDropDown.Width = this.viewForDropDown.Frame.Width;
             UserNameDropDown.Direction = Direction.Bottom;
 
             var array = Students?.Select(x => x.Name + x.LastName)?.ToArray();
@@ -116,6 +112,39 @@ namespace Izrune.iOS
             DPDConstants.UI.SelectedTextColor = UIColor.White;
 
             UserNameDropDown.TextFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 15);
+            UserNameDropDown.ClipsToBounds = true;
+            UserNameDropDown.Layer.CornerRadius = 20;
+        }
+
+        private void InitTimer()
+        {
+            var seconds = 60;
+
+            Timer timer = new Timer();
+            timer.Interval = 1000;
+            timer.Enabled = true;
+            timer.Elapsed += (sender, e) => {
+
+                var currentDay = DateTime.Now.DayOfWeek;
+                
+                //var currentDate = myDate.DayOfWeek;
+
+                //var lastDay = DayOfWeek.Thursday;
+
+
+                //InvokeOnMainThread(() => test1TimerLbl.Text = myDate.ToString("F"));
+            };
+
+            var thuersday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
+            var today = DateTime.Now;
+
+            var diffrence = thuersday - today;
+
+            var days = diffrence.Days;
+            var hours = diffrence.Hours;
+            var minutes = diffrence.Minutes;
+
+            timer.Start();
         }
     }
 }
