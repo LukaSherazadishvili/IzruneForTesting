@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Cavea.PCL.Utils;
 using CoreGraphics;
 using Foundation;
 using UIKit;
@@ -9,10 +8,6 @@ namespace Cavea.iOS.Utils
 {
     public static class ExtentionHelper
     {
-        public static UIColor RgbToUIColor(this Rgb rgb)
-        {
-            return UIColor.FromRGB((byte)rgb.Red, (byte)rgb.Green, (byte)rgb.Blue);
-        }
 
         public static float GetWidthByText(this string text, UIFont font)
         {
