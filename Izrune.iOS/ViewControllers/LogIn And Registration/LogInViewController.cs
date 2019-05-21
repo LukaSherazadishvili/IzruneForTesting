@@ -39,7 +39,7 @@ namespace Izrune.iOS
                     var passord = passwordTextField.Text;
 
                     var loginSevice = ServiceContainer.ServiceContainer.Instance.Get<ILoginServices>();
-                    var isLogedIn = true;//(await loginSevice.LoginUser(userName, passord));
+                    var isLogedIn = (await loginSevice.LoginUser(userName, passord));
 
                     if(isLogedIn)
                     {
