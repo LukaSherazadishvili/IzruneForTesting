@@ -102,5 +102,12 @@ namespace Izrune.Activitys
                     }
             }
         }
+
+
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
+            this.Finish();
+        }
     }
 }

@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Izrune.Attributes;
 
 namespace Izrune.Activitys
 {
@@ -17,9 +18,22 @@ namespace Izrune.Activitys
     {
         protected override int LayoutResource { get; } = Resource.Layout.LayoutExamTest;
 
+        [MapControl(Resource.Id.BackButton)]
+        FrameLayout BackButton;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            BackButton.Click += BackButton_Click;
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            OnBackPressed();
+        }
+
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
         }
     }
 }

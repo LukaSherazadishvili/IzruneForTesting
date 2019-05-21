@@ -25,11 +25,33 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.Container)]
         FrameLayout Container;
 
+        [MapControl(Resource.Id.BackButton)]
+        FrameLayout BackButton;
+
+        [MapControl(Resource.Id.BottomBackButton)]
+        LinearLayout BotBackButton;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             NextButton.Click += NextButton_Click;
+
+            BackButton.Click += BackButton_Click;
+            BotBackButton.Click += BotBackButton_Click;
+        }
+
+        private void BotBackButton_Click(object sender, EventArgs e)
+        {
+            OnBackPressed();
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            OnBackPressed();
+        }
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
         }
 
         private void NextButton_Click(object sender, EventArgs e)

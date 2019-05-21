@@ -13,6 +13,7 @@ using Izrune.Activitys;
 using Izrune.Adapters.SpinerAdapter;
 using Izrune.Attributes;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
 using MpdcContainer = ServiceContainer.ServiceContainer;
 
 namespace Izrune.Fragments
@@ -42,7 +43,8 @@ namespace Izrune.Fragments
             ExamtestButton.Click += ExamtestButton_Click;
             TrainigTestButton.Click += TrainigTestButton_Click;
 
-            var Result =await MpdcContainer.Instance.Get<IUserServices>().GetUserAsync();
+            var Result =await UserControl.Instance.GetCurrentUser();
+            UserControl.Instance.SeTSelectedStudent(1);
 
            var DataAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, Result.Students.Select(i=> ($"{i.Name}   {i.LastName}")).ToList());
 

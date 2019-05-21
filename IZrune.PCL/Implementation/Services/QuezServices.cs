@@ -55,7 +55,9 @@ namespace IZrune.PCL.Implementation.Services
                         {
                             id = o?.id,
                             title = o?.title,
-                            right = o?.right
+                            right = o?.right,
+                            IsRight =o?.right == "1" ? true : false
+
                         })
                     });
 

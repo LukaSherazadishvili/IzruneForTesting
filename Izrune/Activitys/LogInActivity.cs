@@ -11,6 +11,7 @@ using Android.Widget;
 using Izrune.Attributes;
 using IZrune.PCL;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
 using MpdcContainer = ServiceContainer.ServiceContainer;
 namespace Izrune.Activitys
 {
@@ -64,7 +65,7 @@ namespace Izrune.Activitys
 
             LoginButton.Click += async(s, e) =>
             {
-             var result=  await MpdcContainer.Instance.Get<ILoginServices>().LoginUser(UserName.Text, Password.Text);
+             var result=await  UserControl.Instance.LogInUser(UserName.Text,Password.Text);
 
                 if (result)
                 {

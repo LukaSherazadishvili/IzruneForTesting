@@ -6,7 +6,7 @@
 
 	<FrameLayout
 		android:layout_marginTop="20dp"
-		
+		android:id="@+id/QuesButton"
 		android:layout_gravity="center_horizontal"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -17,6 +17,7 @@
 			android:orientation="horizontal">
 			
 				<FrameLayout
+				android:id="@+id/QuesSimbol"
 				android:background="@drawable/quezchosebackgrounddefault"
 				android:paddingLeft="30dp"
 				android:paddingRight="30dp"
@@ -24,7 +25,7 @@
 				android:layout_height="match_parent">
 				<TextView
 					android:layout_gravity="center_vertical"
-					
+					android:id="@+id/AnswerVersionSimbol"
 					android:fontFamily="@font/bpg_mrgvlovani"
 					android:textSize="14dp"
 				android:layout_width="wrap_content"

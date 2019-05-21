@@ -26,6 +26,9 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.ExamPartTimeButton)]
         LinearLayout ExamPartTimeButton;
 
+        [MapControl(Resource.Id.BackButton)]
+        FrameLayout BackButton;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -33,11 +36,22 @@ namespace Izrune.Activitys
             ExamTestFullTimeButton.Click += ExamTestFullTimeButton_Click;
 
             ExamPartTimeButton.Click += ExamPartTimeButton_Click;
+           BackButton.Click += BackButton_Click;
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            OnBackPressed();
+        }
+
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
         }
 
         private async void ExamPartTimeButton_Click(object sender, EventArgs e)
         {
-            var Result = (await MpdcContainer.Instance.Get<IQuezServices>().GetQuestionsAsync(1, IZrune.PCL.Enum.QuezCategory.QuezExam)).ToList();
+          
 
             Intent intent = new Intent(this, typeof(QuezActivity));
             StartActivity(intent);
@@ -46,8 +60,7 @@ namespace Izrune.Activitys
         private async void ExamTestFullTimeButton_Click(object sender, EventArgs e)
         {
 
-            var Result =(await MpdcContainer.Instance.Get<IQuezServices>().GetQuestionsAsync(1,IZrune.PCL.Enum.QuezCategory.QuezExam)).ToList();
-
+           
             Intent intent = new Intent(this, typeof(QuezActivity));
             StartActivity(intent);
         }

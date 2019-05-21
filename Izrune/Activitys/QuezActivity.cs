@@ -7,11 +7,16 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Izrune.Adapters.RecyclerviewAdapters;
 using Izrune.Attributes;
 using Izrune.Fragments;
-
+using Izrune.Helpers;
+using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Abstraction.Services;
+using MpdcContainer = ServiceContainer.ServiceContainer;
 namespace Izrune.Activitys
 {
     [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
@@ -25,9 +30,12 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.QuestionProgressbar)]
          ProgressBar progBar;
 
-
         [MapControl(Resource.Id.TimerText)]
         TextView TimerTxt;
+
+
+        [MapControl(Resource.Id.QuestionCountRecycler)]
+        RecyclerView ShedulRecycler;
 
         int CircProgress = 0;
         int EndProgress = 90;
@@ -36,14 +44,71 @@ namespace Izrune.Activitys
         int minit = 1;
 
 
-        protected  override void OnCreate(Bundle savedInstanceState)
+        private List<IQuestion> QuestionsList;
+
+
+        private int Position = 0;
+
+        private List<QuestionShedule> Sheduler = new List<QuestionShedule>();
+
+
+        protected async  override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             progBar.Max = 90;
             progBar.SecondaryProgress = 0;
 
-            ChangeFragmentPage(new QuezFragment(), Resource.Id.ContainerQuestion);
+           
+           
+
+            var QuestionsList = (await MpdcContainer.Instance.Get<IQuezServices>().GetQuestionsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest)).ToList();
+
+
+            for (int i = 1; i <QuestionsList.Count()+1; i++)
+            {
+                QuestionShedule shed = new QuestionShedule() { IsCurrent = false, Position = i };
+                Sheduler.Add(shed);
+            }
+
+
+            Sheduler.ElementAt(Position).IsCurrent = true;
+            Sheduler.ElementAt(Position).AlreadeBe = true;
+            LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.Horizontal, false);
+            ShedulRecycler.SetLayoutManager(manager);
+            var Adapter = new ShedulerRecyclerAdapter(Sheduler);
+            ShedulRecycler.SetAdapter(Adapter);
+
+           
+
+
+                
+                var FragmentQuestion = new QuezFragment(QuestionsList.ElementAt(Position));
+            FragmentQuestion.AnswerClick = () =>
+            {
+                Position++;
+                Progr = 90;
+                Sec = 30;
+                minit = 1;
+                CircProgress = 0;
+                progBar.Progress = CircProgress;
+
+
+                foreach(var items in Sheduler)
+                {
+                    items.IsCurrent = false;
+                }
+                Sheduler.ElementAt(Position).AlreadeBe = true;
+                Sheduler.ElementAt(Position).IsCurrent = true;
+                Adapter.NotifyDataSetChanged();
+                if (Position <= 18)
+                    ShedulRecycler.ScrollToPosition(Position + 1);
+                else
+                    ShedulRecycler.ScrollToPosition(Position);
+
+                return QuestionsList?.ElementAt(Position);
+            };
+            ChangeFragmentPage(FragmentQuestion, Resource.Id.ContainerQuestion);
 
 
 
@@ -72,12 +137,93 @@ namespace Izrune.Activitys
                             Sec = 60;
                         }
                     }
-                    
+                    if (Progr == 1)
+                    {
+                        CircProgress = 0;
+                        await Task.Delay(1000);
+                        Position ++;
+                        Progr = 90;
+                        
+                         EndProgress = 90;
+                         Sec = 30;
+                         minit = 1;
+                        var frg = new QuezFragment(QuestionsList.ElementAt(Position));
+                        frg.AnswerClick = () =>
+                        {
+                            progBar.Progress = CircProgress;
+                            Task.Delay(1000);
+                            Position++;
+                            Progr = 90;
+                            Sec = 30;
+                            minit = 1;
+
+                            foreach (var items in Sheduler)
+                            {
+                                items.IsCurrent = false;
+                            }
+                            Sheduler.ElementAt(Position).AlreadeBe = true;
+                            Sheduler.ElementAt(Position).IsCurrent = true;
+                            Adapter.NotifyDataSetChanged();
+                            if (Position <= 18)
+                                ShedulRecycler.ScrollToPosition(Position+1);
+                            else
+                                ShedulRecycler.ScrollToPosition(Position);
+
+
+                            return QuestionsList?.ElementAt(Position);
+                        };
+
+                        foreach (var items in Sheduler)
+                        {
+                            items.IsCurrent = false;
+                        }
+                        Sheduler.ElementAt(Position).AlreadeBe = true;
+                        Sheduler.ElementAt(Position).IsCurrent = true;
+                        Adapter.NotifyDataSetChanged();
+                        if (Position <= 18)
+                            ShedulRecycler.ScrollToPosition(Position + 1);
+                        else
+                            ShedulRecycler.ScrollToPosition(Position);
+
+                        ChangeFragmentPage(frg, Resource.Id.ContainerQuestion);
+
+                    }
 
                     TimerTxt.Text = string.Format($"{minit.ToString().PadLeft(2, '0')}:{Sec.ToString().PadLeft(2, '0')}");
                     await Task.Delay(1000);
+
+                    
                 }
             });
+        }
+
+
+
+
+        private IQuestion ChangeQuestion()
+        {
+            Position++;
+            CircProgress = 0;
+            Sec = 30;
+            minit = 1;
+            progBar.Progress = CircProgress;
+            return QuestionsList?.ElementAt(Position);
+
+
+
+            //  ChangeFragmentPage(new QuezFragment(QuestionsList.ElementAt(Position), ChangeQuestion), Resource.Id.ContainerQuestion);
+
+
+        }
+
+
+
+
+
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
+            this.Finish();
         }
 
     }

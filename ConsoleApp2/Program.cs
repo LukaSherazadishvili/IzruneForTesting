@@ -18,7 +18,7 @@ namespace ConsoleApp2
             StatisticServices stt = new StatisticServices();
              var rrrrr=stt.GetStudentStatisticsAsync(1).Result;
 
-            var rr = MpdcContainer.Instance.Get<IQuezServices>().GetQuestionsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam).Result;
+            var rr = MpdcContainer.Instance.Get<IQuezServices>().GetQuestionsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest).Result;
 
            
             Console.ReadKey();

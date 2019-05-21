@@ -6,6 +6,6 @@ namespace IZrune.PCL.Enum
 {
     public enum QuezCategory
     {
-        QuezExam,QuezTest
+        QuezTest, QuezExam
     }
 }
