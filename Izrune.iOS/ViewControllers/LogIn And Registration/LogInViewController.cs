@@ -39,11 +39,11 @@ namespace Izrune.iOS
                     var passord = passwordTextField.Text;
 
                     var loginSevice = ServiceContainer.ServiceContainer.Instance.Get<ILoginServices>();
-                    var isLogedIn = (await loginSevice.LoginUser(userName, passord));
+                    var isLogedIn = true;//(await loginSevice.LoginUser(userName, passord));
 
                     if(isLogedIn)
                     {
-                        var testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
+                        var testVc = Storyboard.InstantiateViewController(StartTestViewController.StoryboardId) as StartTestViewController;
                         this.NavigationController.PushViewController(testVc, true);
                     }
                 }

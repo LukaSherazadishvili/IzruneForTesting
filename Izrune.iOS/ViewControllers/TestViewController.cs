@@ -58,9 +58,9 @@ namespace Izrune.iOS
 
                 var user = await userService.GetUserAsync();
 
-                var data = (await testService.GetQuestionsAsync(user.id, IZrune.PCL.Enum.QuezCategory.QuezExam))?.ToList();
+                //var data = (await testService.GetQuestionsAsync(user.id, IZrune.PCL.Enum.QuezCategory.QuezExam))?.ToList();
 
-                Questions = data;
+                //Questions = data;
 
                 questionCollectionView.ReloadData();
             }
