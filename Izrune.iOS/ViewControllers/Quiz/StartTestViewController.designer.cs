@@ -12,9 +12,47 @@ namespace Izrune.iOS
 	[Register ("StartTestViewController")]
 	partial class StartTestViewController
 	{
+		[Outlet]
+		UIKit.UIView exQuizTransparentView { get; set; }
+
+		[Outlet]
+		UIKit.UIView summQuizTransparentView { get; set; }
+
+		[Outlet]
+		UIKit.UILabel userNameLbl { get; set; }
+
+		[Outlet]
+		UIKit.UIView userNameTransparentView { get; set; }
+
+		[Outlet]
+		UIKit.UIView viewForDropDown { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (summQuizTransparentView != null) {
+				summQuizTransparentView.Dispose ();
+				summQuizTransparentView = null;
+			}
+
+			if (exQuizTransparentView != null) {
+				exQuizTransparentView.Dispose ();
+				exQuizTransparentView = null;
+			}
+
+			if (userNameTransparentView != null) {
+				userNameTransparentView.Dispose ();
+				userNameTransparentView = null;
+			}
+
+			if (userNameLbl != null) {
+				userNameLbl.Dispose ();
+				userNameLbl = null;
+			}
+
+			if (viewForDropDown != null) {
+				viewForDropDown.Dispose ();
+				viewForDropDown = null;
+			}
 		}
 	}
 }
