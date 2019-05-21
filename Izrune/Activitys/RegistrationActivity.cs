@@ -25,6 +25,11 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.Container)]
         FrameLayout Container;
 
+        [MapControl(Resource.Id.BackButton)]
+        FrameLayout BackButton;
+
+        [MapControl(Resource.Id.BottomBackButton)]
+        LinearLayout BotBackButton;
 
         [MapControl(Resource.Id.ParentUserName)]
         EditText UserName;
@@ -51,8 +56,23 @@ namespace Izrune.Activitys
         {
             base.OnCreate(savedInstanceState);
             SetEvents();
-            
 
+            BackButton.Click += BackButton_Click;
+            BotBackButton.Click += BotBackButton_Click;
+        }
+
+        private void BotBackButton_Click(object sender, EventArgs e)
+        {
+            OnBackPressed();
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            OnBackPressed();
+        }
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
         }
 
         private void UserName_Click(object sender, EventArgs e)

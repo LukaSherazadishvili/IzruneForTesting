@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="26dp"
+    android:layout_height="wrap_content">
+	<FrameLayout
+		android:id="@+id/ShedulerContainer"
+		android:layout_width="15dp"
+		android:layout_height="15dp"
+		android:background="@drawable/shedulebackground"
+		>
+		<ImageView
+			android:id="@+id/ShedulerImage"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:src="@drawable/doneicon"/>
+	</FrameLayout>
+	<View
+	android:layout_width="10dp"
+		android:layout_height="2dp"
+		android:background="#B8B8B8"
+		android:layout_gravity="center_vertical"
+		/>
+</LinearLayout>

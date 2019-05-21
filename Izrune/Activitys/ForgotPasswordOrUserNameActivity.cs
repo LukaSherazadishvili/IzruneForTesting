@@ -28,6 +28,9 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.Container)]
         FrameLayout Container;
 
+        [MapControl(Resource.Id.BottomBackButton)]
+        LinearLayout BotBackButton;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -46,7 +49,17 @@ namespace Izrune.Activitys
             }
 
 
-            
+            BotBackButton.Click += BotBackButton_Click;
+        }
+
+        private void BotBackButton_Click(object sender, EventArgs e)
+        {
+            OnBackPressed();
+        }
+
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
         }
     }
 }

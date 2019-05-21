@@ -14,8 +14,11 @@ android:id="@+id/Container">
     android:background="#ffffff"
 	android:gravity="center"
     android:orientation="vertical">
+			<include
+				layout="@layout/mainarowbacktoolbar"
+				android:layout_width="match_parent"
+				android:layout_height="50dp"/>
    <ImageView
-				android:layout_marginTop="15dp"
 				android:layout_width="30dp"
 				android:layout_height="30dp"				
 				android:layout_gravity="center_horizontal"
@@ -154,6 +157,7 @@ android:id="@+id/Container">
 
 
         <LinearLayout
+			android:id="@+id/BottomBackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
