@@ -123,26 +123,23 @@ namespace Izrune.iOS
             Timer timer = new Timer();
             timer.Interval = 1000;
             timer.Enabled = true;
+
+
+
             timer.Elapsed += (sender, e) => {
 
-                var currentDay = DateTime.Now.DayOfWeek;
-                
-                //var currentDate = myDate.DayOfWeek;
+                var thuersday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Thursday);
+                var today = DateTime.Now;
 
-                //var lastDay = DayOfWeek.Thursday;
+                var diffrence = thuersday - today;
 
+                var days = diffrence.Days;
+                var hours = diffrence.Hours;
+                var minutes = diffrence.Minutes;
+                var sec = diffrence.Seconds;
 
-                //InvokeOnMainThread(() => test1TimerLbl.Text = myDate.ToString("F"));
+                InvokeOnMainThread(() => test1TimerLbl.Text = $"{days} დღე {hours} საათი {minutes} წუთი {sec} წამი");
             };
-
-            var thuersday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
-            var today = DateTime.Now;
-
-            var diffrence = thuersday - today;
-
-            var days = diffrence.Days;
-            var hours = diffrence.Hours;
-            var minutes = diffrence.Minutes;
 
             timer.Start();
         }
