@@ -23,11 +23,11 @@ namespace Izrune.iOS
 
         List<IQuestion> Questions;
 
-        public override void ViewDidLoad()
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
-            InitCollectionView();
+            await LoadDataAsync();
 
             skipQuestionBtn.Layer.CornerRadius = 20;
 
@@ -44,15 +44,30 @@ namespace Izrune.iOS
 
                 questionCollectionView.ReloadData();
             };
+
+            InitCollectionView();
         }
 
         private async Task LoadDataAsync()
         {
-            var testService = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
+            try
+            {
+                var testService = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
 
-            var data = (await testService.GetQuestionsAsync(1, IZrune.PCL.Enum.QuezCategory.QuezTest))?.ToList();
+                var userService = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-            Questions = data;
+                var user = await userService.GetUserAsync();
+
+                var data = (await testService.GetQuestionsAsync(user.id, IZrune.PCL.Enum.QuezCategory.QuezExam))?.ToList();
+
+                Questions = data;
+
+                questionCollectionView.ReloadData();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private void InitCollectionView()
@@ -67,7 +82,9 @@ namespace Izrune.iOS
         {
             var cell = questionCollectionView.DequeueReusableCell(TestCollectionViewCell.Identifier, indexPath) as TestCollectionViewCell;
 
-            //cell.InitData();
+            var data = Questions?[indexPath.Row];
+
+            cell.InitData(data);
             return cell;
         }
 
@@ -98,6 +115,7 @@ namespace Izrune.iOS
                 imagesHeight = 90;
             else
                 imagesHeight = 180;
+
             var spaceSumBetweenAnswers = 80;
 
             float answersHeight = 0;

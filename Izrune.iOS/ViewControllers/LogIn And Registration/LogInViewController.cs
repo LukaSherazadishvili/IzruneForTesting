@@ -31,7 +31,7 @@ namespace Izrune.iOS
         private void InitGestures()
         {
         
-            logInBtn.TouchUpInside += delegate {
+            logInBtn.TouchUpInside += async delegate {
                 //ShowLoginAlert();
                 try
                 {
@@ -39,7 +39,7 @@ namespace Izrune.iOS
                     var passord = passwordTextField.Text;
 
                     var loginSevice = ServiceContainer.ServiceContainer.Instance.Get<ILoginServices>();
-                    var isLogedIn = loginSevice.LoginUser(userName, passord).Result;
+                    var isLogedIn = (await loginSevice.LoginUser(userName, passord));
 
                     if(isLogedIn)
                     {
@@ -47,6 +47,7 @@ namespace Izrune.iOS
                         this.NavigationController.PushViewController(testVc, true);
                     }
                 }
+
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);

@@ -51,5 +51,10 @@
 		<string>bpg_mrgvlovani_2010.ttf</string>
 		<string>bpg_mrgvlovani_caps_2010.ttf</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
