@@ -13,6 +13,8 @@ using System.Timers;
 using MPDC.iOS.Utils;
 using MpdcViewExtentions;
 using IZrune.PCL.Abstraction.Services;
+using System.Threading.Tasks;
+using IZrune.PCL.Enum;
 
 namespace Izrune.iOS
 {
@@ -97,21 +99,9 @@ namespace Izrune.iOS
         {
             if (summQuizTransparentView.GestureRecognizers == null || summQuizTransparentView.GestureRecognizers?.Count() == 0)
             {
-                summQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(async () => {
-
-                    //TODO Go to examvc
-
-                    if (IsSummTestActive)
-                    {
-                        UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
-
-                        var service = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
-
-                        var data = (await service.GetQuestionsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam))?.ToList();
-
-                    }
-                    else
-                        ShowAlert();
+                summQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(async () =>
+                {
+                    await GetQuiz(SelectedStudent.id, QuezCategory.QuezExam);
                 }));
             }
 
@@ -119,19 +109,8 @@ namespace Izrune.iOS
             {
                 exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(async () => {
 
-                    //TODO Go to examvc
+                    await GetQuiz(SelectedStudent.id, QuezCategory.QuezTest);
 
-                    if (IsExTestActive)
-                    {
-                        UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
-
-                        var service = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
-
-                        var data = (await service.GetQuestionsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest))?.ToList();
-                    }
-
-                    else
-                        ShowAlert();
                 }));
             }
 
@@ -144,6 +123,17 @@ namespace Izrune.iOS
                     UserNameDropDown.Show();
                 }));
             }
+        }
+
+        private async Task<List<IQuestion>> GetQuiz(int id, QuezCategory quizCategory)
+        {
+            UserControl.Instance.SeTSelectedStudent(id);
+
+            var service = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
+
+            var data = (await service.GetQuestionsAsync(quizCategory))?.ToList();
+
+            return data;
         }
 
         private void InitDropDownUI()
@@ -213,7 +203,6 @@ namespace Izrune.iOS
             stackView.Hidden = isActive;
             label.Hidden = !isActive;
         }
-
 
     }
 }
