@@ -45,6 +45,9 @@ namespace Izrune.iOS.CollectionViewCells
             CalculateImagesCollectionViewHeight(question);
 
             imagesCollectionViewHeight.Constant = 0;
+
+            questionImagesCollectionView.ReloadData();
+            answerCollectionView.ReloadData();
         }
 
         private void CalculateImagesCollectionViewHeight(IQuestion question)
