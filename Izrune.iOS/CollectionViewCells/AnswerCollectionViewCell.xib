@@ -84,6 +84,7 @@
             </constraints>
             <size key="customSize" width="351" height="114"/>
             <connections>
+                <outlet property="answerContentView" destination="bQL-NC-J2B" id="cEZ-XF-eCO"/>
                 <outlet property="answerLbl" destination="q88-e7-BWk" id="Gl6-SQ-Oc6"/>
                 <outlet property="answerView" destination="fHc-ca-Wnb" id="Ei5-E7-kUX"/>
                 <outlet property="numberLbl" destination="8hv-ow-7rX" id="RW4-pQ-85X"/>

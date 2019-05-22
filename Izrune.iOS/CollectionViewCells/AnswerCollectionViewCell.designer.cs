@@ -13,6 +13,9 @@ namespace Izrune.iOS.CollectionViewCells
 	partial class AnswerCollectionViewCell
 	{
 		[Outlet]
+		UIKit.UIView answerContentView { get; set; }
+
+		[Outlet]
 		UIKit.UILabel answerLbl { get; set; }
 
 		[Outlet]
@@ -26,14 +29,14 @@ namespace Izrune.iOS.CollectionViewCells
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (answerLbl != null) {
+				answerLbl.Dispose ();
+				answerLbl = null;
+			}
+
 			if (answerView != null) {
 				answerView.Dispose ();
 				answerView = null;
-			}
-
-			if (numberView != null) {
-				numberView.Dispose ();
-				numberView = null;
 			}
 
 			if (numberLbl != null) {
@@ -41,9 +44,14 @@ namespace Izrune.iOS.CollectionViewCells
 				numberLbl = null;
 			}
 
-			if (answerLbl != null) {
-				answerLbl.Dispose ();
-				answerLbl = null;
+			if (numberView != null) {
+				numberView.Dispose ();
+				numberView = null;
+			}
+
+			if (answerContentView != null) {
+				answerContentView.Dispose ();
+				answerContentView = null;
 			}
 		}
 	}

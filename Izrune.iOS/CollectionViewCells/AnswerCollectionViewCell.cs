@@ -1,6 +1,7 @@
 ﻿using System;
-
+using System.Linq;
 using Foundation;
+using Izrune.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
 using UIKit;
 
@@ -15,6 +16,8 @@ namespace Izrune.iOS.CollectionViewCells
 
         public Action<IAnswer> AnswerClicked { get; set; }
 
+        IAnswer Answer;
+
         static AnswerCollectionViewCell()
         {
             Nib = UINib.FromName("AnswerCollectionViewCell", NSBundle.MainBundle);
@@ -25,15 +28,41 @@ namespace Izrune.iOS.CollectionViewCells
             // Note: this .ctor should not contain any initialization logic.
         }
 
+        public void InitData(IAnswer answer)
+        {
+            Answer = answer;
+            answerLbl.Text = answer.title;
+        }
+
+
         public override void AwakeFromNib()
         {
             base.AwakeFromNib();
 
             answerView.Layer.CornerRadius = 20;
             answerView.Layer.BorderWidth = 2;
-            answerView.Layer.BorderColor = UIColor.Red.CGColor;
 
             numberView.Layer.CornerRadius = 20;
+
+            if(answerContentView.GestureRecognizers == null || answerContentView.GestureRecognizers?.Count() == 0)
+            {
+                answerContentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    CheckAnswer(Answer.IsRight);
+                    AnswerClicked?.Invoke(Answer);
+                }));
+            }
+        }
+
+        private void InitAnswer(UIColor color)
+        {
+            answerView.Layer.BorderColor = color.CGColor;
+            numberView.BackgroundColor = color;
+        }
+
+        private void CheckAnswer(bool IsRight)
+        {
+            InitAnswer(IsRight ? AppColors.Succesful : AppColors.ErrorTitle);
         }
     }
 }
