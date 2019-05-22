@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Foundation;
+using IZrune.PCL.Abstraction.Models;
 using UIKit;
 
 namespace Izrune.iOS.CollectionViewCells
@@ -11,6 +12,8 @@ namespace Izrune.iOS.CollectionViewCells
         public static readonly UINib Nib;
 
         public static readonly NSString Identifier = new NSString("AnswerCellIdentifier");
+
+        public Action<IAnswer> AnswerClicked { get; set; }
 
         static AnswerCollectionViewCell()
         {

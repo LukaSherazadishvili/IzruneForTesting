@@ -21,6 +21,8 @@ namespace Izrune.iOS.CollectionViewCells
 
         public static nfloat CellSize { get; set; }
 
+        public Action<IAnswer> AnswerClicked { get; set; }
+
         static TestCollectionViewCell()
         {
             Nib = UINib.FromName("TestCollectionViewCell", NSBundle.MainBundle);
@@ -64,6 +66,10 @@ namespace Izrune.iOS.CollectionViewCells
 
             var cell = answerCollectionView.DequeueReusableCell(AnswerCollectionViewCell.Identifier, indexPath) as AnswerCollectionViewCell;
 
+            cell.AnswerClicked = (answer) =>
+            {
+                AnswerClicked?.Invoke(answer);
+            };
             return cell;
         }
 

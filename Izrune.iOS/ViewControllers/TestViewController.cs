@@ -21,7 +21,9 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("TestViewControllerStoryboardId");
 
-        public List<IQuestion> Questions;
+        public List<IQuestion> AllQuestions;
+
+        private List<IQuestion> Questions;
 
         public async override void ViewDidLoad()
         {
