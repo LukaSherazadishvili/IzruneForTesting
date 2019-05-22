@@ -150,7 +150,7 @@ namespace Izrune.iOS
                 var minutes = diffrence.Minutes;
                 var sec = diffrence.Seconds;
 
-                InvokeOnMainThread(() => test1TimerLbl.Text = $"{days} დღე {hours} საათი {minutes} წუთი {sec} წამი");
+                InvokeOnMainThread(() => test1TimerLbl.Text = $"{days} დღე {hours} საათი {minutes} წუთი");
             };
 
             timer.Start();
