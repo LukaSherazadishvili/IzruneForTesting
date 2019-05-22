@@ -88,7 +88,7 @@ namespace Izrune.iOS
         {
             var cell = questionCollectionView.DequeueReusableCell(TestCollectionViewCell.Identifier, indexPath) as TestCollectionViewCell;
 
-            var data = Questions?[indexPath.Row];
+            var data = Questions?[0];
 
             cell.InitData(data);
             return cell;
@@ -105,9 +105,9 @@ namespace Izrune.iOS
 
             //TODO Calculate CellHeight
 
+            var cellHeight = GetCellHeight(Questions[0]);
 
-
-            return new CoreGraphics.CGSize(collectionView.Frame.Width, collectionView.Frame.Height * 0.5);
+            return new CoreGraphics.CGSize(collectionView.Frame.Width, cellHeight);
         }
 
         float GetCellHeight(IQuestion question)
@@ -138,6 +138,8 @@ namespace Izrune.iOS
             }
 
             var totalHeight = titleHeight + imagesHeight + spaceSumBetweenAnswers + answersHeight;
+
+            return totalHeight;
         }
     }
 }
