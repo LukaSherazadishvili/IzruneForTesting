@@ -771,14 +771,24 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ტესტი აქტიურია" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kt6-KS-RTV">
+                                        <rect key="frame" x="7" y="8" width="239" height="14"/>
+                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
+                                        <color key="textColor" red="0.28627450980392155" green="0.70980392156862748" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="kt6-KS-RTV" firstAttribute="centerX" secondItem="10I-3O-KDW" secondAttribute="centerX" id="6CH-TL-Pwo"/>
                                     <constraint firstAttribute="height" constant="30" id="6QZ-DM-w5n"/>
                                     <constraint firstItem="TBP-R5-5nB" firstAttribute="centerY" secondItem="10I-3O-KDW" secondAttribute="centerY" id="Ljj-Hz-4Yh"/>
+                                    <constraint firstItem="kt6-KS-RTV" firstAttribute="centerY" secondItem="10I-3O-KDW" secondAttribute="centerY" id="NPY-Mg-yGk"/>
+                                    <constraint firstItem="kt6-KS-RTV" firstAttribute="leading" secondItem="10I-3O-KDW" secondAttribute="leading" constant="7" id="U2R-z2-Fl9"/>
                                     <constraint firstAttribute="trailing" secondItem="TBP-R5-5nB" secondAttribute="trailing" constant="10" id="fMC-6G-d7r"/>
                                     <constraint firstItem="TBP-R5-5nB" firstAttribute="leading" secondItem="10I-3O-KDW" secondAttribute="leading" constant="10" id="ifX-1X-9eS"/>
                                     <constraint firstItem="TBP-R5-5nB" firstAttribute="centerX" secondItem="10I-3O-KDW" secondAttribute="centerX" id="jeb-EG-AzC"/>
+                                    <constraint firstAttribute="trailing" secondItem="kt6-KS-RTV" secondAttribute="trailing" constant="7" id="qgB-ip-Gc0"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -865,14 +875,24 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ტესტი აქტიურია" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8kY-3s-adO">
+                                        <rect key="frame" x="7" y="8" width="239" height="14"/>
+                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
+                                        <color key="textColor" red="0.28627450980000002" green="0.70980392160000005" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="8kY-3s-adO" firstAttribute="centerX" secondItem="dUA-xp-7DW" secondAttribute="centerX" id="DiR-J3-01d"/>
                                     <constraint firstItem="DAM-CW-pGy" firstAttribute="leading" secondItem="dUA-xp-7DW" secondAttribute="leading" constant="10" id="PGS-py-0Sq"/>
                                     <constraint firstAttribute="height" constant="30" id="Rzr-Qw-5BX"/>
+                                    <constraint firstItem="8kY-3s-adO" firstAttribute="leading" secondItem="dUA-xp-7DW" secondAttribute="leading" constant="7" id="S7p-2w-gIn"/>
                                     <constraint firstItem="DAM-CW-pGy" firstAttribute="centerY" secondItem="dUA-xp-7DW" secondAttribute="centerY" id="TBF-ks-jdH"/>
                                     <constraint firstItem="DAM-CW-pGy" firstAttribute="centerX" secondItem="dUA-xp-7DW" secondAttribute="centerX" id="Xc8-RR-Dul"/>
+                                    <constraint firstItem="8kY-3s-adO" firstAttribute="centerY" secondItem="dUA-xp-7DW" secondAttribute="centerY" id="mmG-fl-KrL"/>
                                     <constraint firstAttribute="trailing" secondItem="DAM-CW-pGy" secondAttribute="trailing" constant="10" id="qWV-Jz-KL6"/>
+                                    <constraint firstAttribute="trailing" secondItem="8kY-3s-adO" secondAttribute="trailing" constant="7" id="rGd-nW-jqu"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1001,14 +1021,18 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="exQuizActiveStatusLbl" destination="8kY-3s-adO" id="02k-58-62B"/>
                         <outlet property="exQuizTransparentView" destination="bxk-pV-gpC" id="jQu-EU-gcu"/>
                         <outlet property="exTestContentView" destination="WbI-5d-E6J" id="c8H-jH-IYx"/>
                         <outlet property="exTestMainView" destination="3vg-Z0-Fu4" id="ywA-9N-VPe"/>
+                        <outlet property="exTimeStackView" destination="DAM-CW-pGy" id="r2J-TZ-STT"/>
+                        <outlet property="summQuisActiveStatusLbl" destination="kt6-KS-RTV" id="C5A-Zl-xk0"/>
                         <outlet property="summQuizTransparentView" destination="UNP-XG-lTk" id="dks-x6-ZUk"/>
                         <outlet property="summTestContentView" destination="Vte-OC-IBZ" id="bsv-Hl-ubq"/>
                         <outlet property="summTestMainView" destination="sYE-Kg-OCO" id="hgL-k3-glA"/>
                         <outlet property="test1TimerLbl" destination="lfX-Me-eZ0" id="seY-ux-ES1"/>
                         <outlet property="test2TimerLbl" destination="pDz-W8-rNh" id="yNS-fC-mHg"/>
+                        <outlet property="timeStackView" destination="TBP-R5-5nB" id="DyR-Te-6s7"/>
                         <outlet property="userNameLbl" destination="m7D-RW-6d2" id="h3C-xB-uXS"/>
                         <outlet property="userNameTransparentView" destination="XFK-oK-TEB" id="6rV-zl-pU5"/>
                         <outlet property="viewForDropDown" destination="45k-zy-NNT" id="QSq-ec-Ac6"/>

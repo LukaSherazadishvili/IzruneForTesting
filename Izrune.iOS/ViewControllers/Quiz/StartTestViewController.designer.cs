@@ -13,6 +13,9 @@ namespace Izrune.iOS
 	partial class StartTestViewController
 	{
 		[Outlet]
+		UIKit.UILabel exQuizActiveStatusLbl { get; set; }
+
+		[Outlet]
 		UIKit.UIView exQuizTransparentView { get; set; }
 
 		[Outlet]
@@ -20,6 +23,12 @@ namespace Izrune.iOS
 
 		[Outlet]
 		UIKit.UIView exTestMainView { get; set; }
+
+		[Outlet]
+		UIKit.UIStackView exTimeStackView { get; set; }
+
+		[Outlet]
+		UIKit.UILabel summQuisActiveStatusLbl { get; set; }
 
 		[Outlet]
 		UIKit.UIView summQuizTransparentView { get; set; }
@@ -35,6 +44,9 @@ namespace Izrune.iOS
 
 		[Outlet]
 		UIKit.UILabel test2TimerLbl { get; set; }
+
+		[Outlet]
+		UIKit.UIStackView timeStackView { get; set; }
 
 		[Outlet]
 		UIKit.UILabel userNameLbl { get; set; }
@@ -116,6 +128,26 @@ namespace Izrune.iOS
 			if (viewForExShadow != null) {
 				viewForExShadow.Dispose ();
 				viewForExShadow = null;
+			}
+
+			if (timeStackView != null) {
+				timeStackView.Dispose ();
+				timeStackView = null;
+			}
+
+			if (summQuisActiveStatusLbl != null) {
+				summQuisActiveStatusLbl.Dispose ();
+				summQuisActiveStatusLbl = null;
+			}
+
+			if (exTimeStackView != null) {
+				exTimeStackView.Dispose ();
+				exTimeStackView = null;
+			}
+
+			if (exQuizActiveStatusLbl != null) {
+				exQuizActiveStatusLbl.Dispose ();
+				exQuizActiveStatusLbl = null;
 			}
 		}
 	}

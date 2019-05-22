@@ -12,6 +12,7 @@ using UIKit;
 using System.Timers;
 using MPDC.iOS.Utils;
 using MpdcViewExtentions;
+using IZrune.PCL.Abstraction.Services;
 
 namespace Izrune.iOS
 {
@@ -57,6 +58,8 @@ namespace Izrune.iOS
 
             viewForSummerShadow.AddShadowToView(4, 25, 0.8f, AppColors.TitleColor);
             viewForExShadow.AddShadowToView(4, 25, 0.8f, UIColor.FromRGB(242, 153, 52));
+
+            UserNameDropDown.SelectRow(0);
         }
 
         public override void ViewDidLayoutSubviews()
@@ -91,17 +94,29 @@ namespace Izrune.iOS
         {
             if (summQuizTransparentView.GestureRecognizers == null || summQuizTransparentView.GestureRecognizers?.Count() == 0)
             {
-                summQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
+                summQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(async () => {
 
                     //TODO Go to examvc
+
+                    UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
+
+                    var service = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
+
+                    var data = (await service.GetQuestionsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam))?.ToList();
                 }));
             }
 
             if (exQuizTransparentView.GestureRecognizers == null || exQuizTransparentView.GestureRecognizers?.Count() == 0)
             {
-                exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
+                exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(async () => {
 
                     //TODO Go to examvc
+
+                    UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
+
+                    var service = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
+
+                    var data = (await service.GetQuestionsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest))?.ToList();
                 }));
             }
 
@@ -130,13 +145,9 @@ namespace Izrune.iOS
 
         private void InitTimer()
         {
-            var seconds = 60;
-
             Timer timer = new Timer();
             timer.Interval = 1000;
             timer.Enabled = true;
-
-
 
             timer.Elapsed += (sender, e) => {
 
