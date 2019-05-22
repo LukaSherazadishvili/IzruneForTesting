@@ -145,15 +145,20 @@ namespace Izrune.iOS
 
                 var diffrence = thuersday - today;
 
-                var days = diffrence.Days;
-                var hours = diffrence.Hours;
-                var minutes = diffrence.Minutes;
-                var sec = diffrence.Seconds;
+                var days = GetNumber(diffrence.Days, " დღე ");
+                var hours = GetNumber(diffrence.Hours, " საათი "); 
+                var minutes = GetNumber(diffrence.Minutes, " წუთი ");
 
-                InvokeOnMainThread(() => test1TimerLbl.Text = $"{days} დღე {hours} საათი {minutes} წუთი");
+                InvokeOnMainThread(() => test1TimerLbl.Text = $"{days} {hours} {minutes}");
             };
 
             timer.Start();
         }
+
+        private string GetNumber(int number, string time)
+        {
+            return number == 0 ? "" : number.ToString() + time;
+        }
+
     }
 }
