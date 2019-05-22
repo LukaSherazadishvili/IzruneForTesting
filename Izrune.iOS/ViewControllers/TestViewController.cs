@@ -107,7 +107,7 @@ namespace Izrune.iOS
 
             var cellHeight = GetCellHeight(Questions[0]);
 
-            return new CoreGraphics.CGSize(collectionView.Frame.Width, cellHeight);
+            return new CoreGraphics.CGSize(collectionView.Frame.Width, 500);
         }
 
         float GetCellHeight(IQuestion question)

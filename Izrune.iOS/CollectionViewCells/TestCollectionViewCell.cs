@@ -99,7 +99,7 @@ namespace Izrune.iOS.CollectionViewCells
 
             var size = GetCellHeight(Question);
 
-            return new CoreGraphics.CGSize(collectionView.Frame.Width, 60);
+            return new CoreGraphics.CGSize(collectionView.Frame.Width, size);
         }
 
         public override void AwakeFromNib()
