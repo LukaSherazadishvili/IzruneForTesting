@@ -44,7 +44,7 @@ namespace Izrune.iOS.CollectionViewCells
 
             CalculateImagesCollectionViewHeight(question);
 
-
+            imagesCollectionViewHeight.Constant = 0;
         }
 
         private void CalculateImagesCollectionViewHeight(IQuestion question)
@@ -97,9 +97,8 @@ namespace Izrune.iOS.CollectionViewCells
             if (collectionView == questionImagesCollectionView)
                 return new CoreGraphics.CGSize(collectionView.Frame.Width * 0.5, collectionView.Frame.Height * 0.5);
 
-            var size = GetCellHeight(Question);
 
-            return new CoreGraphics.CGSize(collectionView.Frame.Width, size);
+            return new CoreGraphics.CGSize(collectionView.Frame.Width, 60);
         }
 
         public override void AwakeFromNib()

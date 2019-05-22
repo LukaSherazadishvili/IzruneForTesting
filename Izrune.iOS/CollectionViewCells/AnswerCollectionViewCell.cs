@@ -32,6 +32,8 @@ namespace Izrune.iOS.CollectionViewCells
         {
             Answer = answer;
             answerLbl.Text = answer.title;
+
+            InitAnswer(AppColors.Tint);
         }
 
 

@@ -33,25 +33,28 @@ namespace Izrune.iOS
 
             skipQuestionBtn.Layer.CornerRadius = 20;
 
-            skipQuestionBtn.TouchUpInside += delegate {
+            skipQuestionBtn.TouchUpInside += delegate
+            {
 
-                //var indexPath = questionCollectionView.IndexPathsForVisibleItems[0];
-
-                //var currIndex = indexPath.Row;
-
-                //if(currIndex < 6)
-                //{
-                //    questionCollectionView.ScrollToItem(NSIndexPath.FromItemSection(currIndex+1, 0), UICollectionViewScrollPosition.Right, true);
-                //};
-
+                Questions.Clear();
+                MoveToQuestions();
                 questionCollectionView.ReloadData();
             };
 
             InitCollectionView();
-
-            Questions.Add(AllQuestions[0]);
+            MoveToQuestions();
 
             questionCollectionView.ReloadData();
+        }
+
+        private void MoveToQuestions()
+        {
+            if(AllQuestions.Count != 0)
+            {
+                Questions.Add(AllQuestions?[0]);
+                AllQuestions.RemoveAt(0);
+            }
+
         }
 
         private async Task LoadDataAsync()
