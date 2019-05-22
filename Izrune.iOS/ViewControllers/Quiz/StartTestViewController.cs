@@ -55,7 +55,7 @@ namespace Izrune.iOS
             Students.Add(item); 
             Students.Add(item);
 
-            InitTimer();
+            InitSummTimer();
 
             InitGestures();
 
@@ -109,8 +109,12 @@ namespace Izrune.iOS
             {
                 exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(async () => {
 
-                    await GetQuiz(SelectedStudent.id, QuezCategory.QuezTest);
+                    var data = await GetQuiz(SelectedStudent.id, QuezCategory.QuezTest);
 
+                    var testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
+                    testVc.Questions = data;
+
+                    this.NavigationController.PushViewController(testVc, true);
                 }));
             }
 
@@ -148,7 +152,7 @@ namespace Izrune.iOS
             UserNameDropDown.Layer.CornerRadius = 20;
         }
 
-        private void InitTimer()
+        private void InitSummTimer()
         {
             Timer timer = new Timer();
             timer.Interval = 1000;
@@ -166,6 +170,11 @@ namespace Izrune.iOS
                 var minutes = GetNumber(diffrence.Minutes, " წუთი ");
 
                 InvokeOnMainThread(() => test1TimerLbl.Text = $"{days} {hours} {minutes}");
+
+                if(diffrence.Days == 0 && diffrence.Hours == 0 && diffrence.Minutes == 0)
+                {
+                    IsSummTestActive = true;
+                }
             };
 
             timer.Start();

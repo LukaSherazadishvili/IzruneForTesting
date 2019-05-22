@@ -21,7 +21,7 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("TestViewControllerStoryboardId");
 
-        List<IQuestion> Questions;
+        public List<IQuestion> Questions;
 
         public async override void ViewDidLoad()
         {
@@ -107,7 +107,7 @@ namespace Izrune.iOS
 
             var ImagesCount = data?.images?.Count();
 
-            float imagesHeight = 0;
+            float imagesHeight;
 
             if (ImagesCount == 0)
                 imagesHeight = 0;
@@ -116,7 +116,7 @@ namespace Izrune.iOS
             else
                 imagesHeight = 180;
 
-            var spaceSumBetweenAnswers = 80;
+            float spaceSumBetweenAnswers = 80;
 
             float answersHeight = 0;
             foreach (var item in data?.Answers)
@@ -124,7 +124,7 @@ namespace Izrune.iOS
                 answersHeight += (float)item?.title.GetSizeByText(appFont).Height;
             }
 
-
+            var totalHeight = titleHeight + imagesHeight + spaceSumBetweenAnswers + answersHeight;
 
             return new CoreGraphics.CGSize(collectionView.Frame.Width, collectionView.Frame.Height * 0.5);
         }
