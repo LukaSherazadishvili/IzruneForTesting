@@ -105,7 +105,14 @@ namespace Izrune.iOS
 
             //TODO Calculate CellHeight
 
-            var data = Questions?[indexPath.Row];
+
+
+            return new CoreGraphics.CGSize(collectionView.Frame.Width, collectionView.Frame.Height * 0.5);
+        }
+
+        float GetCellHeight(IQuestion question)
+        {
+            var data = question;
 
             var appFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 17);
 
@@ -131,8 +138,6 @@ namespace Izrune.iOS
             }
 
             var totalHeight = titleHeight + imagesHeight + spaceSumBetweenAnswers + answersHeight;
-
-            return new CoreGraphics.CGSize(collectionView.Frame.Width, collectionView.Frame.Height * 0.5);
         }
     }
 }
