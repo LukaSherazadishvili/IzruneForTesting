@@ -160,5 +160,19 @@ namespace Izrune.iOS
             return number == 0 ? "" : number.ToString() + time;
         }
 
+        private DateTime? GetLastDayInMonth(int year, int month, DayOfWeek lastDay)
+        {
+            var daysInMonth = DateTime.DaysInMonth(year, month);
+
+            for (int day = daysInMonth; day > 0; day--)
+            {
+                DateTime currentDateTime = new DateTime(year, month, day);
+
+                if (currentDateTime.DayOfWeek == lastDay)
+                    return currentDateTime;
+            }
+
+            return null;
+        }
     }
 }
