@@ -1,4 +1,5 @@
 ﻿using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Enum;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,7 @@ namespace IZrune.PCL.Abstraction.Services
 {
    public interface IStatisticServices
     {
-        Task<IEnumerable<IStudentsStatistic>> GetStudentStatisticsAsync(int StudentsID);
+        Task<IEnumerable<IStudentsStatistic>> GetStudentStatisticsAsync(int StudentsID, QuezCategory type);
         
     }
 }

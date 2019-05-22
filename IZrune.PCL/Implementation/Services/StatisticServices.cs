@@ -1,5 +1,7 @@
 ﻿using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Enum;
+using IZrune.PCL.extensions;
 using IZrune.PCL.Implementation.Models;
 using IZrune.PCL.WebUtils;
 using IZrune.TransferModels;
@@ -15,7 +17,7 @@ namespace IZrune.PCL.Implementation.Services
 {
     public class StatisticServices : IStatisticServices
     {
-        public async Task<IEnumerable<IStudentsStatistic>> GetStudentStatisticsAsync(int StudentsID)
+        public async Task<IEnumerable<IStudentsStatistic>> GetStudentStatisticsAsync(int StudentsID, QuezCategory type)
         {
             IEnumerable<IStudentsStatistic> StudentStat;
             try
@@ -32,8 +34,9 @@ namespace IZrune.PCL.Implementation.Services
                     var Data =await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getStatistics&hashcode=2eb56752d70e796575e4b70f88d07248", FormContent);
                     var jsn = await Data.Content.ReadAsStringAsync();
                     var Result = JsonConvert.DeserializeObject<QuezStatisticRootDTO>(jsn);
-
-                    StudentStat = Result.tests.Select(i => new StudentsStatistic()
+                    
+                    StudentStat = Result.tests.Where(i=>i.test_type==type.ConverEnumToInt())
+                        .Select(i => new StudentsStatistic()
                     {
                         CorrectAnswersCount = i.questions
                         .Where(o => o.answers
@@ -55,6 +58,8 @@ namespace IZrune.PCL.Implementation.Services
                         Point = Convert.ToInt32(i.score),
                         TestTimeInSecconds = Convert.ToInt32( i.duration)
                     });
+
+
 
                     return StudentStat;
 
