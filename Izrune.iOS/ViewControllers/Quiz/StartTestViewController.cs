@@ -141,7 +141,7 @@ namespace Izrune.iOS
             timer.Elapsed += (sender, e) => {
 
                 var thuersday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Thursday);
-                var today = DateTime.Now;
+                var today = DateTime.UtcNow;
 
                 var diffrence = thuersday - today;
 
