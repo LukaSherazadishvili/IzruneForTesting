@@ -91,7 +91,7 @@ namespace Izrune.Activitys
                 Sec = 30;
                 minit = 1;
                 CircProgress = 0;
-                progBar.Progress = CircProgress;
+                progBar.Progress = 0;
 
 
                 foreach(var items in Sheduler)
@@ -111,18 +111,22 @@ namespace Izrune.Activitys
             ChangeFragmentPage(FragmentQuestion, Resource.Id.ContainerQuestion);
 
 
+            //RunOnUiThread(async () =>
+            //{
+            //    while (CircProgress < EndProgress)
+            //    {
+                    
+            //        progBar.Progress = CircProgress++;
 
-            Task.Run(async() => {
+            //        await Task.Delay(1000);
+            //    }
 
-                while (CircProgress < EndProgress)
-                {
-                    CircProgress += 1;
-                    progBar.Progress = CircProgress;
-                   
-                    await Task.Delay(1000);
-                }
-               
-            });
+            //});
+
+            //Task.Run(async() => {
+
+
+            //});
 
             RunOnUiThread(async () => {
                 while (Progr > 0)
@@ -137,25 +141,28 @@ namespace Izrune.Activitys
                             Sec = 60;
                         }
                     }
-                    if (Progr == 1)
+                    progBar.Progress = CircProgress++;
+                    if (Progr == 0)
                     {
-                        CircProgress = 0;
-                        await Task.Delay(1000);
-                        Position ++;
+
+                        Position++;
                         Progr = 90;
-                        
-                         EndProgress = 90;
-                         Sec = 30;
-                         minit = 1;
+                        Sec = 30;
+                        minit = 1;
+                        CircProgress = 0;
+                        progBar.Progress = 0;
+
                         var frg = new QuezFragment(QuestionsList.ElementAt(Position));
+
                         frg.AnswerClick = () =>
                         {
-                            progBar.Progress = CircProgress;
-                            Task.Delay(1000);
                             Position++;
                             Progr = 90;
                             Sec = 30;
                             minit = 1;
+                            CircProgress = 0;
+                            progBar.Progress = 0;
+
 
                             foreach (var items in Sheduler)
                             {
@@ -165,10 +172,9 @@ namespace Izrune.Activitys
                             Sheduler.ElementAt(Position).IsCurrent = true;
                             Adapter.NotifyDataSetChanged();
                             if (Position <= 18)
-                                ShedulRecycler.ScrollToPosition(Position+1);
+                                ShedulRecycler.ScrollToPosition(Position + 1);
                             else
                                 ShedulRecycler.ScrollToPosition(Position);
-
 
                             return QuestionsList?.ElementAt(Position);
                         };
