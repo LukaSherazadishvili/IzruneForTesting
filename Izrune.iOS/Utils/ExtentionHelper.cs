@@ -4,7 +4,7 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace Cavea.iOS.Utils
+namespace MPDC.iOS.Utils
 {
     public static class ExtentionHelper
     {
@@ -38,5 +38,10 @@ namespace Cavea.iOS.Utils
             return UIFont.FromName("BPG Arial", size);
         }
 
+        public static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
+        {
+            int diff = (7 + (dt.DayOfWeek - startOfWeek)) % 7;
+            return dt.AddDays(-1 * diff).Date;
+        }
     }
 }

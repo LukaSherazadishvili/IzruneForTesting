@@ -144,6 +144,7 @@
         <Folder Include="CollectionViewCells\" />
         <Folder Include="Models\" />
         <Folder Include="ViewControllers\MenuViewControllers\" />
+        <Folder Include="ViewControllers\Quiz\" />
     </ItemGroup>
     <ItemGroup>
         <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -245,6 +246,10 @@
           <DependentUpon>QuestionImageCollectionViewCell.cs</DependentUpon>
         </Compile>
         <Compile Include="Utils\ExtentionHelper.cs" />
+        <Compile Include="ViewControllers\Quiz\StartTestViewController.cs" />
+        <Compile Include="ViewControllers\Quiz\StartTestViewController.designer.cs">
+          <DependentUpon>StartTestViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />
@@ -305,6 +310,7 @@
       <BundleResource Include="Resources\ichamburger%402x.png" />
       <BundleResource Include="Resources\ichamburger%403x.png" />
       <BundleResource Include="Resources\Views\AnswerClass" />
+      <BundleResource Include="Resources\fagarati.png" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\IZrune.PCL\IZrune.PCL.csproj">
