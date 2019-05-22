@@ -23,13 +23,13 @@ namespace Izrune.iOS
 
         public List<IQuestion> AllQuestions;
 
-        private List<IQuestion> Questions;
+        private List<IQuestion> Questions = new List<IQuestion>();
 
-        public async override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
-            await LoadDataAsync();
+            //await LoadDataAsync();
 
             skipQuestionBtn.Layer.CornerRadius = 20;
 
@@ -48,6 +48,10 @@ namespace Izrune.iOS
             };
 
             InitCollectionView();
+
+            Questions.Add(AllQuestions[0]);
+
+            questionCollectionView.ReloadData();
         }
 
         private async Task LoadDataAsync()

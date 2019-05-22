@@ -65,6 +65,8 @@ namespace Izrune.iOS
             viewForExShadow.AddShadowToView(10, 25, 0.8f, UIColor.FromRGB(242, 153, 52));
             shadowViewForDropDown.AddShadowToView(5, 20, 0.3f, UIColor.FromRGB(0, 0, 0));
             UserNameDropDown.SelectRow(0);
+
+            SelectedStudent = Students[0];
         }
 
         public override void ViewDidLayoutSubviews()
@@ -112,7 +114,7 @@ namespace Izrune.iOS
                     var data = await GetQuiz(SelectedStudent.id, QuezCategory.QuezTest);
 
                     var testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
-                    testVc.Questions = data;
+                    testVc.AllQuestions = data;
 
                     this.NavigationController.PushViewController(testVc, true);
                 }));
