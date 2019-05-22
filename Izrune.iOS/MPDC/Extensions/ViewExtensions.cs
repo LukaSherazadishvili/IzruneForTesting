@@ -285,11 +285,11 @@ namespace MpdcViewExtentions
         {
 
             view.Layer.MasksToBounds = false;
-            view.Layer.CornerRadius = 25;
+            view.Layer.CornerRadius = cornerRadius;
             view.Layer.ShadowColor = color.CGColor;
-            view.Layer.ShadowOpacity = 0.8f;
-            view.Layer.ShadowOffset = new CGSize(2, 2);
-            view.Layer.ShadowRadius = 20;
+            view.Layer.ShadowOpacity = shadowOpacity;
+            view.Layer.ShadowOffset = new CGSize(0,0);
+            view.Layer.ShadowRadius = ShadowRadius;
         }
 
         public static void ToCardView(this UIView mainView, float cornerRadius = 3.0f, float shadowRadius = 3.0f, float shadowOpacity = 0.2f, UIColor shadowColor = default(UIColor))

@@ -28,6 +28,9 @@ namespace Izrune.iOS
 		UIKit.UIStackView exTimeStackView { get; set; }
 
 		[Outlet]
+		UIKit.UIView shadowViewForDropDown { get; set; }
+
+		[Outlet]
 		UIKit.UILabel summQuisActiveStatusLbl { get; set; }
 
 		[Outlet]
@@ -65,14 +68,49 @@ namespace Izrune.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (exQuizActiveStatusLbl != null) {
+				exQuizActiveStatusLbl.Dispose ();
+				exQuizActiveStatusLbl = null;
+			}
+
 			if (exQuizTransparentView != null) {
 				exQuizTransparentView.Dispose ();
 				exQuizTransparentView = null;
 			}
 
+			if (exTestContentView != null) {
+				exTestContentView.Dispose ();
+				exTestContentView = null;
+			}
+
+			if (exTestMainView != null) {
+				exTestMainView.Dispose ();
+				exTestMainView = null;
+			}
+
+			if (exTimeStackView != null) {
+				exTimeStackView.Dispose ();
+				exTimeStackView = null;
+			}
+
+			if (summQuisActiveStatusLbl != null) {
+				summQuisActiveStatusLbl.Dispose ();
+				summQuisActiveStatusLbl = null;
+			}
+
 			if (summQuizTransparentView != null) {
 				summQuizTransparentView.Dispose ();
 				summQuizTransparentView = null;
+			}
+
+			if (summTestContentView != null) {
+				summTestContentView.Dispose ();
+				summTestContentView = null;
+			}
+
+			if (summTestMainView != null) {
+				summTestMainView.Dispose ();
+				summTestMainView = null;
 			}
 
 			if (test1TimerLbl != null) {
@@ -83,6 +121,11 @@ namespace Izrune.iOS
 			if (test2TimerLbl != null) {
 				test2TimerLbl.Dispose ();
 				test2TimerLbl = null;
+			}
+
+			if (timeStackView != null) {
+				timeStackView.Dispose ();
+				timeStackView = null;
 			}
 
 			if (userNameLbl != null) {
@@ -100,24 +143,9 @@ namespace Izrune.iOS
 				viewForDropDown = null;
 			}
 
-			if (summTestMainView != null) {
-				summTestMainView.Dispose ();
-				summTestMainView = null;
-			}
-
-			if (summTestContentView != null) {
-				summTestContentView.Dispose ();
-				summTestContentView = null;
-			}
-
-			if (exTestMainView != null) {
-				exTestMainView.Dispose ();
-				exTestMainView = null;
-			}
-
-			if (exTestContentView != null) {
-				exTestContentView.Dispose ();
-				exTestContentView = null;
+			if (viewForExShadow != null) {
+				viewForExShadow.Dispose ();
+				viewForExShadow = null;
 			}
 
 			if (viewForSummerShadow != null) {
@@ -125,29 +153,9 @@ namespace Izrune.iOS
 				viewForSummerShadow = null;
 			}
 
-			if (viewForExShadow != null) {
-				viewForExShadow.Dispose ();
-				viewForExShadow = null;
-			}
-
-			if (timeStackView != null) {
-				timeStackView.Dispose ();
-				timeStackView = null;
-			}
-
-			if (summQuisActiveStatusLbl != null) {
-				summQuisActiveStatusLbl.Dispose ();
-				summQuisActiveStatusLbl = null;
-			}
-
-			if (exTimeStackView != null) {
-				exTimeStackView.Dispose ();
-				exTimeStackView = null;
-			}
-
-			if (exQuizActiveStatusLbl != null) {
-				exQuizActiveStatusLbl.Dispose ();
-				exQuizActiveStatusLbl = null;
+			if (shadowViewForDropDown != null) {
+				shadowViewForDropDown.Dispose ();
+				shadowViewForDropDown = null;
 			}
 		}
 	}

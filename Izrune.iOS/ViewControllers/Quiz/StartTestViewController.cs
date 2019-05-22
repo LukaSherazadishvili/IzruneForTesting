@@ -16,11 +16,11 @@ using IZrune.PCL.Abstraction.Services;
 
 namespace Izrune.iOS
 {
-	public partial class StartTestViewController : UIViewController
-	{
-		public StartTestViewController (IntPtr handle) : base (handle)
-		{
-		}
+    public partial class StartTestViewController : UIViewController
+    {
+        public StartTestViewController (IntPtr handle) : base (handle)
+        {
+        }
 
         public static readonly NSString StoryboardId = new NSString("StartTestStoryboardId");
 
@@ -33,6 +33,9 @@ namespace Izrune.iOS
         private nint currentIndex;
 
         IStudent SelectedStudent;
+
+        private bool IsSummTestActive;
+        private bool IsExTestActive;
 
         public async override void ViewDidLoad()
         {
@@ -56,9 +59,9 @@ namespace Izrune.iOS
 
             InitDroDown();
 
-            viewForSummerShadow.AddShadowToView(4, 25, 0.8f, AppColors.TitleColor);
-            viewForExShadow.AddShadowToView(4, 25, 0.8f, UIColor.FromRGB(242, 153, 52));
-
+            viewForSummerShadow.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
+            viewForExShadow.AddShadowToView(10, 25, 0.8f, UIColor.FromRGB(242, 153, 52));
+            shadowViewForDropDown.AddShadowToView(5, 20, 0.3f, UIColor.FromRGB(0, 0, 0));
             UserNameDropDown.SelectRow(0);
         }
 
@@ -98,11 +101,17 @@ namespace Izrune.iOS
 
                     //TODO Go to examvc
 
-                    UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
+                    if (IsSummTestActive)
+                    {
+                        UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
 
-                    var service = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
+                        var service = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
 
-                    var data = (await service.GetQuestionsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam))?.ToList();
+                        var data = (await service.GetQuestionsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam))?.ToList();
+
+                    }
+                    else
+                        ShowAlert();
                 }));
             }
 
@@ -112,11 +121,17 @@ namespace Izrune.iOS
 
                     //TODO Go to examvc
 
-                    UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
+                    if (IsExTestActive)
+                    {
+                        UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
 
-                    var service = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
+                        var service = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
 
-                    var data = (await service.GetQuestionsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest))?.ToList();
+                        var data = (await service.GetQuestionsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest))?.ToList();
+                    }
+
+                    else
+                        ShowAlert();
                 }));
             }
 
@@ -185,5 +200,20 @@ namespace Izrune.iOS
 
             return null;
         }
+
+        private void ShowAlert()
+        {
+            var alert = UIAlertController.Create("ყურადღება", "ტესტი დროებით მიუწვდომელია", UIAlertControllerStyle.Alert);
+            alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            this.PresentViewController(alert, true, null);
+        }
+
+        private void ChangeTestStatus(UIStackView stackView, UILabel label, bool isActive)
+        {
+            stackView.Hidden = isActive;
+            label.Hidden = !isActive;
+        }
+
+
     }
 }
