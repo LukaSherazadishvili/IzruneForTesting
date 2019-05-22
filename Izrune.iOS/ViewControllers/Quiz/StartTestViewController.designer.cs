@@ -16,7 +16,19 @@ namespace Izrune.iOS
 		UIKit.UIView exQuizTransparentView { get; set; }
 
 		[Outlet]
+		UIKit.UIView exTestContentView { get; set; }
+
+		[Outlet]
+		UIKit.UIView exTestMainView { get; set; }
+
+		[Outlet]
 		UIKit.UIView summQuizTransparentView { get; set; }
+
+		[Outlet]
+		UIKit.UIView summTestContentView { get; set; }
+
+		[Outlet]
+		UIKit.UIView summTestMainView { get; set; }
 
 		[Outlet]
 		UIKit.UILabel test1TimerLbl { get; set; }
@@ -32,6 +44,12 @@ namespace Izrune.iOS
 
 		[Outlet]
 		UIKit.UIView viewForDropDown { get; set; }
+
+		[Outlet]
+		UIKit.UIView viewForExShadow { get; set; }
+
+		[Outlet]
+		UIKit.UIView viewForSummerShadow { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -43,6 +61,16 @@ namespace Izrune.iOS
 			if (summQuizTransparentView != null) {
 				summQuizTransparentView.Dispose ();
 				summQuizTransparentView = null;
+			}
+
+			if (test1TimerLbl != null) {
+				test1TimerLbl.Dispose ();
+				test1TimerLbl = null;
+			}
+
+			if (test2TimerLbl != null) {
+				test2TimerLbl.Dispose ();
+				test2TimerLbl = null;
 			}
 
 			if (userNameLbl != null) {
@@ -60,14 +88,34 @@ namespace Izrune.iOS
 				viewForDropDown = null;
 			}
 
-			if (test1TimerLbl != null) {
-				test1TimerLbl.Dispose ();
-				test1TimerLbl = null;
+			if (summTestMainView != null) {
+				summTestMainView.Dispose ();
+				summTestMainView = null;
 			}
 
-			if (test2TimerLbl != null) {
-				test2TimerLbl.Dispose ();
-				test2TimerLbl = null;
+			if (summTestContentView != null) {
+				summTestContentView.Dispose ();
+				summTestContentView = null;
+			}
+
+			if (exTestMainView != null) {
+				exTestMainView.Dispose ();
+				exTestMainView = null;
+			}
+
+			if (exTestContentView != null) {
+				exTestContentView.Dispose ();
+				exTestContentView = null;
+			}
+
+			if (viewForSummerShadow != null) {
+				viewForSummerShadow.Dispose ();
+				viewForSummerShadow = null;
+			}
+
+			if (viewForExShadow != null) {
+				viewForExShadow.Dispose ();
+				viewForExShadow = null;
 			}
 		}
 	}

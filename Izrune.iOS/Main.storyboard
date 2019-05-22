@@ -205,7 +205,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sJp-ey-F9L">
                                 <rect key="frame" x="35" y="337.66666666666669" width="305" height="100"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="სახელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VN0-gk-bHy">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="irakli123" placeholder="სახელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VN0-gk-bHy">
                                         <rect key="frame" x="0.0" y="0.0" width="305" height="40"/>
                                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -215,7 +215,7 @@
                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="პაროლი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kOV-FA-XWA">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456789" placeholder="პაროლი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kOV-FA-XWA">
                                         <rect key="frame" x="0.0" y="60" width="305" height="40"/>
                                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="textColor"/>
@@ -686,6 +686,10 @@
                                 <rect key="frame" x="36" y="157.33333333333334" width="303" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ND-a6-Ycn">
+                                <rect key="frame" x="36" y="232.33333333333337" width="303" height="130"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sYE-Kg-OCO" userLabel="Test1">
                                 <rect key="frame" x="36" y="232.33333333333337" width="303" height="130"/>
                                 <subviews>
@@ -785,6 +789,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UNP-XG-lTk" userLabel="Test1TransparentView">
                                 <rect key="frame" x="36" y="232.33333333333337" width="303" height="145"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PeI-a2-dvZ">
+                                <rect key="frame" x="36" y="407.33333333333331" width="303" height="129.99999999999994"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3vg-Z0-Fu4" userLabel="Test2">
                                 <rect key="frame" x="36" y="407.33333333333331" width="303" height="129.99999999999994"/>
@@ -948,14 +956,21 @@
                             <constraint firstItem="bxk-pV-gpC" firstAttribute="trailing" secondItem="3vg-Z0-Fu4" secondAttribute="trailing" id="7iO-2Y-Dkm"/>
                             <constraint firstItem="10I-3O-KDW" firstAttribute="bottom" secondItem="sYE-Kg-OCO" secondAttribute="bottom" constant="15" id="9o4-go-Nh0"/>
                             <constraint firstItem="bxk-pV-gpC" firstAttribute="leading" secondItem="3vg-Z0-Fu4" secondAttribute="leading" id="Ck9-TK-rS6"/>
+                            <constraint firstItem="PeI-a2-dvZ" firstAttribute="leading" secondItem="3vg-Z0-Fu4" secondAttribute="leading" id="Duh-Ty-OaQ"/>
+                            <constraint firstItem="6ND-a6-Ycn" firstAttribute="trailing" secondItem="sYE-Kg-OCO" secondAttribute="trailing" id="EAu-gC-8Zd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YG5-xG-VRC" secondAttribute="trailing" constant="20" id="FZC-UV-RoT"/>
+                            <constraint firstItem="PeI-a2-dvZ" firstAttribute="top" secondItem="3vg-Z0-Fu4" secondAttribute="top" id="Gsf-ZK-vjq"/>
                             <constraint firstItem="2hV-ko-gxW" firstAttribute="leading" secondItem="Zq4-uG-dJ7" secondAttribute="leading" id="JDG-bf-Cb1"/>
                             <constraint firstItem="3vg-Z0-Fu4" firstAttribute="leading" secondItem="sYE-Kg-OCO" secondAttribute="leading" id="L5x-Y3-hIm"/>
+                            <constraint firstItem="6ND-a6-Ycn" firstAttribute="top" secondItem="sYE-Kg-OCO" secondAttribute="top" id="Lnk-2g-t20"/>
                             <constraint firstItem="tvk-gO-Sai" firstAttribute="centerY" secondItem="Zq4-uG-dJ7" secondAttribute="centerY" id="MOr-Vj-z77"/>
+                            <constraint firstItem="PeI-a2-dvZ" firstAttribute="bottom" secondItem="3vg-Z0-Fu4" secondAttribute="bottom" id="MVr-sa-Kuo"/>
+                            <constraint firstItem="6ND-a6-Ycn" firstAttribute="leading" secondItem="sYE-Kg-OCO" secondAttribute="leading" id="Ogy-lf-28Z"/>
                             <constraint firstItem="XFK-oK-TEB" firstAttribute="bottom" secondItem="YG5-xG-VRC" secondAttribute="bottom" id="RJj-2q-4hs"/>
                             <constraint firstItem="sYE-Kg-OCO" firstAttribute="trailing" secondItem="YG5-xG-VRC" secondAttribute="trailing" id="UJl-zh-ssK"/>
                             <constraint firstItem="ZdZ-Mh-huX" firstAttribute="centerX" secondItem="Zq4-uG-dJ7" secondAttribute="centerX" id="UVR-DN-B5M"/>
                             <constraint firstItem="tvk-gO-Sai" firstAttribute="height" secondItem="Zq4-uG-dJ7" secondAttribute="height" id="Uff-3Y-Xnp"/>
+                            <constraint firstItem="PeI-a2-dvZ" firstAttribute="trailing" secondItem="3vg-Z0-Fu4" secondAttribute="trailing" id="Wkc-Ic-Fcs"/>
                             <constraint firstItem="Y5P-qT-RzA" firstAttribute="leading" secondItem="Zq4-uG-dJ7" secondAttribute="leadingMargin" constant="15" id="YJr-WX-Rhu"/>
                             <constraint firstItem="2Zt-uL-HIV" firstAttribute="top" secondItem="Y5P-qT-RzA" secondAttribute="bottom" constant="30" id="Zdi-EW-Kbk"/>
                             <constraint firstItem="ZdZ-Mh-huX" firstAttribute="leading" secondItem="Zq4-uG-dJ7" secondAttribute="leadingMargin" constant="20" id="Zen-Lc-4ek"/>
@@ -966,6 +981,7 @@
                             <constraint firstItem="UNP-XG-lTk" firstAttribute="leading" secondItem="sYE-Kg-OCO" secondAttribute="leading" id="dnC-i9-kyW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZdZ-Mh-huX" secondAttribute="trailing" constant="20" id="flW-z5-JAt"/>
                             <constraint firstItem="3vg-Z0-Fu4" firstAttribute="trailing" secondItem="sYE-Kg-OCO" secondAttribute="trailing" id="g1Q-ie-Qqx"/>
+                            <constraint firstItem="6ND-a6-Ycn" firstAttribute="bottom" secondItem="sYE-Kg-OCO" secondAttribute="bottom" id="hBQ-jL-1vh"/>
                             <constraint firstItem="YG5-xG-VRC" firstAttribute="leading" secondItem="Zq4-uG-dJ7" secondAttribute="leadingMargin" constant="20" id="iOk-us-hgW"/>
                             <constraint firstItem="UNP-XG-lTk" firstAttribute="trailing" secondItem="sYE-Kg-OCO" secondAttribute="trailing" id="jNK-qB-wJr"/>
                             <constraint firstItem="bxk-pV-gpC" firstAttribute="top" secondItem="3vg-Z0-Fu4" secondAttribute="top" id="jUk-NF-VPG"/>
@@ -986,12 +1002,18 @@
                     </view>
                     <connections>
                         <outlet property="exQuizTransparentView" destination="bxk-pV-gpC" id="jQu-EU-gcu"/>
+                        <outlet property="exTestContentView" destination="WbI-5d-E6J" id="c8H-jH-IYx"/>
+                        <outlet property="exTestMainView" destination="3vg-Z0-Fu4" id="ywA-9N-VPe"/>
                         <outlet property="summQuizTransparentView" destination="UNP-XG-lTk" id="dks-x6-ZUk"/>
+                        <outlet property="summTestContentView" destination="Vte-OC-IBZ" id="bsv-Hl-ubq"/>
+                        <outlet property="summTestMainView" destination="sYE-Kg-OCO" id="hgL-k3-glA"/>
                         <outlet property="test1TimerLbl" destination="lfX-Me-eZ0" id="seY-ux-ES1"/>
                         <outlet property="test2TimerLbl" destination="pDz-W8-rNh" id="yNS-fC-mHg"/>
                         <outlet property="userNameLbl" destination="m7D-RW-6d2" id="h3C-xB-uXS"/>
                         <outlet property="userNameTransparentView" destination="XFK-oK-TEB" id="6rV-zl-pU5"/>
                         <outlet property="viewForDropDown" destination="45k-zy-NNT" id="QSq-ec-Ac6"/>
+                        <outlet property="viewForExShadow" destination="PeI-a2-dvZ" id="kJQ-tk-9bA"/>
+                        <outlet property="viewForSummerShadow" destination="6ND-a6-Ycn" id="qrd-Kl-zIW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QKg-Xr-VP4" userLabel="First Responder" sceneMemberID="firstResponder"/>

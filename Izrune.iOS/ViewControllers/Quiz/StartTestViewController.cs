@@ -11,6 +11,7 @@ using IZrune.PCL.Helpers;
 using UIKit;
 using System.Timers;
 using MPDC.iOS.Utils;
+using MpdcViewExtentions;
 
 namespace Izrune.iOS
 {
@@ -53,6 +54,17 @@ namespace Izrune.iOS
             InitGestures();
 
             InitDroDown();
+
+            viewForSummerShadow.AddShadowToView(4, 25, 0.8f, AppColors.TitleColor);
+            viewForExShadow.AddShadowToView(4, 25, 0.8f, UIColor.FromRGB(242, 153, 52));
+        }
+
+        public override void ViewDidLayoutSubviews()
+        {
+            base.ViewDidLayoutSubviews();
+
+
+            //rgba(242, 153, 52, 0.6)
         }
 
         private void InitDroDown()
@@ -62,7 +74,7 @@ namespace Izrune.iOS
             UserNameDropDown.Width = this.viewForDropDown.Frame.Width;
             UserNameDropDown.Direction = Direction.Bottom;
 
-            var array = Students?.Select(x => x.Name + x.LastName)?.ToArray();
+            var array = Students?.Select(x => x.Name + " " + x.LastName)?.ToArray();
 
             UserNameDropDown.DataSource = array;
 
