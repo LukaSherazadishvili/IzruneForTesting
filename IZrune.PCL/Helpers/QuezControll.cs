@@ -38,7 +38,7 @@ namespace IZrune.PCL.Helpers
         {
             var Result = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(studentID,Enum.QuezCategory.QuezExam);
 
-            return Result.Any(i => i.ExamDate == DateTime.Now);
+            return Result.Any(i => i.ExamDate.Year == DateTime.Now.Year&&i.ExamDate.DayOfYear==DateTime.Now.DayOfYear);
 
         }
     }
