@@ -229,10 +229,6 @@
         <Compile Include="ViewControllers\MenuViewControllers\EditProfileViewController.designer.cs">
           <DependentUpon>EditProfileViewController.cs</DependentUpon>
         </Compile>
-        <Compile Include="ViewControllers\TestViewController.cs" />
-        <Compile Include="ViewControllers\TestViewController.designer.cs">
-          <DependentUpon>TestViewController.cs</DependentUpon>
-        </Compile>
         <Compile Include="CollectionViewCells\TestCollectionViewCell.cs" />
         <Compile Include="CollectionViewCells\TestCollectionViewCell.designer.cs">
           <DependentUpon>TestCollectionViewCell.cs</DependentUpon>
@@ -249,6 +245,14 @@
         <Compile Include="ViewControllers\Quiz\StartTestViewController.cs" />
         <Compile Include="ViewControllers\Quiz\StartTestViewController.designer.cs">
           <DependentUpon>StartTestViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\Quiz\ChooseTimeViewController.cs" />
+        <Compile Include="ViewControllers\Quiz\ChooseTimeViewController.designer.cs">
+          <DependentUpon>ChooseTimeViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\Quiz\TestViewController.cs" />
+        <Compile Include="ViewControllers\Quiz\TestViewController.designer.cs">
+          <DependentUpon>TestViewController.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup>

@@ -29,20 +29,20 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gj7-Te-eOv" userLabel="ScrollContentView">
                                 <rect key="frame" x="0.0" y="0.0" width="357" height="607"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="TH9-dr-tLD">
-                                        <rect key="frame" x="20" y="10" width="317" height="305"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="TH9-dr-tLD">
+                                        <rect key="frame" x="20" y="10" width="317" height="226"/>
                                         <subviews>
-                                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="GHv-5b-t4d">
-                                                <rect key="frame" x="0.0" y="0.0" width="317" height="110"/>
+                                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" axis="vertical" distribution="equalSpacing" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="GHv-5b-t4d">
+                                                <rect key="frame" x="0.0" y="0.0" width="317" height="31"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="რა ცხოველია სურათზე გამოსახული? რა ცხოველია სურათზე გამოსახული? რა ცხოველია სურათზე გამოსახული? " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PX8-cb-ry0">
-                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="99"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="რა ცხოველია სურათზე გამოსა" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PX8-cb-ry0">
+                                                        <rect key="frame" x="0.0" y="0.0" width="303" height="20"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zII-C1-8PB">
-                                                        <rect key="frame" x="0.0" y="109" width="317" height="1"/>
+                                                        <rect key="frame" x="0.0" y="30" width="317" height="1"/>
                                                         <color key="backgroundColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="0.25060519366197181" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="tKG-Tk-WGx"/>
@@ -51,7 +51,7 @@
                                                 </subviews>
                                             </stackView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="DLw-wL-oJL">
-                                                <rect key="frame" x="0.0" y="125" width="317" height="180"/>
+                                                <rect key="frame" x="0.0" y="46" width="317" height="180"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="180" id="zzh-h2-bgH"/>
@@ -66,7 +66,7 @@
                                         </subviews>
                                     </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="l8Y-ZF-Vuj">
-                                        <rect key="frame" x="20" y="330" width="317" height="262"/>
+                                        <rect key="frame" x="20" y="251" width="317" height="341"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ly0-HL-W6G">
                                             <size key="itemSize" width="50" height="50"/>

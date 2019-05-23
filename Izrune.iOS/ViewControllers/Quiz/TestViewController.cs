@@ -21,31 +21,40 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("TestViewControllerStoryboardId");
 
-        List<IQuestion> Questions;
+        public List<IQuestion> AllQuestions;
 
-        public async override void ViewDidLoad()
+        private List<IQuestion> Questions = new List<IQuestion>();
+
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
-            await LoadDataAsync();
+            //await LoadDataAsync();
 
             skipQuestionBtn.Layer.CornerRadius = 20;
 
-            skipQuestionBtn.TouchUpInside += delegate {
+            skipQuestionBtn.TouchUpInside += delegate
+            {
 
-                //var indexPath = questionCollectionView.IndexPathsForVisibleItems[0];
-
-                //var currIndex = indexPath.Row;
-
-                //if(currIndex < 6)
-                //{
-                //    questionCollectionView.ScrollToItem(NSIndexPath.FromItemSection(currIndex+1, 0), UICollectionViewScrollPosition.Right, true);
-                //};
-
+                Questions.Clear();
+                MoveToQuestions();
                 questionCollectionView.ReloadData();
             };
 
             InitCollectionView();
+            MoveToQuestions();
+
+            questionCollectionView.ReloadData();
+        }
+
+        private void MoveToQuestions()
+        {
+            if(AllQuestions.Count != 0)
+            {
+                Questions.Add(AllQuestions?[0]);
+                AllQuestions.RemoveAt(0);
+            }
+
         }
 
         private async Task LoadDataAsync()
@@ -82,7 +91,7 @@ namespace Izrune.iOS
         {
             var cell = questionCollectionView.DequeueReusableCell(TestCollectionViewCell.Identifier, indexPath) as TestCollectionViewCell;
 
-            var data = Questions?[indexPath.Row];
+            var data = Questions?[0];
 
             cell.InitData(data);
             return cell;
@@ -99,7 +108,14 @@ namespace Izrune.iOS
 
             //TODO Calculate CellHeight
 
-            var data = Questions?[indexPath.Row];
+            var cellHeight = GetCellHeight(Questions[0]);
+
+            return new CoreGraphics.CGSize(collectionView.Frame.Width, 500);
+        }
+
+        float GetCellHeight(IQuestion question)
+        {
+            var data = question;
 
             var appFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 17);
 
@@ -107,7 +123,7 @@ namespace Izrune.iOS
 
             var ImagesCount = data?.images?.Count();
 
-            float imagesHeight = 0;
+            float imagesHeight;
 
             if (ImagesCount == 0)
                 imagesHeight = 0;
@@ -116,7 +132,7 @@ namespace Izrune.iOS
             else
                 imagesHeight = 180;
 
-            var spaceSumBetweenAnswers = 80;
+            float spaceSumBetweenAnswers = 80;
 
             float answersHeight = 0;
             foreach (var item in data?.Answers)
@@ -124,9 +140,9 @@ namespace Izrune.iOS
                 answersHeight += (float)item?.title.GetSizeByText(appFont).Height;
             }
 
+            var totalHeight = titleHeight + imagesHeight + spaceSumBetweenAnswers + answersHeight;
 
-
-            return new CoreGraphics.CGSize(collectionView.Frame.Width, collectionView.Frame.Height * 0.5);
+            return totalHeight;
         }
     }
 }

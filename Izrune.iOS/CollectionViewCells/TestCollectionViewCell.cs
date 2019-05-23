@@ -3,6 +3,7 @@ using System.Linq;
 using CoreGraphics;
 using Foundation;
 using IZrune.PCL.Abstraction.Models;
+using MPDC.iOS.Utils;
 using UIKit;
 
 namespace Izrune.iOS.CollectionViewCells
@@ -21,6 +22,10 @@ namespace Izrune.iOS.CollectionViewCells
 
         public static nfloat CellSize { get; set; }
 
+        public Action<IAnswer> AnswerClicked { get; set; }
+
+        IQuestion Question;
+
         static TestCollectionViewCell()
         {
             Nib = UINib.FromName("TestCollectionViewCell", NSBundle.MainBundle);
@@ -33,10 +38,16 @@ namespace Izrune.iOS.CollectionViewCells
 
         public void InitData(IQuestion question)
         {
+
+            Question = question;
             questionLbl.Text = question?.title;
 
             CalculateImagesCollectionViewHeight(question);
 
+            imagesCollectionViewHeight.Constant = 0;
+
+            questionImagesCollectionView.ReloadData();
+            answerCollectionView.ReloadData();
         }
 
         private void CalculateImagesCollectionViewHeight(IQuestion question)
@@ -64,15 +75,23 @@ namespace Izrune.iOS.CollectionViewCells
 
             var cell = answerCollectionView.DequeueReusableCell(AnswerCollectionViewCell.Identifier, indexPath) as AnswerCollectionViewCell;
 
+            var data = Question?.Answers?.ElementAt(indexPath.Row);
+
+            cell.InitData(data);
+
+            cell.AnswerClicked = (answer) =>
+            {
+                AnswerClicked?.Invoke(answer);
+            };
             return cell;
         }
 
         public nint GetItemsCount(UICollectionView collectionView, nint section)
         {
             if (collectionView == questionImagesCollectionView)
-                return 1;
+                return (nint)Question?.images?.Count();
             else
-                return 2;
+                return (nint)Question?.Answers?.Count();
         }
 
         [Export("collectionView:layout:sizeForItemAtIndexPath:")]
@@ -80,6 +99,7 @@ namespace Izrune.iOS.CollectionViewCells
         {
             if (collectionView == questionImagesCollectionView)
                 return new CoreGraphics.CGSize(collectionView.Frame.Width * 0.5, collectionView.Frame.Height * 0.5);
+
 
             return new CoreGraphics.CGSize(collectionView.Frame.Width, 60);
         }
@@ -129,5 +149,36 @@ namespace Izrune.iOS.CollectionViewCells
             return 1;
         }
 
+        float GetCellHeight(IQuestion question)
+        {
+            var data = question;
+
+            var appFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 17);
+
+            var titleHeight = (float)data.title.GetSizeByText(appFont).Height;
+
+            var ImagesCount = data?.images?.Count();
+
+            float imagesHeight;
+
+            if (ImagesCount == 0)
+                imagesHeight = 0;
+            else if (ImagesCount > 0 || ImagesCount <= 2)
+                imagesHeight = 90;
+            else
+                imagesHeight = 180;
+
+            float spaceSumBetweenAnswers = 80;
+
+            float answersHeight = 0;
+            foreach (var item in data?.Answers)
+            {
+                answersHeight += (float)item?.title.GetSizeByText(appFont).Height;
+            }
+
+            var totalHeight = titleHeight + imagesHeight + spaceSumBetweenAnswers + answersHeight;
+
+            return totalHeight;
+        }
     }
 }

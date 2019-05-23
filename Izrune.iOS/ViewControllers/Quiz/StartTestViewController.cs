@@ -13,6 +13,8 @@ using System.Timers;
 using MPDC.iOS.Utils;
 using MpdcViewExtentions;
 using IZrune.PCL.Abstraction.Services;
+using System.Threading.Tasks;
+using IZrune.PCL.Enum;
 
 namespace Izrune.iOS
 {
@@ -53,7 +55,7 @@ namespace Izrune.iOS
             Students.Add(item); 
             Students.Add(item);
 
-            InitTimer();
+            InitSummTimer();
 
             InitGestures();
 
@@ -63,6 +65,8 @@ namespace Izrune.iOS
             viewForExShadow.AddShadowToView(10, 25, 0.8f, UIColor.FromRGB(242, 153, 52));
             shadowViewForDropDown.AddShadowToView(5, 20, 0.3f, UIColor.FromRGB(0, 0, 0));
             UserNameDropDown.SelectRow(0);
+
+            SelectedStudent = Students[0];
         }
 
         public override void ViewDidLayoutSubviews()
@@ -97,21 +101,9 @@ namespace Izrune.iOS
         {
             if (summQuizTransparentView.GestureRecognizers == null || summQuizTransparentView.GestureRecognizers?.Count() == 0)
             {
-                summQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(async () => {
-
-                    //TODO Go to examvc
-
-                    if (IsSummTestActive)
-                    {
-                        UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
-
-                        var service = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
-
-                        var data = (await service.GetQuestionsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam))?.ToList();
-
-                    }
-                    else
-                        ShowAlert();
+                summQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(async () =>
+                {
+                    await GetQuiz(SelectedStudent.id, QuezCategory.QuezExam);
                 }));
             }
 
@@ -119,19 +111,12 @@ namespace Izrune.iOS
             {
                 exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(async () => {
 
-                    //TODO Go to examvc
+                    var data = await GetQuiz(SelectedStudent.id, QuezCategory.QuezTest);
 
-                    if (IsExTestActive)
-                    {
-                        UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
+                    var testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
+                    testVc.AllQuestions = data;
 
-                        var service = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
-
-                        var data = (await service.GetQuestionsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest))?.ToList();
-                    }
-
-                    else
-                        ShowAlert();
+                    this.NavigationController.PushViewController(testVc, true);
                 }));
             }
 
@@ -146,6 +131,17 @@ namespace Izrune.iOS
             }
         }
 
+        private async Task<List<IQuestion>> GetQuiz(int id, QuezCategory quizCategory)
+        {
+            UserControl.Instance.SeTSelectedStudent(id);
+
+            var service = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
+
+            var data = (await service.GetQuestionsAsync(quizCategory))?.ToList();
+
+            return data;
+        }
+
         private void InitDropDownUI()
         {
             UserNameDropDown.BackgroundColor = UIColor.FromRGB(243, 243, 243);
@@ -158,7 +154,7 @@ namespace Izrune.iOS
             UserNameDropDown.Layer.CornerRadius = 20;
         }
 
-        private void InitTimer()
+        private void InitSummTimer()
         {
             Timer timer = new Timer();
             timer.Interval = 1000;
@@ -176,6 +172,11 @@ namespace Izrune.iOS
                 var minutes = GetNumber(diffrence.Minutes, " წუთი ");
 
                 InvokeOnMainThread(() => test1TimerLbl.Text = $"{days} {hours} {minutes}");
+
+                if(diffrence.Days == 0 && diffrence.Hours == 0 && diffrence.Minutes == 0)
+                {
+                    IsSummTestActive = true;
+                }
             };
 
             timer.Start();
@@ -213,7 +214,6 @@ namespace Izrune.iOS
             stackView.Hidden = isActive;
             label.Hidden = !isActive;
         }
-
 
     }
 }
