@@ -15,6 +15,24 @@ namespace IZrune.PCL.Implementation.Services
 {
    public class UserServices : IUserServices
     {
+        public async Task<bool> EditParentProfileAsync(int ParrentId, string ParrentMail, string ParrentPhone, string City, string Village)
+        {
+
+            var FormContent = new FormUrlEncodedContent(new[]
+                {
+                new KeyValuePair<string,string>("parent_id",ParrentId.ToString()),
+                 new KeyValuePair<string,string>("parent_id",ParrentMail),
+                  new KeyValuePair<string,string>("parent_id",ParrentPhone),
+                  new KeyValuePair<string,string>("parent_id",City),
+                  new KeyValuePair<string,string>("parent_id",Village)
+                });
+            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=editParentProfile&hashcode=0a3110bbe8a96c91eb33bf6072598368", FormContent);
+            var jsn = await Data.Content.ReadAsStringAsync();
+
+            return false;
+
+        }
+
         public async Task<IPromoCode> GetPromoCodeAsync(string SchoolId= "1902")
         {
 

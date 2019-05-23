@@ -74,25 +74,28 @@ namespace IZrune.PCL.Implementation.Services
             }
         }
 
-        public Task GetQuezResultAsync( int Duration, List<IQuestion> QuestionList)
+        public Task GetQuezResultAsync(ITestControler contrl)
         {
             var FormContent = new FormUrlEncodedContent(new[]
                    {
-                new KeyValuePair<string,string>("student_id",TestCode),
-                new KeyValuePair<string, string>("duration",Duration.ToString())
+                new KeyValuePair<string,string>("test_id",TestCode),
+                new KeyValuePair<string, string>("duration",contrl.Duration.ToString())
 
             });
 
-            for(int i = 0; i < QuestionList.Count; i++)
+            for(int i = 0; i < contrl.Questions?.ToList().Count; i++)
             {
 
 
-                KeyValuePair<string, string> pair = new KeyValuePair<string, string>($"question_id_{i + 1}", QuestionList.ElementAt(i).id.ToString());
+                KeyValuePair<string, string> pair = new KeyValuePair<string, string>($"question_id_{i + 1}", contrl.Questions?.ElementAt(i).QuestionId.ToString());
 
-                KeyValuePair<string, string> pair2 = new KeyValuePair<string,string>($"answer_id{i + 1}","");
+                KeyValuePair<string, string> pair2 = new KeyValuePair<string,string>($"answer_id{i + 1}", contrl.Questions?.ElementAt(i).AnswerId.ToString());
             }
 
             return null;
         }
+
+
+
     }
 }
