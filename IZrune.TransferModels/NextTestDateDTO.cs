@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IZrune.TransferModels
 {
-    class NextTestDateDTO
+   public class NextTestDateDTO
     {
       
             public int Code { get; set; }

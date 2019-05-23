@@ -38,58 +38,32 @@ namespace IZrune.PCL.Helpers
             }
         }
 
-        private static System.Timers.Timer Tmer;
 
-        public async Task<bool> IsExamActivated(int studentID)
+        public async Task<bool> IsExamActivated()
         {
-            var Result = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(studentID,Enum.QuezCategory.QuezExam);
+            var Result = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(Enum.QuezCategory.QuezExam);
 
             return !Result.Any(i => i.ExamDate.Year == DateTime.Now.Year&&i.ExamDate.DayOfYear==DateTime.Now.DayOfYear);
 
         }
-        private ITestControler controller=new TestController();
 
-        public void AddQuestion(int QuestionId,int AnswerId)
+        public async Task<TimeSpan> GetExamDate()
         {
-            controller.Questions?.ToList().Add(new QuezQuestion() { AnswerId = AnswerId, QuestionId = QuestionId });
-
-
+           return await MpdcContainer.Instance.Get<IQuezServices>().GetExamDate(Enum.QuezCategory.QuezExam);
         }
 
 
-        int FullTimeInSecond = 0;
-
-        bool EndTime = true;
-
-        public void StartQuezTime()
+        public void AddQuestion(int QuestionId,int AnswerId,int Duration)
         {
-
-            Task.Run( async() =>
-            {
-                while (EndTime)
-                {
-                    FullTimeInSecond++;
-                    await Task.Delay(1000);
-                }
-
-            });
+           
+            QuezQuestion quez = new QuezQuestion() {AnswerId=AnswerId,Duration=Duration,QuestionId=QuestionId };
             
+            MpdcContainer.Instance.Get<IQuezServices>().GetQuezResultAsync(quez);
 
         }
 
-        public void EndQuezTime()
-        {
-            EndTime = false;
-            if (controller?.Questions?.Count() == 20 && controller.Duration > 0)
-            {
-                MpdcContainer.Instance.Get<IQuezServices>().GetQuezResultAsync(controller);
 
-            }
-            FullTimeInSecond = 0;
-        }
-
-       
-
+        
 
     }
 

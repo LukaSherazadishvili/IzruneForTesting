@@ -2,6 +2,7 @@
 using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Enum;
 using IZrune.PCL.extensions;
+using IZrune.PCL.Helpers;
 using IZrune.PCL.Implementation.Models;
 using IZrune.PCL.WebUtils;
 using IZrune.TransferModels;
@@ -17,7 +18,7 @@ namespace IZrune.PCL.Implementation.Services
 {
     public class StatisticServices : IStatisticServices
     {
-        public async Task<IEnumerable<IStudentsStatistic>> GetStudentStatisticsAsync(int StudentsID, QuezCategory type)
+        public async Task<IEnumerable<IStudentsStatistic>> GetStudentStatisticsAsync(QuezCategory type)
         {
             IEnumerable<IStudentsStatistic> StudentStat;
             try
@@ -27,7 +28,7 @@ namespace IZrune.PCL.Implementation.Services
 
                     var FormContent = new FormUrlEncodedContent(new[]
                     {
-                        new KeyValuePair<string,string>("student_id",StudentsID.ToString())
+                        new KeyValuePair<string,string>("student_id",UserControl.Instance.CurrentStudent?.id.ToString())
              
                      });
 

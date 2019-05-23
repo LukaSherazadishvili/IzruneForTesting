@@ -19,6 +19,40 @@ namespace IZrune.PCL.Implementation.Services
     {
 
         private string TestCode;
+        private QuezCategory categor;
+
+        public async Task GetDiploma()
+        {
+            var FormContent = new FormUrlEncodedContent(new[]
+                   {
+                new KeyValuePair<string,string>("test_id",TestCode),
+              
+            });
+
+            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getDiploma&hashcode=19b556311f007d86ad7c921626e5da83", FormContent);
+            var jsn = await Data.Content.ReadAsStringAsync();
+        }
+
+
+
+
+
+        public async Task<TimeSpan> GetExamDate(QuezCategory TestType)
+        {
+            var FormContent = new FormUrlEncodedContent(new[]
+                   {
+                new KeyValuePair<string,string>("student_id",UserControl.Instance.CurrentStudent?.id.ToString()),
+                new KeyValuePair<string, string>("test_type",TestType.ConverEnumToInt())
+
+            });
+            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getNextTestDate&hashcode=7a16e984f8df40c478a47cb356092b92", FormContent);
+            var jsn = await Data.Content.ReadAsStringAsync();
+            var Result = JsonConvert.DeserializeObject<TransferModels.NextTestDateDTO>(jsn);
+            DateTime.TryParse(Result.date, out DateTime date);
+            var CurResult = date.Subtract(DateTime.Now);
+
+            return CurResult;
+        }
 
         public async Task<IEnumerable<IQuestion>> GetQuestionsAsync( QuezCategory TestType)
         {
@@ -74,25 +108,21 @@ namespace IZrune.PCL.Implementation.Services
             }
         }
 
-        public Task GetQuezResultAsync(ITestControler contrl)
+        public async Task GetQuezResultAsync(IQuezQuestion contrl)
         {
             var FormContent = new FormUrlEncodedContent(new[]
                    {
                 new KeyValuePair<string,string>("test_id",TestCode),
-                new KeyValuePair<string, string>("duration",contrl.Duration.ToString())
+                new KeyValuePair<string, string>("time",contrl.Duration.ToString()),
+                 new KeyValuePair<string, string>("question_id",contrl.Duration.ToString()),
+                 new KeyValuePair<string, string>("answer_id",contrl.Duration.ToString()),
 
             });
 
-            for(int i = 0; i < contrl.Questions?.ToList().Count; i++)
-            {
+           
+            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getTest&hashcode=26e0c75cd4f8b1242b620a46aa701431", FormContent);
+            var jsn = await Data.Content.ReadAsStringAsync();
 
-
-                KeyValuePair<string, string> pair = new KeyValuePair<string, string>($"question_id_{i + 1}", contrl.Questions?.ElementAt(i).QuestionId.ToString());
-
-                KeyValuePair<string, string> pair2 = new KeyValuePair<string,string>($"answer_id{i + 1}", contrl.Questions?.ElementAt(i).AnswerId.ToString());
-            }
-
-            return null;
         }
 
 

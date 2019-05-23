@@ -12,7 +12,10 @@ namespace IZrune.PCL.Abstraction.Services
 
         Task<IEnumerable<IQuestion>> GetQuestionsAsync( QuezCategory TestType);
 
-        Task GetQuezResultAsync(ITestControler contrl);
-       
+        Task GetQuezResultAsync(IQuezQuestion contrl);
+
+        Task<TimeSpan> GetExamDate(QuezCategory TestType);
+
+        Task GetDiploma();
     }
 }

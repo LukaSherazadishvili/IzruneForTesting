@@ -9,5 +9,6 @@ namespace IZrune.PCL.Implementation.Models
     {
         public int QuestionId { get; set; }
         public int AnswerId { get; set; }
+        public int Duration { get; set; }
     }
 }
