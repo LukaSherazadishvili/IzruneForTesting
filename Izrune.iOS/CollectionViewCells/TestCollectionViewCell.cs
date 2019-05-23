@@ -17,7 +17,7 @@ namespace Izrune.iOS.CollectionViewCells
 
         const float pageSpacing = 10;
 
-        public nfloat imagesCollectioHeight { get; set; } = 180;
+        public nfloat imagesCollectioHeight { get; set; } 
         public nfloat answersCollectioHeight { get; set; }
 
         public static nfloat CellSize { get; set; }
@@ -42,9 +42,10 @@ namespace Izrune.iOS.CollectionViewCells
             Question = question;
             questionLbl.Text = question?.title;
 
-            CalculateImagesCollectionViewHeight(question);
+            //CalculateImagesCollectionViewHeight(question);
 
-            imagesCollectionViewHeight.Constant = 0;
+            imagesCollectionViewHeight.Constant = imagesCollectioHeight;
+            //answerCollectionViewHeight.Constant = answersCollectioHeight;
 
             questionImagesCollectionView.ReloadData();
             answerCollectionView.ReloadData();

@@ -24,6 +24,9 @@ namespace Izrune.iOS
         public List<IQuestion> AllQuestions;
 
         private List<IQuestion> Questions = new List<IQuestion>();
+        private float imagesHeight;
+        private float answersHeight;
+        private float totalHeight;
 
         public override void ViewDidLoad()
         {
@@ -93,6 +96,9 @@ namespace Izrune.iOS
 
             var data = Questions?[0];
 
+            cell.imagesCollectioHeight = imagesHeight;
+            cell.answersCollectioHeight = answersHeight + 80;
+
             cell.InitData(data);
             return cell;
         }
@@ -123,8 +129,6 @@ namespace Izrune.iOS
 
             var ImagesCount = data?.images?.Count();
 
-            float imagesHeight;
-
             if (ImagesCount == 0)
                 imagesHeight = 0;
             else if (ImagesCount > 0 || ImagesCount <= 2)
@@ -134,13 +138,12 @@ namespace Izrune.iOS
 
             float spaceSumBetweenAnswers = 80;
 
-            float answersHeight = 0;
             foreach (var item in data?.Answers)
             {
                 answersHeight += (float)item?.title.GetSizeByText(appFont).Height;
             }
 
-            var totalHeight = titleHeight + imagesHeight + spaceSumBetweenAnswers + answersHeight;
+            totalHeight = titleHeight + imagesHeight + spaceSumBetweenAnswers + answersHeight;
 
             return totalHeight;
         }
