@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Foundation;
+using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS.CollectionViewCells
@@ -21,19 +22,17 @@ namespace Izrune.iOS.CollectionViewCells
             // Note: this .ctor should not contain any initialization logic.
         }
 
+        public void InitData(string url)
+        {
+            questionImageView.InitImageFromWeb(url, false);
+        }
+
         public override void AwakeFromNib()
         {
             base.AwakeFromNib();
 
-            questiomImageViewHolder.Layer.CornerRadius = 20;
-            questionImageView.Layer.CornerRadius = 20;
-        }
-
-        public override void LayoutSubviews()
-        {
-            base.LayoutSubviews();
-
-            questionImageView.Frame = new CoreGraphics.CGRect(0, 0, Frame.Width, Frame.Height);
+            questiomImageViewHolder.Layer.CornerRadius = 10;
+            questionImageView.Layer.CornerRadius = 10;
         }
 
     }

@@ -85,6 +85,10 @@ namespace Izrune.iOS.CollectionViewCells
             if(collectionView == questionImagesCollectionView)
             {
                 var questionCell = questionImagesCollectionView.DequeueReusableCell(QuestionImageCollectionViewCell.Identifier, indexPath) as QuestionImageCollectionViewCell;
+
+                var currData = Question?.images?.ElementAt(indexPath.Row);
+                questionCell.InitData(currData);
+
                 return questionCell;
             }
 
