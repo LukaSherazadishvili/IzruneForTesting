@@ -96,8 +96,8 @@ namespace Izrune.iOS
 
             var data = Questions?[0];
 
-            cell.imagesCollectioHeight = imagesHeight;
-            cell.answersCollectioHeight = answersHeight + 80;
+            //cell.imagesCollectioHeight = imagesHeight;
+            //cell.answersCollectioHeight = answersHeight + 80;
 
             cell.InitData(data);
             return cell;
