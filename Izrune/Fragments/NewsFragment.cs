@@ -13,7 +13,8 @@ using Android.Widget;
 using Izrune.Adapters.RecyclerviewAdapters;
 using Izrune.Attributes;
 using Izrune.testModels;
-
+using IZrune.PCL.Abstraction.Services;
+using MpdcContainer = ServiceContainer.ServiceContainer;
 namespace Izrune.Fragments
 {
     class NewsFragment : MPDCBaseFragment
@@ -23,18 +24,7 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.NewsRecyclerView)]
         RecyclerView NewsRecyclerView;
 
-        private List<TestNews> NewsList = new List<TestNews>()
-        {
-            new TestNews(){ImageId=Resource.Drawable.axalcixeizrune},
-             new TestNews(){ImageId=Resource.Drawable.chldimg},
-              new TestNews(){ImageId=Resource.Drawable.chldimg},
-               new TestNews(){ImageId=Resource.Drawable.axalcixeizrune},
-                new TestNews(){ImageId=Resource.Drawable.chldimg},
-                 new TestNews(){ImageId=Resource.Drawable.chldimg},
-                  new TestNews(){ImageId=Resource.Drawable.axalcixeizrune},
-                   new TestNews(){ImageId=Resource.Drawable.chldimg},
-                    new TestNews(){ImageId=Resource.Drawable.chldimg},
-        };
+      
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -42,12 +32,14 @@ namespace Izrune.Fragments
 
             
         }
-        public override void OnViewCreated(View view, Bundle savedInstanceState)
+        public async override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
 
+            var Result = await MpdcContainer.Instance.Get<INewsService>().GetNewsAsync();
+
             var manager = new LinearLayoutManager(this);
-            var Adapter = new NewsRecyclerAdapter(NewsList);
+            var Adapter = new NewsRecyclerAdapter(Result?.ToList());
             NewsRecyclerView.SetLayoutManager(manager);
             NewsRecyclerView.SetAdapter(Adapter);
         }

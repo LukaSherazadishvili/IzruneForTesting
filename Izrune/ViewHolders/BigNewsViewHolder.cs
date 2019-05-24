@@ -10,15 +10,21 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using FFImageLoading.Views;
 
 namespace Izrune.ViewHolders
 {
     class BigNewsViewHolder:RecyclerView.ViewHolder
     {
-        public ImageView Image { get; set; }
+        public ImageViewAsync Image { get; set; }
+        public TextView Date { get; set; }
+        public TextView Title { get; set; }
         public BigNewsViewHolder(View view) : base(view)
         {
-            Image = view.FindViewById<ImageView>(Resource.Id.MainImage);
+            Image = view.FindViewById<ImageViewAsync>(Resource.Id.MainImage);
+            Date = view.FindViewById<TextView>(Resource.Id.BigNewsDatetime);
+            Title = view.FindViewById<TextView>(Resource.Id.BigNewsTitle);
+
         }
     }
 }

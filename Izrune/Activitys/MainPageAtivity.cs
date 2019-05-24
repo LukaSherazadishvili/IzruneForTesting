@@ -14,6 +14,7 @@ using Android.Widget;
 using Izrune.Attributes;
 using Izrune.Fragments;
 using IZrune.PCL;
+using IZrune.PCL.Helpers;
 using IZrune.PCL.Implementation.Services;
 
 namespace Izrune.Activitys
@@ -97,6 +98,7 @@ namespace Izrune.Activitys
                     }
                 case Resource.Id.Exit:
                     {
+                        UserControl.Instance.Parent = null;
                         this.Finish();
                         break;
                     }

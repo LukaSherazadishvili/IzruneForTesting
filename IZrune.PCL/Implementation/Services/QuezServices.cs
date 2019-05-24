@@ -54,6 +54,8 @@ namespace IZrune.PCL.Implementation.Services
             return CurResult;
         }
 
+
+
         public async Task<IEnumerable<IQuestion>> GetQuestionsAsync( QuezCategory TestType)
         {
             IEnumerable<Question> QuestionLst;
@@ -87,7 +89,7 @@ namespace IZrune.PCL.Implementation.Services
                         .Select
                         (o => new Answer()
                         {
-                            id = o?.id,
+                            id = Convert.ToInt32( o?.id),
                             title = o?.title,
                             right = o?.right,
                             IsRight =o?.right == "1" ? true : false
@@ -112,15 +114,15 @@ namespace IZrune.PCL.Implementation.Services
         {
             var FormContent = new FormUrlEncodedContent(new[]
                    {
-                new KeyValuePair<string,string>("test_id",TestCode),
-                new KeyValuePair<string, string>("time",contrl.Duration.ToString()),
-                 new KeyValuePair<string, string>("question_id",contrl.Duration.ToString()),
-                 new KeyValuePair<string, string>("answer_id",contrl.Duration.ToString()),
+                new KeyValuePair<string,string>("test_id",TestCode),              
+                 new KeyValuePair<string, string>("question_id",contrl.QuestionId.ToString()),
+                 new KeyValuePair<string, string>("answer_id",contrl.AnswerId.ToString()),
+                 new KeyValuePair<string, string>("time",contrl.Duration.ToString())
 
             });
 
            
-            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getTest&hashcode=26e0c75cd4f8b1242b620a46aa701431", FormContent);
+            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getQuestionResult&hashcode=d7dd618dcab06b6f868e4cc69c81e1bd", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
 
         }

@@ -11,13 +11,14 @@
 		android:layout_height="200dp"
 		app:cardCornerRadius="10dp"
 		>
-		<ImageView
+		<FFImageLoading.Views.ImageViewAsync
 			android:id="@+id/MainImage"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:scaleType="centerCrop"
 			android:src="@drawable/axalcixeizrune"/>
 		<TextView
+		android:id="@+id/BigNewsDatetime"
 		android:fontFamily="@font/bpg_mrgvlovani"
 		android:textColor="#ffffff"
 		android:paddingLeft="10dp"
@@ -27,6 +28,7 @@
 		android:layout_height="wrap_content"
 		android:text="01 აპრილი, 2019"/>
 	<TextView
+		android:id="@+id/BigNewsTitle"
 		android:paddingRight="10dp"
 		android:layout_gravity="bottom"
 		android:fontFamily="@font/bpg_mrgvlovani"

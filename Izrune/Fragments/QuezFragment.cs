@@ -14,6 +14,7 @@ using FFImageLoading.Views;
 using Izrune.Attributes;
 using Izrune.Helpers;
 using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Helpers;
 
 namespace Izrune.Fragments
 {
@@ -98,8 +99,13 @@ namespace Izrune.Fragments
 
             var Index = MyViews.IndexOf((sender as View));
 
+            
+
+           await QuezControll.Instance.AddQuestion(question.id, question.Answers.ToList().ElementAt(Index).id);
+
             if (question.Answers.ElementAt(Index).IsRight)
             {
+                
                 (sender as View).FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesCorrectAnswerLine);
 
                 (sender as View).FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesCorrectButtonBackground);
@@ -108,6 +114,11 @@ namespace Izrune.Fragments
             {
                 (sender as View).FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesIncorrectAnswerLine);
                 (sender as View).FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesInCorectButtonBackground);
+            }
+
+            foreach(var items in MyViews)
+            {
+                items.Click -= AnswerView_Click;
             }
             await Task.Delay(1500);
 

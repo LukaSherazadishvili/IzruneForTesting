@@ -7,7 +7,7 @@ namespace IZrune.PCL.Implementation.Models
 {
    public class Answer : IAnswer
     {
-        public string id { get; set; }
+        public int id { get; set; }
         public string title { get; set; }
         public string right { get; set; }
         public bool IsRight { get; set; }

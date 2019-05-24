@@ -19,6 +19,7 @@
 		android:layout_height="wrap_content"
 		android:layout_weight="1">
 	<TextView
+				android:id="@+id/SmallNewsTitle"
 		android:layout_marginTop="5dp"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -29,6 +30,7 @@
 		android:textColor="#272727"/>
 
 		<TextView
+		android:id="@+id/SmaillNewsDate"
 		android:layout_marginTop="10dp"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -43,7 +45,7 @@
 		android:layout_height="90dp"
 		app:cardCornerRadius="10dp"
 		>
-			<ImageView
+			<FFImageLoading.Views.ImageViewAsync
 			android:id="@+id/MainSmallImage"
 			android:layout_width="match_parent"
 				android:layout_height="match_parent"

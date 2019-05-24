@@ -44,17 +44,23 @@ namespace Izrune.Fragments
             TrainigTestButton.Click += TrainigTestButton_Click;
 
             var Result =await UserControl.Instance.GetCurrentUser();
-            UserControl.Instance.SeTSelectedStudent(1);
+           
 
-           var DataAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, Result.Students.Select(i=> ($"{i.Name}   {i.LastName}")).ToList());
+           var DataAdapter = new ArrayAdapter<string>(this, 
+               Android.Resource.Layout.SimpleSpinnerDropDownItem, 
+               Result.Students.Select(i=> ($"{i.Name}   {i.LastName}")).ToList());
 
            // var adapter = new CategorySpinnerAdapter(this, Resource.Layout.itemSpinnerText, Result.Students.Select(i => ($"{i.Name}   {i.LastName}")).ToList(), StudSpiner);
            // var add = new MySpinnerAdapter(this, Result.Students.Select(i => ($"{i.Name}   {i.LastName}")).ToList());
             StudSpiner.Adapter = DataAdapter;
-            
+            StudSpiner.ItemSelected += (s, e) =>
+            {
+                UserControl.Instance.SeTSelectedStudent(Result.Students.ElementAt(e.Position).id);
+               
+            };
         }
 
-      
+        
 
         private void TrainigTestButton_Click(object sender, EventArgs e)
         {

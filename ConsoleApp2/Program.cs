@@ -23,7 +23,7 @@ namespace ConsoleApp2
 
             //var rr = MpdcContainer.Instance.Get<IQuezServices>().GetQuestionsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest).Result;
 
-           var r= MpdcContainer.Instance.Get<IQuezServices>().GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezExam).Result;
+           var r= MpdcContainer.Instance.Get<INewsService>().GetNewsAsync().Result;
             Console.ReadKey();
         }
     }

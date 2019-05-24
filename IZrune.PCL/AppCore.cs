@@ -23,6 +23,7 @@ namespace IZrune.PCL
             MpdcContainer.Instance.Register<IStatisticServices, StatisticServices>(new StatisticServices());
             MpdcContainer.Instance.Register<IUserServices, UserServices>(new UserServices());
             MpdcContainer.Instance.Register<IRegistrationServices, RegistrationServices>(new RegistrationServices());
+            MpdcContainer.Instance.Register<INewsService, NewsService>(new NewsService());
         }
 
 
