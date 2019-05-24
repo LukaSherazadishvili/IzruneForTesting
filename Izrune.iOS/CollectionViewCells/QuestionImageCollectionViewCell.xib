@@ -24,7 +24,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iCy-XV-BFh">
                                 <rect key="frame" x="5" y="5" width="368" height="171"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="fYN-2d-oUn">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fYN-2d-oUn">
                                         <rect key="frame" x="0.0" y="0.0" width="368" height="171"/>
                                     </imageView>
                                 </subviews>
@@ -61,7 +61,4 @@
             <point key="canvasLocation" x="271.01449275362319" y="97.433035714285708"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="izruneBg.png" width="379" height="296"/>
-    </resources>
 </document>

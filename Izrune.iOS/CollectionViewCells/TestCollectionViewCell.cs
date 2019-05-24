@@ -20,7 +20,7 @@ namespace Izrune.iOS.CollectionViewCells
         public nfloat imagesCollectioHeight { get; set; } 
         public nfloat answersCollectioHeight { get; set; }
 
-        public static nfloat CellSize { get; set; }
+        public nfloat CellSize { get; set; }
 
         public Action<IAnswer> AnswerClicked { get; set; }
 
@@ -40,15 +40,29 @@ namespace Izrune.iOS.CollectionViewCells
         {
 
             Question = question;
+
+            InitCollectionViews();
+
+            SetCellHeight(question);
             questionLbl.Text = question?.title;
 
             //CalculateImagesCollectionViewHeight(question);
 
             imagesCollectionViewHeight.Constant = imagesCollectioHeight;
-            //answerCollectionViewHeight.Constant = answersCollectioHeight;
+            answerCollectionViewHeight.Constant = answersCollectioHeight;
 
             questionImagesCollectionView.ReloadData();
             answerCollectionView.ReloadData();
+            answerCollectionView.ReloadData();
+        }
+
+        private void InitCollectionViews()
+        {
+            questionImagesCollectionView.Delegate = this;
+            questionImagesCollectionView.DataSource = this;
+
+            answerCollectionView.Delegate = this;
+            answerCollectionView.DataSource = this;
         }
 
         private void CalculateImagesCollectionViewHeight(IQuestion question)
@@ -71,6 +85,10 @@ namespace Izrune.iOS.CollectionViewCells
             if(collectionView == questionImagesCollectionView)
             {
                 var questionCell = questionImagesCollectionView.DequeueReusableCell(QuestionImageCollectionViewCell.Identifier, indexPath) as QuestionImageCollectionViewCell;
+
+                var currData = Question?.images?.ElementAt(indexPath.Row);
+                questionCell.InitData(currData);
+
                 return questionCell;
             }
 
@@ -102,7 +120,14 @@ namespace Izrune.iOS.CollectionViewCells
                 return new CoreGraphics.CGSize(collectionView.Frame.Width * 0.5, collectionView.Frame.Height * 0.5);
 
 
-            return new CoreGraphics.CGSize(collectionView.Frame.Width, 60);
+            var answer = Question?.Answers?.ElementAt(indexPath.Row).title;
+
+            var titleHeight = answer.GetStringHeight((float)collectionView.Frame.Width, 64, 15);
+
+            if(titleHeight >40)
+                return new CoreGraphics.CGSize(collectionView.Frame.Width, titleHeight + 30);
+            else
+                return new CoreGraphics.CGSize(collectionView.Frame.Width, 60);
         }
 
         public override void AwakeFromNib()
@@ -113,9 +138,11 @@ namespace Izrune.iOS.CollectionViewCells
 
             InitImagesCollectionViewLayout();
 
-            var height = questionLbl.Bounds.Size.Height;
+            //mainView.Layer.BorderWidth = 2;
+            //mainView.Layer.BorderColor = UIColor.Red.CGColor;
+            //var height = questionLbl.Bounds.Size.Height;
 
-            CellSize = height + imagesCollectioHeight + answersCollectioHeight;
+            //CellSize = height + imagesCollectioHeight + answersCollectioHeight;
         }
 
         private void InitImagesCollectionViewLayout()
@@ -150,36 +177,25 @@ namespace Izrune.iOS.CollectionViewCells
             return 1;
         }
 
-        float GetCellHeight(IQuestion question)
+        void SetCellHeight(IQuestion question)
         {
             var data = question;
 
-            var appFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 17);
-
-            var titleHeight = (float)data.title.GetSizeByText(appFont).Height;
-
             var ImagesCount = data?.images?.Count();
 
-            float imagesHeight;
-
             if (ImagesCount == 0)
-                imagesHeight = 0;
-            else if (ImagesCount > 0 || ImagesCount <= 2)
-                imagesHeight = 90;
+                imagesCollectioHeight = 0;
+            else if (ImagesCount > 0 && ImagesCount <= 2)
+                imagesCollectioHeight = 90;
             else
-                imagesHeight = 180;
+                imagesCollectioHeight = 180;
 
-            float spaceSumBetweenAnswers = 80;
-
-            float answersHeight = 0;
             foreach (var item in data?.Answers)
             {
-                answersHeight += (float)item?.title.GetSizeByText(appFont).Height;
+                var height = item.title.GetStringHeight((float)this.Frame.Width, 64, 15);
+
+                answersCollectioHeight += height > 40 ? height + 30 : height;
             }
-
-            var totalHeight = titleHeight + imagesHeight + spaceSumBetweenAnswers + answersHeight;
-
-            return totalHeight;
         }
     }
 }
