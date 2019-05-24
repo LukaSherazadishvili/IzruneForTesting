@@ -89,7 +89,7 @@ namespace Izrune.iOS
             questionCollectionView.Delegate = this;
             questionCollectionView.DataSource = this;
 
-            //answerProgressCollectionView.RegisterNibForCell();
+            answerProgressCollectionView.RegisterNibForCell(AnswerProgressCollectionViewCell.Nib, AnswerProgressCollectionViewCell.Identifier);
 
             answerProgressCollectionView.Delegate = this;
             answerProgressCollectionView.DataSource = this;
@@ -97,6 +97,13 @@ namespace Izrune.iOS
 
         public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {
+            if(collectionView == answerProgressCollectionView)
+            {
+                var answerCell = answerProgressCollectionView.DequeueReusableCell(AnswerCollectionViewCell.Identifier, indexPath) as AnswerCollectionViewCell;
+
+
+            }
+
             var cell = questionCollectionView.DequeueReusableCell(TestCollectionViewCell.Identifier, indexPath) as TestCollectionViewCell;
 
             var data = Questions?[0];
@@ -104,12 +111,23 @@ namespace Izrune.iOS
             //cell.imagesCollectioHeight = imagesHeight;
             //cell.answersCollectioHeight = answersHeight + 80;
 
+            cell.AnswerClicked = (question) =>
+            {
+                //TODO Scroll Progress CollectionView
+                var index = AllQuestions?.IndexOf(question);
+
+
+
+            };
+
             cell.InitData(data);
             return cell;
         }
 
         public nint GetItemsCount(UICollectionView collectionView, nint section)
         {
+            if(collectionView == answerProgressCollectionView)
+                return AllQuestions?.Count?? 0;
             return 1;
         }
 
@@ -118,6 +136,9 @@ namespace Izrune.iOS
         {
 
             //TODO Calculate CellHeight
+
+            if (collectionView == answerProgressCollectionView)
+                return new CoreGraphics.CGSize(75, 60);
 
             SetCellHeight(Questions[0]);
 

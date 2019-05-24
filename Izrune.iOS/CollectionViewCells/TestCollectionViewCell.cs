@@ -22,7 +22,7 @@ namespace Izrune.iOS.CollectionViewCells
 
         public nfloat CellSize { get; set; }
 
-        public Action<IAnswer> AnswerClicked { get; set; }
+        public Action<IQuestion> AnswerClicked { get; set; }
 
         IQuestion Question;
 
@@ -98,9 +98,9 @@ namespace Izrune.iOS.CollectionViewCells
 
             cell.InitData(data);
 
-            cell.AnswerClicked = (answer) =>
+            cell.AnswerClicked = () =>
             {
-                AnswerClicked?.Invoke(answer);
+                AnswerClicked?.Invoke(Question);
             };
             return cell;
         }
