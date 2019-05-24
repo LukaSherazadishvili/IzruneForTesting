@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="bpg_mrgvlovani_2010.ttf">
+            <string>BPGMrgvlovani2010</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AnswerProgressCellIdentifier" id="cZE-iV-UFb" customClass="AnswerProgressCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="321" height="92"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="321" height="92"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqz-7k-v42">
+                        <rect key="frame" x="0.0" y="0.0" width="321" height="92"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1 – 5.png" translatesAutoresizingMaskIntoConstraints="NO" id="efE-Tr-hzx">
+                                <rect key="frame" x="153" y="38.5" width="15" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="Qfu-bP-AGP"/>
+                                    <constraint firstAttribute="width" constant="15" id="nKd-Ar-B2J"/>
+                                </constraints>
+                            </imageView>
+                            <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l0j-ci-MkD">
+                                <rect key="frame" x="148" y="33.5" width="25" height="25"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKP-Hx-MkP">
+                                        <rect key="frame" x="3" y="3.5" width="19.5" height="18"/>
+                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.79614704847335815" green="0.52908533811569214" blue="0.83909380435943604" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="RKP-Hx-MkP" firstAttribute="centerY" secondItem="l0j-ci-MkD" secondAttribute="centerY" id="9p6-xC-gVX"/>
+                                    <constraint firstAttribute="width" constant="25" id="URn-NY-3v8"/>
+                                    <constraint firstAttribute="height" constant="25" id="k4i-od-STg"/>
+                                    <constraint firstItem="RKP-Hx-MkP" firstAttribute="centerX" secondItem="l0j-ci-MkD" secondAttribute="centerX" id="qT5-o5-vji"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="l0j-ci-MkD" firstAttribute="centerX" secondItem="aqz-7k-v42" secondAttribute="centerX" id="4oa-Cm-c6W"/>
+                            <constraint firstItem="l0j-ci-MkD" firstAttribute="centerY" secondItem="aqz-7k-v42" secondAttribute="centerY" id="fSB-Ct-3NN"/>
+                            <constraint firstItem="efE-Tr-hzx" firstAttribute="centerX" secondItem="aqz-7k-v42" secondAttribute="centerX" id="g3d-XT-fW3"/>
+                            <constraint firstItem="efE-Tr-hzx" firstAttribute="centerY" secondItem="aqz-7k-v42" secondAttribute="centerY" id="ugj-tM-IwT"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="aqz-7k-v42" secondAttribute="bottom" id="QD2-gl-IEI"/>
+                <constraint firstItem="aqz-7k-v42" firstAttribute="leading" secondItem="cZE-iV-UFb" secondAttribute="leading" id="eEP-xz-L61"/>
+                <constraint firstItem="aqz-7k-v42" firstAttribute="top" secondItem="cZE-iV-UFb" secondAttribute="top" id="lV2-KX-AnX"/>
+                <constraint firstAttribute="trailing" secondItem="aqz-7k-v42" secondAttribute="trailing" id="ynQ-fP-fFP"/>
+            </constraints>
+            <size key="customSize" width="321" height="92"/>
+            <connections>
+                <outlet property="answerNumberLbl" destination="RKP-Hx-MkP" id="3j0-2G-jDN"/>
+                <outlet property="answerNumberView" destination="l0j-ci-MkD" id="0fg-vD-lBB"/>
+                <outlet property="checkImageView" destination="efE-Tr-hzx" id="eZ8-WK-sg0"/>
+            </connections>
+            <point key="canvasLocation" x="229.71014492753625" y="67.633928571428569"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="1 – 5.png" width="25" height="25"/>
+    </resources>
+</document>

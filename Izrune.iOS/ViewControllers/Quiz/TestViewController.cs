@@ -88,6 +88,11 @@ namespace Izrune.iOS
 
             questionCollectionView.Delegate = this;
             questionCollectionView.DataSource = this;
+
+            //answerProgressCollectionView.RegisterNibForCell();
+
+            answerProgressCollectionView.Delegate = this;
+            answerProgressCollectionView.DataSource = this;
         }
 
         public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)

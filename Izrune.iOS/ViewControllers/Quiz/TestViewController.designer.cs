@@ -13,6 +13,9 @@ namespace Izrune.iOS
 	partial class TestViewController
 	{
 		[Outlet]
+		UIKit.UICollectionView answerProgressCollectionView { get; set; }
+
+		[Outlet]
 		UIKit.UICollectionView questionCollectionView { get; set; }
 
 		[Outlet]
@@ -36,14 +39,19 @@ namespace Izrune.iOS
 				skipQuestionBtn = null;
 			}
 
+			if (timeLbl != null) {
+				timeLbl.Dispose ();
+				timeLbl = null;
+			}
+
 			if (userNameLbl != null) {
 				userNameLbl.Dispose ();
 				userNameLbl = null;
 			}
 
-			if (timeLbl != null) {
-				timeLbl.Dispose ();
-				timeLbl = null;
+			if (answerProgressCollectionView != null) {
+				answerProgressCollectionView.Dispose ();
+				answerProgressCollectionView = null;
 			}
 		}
 	}

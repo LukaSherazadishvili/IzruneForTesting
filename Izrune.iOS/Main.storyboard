@@ -1121,15 +1121,41 @@
                                         <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BH1-yu-loG">
+                                        <rect key="frame" x="158" y="80" width="199" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="aFm-Gv-Qb3"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oBD-ff-PWw">
+                                            <size key="itemSize" width="50" height="30"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YUJ-v5-0Fl">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="20c-Qw-hV8" firstAttribute="leading" secondItem="R2x-QI-Chq" secondAttribute="trailing" constant="15" id="3aT-3Q-TPE"/>
                                     <constraint firstAttribute="height" constant="130" id="9WT-Ru-TlR"/>
                                     <constraint firstItem="20c-Qw-hV8" firstAttribute="top" secondItem="R2x-QI-Chq" secondAttribute="top" id="LlG-LB-t1O"/>
+                                    <constraint firstAttribute="bottom" secondItem="BH1-yu-loG" secondAttribute="bottom" constant="20" id="X1k-H1-A6o"/>
                                     <constraint firstAttribute="trailing" secondItem="20c-Qw-hV8" secondAttribute="trailing" constant="18" id="c3c-RY-i8v"/>
                                     <constraint firstItem="R2x-QI-Chq" firstAttribute="centerY" secondItem="qny-id-Vxd" secondAttribute="centerY" id="f0n-eH-1US"/>
+                                    <constraint firstItem="BH1-yu-loG" firstAttribute="leading" secondItem="R2x-QI-Chq" secondAttribute="trailing" constant="36" id="l9f-gV-zwb"/>
                                     <constraint firstItem="R2x-QI-Chq" firstAttribute="leading" secondItem="qny-id-Vxd" secondAttribute="leading" constant="22" id="n2K-Ud-RsU"/>
+                                    <constraint firstItem="BH1-yu-loG" firstAttribute="trailing" secondItem="20c-Qw-hV8" secondAttribute="trailing" id="tF0-E3-p4K"/>
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="kMS-F6-WOd">
@@ -1215,6 +1241,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="answerProgressCollectionView" destination="BH1-yu-loG" id="4C9-99-fnD"/>
                         <outlet property="questionCollectionView" destination="sY2-ss-6Oj" id="GDe-ra-1vp"/>
                         <outlet property="skipQuestionBtn" destination="7Lx-yl-tRe" id="NGC-1J-LdY"/>
                         <outlet property="timeLbl" destination="0JT-gx-cam" id="ha7-Yl-xEE"/>
@@ -1223,7 +1250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ub-1l-r40" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2180" y="2011"/>
+            <point key="canvasLocation" x="-2180" y="2010.5911330049262"/>
         </scene>
         <!--Statistic View Controller-->
         <scene sceneID="Uci-Ip-PeG">
