@@ -37,7 +37,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="iCy-XV-BFh" secondAttribute="bottom" constant="5" id="52y-GM-Oa5"/>
                             <constraint firstItem="iCy-XV-BFh" firstAttribute="top" secondItem="jMF-dz-14G" secondAttribute="top" constant="5" id="Ned-mz-v2z"/>

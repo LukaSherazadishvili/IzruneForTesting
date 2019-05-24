@@ -19,22 +19,16 @@ namespace Izrune.iOS.CollectionViewCells
 		UIKit.NSLayoutConstraint answerCollectionViewHeight { get; set; }
 
 		[Outlet]
-		UIKit.NSLayoutConstraint answersColletionViewHeight { get; set; }
-
-		[Outlet]
-		UIKit.NSLayoutConstraint contentHeight { get; set; }
-
-		[Outlet]
 		UIKit.NSLayoutConstraint imagesCollectionViewHeight { get; set; }
+
+		[Outlet]
+		UIKit.UIView mainView { get; set; }
 
 		[Outlet]
 		UIKit.UICollectionView questionImagesCollectionView { get; set; }
 
 		[Outlet]
 		UIKit.UILabel questionLbl { get; set; }
-
-		[Outlet]
-		UIKit.UIView scrollViewContentHeight { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -48,9 +42,9 @@ namespace Izrune.iOS.CollectionViewCells
 				answerCollectionViewHeight = null;
 			}
 
-			if (contentHeight != null) {
-				contentHeight.Dispose ();
-				contentHeight = null;
+			if (imagesCollectionViewHeight != null) {
+				imagesCollectionViewHeight.Dispose ();
+				imagesCollectionViewHeight = null;
 			}
 
 			if (questionImagesCollectionView != null) {
@@ -63,19 +57,9 @@ namespace Izrune.iOS.CollectionViewCells
 				questionLbl = null;
 			}
 
-			if (imagesCollectionViewHeight != null) {
-				imagesCollectionViewHeight.Dispose ();
-				imagesCollectionViewHeight = null;
-			}
-
-			if (answersColletionViewHeight != null) {
-				answersColletionViewHeight.Dispose ();
-				answersColletionViewHeight = null;
-			}
-
-			if (scrollViewContentHeight != null) {
-				scrollViewContentHeight.Dispose ();
-				scrollViewContentHeight = null;
+			if (mainView != null) {
+				mainView.Dispose ();
+				mainView = null;
 			}
 		}
 	}

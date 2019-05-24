@@ -43,5 +43,17 @@ namespace MPDC.iOS.Utils
             int diff = (7 + (dt.DayOfWeek - startOfWeek)) % 7;
             return dt.AddDays(-1 * diff).Date;
         }
+
+        public static float GetStringHeight(this string text, float width, float margins, int fontSize)
+        {
+            var nsText = new NSString(text);
+            var constarinedRect = new CGSize(width - margins, nfloat.MaxValue);
+
+            var rect = nsText.GetBoundingRect(constarinedRect, NSStringDrawingOptions.UsesLineFragmentOrigin, new UIStringAttributes { Font = AppFontOfSize(fontSize) }, null);
+
+            var height = Math.Ceiling(rect.Height);
+
+            return (float)height;
+        }
     }
 }

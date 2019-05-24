@@ -114,24 +114,25 @@ namespace Izrune.iOS
 
             //TODO Calculate CellHeight
 
-            var cellHeight = GetCellHeight(Questions[0]);
+            SetCellHeight(Questions[0]);
 
-            return new CoreGraphics.CGSize(collectionView.Frame.Width, 500);
+            return new CoreGraphics.CGSize(collectionView.Frame.Width, totalHeight + 60);
         }
 
-        float GetCellHeight(IQuestion question)
+        void SetCellHeight(IQuestion question)
         {
             var data = question;
 
-            var appFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 17);
+            var text = data.title;
 
-            var titleHeight = (float)data.title.GetSizeByText(appFont).Height;
+            var titleHeight = text.GetStringHeight((float)questionCollectionView.Frame.Width, 50, 17);
+
 
             var ImagesCount = data?.images?.Count();
 
             if (ImagesCount == 0)
                 imagesHeight = 0;
-            else if (ImagesCount > 0 || ImagesCount <= 2)
+            else if (ImagesCount > 0 && ImagesCount <= 2)
                 imagesHeight = 90;
             else
                 imagesHeight = 180;
@@ -140,12 +141,16 @@ namespace Izrune.iOS
 
             foreach (var item in data?.Answers)
             {
-                answersHeight += (float)item?.title.GetSizeByText(appFont).Height;
+                //answersHeight += item.title.GetStringHeight((float)questionCollectionView.Frame.Width, 77, 15);
+
+                var height = item.title.GetStringHeight((float)questionCollectionView.Frame.Width, 64, 15);
+
+                answersHeight += height > 40 ? height + 30 : height;
             }
 
-            totalHeight = titleHeight + imagesHeight + spaceSumBetweenAnswers + answersHeight;
+            totalHeight = titleHeight + imagesHeight + answersHeight + spaceSumBetweenAnswers + 50;
 
-            return totalHeight;
+            //return totalHeight;
         }
     }
 }
