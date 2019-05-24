@@ -9,6 +9,7 @@ using MpdcContainer = ServiceContainer.ServiceContainer;
 using System.Threading;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Implementation.Models;
+using IZrune.PCL.Enum;
 
 namespace IZrune.PCL.Helpers
 {
@@ -47,19 +48,56 @@ namespace IZrune.PCL.Helpers
 
         }
 
-        public async Task<TimeSpan> GetExamDate()
+        List<IQuestion> Questions;
+        bool EndTime;
+        int TimeInSecond ;
+
+
+        public IQuestion GetCurrentQuestion(int position)
         {
-           return await MpdcContainer.Instance.Get<IQuezServices>().GetExamDate(Enum.QuezCategory.QuezExam);
+            EndTime = true;
+            TimeInSecond = 0;
+            Task.Run(async() =>
+            {
+                while (EndTime)
+                {
+                    TimeInSecond++;
+                    await Task.Delay(1000);
+                }
+                
+            });
+
+           return Questions.ElementAt(position);
+        }
+
+        public async Task<IEnumerable<IQuestion>> GetAllQuestion(QuezCategory TestType)
+        {
+            var Result =await MpdcContainer.Instance.Get<IQuezServices>().GetQuestionsAsync(TestType);
+            Questions = Result.ToList();
+
+            return Result;
         }
 
 
-        public void AddQuestion(int QuestionId,int AnswerId,int Duration)
+        public async Task<TimeSpan> GetExamDate(Enum.QuezCategory categor)
         {
-           
-            QuezQuestion quez = new QuezQuestion() {AnswerId=AnswerId,Duration=Duration,QuestionId=QuestionId };
-            
-            MpdcContainer.Instance.Get<IQuezServices>().GetQuezResultAsync(quez);
+           return await MpdcContainer.Instance.Get<IQuezServices>().GetExamDate(categor);
+        }
 
+        private int Count = 0;
+        public async Task AddQuestion(int QuestionId,int AnswerId)
+        {
+            Count++;
+            EndTime = false;
+            QuezQuestion quez = new QuezQuestion() {AnswerId=AnswerId,Duration= TimeInSecond, QuestionId=QuestionId };
+            
+          await  MpdcContainer.Instance.Get<IQuezServices>().GetQuezResultAsync(quez);
+            
+            if (Count == 20)
+            {
+                await MpdcContainer.Instance.Get<IQuezServices>().GetDiploma();
+               
+            }
         }
 
 

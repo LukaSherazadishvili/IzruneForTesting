@@ -36,7 +36,7 @@ namespace IZrune.PCL.Helpers
             }
         }
 
-        private IParent Parent;
+        public IParent Parent;
 
         public IStudent CurrentStudent;
 
@@ -74,9 +74,12 @@ namespace IZrune.PCL.Helpers
 
         public async Task<IParent> GetCurrentUser()
         {
-            try { 
+            try {
+                if (Parent == null)
             Parent = await MpdcContainer.Instance.Get<IUserServices>().GetUserAsync();
-            
+
+
+
             return Parent;
 
             }

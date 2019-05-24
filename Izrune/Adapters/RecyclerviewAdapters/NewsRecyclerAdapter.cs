@@ -10,17 +10,19 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Izrune.Helpers;
 using Izrune.testModels;
 using Izrune.ViewHolders;
+using IZrune.PCL.Abstraction.Models;
 
 namespace Izrune.Adapters.RecyclerviewAdapters
 {
     class NewsRecyclerAdapter : RecyclerView.Adapter
     {
 
-        private List<TestNews> MyNewsList;
+        private List<INews> MyNewsList;
 
-        public NewsRecyclerAdapter(List<TestNews> lst)
+        public NewsRecyclerAdapter(List<INews> lst)
         {
             MyNewsList = lst;
         }
@@ -43,11 +45,16 @@ namespace Izrune.Adapters.RecyclerviewAdapters
         {
             if(holder is BigNewsViewHolder)
             {
-                (holder as BigNewsViewHolder).Image.SetImageResource(MyNewsList.ElementAt(position).ImageId);
+
+                (holder as BigNewsViewHolder).Image.LoadImage(MyNewsList.ElementAt(position).ImageUrl);
+                (holder as BigNewsViewHolder).Title.Text = MyNewsList.ElementAt(position).Title;
+                (holder as BigNewsViewHolder).Date.Text = MyNewsList.ElementAt(position).date.ToShortDateString();
             }
             else if(holder is SmallNewsViewHolder)
             {
-                (holder as SmallNewsViewHolder).Image.SetImageResource(MyNewsList.ElementAt(position).ImageId);
+                (holder as SmallNewsViewHolder).Image.LoadImage(MyNewsList.ElementAt(position).ImageUrl);
+                (holder as SmallNewsViewHolder).SmallTitle.Text = MyNewsList.ElementAt(position).Title;
+                (holder as SmallNewsViewHolder).SmallDate.Text = MyNewsList.ElementAt(position).date.ToShortDateString();
             }
         }
 

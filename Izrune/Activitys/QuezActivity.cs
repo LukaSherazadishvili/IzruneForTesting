@@ -16,6 +16,7 @@ using Izrune.Fragments;
 using Izrune.Helpers;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
 using MpdcContainer = ServiceContainer.ServiceContainer;
 namespace Izrune.Activitys
 {
@@ -62,7 +63,7 @@ namespace Izrune.Activitys
            
            
 
-            var QuestionsList = (await MpdcContainer.Instance.Get<IQuezServices>().GetQuestionsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest)).ToList();
+            var QuestionsList =await QuezControll.Instance.GetAllQuestion(IZrune.PCL.Enum.QuezCategory.QuezExam);
 
 
             for (int i = 1; i <QuestionsList.Count()+1; i++)
@@ -83,7 +84,7 @@ namespace Izrune.Activitys
 
 
                 
-                var FragmentQuestion = new QuezFragment(QuestionsList.ElementAt(Position));
+                var FragmentQuestion = new QuezFragment(QuezControll.Instance.GetCurrentQuestion(Position));
             FragmentQuestion.AnswerClick = () =>
             {
                 Position++;
@@ -106,16 +107,16 @@ namespace Izrune.Activitys
                 else
                     ShedulRecycler.ScrollToPosition(Position);
 
-                return QuestionsList?.ElementAt(Position);
+                return QuezControll.Instance.GetCurrentQuestion(Position);
             };
             ChangeFragmentPage(FragmentQuestion, Resource.Id.ContainerQuestion);
 
-
+            #region end
             //RunOnUiThread(async () =>
             //{
             //    while (CircProgress < EndProgress)
             //    {
-                    
+
             //        progBar.Progress = CircProgress++;
 
             //        await Task.Delay(1000);
@@ -127,6 +128,10 @@ namespace Izrune.Activitys
 
 
             //});
+            #endregion
+
+
+
 
             RunOnUiThread(async () => {
                 while (Progr > 0)
@@ -152,7 +157,7 @@ namespace Izrune.Activitys
                         CircProgress = 0;
                         progBar.Progress = 0;
 
-                        var frg = new QuezFragment(QuestionsList.ElementAt(Position));
+                        var frg = new QuezFragment(QuezControll.Instance.GetCurrentQuestion(Position));
 
                         frg.AnswerClick = () =>
                         {
@@ -176,8 +181,16 @@ namespace Izrune.Activitys
                             else
                                 ShedulRecycler.ScrollToPosition(Position);
 
-                            return QuestionsList?.ElementAt(Position);
+                            return QuezControll.Instance.GetCurrentQuestion(Position);
                         };
+
+
+
+
+
+
+
+
 
                         foreach (var items in Sheduler)
                         {
