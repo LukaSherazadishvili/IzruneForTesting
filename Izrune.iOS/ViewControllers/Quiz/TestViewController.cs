@@ -4,10 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Timers;
 using Foundation;
 using Izrune.iOS.CollectionViewCells;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
 using MPDC.iOS.Utils;
 using UIKit;
 
@@ -27,6 +29,7 @@ namespace Izrune.iOS
         private float imagesHeight;
         private float answersHeight;
         private float totalHeight;
+        private int currentIndex;
 
         public override void ViewDidLoad()
         {
@@ -38,15 +41,21 @@ namespace Izrune.iOS
 
             skipQuestionBtn.TouchUpInside += delegate
             {
-
-                Questions.Clear();
-                MoveToQuestions();
-                questionCollectionView.ReloadData();
+                GetNextQuestion();
             };
 
             InitCollectionView();
             MoveToQuestions();
 
+            questionCollectionView.ReloadData();
+
+            InitTimer();
+        }
+
+        private void GetNextQuestion()
+        {
+            Questions.Clear();
+            MoveToQuestions();
             questionCollectionView.ReloadData();
         }
 
@@ -54,8 +63,8 @@ namespace Izrune.iOS
         {
             if(AllQuestions.Count != 0)
             {
-                Questions.Add(AllQuestions?[0]);
-                AllQuestions.RemoveAt(0);
+                Questions.Add(AllQuestions?[currentIndex]);
+                //AllQuestions.RemoveAt(0);
             }
 
         }
@@ -99,9 +108,11 @@ namespace Izrune.iOS
         {
             if(collectionView == answerProgressCollectionView)
             {
-                var answerCell = answerProgressCollectionView.DequeueReusableCell(AnswerCollectionViewCell.Identifier, indexPath) as AnswerCollectionViewCell;
+                var answerCell = answerProgressCollectionView.DequeueReusableCell(AnswerProgressCollectionViewCell.Identifier, indexPath) as AnswerProgressCollectionViewCell;
 
+                //answerCell.InitData(AllQuestions[0], currentIndex);
 
+                return answerCell;
             }
 
             var cell = questionCollectionView.DequeueReusableCell(TestCollectionViewCell.Identifier, indexPath) as TestCollectionViewCell;
@@ -111,12 +122,14 @@ namespace Izrune.iOS
             //cell.imagesCollectioHeight = imagesHeight;
             //cell.answersCollectioHeight = answersHeight + 80;
 
-            cell.AnswerClicked = (question) =>
+            cell.AnswerClicked = async (question) =>
             {
                 //TODO Scroll Progress CollectionView
-                var index = AllQuestions?.IndexOf(question);
-
-
+                //question.Status = AnswerStatus.Current;
+                await Task.Delay(400);
+                GetNextQuestion();
+                answerProgressCollectionView.ReloadData();
+                currentIndex++;
 
             };
 
@@ -138,7 +151,7 @@ namespace Izrune.iOS
             //TODO Calculate CellHeight
 
             if (collectionView == answerProgressCollectionView)
-                return new CoreGraphics.CGSize(75, 60);
+                return new CoreGraphics.CGSize(40, 30);
 
             SetCellHeight(Questions[0]);
 
@@ -177,6 +190,55 @@ namespace Izrune.iOS
             totalHeight = titleHeight + imagesHeight + answersHeight + spaceSumBetweenAnswers + 50;
 
             //return totalHeight;
+        }
+
+        private void InitTimer()
+        {
+            Timer timer = new Timer();
+            timer.Interval = 1000;
+            timer.Enabled = true;
+
+            var minutes = 0;
+            var secondes = 5;
+
+            //TimeSpan totalTime = new TimeSpan(0, 30, 0);
+
+            TimeSpan asd = new TimeSpan();
+            
+            timer.Elapsed += (sender, e) => {
+
+                if (secondes == 0)
+                {
+                    if (minutes == 0 && secondes == 0)
+                    {
+                        timer.Enabled = false;
+                        timer.Stop();
+                        this.NavigationController.PopViewController(true);
+
+                    }
+
+                    minutes--;
+                    secondes = 60;
+                }
+                    
+                secondes--;
+                InvokeOnMainThread(() => timeLbl.Text = $"{minutes}:{secondes}");
+
+            };
+
+            timer.Start();
+        }
+
+        private void CalculateLeftTime(int minutes, int secondes)
+        {
+
+        }
+
+        private void ShowLoginAlert()
+        {
+            var alert = UIAlertController.Create("ყურადღევა", "დრო ამოიწურა.", UIAlertControllerStyle.Alert);
+            alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            this.PresentViewController(alert, true, null);
         }
     }
 }
