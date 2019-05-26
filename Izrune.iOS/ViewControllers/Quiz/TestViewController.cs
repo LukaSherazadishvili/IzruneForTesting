@@ -30,6 +30,9 @@ namespace Izrune.iOS
         private float answersHeight;
         private float totalHeight;
         private int currentIndex;
+        private Timer timer;
+
+        public bool IsTotalTime { get; set; } = false;
 
         public override void ViewDidLoad()
         {
@@ -49,7 +52,7 @@ namespace Izrune.iOS
 
             questionCollectionView.ReloadData();
 
-            InitTimer();
+            InitTotalTimer(IsTotalTime? 29 : 0);
         }
 
         private void GetNextQuestion()
@@ -127,6 +130,11 @@ namespace Izrune.iOS
                 //TODO Scroll Progress CollectionView
                 //question.Status = AnswerStatus.Current;
                 await Task.Delay(400);
+                if (!IsTotalTime)
+                {
+                    timer.Dispose();
+                    InitTotalTimer(0);
+                }
                 GetNextQuestion();
                 answerProgressCollectionView.ReloadData();
                 currentIndex++;
@@ -192,18 +200,16 @@ namespace Izrune.iOS
             //return totalHeight;
         }
 
-        private void InitTimer()
+        private void InitTotalTimer(int _minutes)
         {
-            Timer timer = new Timer();
+            timer = new Timer();
             timer.Interval = 1000;
             timer.Enabled = true;
 
-            var minutes = 0;
-            var secondes = 5;
+            var minutes = _minutes;
+            var secondes = 60;
 
             //TimeSpan totalTime = new TimeSpan(0, 30, 0);
-
-            TimeSpan asd = new TimeSpan();
             
             timer.Elapsed += (sender, e) => {
 
@@ -229,16 +235,57 @@ namespace Izrune.iOS
             timer.Start();
         }
 
-        private void CalculateLeftTime(int minutes, int secondes)
-        {
-
-        }
-
         private void ShowLoginAlert()
         {
             var alert = UIAlertController.Create("ყურადღევა", "დრო ამოიწურა.", UIAlertControllerStyle.Alert);
             alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
             this.PresentViewController(alert, true, null);
         }
+
+        //#region CircularAnimation
+        //var progressLayer = new CAShapeLayer();
+        //var trackLayer = new CAShapeLayer();
+
+        //var progressColor = UIColor.Green;
+        //var trackColor = UIColor.Red;
+
+        //progressLayer.StrokeColor = progressColor.CGColor;
+        //    trackLayer.StrokeColor = trackColor.CGColor;
+
+        //    viewForCircular.BackgroundColor = UIColor.Clear;
+        //    viewForCircular.ClipsToBounds = true;
+        //    viewForCircular.Layer.CornerRadius = 50;
+
+        //    var circlePath = UIBezierPath.FromArc(new CGPoint(viewForCircular.Frame.Width / 2, viewForCircular.Frame.Height / 2), (System.nfloat)((viewForCircular.Frame.Size.Width - 1.5) / 2),
+        //        (System.nfloat)(-0.5 * Math.PI), (System.nfloat)(1.5 * Math.PI), true);
+
+        //trackLayer.Path = circlePath.CGPath;
+        //    trackLayer.FillColor = UIColor.Clear.CGColor;
+        //    trackLayer.StrokeColor = trackColor.CGColor;
+
+        //    trackLayer.LineWidth = 10.0f;
+        //    trackLayer.StrokeEnd = 1.0f;
+
+        //    viewForCircular.Layer.AddSublayer(trackLayer);
+
+        //    progressLayer.Path = circlePath.CGPath;
+        //    progressLayer.FillColor = UIColor.Clear.CGColor;
+        //    progressLayer.StrokeColor = progressColor.CGColor;
+        //    progressLayer.LineWidth = 10.0f;
+        //    progressLayer.StrokeEnd = 0;
+
+        //    viewForCircular.Layer.AddSublayer(progressLayer);
+
+        //    var animation = CABasicAnimation.FromKeyPath("strokeEnd");
+        //animation.Duration = 10.0f;
+
+            //animation.From = NSObject.FromObject(0);
+            //animation.To = NSObject.FromObject(1.0f);
+
+            //animation.TimingFunction = CAMediaTimingFunction.FromName(new NSString(CAMediaTimingFunction.Linear.ToString()));
+            //progressLayer.StrokeEnd = 0.0f;
+            //progressLayer.AddAnimation(animation, "animateCircle");
+
+            //#endregion
     }
 }
