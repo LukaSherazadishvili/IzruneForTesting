@@ -42,8 +42,6 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
-            //await LoadDataAsync();
-
             skipQuestionBtn.Layer.CornerRadius = 20;
 
             skipQuestionBtn.TouchUpInside += delegate
@@ -119,17 +117,12 @@ namespace Izrune.iOS
             {
                 var answerCell = answerProgressCollectionView.DequeueReusableCell(AnswerProgressCollectionViewCell.Identifier, indexPath) as AnswerProgressCollectionViewCell;
 
-                //answerCell.InitData(AllQuestions[0], currentIndex);
-
                 return answerCell;
             }
 
             var cell = questionCollectionView.DequeueReusableCell(TestCollectionViewCell.Identifier, indexPath) as TestCollectionViewCell;
 
             var data = Questions?[0];
-
-            //cell.imagesCollectioHeight = imagesHeight;
-            //cell.answersCollectioHeight = answersHeight + 80;
 
             cell.AnswerClicked = async (question) =>
             {
@@ -165,7 +158,6 @@ namespace Izrune.iOS
         {
 
             //TODO Calculate CellHeight
-            View.LayoutIfNeeded();
 
             if (collectionView == answerProgressCollectionView)
                 return new CoreGraphics.CGSize(40, 30);
