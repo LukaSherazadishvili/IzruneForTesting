@@ -180,16 +180,12 @@ namespace Izrune.iOS
         void SetCellHeight(IQuestion question)
         {
             totalHeight = 0;
+            answersHeight = 0;
 
             var data = question;
-
             var text = data.title;
-
             var titleHeight = text.GetStringHeight((float)questionCollectionView.Frame.Width, 50, 17);
-
-
             var ImagesCount = data?.images?.Count();
-
             if (ImagesCount == 0)
                 imagesHeight = 0;
             else if (ImagesCount > 0 && ImagesCount <= 2)
@@ -201,11 +197,8 @@ namespace Izrune.iOS
 
             foreach (var item in data?.Answers)
             {
-                //answersHeight += item.title.GetStringHeight((float)questionCollectionView.Frame.Width, 77, 15);
-
                 var height = item.title.GetStringHeight((float)questionCollectionView.Frame.Width, 64, 15);
-
-                answersHeight += height > 40 ? height + 30 : height;
+                answersHeight += height + 40;
             }
 
             totalHeight = titleHeight + imagesHeight + answersHeight + spaceSumBetweenAnswers + 50;

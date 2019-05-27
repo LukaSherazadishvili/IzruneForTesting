@@ -124,10 +124,17 @@ namespace Izrune.iOS.CollectionViewCells
 
             var titleHeight = answer.GetStringHeight((float)collectionView.Frame.Width, 64, 15);
 
-            if(titleHeight >40)
-                return new CoreGraphics.CGSize(collectionView.Frame.Width, titleHeight + 30);
+            if(titleHeight >=40)
+            {
+                var size =  new CoreGraphics.CGSize(collectionView.Frame.Width, titleHeight + 40);
+                return size;
+            }
             else
-                return new CoreGraphics.CGSize(collectionView.Frame.Width, 60);
+            {
+                var size = new CoreGraphics.CGSize(collectionView.Frame.Width, 60);
+                return size;
+            }
+                
         }
 
         public override void AwakeFromNib()
@@ -179,6 +186,8 @@ namespace Izrune.iOS.CollectionViewCells
 
         void SetCellHeight(IQuestion question)
         {
+            imagesCollectioHeight = 0;
+
             var data = question;
 
             var ImagesCount = data?.images?.Count();
@@ -194,7 +203,7 @@ namespace Izrune.iOS.CollectionViewCells
             {
                 var height = item.title.GetStringHeight((float)this.Frame.Width, 64, 15);
 
-                answersCollectioHeight += height > 40 ? height + 30 : height;
+                answersCollectioHeight += height + 40;
             }
         }
     }
