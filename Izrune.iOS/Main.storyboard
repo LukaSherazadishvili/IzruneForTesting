@@ -1246,6 +1246,7 @@
                         <outlet property="skipQuestionBtn" destination="7Lx-yl-tRe" id="NGC-1J-LdY"/>
                         <outlet property="timeLbl" destination="0JT-gx-cam" id="ha7-Yl-xEE"/>
                         <outlet property="userNameLbl" destination="20c-Qw-hV8" id="q6I-Jx-kK3"/>
+                        <outlet property="viewForCircular" destination="R2x-QI-Chq" id="4Eq-uB-dqn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ub-1l-r40" userLabel="First Responder" sceneMemberID="firstResponder"/>

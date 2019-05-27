@@ -75,6 +75,7 @@ namespace Izrune.iOS
 
             logInBtn.AddShadowToView(10, 25, 0.8f, AppColors.Succesful);
             registrationBtn.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
+
         }
 
         private void ShowLoginAlert()
