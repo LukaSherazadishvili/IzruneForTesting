@@ -10,8 +10,6 @@ namespace ConsoleApp2
     class Program
     {
 
-       
-
 
         static  void Main(string[] args)
         {
@@ -22,8 +20,8 @@ namespace ConsoleApp2
             // var rrrrr=stt.GetStudentStatisticsAsync(1).Result;
 
             //var rr = MpdcContainer.Instance.Get<IQuezServices>().GetQuestionsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest).Result;
-
-           var r= MpdcContainer.Instance.Get<INewsService>().GetNewsAsync().Result;
+           var res= QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezTest).Result;
+          
             Console.ReadKey();
         }
     }
