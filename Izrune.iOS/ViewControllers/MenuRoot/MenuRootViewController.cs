@@ -143,6 +143,8 @@ namespace Izrune.iOS.ViewControllers
 
             var navVc = vc.CreateWithNavigationControllerWithMenu(ToggleMenu, UIImage.FromBundle("icMenu.png"), AppColors.Tint, false);
 
+            vc.NavigationController?.NavigationBar?.InitNavigationBarColorWithNoShadow(UIColor.White);
+
             //vc.NavigationController.NavigationBar.InitNavigationBarColorWithNoShadow(UIColor.Orange);
             //vc.NavigationItem.InitLogoToNav(UIImage.FromBundle("4.png"));
 
