@@ -1,5 +1,6 @@
 ﻿using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
 using IZrune.PCL.Implementation.Models;
 using IZrune.PCL.WebUtils;
 using IZrune.TransferModels;
@@ -15,22 +16,37 @@ namespace IZrune.PCL.Implementation.Services
 {
    public class UserServices : IUserServices
     {
-        public async Task<bool> EditParentProfileAsync(int ParrentId, string ParrentMail, string ParrentPhone, string City, string Village)
+       
+
+        public async Task<bool> EditParentProfileAsync( string ParrentMail, string ParrentPhone, string City, string Village)
         {
 
             var FormContent = new FormUrlEncodedContent(new[]
                 {
-                new KeyValuePair<string,string>("parent_id",ParrentId.ToString()),
-                 new KeyValuePair<string,string>("parent_id",ParrentMail),
-                  new KeyValuePair<string,string>("parent_id",ParrentPhone),
-                  new KeyValuePair<string,string>("parent_id",City),
-                  new KeyValuePair<string,string>("parent_id",Village)
+                new KeyValuePair<string,string>("parent_id",UserControl.Instance.GetCurrentUser().Result.id.ToString()),
+                 new KeyValuePair<string,string>("email",ParrentMail),
+                  new KeyValuePair<string,string>("phone",ParrentPhone),
+                  new KeyValuePair<string,string>("city",City),
+                  new KeyValuePair<string,string>("village",Village)
                 });
             var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=editParentProfile&hashcode=0a3110bbe8a96c91eb33bf6072598368", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
 
             return false;
 
+        }
+
+        public async Task EditStudentProfile(string Email, string Phone, int regionId, string village, int SchoolId)
+        {
+            var FormContent = new FormUrlEncodedContent(new[]
+               {
+                new KeyValuePair<string,string>("student_id",UserControl.Instance.CurrentStudent.id.ToString()),
+                 new KeyValuePair<string,string>("email",Email),
+                  new KeyValuePair<string,string>("phone",Phone),
+                  new KeyValuePair<string,string>("region_id",regionId.ToString()),
+                  new KeyValuePair<string,string>("village",village),
+                   new KeyValuePair<string,string>("school_id",SchoolId.ToString())
+                });
         }
 
         public async Task<IPromoCode> GetPromoCodeAsync(string SchoolId= "1902")

@@ -13,7 +13,10 @@ namespace IZrune.PCL.Abstraction.Services
 
         Task<IPromoCode> GetPromoCodeAsync(string SchoolId);
 
-        Task<bool> EditParentProfileAsync(int ParrentId, string ParrentMail, string ParrentPhone, string City, string Village);
+        Task<bool> EditParentProfileAsync(string ParrentMail, string ParrentPhone, string City, string Village);
 
+     
+        Task EditStudentProfile(string Email, string Phone, int regionId, string village, int SchoolId);
+      
     }
 }
