@@ -31,6 +31,10 @@ namespace Izrune.iOS.ViewControllers
         const string ContactStoryboardId = "ContactViewControllerStoryboardId";
         const string MoreInfoStoryboardId = "MoreInfoViewControllerStoryboardId";
         const string StatisticStoryboardId = "StatisticStoryboardId";
+        const string MainTestStoryboardId = "StartTestStoryboardId";
+        const string UpdatePacketStoryboardId = "UpdatePacketStoryboardId";
+        const string EditProfileStoryboardId = "EditProfileStoryboardId";
+
         #endregion
 
         public MenuRootViewController()
@@ -40,13 +44,13 @@ namespace Izrune.iOS.ViewControllers
             menuViewControllerCreations = new Dictionary<MenuType, Func<UIViewController>>()
             {
                 {MenuType.LogIn, () => CreateViewControllerByStoryboard(LogInStoryboardId)},
-                {MenuType.News, () => CreateViewControllerByStoryboard(TestViewController.StoryboardId)},
+                {MenuType.News, () => CreateViewControllerByStoryboard(NewsStoryboardId)},
                 {MenuType.MoreInfo, () => CreateViewControllerByStoryboard(MoreInfoStoryboardId)},
                 {MenuType.Contact, () => CreateViewControllerByStoryboard(ContactStoryboardId)},
-                {MenuType.Main, () => CreateViewControllerByStoryboard(TestChooseViewController.StoryboardId)},
+                {MenuType.Main, () => CreateViewControllerByStoryboard(MainTestStoryboardId)},
                 {MenuType.Statistic, () => CreateViewControllerByStoryboard(StatisticStoryboardId)},
-                {MenuType.UpdatePacket, () => CreateViewControllerByStoryboard(UpdatePacketViewController.StoryboardId)},
-                {MenuType.EditProfile, () => CreateViewControllerByStoryboard(EditProfileViewController.StoryboardId)},
+                {MenuType.UpdatePacket, () => CreateViewControllerByStoryboard(UpdatePacketStoryboardId)},
+                {MenuType.EditProfile, () => CreateViewControllerByStoryboard(EditProfileStoryboardId)},
                 {MenuType.LogOut, () => CreateViewControllerByStoryboard(NewsViewController.StoryboardId)},
             };
         }
