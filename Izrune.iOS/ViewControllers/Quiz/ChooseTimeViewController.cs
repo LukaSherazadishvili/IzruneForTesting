@@ -30,11 +30,6 @@ namespace Izrune.iOS
             base.ViewDidLoad();
 
             InitGestures();
-        }
-
-        public override void ViewDidLayoutSubviews()
-        {
-            base.ViewDidLayoutSubviews();
 
             InitUI();
         }

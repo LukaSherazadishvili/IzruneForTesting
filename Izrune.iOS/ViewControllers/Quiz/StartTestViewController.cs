@@ -116,9 +116,7 @@ namespace Izrune.iOS
             if (exQuizTransparentView.GestureRecognizers == null || exQuizTransparentView.GestureRecognizers?.Count() == 0)
             {
                 exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
-
-                    //var data = await GetQuiz(SelectedStudent.id, QuezCategory.QuezTest);
-
+                
                     var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
                     chooseTimeVc.SelectedStudent = SelectedStudent;
                     chooseTimeVc.SelectedCategory = QuezCategory.QuezExam;

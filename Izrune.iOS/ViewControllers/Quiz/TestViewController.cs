@@ -68,7 +68,7 @@ namespace Izrune.iOS
 
         private void MoveToQuestions()
         {
-            if(AllQuestions.Count != 0)
+            if(currentIndex < AllQuestions.Count)
             {
                 Questions.Add(AllQuestions?[currentIndex]);
                 //AllQuestions.RemoveAt(0);
@@ -122,7 +122,8 @@ namespace Izrune.iOS
 
             var cell = questionCollectionView.DequeueReusableCell(TestCollectionViewCell.Identifier, indexPath) as TestCollectionViewCell;
 
-            var data = Questions?[0];
+
+            var data = AllQuestions[currentIndex];
 
             cell.AnswerClicked = async (question) =>
             {
@@ -134,9 +135,17 @@ namespace Izrune.iOS
                     timer.Dispose();
                     InitTotalTimer(0);
                 }
+
+                if (currentIndex < AllQuestions?.Count - 1)
+                    currentIndex++;
+                else
+                {
+                    //TODO End Test And Submit
+                    this.NavigationController.PopViewController(true);
+                }
                 GetNextQuestion();
                 answerProgressCollectionView.ReloadData();
-                currentIndex++;
+
                 if(!IsTotalTime)
                     InitCircular(59);
 
@@ -162,13 +171,16 @@ namespace Izrune.iOS
             if (collectionView == answerProgressCollectionView)
                 return new CoreGraphics.CGSize(40, 30);
 
-            SetCellHeight(Questions[0]);
+            if(currentIndex < AllQuestions?.Count)
+                SetCellHeight(AllQuestions?[currentIndex]);
 
             return new CoreGraphics.CGSize(collectionView.Frame.Width, totalHeight + 60);
         }
 
         void SetCellHeight(IQuestion question)
         {
+            totalHeight = 0;
+
             var data = question;
 
             var text = data.title;
