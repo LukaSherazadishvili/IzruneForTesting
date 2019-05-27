@@ -31,7 +31,7 @@ namespace Izrune.iOS.ViewControllers
         const string ContactStoryboardId = "ContactViewControllerStoryboardId";
         const string MoreInfoStoryboardId = "MoreInfoViewControllerStoryboardId";
         const string StatisticStoryboardId = "StatisticStoryboardId";
-        const string MainTestStoryboardId = "StartTestStoryboardId";
+        const string StartTestStoryboardId = "StartTestStoryboardId";
         const string UpdatePacketStoryboardId = "UpdatePacketStoryboardId";
         const string EditProfileStoryboardId = "EditProfileStoryboardId";
 
@@ -47,7 +47,7 @@ namespace Izrune.iOS.ViewControllers
                 {MenuType.News, () => CreateViewControllerByStoryboard(NewsStoryboardId)},
                 {MenuType.MoreInfo, () => CreateViewControllerByStoryboard(MoreInfoStoryboardId)},
                 {MenuType.Contact, () => CreateViewControllerByStoryboard(ContactStoryboardId)},
-                {MenuType.Main, () => CreateViewControllerByStoryboard(MainTestStoryboardId)},
+                {MenuType.Main, () => CreateViewControllerByStoryboard(StartTestStoryboardId)},
                 {MenuType.Statistic, () => CreateViewControllerByStoryboard(StatisticStoryboardId)},
                 {MenuType.UpdatePacket, () => CreateViewControllerByStoryboard(UpdatePacketStoryboardId)},
                 {MenuType.EditProfile, () => CreateViewControllerByStoryboard(EditProfileStoryboardId)},
@@ -114,7 +114,7 @@ namespace Izrune.iOS.ViewControllers
 
             loginVc.LogedIn = () =>
             {
-                SideBarController.ChangeContentView(menuViewControllerCreations[MenuType.News].Invoke());
+                SideBarController.ChangeContentView(menuViewControllerCreations[MenuType.Main].Invoke());
             };
 
             return MainPageVc;
