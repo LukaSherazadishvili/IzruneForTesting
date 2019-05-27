@@ -3,6 +3,8 @@
 using System;
 
 using Foundation;
+using Izrune.iOS.Utils;
+using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS
@@ -18,6 +20,39 @@ namespace Izrune.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+        }
+
+        private void InitUI()
+        {
+            totalTimeView.ApplyGradient(AppColors.PurpleGradient);
+            derivedTimeView.ApplyGradient(AppColors.PurpleGradient);
+
+            //totalTimeShadowView.Layer.CornerRadius = 27;
+            //derivedTimeShadowView.Layer.CornerRadius = 27;
+
+            totalTimeShadowView.ToCardView();
+            derivedTimeShadowView.ToCardView();
+            //totalTimeShadowView.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
+            //derivedTimeShadowView.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
+        }
+
+        private void InitGestures()
+        {
+            if(totalTimeView.GestureRecognizers == null || totalTimeView.GestureRecognizers?.Length == 0)
+            {
+                totalTimeView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                     //TODO
+                }));
+            }
+
+            if (derivedTimeView.GestureRecognizers == null || derivedTimeView.GestureRecognizers?.Length == 0)
+            {
+                derivedTimeView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    //TODO
+                }));
+            }
         }
     }
 }

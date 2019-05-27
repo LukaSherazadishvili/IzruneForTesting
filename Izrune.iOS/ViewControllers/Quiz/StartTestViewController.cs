@@ -50,17 +50,14 @@ namespace Izrune.iOS
 
             testDate = (await QuezControll.Instance.GetExamDate(QuezCategory.QuezTest));
 
+            InitSummTimer();
+
             Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
 
             var item = Students[0];
 
             Students.Add(item);
             Students.Add(item);
-            Students.Add(item);
-            Students.Add(item);
-            Students.Add(item);
-
-            InitSummTimer();
 
             InitGestures();
 
@@ -119,8 +116,8 @@ namespace Izrune.iOS
 
                     var data = await GetQuiz(SelectedStudent.id, QuezCategory.QuezTest);
 
-                    var testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
-                    testVc.AllQuestions = data;
+                    var testVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
+                    //testVc.AllQuestions = data;
 
                     this.NavigationController.PushViewController(testVc, true);
                 }));

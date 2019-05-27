@@ -1708,9 +1708,20 @@
                                 <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RBl-V4-VtX">
-                                <rect key="frame" x="36" y="212.33333333333337" width="303" height="130"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1cs-Bq-dve">
+                                <rect key="frame" x="34" y="145.33333333333334" width="307" height="134.00000000000003"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RBl-V4-VtX">
+                                <rect key="frame" x="34" y="145.33333333333334" width="307" height="134.00000000000003"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CBL-Ge-Jx7">
+                                <rect key="frame" x="34" y="324.33333333333331" width="307" height="134"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ROr-oR-HOd">
+                                <rect key="frame" x="34" y="324.33333333333331" width="307" height="134"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="49" translatesAutoresizingMaskIntoConstraints="NO" id="6mz-xh-hnI">
@@ -1919,26 +1930,50 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ROr-oR-HOd" firstAttribute="top" secondItem="iZV-q5-ZGG" secondAttribute="top" constant="-2" id="0Cf-l2-c0a"/>
+                            <constraint firstItem="1cs-Bq-dve" firstAttribute="trailing" secondItem="RBl-V4-VtX" secondAttribute="trailing" id="191-II-sDA"/>
+                            <constraint firstItem="1cs-Bq-dve" firstAttribute="bottom" secondItem="RBl-V4-VtX" secondAttribute="bottom" id="1b5-D5-FoD"/>
                             <constraint firstItem="FtC-Cp-1Ri" firstAttribute="centerY" secondItem="1yo-dr-AFR" secondAttribute="centerY" id="2dr-4g-oRJ"/>
                             <constraint firstItem="FtC-Cp-1Ri" firstAttribute="centerX" secondItem="1yo-dr-AFR" secondAttribute="centerX" id="2zA-kU-Npj"/>
+                            <constraint firstItem="1cs-Bq-dve" firstAttribute="top" secondItem="RBl-V4-VtX" secondAttribute="top" id="6Fa-TA-wx3"/>
                             <constraint firstItem="dkE-VG-BXy" firstAttribute="top" secondItem="O0A-sX-nJh" secondAttribute="bottom" constant="30" id="6Gu-su-swh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ry1-Ha-7Iq" secondAttribute="trailing" constant="15" id="6X0-xh-7GC"/>
                             <constraint firstAttribute="trailing" secondItem="W7n-45-gTV" secondAttribute="trailing" id="6tc-wy-qjR"/>
+                            <constraint firstItem="RBl-V4-VtX" firstAttribute="bottom" secondItem="rTz-cd-mt8" secondAttribute="bottom" constant="2" id="8yh-SW-7QY"/>
+                            <constraint firstItem="ROr-oR-HOd" firstAttribute="trailing" secondItem="iZV-q5-ZGG" secondAttribute="trailing" constant="2" id="9rc-tl-kKJ"/>
+                            <constraint firstItem="CBL-Ge-Jx7" firstAttribute="trailing" secondItem="ROr-oR-HOd" secondAttribute="trailing" id="AyY-LO-3Os"/>
                             <constraint firstItem="ry1-Ha-7Iq" firstAttribute="top" secondItem="W7n-45-gTV" secondAttribute="top" constant="30" id="Ds0-1S-JyE"/>
                             <constraint firstItem="pzl-qt-V7b" firstAttribute="top" secondItem="ry1-Ha-7Iq" secondAttribute="bottom" constant="30" id="GQL-bK-bHM"/>
+                            <constraint firstItem="CBL-Ge-Jx7" firstAttribute="leading" secondItem="ROr-oR-HOd" secondAttribute="leading" id="HDJ-yT-f2G"/>
                             <constraint firstItem="FtC-Cp-1Ri" firstAttribute="width" secondItem="1yo-dr-AFR" secondAttribute="width" id="HoY-ow-QMh"/>
+                            <constraint firstItem="CBL-Ge-Jx7" firstAttribute="bottom" secondItem="ROr-oR-HOd" secondAttribute="bottom" id="IEd-2j-KYS"/>
+                            <constraint firstItem="CBL-Ge-Jx7" firstAttribute="top" secondItem="ROr-oR-HOd" secondAttribute="top" id="K5g-Oa-jgC"/>
                             <constraint firstItem="pzl-qt-V7b" firstAttribute="top" secondItem="W7n-45-gTV" secondAttribute="bottom" id="Okh-6c-k5L"/>
                             <constraint firstItem="6mz-xh-hnI" firstAttribute="leading" secondItem="1yo-dr-AFR" secondAttribute="leading" constant="36" id="PN6-ql-ZSm"/>
                             <constraint firstItem="dkE-VG-BXy" firstAttribute="leading" secondItem="1yo-dr-AFR" secondAttribute="leadingMargin" constant="20" id="PwR-0S-lcZ"/>
+                            <constraint firstItem="ROr-oR-HOd" firstAttribute="leading" secondItem="iZV-q5-ZGG" secondAttribute="leading" constant="-2" id="VZF-jK-pvT"/>
+                            <constraint firstItem="RBl-V4-VtX" firstAttribute="leading" secondItem="rTz-cd-mt8" secondAttribute="leading" constant="-2" id="XfB-xA-HwJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dkE-VG-BXy" secondAttribute="trailing" constant="20" id="YN1-qQ-OF9"/>
                             <constraint firstAttribute="trailing" secondItem="6mz-xh-hnI" secondAttribute="trailing" constant="36" id="Yts-TP-VRr"/>
+                            <constraint firstItem="RBl-V4-VtX" firstAttribute="trailing" secondItem="rTz-cd-mt8" secondAttribute="trailing" constant="2" id="Yww-am-fJy"/>
                             <constraint firstItem="dkE-VG-BXy" firstAttribute="centerX" secondItem="1yo-dr-AFR" secondAttribute="centerX" id="cXx-1c-Mtl"/>
                             <constraint firstItem="6mz-xh-hnI" firstAttribute="top" secondItem="dkE-VG-BXy" secondAttribute="bottom" constant="50" id="dNM-3C-JU7"/>
+                            <constraint firstItem="ROr-oR-HOd" firstAttribute="bottom" secondItem="iZV-q5-ZGG" secondAttribute="bottom" constant="2" id="etv-XY-cHr"/>
                             <constraint firstItem="FtC-Cp-1Ri" firstAttribute="height" secondItem="1yo-dr-AFR" secondAttribute="height" id="h34-fs-lV3"/>
+                            <constraint firstItem="RBl-V4-VtX" firstAttribute="top" secondItem="rTz-cd-mt8" secondAttribute="top" constant="-2" id="p0f-sM-EkM"/>
+                            <constraint firstItem="1cs-Bq-dve" firstAttribute="leading" secondItem="RBl-V4-VtX" secondAttribute="leading" id="q1S-rF-gtI"/>
                             <constraint firstItem="ry1-Ha-7Iq" firstAttribute="leading" secondItem="1yo-dr-AFR" secondAttribute="leadingMargin" constant="15" id="rkf-BH-Dju"/>
                             <constraint firstItem="W7n-45-gTV" firstAttribute="leading" secondItem="1yo-dr-AFR" secondAttribute="leading" id="xMI-xi-00q"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="derivedTimeShadowView" destination="ROr-oR-HOd" id="e6D-Vq-pht"/>
+                        <outlet property="derivedTimeView" destination="iZV-q5-ZGG" id="2zb-Wa-GfG"/>
+                        <outlet property="shadowView1" destination="1cs-Bq-dve" id="pO9-xZ-ytF"/>
+                        <outlet property="shadowView2" destination="CBL-Ge-Jx7" id="FQS-Tr-aGC"/>
+                        <outlet property="totalTimeShadowView" destination="RBl-V4-VtX" id="JIL-Z6-ADK"/>
+                        <outlet property="totalTimeView" destination="rTz-cd-mt8" id="f2z-s8-36p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CAg-xP-BQe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
