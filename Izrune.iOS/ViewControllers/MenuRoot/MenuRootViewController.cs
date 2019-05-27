@@ -110,6 +110,13 @@ namespace Izrune.iOS.ViewControllers
 
             MainPageVc.ViewControllers[0].NavigationItem.LeftBarButtonItem = barButton;
 
+            var loginVc = MainPageVc.ViewControllers[0] as LogInViewController;
+
+            loginVc.LogedIn = () =>
+            {
+                SideBarController.ChangeContentView(menuViewControllerCreations[MenuType.Main].Invoke());
+            };
+
             return MainPageVc;
         }
 
@@ -150,12 +157,12 @@ namespace Izrune.iOS.ViewControllers
 
             var navVc = _storyBoard.InstantiateViewController(storyboardId).CreateWithNavigationControllerWithMenu(ToggleMenu, UIImage.FromBundle("ichamburger.png"), AppColors.Tint, false);
 
-            //var loginVc = navVc.ViewControllers[0] as LogInViewController;
+            var loginVc = navVc.ViewControllers[0] as LogInViewController;
 
-            //loginVc.LogedIn = () =>
-            //{
-            //    SideBarController.ChangeContentView(menuViewControllerCreations[MenuType.Main].Invoke());
-            //};
+            loginVc.LogedIn = () =>
+            {
+                SideBarController.ChangeContentView(menuViewControllerCreations[MenuType.Main].Invoke());
+            };
 
             return navVc;
         }
