@@ -150,6 +150,13 @@ namespace Izrune.iOS.ViewControllers
 
             var navVc = _storyBoard.InstantiateViewController(storyboardId).CreateWithNavigationControllerWithMenu(ToggleMenu, UIImage.FromBundle("ichamburger.png"), AppColors.Tint, false);
 
+            //var loginVc = navVc.ViewControllers[0] as LogInViewController;
+
+            //loginVc.LogedIn = () =>
+            //{
+            //    SideBarController.ChangeContentView(menuViewControllerCreations[MenuType.Main].Invoke());
+            //};
+
             return navVc;
         }
 
