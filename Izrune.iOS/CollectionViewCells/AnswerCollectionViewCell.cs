@@ -34,6 +34,8 @@ namespace Izrune.iOS.CollectionViewCells
             answerLbl.Text = answer.title;
 
             InitAnswer(AppColors.Tint);
+
+            answerLbl.TextColor = AppColors.UnselectedColor;
         }
 
 
@@ -60,6 +62,8 @@ namespace Izrune.iOS.CollectionViewCells
         {
             answerView.Layer.BorderColor = color.CGColor;
             numberView.BackgroundColor = color;
+            answerLbl.TextColor = color;
+
         }
 
         private void CheckAnswer(bool IsRight)

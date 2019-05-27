@@ -34,6 +34,14 @@ namespace Izrune.iOS
             InitUI();
         }
 
+        public override void ViewDidLayoutSubviews()
+        {
+            base.ViewDidLayoutSubviews();
+
+            totalTimeView.ApplyGradient(AppColors.PurpleGradient);
+            derivedTimeView.ApplyGradient(AppColors.PurpleGradient);
+        }
+
         private void InitUI()
         {
        
