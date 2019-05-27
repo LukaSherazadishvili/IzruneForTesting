@@ -78,6 +78,9 @@ namespace Izrune.iOS
             viewForSummerShadow.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
             viewForExShadow.AddShadowToView(10, 25, 0.8f, UIColor.FromRGB(242, 153, 52));
             shadowViewForDropDown.AddShadowToView(5, 20, 0.3f, UIColor.FromRGB(0, 0, 0));
+
+            summTestContentView.ApplyGradient(AppColors.PurpleGradient);
+            exTestContentView.ApplyGradient(AppColors.YellowGradient);
         }
 
         private void InitDroDown()
