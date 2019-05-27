@@ -54,8 +54,7 @@ namespace Izrune.iOS.CollectionViewCells
             {
                 answerNumberView.Hidden = true;
 
-                var emptyImage = new UIImage();
-                checkImageView.Image = emptyImage.GetImageWithColor(UIColor.White);
+                checkImageView.Image = UIImage.FromBundle("1 – 5.png");
                 checkImageView.Hidden = false;
             }
         }
