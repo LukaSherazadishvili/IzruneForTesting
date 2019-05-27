@@ -104,22 +104,26 @@ namespace Izrune.iOS
         {
             if (summQuizTransparentView.GestureRecognizers == null || summQuizTransparentView.GestureRecognizers?.Count() == 0)
             {
-                summQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(async () =>
+                summQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-                    await GetQuiz(SelectedStudent.id, QuezCategory.QuezExam);
+                    //TODO
+                    //var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
+                    //chooseTimeVc.SelectedStudent = SelectedStudent;
+                    //chooseTimeVc.SelectedCategory = QuezCategory.QuezTest;
                 }));
             }
 
             if (exQuizTransparentView.GestureRecognizers == null || exQuizTransparentView.GestureRecognizers?.Count() == 0)
             {
-                exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(async () => {
+                exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
 
-                    var data = await GetQuiz(SelectedStudent.id, QuezCategory.QuezTest);
+                    //var data = await GetQuiz(SelectedStudent.id, QuezCategory.QuezTest);
 
-                    var testVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
-                    //testVc.AllQuestions = data;
+                    var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
+                    chooseTimeVc.SelectedStudent = SelectedStudent;
+                    chooseTimeVc.SelectedCategory = QuezCategory.QuezExam;
 
-                    this.NavigationController.PushViewController(testVc, true);
+                    this.NavigationController.PushViewController(chooseTimeVc, true);
                 }));
             }
 
@@ -132,17 +136,6 @@ namespace Izrune.iOS
                     UserNameDropDown.Show();
                 }));
             }
-        }
-
-        private async Task<List<IQuestion>> GetQuiz(int id, QuezCategory quizCategory)
-        {
-            UserControl.Instance.SeTSelectedStudent(id);
-
-            var service = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
-
-            var data = (await service.GetQuestionsAsync(quizCategory))?.ToList();
-
-            return data;
         }
 
         private void InitDropDownUI()

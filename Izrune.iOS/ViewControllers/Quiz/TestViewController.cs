@@ -58,7 +58,7 @@ namespace Izrune.iOS
 
             InitTotalTimer(IsTotalTime? 29 : 0);
 
-            InitCircular();
+            InitCircular(IsTotalTime? 29 * 60 + 59 : 59);
         }
 
         private void GetNextQuestion()
@@ -144,6 +144,8 @@ namespace Izrune.iOS
                 GetNextQuestion();
                 answerProgressCollectionView.ReloadData();
                 currentIndex++;
+                if(!IsTotalTime)
+                    InitCircular(59);
 
             };
 
@@ -163,6 +165,7 @@ namespace Izrune.iOS
         {
 
             //TODO Calculate CellHeight
+            View.LayoutIfNeeded();
 
             if (collectionView == answerProgressCollectionView)
                 return new CoreGraphics.CGSize(40, 30);
@@ -215,8 +218,7 @@ namespace Izrune.iOS
             var minutes = _minutes;
             var secondes = 60;
 
-            //TimeSpan totalTime = new TimeSpan(0, 30, 0);
-            
+
             timer.Elapsed += (sender, e) => {
 
                 if (secondes == 0)
@@ -225,8 +227,7 @@ namespace Izrune.iOS
                     {
                         timer.Enabled = false;
                         timer.Stop();
-                        this.NavigationController.PopViewController(true);
-
+                        //TODO SkipQuestion
                     }
 
                     minutes--;
@@ -248,7 +249,7 @@ namespace Izrune.iOS
             this.PresentViewController(alert, true, null);
         }
 
-        private void InitCircular()
+        private void InitCircular(double duration)
         {
             #region CircularAnimation
             var progressLayer = new CAShapeLayer();
@@ -285,7 +286,7 @@ namespace Izrune.iOS
             viewForCircular.Layer.AddSublayer(progressLayer);
 
             var animation = CABasicAnimation.FromKeyPath("strokeEnd");
-            animation.Duration = 10.0f;
+            animation.Duration = duration;
 
             animation.From = NSObject.FromObject(0);
             animation.To = NSObject.FromObject(1.0f);
