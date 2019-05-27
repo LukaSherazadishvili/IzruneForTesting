@@ -57,10 +57,10 @@ namespace Izrune.iOS
             registrationBtn.TouchUpInside += delegate {
 
                 //TODO
-                var alert = UIAlertController.Create("Attention", "RegistrationClicked", UIAlertControllerStyle.Alert);
-                alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
-                alert.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null));
-                this.PresentViewController(alert, true, null);
+                var registerVc = Storyboard.InstantiateViewController(ParentRegistrationViewController.StoryboardId) as ParentRegistrationViewController;
+
+                this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+                this.NavigationController.PushViewController(registerVc, true);
             };
         }
 

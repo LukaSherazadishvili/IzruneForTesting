@@ -3,6 +3,8 @@
 using System;
 
 using Foundation;
+using Izrune.iOS.Utils;
+using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS
@@ -14,5 +16,22 @@ namespace Izrune.iOS
 		}
 
         public static readonly NSString StoryboardId = new NSString("ParentRegistrationStoryboardId");
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+
+
+
+            InitUI();
+        }
+
+        private void InitUI()
+        {
+            nextBtn.Layer.CornerRadius = 25;
+            prewBtn.Layer.CornerRadius = 25;
+
+            nextBtn.AddShadowToView(5, 25, 0.8f, AppColors.TitleColor);
+        }
     }
 }

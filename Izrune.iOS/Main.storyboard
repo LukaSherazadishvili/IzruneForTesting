@@ -1359,20 +1359,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1 – 6.png" translatesAutoresizingMaskIntoConstraints="NO" id="pAI-Kq-fjh">
-                                <rect key="frame" x="174.66666666666666" y="44" width="26" height="26"/>
+                                <rect key="frame" x="174.66666666666666" y="49" width="26" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="26" id="8Oi-gr-7sn"/>
                                     <constraint firstAttribute="height" constant="26" id="odA-45-fgZ"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="მშობლის (ან სხვა მზრუნველის) რეგისტრაცია" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Asv-kk-TMl">
-                                <rect key="frame" x="20" y="80" width="335" height="37.333333333333343"/>
+                                <rect key="frame" x="20" y="85" width="335" height="37.333333333333343"/>
                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="16"/>
                                 <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="გამოიყენეთ ქართული ან ლათინური შრიფტი (*) აღნიშნული ველების შევსება სავალდებულოა" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVC-uj-MD8">
-                                <rect key="frame" x="20" y="132.33333333333334" width="335" height="28"/>
+                                <rect key="frame" x="20" y="137.33333333333334" width="335" height="28"/>
                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
                                 <color key="textColor" red="0.28627450980392155" green="0.70980392156862748" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1399,7 +1399,7 @@
                                 <state key="normal" image="1 – 4.png"/>
                             </button>
                             <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n38-dh-imU">
-                                <rect key="frame" x="0.0" y="160.33333333333334" width="375" height="447.66666666666663"/>
+                                <rect key="frame" x="0.0" y="165.33333333333334" width="375" height="442.66666666666663"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B9a-QQ-woc">
@@ -1428,7 +1428,7 @@
                             <constraint firstItem="0vy-Ue-5eZ" firstAttribute="leading" secondItem="ab1-yg-XFL" secondAttribute="leading" id="bAK-4v-hN3"/>
                             <constraint firstItem="JNV-Y7-BYm" firstAttribute="top" secondItem="0vy-Ue-5eZ" secondAttribute="bottom" id="bbl-Mn-TPq"/>
                             <constraint firstItem="DVC-uj-MD8" firstAttribute="top" secondItem="Asv-kk-TMl" secondAttribute="bottom" constant="15" id="bh6-Fb-Gru"/>
-                            <constraint firstItem="pAI-Kq-fjh" firstAttribute="top" secondItem="tAk-km-Qy9" secondAttribute="bottom" id="ca7-iM-KWf"/>
+                            <constraint firstItem="pAI-Kq-fjh" firstAttribute="top" secondItem="tAk-km-Qy9" secondAttribute="bottom" constant="5" id="ca7-iM-KWf"/>
                             <constraint firstItem="B9a-QQ-woc" firstAttribute="width" secondItem="ab1-yg-XFL" secondAttribute="width" multiplier="0.5" constant="1" id="cuj-mU-L3N"/>
                             <constraint firstItem="pAI-Kq-fjh" firstAttribute="centerX" secondItem="ab1-yg-XFL" secondAttribute="centerX" id="dMz-t9-ufb"/>
                             <constraint firstItem="B9a-QQ-woc" firstAttribute="top" secondItem="0vy-Ue-5eZ" secondAttribute="top" constant="-25" id="e8I-uz-rji"/>
