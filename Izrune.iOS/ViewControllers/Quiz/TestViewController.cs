@@ -4,10 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Timers;
 using Foundation;
 using Izrune.iOS.CollectionViewCells;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
 using MPDC.iOS.Utils;
 using UIKit;
 
@@ -27,6 +29,10 @@ namespace Izrune.iOS
         private float imagesHeight;
         private float answersHeight;
         private float totalHeight;
+        private int currentIndex;
+        private Timer timer;
+
+        public bool IsTotalTime { get; set; } = false;
 
         public override void ViewDidLoad()
         {
@@ -38,15 +44,21 @@ namespace Izrune.iOS
 
             skipQuestionBtn.TouchUpInside += delegate
             {
-
-                Questions.Clear();
-                MoveToQuestions();
-                questionCollectionView.ReloadData();
+                GetNextQuestion();
             };
 
             InitCollectionView();
             MoveToQuestions();
 
+            questionCollectionView.ReloadData();
+
+            InitTotalTimer(IsTotalTime? 29 : 0);
+        }
+
+        private void GetNextQuestion()
+        {
+            Questions.Clear();
+            MoveToQuestions();
             questionCollectionView.ReloadData();
         }
 
@@ -54,8 +66,8 @@ namespace Izrune.iOS
         {
             if(AllQuestions.Count != 0)
             {
-                Questions.Add(AllQuestions?[0]);
-                AllQuestions.RemoveAt(0);
+                Questions.Add(AllQuestions?[currentIndex]);
+                //AllQuestions.RemoveAt(0);
             }
 
         }
@@ -88,10 +100,24 @@ namespace Izrune.iOS
 
             questionCollectionView.Delegate = this;
             questionCollectionView.DataSource = this;
+
+            answerProgressCollectionView.RegisterNibForCell(AnswerProgressCollectionViewCell.Nib, AnswerProgressCollectionViewCell.Identifier);
+
+            answerProgressCollectionView.Delegate = this;
+            answerProgressCollectionView.DataSource = this;
         }
 
         public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {
+            if(collectionView == answerProgressCollectionView)
+            {
+                var answerCell = answerProgressCollectionView.DequeueReusableCell(AnswerProgressCollectionViewCell.Identifier, indexPath) as AnswerProgressCollectionViewCell;
+
+                //answerCell.InitData(AllQuestions[0], currentIndex);
+
+                return answerCell;
+            }
+
             var cell = questionCollectionView.DequeueReusableCell(TestCollectionViewCell.Identifier, indexPath) as TestCollectionViewCell;
 
             var data = Questions?[0];
@@ -99,12 +125,30 @@ namespace Izrune.iOS
             //cell.imagesCollectioHeight = imagesHeight;
             //cell.answersCollectioHeight = answersHeight + 80;
 
+            cell.AnswerClicked = async (question) =>
+            {
+                //TODO Scroll Progress CollectionView
+                //question.Status = AnswerStatus.Current;
+                await Task.Delay(400);
+                if (!IsTotalTime)
+                {
+                    timer.Dispose();
+                    InitTotalTimer(0);
+                }
+                GetNextQuestion();
+                answerProgressCollectionView.ReloadData();
+                currentIndex++;
+
+            };
+
             cell.InitData(data);
             return cell;
         }
 
         public nint GetItemsCount(UICollectionView collectionView, nint section)
         {
+            if(collectionView == answerProgressCollectionView)
+                return AllQuestions?.Count?? 0;
             return 1;
         }
 
@@ -113,6 +157,9 @@ namespace Izrune.iOS
         {
 
             //TODO Calculate CellHeight
+
+            if (collectionView == answerProgressCollectionView)
+                return new CoreGraphics.CGSize(40, 30);
 
             SetCellHeight(Questions[0]);
 
@@ -152,5 +199,93 @@ namespace Izrune.iOS
 
             //return totalHeight;
         }
+
+        private void InitTotalTimer(int _minutes)
+        {
+            timer = new Timer();
+            timer.Interval = 1000;
+            timer.Enabled = true;
+
+            var minutes = _minutes;
+            var secondes = 60;
+
+            //TimeSpan totalTime = new TimeSpan(0, 30, 0);
+            
+            timer.Elapsed += (sender, e) => {
+
+                if (secondes == 0)
+                {
+                    if (minutes == 0 && secondes == 0)
+                    {
+                        timer.Enabled = false;
+                        timer.Stop();
+                        this.NavigationController.PopViewController(true);
+
+                    }
+
+                    minutes--;
+                    secondes = 60;
+                }
+                    
+                secondes--;
+                InvokeOnMainThread(() => timeLbl.Text = $"{minutes}:{secondes}");
+
+            };
+
+            timer.Start();
+        }
+
+        private void ShowLoginAlert()
+        {
+            var alert = UIAlertController.Create("ყურადღევა", "დრო ამოიწურა.", UIAlertControllerStyle.Alert);
+            alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            this.PresentViewController(alert, true, null);
+        }
+
+        //#region CircularAnimation
+        //var progressLayer = new CAShapeLayer();
+        //var trackLayer = new CAShapeLayer();
+
+        //var progressColor = UIColor.Green;
+        //var trackColor = UIColor.Red;
+
+        //progressLayer.StrokeColor = progressColor.CGColor;
+        //    trackLayer.StrokeColor = trackColor.CGColor;
+
+        //    viewForCircular.BackgroundColor = UIColor.Clear;
+        //    viewForCircular.ClipsToBounds = true;
+        //    viewForCircular.Layer.CornerRadius = 50;
+
+        //    var circlePath = UIBezierPath.FromArc(new CGPoint(viewForCircular.Frame.Width / 2, viewForCircular.Frame.Height / 2), (System.nfloat)((viewForCircular.Frame.Size.Width - 1.5) / 2),
+        //        (System.nfloat)(-0.5 * Math.PI), (System.nfloat)(1.5 * Math.PI), true);
+
+        //trackLayer.Path = circlePath.CGPath;
+        //    trackLayer.FillColor = UIColor.Clear.CGColor;
+        //    trackLayer.StrokeColor = trackColor.CGColor;
+
+        //    trackLayer.LineWidth = 10.0f;
+        //    trackLayer.StrokeEnd = 1.0f;
+
+        //    viewForCircular.Layer.AddSublayer(trackLayer);
+
+        //    progressLayer.Path = circlePath.CGPath;
+        //    progressLayer.FillColor = UIColor.Clear.CGColor;
+        //    progressLayer.StrokeColor = progressColor.CGColor;
+        //    progressLayer.LineWidth = 10.0f;
+        //    progressLayer.StrokeEnd = 0;
+
+        //    viewForCircular.Layer.AddSublayer(progressLayer);
+
+        //    var animation = CABasicAnimation.FromKeyPath("strokeEnd");
+        //animation.Duration = 10.0f;
+
+            //animation.From = NSObject.FromObject(0);
+            //animation.To = NSObject.FromObject(1.0f);
+
+            //animation.TimingFunction = CAMediaTimingFunction.FromName(new NSString(CAMediaTimingFunction.Linear.ToString()));
+            //progressLayer.StrokeEnd = 0.0f;
+            //progressLayer.AddAnimation(animation, "animateCircle");
+
+            //#endregion
     }
 }

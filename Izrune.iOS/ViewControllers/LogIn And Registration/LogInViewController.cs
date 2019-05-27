@@ -72,6 +72,9 @@ namespace Izrune.iOS
 
             userNameTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 17);
             passwordTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 17);
+
+            logInBtn.AddShadowToView(10, 25, 0.8f, AppColors.Succesful);
+            registrationBtn.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
         }
 
         private void ShowLoginAlert()
