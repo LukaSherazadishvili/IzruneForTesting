@@ -17,17 +17,46 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("ParentRegistrationStoryboardId");
 
-        UIViewController[] RegistrationPage;
+        UIViewController[] RegistrationPages;
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
-            var parentRegVc = Storyboard.InstantiateViewController(ParentRegFirstViewController.StoryboardId) as ParentRegFirstViewController;
+            var parentRegVc = Storyboard.InstantiateViewController("MovieInfoAditionalStoryboardId") as TestScrollViewController;
 
-            parentRegVc.AddAsChildViewController(this);
+            var parent2RegVc = Storyboard.InstantiateViewController(ParentRegSecondViewController.StoryboardId) as ParentRegSecondViewController;
+
+            RegistrationPages = new UIViewController[] { parentRegVc, parent2RegVc };
 
             InitUI();
+
+            InitGestures();
+        }
+
+        public override void ViewDidLayoutSubviews()
+        {
+            base.ViewDidLayoutSubviews();
+
+            //RegistrationPages?[0].AddAsChildViewController(this, viewForPager);
+            var parentRegVc = Storyboard.InstantiateViewController("MovieInfoAditionalStoryboardId") as TestScrollViewController;
+
+            var parent2RegVc = Storyboard.InstantiateViewController(ParentRegSecondViewController.StoryboardId) as ParentRegSecondViewController;
+            this.AddChildViewController(parentRegVc);
+
+            parentRegVc.View.Frame = new CoreGraphics.CGRect(0, 0, viewForPager.Frame.Width, viewForPager.Frame.Height);
+
+            viewForPager.AddSubview(parentRegVc.View);
+
+            parentRegVc.DidMoveToParentViewController(this);
+        }
+
+        private void InitGestures()
+        {
+            nextBtn.TouchUpInside += delegate {
+                RegistrationPages?[1].AddAsChildViewController(this, viewForPager);
+            };
+
         }
 
         private void InitUI()

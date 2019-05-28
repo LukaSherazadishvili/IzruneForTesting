@@ -362,7 +362,7 @@ namespace MpdcViewExtentions
         {
             parentViewController.AddChildViewController(vc);
 
-            vc.View.Bounds = viewWhereToAdd.Bounds;
+            vc.View.Frame = new CGRect(0, 0, viewWhereToAdd.Frame.Width, viewWhereToAdd.Frame.Height);
 
             viewWhereToAdd.AddSubview(vc.View);
 

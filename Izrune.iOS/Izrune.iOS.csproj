@@ -263,6 +263,14 @@
         <Compile Include="ViewControllers\LogIn And Registration\ParentRegFirstViewController.designer.cs">
           <DependentUpon>ParentRegFirstViewController.cs</DependentUpon>
         </Compile>
+        <Compile Include="ViewControllers\LogIn And Registration\ParentRegSecondViewController.cs" />
+        <Compile Include="ViewControllers\LogIn And Registration\ParentRegSecondViewController.designer.cs">
+          <DependentUpon>ParentRegSecondViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="TestScrollViewController.cs" />
+        <Compile Include="TestScrollViewController.designer.cs">
+          <DependentUpon>TestScrollViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />

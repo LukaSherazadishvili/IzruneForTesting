@@ -9,14 +9,13 @@ using UIKit;
 
 namespace Izrune.iOS
 {
-	public partial class ParentRegFirstViewController : UIViewController
+	public partial class ParentRegSecondViewController : UIViewController
 	{
-		public ParentRegFirstViewController (IntPtr handle) : base (handle)
+		public ParentRegSecondViewController (IntPtr handle) : base (handle)
 		{
 		}
 
-        public static readonly NSString StoryboardId = new NSString("ParentRegFirstStoryboardId");
-
+        public static readonly NSString StoryboardId = new NSString("ParentRegSecondStoryboardId");
 
         public override void ViewDidLoad()
         {
