@@ -22,12 +22,12 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
-            //InitUI();
+            InitUI();
         }
 
         private void InitUI()
         {
-            var textFields = textFieldsStackView.Subviews?.Select(x => x as UITextField);
+            var textFields = textFieldsStackView.Subviews?.Where(x => x is UITextField)?.Select(x => x as UITextField);
 
             foreach (var item in textFields)
             {
