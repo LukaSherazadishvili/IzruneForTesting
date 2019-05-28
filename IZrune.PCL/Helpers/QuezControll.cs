@@ -114,8 +114,11 @@ namespace IZrune.PCL.Helpers
         }
 
        
-        public async Task AddQuestion(int QuestionId,int AnswerId)
+        public async Task AddQuestion(int AnswerId)
         {
+            EndTime = false;
+            QuezQuestion quez = new QuezQuestion() { AnswerId = AnswerId, Duration = TimeInSecond, QuestionId = Questions.ElementAt(Position).id };
+            await MpdcContainer.Instance.Get<IQuezServices>().GetQuezResultAsync(quez);
             Position++;
             if (Sheduler?.Count() > 0)
             {
@@ -128,10 +131,9 @@ namespace IZrune.PCL.Helpers
                     Sheduler.ElementAt(Position - 1).AlreadeBe = true;
             }
             var res = Sheduler;
-            EndTime = false;
-            QuezQuestion quez = new QuezQuestion() {AnswerId=AnswerId,Duration= TimeInSecond, QuestionId=QuestionId };
+           
             
-          await  MpdcContainer.Instance.Get<IQuezServices>().GetQuezResultAsync(quez);
+         
             
             if (Position == 20)
             {

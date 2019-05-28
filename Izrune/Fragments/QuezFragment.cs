@@ -101,7 +101,7 @@ namespace Izrune.Fragments
 
             
 
-           await QuezControll.Instance.AddQuestion(question.id, question.Answers.ToList().ElementAt(Index).id);
+           await QuezControll.Instance.AddQuestion( question.Answers.ToList().ElementAt(Index).id);
 
             if (question.Answers.ElementAt(Index).IsRight)
             {
