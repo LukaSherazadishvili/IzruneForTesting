@@ -265,7 +265,6 @@ namespace MpdcViewExtentions
             navigationBar.Translucent = false;
         }
 
-
         #endregion
 
         #region ViewControllers

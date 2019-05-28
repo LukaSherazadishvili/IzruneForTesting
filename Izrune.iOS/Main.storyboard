@@ -1453,6 +1453,124 @@
             </objects>
             <point key="canvasLocation" x="-2919" y="-69"/>
         </scene>
+        <!--Parent Reg First View Controller-->
+        <scene sceneID="Bp8-xt-ZEz">
+            <objects>
+                <viewController storyboardIdentifier="ParentRegFirstStoryboardId" id="OL0-dC-yHT" customClass="ParentRegFirstViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TZL-WJ-36O"/>
+                        <viewControllerLayoutGuide type="bottom" id="R72-Q2-D8e"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WxF-sL-AVQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RaR-yt-KP3">
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3fz-VX-lZG" userLabel="ContentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="fa4-Lk-9Ua">
+                                                <rect key="frame" x="30" y="10" width="315" height="315"/>
+                                                <subviews>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="*ტელეფონი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zvu-qB-fpO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="315" height="40"/>
+                                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="eED-xb-w3w"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="phonePad" enablesReturnKeyAutomatically="YES" textContentType="tel"/>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="ელ. ფოსტა" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AyD-tW-jhZ">
+                                                        <rect key="frame" x="0.0" y="55" width="315" height="40"/>
+                                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="n2d-5n-JeG"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES" textContentType="email"/>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="*მომხმარებლის სახელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nUF-rv-l5x">
+                                                        <rect key="frame" x="0.0" y="110" width="315" height="40"/>
+                                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="agt-Ur-lp4"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="სახელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l4A-tL-xDJ">
+                                                        <rect key="frame" x="0.0" y="165" width="315" height="40"/>
+                                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="RiT-ve-BeK"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="*პაროლი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V1Q-m1-sdY">
+                                                        <rect key="frame" x="0.0" y="220" width="315" height="40"/>
+                                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="tNF-7d-bVx"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="*გაიმეორეთ პაროლი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wEb-8s-OUH">
+                                                        <rect key="frame" x="0.0" y="275" width="315" height="40"/>
+                                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="Gvo-rI-N3e"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="fa4-Lk-9Ua" firstAttribute="leading" secondItem="3fz-VX-lZG" secondAttribute="leading" constant="30" id="gwr-ad-dZr"/>
+                                            <constraint firstAttribute="trailing" secondItem="fa4-Lk-9Ua" secondAttribute="trailing" constant="30" id="ofS-SF-xIR"/>
+                                            <constraint firstItem="fa4-Lk-9Ua" firstAttribute="top" secondItem="3fz-VX-lZG" secondAttribute="top" constant="10" id="zem-Rh-q1i"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="3fz-VX-lZG" firstAttribute="top" secondItem="RaR-yt-KP3" secondAttribute="top" id="B11-ek-vVJ"/>
+                                    <constraint firstItem="3fz-VX-lZG" firstAttribute="leading" secondItem="RaR-yt-KP3" secondAttribute="leading" id="Bxl-Zf-SlR"/>
+                                    <constraint firstAttribute="bottom" secondItem="3fz-VX-lZG" secondAttribute="bottom" id="Ldl-eS-M82"/>
+                                    <constraint firstAttribute="trailing" secondItem="3fz-VX-lZG" secondAttribute="trailing" id="of5-c7-YLF"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="RaR-yt-KP3" firstAttribute="leading" secondItem="WxF-sL-AVQ" secondAttribute="leading" id="6YR-8q-zri"/>
+                            <constraint firstItem="R72-Q2-D8e" firstAttribute="top" secondItem="RaR-yt-KP3" secondAttribute="bottom" id="Hut-Gi-Oaw"/>
+                            <constraint firstAttribute="trailing" secondItem="RaR-yt-KP3" secondAttribute="trailing" id="KW9-QG-0nv"/>
+                            <constraint firstItem="3fz-VX-lZG" firstAttribute="height" secondItem="WxF-sL-AVQ" secondAttribute="height" id="Yrg-pm-tNd"/>
+                            <constraint firstItem="3fz-VX-lZG" firstAttribute="width" secondItem="WxF-sL-AVQ" secondAttribute="width" id="brE-hK-CBm"/>
+                            <constraint firstItem="RaR-yt-KP3" firstAttribute="top" secondItem="TZL-WJ-36O" secondAttribute="bottom" id="yt5-BY-Z4q"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textFieldsStackView" destination="fa4-Lk-9Ua" id="dzM-2D-hdg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8x6-Ri-noO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2180" y="-69.458128078817737"/>
+        </scene>
         <!--Student Registration View Controller-->
         <scene sceneID="Ez3-3q-Xuv">
             <objects>
@@ -1469,7 +1587,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbg-LV-iQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2183" y="-69"/>
+            <point key="canvasLocation" x="-783" y="-761"/>
         </scene>
         <!--Password Recovery View Controller-->
         <scene sceneID="6Ig-Td-Md1">
@@ -1589,7 +1707,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dyN-fi-NEq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1444" y="-69"/>
+            <point key="canvasLocation" x="-97" y="-761"/>
         </scene>
         <!--Succes View Controller-->
         <scene sceneID="0hK-TE-mOJ">
@@ -1688,7 +1806,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Qv-o4-ADg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-730" y="-69"/>
+            <point key="canvasLocation" x="570" y="-761"/>
         </scene>
         <!--Choose Time View Controller-->
         <scene sceneID="sGo-gV-Xi2">
