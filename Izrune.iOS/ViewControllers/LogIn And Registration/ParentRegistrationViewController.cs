@@ -19,15 +19,19 @@ namespace Izrune.iOS
 
         UIViewController[] RegistrationPages;
 
+        private bool isFirstPage = true;
+        private ParentRegiFirstViewController parentRegVc;
+        private ParentRegSecondViewController parent2RegVc;
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
-            var parentRegVc = Storyboard.InstantiateViewController(ParentRegSecondViewController.StoryboardId) as ParentRegSecondViewController;
+            //var parentRegVc = Storyboard.InstantiateViewController(ParentRegSecondViewController.StoryboardId) as ParentRegSecondViewController;
 
-            var parent2RegVc = Storyboard.InstantiateViewController(ParentRegiFirstViewController.StoryboardId) as ParentRegiFirstViewController;
+            //var parent2RegVc = Storyboard.InstantiateViewController(ParentRegiFirstViewController.StoryboardId) as ParentRegiFirstViewController;
 
-            RegistrationPages = new UIViewController[] { parentRegVc, parent2RegVc };
+
 
             InitUI();
 
@@ -39,9 +43,12 @@ namespace Izrune.iOS
             base.ViewDidLayoutSubviews();
 
             //RegistrationPages?[0].AddAsChildViewController(this, viewForPager);
-            var parentRegVc = Storyboard.InstantiateViewController(ParentRegiFirstViewController.StoryboardId) as ParentRegiFirstViewController;
+            parentRegVc = Storyboard.InstantiateViewController(ParentRegiFirstViewController.StoryboardId) as ParentRegiFirstViewController;
 
-            var parent2RegVc = Storyboard.InstantiateViewController(ParentRegSecondViewController.StoryboardId) as ParentRegSecondViewController;
+            parent2RegVc = Storyboard.InstantiateViewController(ParentRegSecondViewController.StoryboardId) as ParentRegSecondViewController;
+
+            RegistrationPages = new UIViewController[] { parentRegVc, parent2RegVc };
+
             this.AddChildViewController(parentRegVc);
 
             parentRegVc.View.Frame = new CoreGraphics.CGRect(0, 0, viewForPager.Frame.Width, viewForPager.Frame.Height);
@@ -54,9 +61,24 @@ namespace Izrune.iOS
         private void InitGestures()
         {
             nextBtn.TouchUpInside += delegate {
-                RegistrationPages?[1].AddAsChildViewController(this, viewForPager);
+                isFirstPage = false;
+                CheckIndex();
+                this.AddChildViewController(parentRegVc);
+
+                parentRegVc.View.Frame = new CoreGraphics.CGRect(0, 0, viewForPager.Frame.Width, viewForPager.Frame.Height);
+
+                viewForPager.AddSubview(parentRegVc.View);
+
+                parentRegVc.DidMoveToParentViewController(this);
             };
 
+            prewBtn.TouchUpInside += delegate {
+                isFirstPage = true;
+                CheckIndex();
+                parent2RegVc.WillMoveToParentViewController(this);
+                parent2RegVc.View.RemoveFromSuperview();
+                parent2RegVc.RemoveFromParentViewController();
+            };
         }
 
         private void InitUI()
@@ -70,5 +92,10 @@ namespace Izrune.iOS
 
         }
 
+        private void CheckIndex()
+        {
+            nextBtn.Enabled = isFirstPage;
+            prewBtn.Enabled = !isFirstPage;
+        }
     }
 }
