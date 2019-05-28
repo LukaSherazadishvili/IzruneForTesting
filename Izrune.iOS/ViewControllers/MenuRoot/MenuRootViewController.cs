@@ -31,6 +31,10 @@ namespace Izrune.iOS.ViewControllers
         const string ContactStoryboardId = "ContactViewControllerStoryboardId";
         const string MoreInfoStoryboardId = "MoreInfoViewControllerStoryboardId";
         const string StatisticStoryboardId = "StatisticStoryboardId";
+        const string StartTestStoryboardId = "StartTestStoryboardId";
+        const string UpdatePacketStoryboardId = "UpdatePacketStoryboardId";
+        const string EditProfileStoryboardId = "EditProfileStoryboardId";
+
         #endregion
 
         public MenuRootViewController()
@@ -40,13 +44,13 @@ namespace Izrune.iOS.ViewControllers
             menuViewControllerCreations = new Dictionary<MenuType, Func<UIViewController>>()
             {
                 {MenuType.LogIn, () => CreateViewControllerByStoryboard(LogInStoryboardId)},
-                {MenuType.News, () => CreateViewControllerByStoryboard(TestViewController.StoryboardId)},
+                {MenuType.News, () => CreateViewControllerByStoryboard(NewsStoryboardId)},
                 {MenuType.MoreInfo, () => CreateViewControllerByStoryboard(MoreInfoStoryboardId)},
                 {MenuType.Contact, () => CreateViewControllerByStoryboard(ContactStoryboardId)},
-                {MenuType.Main, () => CreateViewControllerByStoryboard(TestChooseViewController.StoryboardId)},
+                {MenuType.Main, () => CreateViewControllerByStoryboard(StartTestStoryboardId)},
                 {MenuType.Statistic, () => CreateViewControllerByStoryboard(StatisticStoryboardId)},
-                {MenuType.UpdatePacket, () => CreateViewControllerByStoryboard(UpdatePacketViewController.StoryboardId)},
-                {MenuType.EditProfile, () => CreateViewControllerByStoryboard(EditProfileViewController.StoryboardId)},
+                {MenuType.UpdatePacket, () => CreateViewControllerByStoryboard(UpdatePacketStoryboardId)},
+                {MenuType.EditProfile, () => CreateViewControllerByStoryboard(EditProfileStoryboardId)},
                 {MenuType.LogOut, () => CreateViewControllerByStoryboard(NewsViewController.StoryboardId)},
             };
         }
@@ -106,6 +110,13 @@ namespace Izrune.iOS.ViewControllers
 
             MainPageVc.ViewControllers[0].NavigationItem.LeftBarButtonItem = barButton;
 
+            var loginVc = MainPageVc.ViewControllers[0] as LogInViewController;
+
+            loginVc.LogedIn = () =>
+            {
+                SideBarController.ChangeContentView(menuViewControllerCreations[MenuType.Main].Invoke());
+            };
+
             return MainPageVc;
         }
 
@@ -132,6 +143,8 @@ namespace Izrune.iOS.ViewControllers
 
             var navVc = vc.CreateWithNavigationControllerWithMenu(ToggleMenu, UIImage.FromBundle("icMenu.png"), AppColors.Tint, false);
 
+            vc.NavigationController?.NavigationBar?.InitNavigationBarColorWithNoShadow(UIColor.White);
+
             //vc.NavigationController.NavigationBar.InitNavigationBarColorWithNoShadow(UIColor.Orange);
             //vc.NavigationItem.InitLogoToNav(UIImage.FromBundle("4.png"));
 
@@ -145,6 +158,13 @@ namespace Izrune.iOS.ViewControllers
             //var navVc = _storyBoard.InstantiateViewController(storyboardId).CreateWithNavigationControllerWithMenu(ToggleMenu);
 
             var navVc = _storyBoard.InstantiateViewController(storyboardId).CreateWithNavigationControllerWithMenu(ToggleMenu, UIImage.FromBundle("ichamburger.png"), AppColors.Tint, false);
+
+            //var loginVc = navVc.ViewControllers[0] as LogInViewController;
+
+            //loginVc.LogedIn = () =>
+            //{
+            //    SideBarController.ChangeContentView(menuViewControllerCreations[MenuType.Main].Invoke());
+            //};
 
             return navVc;
         }

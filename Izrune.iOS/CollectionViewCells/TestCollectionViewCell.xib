@@ -34,7 +34,7 @@
                             </label>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zII-C1-8PB">
                                 <rect key="frame" x="25" y="40" width="307" height="1"/>
-                                <color key="backgroundColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="0.69597271126760563" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.94525641202926636" green="0.94254225492477417" blue="0.94536453485488892" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="tKG-Tk-WGx"/>
                                 </constraints>

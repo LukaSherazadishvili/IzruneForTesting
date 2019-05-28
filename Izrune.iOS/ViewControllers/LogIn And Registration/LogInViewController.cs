@@ -19,6 +19,8 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("LogInViewControllerStoryboardId");
 
+        public Action LogedIn { get; set; }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -43,8 +45,10 @@ namespace Izrune.iOS
 
                     if(isLogedIn)
                     {
-                        var testVc = Storyboard.InstantiateViewController(StartTestViewController.StoryboardId) as StartTestViewController;
-                        this.NavigationController.PushViewController(testVc, true);
+
+                        //var testVc = Storyboard.InstantiateViewController(StartTestViewController.StoryboardId) as StartTestViewController;
+                        //this.NavigationController.PushViewController(testVc, true);
+                        LogedIn?.Invoke();
                     }
                 }
 
@@ -57,10 +61,10 @@ namespace Izrune.iOS
             registrationBtn.TouchUpInside += delegate {
 
                 //TODO
-                var alert = UIAlertController.Create("Attention", "RegistrationClicked", UIAlertControllerStyle.Alert);
-                alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
-                alert.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null));
-                this.PresentViewController(alert, true, null);
+                var registerVc = Storyboard.InstantiateViewController(ParentRegistrationViewController.StoryboardId) as ParentRegistrationViewController;
+
+                this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+                this.NavigationController.PushViewController(registerVc, true);
             };
         }
 
@@ -75,6 +79,7 @@ namespace Izrune.iOS
 
             logInBtn.AddShadowToView(10, 25, 0.8f, AppColors.Succesful);
             registrationBtn.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
+
         }
 
         private void ShowLoginAlert()

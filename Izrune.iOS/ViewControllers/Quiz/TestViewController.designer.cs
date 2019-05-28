@@ -26,9 +26,17 @@ namespace Izrune.iOS
 
 		[Outlet]
 		UIKit.UILabel userNameLbl { get; set; }
+
+		[Outlet]
+		UIKit.UIView viewForCircular { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (answerProgressCollectionView != null) {
+				answerProgressCollectionView.Dispose ();
+				answerProgressCollectionView = null;
+			}
+
 			if (questionCollectionView != null) {
 				questionCollectionView.Dispose ();
 				questionCollectionView = null;
@@ -49,9 +57,9 @@ namespace Izrune.iOS
 				userNameLbl = null;
 			}
 
-			if (answerProgressCollectionView != null) {
-				answerProgressCollectionView.Dispose ();
-				answerProgressCollectionView = null;
+			if (viewForCircular != null) {
+				viewForCircular.Dispose ();
+				viewForCircular = null;
 			}
 		}
 	}

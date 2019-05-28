@@ -259,6 +259,10 @@
         <Compile Include="CollectionViewCells\AnswerProgressCollectionViewCell.designer.cs">
           <DependentUpon>AnswerProgressCollectionViewCell.cs</DependentUpon>
         </Compile>
+        <Compile Include="ViewControllers\LogIn And Registration\ParentRegFirstViewController.cs" />
+        <Compile Include="ViewControllers\LogIn And Registration\ParentRegFirstViewController.designer.cs">
+          <DependentUpon>ParentRegFirstViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />

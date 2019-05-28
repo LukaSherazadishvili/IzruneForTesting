@@ -5,12 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
+using CoreAnimation;
+using CoreGraphics;
 using Foundation;
 using Izrune.iOS.CollectionViewCells;
+using Izrune.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
 using MPDC.iOS.Utils;
+using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS
@@ -38,8 +42,6 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
-            //await LoadDataAsync();
-
             skipQuestionBtn.Layer.CornerRadius = 20;
 
             skipQuestionBtn.TouchUpInside += delegate
@@ -53,6 +55,8 @@ namespace Izrune.iOS
             questionCollectionView.ReloadData();
 
             InitTotalTimer(IsTotalTime? 29 : 0);
+
+            InitCircular(IsTotalTime? 29 * 60 + 59 : 59);
         }
 
         private void GetNextQuestion()
@@ -64,7 +68,7 @@ namespace Izrune.iOS
 
         private void MoveToQuestions()
         {
-            if(AllQuestions.Count != 0)
+            if(currentIndex < AllQuestions.Count)
             {
                 Questions.Add(AllQuestions?[currentIndex]);
                 //AllQuestions.RemoveAt(0);
@@ -113,17 +117,13 @@ namespace Izrune.iOS
             {
                 var answerCell = answerProgressCollectionView.DequeueReusableCell(AnswerProgressCollectionViewCell.Identifier, indexPath) as AnswerProgressCollectionViewCell;
 
-                //answerCell.InitData(AllQuestions[0], currentIndex);
-
                 return answerCell;
             }
 
             var cell = questionCollectionView.DequeueReusableCell(TestCollectionViewCell.Identifier, indexPath) as TestCollectionViewCell;
 
-            var data = Questions?[0];
 
-            //cell.imagesCollectioHeight = imagesHeight;
-            //cell.answersCollectioHeight = answersHeight + 80;
+            var data = AllQuestions[currentIndex];
 
             cell.AnswerClicked = async (question) =>
             {
@@ -135,9 +135,19 @@ namespace Izrune.iOS
                     timer.Dispose();
                     InitTotalTimer(0);
                 }
+
+                if (currentIndex < AllQuestions?.Count - 1)
+                    currentIndex++;
+                else
+                {
+                    //TODO End Test And Submit
+                    this.NavigationController.PopViewController(true);
+                }
                 GetNextQuestion();
                 answerProgressCollectionView.ReloadData();
-                currentIndex++;
+
+                if(!IsTotalTime)
+                    InitCircular(59);
 
             };
 
@@ -161,22 +171,21 @@ namespace Izrune.iOS
             if (collectionView == answerProgressCollectionView)
                 return new CoreGraphics.CGSize(40, 30);
 
-            SetCellHeight(Questions[0]);
+            if(currentIndex < AllQuestions?.Count)
+                SetCellHeight(AllQuestions?[currentIndex]);
 
             return new CoreGraphics.CGSize(collectionView.Frame.Width, totalHeight + 60);
         }
 
         void SetCellHeight(IQuestion question)
         {
+            totalHeight = 0;
+            answersHeight = 0;
+
             var data = question;
-
             var text = data.title;
-
             var titleHeight = text.GetStringHeight((float)questionCollectionView.Frame.Width, 50, 17);
-
-
             var ImagesCount = data?.images?.Count();
-
             if (ImagesCount == 0)
                 imagesHeight = 0;
             else if (ImagesCount > 0 && ImagesCount <= 2)
@@ -188,11 +197,8 @@ namespace Izrune.iOS
 
             foreach (var item in data?.Answers)
             {
-                //answersHeight += item.title.GetStringHeight((float)questionCollectionView.Frame.Width, 77, 15);
-
                 var height = item.title.GetStringHeight((float)questionCollectionView.Frame.Width, 64, 15);
-
-                answersHeight += height > 40 ? height + 30 : height;
+                answersHeight += height + 40;
             }
 
             totalHeight = titleHeight + imagesHeight + answersHeight + spaceSumBetweenAnswers + 50;
@@ -209,8 +215,7 @@ namespace Izrune.iOS
             var minutes = _minutes;
             var secondes = 60;
 
-            //TimeSpan totalTime = new TimeSpan(0, 30, 0);
-            
+
             timer.Elapsed += (sender, e) => {
 
                 if (secondes == 0)
@@ -219,8 +224,7 @@ namespace Izrune.iOS
                     {
                         timer.Enabled = false;
                         timer.Stop();
-                        this.NavigationController.PopViewController(true);
-
+                        //TODO SkipQuestion
                     }
 
                     minutes--;
@@ -242,50 +246,53 @@ namespace Izrune.iOS
             this.PresentViewController(alert, true, null);
         }
 
-        //#region CircularAnimation
-        //var progressLayer = new CAShapeLayer();
-        //var trackLayer = new CAShapeLayer();
+        private void InitCircular(double duration)
+        {
+            #region CircularAnimation
+            var progressLayer = new CAShapeLayer();
+            var trackLayer = new CAShapeLayer();
 
-        //var progressColor = UIColor.Green;
-        //var trackColor = UIColor.Red;
+            var progressColor = AppColors.TitleColor;
+            var trackColor = UIColor.Clear.FromHexString("EDEDED");
 
-        //progressLayer.StrokeColor = progressColor.CGColor;
-        //    trackLayer.StrokeColor = trackColor.CGColor;
+            progressLayer.StrokeColor = progressColor.CGColor;
+            trackLayer.StrokeColor = trackColor.CGColor;
 
-        //    viewForCircular.BackgroundColor = UIColor.Clear;
-        //    viewForCircular.ClipsToBounds = true;
-        //    viewForCircular.Layer.CornerRadius = 50;
+            viewForCircular.BackgroundColor = UIColor.Clear;
+            viewForCircular.ClipsToBounds = true;
+            viewForCircular.Layer.CornerRadius = 50;
 
-        //    var circlePath = UIBezierPath.FromArc(new CGPoint(viewForCircular.Frame.Width / 2, viewForCircular.Frame.Height / 2), (System.nfloat)((viewForCircular.Frame.Size.Width - 1.5) / 2),
-        //        (System.nfloat)(-0.5 * Math.PI), (System.nfloat)(1.5 * Math.PI), true);
+            var circlePath = UIBezierPath.FromArc(new CGPoint(viewForCircular.Frame.Width / 2, viewForCircular.Frame.Height / 2), (System.nfloat)((viewForCircular.Frame.Size.Width - 1.5) / 2),
+                (System.nfloat)(-0.5 * Math.PI), (System.nfloat)(1.5 * Math.PI), true);
 
-        //trackLayer.Path = circlePath.CGPath;
-        //    trackLayer.FillColor = UIColor.Clear.CGColor;
-        //    trackLayer.StrokeColor = trackColor.CGColor;
+            trackLayer.Path = circlePath.CGPath;
+            trackLayer.FillColor = UIColor.Clear.CGColor;
+            trackLayer.StrokeColor = trackColor.CGColor;
 
-        //    trackLayer.LineWidth = 10.0f;
-        //    trackLayer.StrokeEnd = 1.0f;
+            trackLayer.LineWidth = 10.0f;
+            trackLayer.StrokeEnd = 1.0f;
 
-        //    viewForCircular.Layer.AddSublayer(trackLayer);
+            viewForCircular.Layer.AddSublayer(trackLayer);
 
-        //    progressLayer.Path = circlePath.CGPath;
-        //    progressLayer.FillColor = UIColor.Clear.CGColor;
-        //    progressLayer.StrokeColor = progressColor.CGColor;
-        //    progressLayer.LineWidth = 10.0f;
-        //    progressLayer.StrokeEnd = 0;
+            progressLayer.Path = circlePath.CGPath;
+            progressLayer.FillColor = UIColor.Clear.CGColor;
+            progressLayer.StrokeColor = progressColor.CGColor;
+            progressLayer.LineWidth = 10.0f;
+            progressLayer.StrokeEnd = 0;
 
-        //    viewForCircular.Layer.AddSublayer(progressLayer);
+            viewForCircular.Layer.AddSublayer(progressLayer);
 
-        //    var animation = CABasicAnimation.FromKeyPath("strokeEnd");
-        //animation.Duration = 10.0f;
+            var animation = CABasicAnimation.FromKeyPath("strokeEnd");
+            animation.Duration = duration;
 
-            //animation.From = NSObject.FromObject(0);
-            //animation.To = NSObject.FromObject(1.0f);
+            animation.From = NSObject.FromObject(0);
+            animation.To = NSObject.FromObject(1.0f);
 
-            //animation.TimingFunction = CAMediaTimingFunction.FromName(new NSString(CAMediaTimingFunction.Linear.ToString()));
-            //progressLayer.StrokeEnd = 0.0f;
-            //progressLayer.AddAnimation(animation, "animateCircle");
+            animation.TimingFunction = CAMediaTimingFunction.FromName(new NSString(CAMediaTimingFunction.Linear.ToString()));
+            progressLayer.StrokeEnd = 0.0f;
+            progressLayer.AddAnimation(animation, "animateCircle");
 
-            //#endregion
+            #endregion
+        }
     }
 }

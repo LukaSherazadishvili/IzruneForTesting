@@ -23,5 +23,9 @@ namespace Izrune.iOS.Utils
         public static UIColor GreenShadow => UIColor.FromRGBA(73, 181, 65, 0);
 
         public static UIColor UnselectedColor => UIColor.FromRGB(106,106,106);
+
+        public static UIColor[] PurpleGradient => new UIColor[] { UIColor.FromRGB(153, 38, 173), TitleColor };
+
+        public static UIColor[] YellowGradient => new UIColor[] { UIColor.FromRGB(253, 169, 43), UIColor.FromRGB(253, 200, 44) };
     }
 }

@@ -3,6 +3,8 @@
 using System;
 
 using Foundation;
+using Izrune.iOS.Utils;
+using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS
@@ -14,5 +16,30 @@ namespace Izrune.iOS
 		}
 
         public static readonly NSString StoryboardId = new NSString("ParentRegistrationStoryboardId");
+
+        UIViewController[] RegistrationPage;
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+
+            var parentRegVc = Storyboard.InstantiateViewController(ParentRegFirstViewController.StoryboardId) as ParentRegFirstViewController;
+
+            parentRegVc.AddAsChildViewController(this);
+
+            InitUI();
+        }
+
+        private void InitUI()
+        {
+            nextBtn.Layer.CornerRadius = 25;
+            prewBtn.Layer.CornerRadius = 25;
+
+            nextBtn.AddShadowToView(5, 25, 0.8f, AppColors.TitleColor);
+
+            //userNameTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 17);
+
+        }
+
     }
 }

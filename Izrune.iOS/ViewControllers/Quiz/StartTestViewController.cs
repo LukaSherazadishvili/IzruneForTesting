@@ -30,7 +30,8 @@ namespace Izrune.iOS
         DropDown UserNameDropDown = new DropDown();
 
         IParent Parent;
-
+        private TimeSpan examDate;
+        private TimeSpan testDate;
         List<IStudent> Students;
         private nint currentIndex;
 
@@ -45,36 +46,38 @@ namespace Izrune.iOS
 
             Parent = await UserControl.Instance.GetCurrentUser();
 
+            examDate = (await QuezControll.Instance.GetExamDate(QuezCategory.QuezExam));
+
+            testDate = (await QuezControll.Instance.GetExamDate(QuezCategory.QuezTest));
+
+            InitSummTimer();
+
             Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
 
             var item = Students[0];
 
             Students.Add(item);
             Students.Add(item);
-            Students.Add(item); 
-            Students.Add(item); 
-            Students.Add(item);
-
-            InitSummTimer();
 
             InitGestures();
 
             InitDroDown();
 
-            viewForSummerShadow.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
-            viewForExShadow.AddShadowToView(10, 25, 0.8f, UIColor.FromRGB(242, 153, 52));
-            shadowViewForDropDown.AddShadowToView(5, 20, 0.3f, UIColor.FromRGB(0, 0, 0));
+            InitUI();
+
             UserNameDropDown.SelectRow(0);
 
             SelectedStudent = Students[0];
         }
 
-        public override void ViewDidLayoutSubviews()
+        private void InitUI()
         {
-            base.ViewDidLayoutSubviews();
+            viewForSummerShadow.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
+            viewForExShadow.AddShadowToView(10, 25, 0.8f, UIColor.FromRGB(242, 153, 52));
+            shadowViewForDropDown.AddShadowToView(5, 20, 0.3f, UIColor.FromRGB(0, 0, 0));
 
-
-            //rgba(242, 153, 52, 0.6)
+            summTestContentView.ApplyGradient(AppColors.PurpleGradient);
+            exTestContentView.ApplyGradient(AppColors.YellowGradient);
         }
 
         private void InitDroDown()
@@ -101,22 +104,24 @@ namespace Izrune.iOS
         {
             if (summQuizTransparentView.GestureRecognizers == null || summQuizTransparentView.GestureRecognizers?.Count() == 0)
             {
-                summQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(async () =>
+                summQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-                    await GetQuiz(SelectedStudent.id, QuezCategory.QuezExam);
+                    //TODO
+                    //var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
+                    //chooseTimeVc.SelectedStudent = SelectedStudent;
+                    //chooseTimeVc.SelectedCategory = QuezCategory.QuezTest;
                 }));
             }
 
             if (exQuizTransparentView.GestureRecognizers == null || exQuizTransparentView.GestureRecognizers?.Count() == 0)
             {
-                exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(async () => {
+                exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
+                
+                    var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
+                    chooseTimeVc.SelectedStudent = SelectedStudent;
+                    chooseTimeVc.SelectedCategory = QuezCategory.QuezExam;
 
-                    var data = await GetQuiz(SelectedStudent.id, QuezCategory.QuezTest);
-
-                    var testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
-                    testVc.AllQuestions = data;
-
-                    this.NavigationController.PushViewController(testVc, true);
+                    this.NavigationController.PushViewController(chooseTimeVc, true);
                 }));
             }
 
@@ -129,17 +134,6 @@ namespace Izrune.iOS
                     UserNameDropDown.Show();
                 }));
             }
-        }
-
-        private async Task<List<IQuestion>> GetQuiz(int id, QuezCategory quizCategory)
-        {
-            UserControl.Instance.SeTSelectedStudent(id);
-
-            var service = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
-
-            var data = (await service.GetQuestionsAsync(quizCategory))?.ToList();
-
-            return data;
         }
 
         private void InitDropDownUI()
@@ -165,17 +159,44 @@ namespace Izrune.iOS
                 var thuersday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Thursday);
                 var today = DateTime.UtcNow;
 
-                var diffrence = thuersday - today;
+                var test1Diff = examDate;
 
-                var days = GetNumber(diffrence.Days, " დღე ");
-                var hours = GetNumber(diffrence.Hours, " საათი "); 
-                var minutes = GetNumber(diffrence.Minutes, " წუთი ");
+                var days = GetNumber(test1Diff.Days, " დღე ");
+                var hours = GetNumber(test1Diff.Hours, " საათი "); 
+                var minutes = GetNumber(test1Diff.Minutes, " წუთი ");
 
-                InvokeOnMainThread(() => test1TimerLbl.Text = $"{days} {hours} {minutes}");
 
-                if(diffrence.Days == 0 && diffrence.Hours == 0 && diffrence.Minutes == 0)
+                var test2Diff = testDate;
+
+                var days2 = GetNumber(test2Diff.Days, " დღე ");
+                var hours2 = GetNumber(test2Diff.Hours, " საათი ");
+                var minutes2 = GetNumber(test2Diff.Minutes, " წუთი ");
+
+                InvokeOnMainThread(() => {
+                    test1TimerLbl.Text = $"{days} {hours} {minutes}";
+                    test2TimerLbl.Text= $"{days2} {hours2} {minutes2}";
+                });
+
+                if(test1Diff.Days == 0 && test1Diff.Hours == 0 && test1Diff.Minutes == 0)
                 {
                     IsSummTestActive = true;
+                    ChangeTestStatus(timeStackView, test1TimerLbl, IsSummTestActive);
+                }
+                else
+                {
+                    IsSummTestActive = false;
+                    ChangeTestStatus(timeStackView, test1TimerLbl, IsSummTestActive);
+                }
+
+                if (test2Diff.Days == 0 && test2Diff.Hours == 0 && test2Diff.Minutes == 0)
+                {
+                    IsExTestActive = true;
+                    ChangeTestStatus(exTimeStackView, test2TimerLbl, IsExTestActive);
+                }
+                else
+                {
+                    IsExTestActive = false;
+                    ChangeTestStatus(exTimeStackView, test2TimerLbl, IsExTestActive);
                 }
             };
 
