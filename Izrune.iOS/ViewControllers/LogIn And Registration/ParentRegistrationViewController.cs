@@ -23,9 +23,9 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
-            var parentRegVc = Storyboard.InstantiateViewController("MovieInfoAditionalStoryboardId") as TestScrollViewController;
+            var parentRegVc = Storyboard.InstantiateViewController(ParentRegSecondViewController.StoryboardId) as ParentRegSecondViewController;
 
-            var parent2RegVc = Storyboard.InstantiateViewController(ParentRegSecondViewController.StoryboardId) as ParentRegSecondViewController;
+            var parent2RegVc = Storyboard.InstantiateViewController(ParentRegiFirstViewController.StoryboardId) as ParentRegiFirstViewController;
 
             RegistrationPages = new UIViewController[] { parentRegVc, parent2RegVc };
 

@@ -259,17 +259,17 @@
         <Compile Include="CollectionViewCells\AnswerProgressCollectionViewCell.designer.cs">
           <DependentUpon>AnswerProgressCollectionViewCell.cs</DependentUpon>
         </Compile>
-        <Compile Include="ViewControllers\LogIn And Registration\ParentRegFirstViewController.cs" />
-        <Compile Include="ViewControllers\LogIn And Registration\ParentRegFirstViewController.designer.cs">
-          <DependentUpon>ParentRegFirstViewController.cs</DependentUpon>
-        </Compile>
-        <Compile Include="ViewControllers\LogIn And Registration\ParentRegSecondViewController.cs" />
-        <Compile Include="ViewControllers\LogIn And Registration\ParentRegSecondViewController.designer.cs">
-          <DependentUpon>ParentRegSecondViewController.cs</DependentUpon>
-        </Compile>
         <Compile Include="TestScrollViewController.cs" />
         <Compile Include="TestScrollViewController.designer.cs">
           <DependentUpon>TestScrollViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ParentRegiFirstViewController.cs" />
+        <Compile Include="ParentRegiFirstViewController.designer.cs">
+          <DependentUpon>ParentRegiFirstViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ParentRegSecondViewController.cs" />
+        <Compile Include="ParentRegSecondViewController.designer.cs">
+          <DependentUpon>ParentRegSecondViewController.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup>

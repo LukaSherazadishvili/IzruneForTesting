@@ -12,15 +12,9 @@ namespace Izrune.iOS
 	[Register ("ParentRegSecondViewController")]
 	partial class ParentRegSecondViewController
 	{
-		[Outlet]
-		UIKit.UIStackView textFieldsStackView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (textFieldsStackView != null) {
-				textFieldsStackView.Dispose ();
-				textFieldsStackView = null;
-			}
 		}
 	}
 }
