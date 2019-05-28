@@ -39,7 +39,7 @@ namespace Izrune.iOS
             base.ViewDidLayoutSubviews();
 
             //RegistrationPages?[0].AddAsChildViewController(this, viewForPager);
-            var parentRegVc = Storyboard.InstantiateViewController("MovieInfoAditionalStoryboardId") as TestScrollViewController;
+            var parentRegVc = Storyboard.InstantiateViewController(ParentRegiFirstViewController.StoryboardId) as ParentRegiFirstViewController;
 
             var parent2RegVc = Storyboard.InstantiateViewController(ParentRegSecondViewController.StoryboardId) as ParentRegSecondViewController;
             this.AddChildViewController(parentRegVc);

@@ -4,6 +4,9 @@ using System;
 
 using Foundation;
 using UIKit;
+using MpdcViewExtentions;
+using System.Linq;
+using Izrune.iOS.Utils;
 
 namespace Izrune.iOS
 {
@@ -18,6 +21,18 @@ namespace Izrune.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            //InitUI();
+        }
+
+        private void InitUI()
+        {
+            var textFields = textFieldsStackView.Subviews?.Select(x => x as UITextField);
+
+            foreach (var item in textFields)
+            {
+                item.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 20);
+            }
         }
     }
 }

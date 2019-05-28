@@ -12,9 +12,15 @@ namespace Izrune.iOS
 	[Register ("ParentRegiFirstViewController")]
 	partial class ParentRegiFirstViewController
 	{
+		[Outlet]
+		UIKit.UIStackView textFieldsStackView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (textFieldsStackView != null) {
+				textFieldsStackView.Dispose ();
+				textFieldsStackView = null;
+			}
 		}
 	}
 }
