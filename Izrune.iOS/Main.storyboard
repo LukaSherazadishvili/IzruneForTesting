@@ -601,18 +601,87 @@
                                     <constraint firstItem="6vJ-vU-vBg" firstAttribute="top" secondItem="W7j-6o-Spv" secondAttribute="top" id="xGm-os-UMi"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="მომსახურების ინდივიდუალური პაკეტის გააქტიურება" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Go-9r-nmw">
+                                <rect key="frame" x="27" y="157" width="321" height="70"/>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="20"/>
+                                <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="8jq-br-Qas">
+                                <rect key="frame" x="0.0" y="632" width="375" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="180" id="lKa-xz-9HQ"/>
+                                    <constraint firstAttribute="height" constant="180" id="mv0-WM-ucM"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="უკან დაბრუნება" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vou-FI-AOn">
+                                <rect key="frame" x="15" y="759" width="345" height="14"/>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TE9-71-LEM">
+                                <rect key="frame" x="162.66666666666666" y="689" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="MY3-jb-WEf"/>
+                                    <constraint firstAttribute="height" constant="50" id="zeD-zi-yDV"/>
+                                </constraints>
+                                <state key="normal" image="1 – 4.png"/>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vfO-9o-KR0">
+                                <rect key="frame" x="0.0" y="227" width="375" height="404"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsP-hm-UNN">
+                                <rect key="frame" x="93.333333333333329" y="607" width="188.33333333333337" height="50"/>
+                                <color key="backgroundColor" red="0.79607843140000001" green="0.52941176469999995" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="P1W-z5-HJm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="15"/>
+                                <state key="normal" title="შემდეგი">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="vou-FI-AOn" firstAttribute="leading" secondItem="erI-H0-g4W" secondAttribute="leading" constant="15" id="0xk-uO-oxJ"/>
+                            <constraint firstItem="8jq-br-Qas" firstAttribute="leading" secondItem="erI-H0-g4W" secondAttribute="leading" id="5v8-OH-96p"/>
+                            <constraint firstItem="BSj-FW-Es7" firstAttribute="top" secondItem="vou-FI-AOn" secondAttribute="bottom" constant="5" id="AQc-mZ-MCo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="W7j-6o-Spv" secondAttribute="trailing" constant="40" id="AjQ-Qa-DWE"/>
+                            <constraint firstItem="8Go-9r-nmw" firstAttribute="top" secondItem="W7j-6o-Spv" secondAttribute="bottom" constant="45" id="Dru-GA-0R2"/>
+                            <constraint firstAttribute="bottom" secondItem="8jq-br-Qas" secondAttribute="bottom" id="Fve-jq-l0c"/>
+                            <constraint firstItem="dsP-hm-UNN" firstAttribute="top" secondItem="8jq-br-Qas" secondAttribute="top" constant="-25" id="Idd-vO-G97"/>
+                            <constraint firstItem="vou-FI-AOn" firstAttribute="top" secondItem="TE9-71-LEM" secondAttribute="bottom" constant="20" id="JAp-rT-7tH"/>
                             <constraint firstItem="W7j-6o-Spv" firstAttribute="top" secondItem="EX3-GX-qhI" secondAttribute="bottom" constant="30" id="W4v-Um-CuN"/>
+                            <constraint firstAttribute="trailing" secondItem="vou-FI-AOn" secondAttribute="trailing" constant="15" id="XJd-2J-w19"/>
+                            <constraint firstItem="vfO-9o-KR0" firstAttribute="top" secondItem="8Go-9r-nmw" secondAttribute="bottom" id="bqM-Ho-jVA"/>
+                            <constraint firstItem="dsP-hm-UNN" firstAttribute="centerX" secondItem="erI-H0-g4W" secondAttribute="centerX" id="doO-FW-5kU"/>
+                            <constraint firstAttribute="trailing" secondItem="8jq-br-Qas" secondAttribute="trailing" id="eMH-Nu-lcm"/>
+                            <constraint firstItem="vfO-9o-KR0" firstAttribute="leading" secondItem="erI-H0-g4W" secondAttribute="leading" id="kfr-sc-ks0"/>
                             <constraint firstItem="W7j-6o-Spv" firstAttribute="leading" secondItem="erI-H0-g4W" secondAttribute="leadingMargin" constant="40" id="lRb-v8-Tji"/>
+                            <constraint firstAttribute="trailing" secondItem="vfO-9o-KR0" secondAttribute="trailing" id="mSr-Ao-YVS"/>
+                            <constraint firstItem="8jq-br-Qas" firstAttribute="top" secondItem="vfO-9o-KR0" secondAttribute="bottom" constant="1" id="pqa-Gd-BGH"/>
+                            <constraint firstItem="TE9-71-LEM" firstAttribute="centerX" secondItem="erI-H0-g4W" secondAttribute="centerX" id="uHU-bN-NG8"/>
+                            <constraint firstItem="dsP-hm-UNN" firstAttribute="width" secondItem="erI-H0-g4W" secondAttribute="width" multiplier="0.5" constant="1" id="w93-So-k7H"/>
+                            <constraint firstItem="8Go-9r-nmw" firstAttribute="leading" secondItem="erI-H0-g4W" secondAttribute="leading" constant="27" id="wJ6-Nm-KyR"/>
+                            <constraint firstAttribute="trailing" secondItem="8Go-9r-nmw" secondAttribute="trailing" constant="27" id="x22-Te-agA"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="headerTitleLbl" destination="8Go-9r-nmw" id="M6i-Jd-6uw"/>
+                        <outlet property="nextBtn" destination="dsP-hm-UNN" id="V8h-5l-XpU"/>
+                        <outlet property="prevBtn" destination="TE9-71-LEM" id="6LM-5r-4yq"/>
+                        <outlet property="viewForIndividual" destination="6vJ-vU-vBg" id="kLj-Ho-7wX"/>
+                        <outlet property="viewForPeager" destination="vfO-9o-KR0" id="RKL-hb-GiX"/>
+                        <outlet property="viewForPromoCode" destination="5WL-eO-vl9" id="csy-CG-MF8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cFM-AR-SfC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2919" y="1317"/>
+            <point key="canvasLocation" x="-2919.1999999999998" y="1316.7487684729065"/>
         </scene>
         <!--Start Test View Controller-->
         <scene sceneID="jHV-Q4-gez">
