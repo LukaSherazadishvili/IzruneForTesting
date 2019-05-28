@@ -49,25 +49,43 @@ namespace IZrune.PCL.Helpers
         }
 
         List<IQuestion> Questions;
+        public List<QuisSheduler> Sheduler;
         bool EndTime;
         int TimeInSecond ;
 
-
-        public IQuestion GetCurrentQuestion(int position)
+        private int Position = 0;
+        public IQuestion GetCurrentQuestion()
         {
-            EndTime = true;
-            TimeInSecond = 0;
-            Task.Run(async() =>
+            try
             {
-                while (EndTime)
-                {
-                    TimeInSecond++;
-                    await Task.Delay(1000);
-                }
-                
-            });
 
-           return Questions.ElementAt(position);
+
+
+                EndTime = true;
+                TimeInSecond = 0;
+                if (Position < 20)
+                {
+                    Task.Run(async () =>
+                    {
+                        while (EndTime)
+                        {
+                            TimeInSecond++;
+                            await Task.Delay(1000);
+                        }
+
+                    });
+
+                    return Questions.ElementAt(Position);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
         }
 
         public async Task<IEnumerable<IQuestion>> GetAllQuestion(QuezCategory TestType)
@@ -75,6 +93,17 @@ namespace IZrune.PCL.Helpers
             var Result =await MpdcContainer.Instance.Get<IQuezServices>().GetQuestionsAsync(TestType);
             Questions = Result.ToList();
 
+            if (Questions.Count > 0&&Sheduler==null)
+            {
+                Sheduler = new List<QuisSheduler>();
+                for(int i = 0; i < Questions?.Count(); i++)
+                {
+                    QuisSheduler sheduler = new QuisSheduler() { IsCurrent = false, AlreadeBe = false, Position = i };
+                    Sheduler.Add(sheduler);
+                }
+                Sheduler.ElementAt(Position).IsCurrent = true;
+
+            }
             return Result;
         }
 
@@ -84,19 +113,29 @@ namespace IZrune.PCL.Helpers
            return await MpdcContainer.Instance.Get<IQuezServices>().GetExamDate(categor);
         }
 
-        private int Count = 0;
+       
         public async Task AddQuestion(int QuestionId,int AnswerId)
         {
-            Count++;
+            Position++;
+            if (Sheduler?.Count() > 0)
+            {
+                foreach(var item in Sheduler)
+                {
+                    item.IsCurrent = false;
+                }
+                Sheduler.ElementAt(Position).IsCurrent = true;
+                if (Position != 0)
+                    Sheduler.ElementAt(Position - 1).AlreadeBe = true;
+            }
+            var res = Sheduler;
             EndTime = false;
             QuezQuestion quez = new QuezQuestion() {AnswerId=AnswerId,Duration= TimeInSecond, QuestionId=QuestionId };
             
           await  MpdcContainer.Instance.Get<IQuezServices>().GetQuezResultAsync(quez);
             
-            if (Count == 20)
+            if (Position == 20)
             {
                 await MpdcContainer.Instance.Get<IQuezServices>().GetDiploma();
-               
             }
         }
 

@@ -84,7 +84,8 @@ namespace Izrune.Activitys
 
 
                 
-                var FragmentQuestion = new QuezFragment(QuezControll.Instance.GetCurrentQuestion(Position));
+                var FragmentQuestion = new QuezFragment(QuezControll.Instance.GetCurrentQuestion());
+
             FragmentQuestion.AnswerClick = () =>
             {
                 Position++;
@@ -94,20 +95,21 @@ namespace Izrune.Activitys
                 CircProgress = 0;
                 progBar.Progress = 0;
 
-
-                foreach(var items in Sheduler)
+                if (Position < 20)
                 {
-                    items.IsCurrent = false;
+                    foreach (var items in Sheduler)
+                    {
+                        items.IsCurrent = false;
+                    }
+                    Sheduler.ElementAt(Position).AlreadeBe = true;
+                    Sheduler.ElementAt(Position).IsCurrent = true;
+                    Adapter.NotifyDataSetChanged();
+                    if (Position <= 18)
+                        ShedulRecycler.ScrollToPosition(Position + 1);
+                    else
+                        ShedulRecycler.ScrollToPosition(Position);
                 }
-                Sheduler.ElementAt(Position).AlreadeBe = true;
-                Sheduler.ElementAt(Position).IsCurrent = true;
-                Adapter.NotifyDataSetChanged();
-                if (Position <= 18)
-                    ShedulRecycler.ScrollToPosition(Position + 1);
-                else
-                    ShedulRecycler.ScrollToPosition(Position);
-
-                return QuezControll.Instance.GetCurrentQuestion(Position);
+                return QuezControll.Instance.GetCurrentQuestion();
             };
             ChangeFragmentPage(FragmentQuestion, Resource.Id.ContainerQuestion);
 
@@ -134,7 +136,7 @@ namespace Izrune.Activitys
 
 
             RunOnUiThread(async () => {
-                while (Progr > 0)
+                while (Progr > 0&&Position<20)
                 {
                     Progr--;
                     Sec--;
@@ -157,7 +159,7 @@ namespace Izrune.Activitys
                         CircProgress = 0;
                         progBar.Progress = 0;
 
-                        var frg = new QuezFragment(QuezControll.Instance.GetCurrentQuestion(Position));
+                        var frg = new QuezFragment(QuezControll.Instance.GetCurrentQuestion());
 
                         frg.AnswerClick = () =>
                         {
@@ -181,7 +183,7 @@ namespace Izrune.Activitys
                             else
                                 ShedulRecycler.ScrollToPosition(Position);
 
-                            return QuezControll.Instance.GetCurrentQuestion(Position);
+                            return QuezControll.Instance.GetCurrentQuestion();
                         };
 
 
@@ -215,27 +217,6 @@ namespace Izrune.Activitys
                 }
             });
         }
-
-
-
-
-        private IQuestion ChangeQuestion()
-        {
-            Position++;
-            CircProgress = 0;
-            Sec = 30;
-            minit = 1;
-            progBar.Progress = CircProgress;
-            return QuestionsList?.ElementAt(Position);
-
-
-
-            //  ChangeFragmentPage(new QuezFragment(QuestionsList.ElementAt(Position), ChangeQuestion), Resource.Id.ContainerQuestion);
-
-
-        }
-
-
 
 
 

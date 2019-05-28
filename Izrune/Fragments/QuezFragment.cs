@@ -127,30 +127,36 @@ namespace Izrune.Fragments
 
             question = AnswerClick?.Invoke();
 
-            QuestionTitle.Text = question.title;
-
-            ContainerForAnswer.RemoveAllViews();
-            MyViews.Clear();
-            if (question.images.ToList().Count > 0)
+            if (question == null)
             {
-                ImageCard.Visibility = ViewStates.Visible;
-                MainImage.LoadImage(question.images.ElementAt(0));
+                Toast.MakeText(this, "Hello Nigga", ToastLength.Long).Show();
             }
             else
             {
-                ImageCard.Visibility = ViewStates.Gone;
-            }
-            for (int i = 0; i < question.Answers.Count(); i++)
-            {
-                var AnswerView = LayoutInflater.Inflate(Resource.Layout.ItemQuezAnswer, null);
-                AnswerView.FindViewById<TextView>(Resource.Id.AnswerTxt).Text = question.Answers.ElementAt(i).title;
-                AnswerView.FindViewById<TextView>(Resource.Id.AnswerVersionSimbol).Text = QuestionVersioSimbols.ElementAt(i);
+                QuestionTitle.Text = question.title;
 
-                AnswerView.Click += AnswerView_Click;
-                MyViews.Add(AnswerView);
-                ContainerForAnswer.AddView(AnswerView);
-            }
+                ContainerForAnswer.RemoveAllViews();
+                MyViews.Clear();
+                if (question.images.ToList().Count > 0)
+                {
+                    ImageCard.Visibility = ViewStates.Visible;
+                    MainImage.LoadImage(question.images.ElementAt(0));
+                }
+                else
+                {
+                    ImageCard.Visibility = ViewStates.Gone;
+                }
+                for (int i = 0; i < question.Answers.Count(); i++)
+                {
+                    var AnswerView = LayoutInflater.Inflate(Resource.Layout.ItemQuezAnswer, null);
+                    AnswerView.FindViewById<TextView>(Resource.Id.AnswerTxt).Text = question.Answers.ElementAt(i).title;
+                    AnswerView.FindViewById<TextView>(Resource.Id.AnswerVersionSimbol).Text = QuestionVersioSimbols.ElementAt(i);
 
+                    AnswerView.Click += AnswerView_Click;
+                    MyViews.Add(AnswerView);
+                    ContainerForAnswer.AddView(AnswerView);
+                }
+            }
            
         }
     }
