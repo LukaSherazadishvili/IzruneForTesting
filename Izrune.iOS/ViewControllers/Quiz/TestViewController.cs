@@ -238,6 +238,8 @@ namespace Izrune.iOS
                     {
                         timer.Enabled = false;
                         timer.Stop();
+                        timer.Dispose();
+                        return;
                         //TODO SkipQuestion
                     }
 
