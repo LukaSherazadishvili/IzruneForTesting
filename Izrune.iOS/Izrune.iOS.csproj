@@ -154,6 +154,7 @@
         <InterfaceDefinition Include="CollectionViewCells\AnswerCollectionViewCell.xib" />
         <InterfaceDefinition Include="CollectionViewCells\QuestionImageCollectionViewCell.xib" />
         <InterfaceDefinition Include="CollectionViewCells\AnswerProgressCollectionViewCell.xib" />
+        <InterfaceDefinition Include="CollectionViewCells\PacketCollectionViewCell.xib" />
     </ItemGroup>
     <ItemGroup>
         <None Include="Info.plist" />
@@ -270,6 +271,10 @@
         <Compile Include="ViewControllers\LogIn And Registration\StudentRegSecondViewController.cs" />
         <Compile Include="ViewControllers\LogIn And Registration\StudentRegSecondViewController.designer.cs">
           <DependentUpon>StudentRegSecondViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CollectionViewCells\PacketCollectionViewCell.cs" />
+        <Compile Include="CollectionViewCells\PacketCollectionViewCell.designer.cs">
+          <DependentUpon>PacketCollectionViewCell.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup>

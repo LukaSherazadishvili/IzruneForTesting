@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="bpg_mrgvlovani_2010.ttf">
+            <string>BPGMrgvlovani2010</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PacketCellIdentifier" id="cZE-iV-UFb" customClass="PacketCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="322" height="109"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="322" height="109"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ljK-GP-2aP" userLabel="ContentView">
+                        <rect key="frame" x="0.0" y="0.0" width="322" height="109"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Igv-1k-dNG" userLabel="MainView">
+                                <rect key="frame" x="10" y="34.5" width="68" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 თვე" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BlZ-5R-ui2">
+                                <rect key="frame" x="30" y="44.5" width="48" height="20"/>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="15"/>
+                                <color key="textColor" red="0.68235294117647061" green="0.44313725490196076" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zY3-Kd-xD1" userLabel="PriceView">
+                                <rect key="frame" x="230" y="34.5" width="80" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9 ₾" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yv6-2d-8eV">
+                                        <rect key="frame" x="23.5" y="7" width="33.5" height="26"/>
+                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="22"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.28462690114974976" green="0.71026319265365601" blue="0.25455555319786072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="cmt-f1-LF7"/>
+                                    <constraint firstItem="yv6-2d-8eV" firstAttribute="centerY" secondItem="zY3-Kd-xD1" secondAttribute="centerY" id="kyj-E1-Pu7"/>
+                                    <constraint firstAttribute="width" constant="80" id="qjr-DP-bIh"/>
+                                    <constraint firstItem="yv6-2d-8eV" firstAttribute="centerX" secondItem="zY3-Kd-xD1" secondAttribute="centerX" id="sl8-br-09C"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27 ₾" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUu-ys-tHg">
+                                <rect key="frame" x="172.5" y="41.5" width="47.5" height="26"/>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="22"/>
+                                <color key="textColor" red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GCW-S1-Rlv">
+                                <rect key="frame" x="172.5" y="53.5" width="47.5" height="2"/>
+                                <color key="backgroundColor" red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="fIW-B8-vIH"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BlZ-5R-ui2" firstAttribute="leading" secondItem="ljK-GP-2aP" secondAttribute="leading" constant="30" id="2Es-fO-eb6"/>
+                            <constraint firstItem="zY3-Kd-xD1" firstAttribute="top" secondItem="BlZ-5R-ui2" secondAttribute="top" constant="-10" id="5uw-4m-ihd"/>
+                            <constraint firstItem="Igv-1k-dNG" firstAttribute="leading" secondItem="BlZ-5R-ui2" secondAttribute="leading" constant="-20" id="7nI-zb-dRk"/>
+                            <constraint firstItem="zY3-Kd-xD1" firstAttribute="bottom" secondItem="BlZ-5R-ui2" secondAttribute="bottom" constant="10" id="AcN-LV-Xjr"/>
+                            <constraint firstItem="Igv-1k-dNG" firstAttribute="top" secondItem="zY3-Kd-xD1" secondAttribute="top" id="BYk-QS-6Pe"/>
+                            <constraint firstItem="zY3-Kd-xD1" firstAttribute="leading" secondItem="ZUu-ys-tHg" secondAttribute="trailing" constant="10" id="M91-Ka-2q7"/>
+                            <constraint firstItem="GCW-S1-Rlv" firstAttribute="centerY" secondItem="ZUu-ys-tHg" secondAttribute="centerY" id="MOt-6J-XfH"/>
+                            <constraint firstItem="GCW-S1-Rlv" firstAttribute="leading" secondItem="ZUu-ys-tHg" secondAttribute="leading" id="OiP-zc-nek"/>
+                            <constraint firstItem="ZUu-ys-tHg" firstAttribute="centerY" secondItem="BlZ-5R-ui2" secondAttribute="centerY" id="QII-P4-lPk"/>
+                            <constraint firstAttribute="trailing" secondItem="zY3-Kd-xD1" secondAttribute="trailing" constant="12" id="ZTF-dK-Sq8"/>
+                            <constraint firstItem="GCW-S1-Rlv" firstAttribute="trailing" secondItem="ZUu-ys-tHg" secondAttribute="trailing" id="eGk-Cs-VNO"/>
+                            <constraint firstItem="BlZ-5R-ui2" firstAttribute="centerY" secondItem="ljK-GP-2aP" secondAttribute="centerY" id="sBJ-9Z-2IG"/>
+                            <constraint firstItem="Igv-1k-dNG" firstAttribute="trailing" secondItem="BlZ-5R-ui2" secondAttribute="trailing" id="yFu-Aa-5NT"/>
+                            <constraint firstItem="Igv-1k-dNG" firstAttribute="bottom" secondItem="zY3-Kd-xD1" secondAttribute="bottom" id="ysB-hM-uhG"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="ljK-GP-2aP" firstAttribute="leading" secondItem="cZE-iV-UFb" secondAttribute="leading" id="Fjo-Ay-cFv"/>
+                <constraint firstItem="ljK-GP-2aP" firstAttribute="top" secondItem="cZE-iV-UFb" secondAttribute="top" id="Q6R-N2-azy"/>
+                <constraint firstAttribute="trailing" secondItem="ljK-GP-2aP" secondAttribute="trailing" id="jnK-Mh-ToN"/>
+                <constraint firstAttribute="bottom" secondItem="ljK-GP-2aP" secondAttribute="bottom" id="qKU-qN-mvv"/>
+            </constraints>
+            <size key="customSize" width="322" height="109"/>
+            <point key="canvasLocation" x="244.92753623188409" y="55.245535714285715"/>
+        </collectionViewCell>
+    </objects>
+</document>

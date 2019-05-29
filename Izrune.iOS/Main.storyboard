@@ -1524,24 +1524,6 @@
             </objects>
             <point key="canvasLocation" x="-2919.1999999999998" y="-69.458128078817737"/>
         </scene>
-        <!--Student Registration View Controller-->
-        <scene sceneID="Ez3-3q-Xuv">
-            <objects>
-                <viewController storyboardIdentifier="StudentRegistrationStoryboardId" id="Ko3-Gx-igm" customClass="StudentRegistrationViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="npk-4p-GWu"/>
-                        <viewControllerLayoutGuide type="bottom" id="ytm-7h-tZj"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Cuk-Be-2xb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sbg-LV-iQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-783" y="-761"/>
-        </scene>
         <!--Password Recovery View Controller-->
         <scene sceneID="6Ig-Td-Md1">
             <objects>
@@ -1688,7 +1670,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="პაროლი გაგზავნილია მითითებულ ტელეფონის ნომერზე" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIV-Ku-9vm">
-                                <rect key="frame" x="15" y="348" width="345" height="42"/>
+                                <rect key="frame" x="15" y="348" width="345" height="63"/>
                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="18"/>
                                 <color key="textColor" red="0.28627450980392155" green="0.70980392156862748" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
