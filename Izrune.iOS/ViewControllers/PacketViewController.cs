@@ -20,14 +20,18 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
+            SelectHeader();
+            InitUI();
+
             InitGesture();
         }
 
-        private bool IsIndividualSelected;
+        private bool IsIndividualSelected = true;
 
         private void InitUI()
         {
-
+            viewForIndividual.Layer.CornerRadius = 19;
+            viewForPromoCode.Layer.CornerRadius = 19;
         }
 
         private void InitGesture()
@@ -45,7 +49,7 @@ namespace Izrune.iOS
             {
                 viewForPromoCode.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-                    HeaderGesture(true);
+                    HeaderGesture(false);
                     //TODO Change Page
                 }));
             }

@@ -548,7 +548,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W7j-6o-Spv">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W7j-6o-Spv">
                                 <rect key="frame" x="56" y="74" width="263" height="38"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vJ-vU-vBg">
@@ -600,6 +600,11 @@
                                     <constraint firstAttribute="bottom" secondItem="5WL-eO-vl9" secondAttribute="bottom" id="kIF-Fg-yNg"/>
                                     <constraint firstItem="6vJ-vU-vBg" firstAttribute="top" secondItem="W7j-6o-Spv" secondAttribute="top" id="xGm-os-UMi"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="19"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="მომსახურების ინდივიდუალური პაკეტის გააქტიურება" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Go-9r-nmw">
                                 <rect key="frame" x="27" y="157" width="321" height="70"/>
