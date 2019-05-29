@@ -1394,10 +1394,10 @@
             </objects>
             <point key="canvasLocation" x="-1444" y="1317"/>
         </scene>
-        <!--Update Packet View Controller-->
+        <!--Select Packet View Controller-->
         <scene sceneID="hN7-fJ-yG1">
             <objects>
-                <viewController storyboardIdentifier="UpdatePacketStoryboardId" id="23X-9z-VdJ" customClass="UpdatePacketViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectPacketStoryboardId" id="23X-9z-VdJ" customClass="SelectPacketViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DWi-8u-Ezx"/>
                         <viewControllerLayoutGuide type="bottom" id="YAi-GD-9YJ"/>
@@ -1406,23 +1406,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Packet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APF-ht-CVB">
-                                <rect key="frame" x="131" y="395.66666666666669" width="113" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Cj-NG-KKM">
+                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Tiw-v2-EZ2">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="00t-Ex-FyX">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="APF-ht-CVB" firstAttribute="centerY" secondItem="o25-eI-hSu" secondAttribute="centerY" id="37D-lP-YZL"/>
-                            <constraint firstItem="APF-ht-CVB" firstAttribute="centerX" secondItem="o25-eI-hSu" secondAttribute="centerX" id="vj9-V7-Isr"/>
+                            <constraint firstAttribute="trailing" secondItem="4Cj-NG-KKM" secondAttribute="trailing" id="3FH-ih-oEt"/>
+                            <constraint firstAttribute="bottom" secondItem="4Cj-NG-KKM" secondAttribute="bottom" id="OpD-OH-SOF"/>
+                            <constraint firstItem="4Cj-NG-KKM" firstAttribute="top" secondItem="DWi-8u-Ezx" secondAttribute="bottom" id="QmY-5a-xPc"/>
+                            <constraint firstItem="4Cj-NG-KKM" firstAttribute="leading" secondItem="o25-eI-hSu" secondAttribute="leading" id="g7x-nr-FPF"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="packetCollectionView" destination="4Cj-NG-KKM" id="BlZ-e8-6I7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RqX-bY-IvC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-706" y="1317"/>
+            <point key="canvasLocation" x="-706.39999999999998" y="1316.7487684729065"/>
         </scene>
         <!--Parent Registration View Controller-->
         <scene sceneID="xnA-EK-BwF">

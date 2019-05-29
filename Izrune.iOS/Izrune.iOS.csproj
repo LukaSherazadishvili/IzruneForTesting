@@ -277,6 +277,10 @@
         <Compile Include="CollectionViewCells\PacketCollectionViewCell.designer.cs">
           <DependentUpon>PacketCollectionViewCell.cs</DependentUpon>
         </Compile>
+        <Compile Include="ViewControllers\SelectPacketViewController.cs" />
+        <Compile Include="ViewControllers\SelectPacketViewController.designer.cs">
+          <DependentUpon>SelectPacketViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />

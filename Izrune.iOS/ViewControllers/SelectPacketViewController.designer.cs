@@ -9,17 +9,17 @@ using System.CodeDom.Compiler;
 
 namespace Izrune.iOS
 {
-	[Register ("UpdatePacketViewController")]
-	partial class UpdatePacketViewController
+	[Register ("SelectPacketViewController")]
+	partial class SelectPacketViewController
 	{
 		[Outlet]
-		UIKit.UICollectionView packetCollelctionView { get; set; }
+		UIKit.UICollectionView packetCollectionView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (packetCollelctionView != null) {
-				packetCollelctionView.Dispose ();
-				packetCollelctionView = null;
+			if (packetCollectionView != null) {
+				packetCollectionView.Dispose ();
+				packetCollectionView = null;
 			}
 		}
 	}
