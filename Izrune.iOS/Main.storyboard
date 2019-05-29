@@ -1688,7 +1688,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="პაროლი გაგზავნილია მითითებულ ტელეფონის ნომერზე" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIV-Ku-9vm">
-                                <rect key="frame" x="15" y="348" width="345" height="63"/>
+                                <rect key="frame" x="15" y="348" width="345" height="42"/>
                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="18"/>
                                 <color key="textColor" red="0.28627450980392155" green="0.70980392156862748" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2069,13 +2069,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uB6-tP-Nlh">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="465"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="520"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="ub5-7P-dV3">
-                                                <rect key="frame" x="20" y="50" width="340" height="395"/>
+                                                <rect key="frame" x="20" y="50" width="340" height="450"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Oli-qf-5dg">
-                                                        <rect key="frame" x="0.0" y="0.0" width="340" height="315"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="340" height="370"/>
                                                         <subviews>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="*სახელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gfF-c4-8aB">
                                                                 <rect key="frame" x="0.0" y="0.0" width="340" height="40"/>
@@ -2097,8 +2097,14 @@
                                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                             </textField>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="jiS-Vj-fLP">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*დაბადების თარიღი" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LE-gL-f70">
                                                                 <rect key="frame" x="0.0" y="110" width="340" height="40"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="0.72156862749999995" green="0.72156862749999995" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="jiS-Vj-fLP">
+                                                                <rect key="frame" x="0.0" y="165" width="340" height="40"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="დღე" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FL5-cz-Agw">
                                                                         <rect key="frame" x="0.0" y="0.0" width="39.666666666666664" height="40"/>
@@ -2133,7 +2139,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="*ქალაქი/მუნიციპალიტეტი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FOe-SH-Z2v">
-                                                                <rect key="frame" x="0.0" y="165" width="340" height="40"/>
+                                                                <rect key="frame" x="0.0" y="220" width="340" height="40"/>
                                                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="PZM-bu-QKy"/>
@@ -2143,7 +2149,7 @@
                                                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                             </textField>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="სოფელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6H6-RW-pRe">
-                                                                <rect key="frame" x="0.0" y="220" width="340" height="40"/>
+                                                                <rect key="frame" x="0.0" y="275" width="340" height="40"/>
                                                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="Bug-Xa-Q3b"/>
@@ -2153,7 +2159,7 @@
                                                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                             </textField>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="სახელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="USq-eW-qqX">
-                                                                <rect key="frame" x="0.0" y="275" width="340" height="40"/>
+                                                                <rect key="frame" x="0.0" y="330" width="340" height="40"/>
                                                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="eku-2Z-p2I"/>
@@ -2165,10 +2171,10 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="equalSpacing" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dVw-Va-MDb">
-                                                        <rect key="frame" x="0.0" y="355" width="340" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="410" width="340" height="0.0"/>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCA-EQ-Xrz">
-                                                        <rect key="frame" x="0.0" y="395" width="340" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="450" width="340" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovaniCaps2010" family="BPG Mrgvlovani Caps 2010" pointSize="15"/>
                                                         <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2229,13 +2235,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uFs-j0-2vV">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="740"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="510"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="HKf-0N-RcD">
-                                                <rect key="frame" x="20" y="50" width="340" height="670"/>
+                                                <rect key="frame" x="20" y="50" width="340" height="440"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="BbY-6n-Fgz">
-                                                        <rect key="frame" x="0.0" y="0.0" width="340" height="590"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="BbY-6n-Fgz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="340" height="360"/>
                                                         <subviews>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="*ტელეფონი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a5G-tT-6Zq">
                                                                 <rect key="frame" x="0.0" y="0.0" width="340" height="40"/>
@@ -2248,7 +2254,7 @@
                                                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" enablesReturnKeyAutomatically="YES" textContentType="tel"/>
                                                             </textField>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="ელ. ფოსტა" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jzx-bw-n4U">
-                                                                <rect key="frame" x="0.0" y="55" width="340" height="40"/>
+                                                                <rect key="frame" x="0.0" y="80" width="340" height="40"/>
                                                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="h5H-QC-OdJ"/>
@@ -2258,7 +2264,7 @@
                                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES" textContentType="email"/>
                                                             </textField>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="*მომხმარებლის სახელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m4d-kP-Lb8">
-                                                                <rect key="frame" x="0.0" y="110" width="340" height="40"/>
+                                                                <rect key="frame" x="0.0" y="160" width="340" height="40"/>
                                                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="qlf-2K-w4N"/>
@@ -2268,7 +2274,7 @@
                                                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                             </textField>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="*პაროლი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z5s-kH-J2X">
-                                                                <rect key="frame" x="0.0" y="165" width="340" height="40"/>
+                                                                <rect key="frame" x="0.0" y="240" width="340" height="40"/>
                                                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="1Pu-tz-500"/>
@@ -2278,7 +2284,7 @@
                                                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                             </textField>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="*გაიმეორეთ პაროლი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DRV-Dt-Hak">
-                                                                <rect key="frame" x="0.0" y="220" width="340" height="40"/>
+                                                                <rect key="frame" x="0.0" y="320" width="340" height="40"/>
                                                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="3IB-IL-MT6"/>
@@ -2287,73 +2293,13 @@
                                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                             </textField>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="სახელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XF5-UK-RcM">
-                                                                <rect key="frame" x="0.0" y="275" width="340" height="40"/>
-                                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="40" id="Ijm-gG-zAt"/>
-                                                                </constraints>
-                                                                <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                                            </textField>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="სახელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JYh-aD-J5t">
-                                                                <rect key="frame" x="0.0" y="330" width="340" height="40"/>
-                                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="40" id="gXV-xd-tlu"/>
-                                                                </constraints>
-                                                                <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                                            </textField>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="სახელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ask-83-IJY">
-                                                                <rect key="frame" x="0.0" y="385" width="340" height="40"/>
-                                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="40" id="Yo9-f0-c2o"/>
-                                                                </constraints>
-                                                                <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                                            </textField>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="სახელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f8M-1T-uLU">
-                                                                <rect key="frame" x="0.0" y="440" width="340" height="40"/>
-                                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="40" id="2K1-kp-aK0"/>
-                                                                </constraints>
-                                                                <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                                            </textField>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="სახელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RkB-6u-FZt">
-                                                                <rect key="frame" x="0.0" y="495" width="340" height="40"/>
-                                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="40" id="E9Q-dE-hkd"/>
-                                                                </constraints>
-                                                                <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                                            </textField>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="სახელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xom-jl-vIo">
-                                                                <rect key="frame" x="0.0" y="550" width="340" height="40"/>
-                                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="40" id="prk-U0-0dT"/>
-                                                                </constraints>
-                                                                <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                                            </textField>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="equalSpacing" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="NQ7-jz-xiR">
-                                                        <rect key="frame" x="0.0" y="630" width="340" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="400" width="340" height="0.0"/>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONS-Wh-dnR">
-                                                        <rect key="frame" x="0.0" y="670" width="340" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="440" width="340" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovaniCaps2010" family="BPG Mrgvlovani Caps 2010" pointSize="15"/>
                                                         <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2369,11 +2315,47 @@
                                             <constraint firstAttribute="bottom" secondItem="HKf-0N-RcD" secondAttribute="bottom" constant="20" id="wdV-d0-H0X"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="მიუთითეთ მოქმედი მობილური ტელეფონის ნომერი" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4g-kn-Nyf">
+                                        <rect key="frame" x="20" y="100" width="340" height="10.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="9"/>
+                                        <color key="textColor" red="0.28627450980392155" green="0.70980392156862748" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="შესავსებად სავალდებულო არ არის, თუმცა სასურველია" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Avj-eA-hll">
+                                        <rect key="frame" x="20" y="180" width="340" height="10.666666666666657"/>
+                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="9"/>
+                                        <color key="textColor" red="0.28627450980000002" green="0.70980392160000005" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="აკრიფეთ ნებისმიერი სახელი (ან სიტყვა) ლათინურად, რომელიც შედგება მინიმუმ 5 სიმბოლოსგან" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUC-dm-QBy">
+                                        <rect key="frame" x="20" y="260" width="340" height="21"/>
+                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="9"/>
+                                        <color key="textColor" red="0.28627450980000002" green="0.70980392160000005" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="პაროლი უნდა შედგებოდეს არანაკლებ 7 ლათინური სიმბოლოსგან (ასოები და/ან ციფრები)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qm-Ev-zWI">
+                                        <rect key="frame" x="20" y="420" width="340" height="21"/>
+                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="9"/>
+                                        <color key="textColor" red="0.28627450980000002" green="0.70980392160000005" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="Avj-eA-hll" firstAttribute="top" secondItem="Jzx-bw-n4U" secondAttribute="bottom" constant="10" id="4oF-l1-gtX"/>
+                                    <constraint firstItem="5qm-Ev-zWI" firstAttribute="trailing" secondItem="DRV-Dt-Hak" secondAttribute="trailing" id="C9g-5z-8tA"/>
+                                    <constraint firstItem="g4g-kn-Nyf" firstAttribute="top" secondItem="a5G-tT-6Zq" secondAttribute="bottom" constant="10" id="Fih-jg-nR1"/>
+                                    <constraint firstItem="g4g-kn-Nyf" firstAttribute="leading" secondItem="a5G-tT-6Zq" secondAttribute="leading" id="HOr-rz-Kdf"/>
                                     <constraint firstItem="uFs-j0-2vV" firstAttribute="top" secondItem="Mmg-12-5Of" secondAttribute="top" id="HXi-bX-l4k"/>
+                                    <constraint firstItem="5qm-Ev-zWI" firstAttribute="top" secondItem="DRV-Dt-Hak" secondAttribute="bottom" constant="10" id="NaX-J8-gHq"/>
+                                    <constraint firstItem="eUC-dm-QBy" firstAttribute="trailing" secondItem="m4d-kP-Lb8" secondAttribute="trailing" id="ObM-ha-NH9"/>
+                                    <constraint firstItem="eUC-dm-QBy" firstAttribute="top" secondItem="m4d-kP-Lb8" secondAttribute="bottom" constant="10" id="UI0-Ea-pPV"/>
+                                    <constraint firstItem="eUC-dm-QBy" firstAttribute="leading" secondItem="m4d-kP-Lb8" secondAttribute="leading" id="VQL-IS-zSC"/>
+                                    <constraint firstItem="Avj-eA-hll" firstAttribute="leading" secondItem="Jzx-bw-n4U" secondAttribute="leading" id="Znu-q1-Rlo"/>
                                     <constraint firstAttribute="bottom" secondItem="uFs-j0-2vV" secondAttribute="bottom" id="b61-aA-so8"/>
+                                    <constraint firstItem="g4g-kn-Nyf" firstAttribute="trailing" secondItem="a5G-tT-6Zq" secondAttribute="trailing" id="dXp-La-7t9"/>
+                                    <constraint firstItem="5qm-Ev-zWI" firstAttribute="leading" secondItem="DRV-Dt-Hak" secondAttribute="leading" id="eCu-Pv-YEg"/>
+                                    <constraint firstItem="Avj-eA-hll" firstAttribute="trailing" secondItem="Jzx-bw-n4U" secondAttribute="trailing" id="i14-eC-NzW"/>
                                     <constraint firstItem="uFs-j0-2vV" firstAttribute="leading" secondItem="Mmg-12-5Of" secondAttribute="leading" id="q3Z-33-GRg"/>
                                     <constraint firstAttribute="trailing" secondItem="uFs-j0-2vV" secondAttribute="trailing" id="yUc-d2-Ued"/>
                                 </constraints>
@@ -2397,6 +2379,296 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YAd-8N-vbd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1466" y="-69"/>
+        </scene>
+        <!--Student Reg First View Controller-->
+        <scene sceneID="hXR-vO-dax">
+            <objects>
+                <viewController storyboardIdentifier="StudentRegFirstStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="doC-QP-iJx" customClass="StudentRegFirstViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="k4y-0A-kku"/>
+                        <viewControllerLayoutGuide type="bottom" id="aLy-Zt-Rcw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ajn-Kf-cXc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7e6-Aj-VXj">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T9A-vo-SVA">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="520"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="8eH-dm-06m">
+                                                <rect key="frame" x="20" y="50" width="340" height="450"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ekI-aA-7i6">
+                                                        <rect key="frame" x="0.0" y="0.0" width="340" height="370"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="*სახელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mik-Mg-wZ3">
+                                                                <rect key="frame" x="0.0" y="0.0" width="340" height="40"/>
+                                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="3Qr-tQ-3rk"/>
+                                                                </constraints>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                            </textField>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="*გვარი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mKn-AM-cPQ">
+                                                                <rect key="frame" x="0.0" y="55" width="340" height="40"/>
+                                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="2bL-hL-mE1"/>
+                                                                </constraints>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                            </textField>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*დაბადების თარიღი" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxI-mr-GuO">
+                                                                <rect key="frame" x="0.0" y="110" width="340" height="40"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="0.72156862745098038" green="0.72156862745098038" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="wj7-gy-WaW">
+                                                                <rect key="frame" x="0.0" y="165" width="340" height="40"/>
+                                                                <subviews>
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="დღე" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="brP-Nd-6tz">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="39.666666666666664" height="40"/>
+                                                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="40" id="cj7-b6-pve"/>
+                                                                        </constraints>
+                                                                        <nil key="textColor"/>
+                                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                                    </textField>
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="თვე" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tHi-dP-i6S">
+                                                                        <rect key="frame" x="148.33333333333334" y="0.0" width="35.333333333333343" height="40"/>
+                                                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="40" id="Aso-4P-Z7f"/>
+                                                                        </constraints>
+                                                                        <nil key="textColor"/>
+                                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                                    </textField>
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="წელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aiq-vn-2hP">
+                                                                        <rect key="frame" x="292" y="0.0" width="48" height="40"/>
+                                                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="40" id="k5h-yY-k52"/>
+                                                                        </constraints>
+                                                                        <nil key="textColor"/>
+                                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                                    </textField>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="*პირადი ნომერი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="37S-PF-DH7">
+                                                                <rect key="frame" x="0.0" y="220" width="340" height="40"/>
+                                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="Be8-hC-8ll"/>
+                                                                </constraints>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                            </textField>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="ტელეფონი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G0g-rU-uEk">
+                                                                <rect key="frame" x="0.0" y="275" width="340" height="40"/>
+                                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="iDN-6I-DUT"/>
+                                                                </constraints>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                            </textField>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="ელ. ფოსტა" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wzw-VZ-LzL">
+                                                                <rect key="frame" x="0.0" y="330" width="340" height="40"/>
+                                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="ffR-3v-o4l"/>
+                                                                </constraints>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                            </textField>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleAspectFit" distribution="equalSpacing" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uyn-e2-cos">
+                                                        <rect key="frame" x="0.0" y="410" width="340" height="0.0"/>
+                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e8j-1w-rUZ">
+                                                        <rect key="frame" x="0.0" y="450" width="340" height="0.0"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovaniCaps2010" family="BPG Mrgvlovani Caps 2010" pointSize="15"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="8eH-dm-06m" firstAttribute="top" secondItem="T9A-vo-SVA" secondAttribute="top" constant="50" id="WAc-Ht-1NX"/>
+                                            <constraint firstAttribute="bottom" secondItem="8eH-dm-06m" secondAttribute="bottom" constant="20" id="gtj-VI-Rrr"/>
+                                            <constraint firstAttribute="trailing" secondItem="8eH-dm-06m" secondAttribute="trailing" constant="15" id="vvx-mn-Uhs"/>
+                                            <constraint firstItem="8eH-dm-06m" firstAttribute="leading" secondItem="T9A-vo-SVA" secondAttribute="leading" constant="20" id="yFJ-WV-yR4"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="შესავსებად სავალდებულო არ არის, თუმცა სასურველია" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ej-xd-4k4">
+                                        <rect key="frame" x="20" y="430" width="340" height="10.666666666666686"/>
+                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="9"/>
+                                        <color key="textColor" red="0.28627450980000002" green="0.70980392160000005" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="5Ej-xd-4k4" firstAttribute="trailing" secondItem="Wzw-VZ-LzL" secondAttribute="trailing" id="51B-Sv-sJz"/>
+                                    <constraint firstItem="T9A-vo-SVA" firstAttribute="leading" secondItem="7e6-Aj-VXj" secondAttribute="leading" id="FLz-a4-OSW"/>
+                                    <constraint firstAttribute="bottom" secondItem="T9A-vo-SVA" secondAttribute="bottom" id="JSY-L9-vTC"/>
+                                    <constraint firstAttribute="trailing" secondItem="T9A-vo-SVA" secondAttribute="trailing" id="Vb4-5c-UZ6"/>
+                                    <constraint firstItem="T9A-vo-SVA" firstAttribute="top" secondItem="7e6-Aj-VXj" secondAttribute="top" id="cvb-ek-xE8"/>
+                                    <constraint firstItem="5Ej-xd-4k4" firstAttribute="top" secondItem="Wzw-VZ-LzL" secondAttribute="bottom" constant="10" id="erx-v4-ASe"/>
+                                    <constraint firstItem="5Ej-xd-4k4" firstAttribute="leading" secondItem="Wzw-VZ-LzL" secondAttribute="leading" id="hof-2V-ZAe"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="7e6-Aj-VXj" secondAttribute="bottom" id="0cE-pn-GKd"/>
+                            <constraint firstItem="T9A-vo-SVA" firstAttribute="width" secondItem="ajn-Kf-cXc" secondAttribute="width" id="Ici-IW-nsz"/>
+                            <constraint firstItem="T9A-vo-SVA" firstAttribute="height" secondItem="ajn-Kf-cXc" secondAttribute="height" priority="250" id="fa5-dV-Tqs"/>
+                            <constraint firstItem="7e6-Aj-VXj" firstAttribute="top" secondItem="ajn-Kf-cXc" secondAttribute="top" id="hZV-YZ-vpF"/>
+                            <constraint firstItem="7e6-Aj-VXj" firstAttribute="leading" secondItem="ajn-Kf-cXc" secondAttribute="leading" id="xgo-O8-jyv"/>
+                            <constraint firstAttribute="trailing" secondItem="7e6-Aj-VXj" secondAttribute="trailing" id="ytO-0T-LqE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sji-7H-2Yf"/>
+                    </view>
+                    <connections>
+                        <outlet property="textFieldsStackView" destination="ekI-aA-7i6" id="zww-LE-lXD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J4D-D8-Y70" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-783" y="-69"/>
+        </scene>
+        <!--Student Reg Second View Controller-->
+        <scene sceneID="sSH-t4-mzn">
+            <objects>
+                <viewController storyboardIdentifier="StudentRegSecondStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="6G0-no-caG" customClass="StudentRegSecondViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="G0h-gf-0fU"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZLr-TU-mRe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="75f-tY-GJv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvA-8E-dy6">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I3C-n6-6np">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="355"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="KdF-nD-FX4">
+                                                <rect key="frame" x="20" y="50" width="340" height="285"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="gdU-Fe-Iy9">
+                                                        <rect key="frame" x="0.0" y="0.0" width="340" height="205"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="*ქალაქი/მუნიციპალიტეტი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CdR-xc-Tyq">
+                                                                <rect key="frame" x="0.0" y="0.0" width="340" height="40"/>
+                                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="xPT-p2-6Ot"/>
+                                                                </constraints>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                            </textField>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="სოფელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ysa-Pp-CKv">
+                                                                <rect key="frame" x="0.0" y="55" width="340" height="40"/>
+                                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="XdG-iQ-etE"/>
+                                                                </constraints>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                            </textField>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="*სკოლა" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1P6-SF-UNy">
+                                                                <rect key="frame" x="0.0" y="110" width="340" height="40"/>
+                                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="xlh-6N-ccs"/>
+                                                                </constraints>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                            </textField>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="*კლასი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="beq-dH-JhD">
+                                                                <rect key="frame" x="0.0" y="165" width="340" height="40"/>
+                                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="D8W-Og-7pp"/>
+                                                                </constraints>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                            </textField>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleAspectFit" distribution="equalSpacing" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XVo-0M-nQv">
+                                                        <rect key="frame" x="0.0" y="245" width="340" height="0.0"/>
+                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRk-zO-cZx">
+                                                        <rect key="frame" x="0.0" y="285" width="340" height="0.0"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovaniCaps2010" family="BPG Mrgvlovani Caps 2010" pointSize="15"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="KdF-nD-FX4" firstAttribute="top" secondItem="I3C-n6-6np" secondAttribute="top" constant="50" id="0oT-Bh-Q1f"/>
+                                            <constraint firstAttribute="trailing" secondItem="KdF-nD-FX4" secondAttribute="trailing" constant="15" id="DbW-1s-TLQ"/>
+                                            <constraint firstItem="KdF-nD-FX4" firstAttribute="leading" secondItem="I3C-n6-6np" secondAttribute="leading" constant="20" id="Koy-Zm-TnU"/>
+                                            <constraint firstAttribute="bottom" secondItem="KdF-nD-FX4" secondAttribute="bottom" constant="20" id="fCr-Ak-7Zm"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="I3C-n6-6np" firstAttribute="leading" secondItem="zvA-8E-dy6" secondAttribute="leading" id="NDI-g5-wZX"/>
+                                    <constraint firstAttribute="trailing" secondItem="I3C-n6-6np" secondAttribute="trailing" id="Niv-I1-D5x"/>
+                                    <constraint firstItem="I3C-n6-6np" firstAttribute="top" secondItem="zvA-8E-dy6" secondAttribute="top" id="ead-kI-Eqr"/>
+                                    <constraint firstAttribute="bottom" secondItem="I3C-n6-6np" secondAttribute="bottom" id="mZC-Ol-GsA"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="I3C-n6-6np" firstAttribute="width" secondItem="75f-tY-GJv" secondAttribute="width" id="5Tx-aX-CVR"/>
+                            <constraint firstAttribute="bottom" secondItem="zvA-8E-dy6" secondAttribute="bottom" id="CNL-DM-nWj"/>
+                            <constraint firstAttribute="trailing" secondItem="zvA-8E-dy6" secondAttribute="trailing" id="UcS-eF-g0X"/>
+                            <constraint firstItem="zvA-8E-dy6" firstAttribute="leading" secondItem="75f-tY-GJv" secondAttribute="leading" id="bSO-DM-lEk"/>
+                            <constraint firstItem="zvA-8E-dy6" firstAttribute="top" secondItem="75f-tY-GJv" secondAttribute="top" id="v6T-Cc-VvQ"/>
+                            <constraint firstItem="I3C-n6-6np" firstAttribute="height" secondItem="75f-tY-GJv" secondAttribute="height" priority="250" id="vJj-ki-Dmh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KYS-kd-beO"/>
+                    </view>
+                    <connections>
+                        <outlet property="textFieldsStackView" destination="gdU-Fe-Iy9" id="AQ8-CZ-1g9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nvg-uZ-ef7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-98" y="-69"/>
         </scene>
     </scenes>
     <resources>

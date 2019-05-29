@@ -9,8 +9,8 @@ using System.CodeDom.Compiler;
 
 namespace Izrune.iOS
 {
-	[Register ("StudentRegistrationViewController")]
-	partial class StudentRegistrationViewController
+	[Register ("StudentRegFirstViewController")]
+	partial class StudentRegFirstViewController
 	{
 		
 		void ReleaseDesignerOutlets ()
