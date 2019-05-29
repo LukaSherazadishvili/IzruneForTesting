@@ -27,8 +27,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="322" height="109"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Igv-1k-dNG" userLabel="MainView">
-                                <rect key="frame" x="10" y="34.5" width="68" height="40"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="10" y="34.5" width="300" height="40"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 თვე" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BlZ-5R-ui2">
                                 <rect key="frame" x="30" y="44.5" width="48" height="20"/>
@@ -72,17 +72,17 @@
                         <constraints>
                             <constraint firstItem="BlZ-5R-ui2" firstAttribute="leading" secondItem="ljK-GP-2aP" secondAttribute="leading" constant="30" id="2Es-fO-eb6"/>
                             <constraint firstItem="zY3-Kd-xD1" firstAttribute="top" secondItem="BlZ-5R-ui2" secondAttribute="top" constant="-10" id="5uw-4m-ihd"/>
-                            <constraint firstItem="Igv-1k-dNG" firstAttribute="leading" secondItem="BlZ-5R-ui2" secondAttribute="leading" constant="-20" id="7nI-zb-dRk"/>
                             <constraint firstItem="zY3-Kd-xD1" firstAttribute="bottom" secondItem="BlZ-5R-ui2" secondAttribute="bottom" constant="10" id="AcN-LV-Xjr"/>
                             <constraint firstItem="Igv-1k-dNG" firstAttribute="top" secondItem="zY3-Kd-xD1" secondAttribute="top" id="BYk-QS-6Pe"/>
+                            <constraint firstItem="Igv-1k-dNG" firstAttribute="trailing" secondItem="zY3-Kd-xD1" secondAttribute="trailing" id="KqG-I1-5nn"/>
                             <constraint firstItem="zY3-Kd-xD1" firstAttribute="leading" secondItem="ZUu-ys-tHg" secondAttribute="trailing" constant="10" id="M91-Ka-2q7"/>
                             <constraint firstItem="GCW-S1-Rlv" firstAttribute="centerY" secondItem="ZUu-ys-tHg" secondAttribute="centerY" id="MOt-6J-XfH"/>
                             <constraint firstItem="GCW-S1-Rlv" firstAttribute="leading" secondItem="ZUu-ys-tHg" secondAttribute="leading" id="OiP-zc-nek"/>
                             <constraint firstItem="ZUu-ys-tHg" firstAttribute="centerY" secondItem="BlZ-5R-ui2" secondAttribute="centerY" id="QII-P4-lPk"/>
                             <constraint firstAttribute="trailing" secondItem="zY3-Kd-xD1" secondAttribute="trailing" constant="12" id="ZTF-dK-Sq8"/>
+                            <constraint firstItem="Igv-1k-dNG" firstAttribute="leading" secondItem="BlZ-5R-ui2" secondAttribute="leading" constant="-20" id="arC-4C-Vve"/>
                             <constraint firstItem="GCW-S1-Rlv" firstAttribute="trailing" secondItem="ZUu-ys-tHg" secondAttribute="trailing" id="eGk-Cs-VNO"/>
                             <constraint firstItem="BlZ-5R-ui2" firstAttribute="centerY" secondItem="ljK-GP-2aP" secondAttribute="centerY" id="sBJ-9Z-2IG"/>
-                            <constraint firstItem="Igv-1k-dNG" firstAttribute="trailing" secondItem="BlZ-5R-ui2" secondAttribute="trailing" id="yFu-Aa-5NT"/>
                             <constraint firstItem="Igv-1k-dNG" firstAttribute="bottom" secondItem="zY3-Kd-xD1" secondAttribute="bottom" id="ysB-hM-uhG"/>
                         </constraints>
                     </view>
@@ -95,6 +95,13 @@
                 <constraint firstAttribute="bottom" secondItem="ljK-GP-2aP" secondAttribute="bottom" id="qKU-qN-mvv"/>
             </constraints>
             <size key="customSize" width="322" height="109"/>
+            <connections>
+                <outlet property="mainView" destination="Igv-1k-dNG" id="G4q-tt-HQ3"/>
+                <outlet property="monthLbl" destination="BlZ-5R-ui2" id="gam-vK-rKZ"/>
+                <outlet property="oldPriceLbl" destination="ZUu-ys-tHg" id="36X-jU-3cs"/>
+                <outlet property="priceLbl" destination="yv6-2d-8eV" id="VnH-WW-GWK"/>
+                <outlet property="priceView" destination="zY3-Kd-xD1" id="pXB-dq-yAY"/>
+            </connections>
             <point key="canvasLocation" x="244.92753623188409" y="55.245535714285715"/>
         </collectionViewCell>
     </objects>

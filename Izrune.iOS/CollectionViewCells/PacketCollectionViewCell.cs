@@ -19,5 +19,15 @@ namespace Izrune.iOS.CollectionViewCells
         {
             // Note: this .ctor should not contain any initialization logic.
         }
+
+        public void InitData()
+        {
+            
+        }
+
+        public override void AwakeFromNib()
+        {
+            base.AwakeFromNib();
+        }
     }
 }
