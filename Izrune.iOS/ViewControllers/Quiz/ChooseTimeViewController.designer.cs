@@ -13,10 +13,16 @@ namespace Izrune.iOS
 	partial class ChooseTimeViewController
 	{
 		[Outlet]
+		UIKit.UIImageView closePopUpView { get; set; }
+
+		[Outlet]
 		UIKit.UIView derivedTimeShadowView { get; set; }
 
 		[Outlet]
 		UIKit.UIView derivedTimeView { get; set; }
+
+		[Outlet]
+		UIKit.UIView popUpView { get; set; }
 
 		[Outlet]
 		UIKit.UIView shadowView1 { get; set; }
@@ -32,24 +38,14 @@ namespace Izrune.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (totalTimeView != null) {
-				totalTimeView.Dispose ();
-				totalTimeView = null;
+			if (derivedTimeShadowView != null) {
+				derivedTimeShadowView.Dispose ();
+				derivedTimeShadowView = null;
 			}
 
 			if (derivedTimeView != null) {
 				derivedTimeView.Dispose ();
 				derivedTimeView = null;
-			}
-
-			if (totalTimeShadowView != null) {
-				totalTimeShadowView.Dispose ();
-				totalTimeShadowView = null;
-			}
-
-			if (derivedTimeShadowView != null) {
-				derivedTimeShadowView.Dispose ();
-				derivedTimeShadowView = null;
 			}
 
 			if (shadowView1 != null) {
@@ -60,6 +56,26 @@ namespace Izrune.iOS
 			if (shadowView2 != null) {
 				shadowView2.Dispose ();
 				shadowView2 = null;
+			}
+
+			if (totalTimeShadowView != null) {
+				totalTimeShadowView.Dispose ();
+				totalTimeShadowView = null;
+			}
+
+			if (totalTimeView != null) {
+				totalTimeView.Dispose ();
+				totalTimeView = null;
+			}
+
+			if (popUpView != null) {
+				popUpView.Dispose ();
+				popUpView = null;
+			}
+
+			if (closePopUpView != null) {
+				closePopUpView.Dispose ();
+				closePopUpView = null;
 			}
 		}
 	}

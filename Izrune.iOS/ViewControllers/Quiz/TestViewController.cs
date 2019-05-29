@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
@@ -129,12 +130,12 @@ namespace Izrune.iOS
             {
                 //TODO Scroll Progress CollectionView
                 //question.Status = AnswerStatus.Current;
-                await Task.Delay(400);
-                if (!IsTotalTime)
-                {
-                    timer.Dispose();
-                    InitTotalTimer(0);
-                }
+
+                timeLbl.Text = ($"01:00");
+                var timeSpan = DateTime.Now;
+                Debug.WriteLine($"First Time : {timeSpan.Millisecond}");
+
+                await Task.Delay(200);
 
                 if (currentIndex < AllQuestions?.Count - 1)
                     currentIndex++;
@@ -146,9 +147,20 @@ namespace Izrune.iOS
                 GetNextQuestion();
                 answerProgressCollectionView.ReloadData();
 
-                if(!IsTotalTime)
+                if (!IsTotalTime)
+                {
+                    timer.Dispose();
+                    InitTotalTimer(0);
+                }
+
+                if (!IsTotalTime)
+                {
                     InitCircular(59);
 
+                }
+
+                timeSpan = DateTime.Now;
+                Debug.WriteLine($"Last Time : {timeSpan.Millisecond}");
             };
 
             cell.InitData(data);
@@ -215,12 +227,14 @@ namespace Izrune.iOS
             var minutes = _minutes;
             var secondes = 60;
 
+            string Stringminutes;
+            string Stringsecondes;
 
             timer.Elapsed += (sender, e) => {
 
                 if (secondes == 0)
                 {
-                    if (minutes == 0 && secondes == 0)
+                    if (minutes <= 0 && secondes <= 0)
                     {
                         timer.Enabled = false;
                         timer.Stop();
@@ -232,7 +246,18 @@ namespace Izrune.iOS
                 }
                     
                 secondes--;
-                InvokeOnMainThread(() => timeLbl.Text = $"{minutes}:{secondes}");
+
+                if (minutes < 10 && minutes >= 0)
+                    Stringminutes = $"0{minutes}";
+                else
+                    Stringminutes = minutes.ToString();
+
+                if (secondes < 10 && secondes >= 0)
+                    Stringsecondes = $"0{secondes}";
+                else
+                    Stringsecondes = secondes.ToString();
+
+                InvokeOnMainThread(() => timeLbl.Text = $"{Stringminutes}:{Stringsecondes}");
 
             };
 
