@@ -672,8 +672,10 @@
                     </view>
                     <connections>
                         <outlet property="headerTitleLbl" destination="8Go-9r-nmw" id="M6i-Jd-6uw"/>
+                        <outlet property="individualLbl" destination="bYR-Ld-m2d" id="udC-zO-vGx"/>
                         <outlet property="nextBtn" destination="dsP-hm-UNN" id="V8h-5l-XpU"/>
                         <outlet property="prevBtn" destination="TE9-71-LEM" id="6LM-5r-4yq"/>
+                        <outlet property="promoLbl" destination="YPk-JT-nGX" id="Sxi-Ci-CIP"/>
                         <outlet property="viewForIndividual" destination="6vJ-vU-vBg" id="kLj-Ho-7wX"/>
                         <outlet property="viewForPeager" destination="vfO-9o-KR0" id="RKL-hb-GiX"/>
                         <outlet property="viewForPromoCode" destination="5WL-eO-vl9" id="csy-CG-MF8"/>

@@ -16,10 +16,16 @@ namespace Izrune.iOS
 		UIKit.UILabel headerTitleLbl { get; set; }
 
 		[Outlet]
+		UIKit.UILabel individualLbl { get; set; }
+
+		[Outlet]
 		UIKit.UIButton nextBtn { get; set; }
 
 		[Outlet]
 		UIKit.UIButton prevBtn { get; set; }
+
+		[Outlet]
+		UIKit.UILabel promoLbl { get; set; }
 
 		[Outlet]
 		UIKit.UIView viewForIndividual { get; set; }
@@ -32,24 +38,9 @@ namespace Izrune.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (viewForPeager != null) {
-				viewForPeager.Dispose ();
-				viewForPeager = null;
-			}
-
 			if (headerTitleLbl != null) {
 				headerTitleLbl.Dispose ();
 				headerTitleLbl = null;
-			}
-
-			if (viewForIndividual != null) {
-				viewForIndividual.Dispose ();
-				viewForIndividual = null;
-			}
-
-			if (viewForPromoCode != null) {
-				viewForPromoCode.Dispose ();
-				viewForPromoCode = null;
 			}
 
 			if (nextBtn != null) {
@@ -60,6 +51,31 @@ namespace Izrune.iOS
 			if (prevBtn != null) {
 				prevBtn.Dispose ();
 				prevBtn = null;
+			}
+
+			if (viewForIndividual != null) {
+				viewForIndividual.Dispose ();
+				viewForIndividual = null;
+			}
+
+			if (viewForPeager != null) {
+				viewForPeager.Dispose ();
+				viewForPeager = null;
+			}
+
+			if (viewForPromoCode != null) {
+				viewForPromoCode.Dispose ();
+				viewForPromoCode = null;
+			}
+
+			if (individualLbl != null) {
+				individualLbl.Dispose ();
+				individualLbl = null;
+			}
+
+			if (promoLbl != null) {
+				promoLbl.Dispose ();
+				promoLbl = null;
 			}
 		}
 	}

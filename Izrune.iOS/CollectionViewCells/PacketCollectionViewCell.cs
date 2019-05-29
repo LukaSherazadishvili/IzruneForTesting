@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Foundation;
+using IZrune.PCL.Abstraction.Models;
 using UIKit;
 
 namespace Izrune.iOS.CollectionViewCells
@@ -20,14 +21,21 @@ namespace Izrune.iOS.CollectionViewCells
             // Note: this .ctor should not contain any initialization logic.
         }
 
-        public void InitData()
+        IPrice Price;
+
+        public void InitData(IPrice price)
         {
-            
+            Price = price;
+
+            monthLbl.Text = price.months.ToString() + " თვე";
+            priceLbl.Text = price.price.ToString();
         }
 
         public override void AwakeFromNib()
         {
             base.AwakeFromNib();
+
+            priceView.Layer.CornerRadius = 20;
         }
     }
 }
