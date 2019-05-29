@@ -112,8 +112,10 @@ namespace Izrune.iOS.ViewControllers
 
             var loginVc = MainPageVc.ViewControllers[0] as LogInViewController;
 
-            loginVc.LogedIn = () =>
+            loginVc.LogedIn = (logedIn) =>
             {
+                menuVc.IsLogedIn = logedIn;
+                menuVc.ReloadMenu();
                 SideBarController.ChangeContentView(menuViewControllerCreations[MenuType.Main].Invoke());
             };
 
