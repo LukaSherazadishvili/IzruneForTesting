@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Foundation;
+using Izrune.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
 using UIKit;
 
@@ -37,7 +38,10 @@ namespace Izrune.iOS.CollectionViewCells
         {
             base.AwakeFromNib();
 
-            priceView.Layer.CornerRadius = 20;
+            priceView.Layer.CornerRadius = 24;
+            mainView.Layer.CornerRadius = 26;
+            mainView.Layer.BorderWidth = 3.0f;
+            mainView.Layer.BorderColor = AppColors.TitleColor.CGColor;
         }
     }
 }
