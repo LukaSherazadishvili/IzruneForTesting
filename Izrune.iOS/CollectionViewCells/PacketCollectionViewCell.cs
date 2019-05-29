@@ -11,7 +11,7 @@ namespace Izrune.iOS.CollectionViewCells
         public static readonly NSString Key = new NSString("PacketCollectionViewCell");
         public static readonly UINib Nib;
 
-        public static readonly NSString Identifier = new NSString("");
+        public static readonly NSString Identifier = new NSString("PacketCellIdentifier");
 
         static PacketCollectionViewCell()
         {
