@@ -141,7 +141,7 @@ android:id="@+id/Container">
             />
 					</LinearLayout>
 
-				<EditText
+				<Spinner
 			android:id="@+id/ParrentCity"
             android:layout_width="match_parent"
             android:layout_height="38dp"

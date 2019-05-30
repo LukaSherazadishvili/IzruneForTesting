@@ -47,6 +47,9 @@ namespace IZrune.PCL.Implementation.Services
                   new KeyValuePair<string,string>("village",village),
                    new KeyValuePair<string,string>("school_id",SchoolId.ToString())
                 });
+
+            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=editStudentProfile&hashcode=892c21e1d80fd2f7c1bd78e8a63f704f", FormContent);
+            var jsn = await Data.Content.ReadAsStringAsync();
         }
 
         public async Task<IPromoCode> GetPromoCodeAsync(string SchoolId= "1902")
@@ -68,7 +71,10 @@ namespace IZrune.PCL.Implementation.Services
                 if (result.Code == 0)
                 {
                     promCod.PrommoCode = result?.promocode;
-                    promCod.Prices = result?.prices?.Select(i => new Price() { price = i.price, months = i.months });
+                    promCod.Prices = result?.prices?.Select(i =>
+                    new Price() {
+                        price = i.price,
+                        months = i.months });
                     return promCod;
                 }
                 else

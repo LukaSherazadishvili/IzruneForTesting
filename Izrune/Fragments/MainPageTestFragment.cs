@@ -44,7 +44,8 @@ namespace Izrune.Fragments
             TrainigTestButton.Click += TrainigTestButton_Click;
 
             var Result =await UserControl.Instance.GetCurrentUser();
-           
+
+            var date = QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezTest);
 
            var DataAdapter = new ArrayAdapter<string>(this, 
                Android.Resource.Layout.SimpleSpinnerDropDownItem, 
