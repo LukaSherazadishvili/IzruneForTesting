@@ -19,7 +19,7 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("LogInViewControllerStoryboardId");
 
-        public Action LogedIn { get; set; }
+        public Action<bool> LogedIn { get; set; }
 
         public override void ViewDidLoad()
         {
@@ -48,7 +48,7 @@ namespace Izrune.iOS
 
                         //var testVc = Storyboard.InstantiateViewController(StartTestViewController.StoryboardId) as StartTestViewController;
                         //this.NavigationController.PushViewController(testVc, true);
-                        LogedIn?.Invoke();
+                        LogedIn?.Invoke(isLogedIn);
                     }
                 }
 
@@ -62,6 +62,7 @@ namespace Izrune.iOS
 
                 //TODO
                 var registerVc = Storyboard.InstantiateViewController(ParentRegistrationViewController.StoryboardId) as ParentRegistrationViewController;
+
 
                 this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
                 this.NavigationController.PushViewController(registerVc, true);

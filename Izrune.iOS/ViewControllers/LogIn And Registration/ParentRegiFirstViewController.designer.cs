@@ -9,17 +9,17 @@ using System.CodeDom.Compiler;
 
 namespace Izrune.iOS
 {
-	[Register ("UpdatePacketViewController")]
-	partial class UpdatePacketViewController
+	[Register ("ParentRegiFirstViewController")]
+	partial class ParentRegiFirstViewController
 	{
 		[Outlet]
-		UIKit.UICollectionView packetCollelctionView { get; set; }
+		UIKit.UIStackView textFieldsStackView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (packetCollelctionView != null) {
-				packetCollelctionView.Dispose ();
-				packetCollelctionView = null;
+			if (textFieldsStackView != null) {
+				textFieldsStackView.Dispose ();
+				textFieldsStackView = null;
 			}
 		}
 	}

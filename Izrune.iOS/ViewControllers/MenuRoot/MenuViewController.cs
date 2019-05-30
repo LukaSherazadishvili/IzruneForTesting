@@ -18,7 +18,7 @@ namespace Izrune.iOS
 		{
 		}
 
-        bool IsLogedIn;
+        public bool IsLogedIn;
 
         public static readonly NSString StoryboardId = new NSString("MenuViewControllerStoryboardId");
 
@@ -166,6 +166,11 @@ namespace Izrune.iOS
                 else
                     item.IsSelected = false;
             }
+        }
+
+        public void ReloadMenu()
+        {
+            menuCollectionView.ReloadData();
         }
     }
 }

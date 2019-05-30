@@ -9,12 +9,18 @@ using System.CodeDom.Compiler;
 
 namespace Izrune.iOS
 {
-	[Register ("StudentRegistrationViewController")]
-	partial class StudentRegistrationViewController
+	[Register ("SelectPacketViewController")]
+	partial class SelectPacketViewController
 	{
+		[Outlet]
+		UIKit.UICollectionView packetCollectionView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (packetCollectionView != null) {
+				packetCollectionView.Dispose ();
+				packetCollectionView = null;
+			}
 		}
 	}
 }

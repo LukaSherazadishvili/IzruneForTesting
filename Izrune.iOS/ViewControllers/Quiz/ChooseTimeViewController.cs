@@ -31,6 +31,8 @@ namespace Izrune.iOS
 
             InitGestures();
 
+            View.LayoutIfNeeded();
+
             InitUI();
         }
 
@@ -50,6 +52,10 @@ namespace Izrune.iOS
 
             totalTimeView.ApplyGradient(AppColors.PurpleGradient);
             derivedTimeView.ApplyGradient(AppColors.PurpleGradient);
+
+            popUpView.Layer.CornerRadius = 25;
+            popUpView.Layer.BorderWidth = 5;
+            popUpView.Layer.BorderColor = AppColors.TitleColor.CGColor;
         }
 
         private void InitGestures()
@@ -81,6 +87,14 @@ namespace Izrune.iOS
                     testVc.IsTotalTime = false;
 
                     this.NavigationController.PushViewController(testVc, true);
+                }));
+            }
+
+            if (closePopUpView.GestureRecognizers == null || closePopUpView.GestureRecognizers?.Length == 0)
+            {
+                closePopUpView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    popUpView.Fade(false, 0.3f, () => { popUpView.Hidden = true; });
                 }));
             }
         }

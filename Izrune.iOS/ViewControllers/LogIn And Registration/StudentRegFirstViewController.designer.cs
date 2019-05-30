@@ -9,18 +9,12 @@ using System.CodeDom.Compiler;
 
 namespace Izrune.iOS
 {
-	[Register ("ParentRegFirstViewController")]
-	partial class ParentRegFirstViewController
+	[Register ("StudentRegFirstViewController")]
+	partial class StudentRegFirstViewController
 	{
-		[Outlet]
-		UIKit.UIStackView textFieldsStackView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (textFieldsStackView != null) {
-				textFieldsStackView.Dispose ();
-				textFieldsStackView = null;
-			}
 		}
 	}
 }

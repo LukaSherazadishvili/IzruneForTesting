@@ -63,11 +63,21 @@ namespace Izrune.iOS
 
             InitDroDown();
 
+            View.LayoutIfNeeded();
+
             InitUI();
 
             UserNameDropDown.SelectRow(0);
 
             SelectedStudent = Students[0];
+        }
+
+        public override void ViewDidLayoutSubviews()
+        {
+            base.ViewDidLayoutSubviews();
+
+            summTestContentView.ApplyGradient(AppColors.PurpleGradient);
+            exTestContentView.ApplyGradient(AppColors.YellowGradient);
         }
 
         private void InitUI()
