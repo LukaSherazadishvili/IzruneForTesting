@@ -11,6 +11,8 @@ using Android.Views;
 using Android.Widget;
 using Izrune.Attributes;
 using Izrune.Fragments;
+using IZrune.PCL.Abstraction.Services;
+using MpdcContainer = ServiceContainer.ServiceContainer;
 
 namespace Izrune.Activitys
 {
@@ -47,19 +49,41 @@ namespace Izrune.Activitys
         EditText BdayYear;
 
         [MapControl(Resource.Id.ParrentCity)]
-        EditText ParrentCity;
+        Spinner ParrentCity;
 
         [MapControl(Resource.Id.ParrentVillage)]
         EditText ParrentVillage;
 
-        protected override void OnCreate(Bundle savedInstanceState)
+
+        string city;
+        protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetEvents();
 
             BackButton.Click += BackButton_Click;
             BotBackButton.Click += BotBackButton_Click;
+            var Result = await MpdcContainer.Instance.Get<IRegistrationServices>().GetRegionsAsync();
+
+            var DataAdapter = new ArrayAdapter<string>(this,
+              Android.Resource.Layout.SimpleSpinnerDropDownItem,
+             Result.Select(i=>i.title).ToList());
+
+            ParrentCity.Adapter = DataAdapter;
+            ParrentCity.ItemSelected += (s, e) =>
+            {
+                city = Result.ElementAt(e.Position).title;
+            };
+
         }
+
+
+
+
+
+
+
+
 
         private void BotBackButton_Click(object sender, EventArgs e)
         {
@@ -89,7 +113,7 @@ namespace Izrune.Activitys
             BdayDay.TextChanged += UserName_Click;
             BDayMonth.TextChanged += UserName_Click;
             BdayYear.TextChanged += UserName_Click;
-            ParrentCity.TextChanged += UserName_Click;
+            
             ParrentVillage.TextChanged += UserName_Click;
         }
 
@@ -130,7 +154,7 @@ namespace Izrune.Activitys
             {
                 BdayYear.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
             }
-            if (string.IsNullOrEmpty(ParrentCity.Text))
+            if (string.IsNullOrEmpty(city))
             {
                 ParrentCity.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
             }
@@ -143,7 +167,8 @@ namespace Izrune.Activitys
         private bool ValidateUser()
         {
             if (string.IsNullOrEmpty(UserName.Text) || string.IsNullOrEmpty(LastName.Text) || string.IsNullOrEmpty(BdayDay.Text)
-                || string.IsNullOrEmpty(BDayMonth.Text) || string.IsNullOrEmpty(BdayYear.Text) || string.IsNullOrEmpty(ParrentCity.Text)
+                || string.IsNullOrEmpty(BDayMonth.Text) || string.IsNullOrEmpty(BdayYear.Text)
+                ||string.IsNullOrEmpty(city)
                 || string.IsNullOrEmpty(ParrentVillage.Text))
             {
                 return false;
