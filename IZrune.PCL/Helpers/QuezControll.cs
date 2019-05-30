@@ -120,15 +120,18 @@ namespace IZrune.PCL.Helpers
             QuezQuestion quez = new QuezQuestion() { AnswerId = AnswerId, Duration = TimeInSecond, QuestionId = Questions.ElementAt(Position).id };
             await MpdcContainer.Instance.Get<IQuezServices>().GetQuezResultAsync(quez);
             Position++;
-            if (Sheduler?.Count() > 0)
+            if (Position < 20)
             {
-                foreach(var item in Sheduler)
+                if (Sheduler?.Count() > 0)
                 {
-                    item.IsCurrent = false;
+                    foreach (var item in Sheduler)
+                    {
+                        item.IsCurrent = false;
+                    }
+                    Sheduler.ElementAt(Position).IsCurrent = true;
+                    if (Position != 0)
+                        Sheduler.ElementAt(Position - 1).AlreadeBe = true;
                 }
-                Sheduler.ElementAt(Position).IsCurrent = true;
-                if (Position != 0)
-                    Sheduler.ElementAt(Position - 1).AlreadeBe = true;
             }
             var res = Sheduler;
            
@@ -138,6 +141,7 @@ namespace IZrune.PCL.Helpers
             if (Position == 20)
             {
                 await MpdcContainer.Instance.Get<IQuezServices>().GetDiploma();
+                await MpdcContainer.Instance.Get<IQuezServices>().GetQuisResult();
             }
         }
 

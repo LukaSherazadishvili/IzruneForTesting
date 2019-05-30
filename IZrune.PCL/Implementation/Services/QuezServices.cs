@@ -127,7 +127,15 @@ namespace IZrune.PCL.Implementation.Services
 
         }
 
-
-
+        public async Task GetQuisResult()
+        {
+            var FormContent = new FormUrlEncodedContent(new[]
+                    {
+                new KeyValuePair<string,string>("test_id",TestCode),
+              
+            });
+            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getTestInfo&hashcode=1218b084b72f42914d4c868a2eec191b", FormContent);
+            var jsn = await Data.Content.ReadAsStringAsync();
+        }
     }
 }

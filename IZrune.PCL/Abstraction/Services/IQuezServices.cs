@@ -17,5 +17,7 @@ namespace IZrune.PCL.Abstraction.Services
         Task<TimeSpan> GetExamDate(QuezCategory TestType);
 
         Task GetDiploma();
+
+        Task GetQuisResult();
     }
 }
