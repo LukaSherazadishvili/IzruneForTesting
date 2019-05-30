@@ -201,10 +201,7 @@ namespace Izrune.iOS
             if (ImagesCount == 0)
                 imagesHeight = 0;
             else if (ImagesCount > 0 && ImagesCount <= 2)
-                imagesHeight = 90;
-            else
                 imagesHeight = 180;
-
             float spaceSumBetweenAnswers = 80;
 
             foreach (var item in data?.Answers)

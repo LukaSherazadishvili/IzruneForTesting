@@ -2,16 +2,18 @@
 
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using CoreAnimation;
 using Foundation;
 using Izrune.iOS.Utils;
 using IZrune.PCL.Abstraction.Services;
+using MPDCiOSPages.ViewControllers;
 using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS
 {
-	public partial class LogInViewController : UIViewController
+	public partial class LogInViewController : BaseViewController
 	{
 		public LogInViewController (IntPtr handle) : base (handle)
 		{
@@ -37,8 +39,10 @@ namespace Izrune.iOS
                 //ShowLoginAlert();
                 try
                 {
+                    ShowLoading();
                     var userName = userNameTextField.Text;
                     var passord = passwordTextField.Text;
+                    //await Task.Delay(10000);
 
                     var loginSevice = ServiceContainer.ServiceContainer.Instance.Get<ILoginServices>();
                     var isLogedIn = (await loginSevice.LoginUser(userName, passord));
@@ -50,6 +54,8 @@ namespace Izrune.iOS
                         //this.NavigationController.PushViewController(testVc, true);
                         LogedIn?.Invoke(isLogedIn);
                     }
+
+                    EndLoading();
                 }
 
                 catch (Exception ex)

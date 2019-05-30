@@ -69,13 +69,13 @@ namespace Izrune.iOS.CollectionViewCells
         {
             var imagesCount = question?.images?.Count();
             if (question?.images == null || imagesCount == 0)
-                imagesCollectioHeight = 0;
+                imagesCollectioHeight = 90;
 
             if (imagesCount > 0 && imagesCount <= 2)
                 imagesCollectioHeight = 90;
 
             else
-                imagesCollectioHeight = 180;
+                imagesCollectioHeight = 90;
 
             imagesCollectionViewHeight.Constant = imagesCollectioHeight;
         }
@@ -117,7 +117,18 @@ namespace Izrune.iOS.CollectionViewCells
         public CoreGraphics.CGSize GetSizeForItem(UICollectionView collectionView, UICollectionViewLayout layout, NSIndexPath indexPath)
         {
             if (collectionView == questionImagesCollectionView)
-                return new CoreGraphics.CGSize(collectionView.Frame.Width * 0.5, collectionView.Frame.Height * 0.5);
+            {
+                var imagesCount = Question?.images?.Count();
+
+                if(imagesCount == 1)
+                    return new CoreGraphics.CGSize(collectionView.Frame.Width, collectionView.Frame.Height);
+                else if (imagesCount > 0 && imagesCount <= 2)
+                {
+                    return new CoreGraphics.CGSize(collectionView.Frame.Width * 0.5, collectionView.Frame.Height);
+                }
+
+                return new CoreGraphics.CGSize(collectionView.Frame.Width*0.5, collectionView.Frame.Height* 0.5);
+            }
 
 
             var answer = Question?.Answers?.ElementAt(indexPath.Row).title;
@@ -194,8 +205,6 @@ namespace Izrune.iOS.CollectionViewCells
 
             if (ImagesCount == 0)
                 imagesCollectioHeight = 0;
-            else if (ImagesCount > 0 && ImagesCount <= 2)
-                imagesCollectioHeight = 90;
             else
                 imagesCollectioHeight = 180;
 
