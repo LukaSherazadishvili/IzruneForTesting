@@ -145,6 +145,17 @@ namespace IZrune.PCL.Helpers
             }
         }
 
+        QuisInfo quisInfo;
+        public async  Task<IQuisInfo> GetExamInfoAsync(QuezCategory category)
+        {
+            quisInfo = new QuisInfo();
+
+          quisInfo.QueisResult = await MpdcContainer.Instance.Get<IQuezServices>().GetQuisResult();
+
+            return quisInfo;
+
+        }
+
 
         
 

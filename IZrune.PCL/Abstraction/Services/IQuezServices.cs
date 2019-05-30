@@ -18,6 +18,6 @@ namespace IZrune.PCL.Abstraction.Services
 
         Task GetDiploma();
 
-        Task GetQuisResult();
+        Task<IQuisResultInfo> GetQuisResult();
     }
 }
