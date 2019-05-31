@@ -43,6 +43,7 @@ namespace Izrune.iOS
         public QuezCategory quezCategory;
 
         IQuestion CurrentQuestion;
+        private int lastVisibleIndex;
 
         public bool IsTotalTime { get; set; } = false;
 
@@ -73,6 +74,8 @@ namespace Izrune.iOS
             InitTotalTimer(IsTotalTime? 29 : 0);
 
             InitCircular(IsTotalTime? 29 * 60 + 59 : 59);
+
+            lastVisibleIndex = answerProgressCollectionView.IndexPathsForVisibleItems.Length - 1;
         }
 
 
@@ -128,6 +131,8 @@ namespace Izrune.iOS
                 var shedulerList = QuezControll.Instance.Sheduler;
                 var sheduler = shedulerList?[indexPath.Row];
 
+                if(currentIndex == sheduler.Position)
+
                 answerCell.InitData(sheduler, hideLeft: indexPath.Row == 0, hideRight: indexPath.Row == shedulerList?.Count()-1);
                 return answerCell;
             }
@@ -148,11 +153,20 @@ namespace Izrune.iOS
                     CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
                     currentIndex++;
 
-                    var visibleItems = answerProgressCollectionView.IndexPathsForVisibleItems;
-                    if (currentIndex >= visibleItems.Length - 1)
-                        answerProgressCollectionView.ScrollToItem(NSIndexPath.FromRowSection(0, currentIndex+1), UICollectionViewScrollPosition.Left, false);
+
+
+
+                    if(currentIndex < AllQuestions?.Count - 1)
+                    {
+                        if (currentIndex == lastVisibleIndex)
+                        {
+                            answerProgressCollectionView.ScrollToItem(NSIndexPath.FromRowSection(currentIndex + 1, 0), UICollectionViewScrollPosition.Left, true);
+                            lastVisibleIndex++;
+                        }
+                    }
 
                     questionCollectionView.ReloadData();
+                    answerProgressCollectionView.ReloadData();
                 }
 
                 catch (Exception ex)
@@ -160,7 +174,7 @@ namespace Izrune.iOS
                     Console.WriteLine(ex.Message);
                 }
 
-                answerProgressCollectionView.ReloadData();
+
 
                 if (!IsTotalTime)
                 {
