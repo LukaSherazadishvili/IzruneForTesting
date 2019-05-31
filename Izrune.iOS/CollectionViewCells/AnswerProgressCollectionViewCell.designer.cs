@@ -20,14 +20,18 @@ namespace Izrune.iOS.CollectionViewCells
 
 		[Outlet]
 		UIKit.UIImageView checkImageView { get; set; }
+
+		[Outlet]
+		UIKit.UIView leftView { get; set; }
+
+		[Outlet]
+		UIKit.UIView rightView { get; set; }
+
+		[Outlet]
+		UIKit.UIView undefinedView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (checkImageView != null) {
-				checkImageView.Dispose ();
-				checkImageView = null;
-			}
-
 			if (answerNumberLbl != null) {
 				answerNumberLbl.Dispose ();
 				answerNumberLbl = null;
@@ -36,6 +40,26 @@ namespace Izrune.iOS.CollectionViewCells
 			if (answerNumberView != null) {
 				answerNumberView.Dispose ();
 				answerNumberView = null;
+			}
+
+			if (checkImageView != null) {
+				checkImageView.Dispose ();
+				checkImageView = null;
+			}
+
+			if (undefinedView != null) {
+				undefinedView.Dispose ();
+				undefinedView = null;
+			}
+
+			if (leftView != null) {
+				leftView.Dispose ();
+				leftView = null;
+			}
+
+			if (rightView != null) {
+				rightView.Dispose ();
+				rightView = null;
 			}
 		}
 	}

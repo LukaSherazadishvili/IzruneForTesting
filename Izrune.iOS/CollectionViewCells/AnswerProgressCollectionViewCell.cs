@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Foundation;
+using IZrune.PCL.Helpers;
 using MpdcViewExtentions;
 using UIKit;
 
@@ -31,26 +32,30 @@ namespace Izrune.iOS.CollectionViewCells
             // Note: this .ctor should not contain any initialization logic.
         }
 
-        public void InitData(AnswerStatus status, int index)
+        public void InitData(QuisSheduler quisSheduler, bool hideLeft = false, bool hideRight = false)
         {
-            InitViews(status, index);
+            InitViews(quisSheduler);
+
+            leftView.Hidden = hideLeft;
+            rightView.Hidden = hideRight;
         }
 
-        private void InitViews(AnswerStatus status, int index)
+        private void InitViews(QuisSheduler quisSheduler)
         {
-            if(status == AnswerStatus.Checked)
+            if(quisSheduler.AlreadeBe)
             {
                 checkImageView.Hidden = false;
                 answerNumberView.Hidden = true;
             }
 
-            if(status == AnswerStatus.Current)
+            else if(quisSheduler.IsCurrent)
             {
                 checkImageView.Hidden = true;
                 answerNumberView.Hidden = false;
-                answerNumberLbl.Text = index.ToString();
+                answerNumberLbl.Text = quisSheduler.Position.ToString();
             }
-            if(status == AnswerStatus.Unknown)
+
+            else
             {
                 answerNumberView.Hidden = true;
 
@@ -63,7 +68,11 @@ namespace Izrune.iOS.CollectionViewCells
         {
             base.AwakeFromNib();
 
-            answerNumberView.Layer.CornerRadius = 12.5f;
+            //answerNumberView.Layer.CornerRadius = 12.5f;
+
+            undefinedView.Layer.CornerRadius = 6.5f;
+            undefinedView.Layer.BorderWidth = 1;
+            undefinedView.Layer.BorderColor = UIColor.FromRGB(184, 184, 184).CGColor;
         }
     }
 }
