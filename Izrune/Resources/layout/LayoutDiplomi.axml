@@ -9,6 +9,7 @@
 
 
     <ScrollView
+		android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 		<LinearLayout
@@ -18,7 +19,7 @@
 			<LinearLayout
 				android:id="@+id/baj"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
+				android:layout_height="wrap_content"
 				android:orientation="horizontal"
 				android:layout_marginTop="15dp"
 				android:layout_marginBottom="15dp"
@@ -60,18 +61,18 @@
 			<FFImageLoading.Views.ImageViewAsync
 				android:id="@+id/Diplom"
 				android:layout_width="match_parent"
-				android:layout_height="0dp"
-				android:layout_weight="1"/>
+				android:layout_height="150dp"
+				android:visibility="gone"
+				android:scaleType="centerCrop"
+				/>
 			<TextView
 				android:id="@+id/PointText"
 				android:fontFamily="@font/bpg_mrgvlovani"
-				android:layout_width="match_parent"
+				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"
+				android:layout_gravity="center_horizontal"
 				android:text="ძალიან კარგი"
-				android:textSize="20dp"
-				android:textAlignment="center"
+				android:textSize="17dp"				
 				android:textColor="#AE71B7"/>
 			<LinearLayout
 				android:id="@+id/StarsContainer"
@@ -109,18 +110,17 @@
 					android:layout_weight="1"/>
 			</LinearLayout>
 			<TextView
+				android:layout_marginBottom="10dp"
 				android:id="@+id/textView4"
 				android:fontFamily="@font/bpg_mrgvlovani"
-				android:layout_width="match_parent"
+				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"
+				android:layout_gravity="center_horizontal"
 				android:text="გილოცავ, შენ წარმატებული ხარ!"
-				android:textAlignment="center"
 				android:textColor="#3F51B5"/>
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
+				android:layout_height="wrap_content"
 				android:orientation="horizontal"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp"
@@ -224,7 +224,7 @@
 			</LinearLayout>
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
+				android:layout_height="wrap_content"
 				android:orientation="horizontal"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp"
@@ -265,7 +265,7 @@
 			</LinearLayout>
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
+				android:layout_height="wrap_content"
 				android:orientation="horizontal"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp"
@@ -276,7 +276,7 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:textColor="#3F51B5"
-					android:layout_marginRight="10dp"
+					android:layout_marginRight="5dp"
 					android:textSize="10dp"
 					android:text="გამოტოვებული კითხვა" />
 				<TextView
@@ -294,8 +294,7 @@
 				android:layout_marginBottom="10dp"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_weight="1"	
-				android:layout_gravity="center"/>
+				android:layout_gravity="center_horizontal"/>
 		</LinearLayout>
     </ScrollView>
 </LinearLayout>

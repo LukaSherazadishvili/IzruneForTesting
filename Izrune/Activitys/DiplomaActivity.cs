@@ -64,6 +64,7 @@ namespace Izrune.Activitys
 
             if (!string.IsNullOrEmpty(Result.DiplomaURl))
             {
+                DiplomaImage.Visibility = ViewStates.Visible;
                 DiplomaImage.LoadImage(Result.DiplomaURl);
 
             }
