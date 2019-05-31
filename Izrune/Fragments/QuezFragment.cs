@@ -130,7 +130,7 @@ namespace Izrune.Fragments
 
             if (question == null)
             {
-                var Result =await QuezControll.Instance.GetExamInfoAsync();
+             
 
                 Intent intent = new Intent(this, typeof(DiplomaActivity));
                 StartActivity(intent);
