@@ -45,6 +45,8 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.SkippedAnswerCount)]
         TextView SkippedAnswer;
 
+        [MapControl(Resource.Id.StarsContainer)]
+        LinearLayout starsContr;
 
         protected async override void OnCreate(Bundle savedInstanceState)
         {
@@ -57,7 +59,7 @@ namespace Izrune.Activitys
             StudentNameLastName.Text = $"{UserControl.Instance.CurrentStudent.Name}  {UserControl.Instance.CurrentStudent.LastName}";
 
             Score.Text = QuisInfo.Score.ToString();
-            Time.Text = $"{QuisInfo.Duration / 60}:{QuisInfo.Duration%60}";
+            Time.Text = $"{QuisInfo.Duration / 60}:{QuisInfo.Duration % 60}";
             Correctanswers.Text = QuisInfo.RightAnswer.ToString();
             IncorectAnswers.Text = QuisInfo.WronAnswers.ToString();
             SkippedAnswer.Text = QuisInfo.SkipedAnswers.ToString();
@@ -69,8 +71,20 @@ namespace Izrune.Activitys
 
             }
 
-            
 
+            for (int i = 0; i < 5; i++)
+            {
+
+                FrameLayout.LayoutParams imgViewParams = new FrameLayout.LayoutParams(120, 120, GravityFlags.CenterHorizontal);
+                imgViewParams.SetMargins(10, 10, 10, 10);
+                var Image = new ImageView(this);
+                Image.LayoutParameters = imgViewParams;
+                
+                Image.SetBackgroundResource(i<QuisInfo.Stars?Resource.Drawable.ActiveStar:Resource.Drawable.PasiveStar);
+                starsContr.AddView(Image);
+
+
+            }
 
         }
 

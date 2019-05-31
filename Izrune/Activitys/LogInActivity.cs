@@ -18,6 +18,7 @@ namespace Izrune.Activitys
     [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = true)]
     class LogInActivity : MPDCBaseActivity
     {
+
         protected override int LayoutResource { get; } = Resource.Layout.layoutLogIn;
 
         [MapControl(Resource.Id.ForgotPassword)]

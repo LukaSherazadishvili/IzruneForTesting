@@ -58,13 +58,14 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"/>
 			</LinearLayout>
-			<FFImageLoading.Views.ImageViewAsync
+			<FFImageLoading.Views.ImageViewAsync				
 				android:id="@+id/Diplom"
 				android:layout_width="match_parent"
-				android:layout_height="150dp"
+				android:layout_height="180dp"
 				android:visibility="gone"
-				android:scaleType="centerCrop"
+				android:scaleType="fitXY"
 				/>
+			
 			<TextView
 				android:id="@+id/PointText"
 				android:fontFamily="@font/bpg_mrgvlovani"
@@ -75,39 +76,15 @@
 				android:textSize="17dp"				
 				android:textColor="#AE71B7"/>
 			<LinearLayout
+				android:layout_gravity="center_horizontal"
 				android:id="@+id/StarsContainer"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_height="30dp"
 				android:orientation="horizontal"
 				android:layout_marginTop="15dp"
 				android:layout_marginBottom="15dp"
-				android:layout_marginLeft="70dp"
-				android:layout_marginRight="70dp">
-				<ImageView
-					android:id="@+id/imageView16"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_weight="1" />
-				<ImageView
-					android:id="@+id/imageView17"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_weight="1" />
-				<ImageView
-					android:id="@+id/imageView18"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_weight="1" />
-				<ImageView
-					android:id="@+id/imageView19"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_weight="1" />
-				<ImageView
-					android:id="@+id/imageView20"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_weight="1"/>
+				>
+				
 			</LinearLayout>
 			<TextView
 				android:layout_marginBottom="10dp"
@@ -289,10 +266,11 @@
 					android:text="0" />
 			</LinearLayout>
 			<ImageView
+				android:src="@drawable/egm"
 				android:id="@+id/imageView16"
 				android:layout_marginTop="10dp"
-				android:layout_marginBottom="10dp"
-				android:layout_width="wrap_content"
+				android:layout_marginBottom="15dp"
+				android:layout_width="80dp"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"/>
 		</LinearLayout>
