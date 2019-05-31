@@ -66,15 +66,6 @@
 				android:scaleType="fitXY"
 				/>
 			
-			<TextView
-				android:id="@+id/PointText"
-				android:fontFamily="@font/bpg_mrgvlovani"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center_horizontal"
-				android:text="ძალიან კარგი"
-				android:textSize="17dp"				
-				android:textColor="#AE71B7"/>
 			<LinearLayout
 				android:layout_gravity="center_horizontal"
 				android:id="@+id/StarsContainer"
@@ -86,8 +77,19 @@
 				>
 				
 			</LinearLayout>
+
 			<TextView
-				android:layout_marginBottom="10dp"
+				android:id="@+id/PointText"
+				android:fontFamily="@font/bpg_mrgvlovani"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:text="ძალიან კარგი"
+				android:textSize="15dp"				
+				android:textColor="#AE71B7"/>
+			
+			<TextView
+				android:layout_marginBottom="20dp"
 				android:id="@+id/textView4"
 				android:fontFamily="@font/bpg_mrgvlovani"
 				android:layout_width="wrap_content"

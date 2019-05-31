@@ -12,12 +12,12 @@ namespace IZrune.PCL.Abstraction.Models
         string PersonalNumber { get; set; }
         string Email { get; set; }
         string Phone { get; set; }
-        int? RegionId { get; set; }
+        int RegionId { get; set; }
         string Village { get; set; }
-        DateTime? Bdate { get; set; }
-        int? Class { get; set; }
-        int? SchoolId { get; set; }
-        DateTime? PackageStartDate { get; set; }
-        int? PackageMonthCount { get; set; }
+        DateTime Bdate { get; set; }
+        int Class { get; set; }
+        int SchoolId { get; set; }
+        DateTime PackageStartDate { get; set; }
+        int PackageMonthCount { get; set; }
     }
 }

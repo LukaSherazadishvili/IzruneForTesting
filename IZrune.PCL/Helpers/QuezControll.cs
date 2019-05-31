@@ -118,7 +118,7 @@ namespace IZrune.PCL.Helpers
         }
 
        
-        public async Task AddQuestion(int AnswerId)
+        public async Task AddQuestion(int AnswerId=0)
         {
             EndTime = false;
             QuezQuestion quez = new QuezQuestion() { AnswerId = AnswerId, Duration = TimeInSecond, QuestionId = Questions.ElementAt(Position).id };
