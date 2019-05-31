@@ -110,35 +110,70 @@ namespace IZrune.PCL.Helpers
 
         public async Task<TimeSpan> GetExamDate(Enum.QuezCategory categor)
         {
+         
            return await MpdcContainer.Instance.Get<IQuezServices>().GetExamDate(categor);
+
+
+
         }
 
        
-        public async Task AddQuestion(int AnswerId)
+        public async Task AddQuestion(int AnswerId=0)
         {
             EndTime = false;
             QuezQuestion quez = new QuezQuestion() { AnswerId = AnswerId, Duration = TimeInSecond, QuestionId = Questions.ElementAt(Position).id };
             await MpdcContainer.Instance.Get<IQuezServices>().GetQuezResultAsync(quez);
             Position++;
-            if (Sheduler?.Count() > 0)
+            if (Position < 20)
             {
-                foreach(var item in Sheduler)
+                if (Sheduler?.Count() > 0)
                 {
-                    item.IsCurrent = false;
+                    foreach (var item in Sheduler)
+                    {
+                        item.IsCurrent = false;
+                    }
+                    Sheduler.ElementAt(Position).IsCurrent = true;
+                    if (Position != 0)
+                        Sheduler.ElementAt(Position - 1).AlreadeBe = true;
                 }
-                Sheduler.ElementAt(Position).IsCurrent = true;
-                if (Position != 0)
-                    Sheduler.ElementAt(Position - 1).AlreadeBe = true;
             }
             var res = Sheduler;
            
             
          
             
-            if (Position == 20)
+            //if (Position == 20)
+            //{
+            //    var Result = await GetExamInfoAsync();
+            //}
+        }
+
+        QuisInfo quisInfo;
+        public async  Task<IQuisInfo> GetExamInfoAsync()
+        {
+            quisInfo = new QuisInfo();
+
+           
+          var InfoResult = MpdcContainer.Instance.Get<IQuezServices>().GetQuisResult();
+            var Diploma=  MpdcContainer.Instance.Get<IQuezServices>().GetDiploma();
+
+           await Task.WhenAll(InfoResult, Diploma);
+
+            var statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(InfoResult.Result.test_type);
+            var AnswerResult = statistic.FirstOrDefault();
+
+            
+            quisInfo.QueisResult = InfoResult.Result;
+            quisInfo.DiplomaURl = Diploma.Result;
+            if (AnswerResult != null)
             {
-                await MpdcContainer.Instance.Get<IQuezServices>().GetDiploma();
+                quisInfo.QueisResult.RightAnswer = AnswerResult.CorrectAnswersCount;
+                quisInfo.QueisResult.WronAnswers = AnswerResult.IncorrectAnswersCount;
+                quisInfo.QueisResult.SkipedAnswers = AnswerResult.SkippedQuestionsCount;
             }
+
+            return quisInfo;
+
         }
 
 

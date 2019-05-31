@@ -9,6 +9,7 @@
 
 
     <ScrollView
+		android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 		<LinearLayout
@@ -18,14 +19,14 @@
 			<LinearLayout
 				android:id="@+id/baj"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
+				android:layout_height="wrap_content"
 				android:orientation="horizontal"
 				android:layout_marginTop="15dp"
 				android:layout_marginBottom="15dp"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp">
 				<TextView
-					android:id="@+id/textView2"
+					android:id="@+id/StudentName"
 					android:fontFamily="@font/bpg_mrgvlovani"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
@@ -57,70 +58,48 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"/>
 			</LinearLayout>
-			<ImageView
+			<FFImageLoading.Views.ImageViewAsync				
 				android:id="@+id/Diplom"
 				android:layout_width="match_parent"
-				android:layout_height="0dp"
-				android:layout_weight="1"/>
-			<TextView
-				android:id="@+id/textView3"
-				android:fontFamily="@font/bpg_mrgvlovani"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"
-				android:text="ძალიან კარგი"
-				android:textSize="20dp"
-				android:textAlignment="center"
-				android:textColor="#AE71B7"/>
+				android:layout_height="180dp"
+				android:visibility="gone"
+				android:scaleType="fitXY"
+				/>
+			
 			<LinearLayout
-				android:id="@+id/stars"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:id="@+id/StarsContainer"
+				android:layout_width="wrap_content"
+				android:layout_height="30dp"
 				android:orientation="horizontal"
 				android:layout_marginTop="15dp"
 				android:layout_marginBottom="15dp"
-				android:layout_marginLeft="70dp"
-				android:layout_marginRight="70dp">
-				<ImageView
-					android:id="@+id/imageView16"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_weight="1" />
-				<ImageView
-					android:id="@+id/imageView17"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_weight="1" />
-				<ImageView
-					android:id="@+id/imageView18"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_weight="1" />
-				<ImageView
-					android:id="@+id/imageView19"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_weight="1" />
-				<ImageView
-					android:id="@+id/imageView20"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_weight="1"/>
+				>
+				
 			</LinearLayout>
+
 			<TextView
+				android:id="@+id/PointText"
+				android:fontFamily="@font/bpg_mrgvlovani"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:text="ძალიან კარგი"
+				android:textSize="15dp"				
+				android:textColor="#AE71B7"/>
+			
+			<TextView
+				android:layout_marginBottom="20dp"
 				android:id="@+id/textView4"
 				android:fontFamily="@font/bpg_mrgvlovani"
-				android:layout_width="match_parent"
+				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"
+				android:layout_gravity="center_horizontal"
 				android:text="გილოცავ, შენ წარმატებული ხარ!"
-				android:textAlignment="center"
 				android:textColor="#3F51B5"/>
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
+				android:layout_height="wrap_content"
 				android:orientation="horizontal"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp"
@@ -142,7 +121,7 @@
 						android:orientation="vertical"
 						android:elevation="5dp">
 						<TextView
-							android:id="@+id/textView5"
+							android:id="@+id/ScoreTxt"
 							android:fontFamily="@font/bpg_mrgvlovani"
 							android:layout_width="match_parent"
 							android:layout_height="40dp"
@@ -187,7 +166,7 @@
 							android:text="დრო"
 							android:textColor="#3F51B5"/>
 						<TextView
-							android:id="@+id/textView20"
+							android:id="@+id/TimeTxt"
 							android:fontFamily="@font/bpg_mrgvlovani"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
@@ -224,7 +203,7 @@
 			</LinearLayout>
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
+				android:layout_height="wrap_content"
 				android:orientation="horizontal"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp"
@@ -239,7 +218,7 @@
 					android:textSize="10dp"
 					android:text="სწორი პასუხი" />
 				<TextView
-					android:id="@+id/textView26"
+					android:id="@+id/CorrectAnswerTxt"
 					android:fontFamily="@font/bpg_mrgvlovani"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
@@ -255,7 +234,7 @@
 					android:textColor="#3F51B5"
 					android:text="არასწორი პასუხი" />
 				<TextView
-					android:id="@+id/textView31"
+					android:id="@+id/IncorrectAnswerCountTxt"
 					android:fontFamily="@font/bpg_mrgvlovani"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
@@ -265,7 +244,7 @@
 			</LinearLayout>
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
+				android:layout_height="wrap_content"
 				android:orientation="horizontal"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp"
@@ -276,11 +255,11 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:textColor="#3F51B5"
-					android:layout_marginRight="10dp"
+					android:layout_marginRight="5dp"
 					android:textSize="10dp"
 					android:text="გამოტოვებული კითხვა" />
 				<TextView
-					android:id="@+id/textView33"
+					android:id="@+id/SkippedAnswerCount"
 					android:fontFamily="@font/bpg_mrgvlovani"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
@@ -289,14 +268,13 @@
 					android:text="0" />
 			</LinearLayout>
 			<ImageView
+				android:src="@drawable/egm"
 				android:id="@+id/imageView16"
 				android:layout_marginTop="10dp"
-				android:layout_marginBottom="10dp"
-				android:layout_width="wrap_content"
+				android:layout_marginBottom="15dp"
+				android:layout_width="80dp"
 				android:layout_height="wrap_content"
-				android:layout_weight="1"
-				
-				android:layout_gravity="center"/>
+				android:layout_gravity="center_horizontal"/>
 		</LinearLayout>
     </ScrollView>
 </LinearLayout>

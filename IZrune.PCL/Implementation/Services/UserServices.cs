@@ -7,6 +7,7 @@ using IZrune.TransferModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -109,13 +110,26 @@ namespace IZrune.PCL.Implementation.Services
 
                     Parent parent = new Parent();
                     parent.id =Convert.ToInt32( DTO.ID);
-                    parent.Name = DTO?.Name;
-                    parent.LastName = DTO?.Lastname;
-                    parent.Students = DTO?.students?.
+                    parent.Name = DTO?.name;
+                    parent.Vilage = DTO.village;
+                    parent.Phone = DTO.phone;
+                    parent.Email = DTO.email;
+                    parent.bDate = DateTime.ParseExact(DTO.birth_date,"dd.MM.yyyy",CultureInfo.InvariantCulture);
+                    parent.LastName = DTO?.lastname;
+                    parent.City = DTO.city;
+                    parent.Students = DTO?.students?.                      
                         Select(i => new Student() {
                             Name = i?.name,
                             LastName=i?.lastname,
-                            id=Convert.ToInt32(i?.id)
+                            id=Convert.ToInt32(i?.id),
+                            Bdate=DateTime.ParseExact(i.birth_date, "dd.MM.yyyy", CultureInfo.InvariantCulture),
+                            Email =i.email,
+                            Phone=i.phone,
+                            Village=i.village,
+                            PersonalNumber=i.personal_number,
+                            RegionId= Convert.ToInt32( i.region_id),
+                            SchoolId=Convert.ToInt32(i.school_id),                            
+                            
                       });
                     return parent;
                 }

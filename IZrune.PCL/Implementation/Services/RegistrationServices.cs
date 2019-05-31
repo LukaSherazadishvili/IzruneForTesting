@@ -76,10 +76,10 @@ namespace IZrune.PCL.Implementation.Services
                 new KeyValuePair<string,string>("phone1",student.Phone),
                 new KeyValuePair<string, string>("region_id1",student.RegionId.ToString()),
                 new KeyValuePair<string, string>("village1",student.Village),
-                new KeyValuePair<string,string>("bdate1",student.Bdate.Value.ToShortDateString()),
+                new KeyValuePair<string,string>("bdate1",student.Bdate.ToShortDateString()),
                 new KeyValuePair<string, string>("school_id1",student.SchoolId.ToString()),
                 new KeyValuePair<string, string>("class1",student.Class.ToString()),
-                new KeyValuePair<string,string>("sdate1",student.PackageStartDate.Value.ToShortDateString()),
+                new KeyValuePair<string,string>("sdate1",student.PackageStartDate.ToShortDateString()),
                 new KeyValuePair<string, string>("school_id1",student.PackageMonthCount.ToString())
             });
 

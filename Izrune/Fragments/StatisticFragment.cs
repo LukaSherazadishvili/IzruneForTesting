@@ -28,7 +28,7 @@ namespace Izrune.Fragments
         {
             base.OnCreate(savedInstanceState);
 
-            var Statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest);
+            var Statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam);
             
             var adapter = new ExamStatisticRecyclerAdapter(Statistic?.ToList());
 

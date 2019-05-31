@@ -54,6 +54,7 @@ android:id="@+id/Container">
 					android:textSize="10dp"
 					/>
 				<TextView
+					android:id="@+id/ParentNameTxt"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"
@@ -75,6 +76,7 @@ android:id="@+id/Container">
 					android:textSize="10dp"
 					/>
 				<TextView
+					android:id="@+id/ParentLastNameTxt"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"
@@ -99,6 +101,7 @@ android:id="@+id/Container">
 					/>
 
 				<Spinner
+					android:id="@+id/ParrentRegionSpinner"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"
@@ -111,6 +114,7 @@ android:id="@+id/Container">
             android:background="@drawable/izrune_editext_back"
             />
 				<EditText
+					android:id="@+id/ParrentVillageTxt"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"
@@ -135,6 +139,7 @@ android:id="@+id/Container">
 					android:textSize="10dp"
 					/>
 				<EditText
+					android:id="@+id/MobilePhoneTxt"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"
@@ -159,6 +164,7 @@ android:id="@+id/Container">
 					android:textSize="10dp"
 					/>
 				<EditText
+					android:id="@+id/ParentMailTxt"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"
@@ -264,7 +270,7 @@ android:id="@+id/Container">
         </LinearLayout>
 
         <LinearLayout
-			android:id="@+id/NextButton"
+			android:id="@+id/SaveButton"
             android:elevation="5dp"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"

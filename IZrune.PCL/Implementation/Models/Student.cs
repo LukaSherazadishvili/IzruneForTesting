@@ -13,12 +13,12 @@ namespace IZrune.PCL.Implementation.Models
         public string PersonalNumber { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public int? RegionId { get; set; }
+        public int RegionId { get; set; }
         public string Village { get; set; }
-        public DateTime? Bdate { get; set; }
-        public int? SchoolId { get; set; }
-        public DateTime? PackageStartDate { get; set; }
-        public int? PackageMonthCount { get; set; }
-        public int? Class { get; set; }
+        public DateTime Bdate { get; set; }
+        public int Class { get; set; }
+        public int SchoolId { get; set; }
+        public DateTime PackageStartDate { get; set; }
+        public int PackageMonthCount { get; set; }
     }
 }

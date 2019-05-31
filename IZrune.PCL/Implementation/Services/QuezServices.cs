@@ -5,6 +5,7 @@ using IZrune.PCL.extensions;
 using IZrune.PCL.Helpers;
 using IZrune.PCL.Implementation.Models;
 using IZrune.PCL.WebUtils;
+using IZrune.TransferModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -21,16 +22,28 @@ namespace IZrune.PCL.Implementation.Services
         private string TestCode;
         private QuezCategory categor;
 
-        public async Task GetDiploma()
+        public async Task<string> GetDiploma()
         {
-            var FormContent = new FormUrlEncodedContent(new[]
+            try
+            {
+                var FormContent = new FormUrlEncodedContent(new[]
                    {
                 new KeyValuePair<string,string>("test_id",TestCode),
               
             });
 
-            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getDiploma&hashcode=19b556311f007d86ad7c921626e5da83", FormContent);
-            var jsn = await Data.Content.ReadAsStringAsync();
+           
+                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getDiploma&hashcode=19b556311f007d86ad7c921626e5da83", FormContent);
+                var jsn = await Data.Content.ReadAsStringAsync();
+
+                var Result = JsonConvert.DeserializeObject<DiplomaDTO>(jsn);
+
+                return Result.diploma_url;
+            }
+            catch(Exception ex)
+            {
+                return "";
+            }
         }
 
 
@@ -127,7 +140,31 @@ namespace IZrune.PCL.Implementation.Services
 
         }
 
+        public async Task<IQuisResultInfo> GetQuisResult()
+        {
+
+            var FormContent = new FormUrlEncodedContent(new[]
+                    {
+                new KeyValuePair<string,string>("test_id",TestCode),
+              
+            });
+            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getTestInfo&hashcode=1218b084b72f42914d4c868a2eec191b", FormContent);
+            var jsn = await Data.Content.ReadAsStringAsync();
+            var Result = JsonConvert.DeserializeObject<QuisResultInfoRootDTO>(jsn);
+            var info = Result.info;
+            QuisResultInfo QuesResult = new QuisResultInfo();
+            
+            DateTime.TryParse(info.date, out DateTime date);
+            int.TryParse(info.duration, out int Time);
+            QuesResult.Date = date;
+            QuesResult.Duration = Time;
+            QuesResult.Egmu = info.egmu;
+            QuesResult.Score = info.score;
+            QuesResult.Stars = info.stars;
+            QuesResult.test_type = info.test_type == "1" ? QuezCategory.QuezExam : QuezCategory.QuezTest;
 
 
+            return QuesResult;
+        }
     }
 }

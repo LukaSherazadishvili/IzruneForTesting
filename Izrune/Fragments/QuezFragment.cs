@@ -11,6 +11,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using FFImageLoading.Views;
+using Izrune.Activitys;
 using Izrune.Attributes;
 using Izrune.Helpers;
 using IZrune.PCL.Abstraction.Models;
@@ -129,7 +130,10 @@ namespace Izrune.Fragments
 
             if (question == null)
             {
-                Toast.MakeText(this, "Hello Nigga", ToastLength.Long).Show();
+             
+
+                Intent intent = new Intent(this, typeof(DiplomaActivity));
+                StartActivity(intent);
             }
             else
             {

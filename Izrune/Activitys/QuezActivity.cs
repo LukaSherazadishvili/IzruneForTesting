@@ -170,7 +170,34 @@ namespace Izrune.Activitys
                             CircProgress = 0;
                             progBar.Progress = 0;
 
+                            if (Position < 20)
+                            {
+                                foreach (var items in Sheduler)
+                                {
+                                    items.IsCurrent = false;
+                                }
 
+                                Sheduler.ElementAt(Position).AlreadeBe = true;
+                                Sheduler.ElementAt(Position).IsCurrent = true;
+                                Adapter.NotifyDataSetChanged();
+                                if (Position <= 18)
+                                    ShedulRecycler.ScrollToPosition(Position + 1);
+                                else
+                                    ShedulRecycler.ScrollToPosition(Position);
+                            }
+
+                            return QuezControll.Instance.GetCurrentQuestion();
+                        };
+
+
+
+
+
+
+
+
+                        if (Position < 20)
+                        {
                             foreach (var items in Sheduler)
                             {
                                 items.IsCurrent = false;
@@ -183,31 +210,8 @@ namespace Izrune.Activitys
                             else
                                 ShedulRecycler.ScrollToPosition(Position);
 
-                            return QuezControll.Instance.GetCurrentQuestion();
-                        };
-
-
-
-
-
-
-
-
-
-                        foreach (var items in Sheduler)
-                        {
-                            items.IsCurrent = false;
+                            ChangeFragmentPage(frg, Resource.Id.ContainerQuestion);
                         }
-                        Sheduler.ElementAt(Position).AlreadeBe = true;
-                        Sheduler.ElementAt(Position).IsCurrent = true;
-                        Adapter.NotifyDataSetChanged();
-                        if (Position <= 18)
-                            ShedulRecycler.ScrollToPosition(Position + 1);
-                        else
-                            ShedulRecycler.ScrollToPosition(Position);
-
-                        ChangeFragmentPage(frg, Resource.Id.ContainerQuestion);
-
                     }
 
                     TimerTxt.Text = string.Format($"{minit.ToString().PadLeft(2, '0')}:{Sec.ToString().PadLeft(2, '0')}");
