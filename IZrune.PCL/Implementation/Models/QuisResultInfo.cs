@@ -14,5 +14,8 @@ namespace IZrune.PCL.Implementation.Models
         public int Stars { get; set; }
         public int Duration { get; set; }
         public string Egmu { get; set; }
+        public int? RightAnswer { get; set; }
+        public int? WronAnswers { get; set; }
+        public int? SkipedAnswers { get; set; }
     }
 }

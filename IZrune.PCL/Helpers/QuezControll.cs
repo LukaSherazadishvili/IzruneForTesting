@@ -110,7 +110,11 @@ namespace IZrune.PCL.Helpers
 
         public async Task<TimeSpan> GetExamDate(Enum.QuezCategory categor)
         {
+         
            return await MpdcContainer.Instance.Get<IQuezServices>().GetExamDate(categor);
+
+
+
         }
 
        
@@ -138,19 +142,35 @@ namespace IZrune.PCL.Helpers
             
          
             
-            if (Position == 20)
-            {
-                await MpdcContainer.Instance.Get<IQuezServices>().GetDiploma();
-                await MpdcContainer.Instance.Get<IQuezServices>().GetQuisResult();
-            }
+            //if (Position == 20)
+            //{
+            //    var Result = await GetExamInfoAsync();
+            //}
         }
 
         QuisInfo quisInfo;
-        public async  Task<IQuisInfo> GetExamInfoAsync(QuezCategory category)
+        public async  Task<IQuisInfo> GetExamInfoAsync()
         {
             quisInfo = new QuisInfo();
 
-          quisInfo.QueisResult = await MpdcContainer.Instance.Get<IQuezServices>().GetQuisResult();
+           
+          var InfoResult = MpdcContainer.Instance.Get<IQuezServices>().GetQuisResult();
+            var Diploma=  MpdcContainer.Instance.Get<IQuezServices>().GetDiploma();
+
+           await Task.WhenAll(InfoResult, Diploma);
+
+            var statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(InfoResult.Result.test_type);
+            var AnswerResult = statistic.FirstOrDefault();
+
+            
+            quisInfo.QueisResult = InfoResult.Result;
+            quisInfo.DiplomaURl = Diploma.Result;
+            if (AnswerResult != null)
+            {
+                quisInfo.QueisResult.RightAnswer = AnswerResult.CorrectAnswersCount;
+                quisInfo.QueisResult.WronAnswers = AnswerResult.IncorrectAnswersCount;
+                quisInfo.QueisResult.SkipedAnswers = AnswerResult.SkippedQuestionsCount;
+            }
 
             return quisInfo;
 

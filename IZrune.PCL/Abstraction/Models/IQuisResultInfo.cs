@@ -13,5 +13,13 @@ namespace IZrune.PCL.Abstraction.Models
         int Stars { get; set; }
         int Duration { get; set; }
         string Egmu { get; set; }
+
+        int? RightAnswer { get; set; }
+
+        int? WronAnswers { get; set; }
+
+        int? SkipedAnswers { get; set; }
+
+
     }
 }

@@ -6,6 +6,7 @@ namespace IZrune.PCL.Abstraction.Models
 {
    public interface IQuisInfo
     {
+         string DiplomaURl { get; set; }
         IQuisResultInfo QueisResult { set; get; }
     }
 }

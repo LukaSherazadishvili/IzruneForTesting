@@ -8,5 +8,6 @@ namespace IZrune.PCL.Implementation.Models
     public class QuisInfo : IQuisInfo
     {
         public IQuisResultInfo QueisResult { get; set; }
+        public string DiplomaURl { get; set; }
     }
 }
