@@ -1696,7 +1696,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZq-Ls-Ekz">
                                 <rect key="frame" x="157.66666666666666" y="496.66666666666674" width="60" height="60"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rXc-wN-COM">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1 – 5.png" translatesAutoresizingMaskIntoConstraints="NO" id="rXc-wN-COM">
                                         <rect key="frame" x="10" y="10" width="40" height="40"/>
                                     </imageView>
                                 </subviews>
@@ -2720,6 +2720,7 @@
         <image name="1 – 21.png" width="25" height="25"/>
         <image name="1 – 26.png" width="25" height="25"/>
         <image name="1 – 4.png" width="25" height="25"/>
+        <image name="1 – 5.png" width="25" height="25"/>
         <image name="1 – 6.png" width="25" height="25"/>
         <image name="4.png" width="172" height="161"/>
         <image name="fagarati.png" width="378" height="811"/>

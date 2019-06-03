@@ -36,6 +36,18 @@ namespace Izrune.iOS
                 ShowError(IsError);
                 IsError = !IsError;
                 this.View.EndEditing(true);
+
+                var succsessVc = Storyboard.InstantiateViewController(SuccesViewController.StoryboardId) as SuccesViewController;
+                succsessVc.TitleText = "პაროლი გაგზავნილი მითითებულ ნომერზე";
+
+                this.AddChildViewController(succsessVc);
+
+
+                succsessVc.View.Frame = new CoreGraphics.CGRect(0, 0, View.Frame.Width, View.Frame.Height);
+
+                View.AddSubview(succsessVc.View);
+
+                succsessVc.DidMoveToParentViewController(this);
             };
 
             backBtn.TouchUpInside += delegate {
