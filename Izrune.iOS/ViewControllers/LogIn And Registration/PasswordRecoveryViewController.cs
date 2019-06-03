@@ -22,6 +22,7 @@ namespace Izrune.iOS
         public string ErrorText { get; set; }
 
         bool IsError;
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -36,14 +37,19 @@ namespace Izrune.iOS
                 IsError = !IsError;
                 this.View.EndEditing(true);
             };
+
+            backBtn.TouchUpInside += delegate {
+                this.NavigationController.PopViewController(true);
+            };
         }
 
 
         private void InitUI()
         {
             sendBtn.ToCardView(25, 3, 0.2f, AppColors.Tint);
-            backView.Layer.CornerRadius = 25;
-            backImageView.Image = backImageView.Image.GetImageWithColor(UIColor.FromRGB(63, 81, 181));
+            backBtn.Layer.CornerRadius = 25;
+
+            //backImageView.Image = backImageView.Image.GetImageWithColor(UIColor.FromRGB(63, 81, 181));
 
             phoneTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 17);
 

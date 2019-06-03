@@ -58,8 +58,11 @@ namespace Izrune.iOS
                 //TODO
                 try
                 {
-                    await QuezControll.Instance.AddQuestion(0);
+                    await QuezControll.Instance.AddQuestion();
+                    CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
                     currentIndex++;
+                    answerProgressCollectionView.ReloadData();
+                    questionCollectionView.ReloadData();
                 }
                 catch (Exception ex)
                 {
@@ -75,8 +78,8 @@ namespace Izrune.iOS
 
             InitCircular(IsTotalTime? 29 * 60 + 59 : 59);
 
+            lastVisibleIndex = 7;
         }
-
 
         private async Task LoadDataAsync()
         {
@@ -131,7 +134,7 @@ namespace Izrune.iOS
                 var shedulerList = QuezControll.Instance.Sheduler;
                 var sheduler = shedulerList?[indexPath.Row];
 
-                if(currentIndex == sheduler.Position)
+                //if(currentIndex == sheduler.Position)
 
                 answerCell.InitData(sheduler, hideLeft: indexPath.Row == 0, hideRight: indexPath.Row == shedulerList?.Count()-1);
                 return answerCell;
@@ -153,14 +156,19 @@ namespace Izrune.iOS
                     CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
                     currentIndex++;
 
-                    //if(currentIndex < AllQuestions?.Count - 1)
-                    //{
-                    //    if (currentIndex >= lastVisibleIndex)
-                    //    {
-                    //        answerProgressCollectionView.ScrollToItem(NSIndexPath.FromRowSection(currentIndex + 1, 0), UICollectionViewScrollPosition.Left, true);
-                    //        lastVisibleIndex++;
-                    //    }
-                    //}
+                    if(currentIndex < AllQuestions?.Count - 1)
+                    {
+                        if (currentIndex >= lastVisibleIndex)
+                        {
+                            answerProgressCollectionView.ScrollToItem(NSIndexPath.FromRowSection(currentIndex + 1, 0), UICollectionViewScrollPosition.CenteredHorizontally, true);
+                            lastVisibleIndex++;
+                        }
+                    }
+
+                    else
+                    {
+                        //TODO
+                    }
 
                     questionCollectionView.ReloadData();
                     answerProgressCollectionView.ReloadData();

@@ -50,15 +50,15 @@ namespace Izrune.iOS.CollectionViewCells
                 checkImageView.Image = UIImage.FromBundle("1 – 5.png");
             }
 
-            else if(quisSheduler.IsCurrent)
+            if(quisSheduler.IsCurrent)
             {
                 checkImageView.Hidden = true;
                 answerNumberView.Hidden = false;
                 undefinedView.Hidden = true;
-                answerNumberLbl.Text = quisSheduler.Position.ToString();
+                answerNumberLbl.Text = (quisSheduler.Position + 1).ToString();
             }
 
-            else
+            if(!quisSheduler.IsCurrent && !quisSheduler.AlreadeBe)
             {
                 undefinedView.Hidden = false;
                 answerNumberView.Hidden = true;

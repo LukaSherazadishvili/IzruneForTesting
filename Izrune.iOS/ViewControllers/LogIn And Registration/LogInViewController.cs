@@ -73,6 +73,22 @@ namespace Izrune.iOS
                 this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
                 this.NavigationController.PushViewController(registerVc, true);
             };
+
+            forgotPasswordLbl.AddGestureRecognizer(new UITapGestureRecognizer(() => {
+
+                var recoveryVc = Storyboard.InstantiateViewController(PasswordRecoveryViewController.StoryboardId) as PasswordRecoveryViewController;
+                recoveryVc.TitleText = "პაროლის აღდგენა";
+                //recoveryVc.ErrorText = "ტელეფონის ნომერი არ არის რეგისტრირებული";
+                this.NavigationController.PushViewController(recoveryVc, true);
+
+            }));
+
+            forgotUserNameLbl.AddGestureRecognizer(new UITapGestureRecognizer(() => {
+                var recoveryVc = Storyboard.InstantiateViewController(PasswordRecoveryViewController.StoryboardId) as PasswordRecoveryViewController;
+                recoveryVc.TitleText = "მომხმარებლის სახელის აღდგენა";
+                //recoveryVc.ErrorText = "";
+                this.NavigationController.PushViewController(recoveryVc, true);
+            }));
         }
 
         private void InitUI()

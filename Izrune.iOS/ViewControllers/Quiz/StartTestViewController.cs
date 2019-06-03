@@ -166,6 +166,9 @@ namespace Izrune.iOS
                 {
                     InitDropDownUI();
 
+                    UserNameDropDown.Layer.CornerRadius = 20;
+
+
                     UserNameDropDown.Show();
                 }));
             }
