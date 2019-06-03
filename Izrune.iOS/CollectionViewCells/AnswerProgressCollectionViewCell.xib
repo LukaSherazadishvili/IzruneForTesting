@@ -33,29 +33,6 @@
                                     <constraint firstAttribute="width" constant="15" id="nKd-Ar-B2J"/>
                                 </constraints>
                             </imageView>
-                            <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l0j-ci-MkD">
-                                <rect key="frame" x="148" y="33.5" width="25" height="25"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKP-Hx-MkP">
-                                        <rect key="frame" x="3" y="3.5" width="19.5" height="18"/>
-                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="15"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="RKP-Hx-MkP" firstAttribute="centerY" secondItem="l0j-ci-MkD" secondAttribute="centerY" id="9p6-xC-gVX"/>
-                                    <constraint firstAttribute="width" constant="25" id="URn-NY-3v8"/>
-                                    <constraint firstAttribute="height" constant="25" id="k4i-od-STg"/>
-                                    <constraint firstItem="RKP-Hx-MkP" firstAttribute="centerX" secondItem="l0j-ci-MkD" secondAttribute="centerX" id="qT5-o5-vji"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <real key="value" value="12.5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HWS-F1-ipi">
                                 <rect key="frame" x="154" y="39.5" width="13" height="13"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -77,6 +54,29 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="PLz-cy-tJw"/>
                                 </constraints>
+                            </view>
+                            <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l0j-ci-MkD">
+                                <rect key="frame" x="148" y="33.5" width="25" height="25"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKP-Hx-MkP">
+                                        <rect key="frame" x="3" y="3.5" width="19.5" height="18"/>
+                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.79614704849999995" green="0.52908533810000002" blue="0.83909380440000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="RKP-Hx-MkP" firstAttribute="centerY" secondItem="l0j-ci-MkD" secondAttribute="centerY" id="9p6-xC-gVX"/>
+                                    <constraint firstAttribute="width" constant="25" id="URn-NY-3v8"/>
+                                    <constraint firstAttribute="height" constant="25" id="k4i-od-STg"/>
+                                    <constraint firstItem="RKP-Hx-MkP" firstAttribute="centerX" secondItem="l0j-ci-MkD" secondAttribute="centerX" id="qT5-o5-vji"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="12.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

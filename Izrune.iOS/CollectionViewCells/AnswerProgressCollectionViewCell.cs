@@ -46,21 +46,23 @@ namespace Izrune.iOS.CollectionViewCells
             {
                 checkImageView.Hidden = false;
                 answerNumberView.Hidden = true;
+                undefinedView.Hidden = true;
+                checkImageView.Image = UIImage.FromBundle("1 – 5.png");
             }
 
             else if(quisSheduler.IsCurrent)
             {
                 checkImageView.Hidden = true;
                 answerNumberView.Hidden = false;
+                undefinedView.Hidden = true;
                 answerNumberLbl.Text = quisSheduler.Position.ToString();
             }
 
             else
             {
+                undefinedView.Hidden = false;
                 answerNumberView.Hidden = true;
-
-                checkImageView.Image = UIImage.FromBundle("1 – 5.png");
-                checkImageView.Hidden = false;
+                checkImageView.Hidden = true;
             }
         }
 

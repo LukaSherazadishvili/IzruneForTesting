@@ -75,7 +75,6 @@ namespace Izrune.iOS
 
             InitCircular(IsTotalTime? 29 * 60 + 59 : 59);
 
-            lastVisibleIndex = answerProgressCollectionView.IndexPathsForVisibleItems.Length - 1;
         }
 
 
@@ -100,6 +99,7 @@ namespace Izrune.iOS
                 questionCollectionView.ReloadData();
 
                 answerProgressCollectionView.ReloadData();
+
             }
             catch (Exception ex)
             {
@@ -153,17 +153,14 @@ namespace Izrune.iOS
                     CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
                     currentIndex++;
 
-
-
-
-                    if(currentIndex < AllQuestions?.Count - 1)
-                    {
-                        if (currentIndex == lastVisibleIndex)
-                        {
-                            answerProgressCollectionView.ScrollToItem(NSIndexPath.FromRowSection(currentIndex + 1, 0), UICollectionViewScrollPosition.Left, true);
-                            lastVisibleIndex++;
-                        }
-                    }
+                    //if(currentIndex < AllQuestions?.Count - 1)
+                    //{
+                    //    if (currentIndex >= lastVisibleIndex)
+                    //    {
+                    //        answerProgressCollectionView.ScrollToItem(NSIndexPath.FromRowSection(currentIndex + 1, 0), UICollectionViewScrollPosition.Left, true);
+                    //        lastVisibleIndex++;
+                    //    }
+                    //}
 
                     questionCollectionView.ReloadData();
                     answerProgressCollectionView.ReloadData();
@@ -173,7 +170,6 @@ namespace Izrune.iOS
                 {
                     Console.WriteLine(ex.Message);
                 }
-
 
 
                 if (!IsTotalTime)
