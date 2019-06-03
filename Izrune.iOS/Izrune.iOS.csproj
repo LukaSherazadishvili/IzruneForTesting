@@ -352,6 +352,7 @@
       <BundleResource Include="Resources\ichamburger%403x.png" />
       <BundleResource Include="Resources\Views\AnswerClass" />
       <BundleResource Include="Resources\fagarati.png" />
+      <BundleResource Include="Resources\ic_arrow_downward_24px.png" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\IZrune.PCL\IZrune.PCL.csproj">

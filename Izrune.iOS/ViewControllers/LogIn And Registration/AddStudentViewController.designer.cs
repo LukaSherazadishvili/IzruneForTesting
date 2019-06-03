@@ -12,9 +12,47 @@ namespace Izrune.iOS
 	[Register ("AddStudentViewController")]
 	partial class AddStudentViewController
 	{
+		[Outlet]
+		UIKit.UIButton addNewStudentBtn { get; set; }
+
+		[Outlet]
+		UIKit.UIView agreeView { get; set; }
+
+		[Outlet]
+		UIKit.UIButton backBtn { get; set; }
+
+		[Outlet]
+		UIKit.UIButton nextBtn { get; set; }
+
+		[Outlet]
+		UIKit.UIView selectedAgreeView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (agreeView != null) {
+				agreeView.Dispose ();
+				agreeView = null;
+			}
+
+			if (selectedAgreeView != null) {
+				selectedAgreeView.Dispose ();
+				selectedAgreeView = null;
+			}
+
+			if (nextBtn != null) {
+				nextBtn.Dispose ();
+				nextBtn = null;
+			}
+
+			if (backBtn != null) {
+				backBtn.Dispose ();
+				backBtn = null;
+			}
+
+			if (addNewStudentBtn != null) {
+				addNewStudentBtn.Dispose ();
+				addNewStudentBtn = null;
+			}
 		}
 	}
 }

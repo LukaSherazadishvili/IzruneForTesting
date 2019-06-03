@@ -15,6 +15,46 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("AddStudentViewControllerStoryboardId");
 
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
 
-	}
+            InitGestures();
+
+            InitUI();
+        }
+
+        private void InitUI()
+        {
+            addNewStudentBtn.Layer.CornerRadius = 25;
+            agreeView.Layer.CornerRadius = 17.5f;
+            selectedAgreeView.Layer.CornerRadius = 12.5f;
+            backBtn.Layer.CornerRadius = 25;
+            nextBtn.Layer.CornerRadius = 25;
+        }
+
+        bool IsMarked;
+
+        private void InitGestures()
+        {
+            addNewStudentBtn.TouchUpInside += delegate {
+
+                //TODO
+            };
+
+            nextBtn.TouchUpInside += delegate {
+                //TODO
+
+            };
+
+            if (agreeView.GestureRecognizers == null || agreeView.GestureRecognizers?.Length == 0)
+            {
+                agreeView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
+
+                    IsMarked = !IsMarked;
+                    selectedAgreeView.Hidden = !IsMarked;
+                }));
+            }
+        }
+    }
 }
