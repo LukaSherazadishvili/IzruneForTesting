@@ -23,6 +23,7 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
+
             titleLbl.Text = TitleText;
 
             loginBtn.ToCardView(25, 10, 0.1f, UIColor.FromRGBA(0, 0, 0, 0));

@@ -27,6 +27,8 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
+            this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+
             InitUI();
 
             InitGestures();
@@ -68,9 +70,6 @@ namespace Izrune.iOS
 
                 //TODO
                 var registerVc = Storyboard.InstantiateViewController(ParentRegistrationViewController.StoryboardId) as ParentRegistrationViewController;
-
-
-                this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
                 this.NavigationController.PushViewController(registerVc, true);
             };
 
