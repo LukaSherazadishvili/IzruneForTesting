@@ -1478,11 +1478,24 @@
                                     <constraint firstAttribute="height" constant="150" id="6rj-r1-CHw"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKc-kZ-dbe">
+                                <rect key="frame" x="53" y="468" width="214" height="50"/>
+                                <color key="backgroundColor" red="0.79607843137254897" green="0.52941176470588236" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="cMw-q4-FeL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="13"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                <state key="normal" title="+ დაამატეთ მოსწავლე">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="fWY-jL-cBa" firstAttribute="leading" secondItem="qnZ-29-iFQ" secondAttribute="leading" id="3Dd-lk-XDG"/>
                             <constraint firstItem="fWY-jL-cBa" firstAttribute="top" secondItem="qnZ-29-iFQ" secondAttribute="top" id="7RB-8H-A0e"/>
+                            <constraint firstItem="lKc-kZ-dbe" firstAttribute="centerY" secondItem="nav-0d-kc9" secondAttribute="centerY" id="BuE-kh-zWl"/>
                             <constraint firstItem="nav-0d-kc9" firstAttribute="top" secondItem="uDd-bv-bI6" secondAttribute="bottom" constant="20" id="Fqb-Fm-1lK"/>
                             <constraint firstItem="DzX-6M-Cc4" firstAttribute="trailing" secondItem="NUu-Fe-XVQ" secondAttribute="trailing" id="LKd-2N-wbC"/>
                             <constraint firstItem="VA6-Id-Qlm" firstAttribute="leading" secondItem="XsU-Aq-0QO" secondAttribute="leading" id="Mro-cs-dWt"/>
@@ -1504,10 +1517,12 @@
                             <constraint firstItem="Mh8-Mf-N8g" firstAttribute="top" secondItem="zj3-Fj-W4c" secondAttribute="bottom" constant="17" id="sA3-Fh-pN5"/>
                             <constraint firstItem="VA6-Id-Qlm" firstAttribute="trailing" secondItem="XsU-Aq-0QO" secondAttribute="trailing" id="vSx-tZ-CwI"/>
                             <constraint firstAttribute="trailing" secondItem="nav-0d-kc9" secondAttribute="trailing" id="vs9-1C-oNu"/>
+                            <constraint firstItem="lKc-kZ-dbe" firstAttribute="centerX" secondItem="pzg-c7-FuJ" secondAttribute="centerX" id="xd6-kL-TAX"/>
                             <constraint firstItem="zj3-Fj-W4c" firstAttribute="centerX" secondItem="pzg-c7-FuJ" secondAttribute="centerX" id="yuF-lm-aYR"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addStudentBtn" destination="lKc-kZ-dbe" id="XwR-G9-ya0"/>
                         <outlet property="editStackView" destination="uDd-bv-bI6" id="WAc-91-b1u"/>
                         <outlet property="firstShadowView" destination="DzX-6M-Cc4" id="QH6-HV-HHW"/>
                         <outlet property="secondShadowView" destination="VA6-Id-Qlm" id="2tA-ed-jEr"/>
