@@ -6,6 +6,7 @@ using Foundation;
 using Izrune.iOS.CollectionViewCells;
 using MPDCiOSPages.ViewControllers;
 using UIKit;
+using FPT.Framework.iOS.UI.DropDown;
 
 namespace Izrune.iOS
 {
@@ -17,6 +18,8 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("TestResultsStoryboardId");
 
+        DropDown YearDropDown = new DropDown();
+        DropDown MonthDropDown = new DropDown();
 
 
         public override void ViewDidLoad()

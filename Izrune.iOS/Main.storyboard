@@ -1346,10 +1346,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uce-Qc-aec">
-                                <rect key="frame" x="10.000000000000007" y="75" width="122.66666666666669" height="50"/>
+                                <rect key="frame" x="15.000000000000007" y="75" width="112.66666666666669" height="38"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="წელი" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQ3-PR-y20">
-                                        <rect key="frame" x="36.333333333333329" y="15.666666666666673" width="50.333333333333329" height="18.666666666666671"/>
+                                        <rect key="frame" x="5" y="9.6666666666666732" width="102.66666666666667" height="18.666666666666671"/>
                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="16"/>
                                         <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1357,16 +1357,23 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="3Vg-mY-gNA"/>
+                                    <constraint firstAttribute="trailing" secondItem="MQ3-PR-y20" secondAttribute="trailing" constant="5" id="2MT-fq-69Z"/>
+                                    <constraint firstAttribute="height" constant="38" id="3Vg-mY-gNA"/>
                                     <constraint firstItem="MQ3-PR-y20" firstAttribute="centerX" secondItem="uce-Qc-aec" secondAttribute="centerX" id="aPa-uu-dCR"/>
                                     <constraint firstItem="MQ3-PR-y20" firstAttribute="centerY" secondItem="uce-Qc-aec" secondAttribute="centerY" id="cJh-9V-yqM"/>
+                                    <constraint firstItem="MQ3-PR-y20" firstAttribute="leading" secondItem="uce-Qc-aec" secondAttribute="leading" constant="5" id="sfH-YO-13M"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="19"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KzT-0k-GnZ">
-                                <rect key="frame" x="157.66666666666663" y="75" width="207.33333333333337" height="50"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KzT-0k-GnZ">
+                                <rect key="frame" x="152.66666666666663" y="75" width="207.33333333333337" height="38"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="თვე" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5PQ-Hw-OqK">
-                                        <rect key="frame" x="85.666666666666686" y="15.666666666666673" width="36" height="18.666666666666671"/>
+                                        <rect key="frame" x="5" y="9.6666666666666732" width="187.33333333333334" height="18.666666666666671"/>
                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="16"/>
                                         <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1374,13 +1381,19 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="ZnV-1J-aEu"/>
-                                    <constraint firstItem="5PQ-Hw-OqK" firstAttribute="centerX" secondItem="KzT-0k-GnZ" secondAttribute="centerX" id="b4w-Fw-irw"/>
+                                    <constraint firstAttribute="trailing" secondItem="5PQ-Hw-OqK" secondAttribute="trailing" constant="15" id="XRw-ZB-S1O"/>
+                                    <constraint firstAttribute="height" constant="38" id="ZnV-1J-aEu"/>
+                                    <constraint firstItem="5PQ-Hw-OqK" firstAttribute="leading" secondItem="KzT-0k-GnZ" secondAttribute="leading" constant="5" id="s1i-OE-O2r"/>
                                     <constraint firstItem="5PQ-Hw-OqK" firstAttribute="centerY" secondItem="KzT-0k-GnZ" secondAttribute="centerY" id="zOf-As-Jed"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="19"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ggV-4h-J62">
-                                <rect key="frame" x="10" y="150.66666666666669" width="355" height="627.33333333333326"/>
+                                <rect key="frame" x="10" y="138.66666666666669" width="355" height="639.33333333333326"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="g46-qY-Oy3">
                                     <size key="itemSize" width="50" height="50"/>
@@ -1413,8 +1426,8 @@
                             <constraint firstItem="ggV-4h-J62" firstAttribute="leading" secondItem="pPD-8c-kO5" secondAttribute="leading" constant="10" id="gUp-vX-pGT"/>
                             <constraint firstItem="HXt-hW-YQo" firstAttribute="leading" secondItem="pPD-8c-kO5" secondAttribute="leadingMargin" constant="15" id="i4g-jt-fL6"/>
                             <constraint firstAttribute="trailing" secondItem="ggV-4h-J62" secondAttribute="trailing" constant="10" id="jRL-mg-CNL"/>
-                            <constraint firstItem="uce-Qc-aec" firstAttribute="leading" secondItem="pPD-8c-kO5" secondAttribute="leading" constant="10" id="rCa-4d-3I4"/>
-                            <constraint firstAttribute="trailing" secondItem="KzT-0k-GnZ" secondAttribute="trailing" constant="10" id="tw2-Fy-Gq5"/>
+                            <constraint firstItem="uce-Qc-aec" firstAttribute="leading" secondItem="pPD-8c-kO5" secondAttribute="leading" constant="15" id="rCa-4d-3I4"/>
+                            <constraint firstAttribute="trailing" secondItem="KzT-0k-GnZ" secondAttribute="trailing" constant="15" id="tw2-Fy-Gq5"/>
                         </constraints>
                     </view>
                     <connections>
