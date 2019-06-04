@@ -121,7 +121,7 @@ namespace Izrune.Fragments
             {
                 items.Click -= AnswerView_Click;
             }
-            await Task.Delay(1500);
+            await Task.Delay(1000);
 
 
 

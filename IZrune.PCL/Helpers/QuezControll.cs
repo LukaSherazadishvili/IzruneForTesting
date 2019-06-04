@@ -142,10 +142,7 @@ namespace IZrune.PCL.Helpers
             
          
             
-            //if (Position == 20)
-            //{
-            //    var Result = await GetExamInfoAsync();
-            //}
+           
         }
 
         QuisInfo quisInfo;
