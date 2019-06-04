@@ -48,7 +48,7 @@ namespace Izrune.iOS.ViewControllers
                 {MenuType.MoreInfo, () => CreateViewControllerByStoryboard(MoreInfoStoryboardId)},
                 {MenuType.Contact, () => CreateViewControllerByStoryboard(ContactStoryboardId)},
                 {MenuType.Main, () => CreateViewControllerByStoryboard(StartTestStoryboardId)},
-                {MenuType.Statistic, () => CreateViewControllerByStoryboard(StatisticStoryboardId)},
+                {MenuType.Statistic, () => CreateViewControllerByStoryboard(TestResultsViewController.StoryboardId)},
                 {MenuType.UpdatePacket, () => CreateViewControllerByStoryboard(UpdatePacketStoryboardId)},
                 {MenuType.EditProfile, () => CreateViewControllerByStoryboard(EditProfileStoryboardId)},
                 {MenuType.LogOut, () => CreateViewControllerByStoryboard(AddStudentViewController.StoryboardId)},
