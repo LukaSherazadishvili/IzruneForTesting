@@ -160,6 +160,7 @@
         <InterfaceDefinition Include="CollectionViewCells\AnswerProgressCollectionViewCell.xib" />
         <InterfaceDefinition Include="CollectionViewCells\PacketCollectionViewCell.xib" />
         <InterfaceDefinition Include="Base\BaseViewController.xib" />
+        <InterfaceDefinition Include="CollectionViewCells\ResultCollectionViewCell.xib" />
     </ItemGroup>
     <ItemGroup>
         <None Include="Info.plist" />
@@ -290,6 +291,10 @@
         <Compile Include="ViewControllers\LogIn And Registration\SuccesViewController.cs" />
         <Compile Include="ViewControllers\LogIn And Registration\SuccesViewController.designer.cs">
           <DependentUpon>SuccesViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CollectionViewCells\ResultCollectionViewCell.cs" />
+        <Compile Include="CollectionViewCells\ResultCollectionViewCell.designer.cs">
+          <DependentUpon>ResultCollectionViewCell.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup>

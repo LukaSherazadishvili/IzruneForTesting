@@ -13,6 +13,9 @@ namespace Izrune.iOS
 	partial class EditProfileViewController
 	{
 		[Outlet]
+		UIKit.UIButton addStudentBtn { get; set; }
+
+		[Outlet]
 		UIKit.UIStackView editStackView { get; set; }
 
 		[Outlet]
@@ -44,6 +47,11 @@ namespace Izrune.iOS
 			if (thirdShadovView != null) {
 				thirdShadovView.Dispose ();
 				thirdShadovView = null;
+			}
+
+			if (addStudentBtn != null) {
+				addStudentBtn.Dispose ();
+				addStudentBtn = null;
 			}
 		}
 	}

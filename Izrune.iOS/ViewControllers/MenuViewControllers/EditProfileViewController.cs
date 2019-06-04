@@ -43,6 +43,7 @@ namespace Izrune.iOS
             firstShadowView.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
             secondShadowView.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
             thirdShadovView.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
+            addStudentBtn.Layer.CornerRadius = 25;
         }
     }
 }
