@@ -31,14 +31,15 @@ namespace Izrune.iOS
 
             parent2RegVc = Storyboard.InstantiateViewController(ParentRegSecondViewController.StoryboardId) as ParentRegSecondViewController;
 
-            this.AddChildViewController(parentRegVc);
 
+            this.AddVcInView(viewForPager, parentRegVc);
+            //this.AddChildViewController(parentRegVc);
 
-            parentRegVc.View.Frame = new CoreGraphics.CGRect(0, 0, viewForPager.Frame.Width, viewForPager.Frame.Height);
+            //parentRegVc.View.Frame = new CoreGraphics.CGRect(0, 0, viewForPager.Frame.Width, viewForPager.Frame.Height);
 
-            viewForPager.AddSubview(parentRegVc.View);
+            //viewForPager.AddSubview(parentRegVc.View);
 
-            parentRegVc.DidMoveToParentViewController(this);
+            //parentRegVc.DidMoveToParentViewController(this);
 
             InitUI();
 
@@ -77,13 +78,16 @@ namespace Izrune.iOS
             parentRegVc.View.RemoveFromSuperview();
             parentRegVc.RemoveFromParentViewController();
 
-            this.AddChildViewController(parent2RegVc);
+            this.AddVcInView(viewForPager, parent2RegVc);
 
-            parent2RegVc.View.Frame = new CoreGraphics.CGRect(0, 0, viewForPager.Frame.Width, viewForPager.Frame.Height);
 
-            viewForPager.AddSubview(parent2RegVc.View);
+            //this.AddChildViewController(parent2RegVc);
 
-            parent2RegVc.DidMoveToParentViewController(this);
+            //parent2RegVc.View.Frame = new CoreGraphics.CGRect(0, 0, viewForPager.Frame.Width, viewForPager.Frame.Height);
+
+            //viewForPager.AddSubview(parent2RegVc.View);
+
+            //parent2RegVc.DidMoveToParentViewController(this);
         }
 
         private void AddFirstVc()
@@ -92,13 +96,15 @@ namespace Izrune.iOS
             parent2RegVc.View.RemoveFromSuperview();
             parent2RegVc.RemoveFromParentViewController();
 
-            this.AddChildViewController(parentRegVc);
+            this.AddVcInView(viewForPager, parentRegVc);
 
-            parentRegVc.View.Frame = new CoreGraphics.CGRect(0, 0, viewForPager.Frame.Width, viewForPager.Frame.Height);
+            //this.AddChildViewController(parentRegVc);
 
-            viewForPager.AddSubview(parentRegVc.View);
+            //parentRegVc.View.Frame = new CoreGraphics.CGRect(0, 0, viewForPager.Frame.Width, viewForPager.Frame.Height);
 
-            parentRegVc.DidMoveToParentViewController(this);
+            //viewForPager.AddSubview(parentRegVc.View);
+
+            //parentRegVc.DidMoveToParentViewController(this);
 
         }
 

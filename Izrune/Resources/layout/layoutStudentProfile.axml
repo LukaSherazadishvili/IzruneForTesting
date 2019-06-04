@@ -18,8 +18,7 @@ android:id="@+id/Container">
 				layout="@layout/mainarowbacktoolbar"
 				android:layout_width="match_parent"
 				android:layout_height="50dp"/>
-   <ImageView
-				
+			<ImageView				
 				android:layout_width="20dp"
 				android:layout_height="20dp"				
 				android:layout_gravity="center_horizontal"
@@ -34,7 +33,7 @@ android:id="@+id/Container">
             android:gravity="center"
 			android:orientation="vertical"
             android:layout_height="wrap_content">
-            <TextView
+            <TextView				
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -58,6 +57,7 @@ android:id="@+id/Container">
 					/>
 
 				<Spinner
+					android:id="@+id/StudentSpiner"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"
@@ -109,7 +109,7 @@ android:id="@+id/Container">
 					android:textSize="10dp"
 					/>
 				<TextView
-					android:id="@+id/StudentLastNametxt"
+			android:id="@+id/StudentLastNametxt"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"
@@ -222,7 +222,7 @@ android:id="@+id/Container">
 					android:textSize="10dp"
 					/>
 				<EditText
-			android:id="@+id/StudentId"
+			android:id="@+id/StudentMobile"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"

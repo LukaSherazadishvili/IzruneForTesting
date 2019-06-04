@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Foundation;
+using IZrune.PCL.Helpers;
 using MpdcViewExtentions;
 using UIKit;
 
@@ -31,31 +32,37 @@ namespace Izrune.iOS.CollectionViewCells
             // Note: this .ctor should not contain any initialization logic.
         }
 
-        public void InitData(AnswerStatus status, int index)
+        public void InitData(QuisSheduler quisSheduler, bool hideLeft = false, bool hideRight = false)
         {
-            InitViews(status, index);
+            InitViews(quisSheduler);
+
+            leftView.Hidden = hideLeft;
+            rightView.Hidden = hideRight;
         }
 
-        private void InitViews(AnswerStatus status, int index)
+        private void InitViews(QuisSheduler quisSheduler)
         {
-            if(status == AnswerStatus.Checked)
+            if(quisSheduler.AlreadeBe)
             {
                 checkImageView.Hidden = false;
                 answerNumberView.Hidden = true;
+                undefinedView.Hidden = true;
+                checkImageView.Image = UIImage.FromBundle("1 – 5.png");
             }
 
-            if(status == AnswerStatus.Current)
+            if(quisSheduler.IsCurrent)
             {
                 checkImageView.Hidden = true;
                 answerNumberView.Hidden = false;
-                answerNumberLbl.Text = index.ToString();
+                undefinedView.Hidden = true;
+                answerNumberLbl.Text = (quisSheduler.Position + 1).ToString();
             }
-            if(status == AnswerStatus.Unknown)
-            {
-                answerNumberView.Hidden = true;
 
-                checkImageView.Image = UIImage.FromBundle("1 – 5.png");
-                checkImageView.Hidden = false;
+            if(!quisSheduler.IsCurrent && !quisSheduler.AlreadeBe)
+            {
+                undefinedView.Hidden = false;
+                answerNumberView.Hidden = true;
+                checkImageView.Hidden = true;
             }
         }
 
@@ -63,7 +70,11 @@ namespace Izrune.iOS.CollectionViewCells
         {
             base.AwakeFromNib();
 
-            answerNumberView.Layer.CornerRadius = 12.5f;
+            //answerNumberView.Layer.CornerRadius = 12.5f;
+
+            undefinedView.Layer.CornerRadius = 6.5f;
+            undefinedView.Layer.BorderWidth = 1;
+            undefinedView.Layer.BorderColor = UIColor.FromRGB(184, 184, 184).CGColor;
         }
     }
 }

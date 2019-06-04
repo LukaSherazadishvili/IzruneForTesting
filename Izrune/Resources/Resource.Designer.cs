@@ -3285,6 +3285,8 @@ namespace Izrune
 			// aapt resource value: 0x7f0a00dd
 			public const int AnswerVersionSimbol = 2131362013;
 			
+			// aapt resource value: 0x7f0a0147
+			public const int BackButton = 2131362119;
 			// aapt resource value: 0x7f0a0141
 			public const int BackButton = 2131362113;
 			
@@ -3300,6 +3302,8 @@ namespace Izrune
 			// aapt resource value: 0x7f0a00b1
 			public const int BottomBackButton = 2131361969;
 			
+			// aapt resource value: 0x7f0a0163
+			public const int BranchesMenu = 2131362147;
 			// aapt resource value: 0x7f0a015f
 			public const int BranchesMenu = 2131362143;
 			
@@ -3320,6 +3324,8 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a012a
 			public const int ContainerQuestion = 2131362090;
+			// aapt resource value: 0x7f0a0130
+			public const int ContainerQuestion = 2131362096;
 			
 			// aapt resource value: 0x7f0a0109
 			public const int CorrectAnswerTxt = 2131362057;
@@ -3335,15 +3341,24 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a013e
 			public const int ExamPartTimeButton = 2131362110;
+			// aapt resource value: 0x7f0a0144
+			public const int ExamPartTimeButton = 2131362116;
 			
 			// aapt resource value: 0x7f0a00f1
 			public const int ExamTestButton = 2131362033;
 			
 			// aapt resource value: 0x7f0a013d
 			public const int ExamTestFullTimeButton = 2131362109;
+			// aapt resource value: 0x7f0a0143
+			public const int ExamTestFullTimeButton = 2131362115;
 			
 			// aapt resource value: 0x7f0a015d
 			public const int ExclusiveProductsMenu = 2131362141;
+			// aapt resource value: 0x7f0a0161
+			public const int ExclusiveProductsMenu = 2131362145;
+			
+			// aapt resource value: 0x7f0a0164
+			public const int Exit = 2131362148;
 			
 			// aapt resource value: 0x7f0a0160
 			public const int Exit = 2131362144;
@@ -3356,6 +3371,8 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a0143
 			public const int HeaderTab = 2131362115;
+			// aapt resource value: 0x7f0a0148
+			public const int HeaderText = 2131362120;
 			
 			// aapt resource value: 0x7f0a0142
 			public const int HeaderText = 2131362114;
@@ -3368,6 +3385,11 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a012c
 			public const int IndividualButton = 2131362092;
+			// aapt resource value: 0x7f0a0132
+			public const int IndividualButton = 2131362098;
+			
+			// aapt resource value: 0x7f0a0133
+			public const int IndividualTxt = 2131362099;
 			
 			// aapt resource value: 0x7f0a012d
 			public const int IndividualTxt = 2131362093;
@@ -3389,9 +3411,13 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a0157
 			public const int MainMenu = 2131362135;
+			// aapt resource value: 0x7f0a015b
+			public const int MainMenu = 2131362139;
 			
 			// aapt resource value: 0x7f0a0130
 			public const int MainPager = 2131362096;
+			// aapt resource value: 0x7f0a0136
+			public const int MainPager = 2131362102;
 			
 			// aapt resource value: 0x7f0a0112
 			public const int MainQuestionTxt = 2131362066;
@@ -3407,9 +3433,19 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a015e
 			public const int News = 2131362142;
+			// aapt resource value: 0x7f0a012a
+			public const int MobilePhoneTxt = 2131362090;
+			
+			// aapt resource value: 0x7f0a0165
+			public const int MySalesMenu = 2131362149;
 			
 			// aapt resource value: 0x7f0a015b
 			public const int NewsMenu = 2131362139;
+			// aapt resource value: 0x7f0a0162
+			public const int News = 2131362146;
+			
+			// aapt resource value: 0x7f0a015f
+			public const int NewsMenu = 2131362143;
 			
 			// aapt resource value: 0x7f0a011e
 			public const int NewsRecyclerView = 2131362078;
@@ -3426,6 +3462,15 @@ namespace Izrune
 			// aapt resource value: 0x7f0a0123
 			public const int ParentBdayYear = 2131362083;
 			
+			// aapt resource value: 0x7f0a0127
+			public const int ParentLastNameTxt = 2131362087;
+			
+			// aapt resource value: 0x7f0a012b
+			public const int ParentMailTxt = 2131362091;
+			
+			// aapt resource value: 0x7f0a0126
+			public const int ParentNameTxt = 2131362086;
+			
 			// aapt resource value: 0x7f0a00f8
 			public const int ParentProfileEdit = 2131362040;
 			
@@ -3438,8 +3483,14 @@ namespace Izrune
 			// aapt resource value: 0x7f0a0124
 			public const int ParrentCity = 2131362084;
 			
+			// aapt resource value: 0x7f0a0128
+			public const int ParrentRegionSpinner = 2131362088;
+			
 			// aapt resource value: 0x7f0a0125
 			public const int ParrentVillage = 2131362085;
+			
+			// aapt resource value: 0x7f0a0129
+			public const int ParrentVillageTxt = 2131362089;
 			
 			// aapt resource value: 0x7f0a00af
 			public const int PassText = 2131361967;
@@ -3447,8 +3498,8 @@ namespace Izrune
 			// aapt resource value: 0x7f0a0116
 			public const int Password = 2131362070;
 			
-			// aapt resource value: 0x7f0a0106
-			public const int PointText = 2131362054;
+			// aapt resource value: 0x7f0a0107
+			public const int PointText = 2131362055;
 			
 			// aapt resource value: 0x7f0a00d7
 			public const int Points = 2131362007;
@@ -3458,6 +3509,11 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a012e
 			public const int PromoButton = 2131362094;
+			// aapt resource value: 0x7f0a0134
+			public const int PromoButton = 2131362100;
+			
+			// aapt resource value: 0x7f0a0135
+			public const int PromoTxt = 2131362101;
 			
 			// aapt resource value: 0x7f0a012f
 			public const int PromoTxt = 2131362095;
@@ -3470,12 +3526,18 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a0129
 			public const int QuestionCountRecycler = 2131362089;
+			// aapt resource value: 0x7f0a012f
+			public const int QuestionCountRecycler = 2131362095;
 			
 			// aapt resource value: 0x7f0a0127
 			public const int QuestionProgressbar = 2131362087;
+			// aapt resource value: 0x7f0a012d
+			public const int QuestionProgressbar = 2131362093;
 			
 			// aapt resource value: 0x7f0a015a
 			public const int ReUpdate = 2131362138;
+			// aapt resource value: 0x7f0a015e
+			public const int ReUpdate = 2131362142;
 			
 			// aapt resource value: 0x7f0a0144
 			public const int ResultPageViePager = 2131362116;
@@ -3491,9 +3553,13 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a0159
 			public const int SalesMenu = 2131362137;
+			// aapt resource value: 0x7f0a015d
+			public const int SalesMenu = 2131362141;
 			
 			// aapt resource value: 0x7f0a013c
 			public const int SaveButton = 2131362108;
+			// aapt resource value: 0x7f0a012c
+			public const int SaveButton = 2131362092;
 			
 			// aapt resource value: 0x7f0a0108
 			public const int ScoreTxt = 2131362056;
@@ -3519,29 +3585,53 @@ namespace Izrune
 			// aapt resource value: 0x7f0a00e1
 			public const int SmallNewsTitle = 2131362017;
 			
-			// aapt resource value: 0x7f0a0107
-			public const int StarsContainer = 2131362055;
+			// aapt resource value: 0x7f0a0106
+			public const int StarsContainer = 2131362054;
+			
+			// aapt resource value: 0x7f0a0137
+			public const int StatisticRecycler = 2131362103;
 			
 			// aapt resource value: 0x7f0a0131
 			public const int StatisticRecycler = 2131362097;
+			// aapt resource value: 0x7f0a013a
+			public const int StudentBDayDay = 2131362106;
 			
 			// aapt resource value: 0x7f0a0134
 			public const int StudentBDayDay = 2131362100;
+			// aapt resource value: 0x7f0a013b
+			public const int StudentBdayMonth = 2131362107;
+			
+			// aapt resource value: 0x7f0a013c
+			public const int StudentBdayYear = 2131362108;
 			
 			// aapt resource value: 0x7f0a0135
 			public const int StudentBdayMonth = 2131362101;
+			// aapt resource value: 0x7f0a0140
+			public const int StudentCity = 2131362112;
 			
 			// aapt resource value: 0x7f0a0136
 			public const int StudentBdayYear = 2131362102;
+			// aapt resource value: 0x7f0a0142
+			public const int StudentClasses = 2131362114;
+			
+			// aapt resource value: 0x7f0a013d
+			public const int StudentId = 2131362109;
+			
+			// aapt resource value: 0x7f0a0139
+			public const int StudentLastNametxt = 2131362105;
 			
 			// aapt resource value: 0x7f0a0139
 			public const int StudentCity = 2131362105;
+			// aapt resource value: 0x7f0a013f
+			public const int StudentMail = 2131362111;
 			
 			// aapt resource value: 0x7f0a013b
 			public const int StudentClasses = 2131362107;
 			
 			// aapt resource value: 0x7f0a0137
 			public const int StudentId = 2131362103;
+			// aapt resource value: 0x7f0a013e
+			public const int StudentMobile = 2131362110;
 			
 			// aapt resource value: 0x7f0a0133
 			public const int StudentLastNametxt = 2131362099;
@@ -3554,6 +3644,8 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a0132
 			public const int StudentNameTxt = 2131362098;
+			// aapt resource value: 0x7f0a0138
+			public const int StudentNameTxt = 2131362104;
 			
 			// aapt resource value: 0x7f0a00fa
 			public const int StudentProfileEdit = 2131362042;
@@ -3563,6 +3655,8 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a013a
 			public const int StudentVillage = 2131362106;
+			// aapt resource value: 0x7f0a0141
+			public const int StudentVillage = 2131362113;
 			
 			// aapt resource value: 0x7f0a010e
 			public const int SubmitBtn = 2131362062;
@@ -3575,6 +3669,8 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a0128
 			public const int TimerText = 2131362088;
+			// aapt resource value: 0x7f0a012e
+			public const int TimerText = 2131362094;
 			
 			// aapt resource value: 0x7f0a0115
 			public const int UserName = 2131362069;
@@ -3602,15 +3698,21 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a0146
 			public const int action_container = 2131362118;
+			// aapt resource value: 0x7f0a014a
+			public const int action_container = 2131362122;
 			
 			// aapt resource value: 0x7f0a0093
 			public const int action_context_bar = 2131361939;
 			
 			// aapt resource value: 0x7f0a0151
 			public const int action_divider = 2131362129;
+			// aapt resource value: 0x7f0a0155
+			public const int action_divider = 2131362133;
 			
 			// aapt resource value: 0x7f0a0147
 			public const int action_image = 2131362119;
+			// aapt resource value: 0x7f0a014b
+			public const int action_image = 2131362123;
 			
 			// aapt resource value: 0x7f0a0003
 			public const int action_menu_divider = 2131361795;
@@ -3629,9 +3731,13 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a0148
 			public const int action_text = 2131362120;
+			// aapt resource value: 0x7f0a014c
+			public const int action_text = 2131362124;
 			
 			// aapt resource value: 0x7f0a0152
 			public const int actions = 2131362130;
+			// aapt resource value: 0x7f0a0156
+			public const int actions = 2131362134;
 			
 			// aapt resource value: 0x7f0a0071
 			public const int activity_chooser_view_content = 2131361905;
@@ -3659,6 +3765,8 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a012b
 			public const int backgroundAnimationView = 2131362091;
+			// aapt resource value: 0x7f0a0131
+			public const int backgroundAnimationView = 2131362097;
 			
 			// aapt resource value: 0x7f0a0100
 			public const int baj = 2131362048;
@@ -3701,6 +3809,8 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a0150
 			public const int chronometer = 2131362128;
+			// aapt resource value: 0x7f0a0154
+			public const int chronometer = 2131362132;
 			
 			// aapt resource value: 0x7f0a0062
 			public const int clip_horizontal = 2131361890;
@@ -3806,6 +3916,8 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a0145
 			public const int hamburgerBtnMainActivity = 2131362117;
+			// aapt resource value: 0x7f0a0149
+			public const int hamburgerBtnMainActivity = 2131362121;
 			
 			// aapt resource value: 0x7f0a0005
 			public const int home = 2131361797;
@@ -3818,6 +3930,8 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a0153
 			public const int icon_group = 2131362131;
+			// aapt resource value: 0x7f0a0157
+			public const int icon_group = 2131362135;
 			
 			// aapt resource value: 0x7f0a0042
 			public const int ifRoom = 2131361858;
@@ -3875,6 +3989,8 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a014c
 			public const int info = 2131362124;
+			// aapt resource value: 0x7f0a0150
+			public const int info = 2131362128;
 			
 			// aapt resource value: 0x7f0a0069
 			public const int italic = 2131361897;
@@ -3908,12 +4024,16 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a0156
 			public const int mainGroup = 2131362134;
+			// aapt resource value: 0x7f0a015a
+			public const int mainGroup = 2131362138;
 			
 			// aapt resource value: 0x7f0a011c
 			public const int mainPageContainer = 2131362076;
 			
 			// aapt resource value: 0x7f0a0155
 			public const int masked = 2131362133;
+			// aapt resource value: 0x7f0a0159
+			public const int masked = 2131362137;
 			
 			// aapt resource value: 0x7f0a00a1
 			public const int message = 2131361953;
@@ -3950,12 +4070,18 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a014e
 			public const int notification_background = 2131362126;
+			// aapt resource value: 0x7f0a0152
+			public const int notification_background = 2131362130;
 			
 			// aapt resource value: 0x7f0a014a
 			public const int notification_main_column = 2131362122;
+			// aapt resource value: 0x7f0a014e
+			public const int notification_main_column = 2131362126;
 			
 			// aapt resource value: 0x7f0a0149
 			public const int notification_main_column_container = 2131362121;
+			// aapt resource value: 0x7f0a014d
+			public const int notification_main_column_container = 2131362125;
 			
 			// aapt resource value: 0x7f0a0061
 			public const int outline = 2131361889;
@@ -3974,6 +4100,8 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a015c
 			public const int profile = 2131362140;
+			// aapt resource value: 0x7f0a0160
+			public const int profile = 2131362144;
 			
 			// aapt resource value: 0x7f0a0006
 			public const int progress_circular = 2131361798;
@@ -3995,9 +4123,13 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a014d
 			public const int right_icon = 2131362125;
+			// aapt resource value: 0x7f0a0151
+			public const int right_icon = 2131362129;
 			
 			// aapt resource value: 0x7f0a014b
 			public const int right_side = 2131362123;
+			// aapt resource value: 0x7f0a014f
+			public const int right_side = 2131362127;
 			
 			// aapt resource value: 0x7f0a000c
 			public const int save_image_matrix = 2131361804;
@@ -4112,6 +4244,8 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a0158
 			public const int statistic = 2131362136;
+			// aapt resource value: 0x7f0a015c
+			public const int statistic = 2131362140;
 			
 			// aapt resource value: 0x7f0a005c
 			public const int stretch = 2131361884;
@@ -4268,6 +4402,8 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a014f
 			public const int time = 2131362127;
+			// aapt resource value: 0x7f0a0153
+			public const int time = 2131362131;
 			
 			// aapt resource value: 0x7f0a0023
 			public const int title = 2131361827;
@@ -4283,6 +4419,11 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a0140
 			public const int toolbarLLayout = 2131362112;
+			// aapt resource value: 0x7f0a0145
+			public const int toolbar = 2131362117;
+			
+			// aapt resource value: 0x7f0a0146
+			public const int toolbarLLayout = 2131362118;
 			
 			// aapt resource value: 0x7f0a0046
 			public const int top = 2131361862;
@@ -4325,6 +4466,8 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0a0154
 			public const int visible = 2131362132;
+			// aapt resource value: 0x7f0a0158
+			public const int visible = 2131362136;
 			
 			// aapt resource value: 0x7f0a006d
 			public const int weak = 2131361901;

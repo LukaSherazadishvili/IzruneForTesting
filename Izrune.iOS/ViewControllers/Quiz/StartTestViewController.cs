@@ -15,6 +15,7 @@ using MpdcViewExtentions;
 using IZrune.PCL.Abstraction.Services;
 using System.Threading.Tasks;
 using IZrune.PCL.Enum;
+using System.Diagnostics;
 
 namespace Izrune.iOS
 {
@@ -40,6 +41,9 @@ namespace Izrune.iOS
         private bool IsSummTestActive;
         private bool IsExTestActive;
 
+        private bool IsSummSelected;
+        private Timer timer;
+
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -56,6 +60,9 @@ namespace Izrune.iOS
 
             var item = Students[0];
 
+            SelectedStudent = Students[0];
+
+            UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
             Students.Add(item);
             Students.Add(item);
 
@@ -68,8 +75,14 @@ namespace Izrune.iOS
             InitUI();
 
             UserNameDropDown.SelectRow(0);
+        }
 
-            SelectedStudent = Students[0];
+        private bool IsExamActive(TimeSpan span)
+        {
+            Debug.WriteLine($"{span.Hours} {span.Minutes} {span.Seconds}");
+            var res = (span.Hours <= 0 && span.Minutes <= 0 && span.Seconds <= 0);
+            return res;
+            
         }
 
         public override void ViewDidLayoutSubviews()
@@ -117,17 +130,29 @@ namespace Izrune.iOS
                 summQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
                     //TODO
-                    //var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
-                    //chooseTimeVc.SelectedStudent = SelectedStudent;
-                    //chooseTimeVc.SelectedCategory = QuezCategory.QuezTest;
+
+                    if (IsSummTestActive)
+                    {
+                        IsSummSelected = true;
+                        var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
+                        chooseTimeVc.IsSumtTest = IsSummSelected;
+                        chooseTimeVc.SelectedStudent = SelectedStudent;
+                        chooseTimeVc.SelectedCategory = QuezCategory.QuezTest;
+
+                        this.NavigationController.PushViewController(chooseTimeVc, true);
+                    }
+                    else
+                        ShowAlert();
                 }));
             }
 
             if (exQuizTransparentView.GestureRecognizers == null || exQuizTransparentView.GestureRecognizers?.Count() == 0)
             {
                 exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
-                
+
+                    IsSummSelected = false;
                     var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
+                    chooseTimeVc.IsSumtTest = IsSummSelected;
                     chooseTimeVc.SelectedStudent = SelectedStudent;
                     chooseTimeVc.SelectedCategory = QuezCategory.QuezExam;
 
@@ -140,6 +165,9 @@ namespace Izrune.iOS
                 userNameTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
                     InitDropDownUI();
+
+                    UserNameDropDown.Layer.CornerRadius = 20;
+
 
                     UserNameDropDown.Show();
                 }));
@@ -160,37 +188,39 @@ namespace Izrune.iOS
 
         private void InitSummTimer()
         {
-            Timer timer = new Timer();
+            timer = new Timer();
             timer.Interval = 1000;
             timer.Enabled = true;
 
-            timer.Elapsed += (sender, e) => {
+            var Test1Date = examDate;
+            var Test2Date = testDate;
 
-                var thuersday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Thursday);
-                var today = DateTime.UtcNow;
+            timer.Elapsed += (sender, e) =>
+            {
+            
+                //UpdateExamStatus(Test1Date, timeStackView, summQuisActiveStatusLbl);
+                //UpdateExamStatus(Test2Date, exTimeStackView, exQuizActiveStatusLbl);
 
-                var test1Diff = examDate;
+                var days = GetNumber(Test1Date.Days, " დღე ");
+                var hours = GetNumber(Test1Date.Hours, " საათი ");
+                var minutes = GetNumber(Test1Date.Minutes, " წუთი ");
 
-                var days = GetNumber(test1Diff.Days, " დღე ");
-                var hours = GetNumber(test1Diff.Hours, " საათი "); 
-                var minutes = GetNumber(test1Diff.Minutes, " წუთი ");
+                var days2 = GetNumber(Test2Date.Days, " დღე ");
+                var hours2 = GetNumber(Test2Date.Hours, " საათი ");
+                var minutes2 = GetNumber(Test2Date.Minutes, " წუთი ");
 
-
-                var test2Diff = testDate;
-
-                var days2 = GetNumber(test2Diff.Days, " დღე ");
-                var hours2 = GetNumber(test2Diff.Hours, " საათი ");
-                var minutes2 = GetNumber(test2Diff.Minutes, " წუთი ");
-
-                InvokeOnMainThread(() => {
+                InvokeOnMainThread(() =>
+                {
                     test1TimerLbl.Text = $"{days} {hours} {minutes}";
-                    test2TimerLbl.Text= $"{days2} {hours2} {minutes2}";
+                    test2TimerLbl.Text = $"{days2} {hours2} {minutes2}";
                 });
 
-                if(test1Diff.Days == 0 && test1Diff.Hours == 0 && test1Diff.Minutes == 0)
+                if (Test1Date.Days == 0 && Test1Date.Hours == 0 && Test1Date.Minutes == 0)
                 {
                     IsSummTestActive = true;
                     ChangeTestStatus(timeStackView, test1TimerLbl, IsSummTestActive);
+                    timer.Stop();
+                    timer.Dispose();
                 }
                 else
                 {
@@ -198,10 +228,12 @@ namespace Izrune.iOS
                     ChangeTestStatus(timeStackView, test1TimerLbl, IsSummTestActive);
                 }
 
-                if (test2Diff.Days == 0 && test2Diff.Hours == 0 && test2Diff.Minutes == 0)
+                if (Test2Date.Days <= 0 && Test2Date.Hours <= 0 && Test2Date.Minutes <= 0)
                 {
                     IsExTestActive = true;
                     ChangeTestStatus(exTimeStackView, test2TimerLbl, IsExTestActive);
+                    timer.Stop();
+                    timer.Dispose();
                 }
                 else
                 {
@@ -211,6 +243,24 @@ namespace Izrune.iOS
             };
 
             timer.Start();
+        }
+
+        private void UpdateExamStatus(TimeSpan date, UIStackView stackView, UILabel statusLabel)
+        {
+            var res = IsExamActive(date);
+
+            if (res)
+            {
+                IsSummTestActive = true;
+                ChangeTestStatus(stackView, statusLabel, IsSummTestActive);
+                timer.Dispose();
+            }
+
+            else
+            {
+                IsSummTestActive = false;
+                ChangeTestStatus(stackView, statusLabel, IsSummTestActive);
+            }
         }
 
         private string GetNumber(int number, string time)

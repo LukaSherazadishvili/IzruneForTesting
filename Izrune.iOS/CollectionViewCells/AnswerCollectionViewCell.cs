@@ -14,7 +14,7 @@ namespace Izrune.iOS.CollectionViewCells
 
         public static readonly NSString Identifier = new NSString("AnswerCellIdentifier");
 
-        public Action AnswerClicked { get; set; }
+        public Action<IAnswer> AnswerClicked { get; set; }
 
         IAnswer Answer;
 
@@ -53,7 +53,7 @@ namespace Izrune.iOS.CollectionViewCells
                 answerContentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
                     CheckAnswer(Answer.IsRight);
-                    AnswerClicked?.Invoke();
+                    AnswerClicked?.Invoke(Answer);
                 }));
             }
         }

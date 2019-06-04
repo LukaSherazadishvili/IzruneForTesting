@@ -75,8 +75,8 @@ namespace Izrune.Activitys
             for (int i = 0; i < 5; i++)
             {
 
-                FrameLayout.LayoutParams imgViewParams = new FrameLayout.LayoutParams(120, 120, GravityFlags.CenterHorizontal);
-                imgViewParams.SetMargins(10, 10, 10, 10);
+                FrameLayout.LayoutParams imgViewParams = new FrameLayout.LayoutParams(110, 110, GravityFlags.CenterHorizontal);
+                imgViewParams.SetMargins(15, 10, 15, 10);
                 var Image = new ImageView(this);
                 Image.LayoutParameters = imgViewParams;
                 

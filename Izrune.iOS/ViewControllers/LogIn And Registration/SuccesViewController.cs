@@ -3,6 +3,8 @@
 using System;
 
 using Foundation;
+using Izrune.iOS.Utils;
+using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS
@@ -23,9 +25,15 @@ namespace Izrune.iOS
 
             titleLbl.Text = TitleText;
 
+            loginBtn.ToCardView(25, 10, 0.1f, UIColor.FromRGBA(0, 0, 0, 0));
+            loginBtn.AddShadowToView(10, 25, 0.8f, AppColors.Succesful);
+
+            checkView.AddShadowToView(10, 30, 0.8f, AppColors.Succesful);
+
             loginBtn.TouchUpInside += delegate {
-                //TODO
+                this.NavigationController.PopViewController(true);
             };
+
         }
     }
 }

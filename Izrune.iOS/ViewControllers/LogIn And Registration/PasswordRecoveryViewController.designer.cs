@@ -13,6 +13,9 @@ namespace Izrune.iOS
 	partial class PasswordRecoveryViewController
 	{
 		[Outlet]
+		UIKit.UIButton backBtn { get; set; }
+
+		[Outlet]
 		UIKit.UIImageView backImageView { get; set; }
 
 		[Outlet]
@@ -35,14 +38,9 @@ namespace Izrune.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (phoneTextField != null) {
-				phoneTextField.Dispose ();
-				phoneTextField = null;
-			}
-
-			if (sendView != null) {
-				sendView.Dispose ();
-				sendView = null;
+			if (backImageView != null) {
+				backImageView.Dispose ();
+				backImageView = null;
 			}
 
 			if (backView != null) {
@@ -50,9 +48,24 @@ namespace Izrune.iOS
 				backView = null;
 			}
 
-			if (backImageView != null) {
-				backImageView.Dispose ();
-				backImageView = null;
+			if (errorLbl != null) {
+				errorLbl.Dispose ();
+				errorLbl = null;
+			}
+
+			if (phoneTextField != null) {
+				phoneTextField.Dispose ();
+				phoneTextField = null;
+			}
+
+			if (sendBtn != null) {
+				sendBtn.Dispose ();
+				sendBtn = null;
+			}
+
+			if (sendView != null) {
+				sendView.Dispose ();
+				sendView = null;
 			}
 
 			if (titleLbl != null) {
@@ -60,14 +73,9 @@ namespace Izrune.iOS
 				titleLbl = null;
 			}
 
-			if (errorLbl != null) {
-				errorLbl.Dispose ();
-				errorLbl = null;
-			}
-
-			if (sendBtn != null) {
-				sendBtn.Dispose ();
-				sendBtn = null;
+			if (backBtn != null) {
+				backBtn.Dispose ();
+				backBtn = null;
 			}
 		}
 	}
