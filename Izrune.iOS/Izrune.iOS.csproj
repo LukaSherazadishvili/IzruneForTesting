@@ -296,6 +296,14 @@
         <Compile Include="CollectionViewCells\ResultCollectionViewCell.designer.cs">
           <DependentUpon>ResultCollectionViewCell.cs</DependentUpon>
         </Compile>
+        <Compile Include="ViewControllers\Quiz\DiagramViewController.cs" />
+        <Compile Include="ViewControllers\Quiz\DiagramViewController.designer.cs">
+          <DependentUpon>DiagramViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\Quiz\TestResultsViewController.cs" />
+        <Compile Include="ViewControllers\Quiz\TestResultsViewController.designer.cs">
+          <DependentUpon>TestResultsViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />

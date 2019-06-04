@@ -16,10 +16,13 @@ namespace Izrune.iOS.CollectionViewCells
 		UIKit.UILabel correctAnswersCountLbl { get; set; }
 
 		[Outlet]
-		UIKit.NSLayoutConstraint dateLbl { get; set; }
+		UIKit.UILabel dateLbl { get; set; }
 
 		[Outlet]
 		UIKit.UILabel inCorrectAnswersCountLbl { get; set; }
+
+		[Outlet]
+		UIKit.UIView mainView { get; set; }
 
 		[Outlet]
 		UIKit.UILabel pointsLbl { get; set; }
@@ -32,19 +35,29 @@ namespace Izrune.iOS.CollectionViewCells
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (dateLbl != null) {
-				dateLbl.Dispose ();
-				dateLbl = null;
-			}
-
 			if (correctAnswersCountLbl != null) {
 				correctAnswersCountLbl.Dispose ();
 				correctAnswersCountLbl = null;
 			}
 
+			if (dateLbl != null) {
+				dateLbl.Dispose ();
+				dateLbl = null;
+			}
+
 			if (inCorrectAnswersCountLbl != null) {
 				inCorrectAnswersCountLbl.Dispose ();
 				inCorrectAnswersCountLbl = null;
+			}
+
+			if (mainView != null) {
+				mainView.Dispose ();
+				mainView = null;
+			}
+
+			if (pointsLbl != null) {
+				pointsLbl.Dispose ();
+				pointsLbl = null;
 			}
 
 			if (skipedQuestionsCountLbl != null) {
@@ -55,11 +68,6 @@ namespace Izrune.iOS.CollectionViewCells
 			if (timeLbl != null) {
 				timeLbl.Dispose ();
 				timeLbl = null;
-			}
-
-			if (pointsLbl != null) {
-				pointsLbl.Dispose ();
-				pointsLbl = null;
 			}
 		}
 	}
