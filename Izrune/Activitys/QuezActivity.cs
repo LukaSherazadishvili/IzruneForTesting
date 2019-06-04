@@ -34,9 +34,15 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.TimerText)]
         TextView TimerTxt;
 
+       
 
         [MapControl(Resource.Id.QuestionCountRecycler)]
         RecyclerView ShedulRecycler;
+
+
+        
+
+       
 
         int CircProgress = 0;
         int EndProgress = 90;
@@ -59,7 +65,7 @@ namespace Izrune.Activitys
 
             progBar.Max = 90;
             progBar.SecondaryProgress = 0;
-
+          
            
            
 
@@ -111,6 +117,11 @@ namespace Izrune.Activitys
                 }
                 return QuezControll.Instance.GetCurrentQuestion();
             };
+            FragmentQuestion.ChangeResultPage = () =>
+            {
+                ChangeFragmentPage(new DiplomaFragment(), Resource.Id.MainFuckingContainer);
+            };
+
             ChangeFragmentPage(FragmentQuestion, Resource.Id.ContainerQuestion);
 
             #region end
@@ -160,7 +171,10 @@ namespace Izrune.Activitys
                         progBar.Progress = 0;
 
                         var frg = new QuezFragment(QuezControll.Instance.GetCurrentQuestion());
-
+                        frg.ChangeResultPage = () =>
+                        {
+                            ChangeFragmentPage(new DiplomaFragment(), Resource.Id.MainFuckingContainer);
+                        };
                         frg.AnswerClick = () =>
                         {
                             Position++;

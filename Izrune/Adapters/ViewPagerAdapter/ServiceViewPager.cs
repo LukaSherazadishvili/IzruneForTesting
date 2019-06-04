@@ -14,10 +14,10 @@ using Java.Lang;
 
 namespace Izrune.Adapters.ViewPagerAdapter
 {
-            class ServiceViewPagerAdapter: Android.Support.V4.App.FragmentPagerAdapter
+            class ServiceViewPagerAdapter : Android.Support.V4.App.FragmentPagerAdapter
     {
 
-                            private List<MPDCBaseFragment> HoroscopeMainPageFragmentList;
+             private List<MPDCBaseFragment> HoroscopeMainPageFragmentList;
            // private List<string> ListHeaders;
             public override int Count => HoroscopeMainPageFragmentList.Count();
 

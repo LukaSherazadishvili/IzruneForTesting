@@ -14,5 +14,7 @@ namespace IZrune.TransferModels
         public int stars { get; set; }
         public string duration { get; set; }
         public string egmu { get; set; }
+        public string text_title { get; set; }
+        public string text_description { get; set; }
     }
 }

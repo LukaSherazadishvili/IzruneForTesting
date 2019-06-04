@@ -20,6 +20,9 @@ namespace IZrune.PCL.Abstraction.Models
 
         int? SkipedAnswers { get; set; }
 
+        string text_description { get; set; }
+
+        string text_title { get; set; }
 
     }
 }

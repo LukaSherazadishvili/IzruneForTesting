@@ -59,6 +59,7 @@
     <Compile Include="Activitys\ExamTestActivity.cs" />
     <Compile Include="Activitys\ForgotPasswordOrUserNameActivity.cs" />
     <Compile Include="Activitys\LogInActivity.cs" />
+    <Compile Include="Activitys\MainDiplomaActivity.cs" />
     <Compile Include="Activitys\MainPageAtivity.cs" />
     <Compile Include="Activitys\MPDCBaseActivity.cs" />
     <Compile Include="Activitys\NextRegistrationParentActyvity.cs" />
@@ -75,11 +76,14 @@
     <Compile Include="Adapters\RecyclerviewAdapters\ShedulerRecyclerAdapter.cs" />
     <Compile Include="Adapters\SpinerAdapter\MySpinnerAdapter.cs" />
     <Compile Include="Adapters\SpinerAdapter\SpinnerAdapter.cs" />
+    <Compile Include="Adapters\ViewPagerAdapter\ResultPagePagerAdapter.cs" />
     <Compile Include="Adapters\ViewPagerAdapter\ServiceViewPager.cs" />
+    <Compile Include="Adapters\ViewPagerAdapter\TabAdapter.cs" />
     <Compile Include="AppInfo.cs" />
     <Compile Include="Attributes\MapControlAttribute.cs" />
     <Compile Include="Fragments\ContinueRegistrationParrent.cs" />
     <Compile Include="Fragments\ContinueRegistrationParrentFragment.cs" />
+    <Compile Include="Fragments\DiplomaFragment.cs" />
     <Compile Include="Fragments\IndividualServiceFragmentcs.cs" />
     <Compile Include="Fragments\MainPageTestFragment.cs" />
     <Compile Include="Fragments\MPDCBaseFragment.cs" />
@@ -87,6 +91,8 @@
     <Compile Include="Fragments\ProfileFragment.cs" />
     <Compile Include="Fragments\PromoFragment.cs" />
     <Compile Include="Fragments\QuezFragment.cs" />
+    <Compile Include="Fragments\ResultQuestionStatisticFragment.cs" />
+    <Compile Include="Fragments\ResultStatisticFragment.cs" />
     <Compile Include="Fragments\SaccesFragment.cs" />
     <Compile Include="Fragments\ServiceFragment.cs" />
     <Compile Include="Fragments\StatisticFragment.cs" />
@@ -497,6 +503,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\PasiveStar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\MainDiplomaLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -17,5 +17,7 @@ namespace IZrune.PCL.Implementation.Models
         public int? RightAnswer { get; set; }
         public int? WronAnswers { get; set; }
         public int? SkipedAnswers { get; set; }
+        public string text_description { get; set; }
+        public string text_title { get; set; }
     }
 }
