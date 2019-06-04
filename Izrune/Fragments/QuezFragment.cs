@@ -35,6 +35,9 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.MainImage)]
         ImageViewAsync MainImage;
 
+
+       public Action ChangeResultPage { get; set; }
+
         IQuestion question;
         public Func<IQuestion> AnswerClick { get; set; }
 
@@ -43,10 +46,7 @@ namespace Izrune.Fragments
             question = obj;
         }
 
-        class testQuestion
-        {
-            public string Question { get; set; }
-        }
+        
 
 
         private List<string> QuestionVersioSimbols = new List<string>()
@@ -121,7 +121,7 @@ namespace Izrune.Fragments
             {
                 items.Click -= AnswerView_Click;
             }
-            await Task.Delay(1500);
+            await Task.Delay(800);
 
 
 
@@ -130,10 +130,11 @@ namespace Izrune.Fragments
 
             if (question == null)
             {
-             
 
-                Intent intent = new Intent(this, typeof(DiplomaActivity));
-                StartActivity(intent);
+                ChangeResultPage?.Invoke();
+                //Intent intent = new Intent(this, typeof(DiplomaActivity));
+                //StartActivity(intent);
+             
             }
             else
             {

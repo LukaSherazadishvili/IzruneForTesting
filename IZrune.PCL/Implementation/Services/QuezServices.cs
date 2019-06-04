@@ -162,7 +162,8 @@ namespace IZrune.PCL.Implementation.Services
             QuesResult.Score = info.score;
             QuesResult.Stars = info.stars;
             QuesResult.test_type = info.test_type == "1" ? QuezCategory.QuezExam : QuezCategory.QuezTest;
-
+            QuesResult.text_description = info.text_description;
+            QuesResult.text_title = info.text_title;
 
             return QuesResult;
         }
