@@ -18,6 +18,46 @@ namespace IZrune.PCL.Implementation.Services
 {
     public class StatisticServices : IStatisticServices
     {
+        public async Task<IEnumerable<IFinalQuestion>> GetFinalQuestionResult()
+        {
+
+            try
+            {
+                IEnumerable<IFinalQuestion> FinalQuest;
+
+                var FormContent = new FormUrlEncodedContent(new[]
+                       {
+                        new KeyValuePair<string,string>("student_id",UserControl.Instance.CurrentStudent?.id.ToString())
+
+                     });
+
+                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getStatistics&hashcode=2eb56752d70e796575e4b70f88d07248", FormContent);
+                var jsn = await Data.Content.ReadAsStringAsync();
+                var Result = JsonConvert.DeserializeObject<QuezStatisticRootDTO>(jsn);
+                var Test = Result.tests.FirstOrDefault();
+
+                FinalQuest = Test.questions.Select(i => new FinalQuestion()
+                {
+                    Title = i.title,
+                    Images = i.images.Select(o => o.url),
+                    Answers = i.answers.Select(o => new FinalAnswer()
+                    {
+                        QuestionIsRight = o.right == "1" ? true : false,
+                        StudentIsRight = o.right == "1" & o.student_answer == 1 ? true : false,
+                        Title = o.title
+
+                    })
+
+                });
+
+                return FinalQuest;
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+        }
+
         public async Task<IEnumerable<IStudentsStatistic>> GetStudentStatisticsAsync(QuezCategory type)
         {
             IEnumerable<IStudentsStatistic> StudentStat;
@@ -76,6 +116,6 @@ namespace IZrune.PCL.Implementation.Services
             }
         }
 
-
+        
     }
 }
