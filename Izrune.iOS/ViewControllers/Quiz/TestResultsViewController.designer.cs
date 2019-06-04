@@ -13,13 +13,45 @@ namespace Izrune.iOS
 	partial class TestResultsViewController
 	{
 		[Outlet]
+		UIKit.UIView monthDropdownView { get; set; }
+
+		[Outlet]
+		UIKit.UILabel monthLbl { get; set; }
+
+		[Outlet]
 		UIKit.UICollectionView resultCollectionView { get; set; }
+
+		[Outlet]
+		UIKit.UIView yearDropdownView { get; set; }
+
+		[Outlet]
+		UIKit.UILabel yearLbl { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
 			if (resultCollectionView != null) {
 				resultCollectionView.Dispose ();
 				resultCollectionView = null;
+			}
+
+			if (yearDropdownView != null) {
+				yearDropdownView.Dispose ();
+				yearDropdownView = null;
+			}
+
+			if (yearLbl != null) {
+				yearLbl.Dispose ();
+				yearLbl = null;
+			}
+
+			if (monthDropdownView != null) {
+				monthDropdownView.Dispose ();
+				monthDropdownView = null;
+			}
+
+			if (monthLbl != null) {
+				monthLbl.Dispose ();
+				monthLbl = null;
 			}
 		}
 	}

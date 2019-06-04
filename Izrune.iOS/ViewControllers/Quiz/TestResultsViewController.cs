@@ -7,6 +7,7 @@ using Izrune.iOS.CollectionViewCells;
 using MPDCiOSPages.ViewControllers;
 using UIKit;
 using FPT.Framework.iOS.UI.DropDown;
+using Izrune.iOS.Utils;
 
 namespace Izrune.iOS
 {
@@ -26,9 +27,14 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
+            InitDroDown();
+
+            InitGestures();
+
             InitCollectionViewSettings();
 
             resultCollectionView.ReloadData();
+
         }
 
         private void InitCollectionViewSettings()
@@ -37,6 +43,8 @@ namespace Izrune.iOS
             resultCollectionView.Delegate = this;
             resultCollectionView.DataSource = this;
         }
+
+        #region CollectionView
 
         public nint GetItemsCount(UICollectionView collectionView, nint section)
         {
@@ -50,11 +58,92 @@ namespace Izrune.iOS
             return resultCell;
         }
 
-
         [Export("collectionView:layout:sizeForItemAtIndexPath:")]
         public CoreGraphics.CGSize GetSizeForItem(UICollectionView collectionView, UICollectionViewLayout layout, NSIndexPath indexPath)
         {
             return new CoreGraphics.CGSize(collectionView.Frame.Width, 210);
+        }
+
+        #endregion
+
+
+        private void InitDroDown()
+        {
+            YearDropDown.AnchorView = new WeakReference<UIView>(yearDropdownView);
+            YearDropDown.BottomOffset = new CoreGraphics.CGPoint(0, yearDropdownView.Bounds.Height);
+            YearDropDown.Width = this.View.Frame.Width;
+            YearDropDown.Direction = Direction.Bottom;
+
+            //var array = Students?.Select(x => x.Name + " " + x.LastName)?.ToArray();
+
+            //YearDropDown.DataSource = array;
+
+            YearDropDown.SelectionAction = (nint index, string name) =>
+            {
+                //TODO
+            };
+
+            MonthDropDown.AnchorView = new WeakReference<UIView>(monthDropdownView);
+            MonthDropDown.BottomOffset = new CoreGraphics.CGPoint(0, monthDropdownView.Bounds.Height);
+            MonthDropDown.Width = this.View.Frame.Width;
+            MonthDropDown.Direction = Direction.Bottom;
+
+            //var array = Students?.Select(x => x.Name + " " + x.LastName)?.ToArray();
+
+            //YearDropDown.DataSource = array;
+
+            MonthDropDown.SelectionAction = (nint index, string name) =>
+            {
+                //TODO
+            };
+        }
+
+        private void InitDropDownUI()
+        {
+            YearDropDown.BackgroundColor = UIColor.FromRGB(243, 243, 243);
+            YearDropDown.SelectionBackgroundColor = AppColors.TitleColor;
+            DPDConstants.UI.TextColor = AppColors.TitleColor;
+            DPDConstants.UI.SelectedTextColor = UIColor.White;
+
+            //YearDropDown.TextFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 15);
+            YearDropDown.ClipsToBounds = true;
+            YearDropDown.Layer.CornerRadius = 20;
+
+            MonthDropDown.BackgroundColor = UIColor.FromRGB(243, 243, 243);
+            MonthDropDown.SelectionBackgroundColor = AppColors.TitleColor;
+            DPDConstants.UI.TextColor = AppColors.TitleColor;
+            DPDConstants.UI.SelectedTextColor = UIColor.White;
+
+            //MonthDropDown.TextFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 15);
+            MonthDropDown.ClipsToBounds = true;
+            MonthDropDown.Layer.CornerRadius = 20;
+        }
+
+        private void InitGestures()
+        {
+            if (yearDropdownView.GestureRecognizers == null || yearDropdownView.GestureRecognizers?.Length == 0)
+            {
+                yearDropdownView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    InitDropDownUI();
+
+                    //YearDropDown.Layer.CornerRadius = 20;
+
+                    YearDropDown.Show();
+                }));
+            }
+
+            if (monthDropdownView.GestureRecognizers == null || monthDropdownView.GestureRecognizers?.Length == 0)
+            {
+                monthDropdownView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    InitDropDownUI();
+
+                    //YearDropDown.Layer.CornerRadius = 20;
+
+                    YearDropDown.Show();
+                }));
+            }
         }
     }
 }
