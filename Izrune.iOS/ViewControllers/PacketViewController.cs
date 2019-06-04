@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using Foundation;
 using Izrune.iOS.Utils;
+using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS
@@ -32,6 +33,7 @@ namespace Izrune.iOS
         {
             viewForIndividual.Layer.CornerRadius = 19;
             viewForPromoCode.Layer.CornerRadius = 19;
+            nextBtn.AddShadowToView(5, 25, 0.8f, AppColors.TitleColor);
         }
 
         private void InitGesture()

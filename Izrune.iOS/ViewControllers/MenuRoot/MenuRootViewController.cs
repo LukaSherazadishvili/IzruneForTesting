@@ -32,7 +32,7 @@ namespace Izrune.iOS.ViewControllers
         const string MoreInfoStoryboardId = "MoreInfoViewControllerStoryboardId";
         const string StatisticStoryboardId = "StatisticStoryboardId";
         const string StartTestStoryboardId = "StartTestStoryboardId";
-        const string UpdatePacketStoryboardId = "UpdatePacketStoryboardId";
+        const string UpdatePacketStoryboardId = "PacketViewControllerStoryboardId";
         const string EditProfileStoryboardId = "EditProfileStoryboardId";
 
         #endregion
