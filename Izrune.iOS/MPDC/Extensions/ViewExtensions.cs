@@ -357,6 +357,16 @@ namespace MpdcViewExtentions
             vc.DidMoveToParentViewController(parentViewController);
         }
 
+        public static void AddVcInView(this UIViewController vc, UIView view, UIViewController child)
+        {
+            vc.AddChildViewController(child);
+
+            child.View.Frame = new CoreGraphics.CGRect(0, 0, view.Frame.Width, view.Frame.Height);
+
+            view.AddSubview(child.View);
+
+            child.DidMoveToParentViewController(vc);
+        }
 
         public static void AddAsChildViewController(this UIViewController vc, UIViewController parentViewController, UIView viewWhereToAdd)
         {

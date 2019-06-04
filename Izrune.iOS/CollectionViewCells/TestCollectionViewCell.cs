@@ -22,7 +22,7 @@ namespace Izrune.iOS.CollectionViewCells
 
         public nfloat CellSize { get; set; }
 
-        public Action<IQuestion> AnswerClicked { get; set; }
+        public Action<IAnswer> AnswerClicked { get; set; }
 
         IQuestion Question;
 
@@ -98,9 +98,9 @@ namespace Izrune.iOS.CollectionViewCells
 
             cell.InitData(data);
 
-            cell.AnswerClicked = () =>
+            cell.AnswerClicked = (answer) =>
             {
-                AnswerClicked?.Invoke(Question);
+                AnswerClicked?.Invoke(answer);
             };
             return cell;
         }
@@ -108,9 +108,9 @@ namespace Izrune.iOS.CollectionViewCells
         public nint GetItemsCount(UICollectionView collectionView, nint section)
         {
             if (collectionView == questionImagesCollectionView)
-                return (nint)Question?.images?.Count();
+                return Question?.images?.Count()?? 0;
             else
-                return (nint)Question?.Answers?.Count();
+                return Question?.Answers?.Count()?? 0;
         }
 
         [Export("collectionView:layout:sizeForItemAtIndexPath:")]

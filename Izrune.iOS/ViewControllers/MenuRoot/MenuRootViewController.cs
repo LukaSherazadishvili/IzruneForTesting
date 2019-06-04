@@ -51,7 +51,7 @@ namespace Izrune.iOS.ViewControllers
                 {MenuType.Statistic, () => CreateViewControllerByStoryboard(StatisticStoryboardId)},
                 {MenuType.UpdatePacket, () => CreateViewControllerByStoryboard(UpdatePacketStoryboardId)},
                 {MenuType.EditProfile, () => CreateViewControllerByStoryboard(EditProfileStoryboardId)},
-                {MenuType.LogOut, () => CreateViewControllerByStoryboard(NewsViewController.StoryboardId)},
+                {MenuType.LogOut, () => CreateViewControllerByStoryboard(AddStudentViewController.StoryboardId)},
             };
         }
 

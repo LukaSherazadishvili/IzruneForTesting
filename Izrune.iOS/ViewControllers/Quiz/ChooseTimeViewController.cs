@@ -25,6 +25,8 @@ namespace Izrune.iOS
 
         public IStudent SelectedStudent;
         public QuezCategory SelectedCategory;
+        public bool IsSumtTest { get; set; } = true;
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -40,8 +42,8 @@ namespace Izrune.iOS
         {
             base.ViewDidLayoutSubviews();
 
-            totalTimeView.ApplyGradient(AppColors.PurpleGradient);
-            derivedTimeView.ApplyGradient(AppColors.PurpleGradient);
+            totalTimeView.ApplyGradient(IsSumtTest? AppColors.PurpleGradient : AppColors.YellowGradient);
+            derivedTimeView.ApplyGradient(IsSumtTest ? AppColors.PurpleGradient : AppColors.YellowGradient);
         }
 
         private void InitUI()
@@ -65,10 +67,11 @@ namespace Izrune.iOS
                 totalTimeView.AddGestureRecognizer(new UITapGestureRecognizer(async() =>
                 {
                     //TODO
-                    var data = (await GetQuiz(SelectedStudent.id, SelectedCategory)).ToList();
+                    //var data = (await GetQuiz(SelectedStudent.id, SelectedCategory)).ToList();
 
                     var testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
-                    testVc.AllQuestions = data;
+                    testVc.quezCategory = SelectedCategory;
+                    //testVc.AllQuestions = data;
                     testVc.IsTotalTime = true;
 
                     this.NavigationController.PushViewController(testVc, true);
@@ -80,10 +83,11 @@ namespace Izrune.iOS
                 derivedTimeView.AddGestureRecognizer(new UITapGestureRecognizer(async() =>
                 {
                     //TODO
-                    var data = (await GetQuiz(SelectedStudent.id, SelectedCategory)).ToList();
+                    //var data = (await GetQuiz(SelectedStudent.id, SelectedCategory)).ToList();
 
                     var testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
-                    testVc.AllQuestions = data;
+                    testVc.quezCategory = SelectedCategory;
+                    //testVc.AllQuestions = data;
                     testVc.IsTotalTime = false;
 
                     this.NavigationController.PushViewController(testVc, true);
