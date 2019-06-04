@@ -43,6 +43,15 @@ namespace Izrune.Adapters.RecyclerviewAdapters
             {
                 Resultt.FindViewById<TextView>(Resource.Id.AnswerTxt).Text = items.Title;
 
+                if (items.StudentIsRight)
+                {
+                    Resultt.FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesCorrectButtonBackground);
+                }
+                else
+                {
+                    Resultt.FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesInCorectButtonBackground);
+                }
+
                 hld.AnswerContainer.AddView(Resultt);
 
             }
