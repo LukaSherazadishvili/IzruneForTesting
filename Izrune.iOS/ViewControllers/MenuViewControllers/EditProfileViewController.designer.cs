@@ -12,9 +12,39 @@ namespace Izrune.iOS
 	[Register ("EditProfileViewController")]
 	partial class EditProfileViewController
 	{
+		[Outlet]
+		UIKit.UIStackView editStackView { get; set; }
+
+		[Outlet]
+		UIKit.UIView firstShadowView { get; set; }
+
+		[Outlet]
+		UIKit.UIView secondShadowView { get; set; }
+
+		[Outlet]
+		UIKit.UIView thirdShadovView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (editStackView != null) {
+				editStackView.Dispose ();
+				editStackView = null;
+			}
+
+			if (firstShadowView != null) {
+				firstShadowView.Dispose ();
+				firstShadowView = null;
+			}
+
+			if (secondShadowView != null) {
+				secondShadowView.Dispose ();
+				secondShadowView = null;
+			}
+
+			if (thirdShadovView != null) {
+				thirdShadovView.Dispose ();
+				thirdShadovView = null;
+			}
 		}
 	}
 }

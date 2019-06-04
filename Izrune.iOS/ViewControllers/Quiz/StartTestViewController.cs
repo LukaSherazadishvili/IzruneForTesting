@@ -48,6 +48,8 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
+            this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+
             Parent = await UserControl.Instance.GetCurrentUser();
 
             examDate = (await QuezControll.Instance.GetExamDate(QuezCategory.QuezExam));

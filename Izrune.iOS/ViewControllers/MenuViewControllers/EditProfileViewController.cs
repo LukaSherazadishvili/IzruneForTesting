@@ -4,6 +4,9 @@ using System;
 
 using Foundation;
 using UIKit;
+using MpdcViewExtentions;
+using System.Linq;
+using Izrune.iOS.Utils;
 
 namespace Izrune.iOS
 {
@@ -14,5 +17,32 @@ namespace Izrune.iOS
 		}
 
         public static readonly NSString StoryboardId = new NSString("EditProfileStoryboardId");
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+
+
+            View.LayoutIfNeeded();
+
+            InitUI();
+        }
+
+        private void InitUI()
+        {
+            var views = editStackView.Subviews.ToList();
+
+            foreach (var item in views)
+            {
+                item.Layer.BorderWidth = 3;
+                item.Layer.BorderColor = UIColor.White.CGColor;
+                item.Layer.CornerRadius = 25;
+                item.ApplyGradient(AppColors.PurpleGradient);
+            }
+
+            firstShadowView.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
+            secondShadowView.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
+            thirdShadovView.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
+        }
     }
 }

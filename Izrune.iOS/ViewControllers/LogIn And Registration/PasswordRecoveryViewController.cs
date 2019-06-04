@@ -26,6 +26,7 @@ namespace Izrune.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
             InitUI();
 
             phoneTextField.EditingDidBegin += delegate {
