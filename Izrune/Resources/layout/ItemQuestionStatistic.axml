@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+	android:padding="10dp"
+	>
+
+	<TextView
+		android:layout_marginBottom="10dp"
+		android:id="@+id/QuestionTitle"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="1) რა ცხოველია სურათზე გამოსახული?"
+		android:fontFamily="@font/bpg_mrgvlovani"
+		/
+		>
+
+		<android.support.v7.widget.CardView
+					android:id="@+id/MainImageCard"
+					android:layout_gravity="center"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					app:cardCornerRadius="10dp">
+					<FFImageLoading.Views.ImageViewAsync
+						android:layout_width="300dp"
+						android:layout_height="200dp"
+						android:scaleType="fitXY"
+						android:id="@+id/QuestionImage"
+						/>
+			</android.support.v7.widget.CardView>
+
+					<LinearLayout
+					android:id="@+id/ContainerForAnswers"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					>
+					</LinearLayout>
+
+</LinearLayout>
