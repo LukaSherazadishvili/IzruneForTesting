@@ -304,6 +304,10 @@
         <Compile Include="ViewControllers\Quiz\TestResultsViewController.designer.cs">
           <DependentUpon>TestResultsViewController.cs</DependentUpon>
         </Compile>
+        <Compile Include="ViewControllers\Quiz\ExamResultViewController.cs" />
+        <Compile Include="ViewControllers\Quiz\ExamResultViewController.designer.cs">
+          <DependentUpon>ExamResultViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />
@@ -366,6 +370,10 @@
       <BundleResource Include="Resources\Views\AnswerClass" />
       <BundleResource Include="Resources\fagarati.png" />
       <BundleResource Include="Resources\ic_arrow_downward_24px.png" />
+      <BundleResource Include="Resources\logo.png" />
+      <BundleResource Include="Resources\logo%402x.png" />
+      <BundleResource Include="Resources\logo%403x.png" />
+      <BundleResource Include="Resources\Group 136.png" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\IZrune.PCL\IZrune.PCL.csproj">
