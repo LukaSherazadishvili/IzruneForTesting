@@ -308,6 +308,10 @@
         <Compile Include="ViewControllers\Quiz\ExamResultViewController.designer.cs">
           <DependentUpon>ExamResultViewController.cs</DependentUpon>
         </Compile>
+        <Compile Include="ViewControllers\PromoCodeViewController.cs" />
+        <Compile Include="ViewControllers\PromoCodeViewController.designer.cs">
+          <DependentUpon>PromoCodeViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />

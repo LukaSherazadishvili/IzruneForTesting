@@ -17,14 +17,23 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("PacketViewControllerStoryboardId");
 
+        PromoCodeViewController PromoVc;
+        SelectPacketViewController SelectPacketVc;
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
             SelectHeader();
+
             InitUI();
 
             InitGesture();
+
+            SelectPacketVc = Storyboard.InstantiateViewController(SelectPacketViewController.StoryboardId) as SelectPacketViewController;
+            PromoVc = Storyboard.InstantiateViewController(PromoCodeViewController.StoryboardId) as PromoCodeViewController;
+
+            this.AddVcInView(viewForPeager, SelectPacketVc);
         }
 
         private bool IsIndividualSelected = true;
@@ -70,6 +79,15 @@ namespace Izrune.iOS
         {
             IsIndividualSelected = individualSelected;
             SelectHeader();
+        }
+
+        private void AddSecondVc()
+        {
+            parentRegVc.WillMoveToParentViewController(this);
+            parentRegVc.View.RemoveFromSuperview();
+            parentRegVc.RemoveFromParentViewController();
+
+            this.AddVcInView(viewForPager, parent2RegVc);
         }
     }
 }
