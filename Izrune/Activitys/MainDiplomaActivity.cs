@@ -7,36 +7,60 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Views;
 using Android.Widget;
+using Izrune.Adapters.ViewPagerAdapter;
 using Izrune.Attributes;
 using Izrune.Fragments;
 
 namespace Izrune.Activitys
 {
+    [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
     class MainDiplomaActivity : MPDCBaseActivity
     {
         protected override int LayoutResource { get; } = Resource.Layout.MainDiplomaLayout;
 
         [MapControl(Resource.Id.HeaderTab)]
-        TableLayout Tabs;
+        TabLayout Tabs;
 
         [MapControl(Resource.Id.ResultPageViePager)]
         ViewPager Pager;
 
 
+        private List<MPDCBaseFragment> FrmList = new List<MPDCBaseFragment>() {
+          new ResultStatisticFragment() , new ResultQuestionStatisticFragment()
+        };
 
-        private List<MPDCBaseFragment> FrmList = new List<MPDCBaseFragment>();
+        private List<string> Headers = new List<string>()
+        {
+            "შედეგები","კითხვები"
+        };
+
+       
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
 
+            var adapter = new TabAdapter(SupportFragmentManager, FrmList, Headers);
+            ResultPagePagerAdapter PagerAdapter = new ResultPagePagerAdapter(SupportFragmentManager, FrmList, Headers);
+
+            Tabs.SetupWithViewPager(Pager);
+            Pager.Adapter = PagerAdapter;
+
+
+
 
         }
 
+        public override void OnBackPressed()
+        {
+            Intent intent = new Intent(this, typeof(MainPageAtivity));
+            StartActivity(intent);
+        }
 
     }
 }

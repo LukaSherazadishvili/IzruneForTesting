@@ -18,8 +18,9 @@ namespace IZrune.PCL.Implementation.Services
    public class UserServices : IUserServices
     {
        
+       
 
-        public async Task<bool> EditParentProfileAsync( string ParrentMail, string ParrentPhone, string City, string Village)
+        public async Task EditParentProfileAsync( string ParrentMail, string ParrentPhone, string City, string Village)
         {
 
             var FormContent = new FormUrlEncodedContent(new[]
@@ -33,7 +34,7 @@ namespace IZrune.PCL.Implementation.Services
             var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=editParentProfile&hashcode=0a3110bbe8a96c91eb33bf6072598368", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
 
-            return false;
+            
 
         }
 
@@ -143,5 +144,34 @@ namespace IZrune.PCL.Implementation.Services
                 return null;
             }
         }
+
+        public async Task RecoverPasswordAsync(string PhoneNumber)
+        {
+            var FormContent = new FormUrlEncodedContent(new[]
+                  {
+                         new KeyValuePair<string,string>("phone",PhoneNumber),
+                    });
+
+            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=recoverPassword&hashcode=f8da048644f6752faca46da3d3d38229", FormContent);
+            var jsn = await Data.Content.ReadAsStringAsync();
+
+
+        }
+
+        public async Task RecoverUserNamedAsync(string PhoneNumber)
+        {
+            var FormContent = new FormUrlEncodedContent(new[]
+                 {
+                         new KeyValuePair<string,string>("phone",PhoneNumber),
+                    });
+
+            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=recoverUsername&hashcode=82a93889e6a50556b3c1805dd55d59e9", FormContent);
+            var jsn = await Data.Content.ReadAsStringAsync();
+        }
+
+
+        
+
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Implementation.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -134,9 +135,28 @@ namespace IZrune.PCL.Helpers
               
             }
         }
-        
 
+        Parent RegistrationUser;
+        public async void RegistrationParrentPartOne(string Name,string LastName,DateTime date,string city,string Village="")
+        {
 
+        }
 
-   }
+        public async void RegistrationParrentPartTwo(string Phone,string Mail,string UserName,string Password,string RepPassword)
+        {
+
+        }
+
+        Student RegistrationStudent;
+        public async void RegistrationStudentPartOne(string Name,string LastName,DateTime date,string PersonalId,string Phone,string Mail)
+        {
+
+        }
+
+        public async void RegistrationStudentPartTwo(string City,string Village,string Schoold,string Clas)
+        {
+
+        }
+
+    }
 }

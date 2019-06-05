@@ -35,12 +35,19 @@ namespace Izrune.Adapters.RecyclerviewAdapters
             var hld = (holder as StatisticQuestionViewHolder);
             hld.Title.Text = ResQuestions.ElementAt(position).Title;
             if (ResQuestions.ElementAt(position).Images.Count() > 0) {
+                hld.Image.Visibility = ViewStates.Visible;
                 hld.Image.LoadImage(ResQuestions.ElementAt(position).Images.ElementAt(0));
                     }
-            var Resultt = LayoutInflater.From(context).Inflate(Resource.Layout.ItemQuezAnswer, null);
+            else
+            {
+                hld.Image.Visibility = ViewStates.Gone;
+            }
 
+
+            hld.AnswerContainer.RemoveAllViews();
             foreach(var items in ResQuestions.ElementAt(position).Answers)
             {
+                var Resultt = LayoutInflater.From(context).Inflate(Resource.Layout.ItemQuezAnswer, null);
                 Resultt.FindViewById<TextView>(Resource.Id.AnswerTxt).Text = items.Title;
 
                 if (items.StudentIsRight)
@@ -54,9 +61,12 @@ namespace Izrune.Adapters.RecyclerviewAdapters
 
                 hld.AnswerContainer.AddView(Resultt);
 
+
+
             }
 
 
+           
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
