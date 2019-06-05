@@ -472,7 +472,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xvz-Za-VG5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-783" y="616"/>
+            <point key="canvasLocation" x="-98" y="616"/>
         </scene>
         <!--News View Controller-->
         <scene sceneID="2o1-Cb-zOH">
@@ -486,23 +486,144 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O8m-dq-s3d">
-                                <rect key="frame" x="164" y="395.66666666666669" width="47" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="საგანმანათლებლო სიახლეები" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDp-mu-xYC">
+                                <rect key="frame" x="36" y="63.999999999999993" width="303" height="18.666666666666664"/>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="16"/>
+                                <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Rg-vA-hxp">
+                                <rect key="frame" x="0.0" y="102.66666666666669" width="375" height="709.33333333333326"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XlR-rj-Tdg">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ISs-Pw-gZn">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="O8m-dq-s3d" firstAttribute="centerX" secondItem="STK-DL-NpO" secondAttribute="centerX" id="oAY-9C-mXl"/>
-                            <constraint firstItem="O8m-dq-s3d" firstAttribute="centerY" secondItem="STK-DL-NpO" secondAttribute="centerY" id="smF-aK-Ttk"/>
+                            <constraint firstItem="4Rg-vA-hxp" firstAttribute="top" secondItem="cDp-mu-xYC" secondAttribute="bottom" constant="20" id="1Fs-ma-AJh"/>
+                            <constraint firstItem="4Rg-vA-hxp" firstAttribute="leading" secondItem="STK-DL-NpO" secondAttribute="leading" id="2jH-Kh-s4E"/>
+                            <constraint firstAttribute="bottom" secondItem="4Rg-vA-hxp" secondAttribute="bottom" id="Loy-D2-X0N"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cDp-mu-xYC" secondAttribute="trailing" constant="20" id="Mag-Q6-JwE"/>
+                            <constraint firstItem="cDp-mu-xYC" firstAttribute="leading" secondItem="STK-DL-NpO" secondAttribute="leadingMargin" constant="20" id="R4m-Uq-2hq"/>
+                            <constraint firstAttribute="trailing" secondItem="4Rg-vA-hxp" secondAttribute="trailing" id="kGa-26-0vq"/>
+                            <constraint firstItem="cDp-mu-xYC" firstAttribute="top" secondItem="1Mz-fT-cL2" secondAttribute="bottom" constant="20" id="kkF-SN-M7f"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="newsCollectionView" destination="4Rg-vA-hxp" id="03Z-Qh-u9A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P2M-0z-cGL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2183" y="616"/>
+            <point key="canvasLocation" x="-2183.1999999999998" y="615.51724137931035"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="aab-ax-zWO">
+            <objects>
+                <viewController id="fLf-6D-8mp" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="j43-wf-a1K"/>
+                        <viewControllerLayoutGuide type="bottom" id="RJL-ur-il9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2zE-W9-84l">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yXv-aC-k3k" userLabel="Detail Scroll View">
+                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bZA-xG-Phn" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="768"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="საგანმანათლებლო სიახლეები" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROn-Rx-XAX">
+                                                <rect key="frame" x="20" y="20" width="335" height="18.666666666666671"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="16"/>
+                                                <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="dye-DT-meR">
+                                                <rect key="frame" x="20" y="58.666666666666686" width="335" height="150"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="lwD-ra-alu"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arx-1D-sul">
+                                                <rect key="frame" x="20" y="58.666666666666686" width="335" height="150"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="calibratedRGB"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="მრავალეროვანი საქართველოს სახელმწიფო ენა - მზრუნველი პერსპექტივა სამცხე-ჯავახეთში" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fk0-LA-AMd">
+                                                <rect key="frame" x="20" y="223.66666666666669" width="335" height="28"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
+                                                <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="fk0-LA-AMd" firstAttribute="top" secondItem="arx-1D-sul" secondAttribute="bottom" constant="15" id="6HC-ji-PZ0"/>
+                                            <constraint firstItem="fk0-LA-AMd" firstAttribute="leading" secondItem="arx-1D-sul" secondAttribute="leading" id="7qF-5e-6AN"/>
+                                            <constraint firstItem="arx-1D-sul" firstAttribute="leading" secondItem="dye-DT-meR" secondAttribute="leading" id="BHb-Tm-KbT"/>
+                                            <constraint firstItem="ROn-Rx-XAX" firstAttribute="top" secondItem="bZA-xG-Phn" secondAttribute="top" constant="20" id="JeT-ma-r6M"/>
+                                            <constraint firstAttribute="trailing" secondItem="ROn-Rx-XAX" secondAttribute="trailing" constant="20" id="Jjn-vC-kEh"/>
+                                            <constraint firstItem="arx-1D-sul" firstAttribute="bottom" secondItem="dye-DT-meR" secondAttribute="bottom" id="K8I-on-NOH"/>
+                                            <constraint firstItem="fk0-LA-AMd" firstAttribute="trailing" secondItem="arx-1D-sul" secondAttribute="trailing" id="aEc-9y-98M"/>
+                                            <constraint firstItem="arx-1D-sul" firstAttribute="top" secondItem="dye-DT-meR" secondAttribute="top" id="aZc-Uq-EGf"/>
+                                            <constraint firstItem="arx-1D-sul" firstAttribute="trailing" secondItem="dye-DT-meR" secondAttribute="trailing" id="b1q-Ax-2Wb"/>
+                                            <constraint firstItem="dye-DT-meR" firstAttribute="leading" secondItem="ROn-Rx-XAX" secondAttribute="leading" id="mPf-Dp-OH6"/>
+                                            <constraint firstItem="ROn-Rx-XAX" firstAttribute="leading" secondItem="bZA-xG-Phn" secondAttribute="leading" constant="20" id="qWp-3B-rhy"/>
+                                            <constraint firstItem="dye-DT-meR" firstAttribute="top" secondItem="ROn-Rx-XAX" secondAttribute="bottom" constant="20" id="t7c-tx-RLH"/>
+                                            <constraint firstItem="dye-DT-meR" firstAttribute="trailing" secondItem="ROn-Rx-XAX" secondAttribute="trailing" id="vbx-bz-WI2"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="bZA-xG-Phn" firstAttribute="leading" secondItem="yXv-aC-k3k" secondAttribute="leading" id="4Z3-oN-VKN"/>
+                                    <constraint firstItem="bZA-xG-Phn" firstAttribute="height" secondItem="yXv-aC-k3k" secondAttribute="height" id="4cu-bS-50K"/>
+                                    <constraint firstAttribute="trailing" secondItem="bZA-xG-Phn" secondAttribute="trailing" id="64f-Df-Pxf"/>
+                                    <constraint firstItem="bZA-xG-Phn" firstAttribute="top" secondItem="yXv-aC-k3k" secondAttribute="top" id="B4E-IW-MHG"/>
+                                    <constraint firstAttribute="bottom" secondItem="bZA-xG-Phn" secondAttribute="bottom" id="ZGU-e8-xeV"/>
+                                    <constraint firstItem="bZA-xG-Phn" firstAttribute="width" secondItem="yXv-aC-k3k" secondAttribute="width" id="wLo-Pp-cWE"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yXv-aC-k3k" firstAttribute="leading" secondItem="2zE-W9-84l" secondAttribute="leading" id="GXt-9B-oV9"/>
+                            <constraint firstItem="yXv-aC-k3k" firstAttribute="width" secondItem="2zE-W9-84l" secondAttribute="width" id="TLr-fa-RnI"/>
+                            <constraint firstAttribute="trailing" secondItem="yXv-aC-k3k" secondAttribute="trailing" id="ave-V6-a0L"/>
+                            <constraint firstAttribute="bottom" secondItem="yXv-aC-k3k" secondAttribute="bottom" id="iK2-yq-878"/>
+                            <constraint firstItem="yXv-aC-k3k" firstAttribute="top" secondItem="j43-wf-a1K" secondAttribute="bottom" id="y0s-R9-ghd"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C8N-RK-zYh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1466.4000000000001" y="615.51724137931035"/>
         </scene>
         <!--More Info View Controller-->
         <scene sceneID="dBX-J9-HBl">
@@ -532,7 +653,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G5q-MC-b7b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1466" y="616"/>
+            <point key="canvasLocation" x="-782" y="616"/>
         </scene>
         <!--Packet View Controller-->
         <scene sceneID="Uvg-wW-e2j">

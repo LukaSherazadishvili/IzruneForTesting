@@ -12,9 +12,15 @@ namespace Izrune.iOS
 	[Register ("NewsViewController")]
 	partial class NewsViewController
 	{
+		[Outlet]
+		UIKit.UICollectionView newsCollectionView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (newsCollectionView != null) {
+				newsCollectionView.Dispose ();
+				newsCollectionView = null;
+			}
 		}
 	}
 }
