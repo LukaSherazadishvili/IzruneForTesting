@@ -532,10 +532,10 @@
             </objects>
             <point key="canvasLocation" x="-2183.1999999999998" y="615.51724137931035"/>
         </scene>
-        <!--View Controller-->
+        <!--News Detail View Controller-->
         <scene sceneID="aab-ax-zWO">
             <objects>
-                <viewController id="fLf-6D-8mp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewsDetailStoryboardId" id="fLf-6D-8mp" customClass="NewsDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="j43-wf-a1K"/>
                         <viewControllerLayoutGuide type="bottom" id="RJL-ur-il9"/>
@@ -582,22 +582,43 @@
                                                 <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01 აპრილი, 2019" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNF-EA-m9T">
+                                                <rect key="frame" x="20" y="259.66666666666669" width="335" height="10.666666666666686"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="9"/>
+                                                <color key="textColor" red="0.41568627450980389" green="0.41568627450980389" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <wkWebView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PR3-AB-bi7">
+                                                <rect key="frame" x="20" y="285.33333333333326" width="335" height="472.66666666666674"/>
+                                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <wkWebViewConfiguration key="configuration">
+                                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                                    <wkPreferences key="preferences"/>
+                                                </wkWebViewConfiguration>
+                                            </wkWebView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="fk0-LA-AMd" firstAttribute="top" secondItem="arx-1D-sul" secondAttribute="bottom" constant="15" id="6HC-ji-PZ0"/>
                                             <constraint firstItem="fk0-LA-AMd" firstAttribute="leading" secondItem="arx-1D-sul" secondAttribute="leading" id="7qF-5e-6AN"/>
+                                            <constraint firstItem="bNF-EA-m9T" firstAttribute="leading" secondItem="fk0-LA-AMd" secondAttribute="leading" id="8oW-jY-DRC"/>
                                             <constraint firstItem="arx-1D-sul" firstAttribute="leading" secondItem="dye-DT-meR" secondAttribute="leading" id="BHb-Tm-KbT"/>
+                                            <constraint firstItem="PR3-AB-bi7" firstAttribute="leading" secondItem="fk0-LA-AMd" secondAttribute="leading" id="FZP-q9-nlA"/>
                                             <constraint firstItem="ROn-Rx-XAX" firstAttribute="top" secondItem="bZA-xG-Phn" secondAttribute="top" constant="20" id="JeT-ma-r6M"/>
                                             <constraint firstAttribute="trailing" secondItem="ROn-Rx-XAX" secondAttribute="trailing" constant="20" id="Jjn-vC-kEh"/>
                                             <constraint firstItem="arx-1D-sul" firstAttribute="bottom" secondItem="dye-DT-meR" secondAttribute="bottom" id="K8I-on-NOH"/>
+                                            <constraint firstItem="PR3-AB-bi7" firstAttribute="top" secondItem="bNF-EA-m9T" secondAttribute="bottom" constant="15" id="L5F-rK-qRt"/>
+                                            <constraint firstItem="bNF-EA-m9T" firstAttribute="trailing" secondItem="fk0-LA-AMd" secondAttribute="trailing" id="RBV-DZ-kc1"/>
                                             <constraint firstItem="fk0-LA-AMd" firstAttribute="trailing" secondItem="arx-1D-sul" secondAttribute="trailing" id="aEc-9y-98M"/>
                                             <constraint firstItem="arx-1D-sul" firstAttribute="top" secondItem="dye-DT-meR" secondAttribute="top" id="aZc-Uq-EGf"/>
                                             <constraint firstItem="arx-1D-sul" firstAttribute="trailing" secondItem="dye-DT-meR" secondAttribute="trailing" id="b1q-Ax-2Wb"/>
+                                            <constraint firstItem="bNF-EA-m9T" firstAttribute="top" secondItem="fk0-LA-AMd" secondAttribute="bottom" constant="8" id="faB-jL-H49"/>
+                                            <constraint firstAttribute="bottom" secondItem="PR3-AB-bi7" secondAttribute="bottom" constant="10" id="h5o-9e-fiY"/>
                                             <constraint firstItem="dye-DT-meR" firstAttribute="leading" secondItem="ROn-Rx-XAX" secondAttribute="leading" id="mPf-Dp-OH6"/>
                                             <constraint firstItem="ROn-Rx-XAX" firstAttribute="leading" secondItem="bZA-xG-Phn" secondAttribute="leading" constant="20" id="qWp-3B-rhy"/>
                                             <constraint firstItem="dye-DT-meR" firstAttribute="top" secondItem="ROn-Rx-XAX" secondAttribute="bottom" constant="20" id="t7c-tx-RLH"/>
                                             <constraint firstItem="dye-DT-meR" firstAttribute="trailing" secondItem="ROn-Rx-XAX" secondAttribute="trailing" id="vbx-bz-WI2"/>
+                                            <constraint firstItem="PR3-AB-bi7" firstAttribute="trailing" secondItem="fk0-LA-AMd" secondAttribute="trailing" id="xIX-W2-Is0"/>
                                         </constraints>
                                     </view>
                                 </subviews>
