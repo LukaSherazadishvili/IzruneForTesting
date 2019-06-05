@@ -52,6 +52,7 @@ namespace Izrune.iOS
                 viewForIndividual.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
                     HeaderGesture(true);
+                    AddPacketVc();
                     //TODO Change Page
                 }));
             }
@@ -61,6 +62,7 @@ namespace Izrune.iOS
                 viewForPromoCode.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
                     HeaderGesture(false);
+                    AddPromoVc();
                     //TODO Change Page
                 }));
             }
@@ -81,13 +83,22 @@ namespace Izrune.iOS
             SelectHeader();
         }
 
-        private void AddSecondVc()
+        private void AddPromoVc()
         {
-            parentRegVc.WillMoveToParentViewController(this);
-            parentRegVc.View.RemoveFromSuperview();
-            parentRegVc.RemoveFromParentViewController();
+            SelectPacketVc.WillMoveToParentViewController(this);
+            SelectPacketVc.View.RemoveFromSuperview();
+            SelectPacketVc.RemoveFromParentViewController();
 
-            this.AddVcInView(viewForPager, parent2RegVc);
+            this.AddVcInView(viewForPeager, PromoVc);
+        }
+
+        private void AddPacketVc()
+        {
+            PromoVc.WillMoveToParentViewController(this);
+            PromoVc.View.RemoveFromSuperview();
+            PromoVc.RemoveFromParentViewController();
+
+            this.AddVcInView(viewForPeager, SelectPacketVc);
         }
     }
 }
