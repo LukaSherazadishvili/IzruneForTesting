@@ -40,8 +40,8 @@ namespace Izrune.iOS
 
         private void InitUI()
         {
-            viewForIndividual.Layer.CornerRadius = 19;
-            viewForPromoCode.Layer.CornerRadius = 19;
+            viewForIndividual.Layer.CornerRadius = 17.5f;
+            viewForPromoCode.Layer.CornerRadius = 17.5f;
             nextBtn.AddShadowToView(5, 25, 0.8f, AppColors.TitleColor);
         }
 

@@ -161,6 +161,8 @@
         <InterfaceDefinition Include="CollectionViewCells\PacketCollectionViewCell.xib" />
         <InterfaceDefinition Include="Base\BaseViewController.xib" />
         <InterfaceDefinition Include="CollectionViewCells\ResultCollectionViewCell.xib" />
+        <InterfaceDefinition Include="CollectionViewCells\NewsBigCell.xib" />
+        <InterfaceDefinition Include="CollectionViewCells\NewsMinCell.xib" />
     </ItemGroup>
     <ItemGroup>
         <None Include="Info.plist" />
@@ -311,6 +313,14 @@
         <Compile Include="ViewControllers\PromoCodeViewController.cs" />
         <Compile Include="ViewControllers\PromoCodeViewController.designer.cs">
           <DependentUpon>PromoCodeViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CollectionViewCells\NewsBigCell.cs" />
+        <Compile Include="CollectionViewCells\NewsBigCell.designer.cs">
+          <DependentUpon>NewsBigCell.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CollectionViewCells\NewsMinCell.cs" />
+        <Compile Include="CollectionViewCells\NewsMinCell.designer.cs">
+          <DependentUpon>NewsMinCell.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup>

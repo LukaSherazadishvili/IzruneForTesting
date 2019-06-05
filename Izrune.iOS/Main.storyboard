@@ -550,10 +550,10 @@
                                 <rect key="frame" x="56" y="74" width="263" height="38"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vJ-vU-vBg">
-                                        <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="38"/>
+                                        <rect key="frame" x="0.0" y="2" width="132.66666666666666" height="34"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ინდივიდუალური" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYR-Ld-m2d">
-                                                <rect key="frame" x="3.0000000000000071" y="12.666666666666671" width="126.66666666666669" height="13"/>
+                                                <rect key="frame" x="3.0000000000000071" y="10.666666666666671" width="126.66666666666669" height="13"/>
                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="11"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -568,10 +568,10 @@
                                         </constraints>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5WL-eO-vl9">
-                                        <rect key="frame" x="132.66666666666663" y="0.0" width="130.33333333333337" height="38"/>
+                                        <rect key="frame" x="132.66666666666663" y="2" width="130.33333333333337" height="34"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="პრომო კოდი" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPk-JT-nGX">
-                                                <rect key="frame" x="2.9999999999999929" y="12.666666666666671" width="124.33333333333331" height="13"/>
+                                                <rect key="frame" x="2.9999999999999929" y="10.666666666666671" width="124.33333333333331" height="13"/>
                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="11"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -591,12 +591,12 @@
                                     <constraint firstAttribute="trailing" secondItem="5WL-eO-vl9" secondAttribute="trailing" id="GBZ-M9-MHM"/>
                                     <constraint firstAttribute="height" constant="38" id="JJh-wf-thH"/>
                                     <constraint firstItem="6vJ-vU-vBg" firstAttribute="width" secondItem="W7j-6o-Spv" secondAttribute="width" multiplier="0.5" constant="1" id="KOD-lq-FAs"/>
-                                    <constraint firstItem="5WL-eO-vl9" firstAttribute="top" secondItem="W7j-6o-Spv" secondAttribute="top" id="KdR-Gr-Eot"/>
+                                    <constraint firstItem="5WL-eO-vl9" firstAttribute="top" secondItem="W7j-6o-Spv" secondAttribute="top" constant="2" id="KdR-Gr-Eot"/>
                                     <constraint firstItem="6vJ-vU-vBg" firstAttribute="leading" secondItem="W7j-6o-Spv" secondAttribute="leading" id="WTs-fu-zdu"/>
-                                    <constraint firstAttribute="bottom" secondItem="6vJ-vU-vBg" secondAttribute="bottom" id="bZi-n2-FYA"/>
+                                    <constraint firstAttribute="bottom" secondItem="6vJ-vU-vBg" secondAttribute="bottom" constant="2" id="bZi-n2-FYA"/>
                                     <constraint firstItem="5WL-eO-vl9" firstAttribute="leading" secondItem="6vJ-vU-vBg" secondAttribute="trailing" id="dSz-nU-o2o"/>
-                                    <constraint firstAttribute="bottom" secondItem="5WL-eO-vl9" secondAttribute="bottom" id="kIF-Fg-yNg"/>
-                                    <constraint firstItem="6vJ-vU-vBg" firstAttribute="top" secondItem="W7j-6o-Spv" secondAttribute="top" id="xGm-os-UMi"/>
+                                    <constraint firstAttribute="bottom" secondItem="5WL-eO-vl9" secondAttribute="bottom" constant="2" id="kIF-Fg-yNg"/>
+                                    <constraint firstItem="6vJ-vU-vBg" firstAttribute="top" secondItem="W7j-6o-Spv" secondAttribute="top" constant="2" id="xGm-os-UMi"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1958,11 +1958,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="პაკეტის გააქტიურება სკოლის ინდივიდუალური პრომო კოდით" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I64-2L-him">
+                                <rect key="frame" x="36" y="69" width="303" height="35"/>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="15"/>
+                                <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="kcN-ZO-pM8" firstAttribute="centerY" secondItem="NAa-UC-kGd" secondAttribute="centerY" id="99j-aA-NkB"/>
+                            <constraint firstItem="I64-2L-him" firstAttribute="top" secondItem="alq-gy-pmK" secondAttribute="bottom" constant="25" id="EKG-bi-Rj2"/>
                             <constraint firstItem="kcN-ZO-pM8" firstAttribute="centerX" secondItem="NAa-UC-kGd" secondAttribute="centerX" id="WAz-b4-9x1"/>
+                            <constraint firstItem="I64-2L-him" firstAttribute="leading" secondItem="NAa-UC-kGd" secondAttribute="leadingMargin" constant="20" id="j51-Uk-uAM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="I64-2L-him" secondAttribute="trailing" constant="20" id="yWS-Gf-fFT"/>
                         </constraints>
                     </view>
                 </viewController>
