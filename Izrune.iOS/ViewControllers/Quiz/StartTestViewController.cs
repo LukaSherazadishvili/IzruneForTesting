@@ -193,14 +193,13 @@ namespace Izrune.iOS
 
         private void InitSummTimer()
         {
-
             //testDate = new TimeSpan(0, 1, 5);
 
             timer = new Timer();
             timer.Interval = timerInterval;
             timer.Enabled = true;
 
-             
+
             var Test1Date = examDate;
             var Test2Date = testDate;
 
