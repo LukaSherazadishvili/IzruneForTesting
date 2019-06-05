@@ -9,18 +9,12 @@ using System.CodeDom.Compiler;
 
 namespace Izrune.iOS
 {
-	[Register ("NewsViewController")]
-	partial class NewsViewController
+	[Register ("NewsDetailViewController")]
+	partial class NewsDetailViewController
 	{
-		[Outlet]
-		UIKit.UICollectionView newsCollectionView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (newsCollectionView != null) {
-				newsCollectionView.Dispose ();
-				newsCollectionView = null;
-			}
 		}
 	}
 }
