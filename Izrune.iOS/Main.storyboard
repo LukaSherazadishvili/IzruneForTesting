@@ -2902,19 +2902,11 @@
                                             <constraint firstItem="ub5-7P-dV3" firstAttribute="leading" secondItem="uB6-tP-Nlh" secondAttribute="leading" constant="20" id="n0Z-Z5-nkT"/>
                                         </constraints>
                                     </view>
-                                    <datePicker clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="s4n-D0-uqm">
-                                        <rect key="frame" x="27.666666666666657" y="298" width="320" height="216"/>
-                                        <date key="date" timeIntervalSinceReferenceDate="581422723.94928503">
-                                            <!--2019-06-05 10:18:43 +0000-->
-                                        </date>
-                                    </datePicker>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="s4n-D0-uqm" firstAttribute="centerX" secondItem="Raf-zM-p5s" secondAttribute="centerX" id="2nF-qK-mej"/>
                                     <constraint firstItem="uB6-tP-Nlh" firstAttribute="top" secondItem="Raf-zM-p5s" secondAttribute="top" id="PCc-f1-F2E"/>
                                     <constraint firstAttribute="bottom" secondItem="uB6-tP-Nlh" secondAttribute="bottom" id="SqN-b4-dsw"/>
-                                    <constraint firstItem="s4n-D0-uqm" firstAttribute="centerY" secondItem="Raf-zM-p5s" secondAttribute="centerY" id="Ufg-RL-lgj"/>
                                     <constraint firstItem="uB6-tP-Nlh" firstAttribute="leading" secondItem="Raf-zM-p5s" secondAttribute="leading" id="a7Y-x8-sza"/>
                                     <constraint firstAttribute="trailing" secondItem="uB6-tP-Nlh" secondAttribute="trailing" id="shM-mG-KSp"/>
                                 </constraints>
