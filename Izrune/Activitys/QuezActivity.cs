@@ -117,10 +117,7 @@ namespace Izrune.Activitys
                 }
                 return QuezControll.Instance.GetCurrentQuestion();
             };
-            FragmentQuestion.ChangeResultPage = () =>
-            {
-                ChangeFragmentPage(new DiplomaFragment(), Resource.Id.MainFuckingContainer);
-            };
+          
 
             ChangeFragmentPage(FragmentQuestion, Resource.Id.ContainerQuestion);
 

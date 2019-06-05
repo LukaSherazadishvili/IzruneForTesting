@@ -131,10 +131,10 @@ namespace Izrune.Fragments
             if (question == null)
             {
 
-                ChangeResultPage?.Invoke();
-                //Intent intent = new Intent(this, typeof(DiplomaActivity));
-                //StartActivity(intent);
-             
+                // ChangeResultPage?.Invoke();
+                Intent intent = new Intent(this, typeof(MainDiplomaActivity));
+                StartActivity(intent);
+
             }
             else
             {
