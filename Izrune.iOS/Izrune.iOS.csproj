@@ -330,6 +330,10 @@
         <Compile Include="ViewControllers\Quiz\ResultTabbedViewController.designer.cs">
           <DependentUpon>ResultTabbedViewController.cs</DependentUpon>
         </Compile>
+        <Compile Include="ViewControllers\Quiz\QuestionResultViewController.cs" />
+        <Compile Include="ViewControllers\Quiz\QuestionResultViewController.designer.cs">
+          <DependentUpon>QuestionResultViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />
