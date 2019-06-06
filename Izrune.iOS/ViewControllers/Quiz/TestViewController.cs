@@ -168,7 +168,15 @@ namespace Izrune.iOS
 
                     else
                     {
-                        //TODO
+                        //TODO finish test
+                        var resultTab = Storyboard.InstantiateViewController(ResultTabbedViewController.StoryboardId) as ResultTabbedViewController;
+
+                        this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+
+                        //this.NavigationController.NavigationItem.SetRightBarButtonItem(barButton, true);
+                        //this.NavigationController.NavigationBar.TopItem.SetRightBarButtonItems(new UIBarButtonItem[] { barButton }, true);
+
+                        this.NavigationController.PushViewController(resultTab, true);
                     }
 
                     questionCollectionView.ReloadData();

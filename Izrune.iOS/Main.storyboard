@@ -1259,6 +1259,36 @@
             </objects>
             <point key="canvasLocation" x="-2919.1999999999998" y="2010.5911330049262"/>
         </scene>
+        <!--Result Tabbed View Controller-->
+        <scene sceneID="PMR-13-HWe">
+            <objects>
+                <viewController storyboardIdentifier="ResultTabbedStoryboardId" id="Vxg-mC-kvI" customClass="ResultTabbedViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XwW-dR-t9p"/>
+                        <viewControllerLayoutGuide type="bottom" id="CID-Et-gnc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oZj-hB-Azt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result Tab Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQn-Ge-JSd">
+                                <rect key="frame" x="126.33333333333331" y="395.66666666666669" width="122.66666666666669" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hQn-Ge-JSd" firstAttribute="centerY" secondItem="oZj-hB-Azt" secondAttribute="centerY" id="4Bq-ix-Bn6"/>
+                            <constraint firstItem="hQn-Ge-JSd" firstAttribute="centerX" secondItem="oZj-hB-Azt" secondAttribute="centerX" id="xX8-5k-gDf"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tar-Yf-b66" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2919" y="2680"/>
+        </scene>
         <!--Exam Result View Controller-->
         <scene sceneID="nzT-qh-Hah">
             <objects>
