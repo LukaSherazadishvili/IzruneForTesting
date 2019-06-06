@@ -26,21 +26,21 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jbv-Mz-LbY" userLabel="MainView">
                         <rect key="frame" x="0.0" y="0.0" width="357" height="607"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="რა ცხოველია სურათზე გამოსა" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PX8-cb-ry0">
-                                <rect key="frame" x="25" y="10" width="307" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="რა ცხოველია სურათზე გამოსახული?" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PX8-cb-ry0">
+                                <rect key="frame" x="25" y="10" width="307" height="40"/>
                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zII-C1-8PB">
-                                <rect key="frame" x="25" y="40" width="307" height="1"/>
+                                <rect key="frame" x="25" y="60" width="307" height="1"/>
                                 <color key="backgroundColor" red="0.94525641202926636" green="0.94254225492477417" blue="0.94536453485488892" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="tKG-Tk-WGx"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="DLw-wL-oJL">
-                                <rect key="frame" x="25" y="49" width="307" height="180"/>
+                                <rect key="frame" x="25" y="69" width="307" height="180"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="zzh-h2-bgH"/>
@@ -53,7 +53,7 @@
                                 </collectionViewFlowLayout>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="l8Y-ZF-Vuj">
-                                <rect key="frame" x="25" y="241" width="307" height="160"/>
+                                <rect key="frame" x="25" y="261" width="307" height="160"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="160" id="CvV-iW-Nc8"/>
@@ -66,7 +66,7 @@
                                 </collectionViewFlowLayout>
                             </collectionView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m44-S5-9kt">
-                                <rect key="frame" x="25" y="426" width="307" height="1"/>
+                                <rect key="frame" x="25" y="446" width="307" height="1"/>
                                 <color key="backgroundColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="d4W-xD-R5k"/>

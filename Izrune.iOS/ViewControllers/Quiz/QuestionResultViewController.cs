@@ -25,6 +25,10 @@ namespace Izrune.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            InitCollectionView();
+
+            questionCollectionView.ReloadData();
         }
 
 
@@ -46,6 +50,21 @@ namespace Izrune.iOS
             cell.ShowBottomLine();
 
             return cell;
+        }
+
+        private void InitCollectionView()
+        {
+            questionCollectionView.RegisterNibForCell(TestCollectionViewCell.Nib, TestCollectionViewCell.Identifier);
+
+            questionCollectionView.Delegate = this;
+            questionCollectionView.DataSource = this;
+
+        }
+
+        [Export("collectionView:layout:sizeForItemAtIndexPath:")]
+        public CoreGraphics.CGSize GetSizeForItem(UICollectionView collectionView, UICollectionViewLayout layout, NSIndexPath indexPath)
+        {
+            return new CoreGraphics.CGSize(collectionView.Frame.Width, collectionView.Frame.Height);
         }
     }
 }
