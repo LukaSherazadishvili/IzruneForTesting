@@ -43,6 +43,10 @@ namespace Izrune.Adapters.RecyclerviewAdapters
                 hld.Image.Visibility = ViewStates.Gone;
             }
 
+            hld.PositionTxt.Text = (position+1).ToString()+") ";
+
+
+
 
             hld.AnswerContainer.RemoveAllViews();
             foreach(var items in ResQuestions.ElementAt(position).Answers)
@@ -65,7 +69,7 @@ namespace Izrune.Adapters.RecyclerviewAdapters
 
             }
 
-
+            
            
         }
 

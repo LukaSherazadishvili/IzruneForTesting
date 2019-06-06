@@ -13,7 +13,9 @@ using Android.Widget;
 using Izrune.Activitys;
 using Izrune.Adapters.ViewPagerAdapter;
 using Izrune.Attributes;
-
+using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
+using MpdcContainer = ServiceContainer.ServiceContainer;
 namespace Izrune.Fragments
 {
     class ServiceFragment : MPDCBaseFragment
@@ -23,7 +25,6 @@ namespace Izrune.Fragments
 
         [MapControl(Resource.Id.backgroundAnimationView)]
         View AnimatedView;
-
 
         [MapControl(Resource.Id.MainPager)]
         ViewPager pager;
@@ -44,11 +45,8 @@ namespace Izrune.Fragments
         LinearLayout Body;
 
 
-        private List<MPDCBaseFragment> FragmentList = new List<MPDCBaseFragment>()
-        {
-            new IndividualServiceFragmentcs(),
-             new PromoFragment()
-        };
+        private List<MPDCBaseFragment> FragmentList = new List<MPDCBaseFragment>();
+       
 
         float Density;
         private bool CurrentFragmnet = true;
@@ -58,10 +56,16 @@ namespace Izrune.Fragments
            
         }
 
-        public override void OnViewCreated(View view, Bundle savedInstanceState)
+        public override async void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
 
+            var Result = await MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(UserControl.Instance.RegistrationStudent.SchoolId.ToString());
+
+            var Individual = new IndividualServiceFragmentcs(Result.Prices.ToList());
+            var Promo = new PromoFragment(Result.PrommoCode);
+            FragmentList.Add(Individual);
+            FragmentList.Add(Promo);
             Density = Resources.DisplayMetrics.Density;
             PromoButton.Click += PromoButton_Click;
             IndividualButton.Click += IndividualButton_Click;

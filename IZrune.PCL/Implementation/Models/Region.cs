@@ -7,7 +7,7 @@ namespace IZrune.PCL.Implementation.Models
 {
     public class Region : IRegion
     {
-        public string id { get; set; }
+        public int id { get; set; }
         public string title { get; set; }
         public IEnumerable<ISchool> Schools { get; set; }
     }

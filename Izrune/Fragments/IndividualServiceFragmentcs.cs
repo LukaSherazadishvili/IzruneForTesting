@@ -10,6 +10,10 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Izrune.Attributes;
+using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
+using MpdcContainer = ServiceContainer.ServiceContainer;
 
 namespace Izrune.Fragments
 {
@@ -19,22 +23,16 @@ namespace Izrune.Fragments
 
         [MapControl(Resource.Id.BodyContent)]
         LinearLayout Body;
-        class test
+        
+
+        public IndividualServiceFragmentcs(List<IPrice> prices)
         {
-            public string Time { get; set; }
-            public string Sale { get; set; }
-            public string Price { get; set; }
+            PriceList = prices;
         }
 
+        private List<IPrice> PriceList = new List<IPrice>();
 
-        private List<test> Salelist = new List<test>()
-        {
-            new test(){Time="1 თვე",Sale="27 ₾" ,Price="27 ₾"},
-            new test(){Time="1 თვე",Sale="27 ₾" ,Price="27 ₾"},
-            new test(){Time="1 თვე",Sale="27 ₾" ,Price="27 ₾"},
-             new test(){Time="1 თვე",Sale="27 ₾" ,Price="27 ₾"},
-           
-        };
+      
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -43,17 +41,19 @@ namespace Izrune.Fragments
             
         }
 
-        public override void OnViewCreated(View view, Bundle savedInstanceState)
+        public  override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
 
-            foreach (var items in Salelist)
+           
+
+            foreach (var items in PriceList)
             {
                 var Vw = LayoutInflater.Inflate(Resource.Layout.ItemIndividualList, null);
 
-                Vw.FindViewById<TextView>(Resource.Id.TimeTxt).Text = items.Time;
-                Vw.FindViewById<TextView>(Resource.Id.SaleTXt).Text = items.Sale;
-                Vw.FindViewById<TextView>(Resource.Id.PriceText).Text = items.Price;
+                Vw.FindViewById<TextView>(Resource.Id.TimeTxt).Text = items.months.ToString()+" თვე";
+                Vw.FindViewById<TextView>(Resource.Id.SaleTXt).Visibility = ViewStates.Gone;
+                Vw.FindViewById<TextView>(Resource.Id.PriceText).Text = items.price.ToString();
 
                 Body.AddView(Vw);
 
