@@ -38,7 +38,6 @@ namespace Izrune.iOS.CollectionViewCells
             answerLbl.TextColor = AppColors.UnselectedColor;
         }
 
-
         public override void AwakeFromNib()
         {
             base.AwakeFromNib();

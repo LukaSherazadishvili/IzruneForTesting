@@ -189,7 +189,7 @@ namespace Izrune.iOS
 
                         EndLoading();
 
-                        var resultTab = Storyboard.InstantiateViewController(ExamResultViewController.StoryboardId) as ExamResultViewController;
+                        var resultTab = Storyboard.InstantiateViewController(ResultTabbedViewController.StoryboardId) as ResultTabbedViewController;
 
                         resultTab.QuisInfo = info;
 

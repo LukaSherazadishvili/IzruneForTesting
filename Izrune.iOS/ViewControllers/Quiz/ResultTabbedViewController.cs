@@ -39,6 +39,7 @@ namespace Izrune.iOS
 
             InitBarStyle();
 
+            this.Delegate = this;
             base.ViewDidLoad();
 
             var barButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, null)
@@ -60,7 +61,7 @@ namespace Izrune.iOS
 
         private void InitBarStyle()
         {
-            Settings.Style.ButtonBarBackgroundColor = UIColor.Clear;
+            Settings.Style.ButtonBarBackgroundColor = UIColor.Blue;
             Settings.Style.ButtonBarItemBackgroundColor = UIColor.Clear;
             Settings.Style.SelectedBarBackgroundColor = AppColors.Tint;
             Settings.Style.SelectedBarHeight = 1.5f;

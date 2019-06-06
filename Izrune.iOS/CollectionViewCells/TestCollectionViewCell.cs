@@ -215,5 +215,11 @@ namespace Izrune.iOS.CollectionViewCells
                 answersCollectioHeight += height + 40;
             }
         }
+
+        public void ShowBottomLine()
+        {
+            topLine.Hidden = true;
+            bottomLine.Hidden = false;
+        }
     }
 }
