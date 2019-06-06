@@ -1531,7 +1531,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Bkr-oz-knk">
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="83E-QR-tgC">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="83E-QR-tgC">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -1548,20 +1548,12 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFg-jC-cKA">
-                                <rect key="frame" x="137" y="395.66666666666669" width="101" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="eFg-jC-cKA" firstAttribute="centerY" secondItem="tSv-zQ-uh8" secondAttribute="centerY" id="C7v-sa-noY"/>
                             <constraint firstAttribute="trailing" secondItem="Bkr-oz-knk" secondAttribute="trailing" id="JkY-11-mUE"/>
                             <constraint firstItem="Bkr-oz-knk" firstAttribute="top" secondItem="lce-OJ-9Xr" secondAttribute="bottom" id="QK0-pb-Cc6"/>
                             <constraint firstItem="KP3-lv-EOf" firstAttribute="top" secondItem="Bkr-oz-knk" secondAttribute="bottom" id="YtO-4T-HsC"/>
-                            <constraint firstItem="eFg-jC-cKA" firstAttribute="centerX" secondItem="tSv-zQ-uh8" secondAttribute="centerX" id="p4E-oR-sRy"/>
                             <constraint firstItem="Bkr-oz-knk" firstAttribute="leading" secondItem="tSv-zQ-uh8" secondAttribute="leading" id="vy9-c9-ojG"/>
                         </constraints>
                     </view>

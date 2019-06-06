@@ -144,11 +144,8 @@ namespace Izrune.iOS.ViewControllers
         {
 
             var navVc = vc.CreateWithNavigationControllerWithMenu(ToggleMenu, UIImage.FromBundle("icMenu.png"), AppColors.Tint, false);
-
-            vc.NavigationController?.NavigationBar?.InitNavigationBarColorWithNoShadow(UIColor.White);
-
-            //vc.NavigationController.NavigationBar.InitNavigationBarColorWithNoShadow(UIColor.Orange);
-            //vc.NavigationItem.InitLogoToNav(UIImage.FromBundle("4.png"));
+                      
+            vc.NavigationController.NavigationBar.TintColor = UIColor.White;
 
             return navVc;
         }
@@ -161,12 +158,9 @@ namespace Izrune.iOS.ViewControllers
 
             var navVc = _storyBoard.InstantiateViewController(storyboardId).CreateWithNavigationControllerWithMenu(ToggleMenu, UIImage.FromBundle("ichamburger.png"), AppColors.Tint, false);
 
-            //var loginVc = navVc.ViewControllers[0] as LogInViewController;
+            navVc.NavigationBar.InitNavigationBarColorWithNoShadow(UIColor.White);
 
-            //loginVc.LogedIn = () =>
-            //{
-            //    SideBarController.ChangeContentView(menuViewControllerCreations[MenuType.Main].Invoke());
-            //};
+            navVc.NavigationBar.TintColor = UIColor.White;
 
             return navVc;
         }

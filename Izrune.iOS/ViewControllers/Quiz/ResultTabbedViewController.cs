@@ -61,24 +61,24 @@ namespace Izrune.iOS
 
         private void InitBarStyle()
         {
-            Settings.Style.ButtonBarBackgroundColor = UIColor.Blue;
-            Settings.Style.ButtonBarItemBackgroundColor = UIColor.Clear;
+            //Settings.Style.ButtonBarBackgroundColor = UIColor.Blue;
+            //Settings.Style.ButtonBarItemBackgroundColor = UIColor.Clear;
             Settings.Style.SelectedBarBackgroundColor = AppColors.Tint;
             Settings.Style.SelectedBarHeight = 1.5f;
 
             Settings.Style.ButtonBarItemFont = UIFont.FromName("BPG Mrgvlovani 2010", 16);
 
-            Settings.Style.ButtonBarMinimumLineSpacing = 1;
-            Settings.Style.ButtonBarItemTitleColor = AppColors.Succesful;
+            //Settings.Style.ButtonBarMinimumLineSpacing = 1;
+            //Settings.Style.ButtonBarItemTitleColor = AppColors.Succesful;
 
-            Settings.Style.ButtonBarItemsShouldFillAvailiableWidth = true;
-            Settings.Style.ButtonBarLeftContentInset = 15;
+            //Settings.Style.ButtonBarItemsShouldFillAvailiableWidth = true;
+            //Settings.Style.ButtonBarLeftContentInset = 15;
 
-            Settings.Style.ButtonBarItemLeftRightMargin = 5;
+            //Settings.Style.ButtonBarItemLeftRightMargin = 5;
 
-            Settings.Style.ButtonBarRightContentInset = 0;
-            Settings.Style.ButtonBarHeight = 45;
-            Settings.Style.ButtonBarMinimumLineSpacing = 0;
+            //Settings.Style.ButtonBarRightContentInset = 0;
+            //Settings.Style.ButtonBarHeight = 45;
+            //Settings.Style.ButtonBarMinimumLineSpacing = 0;
 
         }
 

@@ -15,5 +15,9 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("MoreInfoViewControllerStoryboardId");
 
-	}
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+        }
+    }
 }
