@@ -146,7 +146,8 @@ namespace Izrune.iOS
             cell.AnswerClicked = async (answer) =>
             {
             
-                timeLbl.Text = ($"01:00");
+                if(!IsTotalTime)
+                    timeLbl.Text = ($"01:00");
 
                 await Task.Delay(200);
 
@@ -156,22 +157,48 @@ namespace Izrune.iOS
                     CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
                     currentIndex++;
 
-                    if(currentIndex < AllQuestions?.Count - 1)
+                    if(currentIndex < AllQuestions?.Count)
                     {
                         if (currentIndex >= lastVisibleIndex)
                         {
-                            answerProgressCollectionView.ScrollToItem(NSIndexPath.FromRowSection(currentIndex + 1, 0), UICollectionViewScrollPosition.CenteredHorizontally, true);
+                            answerProgressCollectionView.ScrollToItem(NSIndexPath.FromRowSection(currentIndex+1, 0), UICollectionViewScrollPosition.CenteredHorizontally, true);
                             lastVisibleIndex++;
                         }
+
+                        else
+                        {
+                            answerProgressCollectionView.ScrollToItem(NSIndexPath.FromRowSection(currentIndex, 0), UICollectionViewScrollPosition.CenteredHorizontally, true);
+                            lastVisibleIndex++;
+                        }
+
+                        questionCollectionView.ReloadData();
+                        answerProgressCollectionView.ReloadData();
                     }
 
                     else
                     {
-                        //TODO
+                        //TODO finish test
+
+                        await Task.Delay(500);
+
+                        questionCollectionView.Hidden = true;
+
+                        ShowLoading();
+
+                        var info = (await QuezControll.Instance.GetExamInfoAsync());
+
+                        EndLoading();
+
+                        var resultTab = Storyboard.InstantiateViewController(ExamResultViewController.StoryboardId) as ExamResultViewController;
+
+                        resultTab.QuisInfo = info;
+
+                        this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+
+                        this.NavigationController.PushViewController(resultTab, true);
                     }
 
-                    questionCollectionView.ReloadData();
-                    answerProgressCollectionView.ReloadData();
+
                 }
 
                 catch (Exception ex)
@@ -235,7 +262,7 @@ namespace Izrune.iOS
 
             foreach (var item in data?.Answers)
             {
-                var height = item.title.GetStringHeight((float)questionCollectionView.Frame.Width, 64, 15);
+                var height = item.title.GetStringHeight((float)questionCollectionView.Frame.Width - 60, 64, 15);
                 answersHeight += height + 40;
             }
 

@@ -3,30 +3,62 @@
 using System;
 
 using Foundation;
+using IZrune.PCL.Abstraction.Models;
 using MpdcViewExtentions;
 using UIKit;
+using System.Linq;
+using XLPagerTabStrip;
 
 namespace Izrune.iOS
 {
-	public partial class ExamResultViewController : UIViewController
-	{
+	public partial class ExamResultViewController : UIViewController, IIndicatorInfoProvider
+    {
 		public ExamResultViewController (IntPtr handle) : base (handle)
 		{
 		}
 
         public static readonly NSString StoryboardId = new NSString("ExamResultStoryboardId");
 
+        public IQuisInfo QuisInfo;
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
             InitUI();
+
+            //InitResult();
         }
 
         private void InitUI()
         {
             pointView.AddShadowToView(4, 50, 0.8f, UIColor.FromRGBA(0, 0, 0, 0.35f));
             timeShadowView.AddShadowToView(4, 50, 0.8f, UIColor.FromRGBA(0, 0, 0, 0.35f));
+        }
+
+        private void InitResult()
+        {
+            diplomeImageView.InitImageFromWeb(QuisInfo?.DiplomaURl, false, false);
+
+            var ratingImages = ratingStackView.Subviews.Select(x => x as UIImageView);
+
+            for (int i = 0; i < QuisInfo.QueisResult.Stars; i++)
+            {
+                ratingImages.ElementAt(i).Image = UIImage.FromBundle("1 – 24.png");
+            }
+
+            resultQualityLbl.Text = QuisInfo.QueisResult.text_title;
+            resultTextLbl.Text = QuisInfo.QueisResult.text_description;
+
+            totalPointLbl.Text = QuisInfo.QueisResult.Score;
+            examTimeLbl.Text = $"{QuisInfo.QueisResult.Duration / 60}:{QuisInfo.QueisResult.Duration % 60}";
+
+            finalResultLbl.Text = $"სწორი პასუხი {QuisInfo.QueisResult.RightAnswer}, არასწორი პასუხი {QuisInfo.QueisResult.WronAnswers} გამოტოვებული კითხვა {QuisInfo.QueisResult.SkipedAnswers}";
+        }
+
+        public IndicatorInfo IndicatorInfoForPagerTabStrip(PagerTabStripViewController pagerTabStripController)
+        {
+            return new IndicatorInfo("შედეგი");
         }
     }
 }

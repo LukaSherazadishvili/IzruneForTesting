@@ -43,6 +43,7 @@ namespace Izrune.iOS
 
         private bool IsSummSelected;
         private Timer timer;
+        private const double timerInterval = 1000;
 
         public async override void ViewDidLoad()
         {
@@ -55,6 +56,8 @@ namespace Izrune.iOS
             examDate = (await QuezControll.Instance.GetExamDate(QuezCategory.QuezExam));
 
             testDate = (await QuezControll.Instance.GetExamDate(QuezCategory.QuezTest));
+
+
 
             InitSummTimer();
 
@@ -190,58 +193,59 @@ namespace Izrune.iOS
 
         private void InitSummTimer()
         {
+            //testDate = new TimeSpan(0, 1, 5);
+
             timer = new Timer();
-            timer.Interval = 1000;
+            timer.Interval = timerInterval;
             timer.Enabled = true;
+
 
             var Test1Date = examDate;
             var Test2Date = testDate;
 
             timer.Elapsed += (sender, e) =>
             {
-            
-                //UpdateExamStatus(Test1Date, timeStackView, summQuisActiveStatusLbl);
-                //UpdateExamStatus(Test2Date, exTimeStackView, exQuizActiveStatusLbl);
 
-                var days = GetNumber(Test1Date.Days, " დღე ");
-                var hours = GetNumber(Test1Date.Hours, " საათი ");
-                var minutes = GetNumber(Test1Date.Minutes, " წუთი ");
-
-                var days2 = GetNumber(Test2Date.Days, " დღე ");
-                var hours2 = GetNumber(Test2Date.Hours, " საათი ");
-                var minutes2 = GetNumber(Test2Date.Minutes, " წუთი ");
-
+                Test2Date = Test2Date.Subtract(TimeSpan.FromSeconds(1));
+                Debug.WriteLine($"{Test2Date.Minutes} : {Test2Date.Seconds}");
+                if (Test2Date.Seconds == 0)
+                    Test2Date = Test2Date.Add(new TimeSpan(0, -1, 0));
+                //if(Test2Date.Minutes == 0)
+                    //Test2Date.Subtract(TimeSpan.FromHours(1));
+                
                 InvokeOnMainThread(() =>
                 {
-                    test1TimerLbl.Text = $"{days} {hours} {minutes}";
-                    test2TimerLbl.Text = $"{days2} {hours2} {minutes2}";
+                    test1TimerLbl.Text = GetStringDate(Test1Date);
+                    test2TimerLbl.Text = GetStringDate(Test2Date);
+
                 });
 
                 if (Test1Date.Days == 0 && Test1Date.Hours == 0 && Test1Date.Minutes == 0)
                 {
                     IsSummTestActive = true;
-                    ChangeTestStatus(timeStackView, test1TimerLbl, IsSummTestActive);
+                    ChangeTestStatus(timeStackView, summQuisActiveStatusLbl, IsSummTestActive);
                     timer.Stop();
                     timer.Dispose();
                 }
                 else
                 {
                     IsSummTestActive = false;
-                    ChangeTestStatus(timeStackView, test1TimerLbl, IsSummTestActive);
+                    ChangeTestStatus(timeStackView, summQuisActiveStatusLbl, IsSummTestActive);
                 }
 
                 if (Test2Date.Days <= 0 && Test2Date.Hours <= 0 && Test2Date.Minutes <= 0)
                 {
                     IsExTestActive = true;
-                    ChangeTestStatus(exTimeStackView, test2TimerLbl, IsExTestActive);
+                    ChangeTestStatus(exTimeStackView, exQuizActiveStatusLbl, IsExTestActive);
                     timer.Stop();
                     timer.Dispose();
                 }
                 else
                 {
                     IsExTestActive = false;
-                    ChangeTestStatus(exTimeStackView, test2TimerLbl, IsExTestActive);
+                    ChangeTestStatus(exTimeStackView, exQuizActiveStatusLbl, IsExTestActive);
                 }
+               
             };
 
             timer.Start();
@@ -265,9 +269,18 @@ namespace Izrune.iOS
             }
         }
 
-        private string GetNumber(int number, string time)
+        private string GetStringDate(TimeSpan date)
         {
-            return number == 0 ? "" : number.ToString() + time;
+            if (date.Days <= 0)
+            {
+                if(date.Hours <= 0)
+                {
+                    return $"{date.Minutes} წუთი";
+                }
+                return $"{date.Hours} საათი {date.Minutes} წუთი";
+            }
+
+            return $"{date.Days} დღე {date.Hours} საათი {date.Minutes} წუთი";
         }
 
         private DateTime? GetLastDayInMonth(int year, int month, DayOfWeek lastDay)
@@ -294,8 +307,18 @@ namespace Izrune.iOS
 
         private void ChangeTestStatus(UIStackView stackView, UILabel label, bool isActive)
         {
-            stackView.Hidden = isActive;
-            label.Hidden = !isActive;
+            try
+            {
+                InvokeOnMainThread(() =>
+                {
+                    stackView.Hidden = isActive;
+                    label.Hidden = !isActive;
+                });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
 
     }
