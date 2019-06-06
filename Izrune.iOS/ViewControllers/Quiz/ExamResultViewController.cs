@@ -26,7 +26,7 @@ namespace Izrune.iOS
 
             InitUI();
 
-            InitResult();
+            //InitResult();
         }
 
         private void InitUI()
@@ -37,7 +37,7 @@ namespace Izrune.iOS
 
         private void InitResult()
         {
-            diplomeImageView.InitImageFromWeb(QuisInfo.DiplomaURl, false, false);
+            diplomeImageView.InitImageFromWeb(QuisInfo?.DiplomaURl, false, false);
 
             var ratingImages = ratingStackView.Subviews.Select(x => x as UIImageView);
 
