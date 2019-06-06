@@ -69,7 +69,7 @@ namespace Izrune.iOS
             Settings.Style.ButtonBarItemFont = UIFont.FromName("BPG Mrgvlovani 2010", 16);
 
             Settings.Style.ButtonBarMinimumLineSpacing = 1;
-            Settings.Style.ButtonBarItemTitleColor = AppColors.Succesful;
+            Settings.Style.ButtonBarItemTitleColor = AppColors.TitleColor;
 
             Settings.Style.ButtonBarItemsShouldFillAvailiableWidth = true;
             Settings.Style.ButtonBarLeftContentInset = 15;
