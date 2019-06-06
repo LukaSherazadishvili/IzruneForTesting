@@ -55,6 +55,7 @@ android:id="@+id/Container">
 					android:textSize="8dp"
 					/>
 				<EditText
+					android:id="@+id/ParentPhonetx"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"
@@ -67,6 +68,7 @@ android:id="@+id/Container">
             android:background="@drawable/izrune_editext_back"
             />
 				<TextView
+					
 					android:layout_marginTop="5dp"
 					android:layout_marginBottom="5dp"
 					android:layout_width="wrap_content"
@@ -78,6 +80,7 @@ android:id="@+id/Container">
 					android:textSize="8dp"
 					/>
 				<EditText
+					android:id="@+id/EmailParent"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"
@@ -102,6 +105,7 @@ android:id="@+id/Container">
 					/>
 
 				<EditText
+					android:id="@+id/NameTxt"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"
@@ -125,6 +129,7 @@ android:id="@+id/Container">
 					android:textSize="8dp"
 					/>
 				<EditText
+					android:id="@+id/PasswordTxt"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"
@@ -138,6 +143,7 @@ android:id="@+id/Container">
             />
 				
 				<EditText
+				android:id="@+id/RepPasswordTxt"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"

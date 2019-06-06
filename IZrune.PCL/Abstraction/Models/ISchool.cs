@@ -6,7 +6,7 @@ namespace IZrune.PCL.Abstraction.Models
 {
    public interface ISchool
     {
-         string id { get; set; }
+         int id { get; set; }
          string title { get; set; }
     }
 }

@@ -20,6 +20,12 @@ namespace Izrune.Fragments
         {
             base.OnCreate(savedInstanceState);
         }
+        public PromoFragment(string cod)
+        {
+            PromoCod = cod;
+        }
+
+        private string PromoCod;
 
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {

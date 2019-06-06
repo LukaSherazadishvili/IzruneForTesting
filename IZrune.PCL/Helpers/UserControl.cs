@@ -136,26 +136,43 @@ namespace IZrune.PCL.Helpers
             }
         }
 
-        Parent RegistrationUser;
+       public Parent RegistrationUser;
         public async void RegistrationParrentPartOne(string Name,string LastName,DateTime date,string city,string Village="")
         {
-
+            RegistrationUser = new Parent();
+            RegistrationUser.Name = Name;
+            RegistrationUser.LastName = LastName;
+            RegistrationUser.bDate = date;
+            RegistrationUser.City = city;
+            RegistrationUser.Vilage = Village;
         }
 
-        public async void RegistrationParrentPartTwo(string Phone,string Mail,string UserName,string Password,string RepPassword)
+        public async void RegistrationParrentPartTwo(string Phone,string Mail,string UserName,string Password)
         {
-
+            RegistrationUser.Phone = Phone;
+            RegistrationUser.Email = Mail;
+            RegistrationUser.UserName = UserName;
+            RegistrationUser.Password = Password;
         }
 
-        Student RegistrationStudent;
+        public Student RegistrationStudent;
         public async void RegistrationStudentPartOne(string Name,string LastName,DateTime date,string PersonalId,string Phone,string Mail)
         {
-
+            RegistrationStudent = new Student();
+            RegistrationStudent.Name = Name;
+            RegistrationStudent.LastName = LastName;
+            RegistrationStudent.Bdate = date;
+            RegistrationStudent.PersonalNumber = PersonalId;
+            RegistrationStudent.Phone = Phone;
+            RegistrationStudent.Email = Mail;
         }
 
-        public async void RegistrationStudentPartTwo(string City,string Village,string Schoold,string Clas)
+        public async void RegistrationStudentPartTwo(int RegionID,string Village,int Schoold,int Clas)
         {
-
+            RegistrationStudent.RegionId = RegionID;
+            RegistrationStudent.Village = Village;
+            RegistrationStudent.SchoolId = Schoold;
+            RegistrationStudent.Class = Clas;
         }
 
     }

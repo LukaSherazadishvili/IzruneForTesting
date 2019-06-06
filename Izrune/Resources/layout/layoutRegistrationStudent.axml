@@ -53,7 +53,8 @@ android:id="@+id/Container">
 					android:fontFamily="@font/bpg_mrgvlovani"
 					android:textSize="8dp"
 					/>
-				<EditText
+				<Spinner
+					android:id="@+id/StudentCity"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"
@@ -67,6 +68,7 @@ android:id="@+id/Container">
             />
 				
 				<EditText
+				android:id="@+id/StudentVillage"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"
@@ -80,7 +82,8 @@ android:id="@+id/Container">
             />
 		
 
-				<EditText
+				<Spinner
+					android:id="@+id/StudentSchool"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"
@@ -94,6 +97,7 @@ android:id="@+id/Container">
             />
 				
 				<EditText
+			android:id="@+id/StudentClass"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"

@@ -7,7 +7,7 @@ namespace IZrune.PCL.Implementation.Models
 {
     class School : ISchool
     {
-        public string id { get; set; }
+        public int id { get; set; }
         public string title { get; set; }
     }
 }

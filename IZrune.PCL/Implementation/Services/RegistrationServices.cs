@@ -32,11 +32,11 @@ namespace IZrune.PCL.Implementation.Services
                              .regions
                              .Select(i => new Region()
                              {
-                                 id = i.id,
+                                 id =int.Parse( i.id),
                                  title = i.title,
                                  Schools = i.schools.
                                  Select(x => new School() {
-                                     id = x.id,
+                                     id =int.Parse( x.id),
                                      title = x.title
 
                                  })

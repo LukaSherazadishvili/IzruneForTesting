@@ -95,7 +95,7 @@ android:id="@+id/Container">
 					android:orientation="horizontal"
 					android:paddingTop="10dp"
 					>
-					<EditText
+					<TextView
 			android:id="@+id/ParentBDayDay"
             android:layout_width="0dp"
 			android:layout_marginRight="4dp"
@@ -110,7 +110,7 @@ android:id="@+id/Container">
             android:layout_marginTop="10dp"
             android:background="@drawable/izrune_editext_back"
             />
-					<EditText
+					<TextView
 			android:id="@+id/ParentBdayMonth"
             android:layout_width="0dp"
             android:layout_height="38dp"
@@ -124,7 +124,7 @@ android:id="@+id/Container">
             android:layout_marginTop="10dp"
             android:background="@drawable/izrune_editext_back"
             />
-					<EditText
+					<TextView
 			android:id="@+id/ParentBdayYear"
             android:layout_width="0dp"
             android:layout_height="38dp"
@@ -141,7 +141,7 @@ android:id="@+id/Container">
             />
 					</LinearLayout>
 
-				<Spinner
+			<Spinner
 			android:id="@+id/ParrentCity"
             android:layout_width="match_parent"
             android:layout_height="38dp"

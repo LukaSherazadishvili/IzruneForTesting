@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -12,12 +13,15 @@ using Android.Widget;
 using Izrune.Attributes;
 using Izrune.Fragments;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
+using Java.Util;
+using static Android.App.DatePickerDialog;
 using MpdcContainer = ServiceContainer.ServiceContainer;
 
 namespace Izrune.Activitys
 {
     [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
-    class RegistrationActivity : MPDCBaseActivity
+    class RegistrationActivity : MPDCBaseActivity,IOnDateSetListener
     {
         protected override int LayoutResource { get; } = Resource.Layout.layoutParentRegistration;
 
@@ -40,13 +44,13 @@ namespace Izrune.Activitys
         EditText LastName;
 
         [MapControl(Resource.Id.ParentBDayDay)]
-        EditText BdayDay;
+        TextView BdayDay;
 
         [MapControl(Resource.Id.ParentBdayMonth)]
-        EditText BDayMonth;
+        TextView BDayMonth;
 
         [MapControl(Resource.Id.ParentBdayYear)]
-        EditText BdayYear;
+        TextView BdayYear;
 
         [MapControl(Resource.Id.ParrentCity)]
         Spinner ParrentCity;
@@ -54,7 +58,7 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.ParrentVillage)]
         EditText ParrentVillage;
 
-
+        int Year, Month, Day;
         string city;
         protected async override void OnCreate(Bundle savedInstanceState)
         {
@@ -72,6 +76,8 @@ namespace Izrune.Activitys
             ParrentCity.Adapter = DataAdapter;
             ParrentCity.ItemSelected += (s, e) =>
             {
+               // UserControl.Instance.RegistrationParrentPartOne(UserName.Text,LastName.Text,)
+
                 city = Result.ElementAt(e.Position).title;
             };
 
@@ -80,7 +86,28 @@ namespace Izrune.Activitys
 
 
 
+        protected override Dialog OnCreateDialog(int id)
+        {
+            if (id == 1)
+            {
+                Calendar cal = Calendar.GetInstance(Java.Util.TimeZone.Default);
+                Year = cal.Get(Calendar.Year);
+                Month = cal.Get(Calendar.Month);
+                Day = cal.Get(Calendar.DayOfYear);
 
+                DatePickerDialog dialog = new DatePickerDialog(this,
+                    Android.Resource.Style.ThemeHoloDialogNoActionBarMinWidth,
+                    this,
+                    Year, Month, Day);
+                dialog.Window.SetBackgroundDrawable(new Android.Graphics.Drawables.ColorDrawable(Color.Transparent));
+
+                return dialog;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
 
 
@@ -110,11 +137,19 @@ namespace Izrune.Activitys
             ContinueButton.Click += ContinueButton_Click;
             UserName.TextChanged += UserName_Click;
             LastName.TextChanged += UserName_Click;
-            BdayDay.TextChanged += UserName_Click;
-            BDayMonth.TextChanged += UserName_Click;
-            BdayYear.TextChanged += UserName_Click;
-            
+            //BdayDay.TextChanged += UserName_Click;
+            //BDayMonth.TextChanged += UserName_Click;
+            //BdayYear.TextChanged += UserName_Click;
+
+            BdayDay.Click += BdayDay_Click;
+            BDayMonth.Click += BdayDay_Click;
+            BdayYear.Click += BdayDay_Click;
             ParrentVillage.TextChanged += UserName_Click;
+        }
+
+        private void BdayDay_Click(object sender, EventArgs e)
+        {
+            ShowDialog(1);
         }
 
         private void ContinueButton_Click(object sender, EventArgs e)
@@ -126,6 +161,7 @@ namespace Izrune.Activitys
             }
             else
             {
+                UserControl.Instance.RegistrationParrentPartOne(UserName.Text, LastName.Text, new DateTime(Year, Month, Day), city, ParrentVillage.Text);
 
                 Intent intent = new Intent(this, typeof(NextRegistrationParentActyvity));
                 StartActivity(intent);
@@ -175,6 +211,20 @@ namespace Izrune.Activitys
             }
             else
                 return true;
+        }
+
+        public void OnDateSet(DatePicker view, int year, int month, int dayOfMonth)
+        {
+            DateTime date = new DateTime(year, (month + 1), dayOfMonth);
+
+            Day = dayOfMonth;
+            Year = year;
+            Month = month+1;
+
+
+            BdayDay.Text = Day.ToString();
+            BDayMonth.Text = month.ToString();
+            BdayYear.Text = year.ToString();
         }
     }
 }

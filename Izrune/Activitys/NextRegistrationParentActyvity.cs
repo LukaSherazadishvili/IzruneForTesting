@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Izrune.Attributes;
+using IZrune.PCL.Helpers;
 
 namespace Izrune.Activitys
 {
@@ -30,6 +31,21 @@ namespace Izrune.Activitys
 
         [MapControl(Resource.Id.BottomBackButton)]
         LinearLayout BotBackButton;
+
+        [MapControl(Resource.Id.ParentPhonetx)]
+        EditText Phone;
+
+        [MapControl(Resource.Id.EmailParent)]
+        EditText Email;
+
+        [MapControl(Resource.Id.NameTxt)]
+        EditText Name;
+
+        [MapControl(Resource.Id.PasswordTxt)]
+        EditText Password;
+
+        [MapControl(Resource.Id.RepPasswordTxt)]
+        EditText RepPassword;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -56,6 +72,9 @@ namespace Izrune.Activitys
 
         private void NextButton_Click(object sender, EventArgs e)
         {
+
+            UserControl.Instance.RegistrationParrentPartTwo(Phone.Text, Email.Text, Name.Text, Password.Text);
+
             Intent intent = new Intent(this, typeof(RegistrationStudentActivity));
             StartActivity(intent);
         }

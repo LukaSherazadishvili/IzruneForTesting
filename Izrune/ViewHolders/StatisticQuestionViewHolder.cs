@@ -18,8 +18,8 @@ namespace Izrune.ViewHolders
     {
        public LinearLayout AnswerContainer { get; set; }
         public ImageViewAsync Image { get; set; }
-
-       public TextView Title { get; set; }
+        public TextView PositionTxt { get; set; }
+        public TextView Title { get; set; }
 
         public StatisticQuestionViewHolder(View view):base(view)
         {
@@ -27,6 +27,7 @@ namespace Izrune.ViewHolders
             Title = view.FindViewById<TextView>(Resource.Id.QuestionTitle);
             Image = view.FindViewById<ImageViewAsync>(Resource.Id.QuestionImage);
             AnswerContainer = view.FindViewById<LinearLayout>(Resource.Id.ContainerForAnswers);
+            PositionTxt = view.FindViewById<TextView>(Resource.Id.QuestionPosition);
 
         }
     }
