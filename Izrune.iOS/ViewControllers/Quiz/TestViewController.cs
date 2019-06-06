@@ -146,7 +146,8 @@ namespace Izrune.iOS
             cell.AnswerClicked = async (answer) =>
             {
             
-                timeLbl.Text = ($"01:00");
+                if(!IsTotalTime)
+                    timeLbl.Text = ($"01:00");
 
                 await Task.Delay(200);
 

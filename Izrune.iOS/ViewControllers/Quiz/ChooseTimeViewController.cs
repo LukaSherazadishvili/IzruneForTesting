@@ -66,7 +66,7 @@ namespace Izrune.iOS
         {
             if(totalTimeView.GestureRecognizers == null || totalTimeView.GestureRecognizers?.Length == 0)
             {
-                totalTimeView.AddGestureRecognizer(new UITapGestureRecognizer(async() =>
+                totalTimeView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
                     //TODO
                     //var data = (await GetQuiz(SelectedStudent.id, SelectedCategory)).ToList();
@@ -82,7 +82,7 @@ namespace Izrune.iOS
 
             if (derivedTimeView.GestureRecognizers == null || derivedTimeView.GestureRecognizers?.Length == 0)
             {
-                derivedTimeView.AddGestureRecognizer(new UITapGestureRecognizer(async() =>
+                derivedTimeView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
                     //TODO
                     //var data = (await GetQuiz(SelectedStudent.id, SelectedCategory)).ToList();
