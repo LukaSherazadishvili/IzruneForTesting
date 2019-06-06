@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using Foundation;
+using Izrune.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
 using UIKit;
 using XLPagerTabStrip;
@@ -21,8 +22,23 @@ namespace Izrune.iOS
 
         public IQuisInfo QuisInfo;
 
+        ExamResultViewController ExRes;
+        QuestionResultViewController QuestionRes;
+
         public override void ViewDidLoad()
         {
+
+            ExRes = Storyboard.InstantiateViewController(ExamResultViewController.StoryboardId) as ExamResultViewController;
+            ExRes.QuisInfo = QuisInfo;
+
+            QuestionRes = Storyboard.InstantiateViewController(QuestionResultViewController.StoryboardId) as QuestionResultViewController;
+            QuestionRes.QuisInfo = QuisInfo;
+
+            TabVcs.Add(ExRes);
+            TabVcs.Add(QuestionRes);
+
+            InitBarStyle();
+
             base.ViewDidLoad();
 
             var barButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, null)
@@ -41,5 +57,29 @@ namespace Izrune.iOS
         {
             return TabVcs.ToArray();
         }
+
+        private void InitBarStyle()
+        {
+            Settings.Style.ButtonBarBackgroundColor = UIColor.Clear;
+            Settings.Style.ButtonBarItemBackgroundColor = UIColor.Clear;
+            Settings.Style.SelectedBarBackgroundColor = AppColors.Tint;
+            Settings.Style.SelectedBarHeight = 1.5f;
+
+            Settings.Style.ButtonBarItemFont = UIFont.FromName("BPG Mrgvlovani 2010", 16);
+
+            Settings.Style.ButtonBarMinimumLineSpacing = 1;
+            Settings.Style.ButtonBarItemTitleColor = AppColors.Succesful;
+
+            Settings.Style.ButtonBarItemsShouldFillAvailiableWidth = true;
+            Settings.Style.ButtonBarLeftContentInset = 15;
+
+            Settings.Style.ButtonBarItemLeftRightMargin = 5;
+
+            Settings.Style.ButtonBarRightContentInset = 0;
+            Settings.Style.ButtonBarHeight = 45;
+            Settings.Style.ButtonBarMinimumLineSpacing = 0;
+
+        }
+
     }
 }

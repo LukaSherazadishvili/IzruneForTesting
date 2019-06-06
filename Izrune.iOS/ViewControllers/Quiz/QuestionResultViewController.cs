@@ -3,6 +3,7 @@
 using System;
 
 using Foundation;
+using IZrune.PCL.Abstraction.Models;
 using UIKit;
 using XLPagerTabStrip;
 
@@ -16,10 +17,16 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("QuestionResultStoryboardId");
 
+
+        public IQuisInfo QuisInfo;
+
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
         }
+
+
 
         public IndicatorInfo IndicatorInfoForPagerTabStrip(PagerTabStripViewController pagerTabStripController)
         {
