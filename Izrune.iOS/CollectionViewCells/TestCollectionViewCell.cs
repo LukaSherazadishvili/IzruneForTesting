@@ -210,7 +210,7 @@ namespace Izrune.iOS.CollectionViewCells
 
             foreach (var item in data?.Answers)
             {
-                var height = item.title.GetStringHeight((float)this.Frame.Width, 64, 15);
+                var height = item.title.GetStringHeight((float)this.Frame.Width - 60, 64, 15);
 
                 answersCollectioHeight += height + 40;
             }

@@ -3,6 +3,7 @@
 using System;
 
 using Foundation;
+using IZrune.PCL.Abstraction.Models;
 using UIKit;
 
 namespace Izrune.iOS
@@ -14,6 +15,9 @@ namespace Izrune.iOS
 		}
 
         public static readonly NSString StoryboardId = new NSString("ResultTabbedStoryboardId");
+
+
+        public IQuisInfo QuisInfo;
 
         public override void ViewDidLoad()
         {
