@@ -151,7 +151,6 @@ namespace Izrune.iOS
 
             var cell = questionCollectionView.DequeueReusableCell(TestCollectionViewCell.Identifier, indexPath) as TestCollectionViewCell;
 
-
             cell.AnswerClicked = async (answer) =>
             {
 
@@ -162,18 +161,23 @@ namespace Izrune.iOS
 
                 try
                 {
+                    questionCollectionView.Hidden = true;
                     await QuezControll.Instance.AddQuestion(answer.id);
                     CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
                     currentIndex++;
-
+                    questionCollectionView.Hidden = false;
                     if (currentIndex < AllQuestions?.Count)
                     {
                         ScrollAnswerProgressCell();
+
+                        ResetTimer();
                     }
 
                     else
                     {
                         //TODO finish test
+
+                        timer.Stop();
 
                         await GoToResultPage();
                     }
@@ -185,8 +189,6 @@ namespace Izrune.iOS
                 {
                     Console.WriteLine(ex.Message);
                 }
-
-                ResetTimer();
 
             };
 
@@ -222,6 +224,10 @@ namespace Izrune.iOS
                 ShowLoading();
 
                 var info = (await QuezControll.Instance.GetExamInfoAsync());
+
+                var service = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
+
+                var questionList = (await service.GetFinalQuestionResult())?.ToList(); ;
 
                 EndLoading();
 
