@@ -30,13 +30,16 @@ namespace Izrune.Adapters.RecyclerviewAdapters
 
         public override int ItemCount  => ResQuestions.Count;
 
+
+
+        private List<View> Answers = new List<View>();
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             var hld = (holder as StatisticQuestionViewHolder);
-            hld.Title.Text = ResQuestions.ElementAt(position).Title;
-            if (ResQuestions.ElementAt(position).Images.Count() > 0) {
+            hld.Title.Text = ResQuestions.ElementAt(position).title;
+            if (ResQuestions.ElementAt(position).images.Count() > 0) {
                 hld.Image.Visibility = ViewStates.Visible;
-                hld.Image.LoadImage(ResQuestions.ElementAt(position).Images.ElementAt(0));
+                hld.Image.LoadImage(ResQuestions.ElementAt(position).images.ElementAt(0));
                     }
             else
             {
@@ -47,30 +50,32 @@ namespace Izrune.Adapters.RecyclerviewAdapters
 
 
 
-
+            Answers.Clear();
             hld.AnswerContainer.RemoveAllViews();
             foreach(var items in ResQuestions.ElementAt(position).Answers)
             {
                 var Resultt = LayoutInflater.From(context).Inflate(Resource.Layout.ItemQuezAnswer, null);
-                Resultt.FindViewById<TextView>(Resource.Id.AnswerTxt).Text = items.Title;
+                Resultt.FindViewById<TextView>(Resource.Id.AnswerTxt).Text = items.title;
 
-                if (items.StudentIsRight)
+                Answers.Add(Resultt);
+                hld.AnswerContainer.AddView(Resultt);
+
+            }
+            var Index = ResQuestions.ElementAt(position).StudentAnswerIndex;
+            if (Index >= 0)
+            {
+                if (ResQuestions.ElementAt(position).Answers.ElementAt(Index).IsRight)
                 {
-                    Resultt.FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesCorrectButtonBackground);
+                    Answers.ElementAt(Index).FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesCorrectButtonBackground);
                 }
                 else
                 {
-                    Resultt.FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesInCorectButtonBackground);
+                    Answers.ElementAt(Index).FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesInCorectButtonBackground);
                 }
-
-                hld.AnswerContainer.AddView(Resultt);
-
-
-
             }
 
-            
-           
+
+
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)

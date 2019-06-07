@@ -14,6 +14,7 @@ using FFImageLoading.Views;
 using Izrune.Adapters.RecyclerviewAdapters;
 using Izrune.Attributes;
 using Izrune.Helpers;
+using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
 using MpdcContainer = ServiceContainer.ServiceContainer;
@@ -37,7 +38,7 @@ namespace Izrune.Fragments
             base.OnViewCreated(view, savedInstanceState);
             var Result =await MpdcContainer.Instance.Get<IStatisticServices>().GetFinalQuestionResult();
 
-            var adapter = new QuestionStatisticAdapter(Result.ToList(), this);
+            var adapter = new QuestionStatisticAdapter((Result as IEnumerable<IFinalQuestion>).ToList(), this);
             StatisticRecyclerView.SetLayoutManager(new LinearLayoutManager(this));
             StatisticRecyclerView.SetAdapter(adapter);
 

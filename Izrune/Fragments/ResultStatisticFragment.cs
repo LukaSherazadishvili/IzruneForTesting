@@ -48,6 +48,11 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.StarsContainer)]
         LinearLayout starsContr;
 
+        [MapControl(Resource.Id.PointText)]
+        TextView PointTxt;
+
+        [MapControl(Resource.Id.MarkTXt)]
+        TextView Mark;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -70,7 +75,8 @@ namespace Izrune.Fragments
             Correctanswers.Text = QuisInfo.RightAnswer.ToString();
             IncorectAnswers.Text = QuisInfo.WronAnswers.ToString();
             SkippedAnswer.Text = QuisInfo.SkipedAnswers.ToString();
-
+            PointTxt.Text = QuisInfo.text_title;
+            Mark.Text = QuisInfo.text_description;
             if (!string.IsNullOrEmpty(Result.DiplomaURl))
             {
                 DiplomaImage.Visibility = ViewStates.Visible;
