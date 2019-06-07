@@ -528,8 +528,6 @@ namespace MpdcViewExtentions
             if (shouldFillOnlyContent)
                 imageView.ContentMode = UIViewContentMode.ScaleAspectFit;
 
-            //var currTheme = AppTheme.Instance.SelectedTheme;
-
             string placeholder = "4.png";
             ImageService
                   .Instance
@@ -547,6 +545,10 @@ namespace MpdcViewExtentions
                     string urll = url;
                     Console.WriteLine(obj);
                 })
+                .Success(() =>
+                {
+                    Console.Write("Success");
+                    })
                   .Into(imageView);
         }
 
