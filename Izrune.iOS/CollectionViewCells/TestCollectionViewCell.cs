@@ -44,15 +44,14 @@ namespace Izrune.iOS.CollectionViewCells
             // Note: this .ctor should not contain any initialization logic.
         }
 
-        public void InitData(IQuestion question)
+        public void InitData(IQuestion question, string index="")
         {
-
             Question = question;
 
             InitCollectionViews();
 
             SetCellHeight(question);
-            questionLbl.Text = question?.title;
+            questionLbl.Text = $"{index}{question.title}";
 
             //CalculateImagesCollectionViewHeight(question);
 
@@ -60,7 +59,6 @@ namespace Izrune.iOS.CollectionViewCells
             answerCollectionViewHeight.Constant = answersCollectioHeight;
 
             questionImagesCollectionView.ReloadData();
-            answerCollectionView.ReloadData();
             answerCollectionView.ReloadData();
         }
 
@@ -229,5 +227,6 @@ namespace Izrune.iOS.CollectionViewCells
             topLine.Hidden = true;
             bottomLine.Hidden = false;
         }
+
     }
 }

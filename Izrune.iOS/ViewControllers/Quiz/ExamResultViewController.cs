@@ -38,7 +38,11 @@ namespace Izrune.iOS
 
         private void InitResult()
         {
-            diplomeImageView.InitImageFromWeb(QuisInfo?.DiplomaURl, false, false);
+
+            if (!string.IsNullOrEmpty(QuisInfo?.DiplomaURl) && !string.IsNullOrWhiteSpace(QuisInfo.DiplomaURl))
+                diplomeImageView.InitImageFromWeb(QuisInfo?.DiplomaURl, false, false);
+            else
+                diplomeImageView.Hidden = true;
 
             var ratingImages = ratingStackView.Subviews.Select(x => x as UIImageView);
 

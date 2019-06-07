@@ -182,7 +182,7 @@ namespace Izrune.iOS
                         await GoToResultPage();
                     }
 
-
+                    questionCollectionView.ReloadData();
                 }
 
                 catch (Exception ex)
@@ -232,6 +232,7 @@ namespace Izrune.iOS
                 EndLoading();
 
                 var resultTab = Storyboard.InstantiateViewController(ResultTabbedViewController.StoryboardId) as ResultTabbedViewController;
+                resultTab.Questions = AllQuestions;
 
                 resultTab.QuisInfo = info;
 
@@ -289,7 +290,7 @@ namespace Izrune.iOS
                 imagesHeight = 0;
                 Debug.WriteLine($"ImagesCount : {ImagesCount}");
             }
-            else if (ImagesCount > 0 && ImagesCount <= 2)
+            else
             {
                 imagesHeight = 180;
                 Debug.WriteLine($"ImagesCount : {ImagesCount}");
