@@ -40,12 +40,13 @@ namespace IZrune.PCL.Implementation.Services
                 {
                     Title = i.title,
                     Images = i.images.Select(o => o.url),
+                   
                     Answers = i.answers.Select(o => new FinalAnswer()
-                    {
+                    {                        
                         QuestionIsRight = o.right == "1" ? true : false,
-                        StudentIsRight = o.right == "1" & o.student_answer == 1 ? true : false,
+                        StudentIsRight = o.right == "1" && o.student_answer == 1 ? true : false,
+                        position=  o.student_answer == 1 ?i.answers.IndexOf(o):-1,
                         Title = o.title
-
                     })
 
                 });

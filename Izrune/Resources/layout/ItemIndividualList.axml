@@ -5,6 +5,7 @@
     android:layout_height="wrap_content">
 
 	<FrameLayout
+		android:id="@+id/CurrentFrame"
 		android:layout_marginTop="20dp"
 		android:paddingLeft="20dp"
 		android:layout_gravity="center_horizontal"
