@@ -60,7 +60,6 @@ namespace Izrune.iOS.CollectionViewCells
 
             questionImagesCollectionView.ReloadData();
             answerCollectionView.ReloadData();
-            answerCollectionView.ReloadData();
         }
 
         private void InitCollectionViews()
@@ -227,15 +226,6 @@ namespace Izrune.iOS.CollectionViewCells
         {
             topLine.Hidden = true;
             bottomLine.Hidden = false;
-        }
-
-
-        // Init Data For Result Page
-        //=============================
-
-        public void InitData(IFinalQuestion finalQuestion, int index)
-        {
-            questionLbl.Text = $"{index}) {finalQuestion.Title}";
         }
 
     }

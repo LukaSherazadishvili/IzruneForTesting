@@ -182,7 +182,7 @@ namespace Izrune.iOS
                         await GoToResultPage();
                     }
 
-
+                    questionCollectionView.ReloadData();
                 }
 
                 catch (Exception ex)
@@ -290,7 +290,7 @@ namespace Izrune.iOS
                 imagesHeight = 0;
                 Debug.WriteLine($"ImagesCount : {ImagesCount}");
             }
-            else if (ImagesCount > 0 && ImagesCount <= 2)
+            else
             {
                 imagesHeight = 180;
                 Debug.WriteLine($"ImagesCount : {ImagesCount}");
