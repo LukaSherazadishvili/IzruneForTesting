@@ -18,7 +18,7 @@ namespace IZrune.PCL.Implementation.Services
 {
     public class StatisticServices : IStatisticServices
     {
-        public async Task<IEnumerable<IFinalQuestion>> GetFinalQuestionResult()
+        public async Task<IEnumerable<IQuestion>> GetFinalQuestionResult()
         {
             try
             {
@@ -27,7 +27,6 @@ namespace IZrune.PCL.Implementation.Services
                 var FormContent = new FormUrlEncodedContent(new[]
                        {
                         new KeyValuePair<string,string>("student_id",UserControl.Instance.CurrentStudent?.id.ToString())
-
                      });
                 var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getStatistics&hashcode=2eb56752d70e796575e4b70f88d07248", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
@@ -35,15 +34,14 @@ namespace IZrune.PCL.Implementation.Services
                 var Test = Result.tests.FirstOrDefault();
                 FinalQuest = Test.questions.Select(i => new FinalQuestion()
                 {
-                    Title = i.title,
-                    Images = i.images.Select(o => o.url),
+                    title = i.title,
+                    images = i.images.Select(o => o.url),
                     StudentAnswerIndex = i.answers.IndexOf(i.answers.Where(x => x.student_answer == 1).FirstOrDefault()),
 
-                    Answers = i.answers.Select(o => new FinalAnswer()
+                    Answers = i.answers.Select(o => new Answer()
                     {                        
-                        QuestionIsRight = o.right == "1" ? true : false,
-                        StudentIsRight = o.right == "1" && o.student_answer == 1 ? true : false,                    
-                        Title = o.title
+                        IsRight = o.right == "1" ? true : false,                                       
+                        title = o.title
                     })
 
                 });

@@ -7,10 +7,11 @@ namespace IZrune.PCL.Implementation.Models
 {
     public class FinalQuestion : IFinalQuestion
     {
-        public string Title { get; set; }
         public int StudentAnswerIndex { get; set; }
-       
-        public IEnumerable<string> Images { get; set; }
-        public IEnumerable<IFinalAnswers> Answers { get; set; }
+        public int id { get; set; }
+        public string title { get; set; }
+        public string image_url { get; set; }
+        public IEnumerable<string> images { get; set; }
+        public IEnumerable<IAnswer> Answers { get; set; }
     }
 }

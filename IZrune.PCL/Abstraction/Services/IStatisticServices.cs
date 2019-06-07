@@ -11,6 +11,6 @@ namespace IZrune.PCL.Abstraction.Services
     {
         Task<IEnumerable<IStudentsStatistic>> GetStudentStatisticsAsync( QuezCategory type);
 
-        Task<IEnumerable<IFinalQuestion>> GetFinalQuestionResult();
+        Task<IEnumerable<IQuestion>> GetFinalQuestionResult();
     }
 }

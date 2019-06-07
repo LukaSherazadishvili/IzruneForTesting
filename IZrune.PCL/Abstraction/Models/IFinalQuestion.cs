@@ -4,13 +4,10 @@ using System.Text;
 
 namespace IZrune.PCL.Abstraction.Models
 {
-   public interface IFinalQuestion
+   public interface IFinalQuestion:IQuestion
     {
-        string Title { get; set; }
         int StudentAnswerIndex { get; set; }
      
-        IEnumerable<string> Images { get; set; }
 
-        IEnumerable<IFinalAnswers> Answers { get; set; }
     }
 }
