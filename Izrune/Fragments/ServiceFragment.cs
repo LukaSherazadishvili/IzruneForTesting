@@ -74,6 +74,8 @@ namespace Izrune.Fragments
             var adapter = new ServiceViewPagerAdapter(ChildFragmentManager, FragmentList);
             pager.Adapter = adapter;
             pager.PageSelected += Pager_PageSelected;
+
+
         }
 
         private void Pager_PageSelected(object sender, ViewPager.PageSelectedEventArgs e)
