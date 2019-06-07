@@ -80,7 +80,7 @@ namespace IZrune.PCL.Implementation.Services
                 new KeyValuePair<string, string>("school_id1",student.SchoolId.ToString()),
                 new KeyValuePair<string, string>("class1",student.Class.ToString()),
                 new KeyValuePair<string,string>("sdate1",student.PackageStartDate.ToShortDateString()),
-                new KeyValuePair<string, string>("school_id1",student.PackageMonthCount.ToString())
+                new KeyValuePair<string, string>("months1",student.PackageMonthCount.ToString())
             });
 
             var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=register&hashcode=4e5e0ccbab0da8c25637b0aa14e6cbbd", FormContent);

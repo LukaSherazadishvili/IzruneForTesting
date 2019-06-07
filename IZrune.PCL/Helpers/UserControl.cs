@@ -136,8 +136,8 @@ namespace IZrune.PCL.Helpers
             }
         }
 
-       public Parent RegistrationUser;
-        public async void RegistrationParrentPartOne(string Name,string LastName,DateTime date,string city,string Village="")
+       public Parent RegistrationUser { get; set; }
+        public  void RegistrationParrentPartOne(string Name,string LastName,DateTime date,string city,string Village="")
         {
             RegistrationUser = new Parent();
             RegistrationUser.Name = Name;
@@ -147,7 +147,7 @@ namespace IZrune.PCL.Helpers
             RegistrationUser.Vilage = Village;
         }
 
-        public async void RegistrationParrentPartTwo(string Phone,string Mail,string UserName,string Password)
+        public  void RegistrationParrentPartTwo(string Phone,string Mail,string UserName,string Password)
         {
             RegistrationUser.Phone = Phone;
             RegistrationUser.Email = Mail;
@@ -155,8 +155,8 @@ namespace IZrune.PCL.Helpers
             RegistrationUser.Password = Password;
         }
 
-        public Student RegistrationStudent;
-        public async void RegistrationStudentPartOne(string Name,string LastName,DateTime date,string PersonalId,string Phone,string Mail)
+        public Student RegistrationStudent { get; set; }
+        public  void RegistrationStudentPartOne(string Name,string LastName,DateTime date,string PersonalId,string Phone,string Mail)
         {
             RegistrationStudent = new Student();
             RegistrationStudent.Name = Name;
@@ -167,12 +167,25 @@ namespace IZrune.PCL.Helpers
             RegistrationStudent.Email = Mail;
         }
 
-        public async void RegistrationStudentPartTwo(int RegionID,string Village,int Schoold,int Clas)
+        public  void RegistrationStudentPartTwo(int RegionID,string Village,int Schoold,int Clas)
         {
             RegistrationStudent.RegionId = RegionID;
             RegistrationStudent.Village = Village;
             RegistrationStudent.SchoolId = Schoold;
             RegistrationStudent.Class = Clas;
+        }
+
+        public void SetPromoPack(int MonthCount)
+        {
+            RegistrationStudent.PackageStartDate = DateTime.Now;
+            RegistrationStudent.PackageMonthCount = MonthCount;
+        }
+
+        public async Task<bool> FinishRegistration()
+        {
+           var Result=await MpdcContainer.Instance.Get<IRegistrationServices>().RegistrationUser(RegistrationUser, RegistrationStudent);
+
+            return Result;
         }
 
     }
