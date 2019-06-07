@@ -79,7 +79,7 @@
     <ItemGroup>
       <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
       <PackageReference Include="Xamarin.FFImageLoading">
-        <Version>2.4.9.961</Version>
+        <Version>2.4.11.982</Version>
       </PackageReference>
       <PackageReference Include="Newtonsoft.Json">
         <Version>12.0.2</Version>
@@ -393,13 +393,13 @@
       <BundleResource Include="Resources\ichamburger.png" />
       <BundleResource Include="Resources\ichamburger%402x.png" />
       <BundleResource Include="Resources\ichamburger%403x.png" />
-      <BundleResource Include="Resources\Views\AnswerClass" />
       <BundleResource Include="Resources\fagarati.png" />
       <BundleResource Include="Resources\ic_arrow_downward_24px.png" />
       <BundleResource Include="Resources\logo.png" />
       <BundleResource Include="Resources\logo%402x.png" />
       <BundleResource Include="Resources\logo%403x.png" />
       <BundleResource Include="Resources\Group 136.png" />
+      <BundleResource Include="Resources\checkFilled.png" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\IZrune.PCL\IZrune.PCL.csproj">

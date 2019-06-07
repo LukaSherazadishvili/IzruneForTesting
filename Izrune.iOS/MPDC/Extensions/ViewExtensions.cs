@@ -522,34 +522,32 @@ namespace MpdcViewExtentions
 
         public static void InitImageFromWeb(this UIImageView imageView, string url, bool isMini = false, bool shouldFillOnlyContent = false)
         {
+        
+            if (imageView == null) return;
 
-
-            //if (imageView == null) return;
-
-
-            //if (shouldFillOnlyContent)
-            //    imageView.ContentMode = UIViewContentMode.ScaleAspectFit;
+            if (shouldFillOnlyContent)
+                imageView.ContentMode = UIViewContentMode.ScaleAspectFit;
 
             //var currTheme = AppTheme.Instance.SelectedTheme;
 
-            //string placeholder = isMini ? currTheme.LoadingPlaceHolderSmallPath : currTheme.LoadingPlaceHolderWidePath;
-            //ImageService
-                //  .Instance
+            string placeholder = "4.png";
+            ImageService
+                  .Instance
 
-                //.LoadUrl(url)
-                //.Success(() => {
-                //    if (shouldFillOnlyContent)
-                //        imageView.ContentMode = UIViewContentMode.ScaleAspectFill;
-                //})
-                //.ErrorPlaceholder(placeholder)
+                .LoadUrl(url)
+                .Success(() => {
+                    if (shouldFillOnlyContent)
+                        imageView.ContentMode = UIViewContentMode.ScaleAspectFill;
+                })
+                .ErrorPlaceholder(placeholder)
 
-                //.LoadingPlaceholder(placeholder)
-                //.Error((Exception obj) => {
+                .LoadingPlaceholder(placeholder)
+                .Error((Exception obj) => {
 
-                //    string urll = url;
-                //    Console.WriteLine(obj);
-                //})
-                  //.Into(imageView);
+                    string urll = url;
+                    Console.WriteLine(obj);
+                })
+                  .Into(imageView);
         }
 
         public static void InitImageFromWeb(this UIImageView imageView, string url, Action finishedSuccess,Action FinishedFail)

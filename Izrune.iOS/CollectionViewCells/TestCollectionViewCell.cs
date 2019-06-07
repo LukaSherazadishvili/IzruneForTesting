@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CoreGraphics;
 using Foundation;
@@ -23,6 +24,13 @@ namespace Izrune.iOS.CollectionViewCells
         public nfloat CellSize { get; set; }
 
         public Action<IAnswer> AnswerClicked { get; set; }
+        private List<string> NumberList = new List<string>()
+        {
+            "ა",
+            "ბ",
+            "გ",
+            "დ"
+        };
 
         IQuestion Question;
 
@@ -96,7 +104,7 @@ namespace Izrune.iOS.CollectionViewCells
 
             var data = Question?.Answers?.ElementAt(indexPath.Row);
 
-            cell.InitData(data);
+            cell.InitData(data, NumberList?[indexPath.Row]);
 
             cell.AnswerClicked = (answer) =>
             {
@@ -214,6 +222,12 @@ namespace Izrune.iOS.CollectionViewCells
 
                 answersCollectioHeight += height + 40;
             }
+        }
+
+        public void ShowBottomLine()
+        {
+            topLine.Hidden = true;
+            bottomLine.Hidden = false;
         }
     }
 }

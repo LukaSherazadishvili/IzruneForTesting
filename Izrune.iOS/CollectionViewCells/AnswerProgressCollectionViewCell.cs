@@ -47,7 +47,7 @@ namespace Izrune.iOS.CollectionViewCells
                 checkImageView.Hidden = false;
                 answerNumberView.Hidden = true;
                 undefinedView.Hidden = true;
-                checkImageView.Image = UIImage.FromBundle("1 – 5.png");
+                checkImageView.Image = UIImage.FromBundle("checkFilled.png");
             }
 
             if(quisSheduler.IsCurrent)

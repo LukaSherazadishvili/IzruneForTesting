@@ -3,12 +3,14 @@
 using System;
 
 using Foundation;
+using Izrune.iOS.CollectionViewCells;
+using IZrune.PCL.Abstraction.Models;
 using UIKit;
 using XLPagerTabStrip;
 
 namespace Izrune.iOS
 {
-	public partial class QuestionResultViewController : UIViewController, IIndicatorInfoProvider
+	public partial class QuestionResultViewController : UIViewController, IUICollectionViewDelegate, IUICollectionViewDataSource, IUICollectionViewDelegateFlowLayout,IIndicatorInfoProvider
     {
 		public QuestionResultViewController (IntPtr handle) : base (handle)
 		{
@@ -16,14 +18,53 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("QuestionResultStoryboardId");
 
+
+        public IQuisInfo QuisInfo;
+
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            InitCollectionView();
+
+            questionCollectionView.ReloadData();
         }
+
+
 
         public IndicatorInfo IndicatorInfoForPagerTabStrip(PagerTabStripViewController pagerTabStripController)
         {
             return new IndicatorInfo("კითხვები");
+        }
+
+        public nint GetItemsCount(UICollectionView collectionView, nint section)
+        {
+            return 10;
+        }
+
+        public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
+        {
+            var cell = questionCollectionView.DequeueReusableCell(TestCollectionViewCell.Identifier, indexPath) as TestCollectionViewCell;
+
+            cell.ShowBottomLine();
+
+            return cell;
+        }
+
+        private void InitCollectionView()
+        {
+            questionCollectionView.RegisterNibForCell(TestCollectionViewCell.Nib, TestCollectionViewCell.Identifier);
+
+            questionCollectionView.Delegate = this;
+            questionCollectionView.DataSource = this;
+
+        }
+
+        [Export("collectionView:layout:sizeForItemAtIndexPath:")]
+        public CoreGraphics.CGSize GetSizeForItem(UICollectionView collectionView, UICollectionViewLayout layout, NSIndexPath indexPath)
+        {
+            return new CoreGraphics.CGSize(collectionView.Frame.Width, collectionView.Frame.Height);
         }
     }
 }

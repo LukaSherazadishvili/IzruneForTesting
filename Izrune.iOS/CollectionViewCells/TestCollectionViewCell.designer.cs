@@ -19,6 +19,9 @@ namespace Izrune.iOS.CollectionViewCells
 		UIKit.NSLayoutConstraint answerCollectionViewHeight { get; set; }
 
 		[Outlet]
+		UIKit.UIView bottomLine { get; set; }
+
+		[Outlet]
 		UIKit.NSLayoutConstraint imagesCollectionViewHeight { get; set; }
 
 		[Outlet]
@@ -29,6 +32,9 @@ namespace Izrune.iOS.CollectionViewCells
 
 		[Outlet]
 		UIKit.UILabel questionLbl { get; set; }
+
+		[Outlet]
+		UIKit.UIView topLine { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -47,6 +53,11 @@ namespace Izrune.iOS.CollectionViewCells
 				imagesCollectionViewHeight = null;
 			}
 
+			if (mainView != null) {
+				mainView.Dispose ();
+				mainView = null;
+			}
+
 			if (questionImagesCollectionView != null) {
 				questionImagesCollectionView.Dispose ();
 				questionImagesCollectionView = null;
@@ -57,9 +68,14 @@ namespace Izrune.iOS.CollectionViewCells
 				questionLbl = null;
 			}
 
-			if (mainView != null) {
-				mainView.Dispose ();
-				mainView = null;
+			if (topLine != null) {
+				topLine.Dispose ();
+				topLine = null;
+			}
+
+			if (bottomLine != null) {
+				bottomLine.Dispose ();
+				bottomLine = null;
 			}
 		}
 	}

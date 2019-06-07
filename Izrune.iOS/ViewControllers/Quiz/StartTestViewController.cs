@@ -84,7 +84,7 @@ namespace Izrune.iOS
 
         private bool IsExamActive(TimeSpan span)
         {
-            Debug.WriteLine($"{span.Hours} {span.Minutes} {span.Seconds}");
+            //Debug.WriteLine($"{span.Hours} {span.Minutes} {span.Seconds}");
             var res = (span.Hours <= 0 && span.Minutes <= 0 && span.Seconds <= 0);
             return res;
             
@@ -207,7 +207,7 @@ namespace Izrune.iOS
             {
 
                 Test2Date = Test2Date.Subtract(TimeSpan.FromSeconds(1));
-                Debug.WriteLine($"{Test2Date.Minutes} : {Test2Date.Seconds}");
+                //Debug.WriteLine($"{Test2Date.Minutes} : {Test2Date.Seconds}");
                 if (Test2Date.Seconds == 0)
                     Test2Date = Test2Date.Add(new TimeSpan(0, -1, 0));
                 //if(Test2Date.Minutes == 0)
