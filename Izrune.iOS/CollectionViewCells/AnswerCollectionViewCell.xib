@@ -27,7 +27,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="534" height="60"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fHc-ca-Wnb">
-                                <rect key="frame" x="12" y="10" width="510" height="40"/>
+                                <rect key="frame" x="12" y="10" width="517" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="მგელი მგელი მგე" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q88-e7-BWk">
@@ -59,7 +59,6 @@
                         <constraints>
                             <constraint firstItem="mnS-Jo-HrY" firstAttribute="top" secondItem="q88-e7-BWk" secondAttribute="top" constant="-10" id="2dn-ck-jgs"/>
                             <constraint firstItem="mnS-Jo-HrY" firstAttribute="bottom" secondItem="q88-e7-BWk" secondAttribute="bottom" constant="10" id="35m-hH-ORp"/>
-                            <constraint firstItem="fHc-ca-Wnb" firstAttribute="trailing" secondItem="q88-e7-BWk" secondAttribute="trailing" id="3YQ-Rj-fPb"/>
                             <constraint firstItem="q88-e7-BWk" firstAttribute="leading" secondItem="mnS-Jo-HrY" secondAttribute="trailing" constant="13" id="7tK-Z1-SZJ"/>
                             <constraint firstItem="fHc-ca-Wnb" firstAttribute="top" secondItem="mnS-Jo-HrY" secondAttribute="top" id="7yP-k8-OzW"/>
                             <constraint firstAttribute="trailing" secondItem="q88-e7-BWk" secondAttribute="trailing" constant="12" id="PRC-1K-hTh"/>
@@ -67,6 +66,7 @@
                             <constraint firstItem="fHc-ca-Wnb" firstAttribute="leading" secondItem="mnS-Jo-HrY" secondAttribute="leading" id="XlG-vx-EUb"/>
                             <constraint firstItem="q88-e7-BWk" firstAttribute="centerY" secondItem="bQL-NC-J2B" secondAttribute="centerY" id="eJF-eM-8dg"/>
                             <constraint firstItem="q88-e7-BWk" firstAttribute="leading" secondItem="bQL-NC-J2B" secondAttribute="leading" constant="65" id="kOs-RQ-qc0"/>
+                            <constraint firstAttribute="trailing" secondItem="fHc-ca-Wnb" secondAttribute="trailing" constant="5" id="lIo-Fl-4AG"/>
                         </constraints>
                     </view>
                 </subviews>

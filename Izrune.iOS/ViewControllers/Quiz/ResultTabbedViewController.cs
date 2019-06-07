@@ -20,6 +20,8 @@ namespace Izrune.iOS
 
         private List<UIViewController> TabVcs = new List<UIViewController>();
 
+        public List<IQuestion> Questions;
+
         public IQuisInfo QuisInfo;
 
         ExamResultViewController ExRes;
@@ -32,7 +34,8 @@ namespace Izrune.iOS
             ExRes.QuisInfo = QuisInfo;
 
             QuestionRes = Storyboard.InstantiateViewController(QuestionResultViewController.StoryboardId) as QuestionResultViewController;
-            QuestionRes.QuisInfo = QuisInfo;
+            QuestionRes.Questions = Questions;
+
 
             TabVcs.Add(ExRes);
             TabVcs.Add(QuestionRes);
