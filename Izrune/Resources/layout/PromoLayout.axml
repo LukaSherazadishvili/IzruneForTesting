@@ -72,15 +72,18 @@ android:id="@+id/Container">
 						android:text="10 თვე"/>	
 				</FrameLayout>
 				<FrameLayout
-					android:layout_marginLeft="5dp"
-					android:background="@drawable/izrune_editext_back"
+					android:layout_marginLeft="5dp"					
 					android:layout_width="0dp"
 					android:layout_height="50dp"
 					android:layout_weight="1">
-				<TextView
+				<EditText
+							android:id="@+id/PromoEditText"
+							android:textSize="15dp"
+							android:gravity="center"
+							android:background="@drawable/izrune_editext_back"
 							android:layout_gravity="center"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
 						android:text="10 თვე"/>	
 				</FrameLayout>
         </LinearLayout>
@@ -130,7 +133,7 @@ android:id="@+id/Container">
 
 
 <LinearLayout
-			android:id="@+id/NextButton"
+			android:id="@+id/SubmitButton"
             android:elevation="5dp"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"

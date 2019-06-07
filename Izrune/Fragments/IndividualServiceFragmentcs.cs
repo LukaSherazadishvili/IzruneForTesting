@@ -32,7 +32,7 @@ namespace Izrune.Fragments
 
         private List<IPrice> PriceList = new List<IPrice>();
 
-      
+        private List<View> ServiceViews = new List<View>();
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -44,7 +44,7 @@ namespace Izrune.Fragments
         public  override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
-
+            ServiceViews.Clear();
            
 
             foreach (var items in PriceList)
@@ -53,14 +53,31 @@ namespace Izrune.Fragments
 
                 Vw.FindViewById<TextView>(Resource.Id.TimeTxt).Text = items.months.ToString()+" თვე";
                 Vw.FindViewById<TextView>(Resource.Id.SaleTXt).Visibility = ViewStates.Gone;
-                Vw.FindViewById<TextView>(Resource.Id.PriceText).Text = items.price.ToString();
-
+                Vw.FindViewById<TextView>(Resource.Id.PriceText).Text = items.price.ToString()+ " ₾";
+                ServiceViews.Add(Vw);
                 Body.AddView(Vw);
 
-
+                Vw.Click += Vw_Click;
 
 
             }
+        }
+
+        private void Vw_Click(object sender, EventArgs e)
+        {
+            foreach(var Items in ServiceViews)
+            {
+                Items.FindViewById<FrameLayout>(Resource.Id.CurrentFrame).SetBackgroundResource(Resource.Drawable.izrune_editext_back);
+            }
+
+           (sender as View).FindViewById<FrameLayout>(Resource.Id.CurrentFrame).SetBackgroundResource(Resource.Drawable.ServiceButtonBack);
+
+            var Index = ServiceViews.IndexOf((sender as View));
+
+          var Result=PriceList.ElementAt(Index);
+
+            UserControl.Instance.SetPromoPack(Result.months);
+
         }
     }
 }
