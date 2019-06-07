@@ -160,7 +160,7 @@ namespace Izrune.iOS.ViewControllers
 
             navVc.NavigationBar.InitNavigationBarColorWithNoShadow(UIColor.White);
 
-            navVc.NavigationBar.TintColor = UIColor.White;
+            navVc.NavigationBar.TintColor = AppColors.Tint;
 
             return navVc;
         }
