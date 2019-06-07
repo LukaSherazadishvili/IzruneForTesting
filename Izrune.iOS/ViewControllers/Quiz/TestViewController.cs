@@ -58,8 +58,21 @@ namespace Izrune.iOS
                 //TODO
                 try
                 {
-                    await SkipQuestion();
+                    var asd = currentIndex;
+                    if (currentIndex >= AllQuestions?.Count-1)
+                    {
+                        currentIndex++;
+                        await GoToResultPage();
+                    }
+                    else
+                    {
+                        if (!IsTotalTime)
+                            timeLbl.Text = ($"01:00");
+                        await SkipQuestion();
+                        ScrollAnswerProgressCell();
+                    }
                 }
+
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
@@ -155,43 +168,14 @@ namespace Izrune.iOS
 
                     if (currentIndex < AllQuestions?.Count)
                     {
-                        if (currentIndex >= lastVisibleIndex)
-                        {
-                            answerProgressCollectionView.ScrollToItem(NSIndexPath.FromRowSection(currentIndex + 1, 0), UICollectionViewScrollPosition.CenteredHorizontally, true);
-                            lastVisibleIndex++;
-                        }
-
-                        else
-                        {
-                            answerProgressCollectionView.ScrollToItem(NSIndexPath.FromRowSection(currentIndex, 0), UICollectionViewScrollPosition.CenteredHorizontally, true);
-                            lastVisibleIndex++;
-                        }
-
-                        questionCollectionView.ReloadData();
-                        answerProgressCollectionView.ReloadData();
+                        ScrollAnswerProgressCell();
                     }
 
                     else
                     {
                         //TODO finish test
 
-                        await Task.Delay(500);
-
-                        questionCollectionView.Hidden = true;
-
-                        ShowLoading();
-
-                        var info = (await QuezControll.Instance.GetExamInfoAsync());
-
-                        EndLoading();
-
-                        var resultTab = Storyboard.InstantiateViewController(ResultTabbedViewController.StoryboardId) as ResultTabbedViewController;
-
-                        resultTab.QuisInfo = info;
-
-                        this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
-
-                        this.NavigationController.PushViewController(resultTab, true);
+                        await GoToResultPage();
                     }
 
 
@@ -208,6 +192,47 @@ namespace Izrune.iOS
 
             cell.InitData(CurrentQuestion);
             return cell;
+        }
+
+        private void ScrollAnswerProgressCell()
+        {
+            if (currentIndex >= lastVisibleIndex)
+            {
+                answerProgressCollectionView.ScrollToItem(NSIndexPath.FromRowSection(currentIndex + 1, 0), UICollectionViewScrollPosition.CenteredHorizontally, true);
+                lastVisibleIndex++;
+            }
+
+            else
+            {
+                answerProgressCollectionView.ScrollToItem(NSIndexPath.FromRowSection(currentIndex, 0), UICollectionViewScrollPosition.CenteredHorizontally, true);
+                lastVisibleIndex++;
+            }
+
+            questionCollectionView.ReloadData();
+            answerProgressCollectionView.ReloadData();
+        }
+
+        private async Task GoToResultPage()
+        {
+            await Task.Delay(500);
+
+            InvokeOnMainThread(async () => {
+                questionCollectionView.Hidden = true;
+
+                ShowLoading();
+
+                var info = (await QuezControll.Instance.GetExamInfoAsync());
+
+                EndLoading();
+
+                var resultTab = Storyboard.InstantiateViewController(ResultTabbedViewController.StoryboardId) as ResultTabbedViewController;
+
+                resultTab.QuisInfo = info;
+
+                this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+
+                this.NavigationController.PushViewController(resultTab, true);
+            });
         }
 
         private void ResetTimer()
@@ -299,6 +324,8 @@ namespace Izrune.iOS
                         timer.Stop();
                         timer.Dispose();
                         await SkipQuestion();
+                        if (currentIndex >= AllQuestions?.Count)
+                            await GoToResultPage();
                         return;
 
                     }
@@ -328,14 +355,17 @@ namespace Izrune.iOS
 
         private async Task SkipQuestion()
         {
+            InvokeOnMainThread(() => questionCollectionView.Hidden = true);
+
             await QuezControll.Instance.AddQuestion();
             CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
             currentIndex++;
             InvokeOnMainThread(() =>
             {
-                ResetTimer();
                 questionCollectionView.ReloadData();
                 answerProgressCollectionView.ReloadData();
+                ResetTimer();
+                questionCollectionView.Hidden = false;
             });
 
         }
