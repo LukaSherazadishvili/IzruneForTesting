@@ -58,11 +58,7 @@ namespace Izrune.iOS
                 //TODO
                 try
                 {
-                    await QuezControll.Instance.AddQuestion();
-                    CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
-                    currentIndex++;
-                    answerProgressCollectionView.ReloadData();
-                    questionCollectionView.ReloadData();
+                    await SkipQuestion();
                 }
                 catch (Exception ex)
                 {
@@ -145,8 +141,8 @@ namespace Izrune.iOS
 
             cell.AnswerClicked = async (answer) =>
             {
-            
-                if(!IsTotalTime)
+
+                if (!IsTotalTime)
                     timeLbl.Text = ($"01:00");
 
                 await Task.Delay(200);
@@ -157,11 +153,11 @@ namespace Izrune.iOS
                     CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
                     currentIndex++;
 
-                    if(currentIndex < AllQuestions?.Count)
+                    if (currentIndex < AllQuestions?.Count)
                     {
                         if (currentIndex >= lastVisibleIndex)
                         {
-                            answerProgressCollectionView.ScrollToItem(NSIndexPath.FromRowSection(currentIndex+1, 0), UICollectionViewScrollPosition.CenteredHorizontally, true);
+                            answerProgressCollectionView.ScrollToItem(NSIndexPath.FromRowSection(currentIndex + 1, 0), UICollectionViewScrollPosition.CenteredHorizontally, true);
                             lastVisibleIndex++;
                         }
 
@@ -206,23 +202,26 @@ namespace Izrune.iOS
                     Console.WriteLine(ex.Message);
                 }
 
-
-                if (!IsTotalTime)
-                {
-                    timer.Dispose();
-                    InitTotalTimer(0);
-                }
-
-                if (!IsTotalTime)
-                {
-                    InitCircular(59);
-
-                }
+                ResetTimer();
 
             };
 
             cell.InitData(CurrentQuestion);
             return cell;
+        }
+
+        private void ResetTimer()
+        {
+            if (!IsTotalTime)
+            {
+                timer.Dispose();
+                InitTotalTimer(0);
+            }
+
+            if (!IsTotalTime)
+            {
+                InitCircular(59);
+            }
         }
 
         public nint GetItemsCount(UICollectionView collectionView, nint section)
@@ -290,7 +289,7 @@ namespace Izrune.iOS
             string Stringminutes;
             string Stringsecondes;
 
-            timer.Elapsed += (sender, e) => {
+            timer.Elapsed += async (sender, e) => {
 
                 if (secondes == 0)
                 {
@@ -299,8 +298,9 @@ namespace Izrune.iOS
                         timer.Enabled = false;
                         timer.Stop();
                         timer.Dispose();
+                        await SkipQuestion();
                         return;
-                        //TODO SkipQuestion
+
                     }
 
                     minutes--;
@@ -324,6 +324,20 @@ namespace Izrune.iOS
             };
 
             timer.Start();
+        }
+
+        private async Task SkipQuestion()
+        {
+            await QuezControll.Instance.AddQuestion();
+            CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
+            currentIndex++;
+            InvokeOnMainThread(() =>
+            {
+                ResetTimer();
+                questionCollectionView.ReloadData();
+                answerProgressCollectionView.ReloadData();
+            });
+
         }
 
         private void ShowLoginAlert()
