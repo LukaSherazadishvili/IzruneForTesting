@@ -28,11 +28,11 @@ namespace Izrune.iOS.CollectionViewCells
             // Note: this .ctor should not contain any initialization logic.
         }
 
-        public void InitData(IAnswer answer)
+        public void InitData(IAnswer answer, string number)
         {
             Answer = answer;
             answerLbl.Text = answer.title;
-
+            numberLbl.Text = number;
             InitAnswer(AppColors.Tint);
 
             answerLbl.TextColor = AppColors.UnselectedColor;

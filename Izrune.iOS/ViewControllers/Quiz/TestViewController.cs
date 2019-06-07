@@ -255,9 +255,16 @@ namespace Izrune.iOS
             var titleHeight = text.GetStringHeight((float)questionCollectionView.Frame.Width, 50, 17);
             var ImagesCount = data?.images?.Count();
             if (ImagesCount == 0)
+            {
                 imagesHeight = 0;
+                Debug.WriteLine($"ImagesCount : {ImagesCount}");
+            }
             else if (ImagesCount > 0 && ImagesCount <= 2)
+            {
                 imagesHeight = 180;
+                Debug.WriteLine($"ImagesCount : {ImagesCount}");
+            }
+
             float spaceSumBetweenAnswers = 80;
 
             foreach (var item in data?.Answers)

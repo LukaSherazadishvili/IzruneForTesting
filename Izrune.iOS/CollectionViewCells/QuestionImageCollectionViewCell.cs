@@ -24,7 +24,7 @@ namespace Izrune.iOS.CollectionViewCells
 
         public void InitData(string url)
         {
-            questionImageView.InitImageFromWeb(url, false, true);
+            questionImageView.InitImageFromWeb(url, false, false);
 
         }
 
