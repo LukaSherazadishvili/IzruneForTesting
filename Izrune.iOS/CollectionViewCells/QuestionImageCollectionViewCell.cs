@@ -24,7 +24,8 @@ namespace Izrune.iOS.CollectionViewCells
 
         public void InitData(string url)
         {
-            questionImageView.InitImageFromWeb(url, false, false);
+            questionImageView.InitImageFromWeb(url, false, true);
+
         }
 
         public override void AwakeFromNib()
