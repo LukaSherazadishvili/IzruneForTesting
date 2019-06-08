@@ -48,7 +48,7 @@ namespace Izrune.iOS.CollectionViewCells
         {
             Question = question;
 
-            InitCollectionViews();
+            //InitCollectionViews();
 
             SetCellHeight(question);
             questionLbl.Text = $"{index}{question.title}";
@@ -56,6 +56,10 @@ namespace Izrune.iOS.CollectionViewCells
             //CalculateImagesCollectionViewHeight(question);
 
             imagesCollectionViewHeight.Constant = imagesCollectioHeight;
+
+            questionImagesCollectionView.Frame = new CGRect(0, 0, questionImagesCollectionView.Frame.Width,
+                imagesCollectioHeight);
+
             answerCollectionViewHeight.Constant = answersCollectioHeight;
 
             questionImagesCollectionView.ReloadData();
@@ -84,6 +88,9 @@ namespace Izrune.iOS.CollectionViewCells
                 imagesCollectioHeight = 90;
 
             imagesCollectionViewHeight.Constant = imagesCollectioHeight;
+
+            questionImagesCollectionView.Frame = new CGRect(0, 0, questionImagesCollectionView.Frame.Width,
+                imagesCollectioHeight);
         }
 
         public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
@@ -172,8 +179,8 @@ namespace Izrune.iOS.CollectionViewCells
         private void InitImagesCollectionViewLayout()
         {
             var layout = new UICollectionViewFlowLayout();
-            layout.ItemSize = new CoreGraphics.CGSize(this.Frame.Width + pageSpacing, this.Frame.Height);
-            layout.ScrollDirection = UICollectionViewScrollDirection.Horizontal;
+            //layout.ItemSize = new CoreGraphics.CGSize(this.Frame.Width + pageSpacing, this.Frame.Height);
+            //layout.ScrollDirection = UICollectionViewScrollDirection.Horizontal;
             layout.MinimumLineSpacing = 0;
             layout.MinimumInteritemSpacing = 0;
 
@@ -196,8 +203,8 @@ namespace Izrune.iOS.CollectionViewCells
         [Export("numberOfSectionsInCollectionView:")]
         public nint NumberOfSections(UICollectionView collectionView)
         {
-            if (collectionView == questionImagesCollectionView)
-                return 2;
+            //if (collectionView == questionImagesCollectionView)
+                //return 2;
             return 1;
         }
 
