@@ -195,6 +195,15 @@ namespace Izrune.iOS
             };
 
             cell.InitData(CurrentQuestion);
+
+            cell.ImageClicked = (image) =>
+            {
+                var ImageVc = Storyboard.InstantiateViewController(QuestionImageViewController.StoryboardId) as QuestionImageViewController;
+
+                ImageVc.ImageUrl = image;
+
+                this.NavigationController.PresentModalViewController(ImageVc, true);
+            };
             return cell;
         }
 

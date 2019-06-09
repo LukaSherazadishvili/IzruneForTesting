@@ -25,6 +25,9 @@ namespace Izrune.iOS.CollectionViewCells
         public nfloat CellSize { get; set; }
 
         public Action<IAnswer> AnswerClicked { get; set; }
+
+        public Action<string> ImageClicked { get; set; }
+
         private List<string> NumberList = new List<string>()
         {
             "ა",
@@ -104,6 +107,12 @@ namespace Izrune.iOS.CollectionViewCells
 
                 var currData = Question?.images?.ElementAt(indexPath.Row);
                 questionCell.InitData(currData);
+
+                questionCell.ImageClicked = (image) =>
+                {
+                    //TODO
+                    ImageClicked?.Invoke(image);
+                };
 
                 return questionCell;
             }
