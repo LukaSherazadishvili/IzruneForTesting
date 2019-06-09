@@ -33,9 +33,9 @@ namespace Izrune.iOS
             SetupDropDown(SchoolDpD, schoolView, schoolLbl);
             SetupDropDown(ClassDpD, classView, classLbl);
 
-            InitDropDownUI(CityDpD);
-            InitDropDownUI(SchoolDpD);
-            InitDropDownUI(ClassDpD);
+            SetupDropDownGesture(CityDpD, cityView);
+            SetupDropDownGesture(SchoolDpD, schoolView);
+            SetupDropDownGesture(ClassDpD, classView);
         }
 
         private void SetupDropDown(DropDown dropDown, UIView viewForDpD, UILabel dropDownLbl)
@@ -66,6 +66,19 @@ namespace Izrune.iOS
             dropDown.TextFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 15);
             dropDown.ClipsToBounds = true;
             dropDown.Layer.CornerRadius = 20;
+        }
+
+        private void SetupDropDownGesture(DropDown dropDown, UIView viewforDpD)
+        {
+            if (viewforDpD.GestureRecognizers == null || viewforDpD.GestureRecognizers?.Length == 0)
+            {
+                viewforDpD.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    InitDropDownUI(dropDown);
+
+                    dropDown.Show();
+                }));
+            }
         }
     }
 }
