@@ -1810,7 +1810,7 @@
                                     <constraint firstAttribute="height" constant="150" id="nZW-s1-gdP"/>
                                 </constraints>
                             </imageView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sY2-ss-6Oj">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sY2-ss-6Oj">
                                 <rect key="frame" x="0.0" y="174" width="375" height="488"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="94O-X3-wFt">
@@ -2906,7 +2906,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jiS-Vj-fLP">
                                                                 <rect key="frame" x="0.0" y="165" width="340" height="40"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="დღე" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FL5-cz-Agw">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="დღე" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FL5-cz-Agw">
                                                                         <rect key="frame" x="0.0" y="0.0" width="69" height="40"/>
                                                                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
@@ -2916,7 +2916,7 @@
                                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                                     </textField>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="თვე" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1jQ-QJ-unM">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="თვე" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1jQ-QJ-unM">
                                                                         <rect key="frame" x="84.666666666666686" y="0.0" width="171" height="40"/>
                                                                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
@@ -2926,7 +2926,7 @@
                                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                                     </textField>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="წელი" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yiw-zk-QUl">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="წელი" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yiw-zk-QUl">
                                                                         <rect key="frame" x="271" y="0.0" width="69" height="40"/>
                                                                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
@@ -2999,17 +2999,28 @@
                                         <rect key="frame" x="20" y="215" width="340" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gqL-Wq-X3i">
+                                        <rect key="frame" x="20" y="215" width="340" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="yIo-sF-4MQ" firstAttribute="centerY" secondItem="1jQ-QJ-unM" secondAttribute="centerY" id="5OO-MD-uLP"/>
                                     <constraint firstItem="yIo-sF-4MQ" firstAttribute="height" secondItem="FL5-cz-Agw" secondAttribute="height" id="96O-85-ptF"/>
+                                    <constraint firstItem="gqL-Wq-X3i" firstAttribute="trailing" secondItem="yIo-sF-4MQ" secondAttribute="trailing" id="LW5-go-97B"/>
+                                    <constraint firstItem="gqL-Wq-X3i" firstAttribute="top" secondItem="yIo-sF-4MQ" secondAttribute="top" id="OmC-Gw-LCJ"/>
                                     <constraint firstItem="uB6-tP-Nlh" firstAttribute="top" secondItem="Raf-zM-p5s" secondAttribute="top" id="PCc-f1-F2E"/>
+                                    <constraint firstItem="gqL-Wq-X3i" firstAttribute="bottom" secondItem="yIo-sF-4MQ" secondAttribute="bottom" id="SLz-lt-D4Z"/>
                                     <constraint firstAttribute="bottom" secondItem="uB6-tP-Nlh" secondAttribute="bottom" id="SqN-b4-dsw"/>
                                     <constraint firstItem="uB6-tP-Nlh" firstAttribute="leading" secondItem="Raf-zM-p5s" secondAttribute="leading" id="a7Y-x8-sza"/>
                                     <constraint firstItem="yIo-sF-4MQ" firstAttribute="leading" secondItem="FL5-cz-Agw" secondAttribute="leading" id="fV6-LE-J5v"/>
                                     <constraint firstItem="yIo-sF-4MQ" firstAttribute="trailing" secondItem="yiw-zk-QUl" secondAttribute="trailing" id="qLp-p8-vc4"/>
                                     <constraint firstAttribute="trailing" secondItem="uB6-tP-Nlh" secondAttribute="trailing" id="shM-mG-KSp"/>
+                                    <constraint firstItem="gqL-Wq-X3i" firstAttribute="leading" secondItem="yIo-sF-4MQ" secondAttribute="leading" id="u0x-Cc-6TI"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -3025,10 +3036,11 @@
                         <viewLayoutGuide key="safeArea" id="l1P-gS-f3n"/>
                     </view>
                     <connections>
-                        <outlet property="dateTransparentView" destination="yIo-sF-4MQ" id="BZD-oz-51w"/>
+                        <outlet property="dateTransparentView" destination="yIo-sF-4MQ" id="fTg-0t-Cyf"/>
                         <outlet property="daylLbl" destination="FL5-cz-Agw" id="Dc5-I7-oBh"/>
                         <outlet property="monthLbl" destination="1jQ-QJ-unM" id="rdX-D0-3nh"/>
                         <outlet property="textFieldsStackView" destination="Oli-qf-5dg" id="1dr-3p-mzH"/>
+                        <outlet property="transparentDateTextfield" destination="gqL-Wq-X3i" id="5tt-tc-xW8"/>
                         <outlet property="yearLbl" destination="yiw-zk-QUl" id="MYh-JS-GLU"/>
                     </connections>
                 </viewController>

@@ -93,6 +93,9 @@
       <PackageReference Include="Com.Airbnb.iOS.Lottie">
         <Version>2.5.7</Version>
       </PackageReference>
+      <PackageReference Include="Xamarin.IQKeyboardManager">
+        <Version>1.4.1</Version>
+      </PackageReference>
     </ItemGroup>
     <ItemGroup>
         <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">

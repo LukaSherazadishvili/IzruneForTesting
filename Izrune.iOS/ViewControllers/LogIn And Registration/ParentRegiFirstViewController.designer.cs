@@ -25,15 +25,13 @@ namespace Izrune.iOS
 		UIKit.UIStackView textFieldsStackView { get; set; }
 
 		[Outlet]
+		UIKit.UITextField transparentDateTextfield { get; set; }
+
+		[Outlet]
 		UIKit.UITextField yearLbl { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (textFieldsStackView != null) {
-				textFieldsStackView.Dispose ();
-				textFieldsStackView = null;
-			}
-
 			if (dateTransparentView != null) {
 				dateTransparentView.Dispose ();
 				dateTransparentView = null;
@@ -49,9 +47,19 @@ namespace Izrune.iOS
 				monthLbl = null;
 			}
 
+			if (textFieldsStackView != null) {
+				textFieldsStackView.Dispose ();
+				textFieldsStackView = null;
+			}
+
 			if (yearLbl != null) {
 				yearLbl.Dispose ();
 				yearLbl = null;
+			}
+
+			if (transparentDateTextfield != null) {
+				transparentDateTextfield.Dispose ();
+				transparentDateTextfield = null;
 			}
 		}
 	}
