@@ -200,9 +200,11 @@ namespace Izrune.iOS
             {
                 var ImageVc = Storyboard.InstantiateViewController(QuestionImageViewController.StoryboardId) as QuestionImageViewController;
 
+                ImageVc.ModalPresentationStyle = UIModalPresentationStyle.OverCurrentContext;
+
                 ImageVc.ImageUrl = image;
 
-                this.NavigationController.PresentModalViewController(ImageVc, true);
+                this.NavigationController.PresentViewController(ImageVc, true, null);
             };
             return cell;
         }
