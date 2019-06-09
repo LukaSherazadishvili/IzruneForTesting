@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using CoreGraphics;
 using Foundation;
@@ -24,6 +25,9 @@ namespace Izrune.iOS.CollectionViewCells
         public nfloat CellSize { get; set; }
 
         public Action<IAnswer> AnswerClicked { get; set; }
+
+        public Action<string> ImageClicked { get; set; }
+
         private List<string> NumberList = new List<string>()
         {
             "ა",
@@ -48,7 +52,7 @@ namespace Izrune.iOS.CollectionViewCells
         {
             Question = question;
 
-            InitCollectionViews();
+            //InitCollectionViews();
 
             SetCellHeight(question);
             questionLbl.Text = $"{index}{question.title}";
@@ -56,6 +60,10 @@ namespace Izrune.iOS.CollectionViewCells
             //CalculateImagesCollectionViewHeight(question);
 
             imagesCollectionViewHeight.Constant = imagesCollectioHeight;
+
+            questionImagesCollectionView.Frame = new CGRect(0, 0, questionImagesCollectionView.Frame.Width,
+                imagesCollectioHeight);
+
             answerCollectionViewHeight.Constant = answersCollectioHeight;
 
             questionImagesCollectionView.ReloadData();
@@ -84,6 +92,9 @@ namespace Izrune.iOS.CollectionViewCells
                 imagesCollectioHeight = 90;
 
             imagesCollectionViewHeight.Constant = imagesCollectioHeight;
+
+            questionImagesCollectionView.Frame = new CGRect(0, 0, questionImagesCollectionView.Frame.Width,
+                imagesCollectioHeight);
         }
 
         public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
@@ -92,8 +103,16 @@ namespace Izrune.iOS.CollectionViewCells
             {
                 var questionCell = questionImagesCollectionView.DequeueReusableCell(QuestionImageCollectionViewCell.Identifier, indexPath) as QuestionImageCollectionViewCell;
 
+                questionImagesCollectionView.Delegate = this;
+
                 var currData = Question?.images?.ElementAt(indexPath.Row);
                 questionCell.InitData(currData);
+
+                questionCell.ImageClicked = (image) =>
+                {
+                    //TODO
+                    ImageClicked?.Invoke(image);
+                };
 
                 return questionCell;
             }
@@ -114,7 +133,11 @@ namespace Izrune.iOS.CollectionViewCells
         public nint GetItemsCount(UICollectionView collectionView, nint section)
         {
             if (collectionView == questionImagesCollectionView)
-                return Question?.images?.Count()?? 0;
+            {
+                var count = Question?.images?.Count() ?? 0;
+                Debug.WriteLine($"Question Images Count : {count}");
+                return count;
+            }
             else
                 return Question?.Answers?.Count()?? 0;
         }
@@ -128,7 +151,7 @@ namespace Izrune.iOS.CollectionViewCells
 
                 if(imagesCount == 1)
                     return new CoreGraphics.CGSize(collectionView.Frame.Width, collectionView.Frame.Height);
-                else if (imagesCount > 0 && imagesCount <= 2)
+                if (imagesCount == 2)
                 {
                     return new CoreGraphics.CGSize(collectionView.Frame.Width * 0.5, collectionView.Frame.Height);
                 }
@@ -172,8 +195,8 @@ namespace Izrune.iOS.CollectionViewCells
         private void InitImagesCollectionViewLayout()
         {
             var layout = new UICollectionViewFlowLayout();
-            layout.ItemSize = new CoreGraphics.CGSize(this.Frame.Width + pageSpacing, this.Frame.Height);
-            layout.ScrollDirection = UICollectionViewScrollDirection.Horizontal;
+            //layout.ItemSize = new CoreGraphics.CGSize(this.Frame.Width + pageSpacing, this.Frame.Height);
+            //layout.ScrollDirection = UICollectionViewScrollDirection.Horizontal;
             layout.MinimumLineSpacing = 0;
             layout.MinimumInteritemSpacing = 0;
 
@@ -196,8 +219,8 @@ namespace Izrune.iOS.CollectionViewCells
         [Export("numberOfSectionsInCollectionView:")]
         public nint NumberOfSections(UICollectionView collectionView)
         {
-            if (collectionView == questionImagesCollectionView)
-                return 2;
+            //if (collectionView == questionImagesCollectionView)
+                //return 2;
             return 1;
         }
 

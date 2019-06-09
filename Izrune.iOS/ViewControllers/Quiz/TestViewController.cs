@@ -128,6 +128,8 @@ namespace Izrune.iOS
             questionCollectionView.Delegate = this;
             questionCollectionView.DataSource = this;
 
+
+
             answerProgressCollectionView.RegisterNibForCell(AnswerProgressCollectionViewCell.Nib, AnswerProgressCollectionViewCell.Identifier);
 
             answerProgressCollectionView.Delegate = this;
@@ -193,6 +195,17 @@ namespace Izrune.iOS
             };
 
             cell.InitData(CurrentQuestion);
+
+            cell.ImageClicked = (image) =>
+            {
+                var ImageVc = Storyboard.InstantiateViewController(QuestionImageViewController.StoryboardId) as QuestionImageViewController;
+
+                ImageVc.ModalPresentationStyle = UIModalPresentationStyle.OverCurrentContext;
+
+                ImageVc.ImageUrl = image;
+
+                this.NavigationController.PresentViewController(ImageVc, true, null);
+            };
             return cell;
         }
 
@@ -285,6 +298,10 @@ namespace Izrune.iOS
             var text = data?.title;
             var titleHeight = text.GetStringHeight((float)questionCollectionView.Frame.Width, 50, 17);
             var ImagesCount = data?.images?.Count();
+            foreach (var item in data?.images)
+            {
+                Debug.WriteLine($"Image URL : {item}");
+            }
             if (ImagesCount == 0)
             {
                 imagesHeight = 0;

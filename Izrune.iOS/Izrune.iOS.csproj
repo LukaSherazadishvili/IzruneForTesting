@@ -93,6 +93,9 @@
       <PackageReference Include="Com.Airbnb.iOS.Lottie">
         <Version>2.5.7</Version>
       </PackageReference>
+      <PackageReference Include="Xamarin.IQKeyboardManager">
+        <Version>1.4.1</Version>
+      </PackageReference>
     </ItemGroup>
     <ItemGroup>
         <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -334,6 +337,10 @@
         <Compile Include="ViewControllers\Quiz\QuestionResultViewController.designer.cs">
           <DependentUpon>QuestionResultViewController.cs</DependentUpon>
         </Compile>
+        <Compile Include="ViewControllers\Quiz\QuestionImageViewController.cs" />
+        <Compile Include="ViewControllers\Quiz\QuestionImageViewController.designer.cs">
+          <DependentUpon>QuestionImageViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />
@@ -400,6 +407,7 @@
       <BundleResource Include="Resources\logo%403x.png" />
       <BundleResource Include="Resources\Group 136.png" />
       <BundleResource Include="Resources\checkFilled.png" />
+      <BundleResource Include="Resources\downArrow.png" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\IZrune.PCL\IZrune.PCL.csproj">
