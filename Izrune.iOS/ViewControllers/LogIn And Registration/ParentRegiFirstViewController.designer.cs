@@ -13,13 +13,45 @@ namespace Izrune.iOS
 	partial class ParentRegiFirstViewController
 	{
 		[Outlet]
+		UIKit.UIView dateTransparentView { get; set; }
+
+		[Outlet]
+		UIKit.UITextField daylLbl { get; set; }
+
+		[Outlet]
+		UIKit.UITextField monthLbl { get; set; }
+
+		[Outlet]
 		UIKit.UIStackView textFieldsStackView { get; set; }
+
+		[Outlet]
+		UIKit.UITextField yearLbl { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
 			if (textFieldsStackView != null) {
 				textFieldsStackView.Dispose ();
 				textFieldsStackView = null;
+			}
+
+			if (dateTransparentView != null) {
+				dateTransparentView.Dispose ();
+				dateTransparentView = null;
+			}
+
+			if (daylLbl != null) {
+				daylLbl.Dispose ();
+				daylLbl = null;
+			}
+
+			if (monthLbl != null) {
+				monthLbl.Dispose ();
+				monthLbl = null;
+			}
+
+			if (yearLbl != null) {
+				yearLbl.Dispose ();
+				yearLbl = null;
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using CoreGraphics;
 using Foundation;
@@ -48,7 +49,7 @@ namespace Izrune.iOS.CollectionViewCells
         {
             Question = question;
 
-            InitCollectionViews();
+            //InitCollectionViews();
 
             SetCellHeight(question);
             questionLbl.Text = $"{index}{question.title}";
@@ -92,6 +93,8 @@ namespace Izrune.iOS.CollectionViewCells
             {
                 var questionCell = questionImagesCollectionView.DequeueReusableCell(QuestionImageCollectionViewCell.Identifier, indexPath) as QuestionImageCollectionViewCell;
 
+                questionImagesCollectionView.Delegate = this;
+
                 var currData = Question?.images?.ElementAt(indexPath.Row);
                 questionCell.InitData(currData);
 
@@ -114,7 +117,11 @@ namespace Izrune.iOS.CollectionViewCells
         public nint GetItemsCount(UICollectionView collectionView, nint section)
         {
             if (collectionView == questionImagesCollectionView)
-                return Question?.images?.Count()?? 0;
+            {
+                var count = Question?.images?.Count() ?? 0;
+                Debug.WriteLine($"Question Images Count : {count}");
+                return count;
+            }
             else
                 return Question?.Answers?.Count()?? 0;
         }
@@ -128,7 +135,7 @@ namespace Izrune.iOS.CollectionViewCells
 
                 if(imagesCount == 1)
                     return new CoreGraphics.CGSize(collectionView.Frame.Width, collectionView.Frame.Height);
-                else if (imagesCount > 0 && imagesCount <= 2)
+                if (imagesCount == 2)
                 {
                     return new CoreGraphics.CGSize(collectionView.Frame.Width * 0.5, collectionView.Frame.Height);
                 }

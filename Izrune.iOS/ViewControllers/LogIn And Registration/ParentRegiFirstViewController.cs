@@ -23,6 +23,8 @@ namespace Izrune.iOS
             base.ViewDidLoad();
 
             InitUI();
+
+            InitGestures();
         }
 
         private void InitUI()
@@ -33,6 +35,37 @@ namespace Izrune.iOS
             {
                 item.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 20);
             }
+        }
+
+        private void InitGestures()
+        {
+            if (dateTransparentView.GestureRecognizers == null || dateTransparentView.GestureRecognizers?.Length == 0)
+                dateTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    //TODO DatePicker
+
+                    ShowDatePicker();
+                }));
+        }
+
+        private void ShowDatePicker()
+        {
+            var datePicker = new UIDatePicker();
+
+            datePicker.Mode = UIDatePickerMode.Date;
+
+            var toolBar = new UIToolbar();
+            toolBar.SizeToFit();
+            var doneButton = new UIBarButtonItem("Done", UIBarButtonItemStyle.Plain, null);
+
+            var spaceButton = new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace, null, null);
+
+            var cancelButton = new UIBarButtonItem("Cancel", UIBarButtonItemStyle.Plain, null);
+
+            toolBar.SetItems(new UIBarButtonItem[] { doneButton, spaceButton, cancelButton }, false);
+
+            daylLbl.InputAccessoryView = toolBar;
+            daylLbl.InputView = datePicker;
         }
     }
 }

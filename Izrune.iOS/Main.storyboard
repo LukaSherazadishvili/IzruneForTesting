@@ -2995,12 +2995,20 @@
                                             <constraint firstItem="ub5-7P-dV3" firstAttribute="leading" secondItem="uB6-tP-Nlh" secondAttribute="leading" constant="20" id="n0Z-Z5-nkT"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yIo-sF-4MQ">
+                                        <rect key="frame" x="20" y="215" width="340" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="yIo-sF-4MQ" firstAttribute="centerY" secondItem="1jQ-QJ-unM" secondAttribute="centerY" id="5OO-MD-uLP"/>
+                                    <constraint firstItem="yIo-sF-4MQ" firstAttribute="height" secondItem="FL5-cz-Agw" secondAttribute="height" id="96O-85-ptF"/>
                                     <constraint firstItem="uB6-tP-Nlh" firstAttribute="top" secondItem="Raf-zM-p5s" secondAttribute="top" id="PCc-f1-F2E"/>
                                     <constraint firstAttribute="bottom" secondItem="uB6-tP-Nlh" secondAttribute="bottom" id="SqN-b4-dsw"/>
                                     <constraint firstItem="uB6-tP-Nlh" firstAttribute="leading" secondItem="Raf-zM-p5s" secondAttribute="leading" id="a7Y-x8-sza"/>
+                                    <constraint firstItem="yIo-sF-4MQ" firstAttribute="leading" secondItem="FL5-cz-Agw" secondAttribute="leading" id="fV6-LE-J5v"/>
+                                    <constraint firstItem="yIo-sF-4MQ" firstAttribute="trailing" secondItem="yiw-zk-QUl" secondAttribute="trailing" id="qLp-p8-vc4"/>
                                     <constraint firstAttribute="trailing" secondItem="uB6-tP-Nlh" secondAttribute="trailing" id="shM-mG-KSp"/>
                                 </constraints>
                             </scrollView>
@@ -3017,7 +3025,11 @@
                         <viewLayoutGuide key="safeArea" id="l1P-gS-f3n"/>
                     </view>
                     <connections>
+                        <outlet property="dateTransparentView" destination="yIo-sF-4MQ" id="BZD-oz-51w"/>
+                        <outlet property="daylLbl" destination="FL5-cz-Agw" id="Dc5-I7-oBh"/>
+                        <outlet property="monthLbl" destination="1jQ-QJ-unM" id="rdX-D0-3nh"/>
                         <outlet property="textFieldsStackView" destination="Oli-qf-5dg" id="1dr-3p-mzH"/>
+                        <outlet property="yearLbl" destination="yiw-zk-QUl" id="MYh-JS-GLU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cGB-cJ-7uw" userLabel="First Responder" sceneMemberID="firstResponder"/>
