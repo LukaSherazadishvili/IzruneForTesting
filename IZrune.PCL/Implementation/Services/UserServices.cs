@@ -17,8 +17,24 @@ namespace IZrune.PCL.Implementation.Services
 {
    public class UserServices : IUserServices
     {
-       
-       
+        public async Task AddStudent(IStudent student)
+        {
+            var FormContent = new FormUrlEncodedContent(new[]
+               {
+                new KeyValuePair<string,string>("parent_id",UserControl.Instance.GetCurrentUser().Result.id.ToString()),
+                 new KeyValuePair<string,string>("email",student.Name),
+                  new KeyValuePair<string,string>("phone",student.LastName),
+                  new KeyValuePair<string,string>("city",student.PersonalNumber),
+                  new KeyValuePair<string,string>("village",student.Email),
+                  new KeyValuePair<string,string>("parent_id",student.Phone),
+                 new KeyValuePair<string,string>("email",student.RegionId.ToString()),
+                  new KeyValuePair<string,string>("phone",student.Village),
+                  new KeyValuePair<string,string>("city",student.Bdate.ToShortTimeString()),
+                  new KeyValuePair<string,string>("village",student.SchoolId.ToString()),
+                  new KeyValuePair<string,string>("village",student.Class.ToString()),
+                  new KeyValuePair<string,string>("village",student.SchoolId.ToString()),
+                });
+        }
 
         public async Task EditParentProfileAsync( string ParrentMail, string ParrentPhone, string City, string Village)
         {

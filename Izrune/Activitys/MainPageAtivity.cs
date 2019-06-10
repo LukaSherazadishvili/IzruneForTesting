@@ -99,7 +99,8 @@ namespace Izrune.Activitys
                 case Resource.Id.Exit:
                     {
                         UserControl.Instance.Parent = null;
-                        this.Finish();
+                        Intent intent = new Intent(this,typeof(LogInActivity));
+                        StartActivity(intent);
                         break;
                     }
             }
@@ -109,7 +110,8 @@ namespace Izrune.Activitys
         public override void OnBackPressed()
         {
             base.OnBackPressed();
-            this.Finish();
+            Intent intent = new Intent(this, typeof(LogInActivity));
+            StartActivity(intent);
         }
     }
 }

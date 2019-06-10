@@ -30,7 +30,10 @@ namespace Izrune.Adapters.RecyclerviewAdapters
 
         public override int ItemCount  => ResQuestions.Count;
 
-
+        private List<string> QuestionVersioSimbols = new List<string>()
+        {
+            "ა","ბ","გ","დ","ე","ვ"
+        };
 
         private List<View> Answers = new List<View>();
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
@@ -52,10 +55,13 @@ namespace Izrune.Adapters.RecyclerviewAdapters
 
             Answers.Clear();
             hld.AnswerContainer.RemoveAllViews();
-            foreach(var items in ResQuestions.ElementAt(position).Answers)
+            for( int i=0;i<ResQuestions.ElementAt(position).Answers.Count();i++ )
             {
                 var Resultt = LayoutInflater.From(context).Inflate(Resource.Layout.ItemQuezAnswer, null);
-                Resultt.FindViewById<TextView>(Resource.Id.AnswerTxt).Text = items.title;
+                Resultt.FindViewById<TextView>(Resource.Id.AnswerTxt).Text = ResQuestions.ElementAt(position).Answers.ElementAt(i).title;
+
+                Resultt.FindViewById<TextView>(Resource.Id.AnswerVersionSimbol).Text = QuestionVersioSimbols.ElementAt(i);
+
 
                 Answers.Add(Resultt);
                 hld.AnswerContainer.AddView(Resultt);
@@ -67,10 +73,13 @@ namespace Izrune.Adapters.RecyclerviewAdapters
                 if (ResQuestions.ElementAt(position).Answers.ElementAt(Index).IsRight)
                 {
                     Answers.ElementAt(Index).FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesCorrectButtonBackground);
+                    Answers.ElementAt(Index).FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesCorrectAnswerLine);
                 }
                 else
                 {
                     Answers.ElementAt(Index).FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesInCorectButtonBackground);
+                    Answers.ElementAt(Index).FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesIncorrectAnswerLine);
+
                 }
             }
 

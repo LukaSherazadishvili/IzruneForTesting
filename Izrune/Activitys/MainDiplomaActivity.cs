@@ -28,6 +28,12 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.ResultPageViePager)]
         ViewPager Pager;
 
+        [MapControl(Resource.Id.ShareButton)]
+        LinearLayout ShareButton;
+
+        [MapControl(Resource.Id.BackButton)]
+        FrameLayout BackButton;
+
 
         private List<MPDCBaseFragment> FrmList = new List<MPDCBaseFragment>() {
           new ResultStatisticFragment() , new ResultQuestionStatisticFragment()
@@ -44,6 +50,7 @@ namespace Izrune.Activitys
         {
             base.OnCreate(savedInstanceState);
 
+            ShareButton.Visibility = ViewStates.Visible;
 
             var adapter = new TabAdapter(SupportFragmentManager, FrmList, Headers);
             ResultPagePagerAdapter PagerAdapter = new ResultPagePagerAdapter(SupportFragmentManager, FrmList, Headers);
@@ -51,9 +58,14 @@ namespace Izrune.Activitys
             Tabs.SetupWithViewPager(Pager);
             Pager.Adapter = PagerAdapter;
 
+            BackButton.Click += BackButton_Click;
 
 
+        }
 
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            OnBackPressed();
         }
 
         public override void OnBackPressed()
