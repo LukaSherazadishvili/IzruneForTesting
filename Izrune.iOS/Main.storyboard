@@ -992,7 +992,7 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="145" id="3Kq-NT-eSb"/>
                                                     <constraint firstAttribute="trailing" secondItem="6ND-a6-Ycn" secondAttribute="trailing" id="43o-KG-FoD"/>
@@ -1077,7 +1077,7 @@
                                                                 <rect key="frame" x="10" y="-10" width="233" height="50"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="დარჩა:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6f-WF-iFb">
-                                                                        <rect key="frame" x="0.0" y="18" width="50" height="14"/>
+                                                                        <rect key="frame" x="0.0" y="18" width="41.666666666666664" height="14"/>
                                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
                                                                         <color key="textColor" red="0.56470588239999997" green="0.1176470588" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -1120,7 +1120,7 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="bxk-pV-gpC" firstAttribute="trailing" secondItem="3vg-Z0-Fu4" secondAttribute="trailing" id="0tL-UP-YFK"/>
                                                     <constraint firstItem="dUA-xp-7DW" firstAttribute="leading" secondItem="3vg-Z0-Fu4" secondAttribute="leading" constant="25" id="Asf-zp-0VS"/>
@@ -1155,16 +1155,16 @@
                                                                 <rect key="frame" x="15" y="10" width="275" height="117"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="5fb-ez-EMo">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="266" height="49"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="238.66666666666666" height="49"/>
                                                                         <subviews>
                                                                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ტესტების სტრუქტურა" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irL-Qh-OUc">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="266" height="16.333333333333332"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="238.66666666666666" height="16.333333333333332"/>
                                                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" clipsSubviews="YES" contentMode="left" verticalHuggingPriority="251" text="ტესტი შედგება 20 კითხვისგან, თითოეულ კითხვას აქვს 4 სავარაუდო პასუხი" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ahh-B3-X28">
-                                                                                <rect key="frame" x="0.0" y="23.333333333333371" width="266" height="25.666666666666671"/>
+                                                                                <rect key="frame" x="0.0" y="23.333333333333371" width="238.66666666666666" height="25.666666666666671"/>
                                                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="11"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -1172,16 +1172,16 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="oO1-mc-W4Q">
-                                                                        <rect key="frame" x="0.0" y="69" width="266" height="48"/>
+                                                                        <rect key="frame" x="0.0" y="69" width="238.66666666666666" height="48"/>
                                                                         <subviews>
                                                                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ტესტების სტრუქტურა" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xM-ce-hqX">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="266" height="16.333333333333332"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="238.66666666666666" height="16.333333333333332"/>
                                                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" clipsSubviews="YES" contentMode="left" verticalHuggingPriority="251" text="ტესტი შედგება 20 კითხვისგან, თითოეულ კითხვას აქვს 4 სავარაუდო პასუხი" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luQ-KL-qDA">
-                                                                                <rect key="frame" x="0.0" y="22.333333333333371" width="266" height="25.666666666666671"/>
+                                                                                <rect key="frame" x="0.0" y="22.333333333333371" width="238.66666666666666" height="25.666666666666671"/>
                                                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="11"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -1840,10 +1840,10 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Lx-yl-tRe">
-                                <rect key="frame" x="51" y="657" width="273" height="50"/>
+                                <rect key="frame" x="51" y="657" width="273" height="45"/>
                                 <color key="backgroundColor" red="0.79607843140000001" green="0.52941176469999995" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="hzM-na-Xl6"/>
+                                    <constraint firstAttribute="height" constant="45" id="hzM-na-Xl6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="15"/>
                                 <state key="normal" title="კითხვის გამოტოვება">
@@ -1851,7 +1851,7 @@
                                 </state>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Dm2-40-8IZ">
-                                <rect key="frame" x="31" y="721" width="313" height="52"/>
+                                <rect key="frame" x="31" y="726" width="313" height="52"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="სწორი პასუხი 5 ქულა" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTd-X8-rXu">
                                         <rect key="frame" x="0.0" y="0.0" width="313" height="14"/>
@@ -1879,7 +1879,7 @@
                             <constraint firstItem="Dm2-40-8IZ" firstAttribute="leading" secondItem="2KA-35-UOB" secondAttribute="leadingMargin" constant="15" id="5JM-sJ-yxJ"/>
                             <constraint firstItem="sY2-ss-6Oj" firstAttribute="top" secondItem="qny-id-Vxd" secondAttribute="bottom" id="Awa-9s-b7I"/>
                             <constraint firstItem="kMS-F6-WOd" firstAttribute="leading" secondItem="OtN-xe-Jut" secondAttribute="leading" id="FUz-IV-8FG"/>
-                            <constraint firstItem="OtN-xe-Jut" firstAttribute="bottom" secondItem="Dm2-40-8IZ" secondAttribute="bottom" constant="5" id="FY7-4Y-mAJ"/>
+                            <constraint firstItem="OtN-xe-Jut" firstAttribute="bottom" secondItem="Dm2-40-8IZ" secondAttribute="bottom" id="FY7-4Y-mAJ"/>
                             <constraint firstItem="kMS-F6-WOd" firstAttribute="top" secondItem="sY2-ss-6Oj" secondAttribute="bottom" id="FfX-Co-JC5"/>
                             <constraint firstItem="7Lx-yl-tRe" firstAttribute="leading" secondItem="2KA-35-UOB" secondAttribute="leadingMargin" constant="35" id="H8z-84-s7q"/>
                             <constraint firstItem="qny-id-Vxd" firstAttribute="top" secondItem="OtN-xe-Jut" secondAttribute="top" id="ImQ-a4-Ic8"/>

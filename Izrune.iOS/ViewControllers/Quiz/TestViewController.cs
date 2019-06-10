@@ -51,7 +51,7 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
-            skipQuestionBtn.Layer.CornerRadius = 20;
+            skipQuestionBtn.Layer.CornerRadius = 22.5f;
 
             skipQuestionBtn.TouchUpInside +=  async delegate
             {

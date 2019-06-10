@@ -320,6 +320,5 @@ namespace Izrune.iOS
                 Debug.WriteLine(ex.Message);
             }
         }
-
     }
 }

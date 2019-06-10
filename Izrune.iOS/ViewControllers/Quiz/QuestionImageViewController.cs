@@ -23,7 +23,9 @@ namespace Izrune.iOS
             base.ViewDidLoad();
 
             this.View.BackgroundColor = UIColor.Clear;
+
             this.DefinesPresentationContext = true;
+
             this.ModalPresentationStyle = UIModalPresentationStyle.OverCurrentContext;
 
             questionImageView.InitImageFromWeb(ImageUrl, false, false);
