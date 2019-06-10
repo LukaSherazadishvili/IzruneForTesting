@@ -36,6 +36,8 @@ namespace Izrune.iOS.CollectionViewCells
             "დ"
         };
 
+        public bool IsResultCell { get; set; }
+
         IQuestion Question;
 
         static TestCollectionViewCell()
@@ -116,7 +118,7 @@ namespace Izrune.iOS.CollectionViewCells
 
         public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {
-            if(collectionView == questionImagesCollectionView)
+            if (collectionView == questionImagesCollectionView)
             {
                 var questionCell = questionImagesCollectionView.DequeueReusableCell(QuestionImageCollectionViewCell.Identifier, indexPath) as QuestionImageCollectionViewCell;
 
@@ -134,9 +136,17 @@ namespace Izrune.iOS.CollectionViewCells
                 return questionCell;
             }
 
+
+            //Answer Cell
             var cell = answerCollectionView.DequeueReusableCell(AnswerCollectionViewCell.Identifier, indexPath) as AnswerCollectionViewCell;
 
+            cell.IsResult = IsResultCell;
+
             var data = Question?.Answers?.ElementAt(indexPath.Row);
+
+            var currQuestion = IsResultCell ? Question as IFinalQuestion : Question;
+
+
 
             cell.InitData(data, NumberList?[indexPath.Row]);
 
@@ -267,6 +277,5 @@ namespace Izrune.iOS.CollectionViewCells
             topLine.Hidden = true;
             bottomLine.Hidden = false;
         }
-
     }
 }

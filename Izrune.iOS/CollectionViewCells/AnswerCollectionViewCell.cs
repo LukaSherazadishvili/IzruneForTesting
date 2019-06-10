@@ -18,6 +18,8 @@ namespace Izrune.iOS.CollectionViewCells
 
         IAnswer Answer;
 
+        public bool IsResult;
+
         static AnswerCollectionViewCell()
         {
             Nib = UINib.FromName("AnswerCollectionViewCell", NSBundle.MainBundle);
@@ -38,6 +40,12 @@ namespace Izrune.iOS.CollectionViewCells
             answerLbl.TextColor = AppColors.UnselectedColor;
         }
 
+        public void InitDataForResult(IAnswer answer, string number, bool iscorrect)
+        {
+
+        }
+
+
         public override void AwakeFromNib()
         {
             base.AwakeFromNib();
@@ -51,7 +59,9 @@ namespace Izrune.iOS.CollectionViewCells
             {
                 answerContentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-                    CheckAnswer(Answer.IsRight);
+                    if(!IsResult)
+                        CheckAnswer(Answer.IsRight);
+
                     AnswerClicked?.Invoke(Answer);
                 }));
             }

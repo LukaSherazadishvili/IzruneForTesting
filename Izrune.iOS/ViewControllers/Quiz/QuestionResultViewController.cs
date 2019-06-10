@@ -52,6 +52,8 @@ namespace Izrune.iOS
         {
             var cell = questionCollectionView.DequeueReusableCell(TestCollectionViewCell.Identifier, indexPath) as TestCollectionViewCell;
 
+            cell.IsResultCell = true;
+
             var data = Questions?[indexPath.Row];
 
             cell.InitData(data, $"{indexPath.Row+1}) ");
