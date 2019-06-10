@@ -11,5 +11,7 @@ namespace IZrune.PCL.Abstraction.Services
         Task<IEnumerable<IRegion>> GetRegionsAsync();
         Task<bool> RegistrationUser(IParent user,IStudent student);
 
+        Task<string> GetAgreement();
+
     }
 }
