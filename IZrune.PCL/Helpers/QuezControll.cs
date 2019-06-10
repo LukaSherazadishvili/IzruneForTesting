@@ -92,10 +92,11 @@ namespace IZrune.PCL.Helpers
         {
             var Result =await MpdcContainer.Instance.Get<IQuezServices>().GetQuestionsAsync(TestType);
             Questions = Result.ToList();
+            Position = 0;
             Sheduler = new List<QuisSheduler>();
-            if (Questions.Count > 0&&Sheduler==null)
+            if (Questions.Count > 0&&Sheduler.Count==0)
             {
-               
+                Sheduler.Clear();
                 for(int i = 0; i < Questions?.Count(); i++)
                 {
                     QuisSheduler sheduler = new QuisSheduler() { IsCurrent = false, AlreadeBe = false, Position = i };

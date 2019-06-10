@@ -60,7 +60,9 @@ namespace Izrune.Fragments
         {
             base.OnViewCreated(view, savedInstanceState);
 
-            var Result = await MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(UserControl.Instance.RegistrationStudent.SchoolId.ToString());
+            
+
+            var Result = await MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(UserControl.Instance.CurrentStudent.SchoolId.ToString());
 
             var Individual = new IndividualServiceFragmentcs(Result.Prices.ToList());
             var Promo = new PromoFragment(Result.PrommoCode);

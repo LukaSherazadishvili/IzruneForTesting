@@ -1,6 +1,8 @@
 ﻿using Foundation;
+using Izrune.iOS.Utils;
 using Izrune.iOS.ViewControllers;
 using UIKit;
+using Xamarin;
 
 namespace Izrune.iOS
 {
@@ -21,6 +23,10 @@ namespace Izrune.iOS
         {
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
+
+            IQKeyboardManager.SharedManager.Enable = true;
+            IQKeyboardManager.SharedManager.ToolbarDoneBarButtonItemText = "დახურვა";
+            IQKeyboardManager.SharedManager.ToolbarTintColor = AppColors.Tint;
 
             UIViewController rootvc = null;
 

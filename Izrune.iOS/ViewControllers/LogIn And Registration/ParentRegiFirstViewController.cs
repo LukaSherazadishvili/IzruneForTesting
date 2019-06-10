@@ -7,6 +7,7 @@ using UIKit;
 using MpdcViewExtentions;
 using System.Linq;
 using Izrune.iOS.Utils;
+using MPDC.iOS.Utils;
 
 namespace Izrune.iOS
 {
@@ -23,6 +24,8 @@ namespace Izrune.iOS
             base.ViewDidLoad();
 
             InitUI();
+
+            InitGestures();
         }
 
         private void InitUI()
@@ -33,6 +36,55 @@ namespace Izrune.iOS
             {
                 item.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 20);
             }
+
+            transparentDateTextfield.MakeRoundedTextField(20.0f, UIColor.Clear, 10);
+            daylLbl.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 0);
+            monthLbl.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 0);
+            yearLbl.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 0);
+        }
+
+        private void InitGestures()
+        {
+
+            transparentDateTextfield.EditingDidBegin += (sender, e) =>
+            {
+                ShowDatePicker();
+            };
+
+            //if (transparentDateTextfield.GestureRecognizers == null || transparentDateTextfield.GestureRecognizers?.Length == 0)
+                //transparentDateTextfield.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                //{
+                //    //TODO DatePicker
+
+                //    ShowDatePicker();
+                //}));
+        }
+
+        private void ShowDatePicker()
+        {
+            var datePicker = new UIDatePicker();
+
+            datePicker.Mode = UIDatePickerMode.Date;
+
+            var toolBar = new UIToolbar();
+            toolBar.SizeToFit();
+            var doneButton = new UIBarButtonItem("არჩევა", UIBarButtonItemStyle.Plain, (sender, e) => {
+
+                var date = datePicker.Date.NSDateToDateTime();
+                daylLbl.Text = date.Day.ToString();
+                monthLbl.Text = date.Month.ToString();
+                yearLbl.Text = date.Year.ToString();
+                this.View.EndEditing(true);
+            });
+
+            var spaceButton = new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace, null, null);
+
+            var cancelButton = new UIBarButtonItem("დახურვა", UIBarButtonItemStyle.Plain, (s,e) => { this.View.EndEditing(true); });
+
+            toolBar.SetItems(new UIBarButtonItem[] { doneButton, spaceButton, cancelButton }, false);
+
+            transparentDateTextfield.InputAccessoryView = toolBar;
+            transparentDateTextfield.InputView = datePicker;
         }
     }
 }
