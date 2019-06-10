@@ -840,7 +840,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="811"/>
                                             </imageView>
                                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="იზრუნე ტესტები" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZdZ-Mh-huX">
-                                                <rect key="frame" x="36" y="20" width="303" height="106.5"/>
+                                                <rect key="frame" x="36" y="50" width="303" height="23.5"/>
                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="20"/>
                                                 <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1252,13 +1252,13 @@
                                             <constraint firstItem="XFK-oK-TEB" firstAttribute="bottom" secondItem="YG5-xG-VRC" secondAttribute="bottom" id="0A7-qn-Lam"/>
                                             <constraint firstAttribute="trailing" secondItem="YG5-xG-VRC" secondAttribute="trailing" constant="36" id="2n1-3Z-Ve2"/>
                                             <constraint firstItem="tvk-gO-Sai" firstAttribute="top" secondItem="3Ju-rS-ZWf" secondAttribute="top" id="3eo-tl-F4Y"/>
-                                            <constraint firstItem="ZdZ-Mh-huX" firstAttribute="top" secondItem="3Ju-rS-ZWf" secondAttribute="top" constant="20" id="3pp-N2-FqG"/>
+                                            <constraint firstItem="ZdZ-Mh-huX" firstAttribute="top" secondItem="3Ju-rS-ZWf" secondAttribute="top" constant="50" id="3pp-N2-FqG"/>
                                             <constraint firstItem="G55-sz-rFx" firstAttribute="top" secondItem="aYB-XB-m4c" secondAttribute="bottom" constant="24.666666666666629" id="D5O-5Z-3tZ"/>
                                             <constraint firstAttribute="trailing" secondItem="uaa-f3-eUM" secondAttribute="trailing" id="D6I-Tq-4MR"/>
                                             <constraint firstItem="XFK-oK-TEB" firstAttribute="trailing" secondItem="YG5-xG-VRC" secondAttribute="trailing" id="GJj-92-a0i"/>
                                             <constraint firstItem="aYB-XB-m4c" firstAttribute="top" secondItem="XFK-oK-TEB" secondAttribute="bottom" constant="40" id="HiB-IM-ikq"/>
                                             <constraint firstItem="1No-nU-HLS" firstAttribute="leading" secondItem="YG5-xG-VRC" secondAttribute="leading" id="Lfj-6L-dJ4"/>
-                                            <constraint firstItem="YG5-xG-VRC" firstAttribute="top" secondItem="ZdZ-Mh-huX" secondAttribute="bottom" constant="50" id="Lr0-2b-A14"/>
+                                            <constraint firstItem="YG5-xG-VRC" firstAttribute="top" secondItem="ZdZ-Mh-huX" secondAttribute="bottom" priority="250" constant="50" id="Lr0-2b-A14"/>
                                             <constraint firstItem="1No-nU-HLS" firstAttribute="top" secondItem="YG5-xG-VRC" secondAttribute="top" id="O9M-g6-wYi"/>
                                             <constraint firstItem="YG5-xG-VRC" firstAttribute="leading" secondItem="3Ju-rS-ZWf" secondAttribute="leading" constant="36" id="TnA-Du-gCG"/>
                                             <constraint firstAttribute="bottom" secondItem="uaa-f3-eUM" secondAttribute="bottom" id="UB2-HO-sjd"/>
@@ -2706,8 +2706,8 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fagarati.png" translatesAutoresizingMaskIntoConstraints="NO" id="FtC-Cp-1Ri">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="811"/>
                                             </imageView>
-                                            <label opaque="NO" clipsSubviews="YES" contentMode="left" text="შემაჯამებელი ტექსტი" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkE-VG-BXy">
-                                                <rect key="frame" x="36" y="60" width="303" height="82"/>
+                                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="შემაჯამებელი ტექსტი" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkE-VG-BXy">
+                                                <rect key="frame" x="36" y="60" width="303" height="23.5"/>
                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="20"/>
                                                 <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -2908,7 +2908,7 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="dkE-VG-BXy" secondAttribute="trailing" constant="36" id="0u5-av-87W"/>
                                             <constraint firstItem="RBl-V4-VtX" firstAttribute="bottom" secondItem="nNG-HD-fzi" secondAttribute="bottom" id="346-Jt-BOf"/>
-                                            <constraint firstItem="6mz-xh-hnI" firstAttribute="top" secondItem="dkE-VG-BXy" secondAttribute="bottom" constant="20" id="4aP-DY-ZY2"/>
+                                            <constraint firstItem="6mz-xh-hnI" firstAttribute="top" secondItem="dkE-VG-BXy" secondAttribute="bottom" priority="250" constant="20" id="4aP-DY-ZY2"/>
                                             <constraint firstItem="ROr-oR-HOd" firstAttribute="trailing" secondItem="7SN-1X-TVI" secondAttribute="trailing" id="7DO-TG-z3b"/>
                                             <constraint firstAttribute="trailing" secondItem="m1w-sW-crJ" secondAttribute="trailing" id="AP8-ui-DE2"/>
                                             <constraint firstAttribute="trailing" secondItem="FtC-Cp-1Ri" secondAttribute="trailing" id="DAp-z2-NHS"/>
