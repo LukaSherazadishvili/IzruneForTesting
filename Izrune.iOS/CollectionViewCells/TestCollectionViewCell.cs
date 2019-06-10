@@ -70,6 +70,23 @@ namespace Izrune.iOS.CollectionViewCells
             answerCollectionView.ReloadData();
         }
 
+        public void InitDataForResult(IFinalQuestion finalQuestion, string index = "")
+        {
+            SetCellHeight(finalQuestion);
+
+            questionLbl.Text = $"{index}{finalQuestion.title}";
+
+            imagesCollectionViewHeight.Constant = imagesCollectioHeight;
+
+            questionImagesCollectionView.Frame = new CGRect(0, 0, questionImagesCollectionView.Frame.Width,
+                imagesCollectioHeight);
+
+            answerCollectionViewHeight.Constant = answersCollectioHeight;
+
+            questionImagesCollectionView.ReloadData();
+            answerCollectionView.ReloadData();
+        }
+
         private void InitCollectionViews()
         {
             questionImagesCollectionView.Delegate = this;

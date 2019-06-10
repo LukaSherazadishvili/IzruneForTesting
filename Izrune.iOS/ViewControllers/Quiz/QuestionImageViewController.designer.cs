@@ -16,6 +16,21 @@ namespace Izrune.iOS
 		UIKit.UIButton closeBtn { get; set; }
 
 		[Outlet]
+		UIKit.UIScrollView imageScrollView { get; set; }
+
+		[Outlet]
+		UIKit.NSLayoutConstraint imageViewBottom { get; set; }
+
+		[Outlet]
+		UIKit.NSLayoutConstraint imageViewLeading { get; set; }
+
+		[Outlet]
+		UIKit.NSLayoutConstraint imageViewTop { get; set; }
+
+		[Outlet]
+		UIKit.NSLayoutConstraint imageViewTrailing { get; set; }
+
+		[Outlet]
 		UIKit.UIView mainBgView { get; set; }
 
 		[Outlet]
@@ -23,6 +38,11 @@ namespace Izrune.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (closeBtn != null) {
+				closeBtn.Dispose ();
+				closeBtn = null;
+			}
+
 			if (mainBgView != null) {
 				mainBgView.Dispose ();
 				mainBgView = null;
@@ -33,9 +53,29 @@ namespace Izrune.iOS
 				questionImageView = null;
 			}
 
-			if (closeBtn != null) {
-				closeBtn.Dispose ();
-				closeBtn = null;
+			if (imageScrollView != null) {
+				imageScrollView.Dispose ();
+				imageScrollView = null;
+			}
+
+			if (imageViewBottom != null) {
+				imageViewBottom.Dispose ();
+				imageViewBottom = null;
+			}
+
+			if (imageViewTrailing != null) {
+				imageViewTrailing.Dispose ();
+				imageViewTrailing = null;
+			}
+
+			if (imageViewLeading != null) {
+				imageViewLeading.Dispose ();
+				imageViewLeading = null;
+			}
+
+			if (imageViewTop != null) {
+				imageViewTop.Dispose ();
+				imageViewTop = null;
 			}
 		}
 	}

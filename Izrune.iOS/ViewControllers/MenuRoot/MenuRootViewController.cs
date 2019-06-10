@@ -55,7 +55,6 @@ namespace Izrune.iOS.ViewControllers
             };
         }
 
-        NewsViewController newsVc;
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -64,7 +63,6 @@ namespace Izrune.iOS.ViewControllers
 
             var mainVc = GetMainViewController();
 
-            newsVc = _storyBoard.InstantiateViewController(NewsViewController.StoryboardId) as NewsViewController;
             SideBarController = new SidebarController(this, mainVc, menuVc)
             {
                 MenuLocation = MenuLocations.Left,
@@ -102,6 +100,8 @@ namespace Izrune.iOS.ViewControllers
             //var mainVc = _storyBoard.InstantiateViewController(TestChooseViewController.StoryboardId) as TestChooseViewController;
 
             var MainPageVc = _storyBoard.InstantiateViewController(LogInViewController.StoryboardId).CreateWithNavigationControllerWithMenu(ToggleMenu,UIImage.FromBundle("ichamburger.png"),  AppColors.Tint, false);
+
+            MainPageVc.NavigationBar.TintColor = AppColors.Tint;
 
             var barImage = UIImage.FromBundle("ichamburger.png");
             var barButton = new UIBarButtonItem();

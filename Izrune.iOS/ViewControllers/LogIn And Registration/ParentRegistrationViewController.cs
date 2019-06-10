@@ -23,6 +23,8 @@ namespace Izrune.iOS
         private ParentRegiFirstViewController parentRegVc;
         private ParentRegSecondViewController parent2RegVc;
 
+        private int CurrentIndex;
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -33,36 +35,20 @@ namespace Izrune.iOS
 
 
             this.AddVcInView(viewForPager, parentRegVc);
-            //this.AddChildViewController(parentRegVc);
-
-            //parentRegVc.View.Frame = new CoreGraphics.CGRect(0, 0, viewForPager.Frame.Width, viewForPager.Frame.Height);
-
-            //viewForPager.AddSubview(parentRegVc.View);
-
-            //parentRegVc.DidMoveToParentViewController(this);
 
             InitUI();
 
             InitGestures();
         }
 
-        public override void ViewDidLayoutSubviews()
-        {
-            base.ViewDidLayoutSubviews();
-
-            //RegistrationPages?[0].AddAsChildViewController(this, viewForPager);
-
-        }
-
         private void InitGestures()
         {
             nextBtn.TouchUpInside += delegate
             {
-                var count = this.ChildViewControllers.Length;
+                CurrentIndex++;
                 isFirstPage = false;
                 CheckIndex();
                 AddSecondVc();
-                count = this.ChildViewControllers.Length;
             };
 
             prewBtn.TouchUpInside += delegate {
@@ -79,15 +65,6 @@ namespace Izrune.iOS
             parentRegVc.RemoveFromParentViewController();
 
             this.AddVcInView(viewForPager, parent2RegVc);
-
-
-            //this.AddChildViewController(parent2RegVc);
-
-            //parent2RegVc.View.Frame = new CoreGraphics.CGRect(0, 0, viewForPager.Frame.Width, viewForPager.Frame.Height);
-
-            //viewForPager.AddSubview(parent2RegVc.View);
-
-            //parent2RegVc.DidMoveToParentViewController(this);
         }
 
         private void AddFirstVc()
@@ -97,15 +74,6 @@ namespace Izrune.iOS
             parent2RegVc.RemoveFromParentViewController();
 
             this.AddVcInView(viewForPager, parentRegVc);
-
-            //this.AddChildViewController(parentRegVc);
-
-            //parentRegVc.View.Frame = new CoreGraphics.CGRect(0, 0, viewForPager.Frame.Width, viewForPager.Frame.Height);
-
-            //viewForPager.AddSubview(parentRegVc.View);
-
-            //parentRegVc.DidMoveToParentViewController(this);
-
         }
 
         private void InitUI()
@@ -114,9 +82,6 @@ namespace Izrune.iOS
             prewBtn.Layer.CornerRadius = 25;
 
             nextBtn.AddShadowToView(5, 25, 0.8f, AppColors.TitleColor);
-
-            //userNameTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 17);
-
         }
 
         private void CheckIndex()
@@ -124,5 +89,8 @@ namespace Izrune.iOS
             nextBtn.Enabled = isFirstPage;
             prewBtn.Enabled = !isFirstPage;
         }
+
+
+
     }
 }
