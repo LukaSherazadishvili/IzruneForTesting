@@ -15,6 +15,19 @@ namespace IZrune.PCL.Implementation.Services
 {
    public class RegistrationServices : IRegistrationServices
     {
+        public async Task<string> GetAgreement()
+        {
+            try
+            {
+                var Data = await IzruneWebClient.Instance.GetDataAsync<AgreementDTO>("http://izrune.ge/api.php?op=getAgreement&hashcode=65702027de46ae5cac739f1e02f11847");
+
+                return Data.agreement;
+            }
+            catch(Exception ex)
+            {
+                return "";
+            }
+        }
 
         public async Task<IEnumerable<IRegion>> GetRegionsAsync()
         {
