@@ -50,16 +50,21 @@ namespace Izrune.iOS
 
         private void InitUI()
         {
-       
+            totalTimeView.Layer.BorderColor = UIColor.White.CGColor;
+            totalTimeView.Layer.BorderWidth = 3;
+
+            derivedTimeView.Layer.BorderColor = UIColor.White.CGColor;
+            derivedTimeView.Layer.BorderWidth = 3;
+
             totalTimeShadowView.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
             derivedTimeShadowView.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
 
             totalTimeView.ApplyGradient(AppColors.PurpleGradient);
             derivedTimeView.ApplyGradient(AppColors.PurpleGradient);
 
-            popUpView.Layer.CornerRadius = 25;
-            popUpView.Layer.BorderWidth = 5;
-            popUpView.Layer.BorderColor = AppColors.TitleColor.CGColor;
+            //popUpView.Layer.CornerRadius = 25;
+            //popUpView.Layer.BorderWidth = 5;
+            //popUpView.Layer.BorderColor = AppColors.TitleColor.CGColor;
         }
 
         private void InitGestures()
