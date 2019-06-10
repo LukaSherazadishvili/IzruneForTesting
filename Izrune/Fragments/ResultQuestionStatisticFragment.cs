@@ -25,6 +25,9 @@ namespace Izrune.Fragments
     {
         protected override int LayoutResource { get; } = Resource.Layout.LayoutQuestionStatistic;
 
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get ; set; }
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -33,14 +36,19 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.StatisticecyclerView)]
         RecyclerView StatisticRecyclerView;
 
-        public override async void OnViewCreated(View view, Bundle savedInstanceState)
+        public override  void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
-            var Result =await MpdcContainer.Instance.Get<IStatisticServices>().GetFinalQuestionResult();
+            Activity.RunOnUiThread(async() => {
+                Startloading(true);
+                var Result =await MpdcContainer.Instance.Get<IStatisticServices>().GetFinalQuestionResult();
 
+         
             var adapter = new QuestionStatisticAdapter((Result as IEnumerable<IFinalQuestion>).ToList(), this);
             StatisticRecyclerView.SetLayoutManager(new LinearLayoutManager(this));
             StatisticRecyclerView.SetAdapter(adapter);
+                StopLoading();
+            });
 
         }
 

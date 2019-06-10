@@ -21,5 +21,10 @@ namespace IZrune.PCL.Abstraction.Services
         Task RecoverPasswordAsync(string PhoneNumber);
 
         Task RecoverUserNamedAsync(string PhoneNumber);
+
+        Task AddStudent(IStudent student);
+
+
+
     }
 }

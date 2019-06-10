@@ -54,50 +54,61 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.MarkTXt)]
         TextView Mark;
 
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get; set; }
+
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
         }
 
-        public override async void OnViewCreated(View view, Bundle savedInstanceState)
+        public override  void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
 
+            Activity.RunOnUiThread(async() => {
 
-            var Result = await QuezControll.Instance.GetExamInfoAsync();
+                Startloading();
 
-            var QuisInfo = Result.QueisResult;
+                var Result = await QuezControll.Instance.GetExamInfoAsync();
 
-            StudentNameLastName.Text = $"{UserControl.Instance.CurrentStudent.Name}  {UserControl.Instance.CurrentStudent.LastName}";
+                var QuisInfo = Result.QueisResult;
 
-            Score.Text = QuisInfo.Score.ToString();
-            Time.Text = $"{QuisInfo.Duration / 60}:{QuisInfo.Duration % 60}";
-            Correctanswers.Text = QuisInfo.RightAnswer.ToString();
-            IncorectAnswers.Text = QuisInfo.WronAnswers.ToString();
-            SkippedAnswer.Text = QuisInfo.SkipedAnswers.ToString();
-            PointTxt.Text = QuisInfo.text_title;
-            Mark.Text = QuisInfo.text_description;
-            if (!string.IsNullOrEmpty(Result.DiplomaURl))
-            {
-                DiplomaImage.Visibility = ViewStates.Visible;
-                DiplomaImage.LoadImage(Result.DiplomaURl);
+                StudentNameLastName.Text = $"{UserControl.Instance.CurrentStudent.Name}  {UserControl.Instance.CurrentStudent.LastName}";
 
-            }
+                Score.Text = QuisInfo.Score.ToString();
+                Time.Text = $"{QuisInfo.Duration / 60}:{QuisInfo.Duration % 60}";
+                Correctanswers.Text = QuisInfo.RightAnswer.ToString();
+                IncorectAnswers.Text = QuisInfo.WronAnswers.ToString();
+                SkippedAnswer.Text = QuisInfo.SkipedAnswers.ToString();
+                PointTxt.Text = QuisInfo.text_title;
+                Mark.Text = QuisInfo.text_description;
+                if (!string.IsNullOrEmpty(Result.DiplomaURl))
+                {
+                    DiplomaImage.Visibility = ViewStates.Visible;
+                    DiplomaImage.LoadImage(Result.DiplomaURl);
 
-
-            for (int i = 0; i < 5; i++)
-            {
-
-                FrameLayout.LayoutParams imgViewParams = new FrameLayout.LayoutParams(120, 120, GravityFlags.CenterHorizontal);
-                imgViewParams.SetMargins(10, 10, 10, 10);
-                var Image = new ImageView(this);
-                Image.LayoutParameters = imgViewParams;
-
-                Image.SetBackgroundResource(i < QuisInfo.Stars ? Resource.Drawable.ActiveStar : Resource.Drawable.PasiveStar);
-                starsContr.AddView(Image);
+                }
 
 
-            }
+                for (int i = 0; i < 5; i++)
+                {
+
+                    FrameLayout.LayoutParams imgViewParams = new FrameLayout.LayoutParams(120, 120, GravityFlags.CenterHorizontal);
+                    imgViewParams.SetMargins(10, 10, 10, 10);
+                    var Image = new ImageView(this);
+                    Image.LayoutParameters = imgViewParams;
+
+                    Image.SetBackgroundResource(i < QuisInfo.Stars ? Resource.Drawable.ActiveStar : Resource.Drawable.PasiveStar);
+                    starsContr.AddView(Image);
+
+
+                }
+                StopLoading();
+            });
+
+          
         }
 
 

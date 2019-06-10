@@ -19,6 +19,7 @@
             android:layout_height="30dp"
 			android:isScrollContainer="true"
 		app:tabIndicatorColor="#AE71B7"
+		app:tabSelectedTextColor="#AE71B7"
 			/>
 
 	<android.support.v4.view.ViewPager
@@ -27,6 +28,7 @@
         android:layout_height="0dp"
 		android:layout_weight="1"
 		android:overScrollMode="never"
+		
          />
 
 </LinearLayout>
