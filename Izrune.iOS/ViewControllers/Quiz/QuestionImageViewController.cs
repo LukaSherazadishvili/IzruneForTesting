@@ -29,7 +29,7 @@ namespace Izrune.iOS
             questionImageView.InitImageFromWeb(ImageUrl, false, false);
 
             imageScrollView.Delegate = this;
-
+            imageScrollView.MaximumZoomScale = 3f;
 
             closeBtn.TouchUpInside += delegate {
                 CloseVc();
