@@ -1911,48 +1911,82 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Pn-c8-edO">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVW-gW-GbU">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PHP-4N-nq3">
-                                <rect key="frame" x="338" y="96.333333333333329" width="25" height="25"/>
-                                <color key="backgroundColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RI1-tE-oqO">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Pn-c8-edO">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PHP-4N-nq3">
+                                                <rect key="frame" x="15" y="40" width="25" height="25"/>
+                                                <color key="backgroundColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="BcU-3W-6Ek"/>
+                                                    <constraint firstAttribute="height" constant="25" id="LKH-5P-yXQ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                <state key="normal" title="X">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kQ6-Nj-513">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="2Pn-c8-edO" firstAttribute="top" secondItem="RI1-tE-oqO" secondAttribute="top" id="0cK-qR-Al3"/>
+                                            <constraint firstItem="2Pn-c8-edO" firstAttribute="leading" secondItem="RI1-tE-oqO" secondAttribute="leading" id="90y-bh-rH6"/>
+                                            <constraint firstItem="PHP-4N-nq3" firstAttribute="top" secondItem="RI1-tE-oqO" secondAttribute="top" constant="40" id="92c-d9-nO4"/>
+                                            <constraint firstAttribute="trailing" secondItem="2Pn-c8-edO" secondAttribute="trailing" id="XJZ-Y5-X2P"/>
+                                            <constraint firstAttribute="bottom" secondItem="2Pn-c8-edO" secondAttribute="bottom" id="Y1l-l2-2L6"/>
+                                            <constraint firstItem="kQ6-Nj-513" firstAttribute="top" secondItem="RI1-tE-oqO" secondAttribute="top" id="Zyg-gd-r24"/>
+                                            <constraint firstAttribute="trailing" secondItem="kQ6-Nj-513" secondAttribute="trailing" id="esM-dw-Xj7"/>
+                                            <constraint firstAttribute="bottom" secondItem="kQ6-Nj-513" secondAttribute="bottom" id="pks-uf-eI0"/>
+                                            <constraint firstItem="PHP-4N-nq3" firstAttribute="leading" secondItem="RI1-tE-oqO" secondAttribute="leading" constant="15" id="uLi-h0-lpf"/>
+                                            <constraint firstItem="kQ6-Nj-513" firstAttribute="leading" secondItem="RI1-tE-oqO" secondAttribute="leading" id="uuh-MN-gpA"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="25" id="BcU-3W-6Ek"/>
-                                    <constraint firstAttribute="height" constant="25" id="LKH-5P-yXQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="RI1-tE-oqO" secondAttribute="bottom" id="0Ay-dP-dp3"/>
+                                    <constraint firstItem="RI1-tE-oqO" firstAttribute="top" secondItem="kVW-gW-GbU" secondAttribute="top" id="2HF-hM-BuP"/>
+                                    <constraint firstAttribute="trailing" secondItem="RI1-tE-oqO" secondAttribute="trailing" id="4ZW-mo-Qjc"/>
+                                    <constraint firstItem="RI1-tE-oqO" firstAttribute="leading" secondItem="kVW-gW-GbU" secondAttribute="leading" id="FHS-1R-18F"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="17"/>
-                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                <state key="normal" title="X">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kQ6-Nj-513">
-                                <rect key="frame" x="37" y="121.33333333333331" width="301" height="569.33333333333348"/>
-                            </imageView>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="kQ6-Nj-513" firstAttribute="centerX" secondItem="PVd-ls-twh" secondAttribute="centerX" id="9JW-jv-HRm"/>
-                            <constraint firstItem="2Pn-c8-edO" firstAttribute="centerY" secondItem="PVd-ls-twh" secondAttribute="centerY" id="CnJ-4K-CAK"/>
-                            <constraint firstItem="PHP-4N-nq3" firstAttribute="trailing" secondItem="kQ6-Nj-513" secondAttribute="trailing" constant="25" id="HLJ-K4-d7X"/>
-                            <constraint firstItem="kQ6-Nj-513" firstAttribute="centerY" secondItem="PVd-ls-twh" secondAttribute="centerY" id="JGv-Fa-Axq"/>
-                            <constraint firstItem="PHP-4N-nq3" firstAttribute="top" secondItem="kQ6-Nj-513" secondAttribute="top" constant="-25" id="S1I-2I-gUT"/>
-                            <constraint firstItem="kQ6-Nj-513" firstAttribute="width" secondItem="PVd-ls-twh" secondAttribute="width" multiplier="0.8" constant="1" id="YUR-KZ-Osa"/>
-                            <constraint firstItem="2Pn-c8-edO" firstAttribute="centerX" secondItem="PVd-ls-twh" secondAttribute="centerX" id="f0X-XZ-hqP"/>
-                            <constraint firstItem="2Pn-c8-edO" firstAttribute="width" secondItem="PVd-ls-twh" secondAttribute="width" id="jEQ-Wc-c9a"/>
-                            <constraint firstItem="kQ6-Nj-513" firstAttribute="height" secondItem="PVd-ls-twh" secondAttribute="height" multiplier="0.7" constant="1" id="ycd-Sy-rCo"/>
-                            <constraint firstItem="2Pn-c8-edO" firstAttribute="height" secondItem="PVd-ls-twh" secondAttribute="height" id="yqj-gk-7rN"/>
+                            <constraint firstItem="RI1-tE-oqO" firstAttribute="width" secondItem="PVd-ls-twh" secondAttribute="width" id="7ZZ-da-Bcz"/>
+                            <constraint firstItem="RI1-tE-oqO" firstAttribute="height" secondItem="PVd-ls-twh" secondAttribute="height" id="CIH-2D-25p"/>
+                            <constraint firstItem="kVW-gW-GbU" firstAttribute="height" secondItem="PVd-ls-twh" secondAttribute="height" id="EC1-Ee-6P2"/>
+                            <constraint firstAttribute="bottom" secondItem="kVW-gW-GbU" secondAttribute="bottom" id="Nij-ut-XF9"/>
+                            <constraint firstItem="kVW-gW-GbU" firstAttribute="width" secondItem="PVd-ls-twh" secondAttribute="width" id="QF2-eU-6ka"/>
+                            <constraint firstItem="kVW-gW-GbU" firstAttribute="leading" secondItem="PVd-ls-twh" secondAttribute="leading" id="TE0-aJ-sPu"/>
+                            <constraint firstItem="kVW-gW-GbU" firstAttribute="centerY" secondItem="PVd-ls-twh" secondAttribute="centerY" id="UFX-dd-HeL"/>
+                            <constraint firstItem="kVW-gW-GbU" firstAttribute="centerX" secondItem="PVd-ls-twh" secondAttribute="centerX" id="evU-6Z-7f9"/>
+                            <constraint firstItem="kVW-gW-GbU" firstAttribute="top" secondItem="PVd-ls-twh" secondAttribute="top" id="tRM-UQ-ayO"/>
+                            <constraint firstAttribute="trailing" secondItem="kVW-gW-GbU" secondAttribute="trailing" id="vUa-Je-3jH"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="closeBtn" destination="PHP-4N-nq3" id="W7o-5S-CRO"/>
+                        <outlet property="imageScrollView" destination="kVW-gW-GbU" id="6Hq-KW-aXb"/>
+                        <outlet property="imageViewBottom" destination="pks-uf-eI0" id="R7O-Nw-ngj"/>
+                        <outlet property="imageViewLeading" destination="uuh-MN-gpA" id="b2O-ov-YxX"/>
+                        <outlet property="imageViewTop" destination="Zyg-gd-r24" id="cz1-XC-4Nd"/>
+                        <outlet property="imageViewTrailing" destination="esM-dw-Xj7" id="Sbe-D1-qDz"/>
                         <outlet property="mainBgView" destination="2Pn-c8-edO" id="l50-WE-czT"/>
                         <outlet property="questionImageView" destination="kQ6-Nj-513" id="lai-LX-KwX"/>
                     </connections>
