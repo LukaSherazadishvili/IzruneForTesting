@@ -6,6 +6,7 @@ using System.Linq;
 using Foundation;
 using Izrune.iOS.CollectionViewCells;
 using Izrune.iOS.Models;
+using Izrune.iOS.Utils;
 using IZrune.PCL.Enum;
 using MpdcViewExtentions;
 using UIKit;
