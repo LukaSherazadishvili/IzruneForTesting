@@ -245,7 +245,7 @@ namespace Izrune.iOS
                 EndLoading();
 
                 var resultTab = Storyboard.InstantiateViewController(ResultTabbedViewController.StoryboardId) as ResultTabbedViewController;
-                resultTab.Questions = AllQuestions;
+                resultTab.Questions = questionList;
 
                 resultTab.QuisInfo = info;
 
