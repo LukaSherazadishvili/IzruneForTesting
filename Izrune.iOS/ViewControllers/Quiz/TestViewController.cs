@@ -192,7 +192,8 @@ namespace Izrune.iOS
                     Console.WriteLine(ex.Message);
                 }
 
-                questionCollectionView.ScrollToItem(NSIndexPath.FromRowSection(0, 0), UICollectionViewScrollPosition.Top, true);
+                if(currentIndex < 20)
+                    questionCollectionView.ScrollToItem(NSIndexPath.FromRowSection(0, 0), UICollectionViewScrollPosition.Top, true);
             };
 
             cell.InitData(CurrentQuestion);
