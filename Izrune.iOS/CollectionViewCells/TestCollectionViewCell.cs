@@ -144,9 +144,21 @@ namespace Izrune.iOS.CollectionViewCells
 
             var data = Question?.Answers?.ElementAt(indexPath.Row);
 
-            var currQuestion = IsResultCell ? Question as IFinalQuestion : Question;
+            var currQuestion = Question as IFinalQuestion;
 
+            if(IsResultCell)
+            {
+                if(indexPath.Row == currQuestion.StudentAnswerIndex)
+                {
+                    cell.InitData(data, NumberList?[indexPath.Row], true);
 
+                    return cell;
+                }
+
+                cell.InitData(data, NumberList?[indexPath.Row], false);
+
+                return cell;
+            }
 
             cell.InitData(data, NumberList?[indexPath.Row]);
 

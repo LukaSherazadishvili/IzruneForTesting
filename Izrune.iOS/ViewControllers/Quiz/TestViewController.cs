@@ -240,9 +240,7 @@ namespace Izrune.iOS
 
                 var info = (await QuezControll.Instance.GetExamInfoAsync());
 
-                var service = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
-
-                var questionList = (await service.GetFinalQuestionResult())?.ToList(); ;
+                var questionList = info.QuestionResult?.ToList();
 
                 EndLoading();
                
