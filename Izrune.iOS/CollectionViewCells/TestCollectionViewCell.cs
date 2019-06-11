@@ -70,6 +70,9 @@ namespace Izrune.iOS.CollectionViewCells
 
             questionImagesCollectionView.ReloadData();
             answerCollectionView.ReloadData();
+
+            if (IsResultCell)
+                ShowBottomLine();
         }
 
         public void InitDataForResult(IFinalQuestion finalQuestion, string index = "")

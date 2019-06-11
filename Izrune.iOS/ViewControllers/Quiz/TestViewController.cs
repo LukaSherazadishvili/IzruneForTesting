@@ -167,6 +167,7 @@ namespace Izrune.iOS
                     await QuezControll.Instance.AddQuestion(answer.id);
                     CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
                     currentIndex++;
+                    questionCollectionView.ReloadData();
                     questionCollectionView.Hidden = false;
                     if (currentIndex < AllQuestions?.Count)
                     {
@@ -177,14 +178,12 @@ namespace Izrune.iOS
 
                     else
                     {
-                        //TODO finish test
-
                         timer.Stop();
 
                         await GoToResultPage();
                     }
 
-                    questionCollectionView.ReloadData();
+
                 }
 
                 catch (Exception ex)
@@ -225,7 +224,7 @@ namespace Izrune.iOS
                 lastVisibleIndex++;
             }
 
-            questionCollectionView.ReloadData();
+            //questionCollectionView.ReloadData();
             answerProgressCollectionView.ReloadData();
         }
 
