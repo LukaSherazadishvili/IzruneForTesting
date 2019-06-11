@@ -51,36 +51,6 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
-            //skipQuestionBtn.Layer.CornerRadius = 22.5f;
-            //questionCollectionView.RegisterClassForSupplementaryView(typeof(FooterTestView), new NSString("UICollectionElementKindSectionFooter"),
-                //new NSString("FooterReusableView"));
-
-            //skipQuestionBtn.TouchUpInside +=  async delegate
-            //{
-            //    //TODO
-            //    try
-            //    {
-            //        var asd = currentIndex;
-            //        if (currentIndex >= AllQuestions?.Count-1)
-            //        {
-            //            currentIndex++;
-            //            await GoToResultPage();
-            //        }
-            //        else
-            //        {
-            //            if (!IsTotalTime)
-            //                timeLbl.Text = ($"01:00");
-            //            await SkipQuestion();
-            //            ScrollAnswerProgressCell();
-            //        }
-            //    }
-
-            //    catch (Exception ex)
-            //    {
-            //        Console.WriteLine(ex.Message);
-            //    }
-            //};
-
             InitCollectionView();
 
             await LoadDataAsync();
@@ -97,6 +67,7 @@ namespace Izrune.iOS
             ShowLoading();
             try
             {
+                questionCollectionView.Hidden = true;
                 var testService = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
 
                 var userService = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
@@ -108,7 +79,6 @@ namespace Izrune.iOS
                 AllQuestions = data?.ToList();
 
                 CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
-                
 
                 questionCollectionView.ReloadData();
 
@@ -118,6 +88,10 @@ namespace Izrune.iOS
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                questionCollectionView.Hidden = false;
             }
             EndLoading();
 
