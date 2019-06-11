@@ -50,13 +50,16 @@ namespace Izrune.iOS
             base.ViewDidLoad();
 
             this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+            InitUI();
+
+            this.NavigationController.NavigationBar.InitTransparencyToNavBar();
+           // this.EdgesForExtendedLayout = UIRectEdge.All;
 
             Parent = await UserControl.Instance.GetCurrentUser();
 
             examDate = (await QuezControll.Instance.GetExamDate(QuezCategory.QuezExam));
 
             testDate = (await QuezControll.Instance.GetExamDate(QuezCategory.QuezTest));
-
 
 
             InitSummTimer();
@@ -77,7 +80,7 @@ namespace Izrune.iOS
 
             View.LayoutIfNeeded();
 
-            InitUI();
+           
 
             UserNameDropDown.SelectRow(0);
         }

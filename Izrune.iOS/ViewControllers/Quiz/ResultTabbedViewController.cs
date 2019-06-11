@@ -27,9 +27,15 @@ namespace Izrune.iOS
         ExamResultViewController ExRes;
         QuestionResultViewController QuestionRes;
 
+
+        public override void ViewWillDisappear(bool animated)
+        {
+            base.ViewWillDisappear(animated);
+            this.NavigationController.NavigationBar.Translucent = true;
+        }
         public override void ViewDidLoad()
         {
-
+            this.NavigationController.NavigationBar.Translucent = false;
             ExRes = Storyboard.InstantiateViewController(ExamResultViewController.StoryboardId) as ExamResultViewController;
             ExRes.QuisInfo = QuisInfo;
 

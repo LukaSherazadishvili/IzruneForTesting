@@ -245,7 +245,7 @@ namespace Izrune.iOS
                 var questionList = (await service.GetFinalQuestionResult())?.ToList(); ;
 
                 EndLoading();
-
+               
                 var resultTab = Storyboard.InstantiateViewController(ResultTabbedViewController.StoryboardId) as ResultTabbedViewController;
                 resultTab.Questions = questionList;
 
