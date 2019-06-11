@@ -21,7 +21,7 @@ namespace ConsoleApp2
 
             //var rr = MpdcContainer.Instance.Get<IQuezServices>().GetQuestionsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest).Result;
            var res= QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezTest).Result;
-          
+            var Res = MpdcContainer.Instance.Get<IPaymentService>().GetPaymentUrlsAsync(1, 2, 10).Result;
             Console.ReadKey();
         }
     }

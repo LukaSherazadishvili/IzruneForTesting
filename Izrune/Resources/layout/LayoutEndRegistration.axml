@@ -37,12 +37,36 @@ android:id="@+id/Container">
             android:layout_gravity="center_horizontal"
             android:src="@drawable/logo"/>
 
+
+				<LinearLayout
+					android:layout_marginTop="10dp"
+					android:layout_marginBottom="15dp"
+			android:id="@+id/NextButton"
+            android:elevation="5dp"
+            android:paddingTop="13dp"
+            android:paddingBottom="13dp"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bluebuttonbackgroundxml"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content">
+            <TextView
+				android:textSize="13dp"		
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+ დაამატეთ კიდევ ერთი მოსწავლე"
+                android:textColor="#ffffff"
+				android:fontFamily="@font/bpg_mrgvlovani"
+                />
+        </LinearLayout>
+
+
 				<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:gravity="center"
 					android:fontFamily="@font/bpg_mrgvlovani"
-					android:textSize="15dp"
+					android:textSize="13dp"
 					android:textColor="#49B541"
 					android:text="რეგისტრაციის დასასრულებლად „მომსახურების წესების და პირობების“ მონიშვნა აუცილებელია"/>
 
@@ -59,15 +83,17 @@ android:id="@+id/Container">
                             android:gravity="center_vertical"
                             android:clipChildren="false"
                             android:clipToPadding="false">
-                            <com.airbnb.lottie.LottieAnimationView
+                            <com.airbnb.lottie.LottieAnimationView	
+							android:id="@+id/Checker"
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
                                 app:lottie_fileName="CheckBox.json"
-                                app:lottie_loop="true"
-                                app:lottie_autoPlay="true"
+                                app:lottie_loop="false"
+                                app:lottie_autoPlay="false"
                                 android:layout_gravity="center" />
                         </FrameLayout>
 					<TextView
+						android:textSize="13dp"
 						android:layout_marginLeft="15dp"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
@@ -91,24 +117,7 @@ android:id="@+id/Container">
 		android:layout_gravity="bottom"
         >
 
-				<LinearLayout
-			android:id="@+id/NextButton"
-            android:elevation="5dp"
-            android:paddingTop="13dp"
-            android:paddingBottom="13dp"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/bluebuttonbackgroundxml"
-            android:layout_width="340dp"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="+ დაამატეთ კიდევ ერთი მოსწავლე"
-                android:textColor="#ffffff"
-				android:fontFamily="@font/bpg_mrgvlovani"
-                />
-        </LinearLayout>
+				
 
 
         <LinearLayout

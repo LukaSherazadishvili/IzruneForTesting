@@ -44,6 +44,8 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.BodyContent)]
         LinearLayout Body;
 
+        public int CurrentId { get; set; }
+
 
         private List<MPDCBaseFragment> FragmentList = new List<MPDCBaseFragment>();
        
@@ -60,9 +62,9 @@ namespace Izrune.Fragments
         {
             base.OnViewCreated(view, savedInstanceState);
 
-            
 
-            var Result = await MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(UserControl.Instance.CurrentStudent.SchoolId.ToString());
+
+            var Result = await MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(CurrentId.ToString());
 
             var Individual = new IndividualServiceFragmentcs(Result.Prices.ToList());
             var Promo = new PromoFragment(Result.PrommoCode);
