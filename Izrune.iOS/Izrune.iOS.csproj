@@ -328,6 +328,10 @@
         <Compile Include="FooterTestView.designer.cs">
           <DependentUpon>FooterTestView.cs</DependentUpon>
         </Compile>
+        <Compile Include="ViewControllers\DiplomeViewController.cs" />
+        <Compile Include="ViewControllers\DiplomeViewController.designer.cs">
+          <DependentUpon>DiplomeViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />

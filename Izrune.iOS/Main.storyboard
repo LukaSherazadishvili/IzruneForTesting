@@ -1314,6 +1314,139 @@
             </objects>
             <point key="canvasLocation" x="-2919" y="2680"/>
         </scene>
+        <!--Diplome View Controller-->
+        <scene sceneID="kQ3-r5-UCr">
+            <objects>
+                <viewController storyboardIdentifier="DiplomeStoryboardId" id="Wy6-Tc-Ab0" customClass="DiplomeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lGF-7F-OXv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 248.png" translatesAutoresizingMaskIntoConstraints="NO" id="8aX-uh-Ut4">
+                                <rect key="frame" x="173.66666666666666" y="94" width="28" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="4vC-Hg-BkD"/>
+                                    <constraint firstAttribute="width" constant="28" id="i2u-NP-ukZ"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="შემაჯამებელი ტესტის დიპლომი" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcH-6N-U9T">
+                                <rect key="frame" x="25" y="129" width="325" height="18.666666666666657"/>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="16"/>
+                                <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hH7-nE-2o7">
+                                <rect key="frame" x="25" y="177.66666666666666" width="325" height="40"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="KqO-NS-cLq">
+                                        <rect key="frame" x="280" y="12.666666666666686" width="30" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="jUE-uA-hOB"/>
+                                            <constraint firstAttribute="height" constant="15" id="pTi-5v-kcj"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="შემაჯამებელი ტესტის დიპლომი" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kD-AC-RFf">
+                                        <rect key="frame" x="15" y="11.999999999999998" width="300" height="16.333333333333329"/>
+                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                        <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="KqO-NS-cLq" firstAttribute="centerY" secondItem="hH7-nE-2o7" secondAttribute="centerY" id="4xc-eH-s8Y"/>
+                                    <constraint firstItem="1kD-AC-RFf" firstAttribute="leading" secondItem="hH7-nE-2o7" secondAttribute="leading" constant="15" id="W01-EM-yr6"/>
+                                    <constraint firstAttribute="height" constant="40" id="bBW-ll-pN3"/>
+                                    <constraint firstAttribute="trailing" secondItem="1kD-AC-RFf" secondAttribute="trailing" constant="10" id="bRw-o6-PZa"/>
+                                    <constraint firstAttribute="trailing" secondItem="KqO-NS-cLq" secondAttribute="trailing" constant="15" id="eIJ-G5-obI"/>
+                                    <constraint firstItem="1kD-AC-RFf" firstAttribute="centerY" secondItem="hH7-nE-2o7" secondAttribute="centerY" id="nRj-JX-sxl"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="kF7-AZ-fEw">
+                                <rect key="frame" x="0.0" y="672" width="375" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="NFB-8U-uwb"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="უკან დაბრუნება" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEi-zD-RBQ">
+                                <rect key="frame" x="20" y="762" width="335" height="14"/>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fjS-nM-ELr">
+                                <rect key="frame" x="162.66666666666666" y="702" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="7eO-2D-USD"/>
+                                    <constraint firstAttribute="height" constant="50" id="gc3-wQ-F5L"/>
+                                </constraints>
+                                <state key="normal" image="1 – 4.png"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ihb-P4-QTG">
+                                <rect key="frame" x="0.0" y="241" width="375" height="432"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="l7p-6C-fh4">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="uFe-Kk-ccF">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Fik-Ss-5q7" firstAttribute="trailing" secondItem="pcH-6N-U9T" secondAttribute="trailing" constant="25" id="3s8-bY-QSv"/>
+                            <constraint firstItem="Ihb-P4-QTG" firstAttribute="top" secondItem="hH7-nE-2o7" secondAttribute="bottom" constant="23.333333333333343" id="52b-Ac-2CF"/>
+                            <constraint firstItem="hH7-nE-2o7" firstAttribute="leading" secondItem="Fik-Ss-5q7" secondAttribute="leading" constant="25" id="B9e-7m-1H4"/>
+                            <constraint firstItem="Fik-Ss-5q7" firstAttribute="trailing" secondItem="hH7-nE-2o7" secondAttribute="trailing" constant="25" id="BQx-0h-4QX"/>
+                            <constraint firstItem="hH7-nE-2o7" firstAttribute="top" secondItem="pcH-6N-U9T" secondAttribute="bottom" constant="30" id="LGs-mz-c5F"/>
+                            <constraint firstItem="kF7-AZ-fEw" firstAttribute="top" secondItem="Ihb-P4-QTG" secondAttribute="bottom" constant="-1" id="NHg-kI-A5I"/>
+                            <constraint firstItem="fjS-nM-ELr" firstAttribute="centerY" secondItem="kF7-AZ-fEw" secondAttribute="centerY" constant="-15" id="PBA-eg-gcB"/>
+                            <constraint firstItem="kF7-AZ-fEw" firstAttribute="leading" secondItem="Fik-Ss-5q7" secondAttribute="leading" id="RKY-88-vo5"/>
+                            <constraint firstAttribute="trailing" secondItem="kF7-AZ-fEw" secondAttribute="trailing" id="Z7O-KB-eK0"/>
+                            <constraint firstItem="pcH-6N-U9T" firstAttribute="leading" secondItem="Fik-Ss-5q7" secondAttribute="leading" constant="25" id="Z8d-Ww-gOO"/>
+                            <constraint firstItem="Fik-Ss-5q7" firstAttribute="trailing" secondItem="sEi-zD-RBQ" secondAttribute="trailing" constant="20" id="ZNK-Qy-fYO"/>
+                            <constraint firstItem="fjS-nM-ELr" firstAttribute="centerX" secondItem="lGF-7F-OXv" secondAttribute="centerX" id="acW-CB-bL4"/>
+                            <constraint firstItem="Ihb-P4-QTG" firstAttribute="leading" secondItem="Fik-Ss-5q7" secondAttribute="leading" id="aqo-Bd-wqe"/>
+                            <constraint firstItem="8aX-uh-Ut4" firstAttribute="centerX" secondItem="lGF-7F-OXv" secondAttribute="centerX" id="c55-iE-1Hv"/>
+                            <constraint firstItem="8aX-uh-Ut4" firstAttribute="top" secondItem="Fik-Ss-5q7" secondAttribute="top" constant="50" id="hjP-Ly-69L"/>
+                            <constraint firstAttribute="trailing" secondItem="Ihb-P4-QTG" secondAttribute="trailing" id="ifo-sg-JSD"/>
+                            <constraint firstAttribute="bottom" secondItem="kF7-AZ-fEw" secondAttribute="bottom" id="n95-Jh-2C6"/>
+                            <constraint firstItem="pcH-6N-U9T" firstAttribute="top" secondItem="8aX-uh-Ut4" secondAttribute="bottom" constant="7" id="tqE-zf-Hb1"/>
+                            <constraint firstItem="sEi-zD-RBQ" firstAttribute="leading" secondItem="Fik-Ss-5q7" secondAttribute="leading" constant="20" id="vog-JR-LeZ"/>
+                            <constraint firstItem="sEi-zD-RBQ" firstAttribute="top" secondItem="fjS-nM-ELr" secondAttribute="bottom" constant="10" id="xbr-UC-7zU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Fik-Ss-5q7"/>
+                    </view>
+                    <connections>
+                        <outlet property="backBtn" destination="fjS-nM-ELr" id="4ti-5Y-iEI"/>
+                        <outlet property="diplomeCollectionView" destination="Ihb-P4-QTG" id="cJM-iD-tMR"/>
+                        <outlet property="headerImageView" destination="8aX-uh-Ut4" id="tXL-rM-9fP"/>
+                        <outlet property="headerLbl" destination="pcH-6N-U9T" id="ESQ-w0-8z8"/>
+                        <outlet property="testLbl" destination="1kD-AC-RFf" id="43a-YR-qav"/>
+                        <outlet property="viewForDropDown" destination="hH7-nE-2o7" id="Bvu-MT-7Ym"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9eE-b6-iUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2919.1999999999998" y="3351.7241379310344"/>
+        </scene>
         <!--Exam Result View Controller-->
         <scene sceneID="nzT-qh-Hah">
             <objects>
@@ -3564,10 +3697,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I3C-n6-6np">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="405"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="355"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="KdF-nD-FX4">
-                                                <rect key="frame" x="20" y="50" width="340" height="335"/>
+                                                <rect key="frame" x="20" y="50" width="340" height="285"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="gdU-Fe-Iy9">
                                                         <rect key="frame" x="0.0" y="0.0" width="340" height="205"/>
@@ -3678,10 +3811,10 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="equalSpacing" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XVo-0M-nQv">
-                                                        <rect key="frame" x="0.0" y="245" width="340" height="50"/>
+                                                        <rect key="frame" x="0.0" y="245" width="340" height="0.0"/>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRk-zO-cZx">
-                                                        <rect key="frame" x="0.0" y="335" width="340" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="285" width="340" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovaniCaps2010" family="BPG Mrgvlovani Caps 2010" pointSize="15"/>
                                                         <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                         <nil key="highlightedColor"/>
@@ -3911,6 +4044,7 @@
         <image name="4.png" width="172" height="161"/>
         <image name="Group 136.png" width="137" height="113"/>
         <image name="Group 232.png" width="26" height="26"/>
+        <image name="Group 248.png" width="31" height="26"/>
         <image name="downArrow.png" width="156.52174377441406" height="156.52174377441406"/>
         <image name="fagarati.png" width="378" height="811"/>
         <image name="ic_arrow_downward_24px.png" width="16" height="16"/>
