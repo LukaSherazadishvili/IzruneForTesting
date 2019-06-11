@@ -38,6 +38,8 @@ namespace Izrune.iOS.CollectionViewCells
             InitAnswer(AppColors.Tint);
 
             answerLbl.TextColor = AppColors.UnselectedColor;
+
+            CheckAnswer(answer.IsRight);
         }
 
         public void InitDataForResult(IAnswer answer, string number, bool iscorrect)
