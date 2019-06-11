@@ -23,13 +23,16 @@ namespace Izrune.iOS
             base.ViewDidLoad();
 
             this.View.BackgroundColor = UIColor.Clear;
+
             this.DefinesPresentationContext = true;
+
             this.ModalPresentationStyle = UIModalPresentationStyle.OverCurrentContext;
 
+            questionImageView.ContentMode = UIViewContentMode.ScaleAspectFit;
             questionImageView.InitImageFromWeb(ImageUrl, false, false);
 
             imageScrollView.Delegate = this;
-
+            imageScrollView.MaximumZoomScale = 3f;
 
             closeBtn.TouchUpInside += delegate {
                 CloseVc();

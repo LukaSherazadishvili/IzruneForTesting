@@ -36,6 +36,8 @@ namespace Izrune.iOS.CollectionViewCells
             "დ"
         };
 
+        public bool IsResultCell { get; set; }
+
         IQuestion Question;
 
         static TestCollectionViewCell()
@@ -68,6 +70,9 @@ namespace Izrune.iOS.CollectionViewCells
 
             questionImagesCollectionView.ReloadData();
             answerCollectionView.ReloadData();
+
+            if (IsResultCell)
+                ShowBottomLine();
         }
 
         public void InitDataForResult(IFinalQuestion finalQuestion, string index = "")
@@ -116,7 +121,7 @@ namespace Izrune.iOS.CollectionViewCells
 
         public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {
-            if(collectionView == questionImagesCollectionView)
+            if (collectionView == questionImagesCollectionView)
             {
                 var questionCell = questionImagesCollectionView.DequeueReusableCell(QuestionImageCollectionViewCell.Identifier, indexPath) as QuestionImageCollectionViewCell;
 
@@ -134,9 +139,29 @@ namespace Izrune.iOS.CollectionViewCells
                 return questionCell;
             }
 
+
+            //Answer Cell
             var cell = answerCollectionView.DequeueReusableCell(AnswerCollectionViewCell.Identifier, indexPath) as AnswerCollectionViewCell;
 
+            cell.IsResult = IsResultCell;
+
             var data = Question?.Answers?.ElementAt(indexPath.Row);
+
+            var currQuestion = Question as IFinalQuestion;
+
+            if(IsResultCell)
+            {
+                if(indexPath.Row == currQuestion.StudentAnswerIndex)
+                {
+                    cell.InitData(data, NumberList?[indexPath.Row], true);
+
+                    return cell;
+                }
+
+                cell.InitData(data, NumberList?[indexPath.Row], false);
+
+                return cell;
+            }
 
             cell.InitData(data, NumberList?[indexPath.Row]);
 
@@ -267,6 +292,5 @@ namespace Izrune.iOS.CollectionViewCells
             topLine.Hidden = true;
             bottomLine.Hidden = false;
         }
-
     }
 }

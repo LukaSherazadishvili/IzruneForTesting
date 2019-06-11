@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Foundation;
 using Izrune.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
+using MpdcViewExtentions;
 using UIKit;
 using XLPagerTabStrip;
 
@@ -27,9 +28,15 @@ namespace Izrune.iOS
         ExamResultViewController ExRes;
         QuestionResultViewController QuestionRes;
 
+
+        public override void ViewWillDisappear(bool animated)
+        {
+            base.ViewWillDisappear(animated);
+            this.NavigationController.NavigationBar.Translucent = true;
+        }
         public override void ViewDidLoad()
         {
-
+            this.NavigationController.NavigationBar.Translucent = false;
             ExRes = Storyboard.InstantiateViewController(ExamResultViewController.StoryboardId) as ExamResultViewController;
             ExRes.QuisInfo = QuisInfo;
 
@@ -45,13 +52,15 @@ namespace Izrune.iOS
             this.Delegate = this;
             base.ViewDidLoad();
 
-            var barButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, null)
-            {
-                Title = "გაზიარება"
-            };
+            var barButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, null);
 
             barButton.Clicked += delegate {
-                //TODO
+                var url = QuisInfo.DiplomaURl;
+
+                if(!string.IsNullOrEmpty(url) && !string.IsNullOrWhiteSpace(url))
+                {
+                    this.ShareUrl(url);
+                }
             };
             this.NavigationItem.RightBarButtonItem = barButton;
 

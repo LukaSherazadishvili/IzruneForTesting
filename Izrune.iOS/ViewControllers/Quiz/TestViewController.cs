@@ -51,7 +51,7 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
-            skipQuestionBtn.Layer.CornerRadius = 20;
+            skipQuestionBtn.Layer.CornerRadius = 22.5f;
 
             skipQuestionBtn.TouchUpInside +=  async delegate
             {
@@ -167,6 +167,7 @@ namespace Izrune.iOS
                     await QuezControll.Instance.AddQuestion(answer.id);
                     CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
                     currentIndex++;
+                    questionCollectionView.ReloadData();
                     questionCollectionView.Hidden = false;
                     if (currentIndex < AllQuestions?.Count)
                     {
@@ -177,14 +178,12 @@ namespace Izrune.iOS
 
                     else
                     {
-                        //TODO finish test
-
                         timer.Stop();
 
                         await GoToResultPage();
                     }
 
-                    questionCollectionView.ReloadData();
+
                 }
 
                 catch (Exception ex)
@@ -192,6 +191,8 @@ namespace Izrune.iOS
                     Console.WriteLine(ex.Message);
                 }
 
+                if(currentIndex < 20)
+                    questionCollectionView.ScrollToItem(NSIndexPath.FromRowSection(0, 0), UICollectionViewScrollPosition.Top, true);
             };
 
             cell.InitData(CurrentQuestion);
@@ -223,7 +224,7 @@ namespace Izrune.iOS
                 lastVisibleIndex++;
             }
 
-            questionCollectionView.ReloadData();
+            //questionCollectionView.ReloadData();
             answerProgressCollectionView.ReloadData();
         }
 
@@ -238,12 +239,10 @@ namespace Izrune.iOS
 
                 var info = (await QuezControll.Instance.GetExamInfoAsync());
 
-                var service = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
-
-                var questionList = (await service.GetFinalQuestionResult())?.ToList(); ;
+                var questionList = info.QuestionResult?.ToList();
 
                 EndLoading();
-
+               
                 var resultTab = Storyboard.InstantiateViewController(ResultTabbedViewController.StoryboardId) as ResultTabbedViewController;
                 resultTab.Questions = questionList;
 

@@ -18,6 +18,8 @@ namespace Izrune.iOS.CollectionViewCells
 
         IAnswer Answer;
 
+        public bool IsResult;
+
         static AnswerCollectionViewCell()
         {
             Nib = UINib.FromName("AnswerCollectionViewCell", NSBundle.MainBundle);
@@ -28,7 +30,7 @@ namespace Izrune.iOS.CollectionViewCells
             // Note: this .ctor should not contain any initialization logic.
         }
 
-        public void InitData(IAnswer answer, string number)
+        public void InitData(IAnswer answer, string number, bool checkAnswer = false)
         {
             Answer = answer;
             answerLbl.Text = answer.title;
@@ -36,7 +38,16 @@ namespace Izrune.iOS.CollectionViewCells
             InitAnswer(AppColors.Tint);
 
             answerLbl.TextColor = AppColors.UnselectedColor;
+
+            if (checkAnswer)
+                CheckAnswer(answer.IsRight);
         }
+
+        public void InitDataForResult(IAnswer answer, string number, bool iscorrect)
+        {
+
+        }
+
 
         public override void AwakeFromNib()
         {
@@ -51,7 +62,9 @@ namespace Izrune.iOS.CollectionViewCells
             {
                 answerContentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-                    CheckAnswer(Answer.IsRight);
+                    if(!IsResult)
+                        CheckAnswer(Answer.IsRight);
+
                     AnswerClicked?.Invoke(Answer);
                 }));
             }
