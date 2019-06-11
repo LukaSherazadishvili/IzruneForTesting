@@ -28,6 +28,7 @@ namespace Izrune.iOS
 
             this.ModalPresentationStyle = UIModalPresentationStyle.OverCurrentContext;
 
+            questionImageView.ContentMode = UIViewContentMode.ScaleAspectFit;
             questionImageView.InitImageFromWeb(ImageUrl, false, false);
 
             imageScrollView.Delegate = this;
