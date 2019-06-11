@@ -58,9 +58,7 @@ namespace Izrune.iOS
 
             cell.InitData(data, $"{indexPath.Row+1}) ");
 
-            cell.ShowBottomLine();
-
-            cell.ShowBottomLine();
+            //cell.ShowBottomLine();
 
             return cell;
         }

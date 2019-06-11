@@ -1452,7 +1452,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ქულა" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2D-5r-oi8">
-                                                        <rect key="frame" x="23.666666666666671" y="65.666666666666742" width="48" height="18.666666666666671"/>
+                                                        <rect key="frame" x="23.666666666666671" y="61.333333333333364" width="48" height="18.666666666666664"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="16"/>
                                                         <color key="textColor" red="0.24705882352941178" green="0.31764705882352939" blue="0.70980392156862748" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1464,7 +1464,7 @@
                                                     <constraint firstAttribute="height" constant="95" id="ltc-Zp-001"/>
                                                     <constraint firstItem="N1N-Px-psr" firstAttribute="centerY" secondItem="xLp-hn-QKP" secondAttribute="centerY" constant="-10" id="mdU-Y5-VHs"/>
                                                     <constraint firstItem="b2D-5r-oi8" firstAttribute="centerX" secondItem="xLp-hn-QKP" secondAttribute="centerX" id="mnO-Dy-V3G"/>
-                                                    <constraint firstItem="b2D-5r-oi8" firstAttribute="top" secondItem="N1N-Px-psr" secondAttribute="bottom" constant="12.5" id="nCN-yt-PJO"/>
+                                                    <constraint firstItem="b2D-5r-oi8" firstAttribute="top" secondItem="N1N-Px-psr" secondAttribute="bottom" constant="8" id="nCN-yt-PJO"/>
                                                     <constraint firstAttribute="width" constant="95" id="zMg-v0-Afm"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
@@ -1499,29 +1499,29 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="95" height="95"/>
                                                 <subviews>
                                                     <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="დრო" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJ0-PM-etL">
-                                                        <rect key="frame" x="26.333333333333346" y="12.666666666666744" width="42.333333333333343" height="18.666666666666671"/>
+                                                        <rect key="frame" x="26.333333333333346" y="14.000000000000002" width="42.333333333333343" height="18.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="16"/>
                                                         <color key="textColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:07" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPv-w9-GKm">
-                                                        <rect key="frame" x="12.333333333333343" y="32.666666666666742" width="70.666666666666671" height="29.333333333333329"/>
-                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="25"/>
+                                                        <rect key="frame" x="9.6666666666666572" y="34" width="76" height="27"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="23"/>
                                                         <color key="textColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ym9-Kx-bHc">
-                                                        <rect key="frame" x="14.333333333333343" y="67" width="68.666666666666671" height="11.666666666666671"/>
+                                                        <rect key="frame" x="11.666666666666657" y="66" width="74" height="13"/>
                                                         <subviews>
                                                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="წუთი" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HG7-dp-RW7">
-                                                                <rect key="frame" x="0.0" y="0.0" width="30.333333333333332" height="11.666666666666666"/>
-                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="10"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="32" height="13"/>
+                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="11"/>
                                                                 <color key="textColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="წამი" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JuF-IB-dac">
-                                                                <rect key="frame" x="40.333333333333343" y="0.0" width="30" height="11.666666666666666"/>
-                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="10"/>
+                                                                <rect key="frame" x="42.000000000000028" y="0.0" width="32" height="13"/>
+                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="11"/>
                                                                 <color key="textColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
