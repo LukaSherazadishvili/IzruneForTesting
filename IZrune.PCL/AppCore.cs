@@ -24,6 +24,7 @@ namespace IZrune.PCL
             MpdcContainer.Instance.Register<IUserServices, UserServices>(new UserServices());
             MpdcContainer.Instance.Register<IRegistrationServices, RegistrationServices>(new RegistrationServices());
             MpdcContainer.Instance.Register<INewsService, NewsService>(new NewsService());
+            MpdcContainer.Instance.Register<IPaymentService, PaymentService>(new PaymentService());
         }
 
 
