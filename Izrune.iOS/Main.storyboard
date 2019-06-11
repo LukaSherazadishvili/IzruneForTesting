@@ -1906,7 +1906,7 @@
                                 </state>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Dm2-40-8IZ">
-                                <rect key="frame" x="31" y="726" width="313" height="52"/>
+                                <rect key="frame" x="31" y="722" width="313" height="52"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="სწორი პასუხი 5 ქულა" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTd-X8-rXu">
                                         <rect key="frame" x="0.0" y="0.0" width="313" height="14"/>
@@ -1933,8 +1933,8 @@
                         <constraints>
                             <constraint firstItem="Dm2-40-8IZ" firstAttribute="leading" secondItem="2KA-35-UOB" secondAttribute="leadingMargin" constant="15" id="5JM-sJ-yxJ"/>
                             <constraint firstItem="sY2-ss-6Oj" firstAttribute="top" secondItem="qny-id-Vxd" secondAttribute="bottom" id="Awa-9s-b7I"/>
+                            <constraint firstItem="Dm2-40-8IZ" firstAttribute="top" secondItem="7Lx-yl-tRe" secondAttribute="bottom" constant="15" id="DKI-D5-TAw"/>
                             <constraint firstItem="kMS-F6-WOd" firstAttribute="leading" secondItem="OtN-xe-Jut" secondAttribute="leading" id="FUz-IV-8FG"/>
-                            <constraint firstItem="OtN-xe-Jut" firstAttribute="bottom" secondItem="Dm2-40-8IZ" secondAttribute="bottom" id="FY7-4Y-mAJ"/>
                             <constraint firstItem="kMS-F6-WOd" firstAttribute="top" secondItem="sY2-ss-6Oj" secondAttribute="bottom" id="FfX-Co-JC5"/>
                             <constraint firstItem="7Lx-yl-tRe" firstAttribute="leading" secondItem="2KA-35-UOB" secondAttribute="leadingMargin" constant="35" id="H8z-84-s7q"/>
                             <constraint firstItem="qny-id-Vxd" firstAttribute="top" secondItem="OtN-xe-Jut" secondAttribute="top" id="ImQ-a4-Ic8"/>
