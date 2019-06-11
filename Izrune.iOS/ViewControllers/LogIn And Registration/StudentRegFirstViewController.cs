@@ -12,5 +12,16 @@ namespace Izrune.iOS
 		public StudentRegFirstViewController (IntPtr handle) : base (handle)
 		{
 		}
-	}
+
+        public static readonly NSString StoryboardId = new NSString("StudentRegFirstStoryboardId");
+
+        public Action SendClicked { get; set; }
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+        }
+
+
+    }
 }

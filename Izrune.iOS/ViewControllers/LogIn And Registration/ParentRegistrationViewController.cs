@@ -23,16 +23,27 @@ namespace Izrune.iOS
         private ParentRegiFirstViewController parentRegVc;
         private ParentRegSecondViewController parent2RegVc;
 
-        private int CurrentIndex;
+        private StudentRegFirstViewController studentRegVc1;
+        private StudentRegSecondViewController studentRegVc2;
+
+        private PacketViewController choosePacketVc;
+        private int CurrentIndex = 0;
+
+
+        /*
+         * 
+         * UserControl RegisterParent(student)Part1-2
+         * 
+         * IregisterService RegisterInfo for dropdown
+         * 
+         * User Control GetPromoCode
+        */
+         
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
-            parentRegVc = Storyboard.InstantiateViewController(ParentRegiFirstViewController.StoryboardId) as ParentRegiFirstViewController;
-
-            parent2RegVc = Storyboard.InstantiateViewController(ParentRegSecondViewController.StoryboardId) as ParentRegSecondViewController;
-
+            InitViewControllers();
 
             this.AddVcInView(viewForPager, parentRegVc);
 
@@ -41,40 +52,56 @@ namespace Izrune.iOS
             InitGestures();
         }
 
+        private void InitViewControllers()
+        {
+            parentRegVc = Storyboard.InstantiateViewController(ParentRegiFirstViewController.StoryboardId) as ParentRegiFirstViewController;
+
+            parent2RegVc = Storyboard.InstantiateViewController(ParentRegSecondViewController.StoryboardId) as ParentRegSecondViewController;
+
+            studentRegVc1 = Storyboard.InstantiateViewController(StudentRegFirstViewController.StoryboardId) as StudentRegFirstViewController;
+
+            studentRegVc2 = Storyboard.InstantiateViewController(StudentRegSecondViewController.StoryboardId) as StudentRegSecondViewController;
+
+            choosePacketVc = Storyboard.InstantiateViewController(PacketViewController.StoryboardId) as PacketViewController;
+        }
+
+        bool NextClicked = true;
+
         private void InitGestures()
         {
             nextBtn.TouchUpInside += delegate
             {
+                NextClicked = true;
+                GetCurrentPage(CurrentIndex);
                 CurrentIndex++;
-                isFirstPage = false;
                 CheckIndex();
-                AddSecondVc();
             };
 
             prewBtn.TouchUpInside += delegate {
-                isFirstPage = true;
+                NextClicked = false;
+                GetCurrentPage(CurrentIndex);
+                CurrentIndex--;
                 CheckIndex();
-                AddFirstVc();
             };
         }
 
-        private void AddSecondVc()
+        private void AddViewController(UIViewController newVc, UIViewController oldVc)
         {
-            parentRegVc.WillMoveToParentViewController(this);
-            parentRegVc.View.RemoveFromSuperview();
-            parentRegVc.RemoveFromParentViewController();
+            oldVc.WillMoveToParentViewController(this);
+            oldVc.View.RemoveFromSuperview();
+            oldVc.RemoveFromParentViewController();
 
-            this.AddVcInView(viewForPager, parent2RegVc);
+            this.AddVcInView(viewForPager, newVc);
         }
 
-        private void AddFirstVc()
-        {
-            parent2RegVc.WillMoveToParentViewController(this);
-            parent2RegVc.View.RemoveFromSuperview();
-            parent2RegVc.RemoveFromParentViewController();
+        //private void AddFirstVc()
+        //{
+        //    parent2RegVc.WillMoveToParentViewController(this);
+        //    parent2RegVc.View.RemoveFromSuperview();
+        //    parent2RegVc.RemoveFromParentViewController();
 
-            this.AddVcInView(viewForPager, parentRegVc);
-        }
+        //    this.AddVcInView(viewForPager, parentRegVc);
+        //}
 
         private void InitUI()
         {
@@ -86,8 +113,63 @@ namespace Izrune.iOS
 
         private void CheckIndex()
         {
-            nextBtn.Enabled = isFirstPage;
-            prewBtn.Enabled = !isFirstPage;
+            nextBtn.Enabled = CurrentIndex < 5;
+            prewBtn.Enabled = CurrentIndex > 0;
+        }
+
+        private void GetCurrentPage(int pageIndex)
+        {
+            switch (pageIndex)
+            {
+                case 0:
+                    {
+                        if (NextClicked)
+                            AddViewController(parent2RegVc, parentRegVc);
+                        break;
+                    }
+                case 1:
+                    {
+                        if (NextClicked)
+                            AddViewController(studentRegVc1, parent2RegVc);
+                        else
+                            AddViewController(parentRegVc, parent2RegVc);
+                        break;
+                    }
+                case 2:
+                    {
+                        if (NextClicked)
+                            AddViewController(studentRegVc2, studentRegVc1);
+                        else
+                            AddViewController(parent2RegVc, studentRegVc1);
+                        break;
+                    }
+                case 3:
+                    {
+                        if (NextClicked)
+                            AddViewController(choosePacketVc, studentRegVc2);
+                        else
+                            AddViewController(studentRegVc1, studentRegVc2);
+                        break;
+                    }
+                case 4:
+                    {
+                        if (NextClicked)
+                            AddViewController(parent2RegVc, parentRegVc);
+                        else
+                            AddViewController(parentRegVc, parent2RegVc);
+                        break;
+                    }
+                case 5:
+                    {
+                        if (NextClicked)
+                            AddViewController(parent2RegVc, parentRegVc);
+                        else
+                            AddViewController(parentRegVc, parent2RegVc);
+                        break;
+                    }
+                default:
+                    break;
+            }
         }
 
 

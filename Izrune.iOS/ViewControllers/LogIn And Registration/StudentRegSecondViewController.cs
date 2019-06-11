@@ -15,6 +15,8 @@ namespace Izrune.iOS
 		{
 		}
 
+        public static readonly NSString StoryboardId = new NSString("StudentRegSecondStoryboardId");
+
         DropDown CityDpD = new DropDown();
         DropDown SchoolDpD = new DropDown();
         DropDown ClassDpD = new DropDown();

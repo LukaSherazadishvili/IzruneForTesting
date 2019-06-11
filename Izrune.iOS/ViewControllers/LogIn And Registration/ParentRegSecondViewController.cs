@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using Foundation;
 using Izrune.iOS.Utils;
+using IZrune.PCL.Helpers;
 using MpdcViewExtentions;
 using UIKit;
 
@@ -17,11 +18,15 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("ParentRegSecondStoryboardId");
 
+        public Action SendClicked { get; set; }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
             InitUI();
+
+            SendClicked = () => { SenData(); };
         }
 
         private void InitUI()
@@ -32,6 +37,16 @@ namespace Izrune.iOS
             {
                 item.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 20);
             }
+        }
+
+        private void SenData()
+        {
+            UserControl.Instance.RegistrationParrentPartTwo(
+                phoneTextField.Text,
+                emailTextField.Text,
+                userNameTextField.Text,
+                passwordTextField.Text
+                );
         }
     }
 }
