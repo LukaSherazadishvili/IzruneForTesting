@@ -27,7 +27,7 @@ namespace Izrune.iOS
 
             InitUI();
 
-            //InitResult();
+            InitResult();
         }
 
         private void InitUI()

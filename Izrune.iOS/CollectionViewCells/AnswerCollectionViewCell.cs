@@ -30,7 +30,7 @@ namespace Izrune.iOS.CollectionViewCells
             // Note: this .ctor should not contain any initialization logic.
         }
 
-        public void InitData(IAnswer answer, string number)
+        public void InitData(IAnswer answer, string number, bool checkAnswer = false)
         {
             Answer = answer;
             answerLbl.Text = answer.title;
@@ -39,7 +39,8 @@ namespace Izrune.iOS.CollectionViewCells
 
             answerLbl.TextColor = AppColors.UnselectedColor;
 
-            CheckAnswer(answer.IsRight);
+            if (checkAnswer)
+                CheckAnswer(answer.IsRight);
         }
 
         public void InitDataForResult(IAnswer answer, string number, bool iscorrect)
