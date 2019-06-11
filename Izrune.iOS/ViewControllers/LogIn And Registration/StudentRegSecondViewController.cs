@@ -6,6 +6,7 @@ using Foundation;
 using UIKit;
 using FPT.Framework.iOS.UI.DropDown;
 using Izrune.iOS.Utils;
+using MpdcViewExtentions;
 
 namespace Izrune.iOS
 {
@@ -26,6 +27,8 @@ namespace Izrune.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            villageTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 20);
 
             InitDropDowns();
 

@@ -3597,6 +3597,11 @@
                                                                     <constraint firstItem="GvU-ad-DMz" firstAttribute="leading" secondItem="Vxz-ZN-jRr" secondAttribute="leading" constant="20" id="rUH-UH-aUL"/>
                                                                     <constraint firstAttribute="bottom" secondItem="7eD-Mb-tbO" secondAttribute="bottom" constant="5" id="u5T-fm-Bqj"/>
                                                                 </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="20"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="სოფელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ysa-Pp-CKv">
                                                                 <rect key="frame" x="0.0" y="55" width="340" height="40"/>
@@ -3633,6 +3638,11 @@
                                                                     <constraint firstItem="Nbs-Ph-Q9z" firstAttribute="leading" secondItem="adR-X0-Z38" secondAttribute="trailing" constant="15" id="IFO-97-A2z"/>
                                                                     <constraint firstItem="adR-X0-Z38" firstAttribute="leading" secondItem="MOE-Xh-CPP" secondAttribute="leading" constant="20" id="f2k-lL-fN5"/>
                                                                 </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="20"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lJi-BV-U7p">
                                                                 <rect key="frame" x="0.0" y="165" width="340" height="40"/>
@@ -3659,6 +3669,11 @@
                                                                     <constraint firstItem="e0g-5T-QzK" firstAttribute="leading" secondItem="lJi-BV-U7p" secondAttribute="leading" constant="20" id="sif-yp-Rq7"/>
                                                                     <constraint firstItem="e0g-5T-QzK" firstAttribute="centerY" secondItem="lJi-BV-U7p" secondAttribute="centerY" id="un1-sW-xeS"/>
                                                                 </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="20"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                             </view>
                                                         </subviews>
                                                     </stackView>
