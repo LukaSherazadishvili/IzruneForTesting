@@ -67,6 +67,7 @@ namespace Izrune.iOS
             ShowLoading();
             try
             {
+
                 questionCollectionView.Hidden = true;
                 var testService = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
 
