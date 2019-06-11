@@ -32,8 +32,8 @@ namespace Izrune.iOS
 
         private void InitUI()
         {
-            pointView.AddShadowToView(4, 47.5f, 0.8f, UIColor.FromRGBA(0, 0, 0, 0.35f));
-            timeShadowView.AddShadowToView(4, 47.5f, 0.8f, UIColor.FromRGBA(0, 0, 0, 0.35f));
+            pointView.AddShadowToView(4, 48, 0.8f, UIColor.FromRGBA(0, 0, 0, 0.35f));
+            timeShadowView.AddShadowToView(4, 48f, 0.8f, UIColor.FromRGBA(0, 0, 0, 0.35f));
         }
 
         private void InitResult()
