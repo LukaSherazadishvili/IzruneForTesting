@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Izrune.Activitys;
 using Izrune.Attributes;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
@@ -23,7 +24,9 @@ namespace Izrune.Fragments
 
         [MapControl(Resource.Id.BodyContent)]
         LinearLayout Body;
-        
+
+        [MapControl(Resource.Id.NextButton)]
+        LinearLayout NextButton;
 
         public IndividualServiceFragmentcs(List<IPrice> prices)
         {
@@ -58,9 +61,16 @@ namespace Izrune.Fragments
                 Body.AddView(Vw);
 
                 Vw.Click += Vw_Click;
-
+                NextButton.Click += NextButton_Click;
 
             }
+        }
+
+        private async void NextButton_Click(object sender, EventArgs e)
+        {
+           //await UserControl.Instance.FinishRegistration();
+            Intent intent = new Intent(this,typeof(RullesActivity));
+            StartActivity(intent);
         }
 
         private void Vw_Click(object sender, EventArgs e)
@@ -77,7 +87,8 @@ namespace Izrune.Fragments
           var Result=PriceList.ElementAt(Index);
 
             UserControl.Instance.SetPromoPack(Result.months);
-
+         
+            
         }
     }
 }

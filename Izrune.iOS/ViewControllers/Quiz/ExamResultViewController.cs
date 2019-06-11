@@ -55,7 +55,7 @@ namespace Izrune.iOS
             resultTextLbl.Text = QuisInfo.QueisResult.text_description;
 
             totalPointLbl.Text = QuisInfo.QueisResult.Score;
-            examTimeLbl.Text = $"{QuisInfo.QueisResult.Duration / 60}:{QuisInfo.QueisResult.Duration % 60}";
+            examTimeLbl.Text = FormatTimeSpan(TimeSpan.FromSeconds(QuisInfo.QueisResult.Duration));//$"{QuisInfo.QueisResult.Duration / 60}:{QuisInfo.QueisResult.Duration % 60}";
 
             finalResultLbl.Text = $"სწორი პასუხი {QuisInfo.QueisResult.RightAnswer}, არასწორი პასუხი {QuisInfo.QueisResult.WronAnswers} გამოტოვებული კითხვა {QuisInfo.QueisResult.SkipedAnswers}";
         }
@@ -63,6 +63,11 @@ namespace Izrune.iOS
         public IndicatorInfo IndicatorInfoForPagerTabStrip(PagerTabStripViewController pagerTabStripController)
         {
             return new IndicatorInfo("შედეგი");
+        }
+
+        private string FormatTimeSpan(TimeSpan time)
+        {
+            return ((time < TimeSpan.Zero) ? "-" : "") + time.ToString(@"mm\:ss");
         }
     }
 }

@@ -85,7 +85,7 @@ namespace Izrune.Activitys
 
             UserControl.Instance.RegistrationStudentPartTwo(CurrentRegion.id, Village.Text, CurrentSchool.id, Convert.ToInt32(StudentClass.Text));
 
-            ChangeFragmentPage(new ServiceFragment(), container.Id);
+            ChangeFragmentPage(new ServiceFragment() {CurrentId=UserControl.Instance.RegistrationStudent.SchoolId }, container.Id);
         }
 
         private void City_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)

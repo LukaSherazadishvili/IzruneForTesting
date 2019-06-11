@@ -21,6 +21,8 @@ namespace Izrune.iOS
         DropDown SchoolDpD = new DropDown();
         DropDown ClassDpD = new DropDown();
 
+        public Action SendClicked { get; set; }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();

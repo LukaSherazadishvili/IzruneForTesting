@@ -29,7 +29,6 @@ namespace Izrune.iOS
         private PacketViewController choosePacketVc;
         private int CurrentIndex = 0;
 
-
         /*
          * 
          * UserControl RegisterParent(student)Part1-2
@@ -124,13 +123,19 @@ namespace Izrune.iOS
                 case 0:
                     {
                         if (NextClicked)
+                        {
                             AddViewController(parent2RegVc, parentRegVc);
+                            parentRegVc.SendClicked?.Invoke();
+                        }
                         break;
                     }
                 case 1:
                     {
                         if (NextClicked)
+                        {
                             AddViewController(studentRegVc1, parent2RegVc);
+                            parent2RegVc.SendClicked?.Invoke();
+                        }
                         else
                             AddViewController(parentRegVc, parent2RegVc);
                         break;
@@ -138,7 +143,10 @@ namespace Izrune.iOS
                 case 2:
                     {
                         if (NextClicked)
+                        {
                             AddViewController(studentRegVc2, studentRegVc1);
+                            studentRegVc1.SendClicked?.Invoke();
+                        }
                         else
                             AddViewController(parent2RegVc, studentRegVc1);
                         break;
@@ -146,7 +154,10 @@ namespace Izrune.iOS
                 case 3:
                     {
                         if (NextClicked)
+                        {
                             AddViewController(choosePacketVc, studentRegVc2);
+                            studentRegVc2.SendClicked?.Invoke();
+                        }
                         else
                             AddViewController(studentRegVc1, studentRegVc2);
                         break;

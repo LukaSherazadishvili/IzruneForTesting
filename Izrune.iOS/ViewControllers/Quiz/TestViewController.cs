@@ -51,34 +51,6 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
-            skipQuestionBtn.Layer.CornerRadius = 22.5f;
-
-            skipQuestionBtn.TouchUpInside +=  async delegate
-            {
-                //TODO
-                try
-                {
-                    var asd = currentIndex;
-                    if (currentIndex >= AllQuestions?.Count-1)
-                    {
-                        currentIndex++;
-                        await GoToResultPage();
-                    }
-                    else
-                    {
-                        if (!IsTotalTime)
-                            timeLbl.Text = ($"01:00");
-                        await SkipQuestion();
-                        ScrollAnswerProgressCell();
-                    }
-                }
-
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            };
-
             InitCollectionView();
 
             await LoadDataAsync();
@@ -95,6 +67,8 @@ namespace Izrune.iOS
             ShowLoading();
             try
             {
+
+                questionCollectionView.Hidden = true;
                 var testService = ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>();
 
                 var userService = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
@@ -106,7 +80,6 @@ namespace Izrune.iOS
                 AllQuestions = data?.ToList();
 
                 CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
-                
 
                 questionCollectionView.ReloadData();
 
@@ -116,6 +89,10 @@ namespace Izrune.iOS
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                questionCollectionView.Hidden = false;
             }
             EndLoading();
 
@@ -141,7 +118,7 @@ namespace Izrune.iOS
             if(collectionView == answerProgressCollectionView)
             {
                 var answerCell = answerProgressCollectionView.DequeueReusableCell(AnswerProgressCollectionViewCell.Identifier, indexPath) as AnswerProgressCollectionViewCell;
-
+              
                 var shedulerList = QuezControll.Instance.Sheduler;
                 var sheduler = shedulerList?[indexPath.Row];
 
@@ -242,16 +219,70 @@ namespace Izrune.iOS
                 var questionList = info.QuestionResult?.ToList();
 
                 EndLoading();
-               
+
+                var navVc = this.NavigationController;
+                this.NavigationController.PopToRootViewController(false);
                 var resultTab = Storyboard.InstantiateViewController(ResultTabbedViewController.StoryboardId) as ResultTabbedViewController;
                 resultTab.Questions = questionList;
 
                 resultTab.QuisInfo = info;
 
-                this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
-
-                this.NavigationController.PushViewController(resultTab, true);
+                navVc.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+                navVc.PushViewController(resultTab, true);
             });
+        }
+
+
+
+        [Export("collectionView:viewForSupplementaryElementOfKind:atIndexPath:")]
+        public UICollectionReusableView GetViewForSupplementaryElement(UICollectionView collectionView, NSString elementKind, NSIndexPath indexPath)
+        {
+            if (collectionView != questionCollectionView)
+                return null;
+
+            var headerView = collectionView.DequeueReusableSupplementaryView(elementKind, new NSString("FooterReusableView"), indexPath) as FooterTestView;
+
+            //var button = headerView.Subviews.OfType<UIButton>().FirstOrDefault();
+
+            headerView.SkipBtn.TouchUpInside+=async delegate {
+
+                //TODO
+                try
+                {
+                    var asd = currentIndex;
+                    if (currentIndex >= AllQuestions?.Count - 1)
+                    {
+                        currentIndex++;
+                        await GoToResultPage();
+                    }
+                    else
+                    {
+                        if (!IsTotalTime)
+                            timeLbl.Text = ($"01:00");
+                        await SkipQuestion();
+                        ScrollAnswerProgressCell();
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            };
+            return headerView;
+        }
+
+
+
+        [Export("collectionView:layout:referenceSizeForFooterInSection:")]
+        public CGSize GetReferenceSizeForFooter(UICollectionView collectionView, UICollectionViewLayout layout, nint section)
+        {
+            if(collectionView !=questionCollectionView)
+                return new CGSize(0,0);
+
+            //nfloat delta = collectionView.Frame.Height - (totalHeight + 150);
+            return new CGSize(0, 160 );
+
         }
 
         private void ResetTimer()
@@ -275,6 +306,12 @@ namespace Izrune.iOS
             return CurrentQuestion == null ? 0 : 1;
         }
 
+        [Export("numberOfSectionsInCollectionView:")]
+        public nint NumberOfSections(UICollectionView collectionView)
+        {
+            return 1;
+        }
+
         [Export("collectionView:layout:sizeForItemAtIndexPath:")]
         public CoreGraphics.CGSize GetSizeForItem(UICollectionView collectionView, UICollectionViewLayout layout, NSIndexPath indexPath)
         {
@@ -285,7 +322,10 @@ namespace Izrune.iOS
             if(currentIndex < AllQuestions?.Count && CurrentQuestion != null)
                 SetCellHeight(CurrentQuestion);
 
-            return new CoreGraphics.CGSize(collectionView.Frame.Width, totalHeight + 60);
+
+            nfloat delta = collectionView.Frame.Height - (totalHeight + 150);
+
+            return new CoreGraphics.CGSize(collectionView.Frame.Width, totalHeight + 60 + (delta < 0 ? 0 : delta));
         }
 
         void SetCellHeight(IQuestion question)
@@ -320,7 +360,7 @@ namespace Izrune.iOS
                 answersHeight += height + 40;
             }
 
-            totalHeight = titleHeight + imagesHeight + answersHeight + spaceSumBetweenAnswers + 50;
+            totalHeight = titleHeight + imagesHeight + answersHeight;
 
             //return totalHeight;
         }
