@@ -244,15 +244,16 @@ namespace Izrune.iOS
                 var questionList = info.QuestionResult?.ToList();
 
                 EndLoading();
-               
+
+                var navVc = this.NavigationController;
+                this.NavigationController.PopToRootViewController(false);
                 var resultTab = Storyboard.InstantiateViewController(ResultTabbedViewController.StoryboardId) as ResultTabbedViewController;
                 resultTab.Questions = questionList;
 
                 resultTab.QuisInfo = info;
 
-                this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
-
-                this.NavigationController.PushViewController(resultTab, true);
+                navVc.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+                navVc.PushViewController(resultTab, true);
             });
         }
 
