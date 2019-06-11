@@ -142,7 +142,7 @@ namespace Izrune.iOS.CollectionViewCells
 
             //Answer Cell
             var cell = answerCollectionView.DequeueReusableCell(AnswerCollectionViewCell.Identifier, indexPath) as AnswerCollectionViewCell;
-
+            //cell.ContentView.BackgroundColor = UIColor.Yellow;
             cell.IsResult = IsResultCell;
 
             var data = Question?.Answers?.ElementAt(indexPath.Row);

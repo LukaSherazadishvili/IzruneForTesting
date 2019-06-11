@@ -324,6 +324,10 @@
         <Compile Include="ViewControllers\Quiz\QuestionImageViewController.designer.cs">
           <DependentUpon>QuestionImageViewController.cs</DependentUpon>
         </Compile>
+        <Compile Include="FooterTestView.cs" />
+        <Compile Include="FooterTestView.designer.cs">
+          <DependentUpon>FooterTestView.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />
