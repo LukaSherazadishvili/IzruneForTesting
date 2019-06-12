@@ -7,6 +7,7 @@ using UIKit;
 using FPT.Framework.iOS.UI.DropDown;
 using Izrune.iOS.Utils;
 using MpdcViewExtentions;
+using MPDC.iOS.Utils;
 
 namespace Izrune.iOS
 {
@@ -21,6 +22,7 @@ namespace Izrune.iOS
         DropDown CityDpD = new DropDown();
         DropDown SchoolDpD = new DropDown();
         DropDown ClassDpD = new DropDown();
+        private object date;
 
         public Action SendClicked { get; set; }
 
@@ -87,5 +89,6 @@ namespace Izrune.iOS
                 }));
             }
         }
+
     }
 }
