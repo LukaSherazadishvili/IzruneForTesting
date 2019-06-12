@@ -58,7 +58,6 @@ namespace Izrune.iOS
             return new CoreGraphics.CGSize(collectionView.Frame.Width, (System.nfloat)(titleHeight + 30));
         }
 
-
         private void InitCollectionView()
         {
             schoolCollectionView.RegisterNibForCell(SelectSchoolCollectionViewCell.Nib, SelectSchoolCollectionViewCell.Identifier);
