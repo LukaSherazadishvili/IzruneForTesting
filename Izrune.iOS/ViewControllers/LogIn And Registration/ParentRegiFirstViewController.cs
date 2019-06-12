@@ -9,6 +9,9 @@ using System.Linq;
 using Izrune.iOS.Utils;
 using MPDC.iOS.Utils;
 using IZrune.PCL.Helpers;
+using System.Collections.Generic;
+using IZrune.PCL.Abstraction.Models;
+using FPT.Framework.iOS.UI.DropDown;
 
 namespace Izrune.iOS
 {
@@ -23,6 +26,10 @@ namespace Izrune.iOS
 
         public Action SendClicked { get; set; }
 
+        DropDown CityDropDown = new DropDown();
+
+        public List<IRegion> CityList;
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -30,6 +37,8 @@ namespace Izrune.iOS
             InitUI();
 
             InitGestures();
+
+            InitDroDown();
 
             SendClicked = () => { SenData(); };
         }
@@ -55,6 +64,14 @@ namespace Izrune.iOS
             {
                 ShowDatePicker();
             };
+
+            if(cityView.GestureRecognizers == null || cityView.GestureRecognizers?.Length == 0)
+            {
+                cityView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
+                    CityDropDown.Show();
+                    InitDropDownUI(CityDropDown);
+                }));
+            }
         }
 
         private void ShowDatePicker()
@@ -93,6 +110,36 @@ namespace Izrune.iOS
                 cityLbl.Text,
                 villageTextField.Text
                 );
+        }
+
+        private void InitDroDown()
+        {
+            CityDropDown.AnchorView = new WeakReference<UIView>(cityView);
+            CityDropDown.BottomOffset = new CoreGraphics.CGPoint(0, cityView.Bounds.Height);
+            CityDropDown.Width = this.View.Frame.Width;
+            CityDropDown.Direction = Direction.Bottom;
+
+            var array = CityList?.Select(x => x.title)?.ToArray();
+
+            CityDropDown.DataSource = array;
+
+            CityDropDown.SelectionAction = (nint index, string name) =>
+            {
+                cityLbl.Text = name;
+
+            };
+        }
+
+        private void InitDropDownUI(DropDown dropDown)
+        {
+            dropDown.BackgroundColor = UIColor.FromRGB(243, 243, 243);
+            dropDown.SelectionBackgroundColor = AppColors.TitleColor;
+            DPDConstants.UI.TextColor = AppColors.TitleColor;
+            DPDConstants.UI.SelectedTextColor = UIColor.White;
+
+            dropDown.TextFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 15);
+            dropDown.ClipsToBounds = true;
+            dropDown.Layer.CornerRadius = 20;
         }
     }
 }

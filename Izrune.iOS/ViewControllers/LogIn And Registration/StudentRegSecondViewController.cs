@@ -8,6 +8,8 @@ using FPT.Framework.iOS.UI.DropDown;
 using Izrune.iOS.Utils;
 using MpdcViewExtentions;
 using MPDC.iOS.Utils;
+using System.Collections.Generic;
+using IZrune.PCL.Abstraction.Models;
 
 namespace Izrune.iOS
 {
@@ -22,9 +24,10 @@ namespace Izrune.iOS
         DropDown CityDpD = new DropDown();
         DropDown SchoolDpD = new DropDown();
         DropDown ClassDpD = new DropDown();
-        private object date;
 
         public Action SendClicked { get; set; }
+
+        public List<IRegion> CityList;
 
         public override void ViewDidLoad()
         {
