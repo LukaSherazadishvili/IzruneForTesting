@@ -49,6 +49,8 @@ namespace Izrune.iOS
             InitUI();
 
             InitGestures();
+
+            ChangeHeader(true);
         }
 
         private void InitViewControllers()
@@ -62,6 +64,7 @@ namespace Izrune.iOS
             studentRegVc2 = Storyboard.InstantiateViewController(StudentRegSecondViewController.StoryboardId) as StudentRegSecondViewController;
 
             choosePacketVc = Storyboard.InstantiateViewController(PacketViewController.StoryboardId) as PacketViewController;
+            choosePacketVc.HideFooter = true;
         }
 
         bool NextClicked = true;
@@ -135,9 +138,13 @@ namespace Izrune.iOS
                         {
                             AddViewController(studentRegVc1, parent2RegVc);
                             parent2RegVc.SendClicked?.Invoke();
+                            ChangeHeader(false);
                         }
                         else
+                        {
                             AddViewController(parentRegVc, parent2RegVc);
+                            ChangeHeader(true);
+                        }
                         break;
                     }
                 case 2:
@@ -146,9 +153,13 @@ namespace Izrune.iOS
                         {
                             AddViewController(studentRegVc2, studentRegVc1);
                             studentRegVc1.SendClicked?.Invoke();
+                            ChangeHeader(false);
                         }
                         else
+                        {
                             AddViewController(parent2RegVc, studentRegVc1);
+                            ChangeHeader(true);
+                        }
                         break;
                     }
                 case 3:
@@ -157,9 +168,13 @@ namespace Izrune.iOS
                         {
                             AddViewController(choosePacketVc, studentRegVc2);
                             studentRegVc2.SendClicked?.Invoke();
+                            HideHeader(true);
                         }
                         else
+                        {
                             AddViewController(studentRegVc1, studentRegVc2);
+                            ChangeHeader(false);
+                        }
                         break;
                     }
                 case 4:
@@ -167,7 +182,11 @@ namespace Izrune.iOS
                         if (NextClicked)
                             AddViewController(parent2RegVc, parentRegVc);
                         else
+                        {
                             AddViewController(parentRegVc, parent2RegVc);
+                            HideHeader(false);
+                        }
+                            
                         break;
                     }
                 case 5:
@@ -183,7 +202,16 @@ namespace Izrune.iOS
             }
         }
 
+        private void ChangeHeader(bool isParent)
+        {
+            headerTitleLbl.Text = isParent? "მშობლის (ან სხვა მზრუნველის) რეგისტრაცია" : "დაარეგისტრირეთ მოსწავლე";
+            headerImageView.Image = isParent ? UIImage.FromBundle("1 – 6.png") : UIImage.FromBundle("Group 248.png");
+        }
 
-
+        private void HideHeader(bool hide)
+        {
+            headerStackView.Hidden = hide;
+            headerHeightConstant.Constant = hide ? 0 : 120;
+        }
     }
 }

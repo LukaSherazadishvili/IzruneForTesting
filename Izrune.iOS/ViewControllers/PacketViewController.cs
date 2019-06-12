@@ -20,6 +20,8 @@ namespace Izrune.iOS
         PromoCodeViewController PromoVc;
         SelectPacketViewController SelectPacketVc;
 
+        public bool HideFooter { get; set; }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -34,6 +36,9 @@ namespace Izrune.iOS
             PromoVc = Storyboard.InstantiateViewController(PromoCodeViewController.StoryboardId) as PromoCodeViewController;
 
             this.AddVcInView(viewForPeager, SelectPacketVc);
+
+            footerHeightConstraint.Constant = HideFooter ? 0 : 180;
+            nextBtn.Hidden = HideFooter;
         }
 
         private bool IsIndividualSelected = true;
