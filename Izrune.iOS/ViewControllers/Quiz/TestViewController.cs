@@ -434,7 +434,9 @@ namespace Izrune.iOS
             {
                 questionCollectionView.ReloadData();
                 answerProgressCollectionView.ReloadData();
-                ResetTimer();
+                    if(currentIndex<AllQuestions.Count)
+                      ResetTimer();
+
                 questionCollectionView.Hidden = false;
             });
 
