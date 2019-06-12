@@ -32,8 +32,6 @@ namespace Izrune.iOS
 
             villageTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 20);
 
-            InitDropDowns();
-
         }
 
         private void InitDropDowns()
