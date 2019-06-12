@@ -27,6 +27,7 @@ namespace Izrune.iOS
         DropDown ClassDpD = new DropDown();
 
         public Action SendClicked { get; set; }
+        public Action<ISchool> SchoolSelected { get; set; }
         public string[] schoolArrray { get; private set; }
 
         public List<IRegion> CityList;
@@ -45,6 +46,7 @@ namespace Izrune.iOS
 
             ScholVc.SchoolSelected = (school) =>
             {
+                SchoolSelected?.Invoke(school);
                 schoolLbl.Text = school.title;
             };
 

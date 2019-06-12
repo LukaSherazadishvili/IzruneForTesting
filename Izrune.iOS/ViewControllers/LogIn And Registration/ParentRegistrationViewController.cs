@@ -73,6 +73,8 @@ namespace Izrune.iOS
             studentRegVc1 = Storyboard.InstantiateViewController(StudentRegFirstViewController.StoryboardId) as StudentRegFirstViewController;
 
             studentRegVc2 = Storyboard.InstantiateViewController(StudentRegSecondViewController.StoryboardId) as StudentRegSecondViewController;
+            studentRegVc2.SchoolSelected = (school) => { choosePacketVc.SchoolId = school.id; };
+
 
             choosePacketVc = Storyboard.InstantiateViewController(PacketViewController.StoryboardId) as PacketViewController;
             choosePacketVc.HideFooter = true;

@@ -24,6 +24,7 @@ namespace Izrune.iOS
         private int SelectedPriceIndex;
 
         private List<IPrice> PriceList;
+        public int SchoolId;
 
         public async override void ViewDidLoad()
         {
@@ -41,9 +42,12 @@ namespace Izrune.iOS
 
             var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-            var data = (await service.GetPromoCodeAsync(""));
+            var data = (await service.GetPromoCodeAsync(SchoolId.ToString()));
 
             PriceList = data.Prices?.ToList();
+
+            packetCollectionView.ReloadData();
+
             EndLoading();
         }
         private void CollectionViewSettings()

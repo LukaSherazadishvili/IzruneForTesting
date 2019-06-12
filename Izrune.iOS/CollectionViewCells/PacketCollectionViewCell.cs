@@ -31,8 +31,8 @@ namespace Izrune.iOS.CollectionViewCells
         {
             Price = price;
 
-            monthLbl.Text = price.months.ToString() + " თვე";
-            priceLbl.Text = price.price.ToString();
+            monthLbl.Text = price?.months.ToString() + " თვე";
+            priceLbl.Text = price?.price.ToString();
 
             SelectCell(isSelected);
         }
