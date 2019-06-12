@@ -8,6 +8,7 @@ using MpdcViewExtentions;
 using System.Linq;
 using Izrune.iOS.Utils;
 using MPDC.iOS.Utils;
+using IZrune.PCL.Helpers;
 
 namespace Izrune.iOS
 {
@@ -18,6 +19,9 @@ namespace Izrune.iOS
 		}
 
         public static readonly NSString StoryboardId = new NSString("ParentRegiFirstStoryboardId");
+        private DateTime date;
+
+        public Action SendClicked { get; set; }
 
         public override void ViewDidLoad()
         {
@@ -26,6 +30,8 @@ namespace Izrune.iOS
             InitUI();
 
             InitGestures();
+
+            SendClicked = () => { SenData(); };
         }
 
         private void InitUI()
@@ -45,19 +51,10 @@ namespace Izrune.iOS
 
         private void InitGestures()
         {
-
             transparentDateTextfield.EditingDidBegin += (sender, e) =>
             {
                 ShowDatePicker();
             };
-
-            //if (transparentDateTextfield.GestureRecognizers == null || transparentDateTextfield.GestureRecognizers?.Length == 0)
-                //transparentDateTextfield.AddGestureRecognizer(new UITapGestureRecognizer(() =>
-                //{
-                //    //TODO DatePicker
-
-                //    ShowDatePicker();
-                //}));
         }
 
         private void ShowDatePicker()
@@ -70,7 +67,7 @@ namespace Izrune.iOS
             toolBar.SizeToFit();
             var doneButton = new UIBarButtonItem("არჩევა", UIBarButtonItemStyle.Plain, (sender, e) => {
 
-                var date = datePicker.Date.NSDateToDateTime();
+                date = datePicker.Date.NSDateToDateTime();
                 daylLbl.Text = date.Day.ToString();
                 monthLbl.Text = date.Month.ToString();
                 yearLbl.Text = date.Year.ToString();
@@ -85,6 +82,17 @@ namespace Izrune.iOS
 
             transparentDateTextfield.InputAccessoryView = toolBar;
             transparentDateTextfield.InputView = datePicker;
+        }
+
+        private void SenData()
+        {
+            UserControl.Instance.RegistrationParrentPartOne(
+                firstNameTextfield.Text,
+                lastNameTextField.Text,
+                date,
+                cityLbl.Text,
+                villageTextField.Text
+                );
         }
     }
 }
