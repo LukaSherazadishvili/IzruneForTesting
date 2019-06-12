@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="bpg_mrgvlovani_2010.ttf">
+            <string>BPGMrgvlovani2010</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SelectSchoolCellIdentifier" id="cZE-iV-UFb" customClass="SelectSchoolCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="376" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="376" height="50"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hOd-g6-MmA">
+                        <rect key="frame" x="0.0" y="0.0" width="376" height="50"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c0q-O3-ZWD">
+                                <rect key="frame" x="10" y="49" width="356" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="fDF-L6-e4H"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="School Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIr-ch-0rE">
+                                <rect key="frame" x="15" y="16.5" width="346" height="17.5"/>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="15"/>
+                                <color key="textColor" red="0.68235294117647061" green="0.44313725490196076" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="c0q-O3-ZWD" secondAttribute="trailing" constant="10" id="Bxg-1d-UXk"/>
+                            <constraint firstAttribute="bottom" secondItem="c0q-O3-ZWD" secondAttribute="bottom" id="cri-Wa-ZxX"/>
+                            <constraint firstAttribute="trailing" secondItem="uIr-ch-0rE" secondAttribute="trailing" constant="15" id="ki3-ey-4CA"/>
+                            <constraint firstItem="uIr-ch-0rE" firstAttribute="leading" secondItem="hOd-g6-MmA" secondAttribute="leading" constant="15" id="moT-1w-eXa"/>
+                            <constraint firstItem="c0q-O3-ZWD" firstAttribute="leading" secondItem="hOd-g6-MmA" secondAttribute="leading" constant="10" id="oN4-WE-3Zw"/>
+                            <constraint firstItem="uIr-ch-0rE" firstAttribute="centerY" secondItem="hOd-g6-MmA" secondAttribute="centerY" id="zGa-91-2Xv"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="hOd-g6-MmA" secondAttribute="bottom" id="Eu8-mv-GFE"/>
+                <constraint firstItem="hOd-g6-MmA" firstAttribute="leading" secondItem="cZE-iV-UFb" secondAttribute="leading" id="ZJZ-p1-qI0"/>
+                <constraint firstAttribute="trailing" secondItem="hOd-g6-MmA" secondAttribute="trailing" id="bgQ-yp-646"/>
+                <constraint firstItem="hOd-g6-MmA" firstAttribute="top" secondItem="cZE-iV-UFb" secondAttribute="top" id="lO5-0V-Cue"/>
+            </constraints>
+            <size key="customSize" width="376" height="53"/>
+            <connections>
+                <outlet property="mainView" destination="hOd-g6-MmA" id="GdX-2T-RVr"/>
+                <outlet property="schoolLbl" destination="uIr-ch-0rE" id="mzT-jW-Aoq"/>
+            </connections>
+            <point key="canvasLocation" x="269.56521739130437" y="54.575892857142854"/>
+        </collectionViewCell>
+    </objects>
+</document>

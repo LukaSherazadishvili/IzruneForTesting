@@ -34,22 +34,37 @@ namespace Izrune.iOS
         private int SelectedCityindex;
         private string[] cityArray;
 
+        private SelectSchoolViewController ScholVc;
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
+            ScholVc = Storyboard.InstantiateViewController(SelectSchoolViewController.StoryboardId) as SelectSchoolViewController;
+
+            ScholVc.SchoolSelected = (school) =>
+            {
+                schoolLbl.Text = school.title;
+            };
+
             villageTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 20);
             DropDownInit();
+
+            if (selectSchoolView.GestureRecognizers == null || selectSchoolView.GestureRecognizers?.Length == 0)
+            {
+                selectSchoolView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
+
+                    this.NavigationController.PushViewController(ScholVc, true);
+                }));
+            }
         }
 
         private void DropDownInit()
         {
             SetupDropDownGesture(CityDpD, cityView);
-            SetupDropDownGesture(SchoolDpD, schoolView);
             SetupDropDownGesture(ClassDpD, classView);
 
             SetupDropDown(CityDpD, cityView, cityLbl);
-            SetupDropDown(SchoolDpD, schoolView, schoolLbl);
             SetupDropDown(ClassDpD, classView, classLbl);
 
             InitDropDowns();
@@ -58,11 +73,9 @@ namespace Izrune.iOS
         private void InitDropDowns()
         {
             SetupDropDown(CityDpD, cityView, cityLbl);
-            SetupDropDown(SchoolDpD, schoolView, schoolLbl);
             SetupDropDown(ClassDpD, classView, classLbl);
 
             SetupDropDownGesture(CityDpD, cityView);
-            SetupDropDownGesture(SchoolDpD, schoolView);
             SetupDropDownGesture(ClassDpD, classView);
 
             cityArray = CityList?.Select(x => x.title)?.ToArray();
@@ -72,17 +85,17 @@ namespace Izrune.iOS
             {
                 //TODO
                 SelectedCityindex = (int)index;
-                cityLbl.Text = name;
-                schoolView.UserInteractionEnabled = true;
 
-                schoolArrray = CityList[SelectedCityindex]?.Schools?.Select(x => x.title)?.ToArray();
-                SchoolDpD.DataSource = schoolArrray;
+                selectSchoolView.UserInteractionEnabled = true;
+                ScholVc.SchoolList = CityList?[SelectedCityindex].Schools?.OrderBy(x => x.title)?.ToList();
+                cityLbl.Text = name;
+
             };
 
              
             SchoolDpD.SelectionAction = (nint index, string name) =>
             {
-                schoolLbl.Text = name;
+
                 classView.UserInteractionEnabled = true;
             };
         }

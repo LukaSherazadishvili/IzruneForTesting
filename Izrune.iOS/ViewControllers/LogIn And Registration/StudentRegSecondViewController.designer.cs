@@ -28,31 +28,16 @@ namespace Izrune.iOS
 		UIKit.UILabel schoolLbl { get; set; }
 
 		[Outlet]
-		UIKit.UIView schoolView { get; set; }
+		UIKit.UIView selectSchoolView { get; set; }
 
 		[Outlet]
 		UIKit.UITextField villageTextField { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (villageTextField != null) {
-				villageTextField.Dispose ();
-				villageTextField = null;
-			}
-
 			if (cityLbl != null) {
 				cityLbl.Dispose ();
 				cityLbl = null;
-			}
-
-			if (schoolLbl != null) {
-				schoolLbl.Dispose ();
-				schoolLbl = null;
-			}
-
-			if (classLbl != null) {
-				classLbl.Dispose ();
-				classLbl = null;
 			}
 
 			if (cityView != null) {
@@ -60,14 +45,29 @@ namespace Izrune.iOS
 				cityView = null;
 			}
 
-			if (schoolView != null) {
-				schoolView.Dispose ();
-				schoolView = null;
+			if (classLbl != null) {
+				classLbl.Dispose ();
+				classLbl = null;
 			}
 
 			if (classView != null) {
 				classView.Dispose ();
 				classView = null;
+			}
+
+			if (villageTextField != null) {
+				villageTextField.Dispose ();
+				villageTextField = null;
+			}
+
+			if (selectSchoolView != null) {
+				selectSchoolView.Dispose ();
+				selectSchoolView = null;
+			}
+
+			if (schoolLbl != null) {
+				schoolLbl.Dispose ();
+				schoolLbl = null;
 			}
 		}
 	}

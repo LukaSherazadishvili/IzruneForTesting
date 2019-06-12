@@ -150,6 +150,7 @@
         <InterfaceDefinition Include="CollectionViewCells\NewsBigCell.xib" />
         <InterfaceDefinition Include="CollectionViewCells\NewsMinCell.xib" />
         <InterfaceDefinition Include="CollectionViewCells\DiplomeCollectionViewCell.xib" />
+        <InterfaceDefinition Include="CollectionViewCells\SelectSchoolCollectionViewCell.xib" />
     </ItemGroup>
     <ItemGroup>
         <None Include="Info.plist" />
@@ -336,6 +337,14 @@
         <Compile Include="CollectionViewCells\DiplomeCollectionViewCell.cs" />
         <Compile Include="CollectionViewCells\DiplomeCollectionViewCell.designer.cs">
           <DependentUpon>DiplomeCollectionViewCell.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CollectionViewCells\SelectSchoolCollectionViewCell.cs" />
+        <Compile Include="CollectionViewCells\SelectSchoolCollectionViewCell.designer.cs">
+          <DependentUpon>SelectSchoolCollectionViewCell.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\SelectSchoolViewController.cs" />
+        <Compile Include="ViewControllers\SelectSchoolViewController.designer.cs">
+          <DependentUpon>SelectSchoolViewController.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup>
