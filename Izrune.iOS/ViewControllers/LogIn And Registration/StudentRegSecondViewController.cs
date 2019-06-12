@@ -40,6 +40,8 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
+            this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+
             ScholVc = Storyboard.InstantiateViewController(SelectSchoolViewController.StoryboardId) as SelectSchoolViewController;
 
             ScholVc.SchoolSelected = (school) =>

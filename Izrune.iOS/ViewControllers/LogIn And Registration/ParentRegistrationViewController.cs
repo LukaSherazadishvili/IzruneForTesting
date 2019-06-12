@@ -53,11 +53,11 @@ namespace Izrune.iOS
             base.ViewDidLoad();
             InitViewControllers();
 
+            InitUI();
+
             await LoadDataAsync();
 
             this.AddVcInView(viewForPager, parentRegVc);
-
-            InitUI();
 
             InitGestures();
 
@@ -104,15 +104,6 @@ namespace Izrune.iOS
 
             this.AddVcInView(viewForPager, newVc);
         }
-
-        //private void AddFirstVc()
-        //{
-        //    parent2RegVc.WillMoveToParentViewController(this);
-        //    parent2RegVc.View.RemoveFromSuperview();
-        //    parent2RegVc.RemoveFromParentViewController();
-
-        //    this.AddVcInView(viewForPager, parentRegVc);
-        //}
 
         private void InitUI()
         {
