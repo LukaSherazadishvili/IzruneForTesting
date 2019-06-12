@@ -3,6 +3,7 @@
 using System;
 
 using Foundation;
+using Izrune.iOS.CollectionViewCells;
 using UIKit;
 
 namespace Izrune.iOS
@@ -18,21 +19,39 @@ namespace Izrune.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            InitCollectionViewSettings();
         }
 
         public nint GetItemsCount(UICollectionView collectionView, nint section)
         {
-            throw new NotImplementedException();
+            return 10;
         }
 
         public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {
-            throw new NotImplementedException();
+            var cell = diplomeCollectionView.DequeueReusableCell(DiplomeCollectionViewCell.Identifier, indexPath) as DiplomeCollectionViewCell;
+
+            cell.CellClicked = () =>
+            {
+                //TODO
+            };
+
+            return cell;
         }
 
         private void InitCollectionViewSettings()
         {
-            
+            diplomeCollectionView.RegisterNibForCell(DiplomeCollectionViewCell.Nib, DiplomeCollectionViewCell.Identifier);
+
+            diplomeCollectionView.Delegate = this;
+            diplomeCollectionView.DataSource = this;
+        }
+
+        [Export("collectionView:layout:sizeForItemAtIndexPath:")]
+        public CoreGraphics.CGSize GetSizeForItem(UICollectionView collectionView, UICollectionViewLayout layout, NSIndexPath indexPath)
+        {
+            return new CoreGraphics.CGSize(collectionView.Frame.Width * 0.5, 40);
         }
     }
 }

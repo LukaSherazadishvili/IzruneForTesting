@@ -11,6 +11,9 @@ namespace Izrune.iOS.CollectionViewCells
         public static readonly UINib Nib;
 
         public static readonly NSString Identifier = new NSString("DiplomeCellIdentifier");
+
+        public Action CellClicked { get; set; }
+
         static DiplomeCollectionViewCell()
         {
             Nib = UINib.FromName("DiplomeCollectionViewCell", NSBundle.MainBundle);
@@ -21,6 +24,11 @@ namespace Izrune.iOS.CollectionViewCells
             // Note: this .ctor should not contain any initialization logic.
         }
 
+        public void InitData()
+        {
+            //TODO
+        }
+
         public override void AwakeFromNib()
         {
             base.AwakeFromNib();
@@ -29,6 +37,14 @@ namespace Izrune.iOS.CollectionViewCells
             mainView.Layer.BorderColor = UIColor.White.CGColor;
 
             mainView.Layer.CornerRadius = 20;
+
+            if(mainView.GestureRecognizers == null || mainView.GestureRecognizers?.Length == 0)
+            {
+                mainView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    CellClicked?.Invoke();
+                }));
+            }
         }
     }
 }

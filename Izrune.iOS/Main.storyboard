@@ -1323,20 +1323,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 248.png" translatesAutoresizingMaskIntoConstraints="NO" id="8aX-uh-Ut4">
-                                <rect key="frame" x="173.66666666666666" y="94" width="28" height="28"/>
+                                <rect key="frame" x="173.66666666666666" y="64" width="28" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="4vC-Hg-BkD"/>
                                     <constraint firstAttribute="width" constant="28" id="i2u-NP-ukZ"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="შემაჯამებელი ტესტის დიპლომი" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcH-6N-U9T">
-                                <rect key="frame" x="25" y="129" width="325" height="18.666666666666657"/>
+                                <rect key="frame" x="25" y="99" width="325" height="18.666666666666671"/>
                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="16"/>
                                 <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hH7-nE-2o7">
-                                <rect key="frame" x="25" y="177.66666666666666" width="325" height="40"/>
+                                <rect key="frame" x="25" y="147.66666666666666" width="325" height="40"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="KqO-NS-cLq">
                                         <rect key="frame" x="280" y="12.666666666666686" width="30" height="15"/>
@@ -1389,7 +1389,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ihb-P4-QTG">
-                                <rect key="frame" x="0.0" y="241" width="375" height="432"/>
+                                <rect key="frame" x="0.0" y="211" width="375" height="462"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="l7p-6C-fh4">
                                     <size key="itemSize" width="50" height="50"/>
@@ -1425,7 +1425,7 @@
                             <constraint firstItem="fjS-nM-ELr" firstAttribute="centerX" secondItem="lGF-7F-OXv" secondAttribute="centerX" id="acW-CB-bL4"/>
                             <constraint firstItem="Ihb-P4-QTG" firstAttribute="leading" secondItem="Fik-Ss-5q7" secondAttribute="leading" id="aqo-Bd-wqe"/>
                             <constraint firstItem="8aX-uh-Ut4" firstAttribute="centerX" secondItem="lGF-7F-OXv" secondAttribute="centerX" id="c55-iE-1Hv"/>
-                            <constraint firstItem="8aX-uh-Ut4" firstAttribute="top" secondItem="Fik-Ss-5q7" secondAttribute="top" constant="50" id="hjP-Ly-69L"/>
+                            <constraint firstItem="8aX-uh-Ut4" firstAttribute="top" secondItem="Fik-Ss-5q7" secondAttribute="top" constant="20" id="hjP-Ly-69L"/>
                             <constraint firstAttribute="trailing" secondItem="Ihb-P4-QTG" secondAttribute="trailing" id="ifo-sg-JSD"/>
                             <constraint firstAttribute="bottom" secondItem="kF7-AZ-fEw" secondAttribute="bottom" id="n95-Jh-2C6"/>
                             <constraint firstItem="pcH-6N-U9T" firstAttribute="top" secondItem="8aX-uh-Ut4" secondAttribute="bottom" constant="7" id="tqE-zf-Hb1"/>
@@ -1435,12 +1435,13 @@
                         <viewLayoutGuide key="safeArea" id="Fik-Ss-5q7"/>
                     </view>
                     <connections>
-                        <outlet property="backBtn" destination="fjS-nM-ELr" id="4ti-5Y-iEI"/>
-                        <outlet property="diplomeCollectionView" destination="Ihb-P4-QTG" id="cJM-iD-tMR"/>
-                        <outlet property="headerImageView" destination="8aX-uh-Ut4" id="tXL-rM-9fP"/>
-                        <outlet property="headerLbl" destination="pcH-6N-U9T" id="ESQ-w0-8z8"/>
+                        <outlet property="backBtn" destination="fjS-nM-ELr" id="DY7-sD-FS5"/>
+                        <outlet property="diplomeCollectionView" destination="Ihb-P4-QTG" id="PwT-UA-i0z"/>
+                        <outlet property="diplomeLbl" destination="1kD-AC-RFf" id="g8B-XG-u7y"/>
+                        <outlet property="headerImageView" destination="8aX-uh-Ut4" id="K0e-9d-CBi"/>
+                        <outlet property="headerLbl" destination="pcH-6N-U9T" id="PTc-Ae-fYX"/>
                         <outlet property="testLbl" destination="1kD-AC-RFf" id="43a-YR-qav"/>
-                        <outlet property="viewForDropDown" destination="hH7-nE-2o7" id="Bvu-MT-7Ym"/>
+                        <outlet property="viewForDropDown" destination="hH7-nE-2o7" id="OZb-Gj-maE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9eE-b6-iUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3697,10 +3698,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I3C-n6-6np">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="355"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="405"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="KdF-nD-FX4">
-                                                <rect key="frame" x="20" y="50" width="340" height="285"/>
+                                                <rect key="frame" x="20" y="50" width="340" height="335"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="gdU-Fe-Iy9">
                                                         <rect key="frame" x="0.0" y="0.0" width="340" height="205"/>
@@ -3811,10 +3812,10 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="equalSpacing" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XVo-0M-nQv">
-                                                        <rect key="frame" x="0.0" y="245" width="340" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="245" width="340" height="50"/>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRk-zO-cZx">
-                                                        <rect key="frame" x="0.0" y="285" width="340" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="335" width="340" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovaniCaps2010" family="BPG Mrgvlovani Caps 2010" pointSize="15"/>
                                                         <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                         <nil key="highlightedColor"/>
