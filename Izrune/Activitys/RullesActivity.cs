@@ -25,6 +25,8 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.Checker)]
         LottieAnimationView checker;
 
+
+
         bool isChecked = false;
         protected override void OnCreate(Bundle savedInstanceState)
         {
