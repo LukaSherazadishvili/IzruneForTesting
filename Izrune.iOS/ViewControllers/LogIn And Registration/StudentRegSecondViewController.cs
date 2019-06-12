@@ -10,6 +10,7 @@ using MpdcViewExtentions;
 using MPDC.iOS.Utils;
 using System.Collections.Generic;
 using IZrune.PCL.Abstraction.Models;
+using System.Linq;
 
 namespace Izrune.iOS
 {
@@ -26,15 +27,32 @@ namespace Izrune.iOS
         DropDown ClassDpD = new DropDown();
 
         public Action SendClicked { get; set; }
+        public string[] schoolArrray { get; private set; }
 
         public List<IRegion> CityList;
+
+        private int SelectedCityindex;
+        private string[] cityArray;
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
             villageTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 20);
+            DropDownInit();
+        }
 
+        private void DropDownInit()
+        {
+            SetupDropDownGesture(CityDpD, cityView);
+            SetupDropDownGesture(SchoolDpD, schoolView);
+            SetupDropDownGesture(ClassDpD, classView);
+
+            SetupDropDown(CityDpD, cityView, cityLbl);
+            SetupDropDown(SchoolDpD, schoolView, schoolLbl);
+            SetupDropDown(ClassDpD, classView, classLbl);
+
+            InitDropDowns();
         }
 
         private void InitDropDowns()
@@ -46,24 +64,40 @@ namespace Izrune.iOS
             SetupDropDownGesture(CityDpD, cityView);
             SetupDropDownGesture(SchoolDpD, schoolView);
             SetupDropDownGesture(ClassDpD, classView);
+
+            cityArray = CityList?.Select(x => x.title)?.ToArray();
+            CityDpD.DataSource = cityArray;
+
+            CityDpD.SelectionAction = (nint index, string name) =>
+            {
+                //TODO
+                SelectedCityindex = (int)index;
+                cityLbl.Text = name;
+                schoolView.UserInteractionEnabled = true;
+
+                schoolArrray = CityList[SelectedCityindex]?.Schools?.Select(x => x.title)?.ToArray();
+                SchoolDpD.DataSource = schoolArrray;
+            };
+
+             
+            SchoolDpD.SelectionAction = (nint index, string name) =>
+            {
+                schoolLbl.Text = name;
+                classView.UserInteractionEnabled = true;
+            };
         }
 
         private void SetupDropDown(DropDown dropDown, UIView viewForDpD, UILabel dropDownLbl)
         {
             dropDown.AnchorView = new WeakReference<UIView>(viewForDpD);
             dropDown.BottomOffset = new CoreGraphics.CGPoint(0, viewForDpD.Bounds.Height);
-            dropDown.Width = viewForDpD.Frame.Width;
+            dropDown.Width = View.Frame.Width;
             dropDown.Direction = Direction.Bottom;
 
             //var array = Students?.Select(x => x.Name + " " + x.LastName)?.ToArray();
 
             //CityDpD.DataSource = array;
 
-            CityDpD.SelectionAction = (nint index, string name) =>
-            {
-                //TODO
-                dropDownLbl.Text = name;
-            };
         }
 
         private void InitDropDownUI(DropDown dropDown)
@@ -84,9 +118,8 @@ namespace Izrune.iOS
             {
                 viewforDpD.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-                    InitDropDownUI(dropDown);
-
                     dropDown.Show();
+                    InitDropDownUI(dropDown);
                 }));
             }
         }
