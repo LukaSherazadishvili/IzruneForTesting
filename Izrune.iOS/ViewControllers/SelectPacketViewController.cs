@@ -2,10 +2,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Foundation;
 using Izrune.iOS.CollectionViewCells;
 using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Abstraction.Services;
 using MPDCiOSPages.ViewControllers;
 using UIKit;
 
@@ -37,6 +39,11 @@ namespace Izrune.iOS
             ShowLoading();
             //TODO ProceList = ?
 
+            var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
+
+            var data = (await service.GetPromoCodeAsync(""));
+
+            PriceList = data.Prices?.ToList();
             EndLoading();
         }
         private void CollectionViewSettings()
@@ -66,7 +73,7 @@ namespace Izrune.iOS
 
         public nint GetItemsCount(UICollectionView collectionView, nint section)
         {
-            return 4;
+            return PriceList?.Count?? 0 ;
         }
 
         [Export("collectionView:layout:sizeForItemAtIndexPath:")]
