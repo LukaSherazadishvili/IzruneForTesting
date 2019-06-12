@@ -40,7 +40,6 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
-            this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
 
             ScholVc = Storyboard.InstantiateViewController(SelectSchoolViewController.StoryboardId) as SelectSchoolViewController;
 
@@ -55,7 +54,6 @@ namespace Izrune.iOS
             if (selectSchoolView.GestureRecognizers == null || selectSchoolView.GestureRecognizers?.Length == 0)
             {
                 selectSchoolView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
-
                     this.NavigationController.PushViewController(ScholVc, true);
                 }));
             }
