@@ -108,6 +108,12 @@ namespace IZrune.PCL.Helpers
             return Result;
         }
 
+        public async Task<int> GetSmsCode()
+        {
+           var result= await MpdcContainer.Instance.Get<IQuezServices>().GetSmsCodeAsync(UserControl.Instance.GetCurrentUser().Id);
+
+            return result;
+        }
 
         public async Task<TimeSpan> GetExamDate(Enum.QuezCategory categor)
         {
