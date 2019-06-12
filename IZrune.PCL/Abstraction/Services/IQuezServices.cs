@@ -19,5 +19,8 @@ namespace IZrune.PCL.Abstraction.Services
         Task<string> GetDiploma();
 
         Task<IQuisResultInfo> GetQuisResult();
+
+        Task<int> GetSmsCodeAsync(int ParrentId);
+
     }
 }
