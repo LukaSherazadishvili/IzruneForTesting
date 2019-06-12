@@ -167,5 +167,27 @@ namespace IZrune.PCL.Implementation.Services
 
             return QuesResult;
         }
+
+        public async Task<int> GetSmsCodeAsync(int ParrentId)
+        {
+            try
+            {
+                var FormContent = new FormUrlEncodedContent(new[]
+                         {
+                new KeyValuePair<string,string>("parent_id",ParrentId.ToString()),
+
+            });
+
+                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getSmsCode&hashcode=379c81983cb70e54978a50cef15f4308", FormContent);
+                var jsn = await Data.Content.ReadAsStringAsync();
+                var Result = JsonConvert.DeserializeObject<SmsCodeDTO>(jsn);
+
+                return Result.sms_code;
+            }
+            catch(Exception ex)
+            {
+                return 0;
+            }
+        }
     }
 }

@@ -132,7 +132,7 @@ android:id="@+id/Container">
         </LinearLayout>
 
         <LinearLayout
-			android:id="@+id/NextButton"
+			android:id="@+id/EndRegistrationButton"
             android:elevation="5dp"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"

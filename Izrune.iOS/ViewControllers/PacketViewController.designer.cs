@@ -13,6 +13,12 @@ namespace Izrune.iOS
 	partial class PacketViewController
 	{
 		[Outlet]
+		UIKit.NSLayoutConstraint footerHeightConstraint { get; set; }
+
+		[Outlet]
+		UIKit.UIView footerView { get; set; }
+
+		[Outlet]
 		UIKit.UILabel headerTitleLbl { get; set; }
 
 		[Outlet]
@@ -43,6 +49,11 @@ namespace Izrune.iOS
 				headerTitleLbl = null;
 			}
 
+			if (individualLbl != null) {
+				individualLbl.Dispose ();
+				individualLbl = null;
+			}
+
 			if (nextBtn != null) {
 				nextBtn.Dispose ();
 				nextBtn = null;
@@ -51,6 +62,11 @@ namespace Izrune.iOS
 			if (prevBtn != null) {
 				prevBtn.Dispose ();
 				prevBtn = null;
+			}
+
+			if (promoLbl != null) {
+				promoLbl.Dispose ();
+				promoLbl = null;
 			}
 
 			if (viewForIndividual != null) {
@@ -68,14 +84,14 @@ namespace Izrune.iOS
 				viewForPromoCode = null;
 			}
 
-			if (individualLbl != null) {
-				individualLbl.Dispose ();
-				individualLbl = null;
+			if (footerView != null) {
+				footerView.Dispose ();
+				footerView = null;
 			}
 
-			if (promoLbl != null) {
-				promoLbl.Dispose ();
-				promoLbl = null;
+			if (footerHeightConstraint != null) {
+				footerHeightConstraint.Dispose ();
+				footerHeightConstraint = null;
 			}
 		}
 	}

@@ -6,6 +6,8 @@ using Foundation;
 using UIKit;
 using FPT.Framework.iOS.UI.DropDown;
 using Izrune.iOS.Utils;
+using MpdcViewExtentions;
+using MPDC.iOS.Utils;
 
 namespace Izrune.iOS
 {
@@ -15,13 +17,20 @@ namespace Izrune.iOS
 		{
 		}
 
+        public static readonly NSString StoryboardId = new NSString("StudentRegSecondStoryboardId");
+
         DropDown CityDpD = new DropDown();
         DropDown SchoolDpD = new DropDown();
         DropDown ClassDpD = new DropDown();
+        private object date;
+
+        public Action SendClicked { get; set; }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            villageTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 20);
 
             InitDropDowns();
 
@@ -80,5 +89,6 @@ namespace Izrune.iOS
                 }));
             }
         }
+
     }
 }

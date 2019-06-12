@@ -149,6 +149,7 @@
         <InterfaceDefinition Include="CollectionViewCells\ResultCollectionViewCell.xib" />
         <InterfaceDefinition Include="CollectionViewCells\NewsBigCell.xib" />
         <InterfaceDefinition Include="CollectionViewCells\NewsMinCell.xib" />
+        <InterfaceDefinition Include="CollectionViewCells\DiplomeCollectionViewCell.xib" />
     </ItemGroup>
     <ItemGroup>
         <None Include="Info.plist" />
@@ -327,6 +328,14 @@
         <Compile Include="FooterTestView.cs" />
         <Compile Include="FooterTestView.designer.cs">
           <DependentUpon>FooterTestView.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\DiplomeViewController.cs" />
+        <Compile Include="ViewControllers\DiplomeViewController.designer.cs">
+          <DependentUpon>DiplomeViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CollectionViewCells\DiplomeCollectionViewCell.cs" />
+        <Compile Include="CollectionViewCells\DiplomeCollectionViewCell.designer.cs">
+          <DependentUpon>DiplomeCollectionViewCell.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup>
