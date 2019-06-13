@@ -280,6 +280,7 @@ namespace Izrune.iOS
         private async Task LoadDataAsync()
         {
             ShowLoading();
+            HideHeaderAndFooter(true);
             var service = ServiceContainer.ServiceContainer.Instance.Get<IRegistrationServices>();
 
             try
@@ -287,6 +288,7 @@ namespace Izrune.iOS
                 CityList = (await service.GetRegionsAsync())?.OrderBy(x => x.title)?.ToList();
                 parentRegVc.CityList = CityList;
                 studentRegVc2.CityList = CityList;
+                HideHeaderAndFooter(false);
             }
             catch (Exception ex)
             {
@@ -298,6 +300,13 @@ namespace Izrune.iOS
                 EndLoading();
             }
 
+        }
+
+        private void HideHeaderAndFooter(bool hide)
+        {
+            nextBtn.Hidden = hide;
+            footerView.Hidden = hide;
+            headerView.Hidden = hide;
         }
     }
 }

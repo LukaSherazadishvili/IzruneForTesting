@@ -13,6 +13,9 @@ namespace Izrune.iOS
 	partial class ParentRegistrationViewController
 	{
 		[Outlet]
+		UIKit.UIView footerView { get; set; }
+
+		[Outlet]
 		UIKit.NSLayoutConstraint headerHeightConstant { get; set; }
 
 		[Outlet]
@@ -25,10 +28,10 @@ namespace Izrune.iOS
 		UIKit.UILabel headerTitleLbl { get; set; }
 
 		[Outlet]
-		UIKit.UIButton nextBtn { get; set; }
+		UIKit.UIView headerView { get; set; }
 
 		[Outlet]
-		UIKit.UIStackView pagerStackView { get; set; }
+		UIKit.UIButton nextBtn { get; set; }
 
 		[Outlet]
 		UIKit.UIButton prewBtn { get; set; }
@@ -41,6 +44,11 @@ namespace Izrune.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (footerView != null) {
+				footerView.Dispose ();
+				footerView = null;
+			}
+
 			if (headerHeightConstant != null) {
 				headerHeightConstant.Dispose ();
 				headerHeightConstant = null;
@@ -81,9 +89,9 @@ namespace Izrune.iOS
 				viewForPager = null;
 			}
 
-			if (pagerStackView != null) {
-				pagerStackView.Dispose ();
-				pagerStackView = null;
+			if (headerView != null) {
+				headerView.Dispose ();
+				headerView = null;
 			}
 		}
 	}

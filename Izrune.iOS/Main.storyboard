@@ -712,7 +712,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vfO-9o-KR0">
-                                                <rect key="frame" x="0.0" y="93" width="414" height="804"/>
+                                                <rect key="frame" x="0.0" y="93" width="414" height="774"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
@@ -720,7 +720,7 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="vfO-9o-KR0" secondAttribute="trailing" id="2xe-Yu-kSi"/>
                                             <constraint firstItem="W7j-6o-Spv" firstAttribute="top" secondItem="Jug-xc-rQM" secondAttribute="top" constant="50" id="3mW-4t-kfp"/>
-                                            <constraint firstAttribute="bottom" secondItem="vfO-9o-KR0" secondAttribute="bottom" id="D5L-Hn-3cW"/>
+                                            <constraint firstAttribute="bottom" secondItem="vfO-9o-KR0" secondAttribute="bottom" constant="30" id="D5L-Hn-3cW"/>
                                             <constraint firstAttribute="trailing" secondItem="W7j-6o-Spv" secondAttribute="trailing" constant="36" id="VSl-GO-M0x"/>
                                             <constraint firstItem="vfO-9o-KR0" firstAttribute="leading" secondItem="Jug-xc-rQM" secondAttribute="leading" id="b9g-qX-FpQ"/>
                                             <constraint firstItem="W7j-6o-Spv" firstAttribute="leading" secondItem="Jug-xc-rQM" secondAttribute="leading" constant="36" id="bDW-rk-I5V"/>
@@ -1985,10 +1985,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="Wkn-4i-uTu">
-                                            <rect key="frame" x="0.0" y="43" width="375" height="133"/>
+                                            <rect key="frame" x="0.0" y="43" width="414" height="133"/>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fBQ-81-q4d">
-                                            <rect key="frame" x="87.5" y="83.5" width="200" height="52"/>
+                                            <rect key="frame" x="107" y="83.5" width="200" height="52"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="სწორი პასუხი 5 ქულა" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhd-0I-e6L">
                                                     <rect key="frame" x="0.0" y="0.0" width="200" height="14"/>
@@ -2011,7 +2011,7 @@
                                             </subviews>
                                         </stackView>
                                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6PF-gN-1Uk">
-                                            <rect key="frame" x="35" y="23" width="305" height="45"/>
+                                            <rect key="frame" x="35" y="23" width="344" height="45"/>
                                             <color key="backgroundColor" red="0.79607843140000001" green="0.52941176469999995" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="45" id="jKM-W3-nTI"/>
@@ -2386,8 +2386,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Cj-NG-KKM">
-                                <rect key="frame" x="20" y="131.5" width="374" height="764.5"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Cj-NG-KKM">
+                                <rect key="frame" x="20" y="131.5" width="374" height="710.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Tiw-v2-EZ2">
                                     <size key="itemSize" width="50" height="50"/>
@@ -2416,7 +2416,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="sd5-QQ-Iw2" secondAttribute="trailing" constant="10" id="Ecp-tP-Wfx"/>
-                            <constraint firstAttribute="bottom" secondItem="4Cj-NG-KKM" secondAttribute="bottom" id="OpD-OH-SOF"/>
+                            <constraint firstItem="CgU-al-y6v" firstAttribute="bottom" secondItem="4Cj-NG-KKM" secondAttribute="bottom" constant="20" id="OpD-OH-SOF"/>
                             <constraint firstItem="4Cj-NG-KKM" firstAttribute="top" secondItem="sd5-QQ-Iw2" secondAttribute="bottom" constant="40" id="Pij-86-jGJ"/>
                             <constraint firstItem="sd5-QQ-Iw2" firstAttribute="top" secondItem="CgU-al-y6v" secondAttribute="top" constant="10" id="RAJ-la-tEA"/>
                             <constraint firstItem="4Cj-NG-KKM" firstAttribute="leading" secondItem="o25-eI-hSu" secondAttribute="leadingMargin" id="fy2-MW-zGO"/>
@@ -2618,10 +2618,12 @@
                         <viewLayoutGuide key="safeArea" id="VJc-R8-EXH"/>
                     </view>
                     <connections>
+                        <outlet property="footerView" destination="FUT-fx-Ps3" id="INn-Wj-ZK6"/>
                         <outlet property="headerHeightConstant" destination="V05-ma-LVW" id="Hl6-tv-I1A"/>
                         <outlet property="headerImageView" destination="pAI-Kq-fjh" id="0TL-YQ-osv"/>
                         <outlet property="headerStackView" destination="su6-MH-OXm" id="dh3-RZ-LcL"/>
                         <outlet property="headerTitleLbl" destination="Asv-kk-TMl" id="iMs-as-eAK"/>
+                        <outlet property="headerView" destination="eM4-3S-ber" id="IJT-rq-JiA"/>
                         <outlet property="nextBtn" destination="B9a-QQ-woc" id="lP1-tE-Ap9"/>
                         <outlet property="prewBtn" destination="ow9-NZ-d7u" id="Krs-kb-tmi"/>
                         <outlet property="subViewsContentHeightConstraint" destination="SJk-CV-g7g" id="jg7-hl-DeQ"/>

@@ -38,8 +38,8 @@ namespace Izrune.iOS
 
             this.AddVcInView(viewForPeager, SelectPacketVc);
 
-            footerHeightConstraint.Constant = HideFooter ? 0 : 180;
-            nextBtn.Hidden = HideFooter;
+            //footerHeightConstraint.Constant = HideFooter ? 0 : 180;
+            //nextBtn.Hidden = HideFooter;
         }
 
         private bool IsIndividualSelected = true;
@@ -48,7 +48,7 @@ namespace Izrune.iOS
         {
             viewForIndividual.Layer.CornerRadius = 17.5f;
             viewForPromoCode.Layer.CornerRadius = 17.5f;
-            nextBtn.AddShadowToView(5, 25, 0.8f, AppColors.TitleColor);
+            //nextBtn.AddShadowToView(5, 25, 0.8f, AppColors.TitleColor);
         }
 
         private void InitGesture()
