@@ -38,6 +38,8 @@ namespace Izrune.iOS
         bool NextClicked = true;
         private List<IRegion> CityList;
 
+        private const int HeaderAndFooterHeight = 250;
+
         /*
          * 
          * UserControl RegisterParent(student)Part1-2
@@ -62,8 +64,30 @@ namespace Izrune.iOS
             var scrollView = parentRegVc.View.OfType<UIScrollView>().FirstOrDefault();
             scrollView.LayoutIfNeeded();
 
+            var yle = this.View.Frame.Height;
             subViewsContentHeightConstraint.Constant =scrollView.ContentSize.Height;// parentRegVc.View.Frame.Height;
+
+
             View.LayoutIfNeeded();
+
+            var diff = this.View.Frame.Height - (scrollView.ContentSize.Height + HeaderAndFooterHeight);//(View.Subviews.OfType<UIScrollView>().FirstOrDefault().ContentSize.Height );
+
+            if (diff > 0)
+            {
+
+                float safeAreaSize = default(float);
+
+                if(UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
+                {
+                    safeAreaSize = (float)UIApplication.SharedApplication.KeyWindow.SafeAreaInsets.Bottom;
+                }
+
+                subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height + (diff) -130 - safeAreaSize;
+                View.LayoutIfNeeded();
+            }
+
+
+
 
             InitGestures();
 
@@ -121,7 +145,27 @@ namespace Izrune.iOS
 
             this.AddVcInViewWithoutFrame(viewForPager, newVc);
             subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height;
+
+
             View.LayoutIfNeeded();
+
+            var diff = this.View.Frame.Height - (scrollView.ContentSize.Height + HeaderAndFooterHeight);//(View.Subviews.OfType<UIScrollView>().FirstOrDefault().ContentSize.Height );
+
+            if (diff > 0)
+            {
+
+                float safeAreaSize = default(float);
+
+                if (UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
+                {
+                    safeAreaSize = (float)UIApplication.SharedApplication.KeyWindow.SafeAreaInsets.Bottom;
+                }
+
+                subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height + (diff) - 130 - safeAreaSize;
+                View.LayoutIfNeeded();
+            }
+
+
         }
 
         private void InitUI()
