@@ -62,15 +62,17 @@ namespace Izrune.iOS
         {
             var cell = packetCollectionView.DequeueReusableCell(PacketCollectionViewCell.Identifier, indexPath) as PacketCollectionViewCell;
 
+            var data = PriceList?[indexPath.Row];
+
             cell.PriceSelected = (priice) =>
             {
 
             };
 
             if (indexPath.Row == SelectedPriceIndex)
-                cell.InitData(null, true);
+                cell.InitData(data, true);
             else
-                cell.InitData(null);
+                cell.InitData(data);
             return cell;
 
         }

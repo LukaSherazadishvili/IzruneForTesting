@@ -3725,7 +3725,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I3C-n6-6np" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="339.33333333333331"/>
                                         <subviews>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vxz-ZN-jRr">
                                                 <rect key="frame" x="20" y="50" width="335" height="40"/>
@@ -3830,6 +3830,7 @@
                                             <constraint firstItem="MEb-FV-hzM" firstAttribute="leading" secondItem="ysa-Pp-CKv" secondAttribute="leading" id="RcC-0K-Htn"/>
                                             <constraint firstItem="Vxz-ZN-jRr" firstAttribute="top" secondItem="I3C-n6-6np" secondAttribute="top" constant="50" id="SMh-eX-Y2o"/>
                                             <constraint firstItem="MEb-FV-hzM" firstAttribute="top" secondItem="zZB-nZ-l2n" secondAttribute="top" constant="-10" id="V6m-F3-dDr"/>
+                                            <constraint firstAttribute="bottom" secondItem="lJi-BV-U7p" secondAttribute="bottom" constant="50" id="Vxj-bc-03q"/>
                                             <constraint firstItem="ysa-Pp-CKv" firstAttribute="trailing" secondItem="Vxz-ZN-jRr" secondAttribute="trailing" id="XpC-gh-hLP"/>
                                             <constraint firstItem="zZB-nZ-l2n" firstAttribute="top" secondItem="ysa-Pp-CKv" secondAttribute="bottom" constant="40" id="bLz-FP-LIV"/>
                                             <constraint firstItem="Vxz-ZN-jRr" firstAttribute="leading" secondItem="I3C-n6-6np" secondAttribute="leading" constant="20" id="bx8-9K-2Hw"/>
