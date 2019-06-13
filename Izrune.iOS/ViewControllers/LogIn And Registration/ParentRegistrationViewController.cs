@@ -113,9 +113,11 @@ namespace Izrune.iOS
             oldVc.RemoveFromParentViewController();
 
             var scrollView = newVc.View.OfType<UIScrollView>().FirstOrDefault();
-            scrollView.LayoutIfNeeded();
-
-            subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height;
+            if(scrollView != null)
+            {
+                scrollView.LayoutIfNeeded();
+                subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height;
+            }
 
             this.AddVcInViewWithoutFrame(viewForPager, newVc);
             subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height;
