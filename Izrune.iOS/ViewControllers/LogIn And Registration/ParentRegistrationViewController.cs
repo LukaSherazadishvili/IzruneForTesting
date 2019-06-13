@@ -56,13 +56,21 @@ namespace Izrune.iOS
             InitUI();
 
             await LoadDataAsync();
+            View.LayoutIfNeeded();
 
-            this.AddVcInView(viewForPager, parentRegVc);
+            this.AddVcInViewWithoutFrame(viewForPager, parentRegVc);
+            var scrollView = parentRegVc.View.OfType<UIScrollView>().FirstOrDefault();
+            scrollView.LayoutIfNeeded();
+
+            subViewsContentHeightConstraint.Constant =scrollView.ContentSize.Height;// parentRegVc.View.Frame.Height;
+            View.LayoutIfNeeded();
 
             InitGestures();
 
             ChangeHeader(true);
         }
+
+
 
         private void InitViewControllers()
         {
@@ -104,7 +112,14 @@ namespace Izrune.iOS
             oldVc.View.RemoveFromSuperview();
             oldVc.RemoveFromParentViewController();
 
-            this.AddVcInView(viewForPager, newVc);
+            var scrollView = newVc.View.OfType<UIScrollView>().FirstOrDefault();
+            scrollView.LayoutIfNeeded();
+
+            subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height;
+
+            this.AddVcInViewWithoutFrame(viewForPager, newVc);
+            subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height;
+            View.LayoutIfNeeded();
         }
 
         private void InitUI()

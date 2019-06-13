@@ -28,16 +28,32 @@ namespace Izrune.iOS
 		UIKit.UIButton nextBtn { get; set; }
 
 		[Outlet]
+		UIKit.UIStackView pagerStackView { get; set; }
+
+		[Outlet]
 		UIKit.UIButton prewBtn { get; set; }
+
+		[Outlet]
+		UIKit.NSLayoutConstraint subViewsContentHeightConstraint { get; set; }
 
 		[Outlet]
 		UIKit.UIView viewForPager { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (headerHeightConstant != null) {
+				headerHeightConstant.Dispose ();
+				headerHeightConstant = null;
+			}
+
 			if (headerImageView != null) {
 				headerImageView.Dispose ();
 				headerImageView = null;
+			}
+
+			if (headerStackView != null) {
+				headerStackView.Dispose ();
+				headerStackView = null;
 			}
 
 			if (headerTitleLbl != null) {
@@ -55,19 +71,19 @@ namespace Izrune.iOS
 				prewBtn = null;
 			}
 
+			if (subViewsContentHeightConstraint != null) {
+				subViewsContentHeightConstraint.Dispose ();
+				subViewsContentHeightConstraint = null;
+			}
+
 			if (viewForPager != null) {
 				viewForPager.Dispose ();
 				viewForPager = null;
 			}
 
-			if (headerHeightConstant != null) {
-				headerHeightConstant.Dispose ();
-				headerHeightConstant = null;
-			}
-
-			if (headerStackView != null) {
-				headerStackView.Dispose ();
-				headerStackView = null;
+			if (pagerStackView != null) {
+				pagerStackView.Dispose ();
+				pagerStackView = null;
 			}
 		}
 	}
