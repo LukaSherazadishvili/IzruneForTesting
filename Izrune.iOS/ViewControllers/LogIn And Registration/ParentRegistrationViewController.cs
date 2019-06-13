@@ -38,7 +38,7 @@ namespace Izrune.iOS
         bool NextClicked = true;
         private List<IRegion> CityList;
 
-        private const int HeaderAndFooterHeight = 250;
+        private const int HeaderAndFooterHeight = 275;
 
         /*
          * 
@@ -65,6 +65,7 @@ namespace Izrune.iOS
             scrollView.LayoutIfNeeded();
 
             SetContentHeight(scrollView.ContentSize.Height);
+            scrollView.BackgroundColor = UIColor.Red;
             //subViewsContentHeightConstraint.Constant =scrollView.ContentSize.Height;// parentRegVc.View.Frame.Height;
 
 
@@ -136,6 +137,7 @@ namespace Izrune.iOS
             oldVc.View.RemoveFromSuperview();
             oldVc.RemoveFromParentViewController();
 
+            viewForPager.BackgroundColor = UIColor.Green;
             var scrollView = newVc.View.OfType<UIScrollView>().FirstOrDefault();
             if(scrollView != null)
             {
@@ -315,11 +317,11 @@ namespace Izrune.iOS
         {
             subViewsContentHeightConstraint.Constant = contentHeight;
 
-            View.LayoutIfNeeded();
 
+            View.LayoutIfNeeded();
             var diff = this.View.Frame.Height - (contentHeight + HeaderAndFooterHeight);
 
-            if (diff > 0)
+            if (diff >= 155)
             {
 
                 float safeAreaSize = default(float);
@@ -329,10 +331,15 @@ namespace Izrune.iOS
                     safeAreaSize = (float)UIApplication.SharedApplication.KeyWindow.SafeAreaInsets.Bottom;
                 }
 
-                var size = (safeAreaSize > 0 ? safeAreaSize : 25);
-                subViewsContentHeightConstraint.Constant = contentHeight + diff - 130 + size;
+                //var size = (safeAreaSize > 0 ? safeAreaSize : 25);
+                subViewsContentHeightConstraint.Constant = contentHeight + diff - 155 + safeAreaSize;
                 View.LayoutIfNeeded();
             }
+
+            viewForPager.Frame = new CoreGraphics.CGRect(viewForPager.Frame.X, viewForPager.Frame.Y,
+                viewForPager.Frame.Width, subViewsContentHeightConstraint.Constant);
+
+            View.LayoutIfNeeded();
         }
     }
 }
