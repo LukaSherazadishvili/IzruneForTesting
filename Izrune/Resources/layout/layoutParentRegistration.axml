@@ -138,19 +138,25 @@ android:id="@+id/Container">
 						android:background="@drawable/izrune_editext_back"
             />
 				</LinearLayout>
-				<Spinner
-					android:id="@+id/ParrentCity"
-					android:layout_width="match_parent"
-					android:layout_height="38dp"
-					android:paddingLeft="15dp"
-					android:textColor="#6A6A6A"
-					android:fontFamily="@font/bpg_mrgvlovani"
-					android:hint="*ქალაქი/მუნიციპალიტეტი"
-					android:textSize="13dp"
-					android:layout_gravity="center_horizontal"
-					android:layout_marginTop="10dp"
+
+				<FrameLayout
 					android:background="@drawable/izrune_editext_back"
-            />
+					android:layout_width="match_parent"
+					android:layout_marginRight="5dp"
+					android:layout_height="38dp">
+					<Spinner
+						android:id="@+id/ParrentCity"
+						android:layout_width="match_parent"
+						android:layout_height="38dp"
+						android:paddingLeft="15dp"
+						android:textColor="#6A6A6A"
+						android:fontFamily="@font/bpg_mrgvlovani"
+						android:hint="*ქალაქი/მუნიციპალიტეტი"
+						android:textSize="13dp"
+						android:layout_gravity="center_horizontal"
+/>
+				</FrameLayout>
+
 				<EditText
 					android:id="@+id/ParrentVillage"
 					android:layout_width="match_parent"

@@ -24,6 +24,7 @@
 				android:layout_height="wrap_content"
 				android:text="1 თვე"
 				android:textSize="14dp"
+				android:padding="1dp"
 				android:textColor="#AE71B7"/>
 			<View
 				android:layout_width="0dp"

@@ -53,64 +53,79 @@ android:id="@+id/Container">
 					android:fontFamily="@font/bpg_mrgvlovani"
 					android:textSize="8dp"
 					/>
+
+				<FrameLayout
+					android:background="@drawable/izrune_editext_back"
+					android:layout_width="match_parent"
+					android:layout_height="38dp"
+					android:paddingLeft="15dp"
+					android:gravity="center"
+					android:layout_gravity="center_horizontal"
+					android:layout_marginTop="10dp">
 				<Spinner
 					android:id="@+id/StudentCity"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:paddingLeft="15dp"
-            android:textColor="#6A6A6A"
-			android:fontFamily="@font/bpg_mrgvlovani"
-            android:hint="*ქალაქი/მუნიციპალიტეტი"
-			android:textSize="13dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/izrune_editext_back"
-            />
+					android:layout_width="match_parent"
+					android:layout_height="38dp"
+					android:textColor="#6A6A6A"
+					android:fontFamily="@font/bpg_mrgvlovani"
+					android:hint="*ქალაქი/მუნიციპალიტეტი"
+					android:textSize="13dp"
+					android:layout_gravity="center_horizontal"
+					/>
+				</FrameLayout>
+				
 				
 				<EditText
-				android:id="@+id/StudentVillage"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:paddingLeft="15dp"
-            android:textColor="#6A6A6A"
-			android:fontFamily="@font/bpg_mrgvlovani"
-            android:hint="სოფელი"
-			android:textSize="13dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/izrune_editext_back"
-            />
+					android:id="@+id/StudentVillage"
+					android:layout_width="match_parent"
+					android:layout_height="38dp"
+					android:paddingLeft="15dp"
+					android:textColor="#6A6A6A"
+					android:fontFamily="@font/bpg_mrgvlovani"
+					android:hint="სოფელი"
+					android:textSize="13dp"
+					android:layout_gravity="center_horizontal"
+					android:layout_marginTop="10dp"
+					android:background="@drawable/izrune_editext_back"/>
 		
-
-				<Spinner
-					android:id="@+id/StudentSchool"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:paddingLeft="15dp"
-            android:textColor="#6A6A6A"
-			android:fontFamily="@font/bpg_mrgvlovani"
-            android:hint="*სკოლა"
-			android:textSize="13dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/izrune_editext_back"
-            />
+				<FrameLayout
+					android:background="@drawable/izrune_editext_back"
+					android:layout_width="match_parent"
+					android:layout_height="38dp"
+					android:paddingLeft="15dp"
+					android:gravity="center"
+					android:layout_gravity="center_horizontal"
+					android:layout_marginTop="10dp">
+					<Spinner
+						android:id="@+id/StudentSchool"
+						android:layout_width="match_parent"
+						android:layout_height="38dp"
+						android:textColor="#6A6A6A"
+						android:fontFamily="@font/bpg_mrgvlovani"
+						android:hint="*სკოლა"
+						android:textSize="13dp"
+						android:layout_gravity="center_horizontal"/>
+				</FrameLayout>
 				
-				<EditText
-			android:id="@+id/StudentClass"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:paddingLeft="15dp"
-            android:textColor="#6A6A6A"
-			android:fontFamily="@font/bpg_mrgvlovani"
-            android:hint="*კლასი"
-			android:textSize="13dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/izrune_editext_back"
-            />
-				
-				
+				<FrameLayout
+					android:background="@drawable/izrune_editext_back"
+					android:layout_width="match_parent"
+					android:layout_height="38dp"
+					android:paddingLeft="15dp"
+					android:gravity="center"
+					android:layout_gravity="center_horizontal"
+					android:layout_marginTop="10dp">
+					<Spinner
+						android:id="@+id/StudentClass"
+						android:layout_width="match_parent"
+						android:layout_height="38dp"
+						android:textColor="#6A6A6A"
+						android:fontFamily="@font/bpg_mrgvlovani"
+						android:hint="*კლასი"
+						android:textSize="13dp"
+						android:layout_gravity="center_horizontal"/>
+				</FrameLayout>
+	
 				
         </LinearLayout>
      

@@ -55,20 +55,23 @@ android:id="@+id/Container">
 					android:fontFamily="@font/bpg_mrgvlovani"
 					android:textSize="10dp"
 					/>
-
+							<FrameLayout
+				android:layout_width="match_parent"
+				android:layout_height="38dp"
+				android:layout_marginTop="5dp"
+				android:paddingLeft="15dp"
+				android:background="@drawable/izrune_editext_back"
+				android:layout_weight="1">
 				<Spinner
 					android:id="@+id/StudentSpiner"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:paddingLeft="15dp"
-            android:textColor="#AE71B7"
-			android:fontFamily="@font/bpg_mrgvlovani"
-            android:hint="*მომხმარებლის სახელი"
-			android:textSize="13dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"			
-            android:background="@drawable/izrune_editext_back"
-            />
+					android:layout_width="match_parent"
+					android:layout_height="38dp"
+					android:textColor="#AE71B7"
+					android:fontFamily="@font/bpg_mrgvlovani"
+					android:hint="*მომხმარებლის სახელი"
+					android:textSize="13dp"
+					android:layout_gravity="center_horizontal"/>
+					</FrameLayout>
 
 				<View
 					android:layout_marginTop="10dp"
@@ -139,50 +142,63 @@ android:id="@+id/Container">
 					android:orientation="horizontal"
 					android:paddingTop="10dp"
 					>
+
+			<FrameLayout
+				android:layout_width="0dp"
+				android:layout_height="38dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginRight="4dp"
+				android:background="@drawable/izrune_editext_back"
+				android:layout_weight="0.6">
 					<Spinner
-			android:id="@+id/StudentBDayDay"
-            android:layout_width="0dp"
-			android:layout_marginRight="4dp"
-            android:layout_height="38dp"
-            android:textColor="#6A6A6A"
-			android:layout_weight="0.6"
-			android:fontFamily="@font/bpg_mrgvlovani"
-            android:hint="დღე"
-			android:gravity="center"
-			android:textSize="13dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/izrune_editext_back"
-            />
+						android:id="@+id/StudentBDayDay"
+						android:layout_width="match_parent"
+						android:layout_height="38dp"
+						android:textColor="#6A6A6A"
+						android:fontFamily="@font/bpg_mrgvlovani"
+						android:hint="წელი"
+						android:gravity="center"
+						android:textSize="13dp"
+						android:layout_gravity="center_horizontal"/>
+			</FrameLayout>
+					<FrameLayout
+						android:layout_width="0dp"
+						android:layout_height="38dp"
+						android:layout_weight="1"
+						android:layout_marginTop="10dp"
+						android:background="@drawable/izrune_editext_back">
 					<Spinner
 			android:id="@+id/StudentBdayMonth"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="38dp"
             android:textColor="#6A6A6A"
-			android:layout_weight="1"
 			android:fontFamily="@font/bpg_mrgvlovani"
             android:hint="თვე"
 			android:gravity="center"
 			android:textSize="13dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/izrune_editext_back"
+            
             />
+						</FrameLayout>
+			<FrameLayout
+				android:layout_width="0dp"
+				android:layout_height="38dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginLeft="4dp"
+				android:background="@drawable/izrune_editext_back"
+				android:layout_weight="0.6">
 					<Spinner
 			android:id="@+id/StudentBdayYear"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="38dp"
             android:textColor="#6A6A6A"
-			android:layout_weight="0.6"
-			android:layout_marginLeft="4dp"
 			android:fontFamily="@font/bpg_mrgvlovani"
             android:hint="წელი"
 			android:gravity="center"
 			android:textSize="13dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/izrune_editext_back"
-            />
+            android:layout_gravity="center_horizontal"/>
+			</FrameLayout>
+					
 					</LinearLayout>
 
 				<TextView
@@ -273,19 +289,23 @@ android:id="@+id/Container">
 					android:fontFamily="@font/bpg_mrgvlovani"
 					android:textSize="10dp"
 					/>
-
+				<FrameLayout
+					android:layout_width="match_parent"
+					android:layout_height="38dp"
+					android:paddingLeft="15dp"
+					android:background="@drawable/izrune_editext_back">
 				<Spinner
 				android:id="@+id/StudentCity"
             android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:paddingLeft="15dp"
             android:textColor="#AE71B7"
 			android:fontFamily="@font/bpg_mrgvlovani"
             android:hint="*მომხმარებლის სახელი"
 			android:textSize="13dp"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/izrune_editext_back"
             />
+				</FrameLayout>
+				
 				<EditText
 			android:id="@+id/StudentVillage"
             android:layout_width="match_parent"

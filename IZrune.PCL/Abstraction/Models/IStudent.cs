@@ -19,5 +19,7 @@ namespace IZrune.PCL.Abstraction.Models
         int SchoolId { get; set; }
         DateTime PackageStartDate { get; set; }
         int PackageMonthCount { get; set; }
+        int Amount { get; set; }
+        string Promocode { get; set; }
     }
 }

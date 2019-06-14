@@ -43,7 +43,8 @@ android:id="@+id/Container">
                 android:gravity="center"
 				android:fontFamily="@font/bpg_mrgvlovani"
                 android:layout_marginBottom="20dp"
-                android:text="დაარეგისტრირეთ მოსწავლე"/>
+                android:text="დაარეგისტრირეთ მოსწავლე"
+				android:padding="1dp"/>
 
 				<TextView
 					android:layout_width="wrap_content"
