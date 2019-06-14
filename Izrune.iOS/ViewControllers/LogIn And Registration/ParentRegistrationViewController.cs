@@ -32,6 +32,7 @@ namespace Izrune.iOS
         private StudentRegSecondViewController studentRegVc2;
 
         private PacketViewController choosePacketVc;
+        private AddStudentViewController AddMoreStudentVc;
         private int CurrentIndex = 0;
 
 
@@ -111,6 +112,8 @@ namespace Izrune.iOS
 
             choosePacketVc = Storyboard.InstantiateViewController(PacketViewController.StoryboardId) as PacketViewController;
             choosePacketVc.HideFooter = true;
+
+            AddMoreStudentVc = Storyboard.InstantiateViewController(AddStudentViewController.StoryboardId) as AddStudentViewController;
         }
 
         private void InitGestures()
@@ -247,23 +250,23 @@ namespace Izrune.iOS
                 case 4:
                     {
                         if (NextClicked)
-                            AddViewController(parent2RegVc, parentRegVc);
+                            AddViewController(AddMoreStudentVc, choosePacketVc);
                         else
                         {
-                            AddViewController(parentRegVc, parent2RegVc);
+                            AddViewController(studentRegVc2, choosePacketVc);
                             HideHeader(false);
                         }
                             
                         break;
                     }
-                case 5:
-                    {
-                        if (NextClicked)
-                            AddViewController(parent2RegVc, parentRegVc);
-                        else
-                            AddViewController(parentRegVc, parent2RegVc);
-                        break;
-                    }
+                //case 5:
+                    //{
+                    //    if (NextClicked)
+                    //        AddViewController(AddMoreStudentVc, parentRegVc);
+                    //    else
+                    //        AddViewController(parentRegVc, parent2RegVc);
+                    //    break;
+                    //}
                 default:
                     break;
             }
