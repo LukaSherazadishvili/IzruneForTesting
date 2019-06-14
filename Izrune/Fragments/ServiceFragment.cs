@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Android.Animation;
 using Android.App;
 using Android.Content;
@@ -64,10 +65,13 @@ namespace Izrune.Fragments
 
 
 
-            var Result = await MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(CurrentId.ToString());
+            var Result =MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(CurrentId);
+            var Individualserv = MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(0);
 
-            var Individual = new IndividualServiceFragmentcs(Result.Prices.ToList());
-            var Promo = new PromoFragment(Result.PrommoCode);
+            await Task.WhenAll(Result, Individualserv);
+
+            var Individual = new IndividualServiceFragmentcs(Individualserv.Result.Prices.ToList());
+            var Promo = new PromoFragment(Result.Result);
             FragmentList.Add(Individual);
             FragmentList.Add(Promo);
             Density = Resources.DisplayMetrics.Density;

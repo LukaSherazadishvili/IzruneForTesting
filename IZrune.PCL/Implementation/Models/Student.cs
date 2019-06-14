@@ -20,5 +20,7 @@ namespace IZrune.PCL.Implementation.Models
         public int SchoolId { get; set; }
         public DateTime PackageStartDate { get; set; }
         public int PackageMonthCount { get; set; }
+        public int Amount { get; set; }
+        public string Promocode { get; set; } = "0";
     }
 }

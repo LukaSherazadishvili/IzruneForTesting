@@ -175,17 +175,31 @@ namespace IZrune.PCL.Helpers
             RegistrationStudent.Class = Clas;
         }
 
-        public void SetPromoPack(int MonthCount)
+        public async void AddStudent()
+        {
+            await MpdcContainer.Instance.Get<IUserServices>().AddStudent(RegistrationStudent);
+        }
+
+        public void SetPromoPack(int MonthCount,int Amount,string PromoCode="0")
         {
             RegistrationStudent.PackageStartDate = DateTime.Now;
             RegistrationStudent.PackageMonthCount = MonthCount;
+            RegistrationStudent.Amount = Amount;
+            RegistrationStudent.Promocode = PromoCode;
         }
 
-        public async Task<bool> FinishRegistration()
-        {
-           var Result=await MpdcContainer.Instance.Get<IRegistrationServices>().RegistrationUser(RegistrationUser, RegistrationStudent);
 
-            return Result;
+        IPay CUrrentPaimentInformation;
+        public async Task<IPay> FinishRegistration()
+        {
+           CUrrentPaimentInformation=await MpdcContainer.Instance.Get<IRegistrationServices>().RegistrationUser(RegistrationUser, RegistrationStudent);
+
+            return CUrrentPaimentInformation;
+        }
+
+        public IPay GetPaymentInformation()
+        {
+            return CUrrentPaimentInformation;
         }
 
     }

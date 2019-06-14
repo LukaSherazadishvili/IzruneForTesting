@@ -70,7 +70,7 @@ namespace IZrune.PCL.Implementation.Services
 
         }
 
-        public async Task<bool> RegistrationUser(IParent user, IStudent student)
+        public async Task<IPay> RegistrationUser(IParent user, IStudent student)
         {
             var FormContent = new FormUrlEncodedContent(new[]
            {
@@ -93,22 +93,23 @@ namespace IZrune.PCL.Implementation.Services
                 new KeyValuePair<string, string>("school_id1",student.SchoolId.ToString()),
                 new KeyValuePair<string, string>("class1",student.Class.ToString()),
                 new KeyValuePair<string,string>("sdate1",student.PackageStartDate.ToShortDateString()),
-                new KeyValuePair<string, string>("months1",student.PackageMonthCount.ToString())
+                new KeyValuePair<string, string>("months1",student.PackageMonthCount.ToString()),
+                 new KeyValuePair<string, string>("amount1",student.Amount.ToString()),
+                  new KeyValuePair<string, string>("promo1",student.Promocode)
             });
 
             var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=register&hashcode=4e5e0ccbab0da8c25637b0aa14e6cbbd", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
 
-            var Result = JsonConvert.DeserializeObject<StatusCodeDTO>(jsn);
+            var Result = JsonConvert.DeserializeObject<PaymentRootDTO>(jsn);
 
-            if (Result.Message == "OK" && Result.Code == 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            Pay pay = new Pay();
+            pay.CurrentUserPayURl = $"https://e-commerce.cartubank.ge/servlet/Process3DSServlet/3dsproxy_init.jsp?PurchaseDesc={Result.payment.PurchaseDesc}&PurchaseAmt={Result.payment.PurchaseAmt}&CountryCode={Result.payment.CountryCode}&CurrencyCode={Result.payment.CurrencyCode}&MerchantName={Result.payment.MerchantName}&MerchantURL={Result.payment.MerchantURL}&MerchantCity={Result.payment.MerchantCity}&MerchantID={Result.payment.MerchantID}&xDDDSProxy.Language={Result.payment.Language}";
+
+            pay.SuccesUrl = Result.payment_success_url;
+            pay.FailUrl = Result.payment_fail_url;
+
+            return pay;
         }
     }
 }

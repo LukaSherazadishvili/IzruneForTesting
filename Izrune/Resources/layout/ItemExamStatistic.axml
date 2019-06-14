@@ -18,24 +18,28 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            />
+            android:src="@drawable/ItemExamStatisticData"/>
 
         <TextView
             android:id="@+id/textView8"
+			android:fontFamily="@font/bpg_mrgvlovani"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="თარიღი "
             android:textColor="#B8B8B8"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+			android:padding="1dp"/>
 
         <TextView
             android:id="@+id/CurrentDate"
+			android:fontFamily="@font/bpg_mrgvlovani"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="15 აპრილი 2019 11:44 სთ"
             android:textAlignment="center"
-            android:textColor="#CB87D6"/>
+            android:textColor="#CB87D6"
+			android:padding="1dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -48,19 +52,22 @@
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-           />
+            android:src="@drawable/ItemExamStatisticCorrect"/>
 
         <TextView
             android:id="@+id/textView9"
+			android:fontFamily="@font/bpg_mrgvlovani"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="სწორი პასუხი"
             android:textColor="#B8B8B8"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+			android:padding="1dp"/>
 
         <TextView
             android:id="@+id/CorrectAnswersCount"
+			android:fontFamily="@font/bpg_mrgvlovani"
             android:layout_width="90dp"
             android:layout_height="match_parent"
             android:text="18"
@@ -79,10 +86,11 @@
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-			 />
+			android:src="@drawable/ItemExamStatisticWrong"/>
 
         <TextView
             android:id="@+id/textView10"
+			android:fontFamily="@font/bpg_mrgvlovani"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -92,6 +100,7 @@
 
         <TextView
             android:id="@+id/IncorrectAnswersCount"
+			android:fontFamily="@font/bpg_mrgvlovani"
             android:layout_width="90dp"
             android:layout_height="match_parent"
             android:text="2"
@@ -110,10 +119,11 @@
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            />
+            android:src="@drawable/ItemExamStatisticPass"/>
 
         <TextView
             android:id="@+id/textView11"
+			android:fontFamily="@font/bpg_mrgvlovani"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -123,6 +133,7 @@
 
         <TextView
             android:id="@+id/SkipedQuestionsCount"
+			android:fontFamily="@font/bpg_mrgvlovani"
             android:layout_width="90dp"
             android:layout_height="match_parent"
             android:text="0"
@@ -141,10 +152,11 @@
             android:id="@+id/imageView5"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-             />
+            android:src="@drawable/ItemExamStatisticTime"/>
 
         <TextView
             android:id="@+id/textView12"
+			android:fontFamily="@font/bpg_mrgvlovani"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="2"
@@ -154,6 +166,7 @@
 
         <TextView
             android:id="@+id/TimeCost"
+			android:fontFamily="@font/bpg_mrgvlovani"
             android:layout_width="90dp"
             android:layout_height="match_parent"
             android:text="04წთ 31წმ"
@@ -171,10 +184,11 @@
             android:id="@+id/imageView6"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            />
+            android:src="@drawable/ItemExamStatisticScores"/>
 
         <TextView
             android:id="@+id/textView13"
+			android:fontFamily="@font/bpg_mrgvlovani"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="2"
@@ -184,6 +198,7 @@
 
         <TextView
             android:id="@+id/Points"
+			android:fontFamily="@font/bpg_mrgvlovani"
             android:layout_width="90dp"
             android:layout_height="match_parent"
             android:text="90"

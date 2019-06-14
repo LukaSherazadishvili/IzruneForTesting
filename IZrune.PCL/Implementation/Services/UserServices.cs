@@ -22,18 +22,23 @@ namespace IZrune.PCL.Implementation.Services
             var FormContent = new FormUrlEncodedContent(new[]
                {
                 new KeyValuePair<string,string>("parent_id",UserControl.Instance.GetCurrentUser().Result.id.ToString()),
-                 new KeyValuePair<string,string>("email",student.Name),
-                  new KeyValuePair<string,string>("phone",student.LastName),
-                  new KeyValuePair<string,string>("city",student.PersonalNumber),
-                  new KeyValuePair<string,string>("village",student.Email),
-                  new KeyValuePair<string,string>("parent_id",student.Phone),
-                 new KeyValuePair<string,string>("email",student.RegionId.ToString()),
-                  new KeyValuePair<string,string>("phone",student.Village),
-                  new KeyValuePair<string,string>("city",student.Bdate.ToShortTimeString()),
-                  new KeyValuePair<string,string>("village",student.SchoolId.ToString()),
-                  new KeyValuePair<string,string>("village",student.Class.ToString()),
-                  new KeyValuePair<string,string>("village",student.SchoolId.ToString()),
+                 new KeyValuePair<string,string>("name",student.Name),
+                  new KeyValuePair<string,string>("lastname",student.LastName),
+                  new KeyValuePair<string,string>("personal_number",student.PersonalNumber),
+                  new KeyValuePair<string,string>("email",student.Email),
+                  new KeyValuePair<string,string>("phone",student.Phone),
+                 new KeyValuePair<string,string>("region_id",student.RegionId.ToString()),
+                  new KeyValuePair<string,string>("village",student.Village),
+                  new KeyValuePair<string,string>("bdate",student.Bdate.ToShortTimeString()),
+                  new KeyValuePair<string,string>("school_id",student.SchoolId.ToString()),
+                  new KeyValuePair<string,string>("class",student.Class.ToString()),
+                  new KeyValuePair<string,string>("sdate",DateTime.Now.ToShortDateString()),
+                   new KeyValuePair<string,string>("months",student.PackageMonthCount.ToString())
                 });
+
+            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=addStudent&hashcode=d529edb90d98f79c0c0e2e799933c1c4", FormContent);
+
+
         }
 
         public async Task EditParentProfileAsync( string ParrentMail, string ParrentPhone, string City, string Village)
@@ -70,7 +75,7 @@ namespace IZrune.PCL.Implementation.Services
             var jsn = await Data.Content.ReadAsStringAsync();
         }
 
-        public async Task<IPromoCode> GetPromoCodeAsync(string SchoolId= "1902")
+        public async Task<IPromoCode> GetPromoCodeAsync(int SchoolId=0)
         {
 
             try
@@ -78,7 +83,7 @@ namespace IZrune.PCL.Implementation.Services
 
                 var FormContent = new FormUrlEncodedContent(new[]
                  {
-                new KeyValuePair<string,string>("id",SchoolId),
+                new KeyValuePair<string,string>("id",SchoolId.ToString()),
                 });
                 var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getPromoCode&hashcode=52c490da82162ed3cfaff1d7f5bb9287", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();

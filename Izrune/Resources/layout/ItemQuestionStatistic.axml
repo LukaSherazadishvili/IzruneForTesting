@@ -27,6 +27,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text=" რა ცხოველია სურათზე გამოსახული?"
+		android:padding="1dp"
 		android:fontFamily="@font/bpg_mrgvlovani"/>
 	</LinearLayout>
 
