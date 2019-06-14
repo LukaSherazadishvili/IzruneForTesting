@@ -334,7 +334,7 @@ namespace Izrune.iOS
             nfloat delta = collectionView.Frame.Height - (totalHeight + 150);
 
 
-            return new CoreGraphics.CGSize(collectionView.Frame.Width, totalHeight + 60);
+            return new CoreGraphics.CGSize(collectionView.Frame.Width, totalHeight);
         }
 
         void SetCellHeight(IQuestion question)
