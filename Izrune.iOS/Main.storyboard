@@ -3857,7 +3857,7 @@
                                                 <color key="textColor" red="0.72156862749999995" green="0.72156862749999995" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lJi-BV-U7p">
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lJi-BV-U7p">
                                                 <rect key="frame" x="20" y="249.5" width="335" height="40"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*კლასი" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0g-5T-QzK">
@@ -3995,7 +3995,7 @@
         <!--Add Student View Controller-->
         <scene sceneID="bKg-WA-bS5">
             <objects>
-                <viewController storyboardIdentifier="AddStudentViewControllerStoryboardId" id="vny-3B-CKc" customClass="AddStudentViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddStudentViewControllerStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="vny-3B-CKc" customClass="AddStudentViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UW6-Mb-lId">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4004,13 +4004,13 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fx4-WG-OuR" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="481"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" image="4.png" translatesAutoresizingMaskIntoConstraints="NO" id="LZY-Rf-Zxw">
                                                 <rect key="frame" x="101.5" y="30" width="172" height="161"/>
                                             </imageView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="PaS-49-PCK">
-                                                <rect key="frame" x="0.0" y="211" width="375" height="254.5"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="PaS-49-PCK">
+                                                <rect key="frame" x="0.0" y="211" width="375" height="260"/>
                                                 <subviews>
                                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Vp-Pj-jBO">
                                                         <rect key="frame" x="80.5" y="0.0" width="214" height="50"/>
@@ -4025,22 +4025,22 @@
                                                         </state>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="ან დაასრულე რეგისტრაცია" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lH1-eZ-acT">
-                                                        <rect key="frame" x="83" y="85" width="209" height="15.5"/>
+                                                        <rect key="frame" x="83" y="70" width="209" height="50"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="13"/>
                                                         <color key="textColor" red="0.41568627450980389" green="0.41568627450980389" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="რეგისტრაციის დასასრულებლად „მომსახურების წესების და პირობების“ მონიშვნა აუცილებელია" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unZ-2i-Rn4">
-                                                        <rect key="frame" x="28" y="135.5" width="319.5" height="49"/>
+                                                        <rect key="frame" x="28" y="140" width="319.5" height="50"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                                         <color key="textColor" red="0.28627450980392155" green="0.70980392156862748" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="RiK-qZ-ik9">
-                                                        <rect key="frame" x="5" y="219.5" width="365" height="35"/>
+                                                        <rect key="frame" x="5" y="210" width="365" height="50"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="v9v-rw-bvl">
-                                                                <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                                                <rect key="frame" x="0.0" y="15" width="35" height="35"/>
                                                                 <subviews>
                                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOe-zs-Gvp">
                                                                         <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
@@ -4063,7 +4063,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ვეთანხმები მომსახურების წესებს და პირობებს" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1a-Tt-yUd">
-                                                                <rect key="frame" x="50" y="0.0" width="315" height="35"/>
+                                                                <rect key="frame" x="50" y="15" width="315" height="35"/>
                                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                                                 <color key="textColor" red="0.68235294117647061" green="0.44313725490196076" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -4080,7 +4080,7 @@
                                                 </constraints>
                                             </stackView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_arrow_downward_24px.png" translatesAutoresizingMaskIntoConstraints="NO" id="Amr-2X-OeM">
-                                                <rect key="frame" x="14.5" y="404.5" width="16" height="16"/>
+                                                <rect key="frame" x="14.5" y="410" width="16" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="16" id="0vT-T3-r41"/>
                                                     <constraint firstAttribute="height" constant="16" id="CFr-tO-5wY"/>
@@ -4094,6 +4094,7 @@
                                             <constraint firstItem="Amr-2X-OeM" firstAttribute="centerX" secondItem="MOe-zs-Gvp" secondAttribute="centerX" id="KNK-2S-ntj"/>
                                             <constraint firstItem="LZY-Rf-Zxw" firstAttribute="top" secondItem="Fx4-WG-OuR" secondAttribute="top" constant="30" id="PDt-Tm-8Hj"/>
                                             <constraint firstItem="MOe-zs-Gvp" firstAttribute="top" secondItem="Amr-2X-OeM" secondAttribute="bottom" constant="10" id="WcV-dJ-O8z"/>
+                                            <constraint firstAttribute="bottom" secondItem="PaS-49-PCK" secondAttribute="bottom" constant="10" id="bL7-JZ-Llf"/>
                                             <constraint firstItem="PaS-49-PCK" firstAttribute="centerX" secondItem="Fx4-WG-OuR" secondAttribute="centerX" id="cre-ZU-44l"/>
                                             <constraint firstItem="PaS-49-PCK" firstAttribute="top" secondItem="LZY-Rf-Zxw" secondAttribute="bottom" constant="20" id="rOS-ZX-UYN"/>
                                         </constraints>
@@ -4127,7 +4128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kzd-aa-kQi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="580" y="-761.82266009852219"/>
+            <point key="canvasLocation" x="1260" y="-70"/>
         </scene>
     </scenes>
     <resources>
