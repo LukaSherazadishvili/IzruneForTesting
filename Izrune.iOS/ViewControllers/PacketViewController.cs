@@ -2,14 +2,19 @@
 
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Foundation;
 using Izrune.iOS.Utils;
+using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
+using MPDCiOSPages.ViewControllers;
 using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS
 {
-	public partial class PacketViewController : UIViewController
+	public partial class PacketViewController : BaseViewController
 	{
 		public PacketViewController (IntPtr handle) : base (handle)
 		{
@@ -22,9 +27,14 @@ namespace Izrune.iOS
         public int SchoolId;
         public bool HideFooter { get; set; }
 
-        public override void ViewDidLoad()
+        IPromoCode PromoCode;
+
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+
+            await GetPromoDataAsync();
 
             SelectHeader();
 
@@ -35,6 +45,7 @@ namespace Izrune.iOS
             SelectPacketVc = Storyboard.InstantiateViewController(SelectPacketViewController.StoryboardId) as SelectPacketViewController;
             SelectPacketVc.SchoolId = SchoolId;
             PromoVc = Storyboard.InstantiateViewController(PromoCodeViewController.StoryboardId) as PromoCodeViewController;
+            PromoVc.PromoInfo = PromoCode;
 
             this.AddVcInView(viewForPeager, SelectPacketVc);
 
@@ -42,6 +53,14 @@ namespace Izrune.iOS
             //nextBtn.Hidden = HideFooter;
         }
 
+        private async Task GetPromoDataAsync()
+        {
+            ShowLoading();
+            var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
+            PromoCode = (await service.GetPromoCodeAsync(SchoolId.ToString()));
+            EndLoading();
+
+        }
         private bool IsIndividualSelected = true;
 
         private void InitUI()
