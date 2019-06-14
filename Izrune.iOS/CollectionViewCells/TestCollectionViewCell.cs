@@ -209,17 +209,19 @@ namespace Izrune.iOS.CollectionViewCells
 
             var titleHeight = answer.GetStringHeight((float)collectionView.Frame.Width, 64, 15);
 
-            if(titleHeight >=40)
-            {
-                var size =  new CoreGraphics.CGSize(collectionView.Frame.Width, titleHeight + 40);
-                return size;
-            }
-            else
-            {
-                var size = new CoreGraphics.CGSize(collectionView.Frame.Width, 60);
-                return size;
-            }
-                
+            var size = new CoreGraphics.CGSize(collectionView.Frame.Width, titleHeight + 40);
+            return size;
+            //if(titleHeight >=40)
+            //{
+            //    var size =  new CoreGraphics.CGSize(collectionView.Frame.Width, titleHeight + 40);
+            //    return size;
+            //}
+            //else
+            //{
+            //    var size = new CoreGraphics.CGSize(collectionView.Frame.Width, 60);
+            //    return size;
+            //}
+
         }
 
         public override void AwakeFromNib()
