@@ -42,7 +42,7 @@ namespace Izrune.iOS
 
             var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-            var data = (await service.GetPromoCodeAsync(SchoolId.ToString()));
+            var data = (await service.GetPromoCodeAsync(SchoolId));
 
             PriceList = data.Prices?.ToList();
 

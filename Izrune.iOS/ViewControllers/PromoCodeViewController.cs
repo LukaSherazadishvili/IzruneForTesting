@@ -44,12 +44,17 @@ namespace Izrune.iOS
         private void InitUI()
         {
             //monthTf.MakeRoundedTextField(25, AppColors.TextFieldBackground);
-            promoCodeTf.MakeRoundedTextField(25, UIColor.White);
+            promoCodeErorLbl.Hidden = true;
+            promoCodeTf.Layer.BorderWidth = 2;
+            promoCodeTf.Layer.BorderColor = UIColor.FromRGB(243, 243, 243).CGColor;
+            promoCodeTf.MakeRoundedTextField(25, UIColor.White, 0);
         }
         private void CheckCode(bool isRight)
         {
             promoCodeTf.Layer.BorderColor = isRight ? AppColors.Succesful.CGColor : AppColors.ErrorTitle.CGColor;
             promoCodeTf.BackgroundColor = isRight ? AppColors.GreenBg : AppColors.RedBg;
+            promoCodeErorLbl.Hidden = false;
+            promoCodeErorLbl.TextColor = isRight ? AppColors.Succesful : AppColors.ErrorTitle;
         }
 
         private void InitDropDown()

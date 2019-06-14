@@ -57,7 +57,7 @@ namespace Izrune.iOS
         {
             ShowLoading();
             var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
-            PromoCode = (await service.GetPromoCodeAsync(SchoolId.ToString()));
+            PromoCode = (await service.GetPromoCodeAsync(SchoolId));
             EndLoading();
 
         }
