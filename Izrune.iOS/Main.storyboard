@@ -762,7 +762,7 @@
         <!--Start Test View Controller-->
         <scene sceneID="jHV-Q4-gez">
             <objects>
-                <viewController storyboardIdentifier="StartTestStoryboardId" id="bgC-2P-vaU" customClass="StartTestViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StartTestStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="bgC-2P-vaU" customClass="StartTestViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zq4-uG-dJ7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1869,7 +1869,7 @@
         <!--Test View Controller-->
         <scene sceneID="ctW-fe-mOh">
             <objects>
-                <viewController storyboardIdentifier="TestViewControllerStoryboardId" id="YVP-eX-9lg" customClass="TestViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TestViewControllerStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="YVP-eX-9lg" customClass="TestViewController" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="2KA-35-UOB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1985,10 +1985,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="Wkn-4i-uTu">
-                                            <rect key="frame" x="0.0" y="43" width="414" height="133"/>
+                                            <rect key="frame" x="0.0" y="43" width="375" height="133"/>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fBQ-81-q4d">
-                                            <rect key="frame" x="107" y="83.5" width="200" height="52"/>
+                                            <rect key="frame" x="87.5" y="83.5" width="200" height="52"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="სწორი პასუხი 5 ქულა" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhd-0I-e6L">
                                                     <rect key="frame" x="0.0" y="0.0" width="200" height="14"/>
@@ -2011,7 +2011,7 @@
                                             </subviews>
                                         </stackView>
                                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6PF-gN-1Uk">
-                                            <rect key="frame" x="35" y="23" width="344" height="45"/>
+                                            <rect key="frame" x="35" y="23" width="305" height="45"/>
                                             <color key="backgroundColor" red="0.79607843140000001" green="0.52941176469999995" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="45" id="jKM-W3-nTI"/>
@@ -2203,7 +2203,7 @@
         <!--Edit Profile View Controller-->
         <scene sceneID="1rI-Iw-9og">
             <objects>
-                <viewController storyboardIdentifier="EditProfileStoryboardId" id="Y68-yf-S37" customClass="EditProfileViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditProfileStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="Y68-yf-S37" customClass="EditProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pzg-c7-FuJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2839,7 +2839,7 @@
         <!--Choose Time View Controller-->
         <scene sceneID="sGo-gV-Xi2">
             <objects>
-                <viewController storyboardIdentifier="ChooseTimeStoryboardId" id="zsR-Fr-Onu" customClass="ChooseTimeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChooseTimeStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="zsR-Fr-Onu" customClass="ChooseTimeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1yo-dr-AFR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

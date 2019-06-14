@@ -130,6 +130,7 @@ namespace Izrune.iOS.CollectionViewCells
                 var currData = Question?.images?.ElementAt(indexPath.Row);
                 questionCell.InitData(currData);
 
+
                 questionCell.ImageClicked = (image) =>
                 {
                     //TODO
@@ -151,14 +152,16 @@ namespace Izrune.iOS.CollectionViewCells
 
             if(IsResultCell)
             {
-                if(indexPath.Row == currQuestion.StudentAnswerIndex)
+                if (indexPath.Row == currQuestion.StudentAnswerIndex)
                 {
                     cell.InitData(data, NumberList?[indexPath.Row], true);
 
                     return cell;
                 }
-
-                cell.InitData(data, NumberList?[indexPath.Row], false);
+                else if (data.IsRight)
+                    cell.InitData(data, NumberList?[indexPath.Row], true);
+                else
+                    cell.InitData(data, NumberList?[indexPath.Row], false);
 
                 return cell;
             }

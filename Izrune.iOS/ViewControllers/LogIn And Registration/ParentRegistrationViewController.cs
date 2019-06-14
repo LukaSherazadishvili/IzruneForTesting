@@ -65,7 +65,7 @@ namespace Izrune.iOS
             scrollView.LayoutIfNeeded();
 
             SetContentHeight(scrollView.ContentSize.Height);
-            scrollView.BackgroundColor = UIColor.Red;
+           
             //subViewsContentHeightConstraint.Constant =scrollView.ContentSize.Height;// parentRegVc.View.Frame.Height;
 
 
