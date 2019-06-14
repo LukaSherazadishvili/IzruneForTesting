@@ -130,6 +130,7 @@ namespace Izrune.iOS.CollectionViewCells
                 var currData = Question?.images?.ElementAt(indexPath.Row);
                 questionCell.InitData(currData);
 
+
                 questionCell.ImageClicked = (image) =>
                 {
                     //TODO
@@ -151,14 +152,16 @@ namespace Izrune.iOS.CollectionViewCells
 
             if(IsResultCell)
             {
-                if(indexPath.Row == currQuestion.StudentAnswerIndex)
+                if (indexPath.Row == currQuestion.StudentAnswerIndex)
                 {
                     cell.InitData(data, NumberList?[indexPath.Row], true);
 
                     return cell;
                 }
-
-                cell.InitData(data, NumberList?[indexPath.Row], false);
+                else if (data.IsRight)
+                    cell.InitData(data, NumberList?[indexPath.Row], true);
+                else
+                    cell.InitData(data, NumberList?[indexPath.Row], false);
 
                 return cell;
             }
@@ -206,17 +209,19 @@ namespace Izrune.iOS.CollectionViewCells
 
             var titleHeight = answer.GetStringHeight((float)collectionView.Frame.Width, 64, 15);
 
-            if(titleHeight >=40)
-            {
-                var size =  new CoreGraphics.CGSize(collectionView.Frame.Width, titleHeight + 40);
-                return size;
-            }
-            else
-            {
-                var size = new CoreGraphics.CGSize(collectionView.Frame.Width, 60);
-                return size;
-            }
-                
+            var size = new CoreGraphics.CGSize(collectionView.Frame.Width, titleHeight + 40);
+            return size;
+            //if(titleHeight >=40)
+            //{
+            //    var size =  new CoreGraphics.CGSize(collectionView.Frame.Width, titleHeight + 40);
+            //    return size;
+            //}
+            //else
+            //{
+            //    var size = new CoreGraphics.CGSize(collectionView.Frame.Width, 60);
+            //    return size;
+            //}
+
         }
 
         public override void AwakeFromNib()

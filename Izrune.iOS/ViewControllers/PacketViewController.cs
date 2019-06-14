@@ -19,6 +19,8 @@ namespace Izrune.iOS
 
         PromoCodeViewController PromoVc;
         SelectPacketViewController SelectPacketVc;
+        public int SchoolId;
+        public bool HideFooter { get; set; }
 
         public override void ViewDidLoad()
         {
@@ -31,9 +33,13 @@ namespace Izrune.iOS
             InitGesture();
 
             SelectPacketVc = Storyboard.InstantiateViewController(SelectPacketViewController.StoryboardId) as SelectPacketViewController;
+            SelectPacketVc.SchoolId = SchoolId;
             PromoVc = Storyboard.InstantiateViewController(PromoCodeViewController.StoryboardId) as PromoCodeViewController;
 
             this.AddVcInView(viewForPeager, SelectPacketVc);
+
+            //footerHeightConstraint.Constant = HideFooter ? 0 : 180;
+            //nextBtn.Hidden = HideFooter;
         }
 
         private bool IsIndividualSelected = true;
@@ -42,7 +48,7 @@ namespace Izrune.iOS
         {
             viewForIndividual.Layer.CornerRadius = 17.5f;
             viewForPromoCode.Layer.CornerRadius = 17.5f;
-            nextBtn.AddShadowToView(5, 25, 0.8f, AppColors.TitleColor);
+            //nextBtn.AddShadowToView(5, 25, 0.8f, AppColors.TitleColor);
         }
 
         private void InitGesture()

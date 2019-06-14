@@ -189,10 +189,5 @@ namespace IZrune.PCL.Implementation.Services
             var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=recoverUsername&hashcode=82a93889e6a50556b3c1805dd55d59e9", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
         }
-
-
-        
-
-
     }
 }

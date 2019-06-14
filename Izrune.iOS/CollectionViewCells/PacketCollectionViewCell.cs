@@ -25,13 +25,16 @@ namespace Izrune.iOS.CollectionViewCells
         }
 
         IPrice Price;
+        public Action<IPrice> PriceSelected { get; set; }
 
-        public void InitData(IPrice price)
+        public void InitData(IPrice price, bool isSelected = false)
         {
             Price = price;
 
-            monthLbl.Text = price.months.ToString() + " თვე";
-            priceLbl.Text = price.price.ToString();
+            monthLbl.Text = price?.months.ToString() + " თვე";
+            priceLbl.Text = price?.price.ToString()+ " ₾";
+
+            SelectCell(isSelected);
         }
 
         public override void AwakeFromNib()
@@ -40,7 +43,19 @@ namespace Izrune.iOS.CollectionViewCells
 
             priceView.Layer.CornerRadius = 24;
             mainView.Layer.CornerRadius = 26;
-            mainView.Layer.BorderWidth = 3.0f;
+
+            if(mainView.GestureRecognizers == null || mainView.GestureRecognizers.Length == 0)
+            {
+                mainView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    PriceSelected?.Invoke(Price);
+                }));
+            }
+        }
+
+        public void SelectCell(bool isSelected)
+        {
+            mainView.Layer.BorderWidth = isSelected? 3.0f : 0;
             mainView.Layer.BorderColor = AppColors.TitleColor.CGColor;
         }
     }

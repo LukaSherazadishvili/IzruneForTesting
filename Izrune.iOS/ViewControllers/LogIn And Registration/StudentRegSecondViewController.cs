@@ -8,6 +8,9 @@ using FPT.Framework.iOS.UI.DropDown;
 using Izrune.iOS.Utils;
 using MpdcViewExtentions;
 using MPDC.iOS.Utils;
+using System.Collections.Generic;
+using IZrune.PCL.Abstraction.Models;
+using System.Linq;
 
 namespace Izrune.iOS
 {
@@ -22,47 +25,94 @@ namespace Izrune.iOS
         DropDown CityDpD = new DropDown();
         DropDown SchoolDpD = new DropDown();
         DropDown ClassDpD = new DropDown();
-        private object date;
 
         public Action SendClicked { get; set; }
+        public Action<ISchool> SchoolSelected { get; set; }
+        public string[] schoolArrray { get; private set; }
+
+        public List<IRegion> CityList;
+
+        private int SelectedCityindex;
+        private string[] cityArray;
+
+        private SelectSchoolViewController ScholVc;
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
+
+            ScholVc = Storyboard.InstantiateViewController(SelectSchoolViewController.StoryboardId) as SelectSchoolViewController;
+
+            ScholVc.SchoolSelected = (school) =>
+            {
+                SchoolSelected?.Invoke(school);
+                schoolLbl.Text = school.title;
+            };
+
             villageTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 20);
+            DropDownInit();
+
+            if (selectSchoolView.GestureRecognizers == null || selectSchoolView.GestureRecognizers?.Length == 0)
+            {
+                selectSchoolView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
+                    this.NavigationController.PushViewController(ScholVc, true);
+                }));
+            }
+        }
+
+        private void DropDownInit()
+        {
+            SetupDropDownGesture(CityDpD, cityView);
+            SetupDropDownGesture(ClassDpD, classView);
+
+            SetupDropDown(CityDpD, cityView, cityLbl);
+            SetupDropDown(ClassDpD, classView, classLbl);
 
             InitDropDowns();
-
         }
 
         private void InitDropDowns()
         {
             SetupDropDown(CityDpD, cityView, cityLbl);
-            SetupDropDown(SchoolDpD, schoolView, schoolLbl);
             SetupDropDown(ClassDpD, classView, classLbl);
 
             SetupDropDownGesture(CityDpD, cityView);
-            SetupDropDownGesture(SchoolDpD, schoolView);
             SetupDropDownGesture(ClassDpD, classView);
+
+            cityArray = CityList?.Select(x => x.title)?.ToArray();
+            CityDpD.DataSource = cityArray;
+
+            CityDpD.SelectionAction = (nint index, string name) =>
+            {
+                //TODO
+                SelectedCityindex = (int)index;
+
+                selectSchoolView.UserInteractionEnabled = true;
+                ScholVc.SchoolList = CityList?[SelectedCityindex].Schools?.OrderBy(x => x.title)?.ToList();
+                cityLbl.Text = name;
+
+            };
+
+             
+            SchoolDpD.SelectionAction = (nint index, string name) =>
+            {
+
+                classView.UserInteractionEnabled = true;
+            };
         }
 
         private void SetupDropDown(DropDown dropDown, UIView viewForDpD, UILabel dropDownLbl)
         {
             dropDown.AnchorView = new WeakReference<UIView>(viewForDpD);
             dropDown.BottomOffset = new CoreGraphics.CGPoint(0, viewForDpD.Bounds.Height);
-            dropDown.Width = viewForDpD.Frame.Width;
+            dropDown.Width = View.Frame.Width;
             dropDown.Direction = Direction.Bottom;
 
             //var array = Students?.Select(x => x.Name + " " + x.LastName)?.ToArray();
 
             //CityDpD.DataSource = array;
 
-            CityDpD.SelectionAction = (nint index, string name) =>
-            {
-                //TODO
-                dropDownLbl.Text = name;
-            };
         }
 
         private void InitDropDownUI(DropDown dropDown)
@@ -83,9 +133,8 @@ namespace Izrune.iOS
             {
                 viewforDpD.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-                    InitDropDownUI(dropDown);
-
                     dropDown.Show();
+                    InitDropDownUI(dropDown);
                 }));
             }
         }

@@ -44,6 +44,8 @@ namespace Izrune.iOS
 
         IQuestion CurrentQuestion;
         private int lastVisibleIndex;
+        private CABasicAnimation strokeAnimation;
+        private CAShapeLayer progressLayer;
 
         public bool IsTotalTime { get; set; } = false;
 
@@ -207,6 +209,11 @@ namespace Izrune.iOS
 
         private async Task GoToResultPage()
         {
+
+            var pausedTime = progressLayer.ConvertTimeToLayer(CAAnimation.CurrentMediaTime(), null);
+            progressLayer.Speed = 0f;
+            progressLayer.TimeOffset = pausedTime;
+
             await Task.Delay(500);
 
             InvokeOnMainThread(async () => {
@@ -321,11 +328,12 @@ namespace Izrune.iOS
 
             if(currentIndex < AllQuestions?.Count && CurrentQuestion != null)
                 SetCellHeight(CurrentQuestion);
-
+                
 
             nfloat delta = collectionView.Frame.Height - (totalHeight + 150);
 
-            return new CoreGraphics.CGSize(collectionView.Frame.Width, totalHeight + 60 + (delta < 0 ? 0 : delta));
+
+            return new CoreGraphics.CGSize(collectionView.Frame.Width, totalHeight + (delta>0? delta:0));
         }
 
         void SetCellHeight(IQuestion question)
@@ -360,7 +368,7 @@ namespace Izrune.iOS
                 answersHeight += height + 40;
             }
 
-            totalHeight = titleHeight + imagesHeight + answersHeight;
+            totalHeight = titleHeight + imagesHeight + answersHeight +40 ;
 
             //return totalHeight;
         }
@@ -427,7 +435,9 @@ namespace Izrune.iOS
             {
                 questionCollectionView.ReloadData();
                 answerProgressCollectionView.ReloadData();
-                ResetTimer();
+                    if(currentIndex<AllQuestions.Count)
+                      ResetTimer();
+
                 questionCollectionView.Hidden = false;
             });
 
@@ -443,7 +453,7 @@ namespace Izrune.iOS
         private void InitCircular(double duration)
         {
             #region CircularAnimation
-            var progressLayer = new CAShapeLayer();
+             progressLayer = new CAShapeLayer();
             var trackLayer = new CAShapeLayer();
             //trackColor
             var trackColor = AppColors.TitleColor;
@@ -476,15 +486,16 @@ namespace Izrune.iOS
 
             viewForCircular.Layer.AddSublayer(progressLayer);
 
-            var animation = CABasicAnimation.FromKeyPath("strokeEnd");
-            animation.Duration = duration;
+            strokeAnimation = CABasicAnimation.FromKeyPath("strokeEnd");
+            strokeAnimation.Duration = duration;
 
-            animation.From = NSObject.FromObject(0);
-            animation.To = NSObject.FromObject(1.0f);
+            strokeAnimation.From = NSObject.FromObject(0);
+            strokeAnimation.To = NSObject.FromObject(1.0f);
 
-            animation.TimingFunction = CAMediaTimingFunction.FromName(new NSString(CAMediaTimingFunction.Linear.ToString()));
+            strokeAnimation.TimingFunction = CAMediaTimingFunction.FromName(new NSString(CAMediaTimingFunction.Linear.ToString()));
             progressLayer.StrokeEnd = 0.0f;
-            progressLayer.AddAnimation(animation, "animateCircle");
+            progressLayer.AddAnimation(strokeAnimation, "animateCircle");
+
 
             #endregion
         }

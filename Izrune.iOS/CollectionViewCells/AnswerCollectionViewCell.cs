@@ -78,7 +78,7 @@ namespace Izrune.iOS.CollectionViewCells
 
         }
 
-        private void CheckAnswer(bool IsRight)
+        public void CheckAnswer(bool IsRight)
         {
             InitAnswer(IsRight ? AppColors.Succesful : AppColors.ErrorTitle);
         }
