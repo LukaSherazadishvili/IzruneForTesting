@@ -13,11 +13,20 @@ namespace Izrune.iOS
 		{
 		}
 
+        public string PaymentUrl;
+
         public static readonly NSString StoryboardId = new NSString("PaymentStoryboardId");
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            var nsUrl = NSUrl.FromString(PaymentUrl);
+
+            var request = new NSUrlRequest(nsUrl);
+
+
+            paymentWebView.LoadRequest(request);
         }
     }
 }

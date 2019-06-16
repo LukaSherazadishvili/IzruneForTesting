@@ -34,6 +34,8 @@ namespace Izrune.iOS
 
         private PacketViewController choosePacketVc;
         private AddStudentViewController AddMoreStudentVc;
+
+        private PaymentViewController paymentViewController;
         private int CurrentIndex = 0;
 
 
@@ -92,6 +94,8 @@ namespace Izrune.iOS
             choosePacketVc.PriceSelected = (price) => SelectedPrice = price;
 
             AddMoreStudentVc = Storyboard.InstantiateViewController(AddStudentViewController.StoryboardId) as AddStudentViewController;
+
+            paymentViewController = Storyboard.InstantiateViewController(PaymentViewController.StoryboardId) as PaymentViewController;
         }
 
         private void InitGestures()
@@ -141,7 +145,7 @@ namespace Izrune.iOS
 
         private void CheckIndex()
         {
-            nextBtn.Enabled = CurrentIndex < 5;
+            nextBtn.Enabled = CurrentIndex < 6;
             prewBtn.Enabled = CurrentIndex > 0;
         }
 
@@ -209,6 +213,7 @@ namespace Izrune.iOS
                         {
                             AddViewController(AddMoreStudentVc, choosePacketVc);
                             AddMoreStudentVc.SendClicked?.Invoke();
+                            paymentViewController.PaymentUrl = AddMoreStudentVc.PaymenUrl;
                         }
                         else
                         {
@@ -218,14 +223,21 @@ namespace Izrune.iOS
                             
                         break;
                     }
-                //case 5:
-                    //{
-                    //    if (NextClicked)
-                    //        AddViewController(AddMoreStudentVc, parentRegVc);
-                    //    else
-                    //        AddViewController(parentRegVc, parent2RegVc);
-                    //    break;
-                    //}
+                case 5:
+                    {
+                        if (NextClicked)
+                        {
+                            AddViewController(paymentViewController, AddMoreStudentVc);
+                            AddMoreStudentVc.SendClicked?.Invoke();
+                        }
+                        else
+                        {
+                            AddViewController(studentRegVc2, AddMoreStudentVc);
+                            HideHeader(false);
+                        }
+
+                        break;
+                    }
                 default:
                     break;
             }

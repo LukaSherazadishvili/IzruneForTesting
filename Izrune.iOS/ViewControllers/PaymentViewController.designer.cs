@@ -12,9 +12,15 @@ namespace Izrune.iOS
 	[Register ("PaymentViewController")]
 	partial class PaymentViewController
 	{
+		[Outlet]
+		UIKit.UIWebView paymentWebView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (paymentWebView != null) {
+				paymentWebView.Dispose ();
+				paymentWebView = null;
+			}
 		}
 	}
 }
