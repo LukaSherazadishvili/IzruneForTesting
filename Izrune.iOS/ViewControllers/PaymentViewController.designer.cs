@@ -9,18 +9,12 @@ using System.CodeDom.Compiler;
 
 namespace Izrune.iOS
 {
-	[Register ("MainViewController")]
-	partial class MainViewController
+	[Register ("PaymentViewController")]
+	partial class PaymentViewController
 	{
-		[Outlet]
-		UIKit.UIWebView paymentWebView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (paymentWebView != null) {
-				paymentWebView.Dispose ();
-				paymentWebView = null;
-			}
 		}
 	}
 }

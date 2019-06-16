@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 using System.Threading.Tasks;
@@ -38,6 +39,7 @@ namespace Izrune.iOS
 
         bool NextClicked = true;
         private List<IRegion> CityList;
+        private IPrice SelectedPrice;
 
         private const int HeaderAndFooterHeight = 275;
 
@@ -67,30 +69,6 @@ namespace Izrune.iOS
 
             SetContentHeight(scrollView.ContentSize.Height);
            
-            //subViewsContentHeightConstraint.Constant =scrollView.ContentSize.Height;// parentRegVc.View.Frame.Height;
-
-
-            //View.LayoutIfNeeded();
-
-            //var diff = this.View.Frame.Height - (scrollView.ContentSize.Height + HeaderAndFooterHeight);//(View.Subviews.OfType<UIScrollView>().FirstOrDefault().ContentSize.Height );
-
-            //if (diff > 0)
-            //{
-
-            //    float safeAreaSize = default(float);
-
-            //    if(UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
-            //    {
-            //        safeAreaSize = (float)UIApplication.SharedApplication.KeyWindow.SafeAreaInsets.Bottom;
-            //    }
-
-            //    subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height + (diff) -130 - safeAreaSize;
-            //    View.LayoutIfNeeded();
-            //}
-
-
-
-
             InitGestures();
 
             ChangeHeader(true);
@@ -111,7 +89,7 @@ namespace Izrune.iOS
 
 
             choosePacketVc = Storyboard.InstantiateViewController(PacketViewController.StoryboardId) as PacketViewController;
-            choosePacketVc.HideFooter = true;
+            choosePacketVc.PriceSelected = (price) => SelectedPrice = price;
 
             AddMoreStudentVc = Storyboard.InstantiateViewController(AddStudentViewController.StoryboardId) as AddStudentViewController;
         }
@@ -151,28 +129,6 @@ namespace Izrune.iOS
             this.AddVcInViewWithoutFrame(viewForPager, newVc);
 
             SetContentHeight(scrollView.ContentSize.Height);
-            //subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height;
-
-
-            //View.LayoutIfNeeded();
-
-            //var diff = this.View.Frame.Height - (scrollView.ContentSize.Height + HeaderAndFooterHeight);//(View.Subviews.OfType<UIScrollView>().FirstOrDefault().ContentSize.Height );
-
-            //if (diff > 0)
-            //{
-
-            //    float safeAreaSize = default(float);
-
-            //    if (UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
-            //    {
-            //        safeAreaSize = (float)UIApplication.SharedApplication.KeyWindow.SafeAreaInsets.Bottom;
-            //    }
-
-            //    subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height + (diff) - 130 - safeAreaSize;
-            //    View.LayoutIfNeeded();
-            //}
-
-
         }
 
         private void InitUI()
@@ -250,7 +206,10 @@ namespace Izrune.iOS
                 case 4:
                     {
                         if (NextClicked)
+                        {
                             AddViewController(AddMoreStudentVc, choosePacketVc);
+                            AddMoreStudentVc.SendClicked?.Invoke();
+                        }
                         else
                         {
                             AddViewController(studentRegVc2, choosePacketVc);

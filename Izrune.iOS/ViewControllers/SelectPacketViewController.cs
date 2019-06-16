@@ -25,6 +25,8 @@ namespace Izrune.iOS
 
         private List<IPrice> PriceList;
         public int SchoolId;
+        public Action<IPrice> PriceSelected { get; set; }
+        public Action SendClicked { get; set; }
 
         public async override void ViewDidLoad()
         {
@@ -33,6 +35,14 @@ namespace Izrune.iOS
             CollectionViewSettings();
 
             await LoadDataAsync();
+
+            SendClicked = () => SendData();
+        }
+
+
+        private void SendData()
+        {
+            //TODO
         }
 
         private async Task LoadDataAsync()
@@ -66,7 +76,11 @@ namespace Izrune.iOS
 
             cell.PriceSelected = (priice) =>
             {
+                SelectedPriceIndex = PriceList.IndexOf(PriceList?.FirstOrDefault(x => x.price == priice.price));
 
+                packetCollectionView.ReloadData();
+
+                PriceSelected?.Invoke(priice);
             };
 
             if (indexPath.Row == SelectedPriceIndex)

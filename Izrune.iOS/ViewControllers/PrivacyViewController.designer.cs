@@ -9,17 +9,25 @@ using System.CodeDom.Compiler;
 
 namespace Izrune.iOS
 {
-	[Register ("MainViewController")]
-	partial class MainViewController
+	[Register ("PrivacyViewController")]
+	partial class PrivacyViewController
 	{
 		[Outlet]
-		UIKit.UIWebView paymentWebView { get; set; }
+		UIKit.UIView mainBgView { get; set; }
+
+		[Outlet]
+		UIKit.UIWebView privacyWebView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (paymentWebView != null) {
-				paymentWebView.Dispose ();
-				paymentWebView = null;
+			if (privacyWebView != null) {
+				privacyWebView.Dispose ();
+				privacyWebView = null;
+			}
+
+			if (mainBgView != null) {
+				mainBgView.Dispose ();
+				mainBgView = null;
 			}
 		}
 	}

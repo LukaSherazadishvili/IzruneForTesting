@@ -15,6 +15,8 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("AddStudentViewControllerStoryboardId");
 
+        public Action SendClicked { get; set; }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -22,6 +24,13 @@ namespace Izrune.iOS
             InitGestures();
 
             InitUI();
+
+            SendClicked = () => SendData();
+        }
+
+        private void SendData()
+        {
+            //TODO
         }
 
         private void InitUI()
@@ -41,6 +50,16 @@ namespace Izrune.iOS
                 //TODO
             };
 
+            if (privacyLbl.GestureRecognizers == null || privacyLbl.GestureRecognizers?.Length == 0)
+            {
+                privacyLbl.AddGestureRecognizer(new UITapGestureRecognizer(() => {
+                    var privacyVc = Storyboard.InstantiateViewController(PrivacyViewController.StoryboardId) as PrivacyViewController;
+
+                    privacyVc.ModalPresentationStyle = UIModalPresentationStyle.OverCurrentContext;
+                    this.PresentViewController(privacyVc, true, null);
+
+                }));
+            }
 
             if (agreeView.GestureRecognizers == null || agreeView.GestureRecognizers?.Length == 0)
             {
