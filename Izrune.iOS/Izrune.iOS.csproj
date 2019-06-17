@@ -354,6 +354,10 @@
         <Compile Include="ViewControllers\PaymentViewController.designer.cs">
           <DependentUpon>PaymentViewController.cs</DependentUpon>
         </Compile>
+        <Compile Include="ViewControllers\PaymentMethodViewController.cs" />
+        <Compile Include="ViewControllers\PaymentMethodViewController.designer.cs">
+          <DependentUpon>PaymentMethodViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />

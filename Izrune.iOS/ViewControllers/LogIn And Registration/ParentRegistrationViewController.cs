@@ -36,7 +36,7 @@ namespace Izrune.iOS
         private PacketViewController choosePacketVc;
         private AddStudentViewController AddMoreStudentVc;
 
-        private PaymentViewController paymentViewController;
+        private PaymentMethodViewController paymentViewController;
 
         
         private int CurrentIndex = 0;
@@ -123,7 +123,7 @@ namespace Izrune.iOS
                 AddViewController(studentRegVc1, AddMoreStudentVc);
             };
 
-            paymentViewController = Storyboard.InstantiateViewController(PaymentViewController.StoryboardId) as PaymentViewController;
+            paymentViewController = Storyboard.InstantiateViewController(PaymentMethodViewController.StoryboardId) as PaymentMethodViewController;
         }
 
         private void InitGestures()
