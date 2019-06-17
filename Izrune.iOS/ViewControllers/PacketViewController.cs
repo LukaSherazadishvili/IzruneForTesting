@@ -61,7 +61,9 @@ namespace Izrune.iOS
 
             SendClicked = () => SelectPacketVc.SendClicked?.Invoke();
 
-            //asd = View.Frame;
+            nextBtn.TouchUpInside += delegate {
+                this.NavigationController.PopViewController(true);
+            };
         }
 
 

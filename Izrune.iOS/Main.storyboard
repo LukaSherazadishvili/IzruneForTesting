@@ -786,6 +786,7 @@
                     </view>
                     <connections>
                         <outlet property="individualLbl" destination="bYR-Ld-m2d" id="udC-zO-vGx"/>
+                        <outlet property="nextBtn" destination="eGO-XC-PzB" id="6bO-KR-UFn"/>
                         <outlet property="promoLbl" destination="YPk-JT-nGX" id="Sxi-Ci-CIP"/>
                         <outlet property="viewForIndividual" destination="6vJ-vU-vBg" id="kLj-Ho-7wX"/>
                         <outlet property="viewForPeager" destination="vfO-9o-KR0" id="RKL-hb-GiX"/>
@@ -2670,22 +2671,19 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
                                         <subviews>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" text="გილოცავთ! თქვენ წარმატებით გაიარეთ რეგისტრაცია." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GuI-6W-guQ">
-                                                <rect key="frame" x="20" y="99.999999999999986" width="335" height="136.66666666666663"/>
+                                                <rect key="frame" x="20" y="100" width="335" height="39.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="17"/>
                                                 <color key="textColor" red="0.28627450980392155" green="0.70980392156862748" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="გადახდის მეთოდები" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6X-fh-2hY">
-                                                <rect key="frame" x="20" y="336.66666666666669" width="335" height="21"/>
+                                                <rect key="frame" x="20" y="239.66666666666669" width="335" height="21"/>
                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="18"/>
                                                 <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="EMg-qz-vGt">
-                                                <rect key="frame" x="0.0" y="512.66666666666663" width="375" height="221.33333333333337"/>
-                                            </imageView>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojK-Sp-dHF">
-                                                <rect key="frame" x="74" y="407.66666666666669" width="227" height="50"/>
+                                                <rect key="frame" x="74" y="310.66666666666669" width="227" height="50"/>
                                                 <color key="backgroundColor" red="0.79607843140000001" green="0.52941176469999995" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="etk-rt-dh9"/>
@@ -2702,7 +2700,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txO-l1-Wsi">
-                                                <rect key="frame" x="74" y="487.66666666666663" width="227" height="50"/>
+                                                <rect key="frame" x="74" y="390.66666666666669" width="227" height="50"/>
                                                 <color key="backgroundColor" red="0.79607843140000001" green="0.52941176469999995" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="xmk-23-HBi"/>
@@ -2719,7 +2717,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czT-qE-KQH">
-                                                <rect key="frame" x="74" y="567.66666666666663" width="227" height="50"/>
+                                                <rect key="frame" x="74" y="470.66666666666663" width="227" height="50"/>
                                                 <color key="backgroundColor" red="0.79607843140000001" green="0.52941176469999995" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="TNT-w6-AdT"/>
@@ -2738,14 +2736,11 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="EMg-qz-vGt" firstAttribute="height" secondItem="4dK-dd-N11" secondAttribute="height" multiplier="0.3" constant="1" id="1Qy-z0-M8z"/>
                                             <constraint firstItem="txO-l1-Wsi" firstAttribute="top" secondItem="ojK-Sp-dHF" secondAttribute="bottom" constant="30" id="235-2q-Fu1"/>
                                             <constraint firstItem="ojK-Sp-dHF" firstAttribute="centerX" secondItem="4dK-dd-N11" secondAttribute="centerX" id="EAK-fV-ph8"/>
-                                            <constraint firstAttribute="bottom" secondItem="EMg-qz-vGt" secondAttribute="bottom" id="FYm-qA-9b7"/>
                                             <constraint firstItem="czT-qE-KQH" firstAttribute="leading" secondItem="txO-l1-Wsi" secondAttribute="leading" id="HAQ-vc-Wtk"/>
                                             <constraint firstItem="txO-l1-Wsi" firstAttribute="trailing" secondItem="ojK-Sp-dHF" secondAttribute="trailing" id="POf-Tt-h8L"/>
                                             <constraint firstItem="czT-qE-KQH" firstAttribute="centerX" secondItem="txO-l1-Wsi" secondAttribute="centerX" id="PlF-dL-TAy"/>
-                                            <constraint firstItem="EMg-qz-vGt" firstAttribute="leading" secondItem="4dK-dd-N11" secondAttribute="leading" id="TmA-88-i4f"/>
                                             <constraint firstItem="GuI-6W-guQ" firstAttribute="top" secondItem="4dK-dd-N11" secondAttribute="top" constant="100" id="Tqh-z1-R1i"/>
                                             <constraint firstItem="V6X-fh-2hY" firstAttribute="leading" secondItem="GuI-6W-guQ" secondAttribute="leading" id="Uld-JV-FYn"/>
                                             <constraint firstItem="ojK-Sp-dHF" firstAttribute="top" secondItem="V6X-fh-2hY" secondAttribute="bottom" constant="50" id="WFm-yS-x5Q"/>
@@ -2757,8 +2752,6 @@
                                             <constraint firstItem="txO-l1-Wsi" firstAttribute="leading" secondItem="ojK-Sp-dHF" secondAttribute="leading" id="oEh-Nt-99r"/>
                                             <constraint firstItem="V6X-fh-2hY" firstAttribute="trailing" secondItem="GuI-6W-guQ" secondAttribute="trailing" id="oX6-sK-XpJ"/>
                                             <constraint firstAttribute="trailing" secondItem="GuI-6W-guQ" secondAttribute="trailing" constant="20" id="r9P-dN-PpP"/>
-                                            <constraint firstAttribute="trailing" secondItem="EMg-qz-vGt" secondAttribute="trailing" id="sdC-oG-hpU"/>
-                                            <constraint firstItem="txO-l1-Wsi" firstAttribute="top" secondItem="EMg-qz-vGt" secondAttribute="top" constant="-25" id="tBK-h7-ssC"/>
                                         </constraints>
                                     </view>
                                 </subviews>

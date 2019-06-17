@@ -77,7 +77,7 @@ namespace Izrune.iOS
 
             var cancelButton = new UIBarButtonItem("დახურვა", UIBarButtonItemStyle.Plain, (s, e) => { this.View.EndEditing(true); });
 
-            toolBar.SetItems(new UIBarButtonItem[] { doneButton, spaceButton, cancelButton }, false);
+            toolBar.SetItems(new UIBarButtonItem[] { cancelButton, spaceButton, doneButton }, false);
 
             transparentTextField.InputAccessoryView = toolBar;
             transparentTextField.InputView = datePicker;
