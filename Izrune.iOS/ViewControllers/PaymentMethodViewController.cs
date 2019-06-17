@@ -30,6 +30,7 @@ namespace Izrune.iOS
         private void InitGestures()
         {
             payViaBankBtn.TouchUpInside += delegate {
+                PaymentUrl = "https://www.youtube.com/";
                 GoToPayment();
             };
 
@@ -38,6 +39,7 @@ namespace Izrune.iOS
             };
 
             payViaPayBoxBtn.TouchUpInside += delegate {
+                PaymentUrl = "http://www.izrune.ge/images/tbcpay_image2.png";
                 GoToPayment();
             };
         }
