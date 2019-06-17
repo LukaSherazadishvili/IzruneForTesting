@@ -15,11 +15,11 @@ using UIKit;
 
 namespace Izrune.iOS
 {
-	public partial class ParentRegistrationViewController : BaseViewController
-	{
-		public ParentRegistrationViewController (IntPtr handle) : base (handle)
-		{
-		}
+    public partial class ParentRegistrationViewController : BaseViewController
+    {
+        public ParentRegistrationViewController (IntPtr handle) : base (handle)
+        {
+        }
 
         public static readonly NSString StoryboardId = new NSString("ParentRegistrationStoryboardId");
 
@@ -65,7 +65,7 @@ namespace Izrune.iOS
             scrollView.LayoutIfNeeded();
 
             SetContentHeight(scrollView.ContentSize.Height);
-            scrollView.BackgroundColor = UIColor.Red;
+            //scrollView.BackgroundColor = UIColor.Red;
             //subViewsContentHeightConstraint.Constant =scrollView.ContentSize.Height;// parentRegVc.View.Frame.Height;
 
 
