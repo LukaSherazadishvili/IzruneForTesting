@@ -1,98 +1,88 @@
 // WARNING
 //
-// This file has been generated automatically by Visual Studio to store outlets and
-// actions made in the UI designer. If it is removed, they will be lost.
-// Manual changes to this file may not be handled correctly.
+// This file has been generated automatically by Visual Studio from the outlets and
+// actions declared in your storyboard file.
+// Manual changes to this file will not be maintained.
 //
 using Foundation;
+using System;
 using System.CodeDom.Compiler;
 
 namespace Izrune.iOS
 {
-	[Register ("LogInViewController")]
-	partial class LogInViewController
-	{
-		[Outlet]
-		UIKit.UILabel forgotPasswordLbl { get; set; }
+    [Register ("LogInViewController")]
+    partial class LogInViewController
+    {
+        [Outlet]
+        UIKit.UILabel forgotPasswordLbl { get; set; }
 
-		[Outlet]
-		UIKit.UILabel forgotUserNameLbl { get; set; }
 
-		[Outlet]
-		UIKit.UIButton logInBtn { get; set; }
+        [Outlet]
+        UIKit.UILabel forgotUserNameLbl { get; set; }
 
-		[Outlet]
-		UIKit.UIView loginShadowVoew { get; set; }
 
-		[Outlet]
-		UIKit.UIView loginView { get; set; }
+        [Outlet]
+        UIKit.UIButton logInBtn { get; set; }
 
-		[Outlet]
-		UIKit.UITextField passwordTextField { get; set; }
 
-		[Outlet]
-		UIKit.UIButton registrationBtn { get; set; }
+        [Outlet]
+        UIKit.UIView loginShadowVoew { get; set; }
 
-		[Outlet]
-		UIKit.UIView registrationView { get; set; }
 
-		[Outlet]
-		UIKit.UIImageView showPasswordIcon { get; set; }
+        [Outlet]
+        UIKit.UIView loginView { get; set; }
 
-		[Outlet]
-		UIKit.UITextField userNameTextField { get; set; }
-		
-		void ReleaseDesignerOutlets ()
-		{
-			if (forgotPasswordLbl != null) {
-				forgotPasswordLbl.Dispose ();
-				forgotPasswordLbl = null;
-			}
 
-			if (forgotUserNameLbl != null) {
-				forgotUserNameLbl.Dispose ();
-				forgotUserNameLbl = null;
-			}
+        [Outlet]
+        UIKit.UITextField passwordTextField { get; set; }
 
-			if (loginView != null) {
-				loginView.Dispose ();
-				loginView = null;
-			}
 
-			if (passwordTextField != null) {
-				passwordTextField.Dispose ();
-				passwordTextField = null;
-			}
+        [Outlet]
+        UIKit.UIButton registrationBtn { get; set; }
 
-			if (registrationView != null) {
-				registrationView.Dispose ();
-				registrationView = null;
-			}
 
-			if (showPasswordIcon != null) {
-				showPasswordIcon.Dispose ();
-				showPasswordIcon = null;
-			}
+        [Outlet]
+        UIKit.UIView registrationView { get; set; }
 
-			if (userNameTextField != null) {
-				userNameTextField.Dispose ();
-				userNameTextField = null;
-			}
 
-			if (loginShadowVoew != null) {
-				loginShadowVoew.Dispose ();
-				loginShadowVoew = null;
-			}
+        [Outlet]
+        UIKit.UIImageView showPasswordIcon { get; set; }
 
-			if (logInBtn != null) {
-				logInBtn.Dispose ();
-				logInBtn = null;
-			}
 
-			if (registrationBtn != null) {
-				registrationBtn.Dispose ();
-				registrationBtn = null;
-			}
-		}
-	}
+        [Outlet]
+        UIKit.UITextField userNameTextField { get; set; }
+
+        void ReleaseDesignerOutlets ()
+        {
+            if (forgotPasswordLbl != null) {
+                forgotPasswordLbl.Dispose ();
+                forgotPasswordLbl = null;
+            }
+
+            if (forgotUserNameLbl != null) {
+                forgotUserNameLbl.Dispose ();
+                forgotUserNameLbl = null;
+            }
+
+            if (logInBtn != null) {
+                logInBtn.Dispose ();
+                logInBtn = null;
+            }
+
+            if (passwordTextField != null) {
+                passwordTextField.Dispose ();
+                passwordTextField = null;
+            }
+
+            if (registrationBtn != null) {
+                registrationBtn.Dispose ();
+                registrationBtn = null;
+            }
+
+            if (userNameTextField != null) {
+                userNameTextField.Dispose ();
+                userNameTextField = null;
+            }
+        }
+    }
 }

@@ -5,11 +5,15 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Izrune.Activitys;
 using Izrune.Attributes;
+using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Helpers;
 
 namespace Izrune.Fragments
 {
@@ -23,27 +27,67 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.SubmitButton)]
         LinearLayout Submit;
 
+        [MapControl(Resource.Id.Informationtxt)]
+        TextView Infotxt;
+
+        [MapControl(Resource.Id.MonthSpiner)]
+        Spinner monthSpiner;
+
+        [MapControl(Resource.Id.NextButton)]
+        LinearLayout NextButton;
+        
+
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
         }
-        public PromoFragment(string cod)
+        public PromoFragment(IPromoCode cod)
         {
             PromoCod = cod;
         }
 
-        private string PromoCod;
+        private IPromoCode PromoCod;
+
+        int MonthCount;
 
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
 
+            if (!string.IsNullOrEmpty(PromoCod.PrommoCode))
+            {
+                Infotxt.Text = "პრომო კოდის მისაღებად მიმართეთ სკოლის ადმინისტრაციას";
+                Infotxt.SetTextColor(Color.LightGreen);
+            }
+
+
+            NextButton.Click += (s, e) =>
+            {
+                if (MonthCount > 0)
+                {
+                    UserControl.Instance.SetPromoPack(MonthCount, MonthCount * 1, PromoCod.PrommoCode);
+                    Intent intent = new Intent(this, typeof(RullesActivity));
+                    StartActivity(intent);
+                }
+                else
+                {
+                    Toast.MakeText(this, "გთხოვთ შეიყვანეტ პრომოკოდი სწორად", ToastLength.Long).Show();
+                }
+            };
 
             Submit.Click += (s, e) =>
             {
-                if (promoEdit.Text == PromoCod && !string.IsNullOrEmpty(PromoCod))
+                if (promoEdit.Text == PromoCod.PrommoCode && !string.IsNullOrEmpty(PromoCod.PrommoCode))
                 {
                     promoEdit.SetBackgroundResource(Resource.Drawable.izruneback);
+
+                    var DataAdapter = new ArrayAdapter<string>(this,
+                  Android.Resource.Layout.SimpleSpinnerDropDownItem,
+                 PromoCod.Prices.Select(i =>$"{ i.months} თვე").ToList());
+
+                    monthSpiner.Adapter = DataAdapter;
+                    monthSpiner.ItemSelected += MonthSpiner_ItemSelected;
                 }
                 else
                 {
@@ -51,7 +95,12 @@ namespace Izrune.Fragments
                 }
             };
 
+            
+        }
 
+        private void MonthSpiner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            MonthCount = PromoCod.Prices.ElementAt(e.Position).months;
         }
     }
 }

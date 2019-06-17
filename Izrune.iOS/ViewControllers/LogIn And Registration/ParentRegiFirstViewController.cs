@@ -40,7 +40,7 @@ namespace Izrune.iOS
 
             InitDroDown();
 
-            SendClicked = () => { SenData(); };
+            SendClicked = () => SenData();
         }
 
         private void InitUI()

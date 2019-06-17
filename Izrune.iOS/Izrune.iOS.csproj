@@ -346,6 +346,14 @@
         <Compile Include="ViewControllers\SelectSchoolViewController.designer.cs">
           <DependentUpon>SelectSchoolViewController.cs</DependentUpon>
         </Compile>
+        <Compile Include="ViewControllers\PrivacyViewController.cs" />
+        <Compile Include="ViewControllers\PrivacyViewController.designer.cs">
+          <DependentUpon>PrivacyViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\PaymentViewController.cs" />
+        <Compile Include="ViewControllers\PaymentViewController.designer.cs">
+          <DependentUpon>PaymentViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />

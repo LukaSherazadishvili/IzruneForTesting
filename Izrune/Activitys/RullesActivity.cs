@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Com.Airbnb.Lottie;
 using Izrune.Attributes;
+using IZrune.PCL.Helpers;
 
 namespace Izrune.Activitys
 {
@@ -25,6 +26,11 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.Checker)]
         LottieAnimationView checker;
 
+        [MapControl(Resource.Id.EndRegistrationButton)]
+        LinearLayout EndRegistrationButton;
+
+        [MapControl(Resource.Id.AddStudentButton)]
+        LinearLayout AddStudentButton;
 
 
         bool isChecked = false;
@@ -33,7 +39,36 @@ namespace Izrune.Activitys
             base.OnCreate(savedInstanceState);
             checker.Progress = 0;
             checker.Click += Checker_Click;
+            EndRegistrationButton.Click += EndRegistrationButton_Click;
+            AddStudentButton.Click += AddStudentButton_Click;
+        }
 
+        private void AddStudentButton_Click(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(RegistrationStudentActivity));
+            StartActivity(intent);
+        }
+
+        private async void EndRegistrationButton_Click(object sender, EventArgs e)
+        {
+            if (isChecked)
+            {
+              var Result=await UserControl.Instance.FinishRegistration();
+                if (Result!=null)
+                {
+                   
+                    Intent intent = new Intent(this, typeof(ActivityPaymentCategory));
+                    StartActivity(intent);
+                }
+                else
+                {
+                    Toast.MakeText(this, "მოხდა შეცდომა", ToastLength.Long).Show();
+                }
+            }
+            else
+            {
+                Toast.MakeText(this, "თქვენ არ დათანხმებულხართ პირობებს დაეტანხმოთ პირობეს", ToastLength.Long).Show();
+            }
         }
 
         private void Checker_Click(object sender, EventArgs e)

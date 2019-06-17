@@ -11,7 +11,7 @@ namespace IZrune.PCL.Abstraction.Services
     {
         Task<IParent> GetUserAsync();
 
-        Task<IPromoCode> GetPromoCodeAsync(string SchoolId);
+        Task<IPromoCode> GetPromoCodeAsync(int SchoolId);
 
         Task EditParentProfileAsync(string ParrentMail, string ParrentPhone, string City, string Village);
 

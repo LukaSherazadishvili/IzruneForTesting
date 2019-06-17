@@ -41,7 +41,7 @@ android:id="@+id/Container">
 				<LinearLayout
 					android:layout_marginTop="10dp"
 					android:layout_marginBottom="15dp"
-			android:id="@+id/NextButton"
+			android:id="@+id/AddStudentButton"
             android:elevation="5dp"
             android:paddingTop="13dp"
             android:paddingBottom="13dp"

@@ -328,11 +328,12 @@ namespace Izrune.iOS
 
             if(currentIndex < AllQuestions?.Count && CurrentQuestion != null)
                 SetCellHeight(CurrentQuestion);
-
+                
 
             nfloat delta = collectionView.Frame.Height - (totalHeight + 150);
 
-            return new CoreGraphics.CGSize(collectionView.Frame.Width, totalHeight + 60 + (delta < 0 ? 0 : delta));
+
+            return new CoreGraphics.CGSize(collectionView.Frame.Width, totalHeight + (delta>0? delta:0));
         }
 
         void SetCellHeight(IQuestion question)
@@ -367,7 +368,7 @@ namespace Izrune.iOS
                 answersHeight += height + 40;
             }
 
-            totalHeight = titleHeight + imagesHeight + answersHeight;
+            totalHeight = titleHeight + imagesHeight + answersHeight +40 ;
 
             //return totalHeight;
         }

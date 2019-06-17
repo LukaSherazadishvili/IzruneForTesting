@@ -38,6 +38,7 @@ android:id="@+id/Container">
 					android:layout_marginTop="15dp"/>
 
 				<TextView
+					android:id="@+id/Informationtxt"
 					android:textSize="10dp"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
@@ -58,18 +59,22 @@ android:id="@+id/Container">
 			android:orientation="horizontal"
             android:layout_height="wrap_content">
           
+
+
+					
 			<FrameLayout
 					android:background="@drawable/izrune_editext_back"
 					android:layout_width="0dp"
 					android:layout_marginRight="5dp"
 					android:layout_height="50dp"					
 					android:layout_weight="1">
-				<TextView
-						android:gravity="center"
+				<Spinner
+						android:id="@+id/MonthSpiner"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
 						android:layout_gravity="center"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:text="10 თვე"/>	
+						android:gravity="center"
+						/>
 				</FrameLayout>
 				<FrameLayout
 					android:layout_marginLeft="5dp"					
@@ -77,14 +82,15 @@ android:id="@+id/Container">
 					android:layout_height="50dp"
 					android:layout_weight="1">
 				<EditText
+							android:fontFamily="@font/bpg_mrgvlovani"
 							android:id="@+id/PromoEditText"
-							android:textSize="15dp"
+							android:textSize="12dp"
 							android:gravity="center"
 							android:background="@drawable/izrune_editext_back"
 							android:layout_gravity="center"
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
-						android:text="10 თვე"/>	
+						android:text="პრომო კოდი"/>	
 				</FrameLayout>
         </LinearLayout>
 

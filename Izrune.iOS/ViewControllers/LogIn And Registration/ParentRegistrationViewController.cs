@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 using System.Threading.Tasks;
@@ -32,11 +33,15 @@ namespace Izrune.iOS
         private StudentRegSecondViewController studentRegVc2;
 
         private PacketViewController choosePacketVc;
+        private AddStudentViewController AddMoreStudentVc;
+
+        private PaymentViewController paymentViewController;
         private int CurrentIndex = 0;
 
 
         bool NextClicked = true;
         private List<IRegion> CityList;
+        private IPrice SelectedPrice;
 
         private const int HeaderAndFooterHeight = 275;
 
@@ -65,28 +70,28 @@ namespace Izrune.iOS
             scrollView.LayoutIfNeeded();
 
             SetContentHeight(scrollView.ContentSize.Height);
+
             //scrollView.BackgroundColor = UIColor.Red;
-            //subViewsContentHeightConstraint.Constant =scrollView.ContentSize.Height;// parentRegVc.View.Frame.Height;
+            subViewsContentHeightConstraint.Constant =scrollView.ContentSize.Height;// parentRegVc.View.Frame.Height;
 
 
-            //View.LayoutIfNeeded();
+            View.LayoutIfNeeded();
 
-            //var diff = this.View.Frame.Height - (scrollView.ContentSize.Height + HeaderAndFooterHeight);//(View.Subviews.OfType<UIScrollView>().FirstOrDefault().ContentSize.Height );
+            var diff = this.View.Frame.Height - (scrollView.ContentSize.Height + HeaderAndFooterHeight);//(View.Subviews.OfType<UIScrollView>().FirstOrDefault().ContentSize.Height );
 
-            //if (diff > 0)
-            //{
+            if (diff > 0)
+            {
 
-            //    float safeAreaSize = default(float);
+                float safeAreaSize = default(float);
 
-            //    if(UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
-            //    {
-            //        safeAreaSize = (float)UIApplication.SharedApplication.KeyWindow.SafeAreaInsets.Bottom;
-            //    }
+                if(UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
+                {
+                    safeAreaSize = (float)UIApplication.SharedApplication.KeyWindow.SafeAreaInsets.Bottom;
+                }
 
-            //    subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height + (diff) -130 - safeAreaSize;
-            //    View.LayoutIfNeeded();
-            //}
-
+                subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height + (diff) -130 - safeAreaSize;
+                View.LayoutIfNeeded();
+            }
 
 
 
@@ -110,7 +115,11 @@ namespace Izrune.iOS
 
 
             choosePacketVc = Storyboard.InstantiateViewController(PacketViewController.StoryboardId) as PacketViewController;
-            choosePacketVc.HideFooter = true;
+            choosePacketVc.PriceSelected = (price) => SelectedPrice = price;
+
+            AddMoreStudentVc = Storyboard.InstantiateViewController(AddStudentViewController.StoryboardId) as AddStudentViewController;
+
+            paymentViewController = Storyboard.InstantiateViewController(PaymentViewController.StoryboardId) as PaymentViewController;
         }
 
         private void InitGestures()
@@ -148,28 +157,6 @@ namespace Izrune.iOS
             this.AddVcInViewWithoutFrame(viewForPager, newVc);
 
             SetContentHeight(scrollView.ContentSize.Height);
-            //subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height;
-
-
-            //View.LayoutIfNeeded();
-
-            //var diff = this.View.Frame.Height - (scrollView.ContentSize.Height + HeaderAndFooterHeight);//(View.Subviews.OfType<UIScrollView>().FirstOrDefault().ContentSize.Height );
-
-            //if (diff > 0)
-            //{
-
-            //    float safeAreaSize = default(float);
-
-            //    if (UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
-            //    {
-            //        safeAreaSize = (float)UIApplication.SharedApplication.KeyWindow.SafeAreaInsets.Bottom;
-            //    }
-
-            //    subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height + (diff) - 130 - safeAreaSize;
-            //    View.LayoutIfNeeded();
-            //}
-
-
         }
 
         private void InitUI()
@@ -182,7 +169,7 @@ namespace Izrune.iOS
 
         private void CheckIndex()
         {
-            nextBtn.Enabled = CurrentIndex < 5;
+            nextBtn.Enabled = CurrentIndex < 6;
             prewBtn.Enabled = CurrentIndex > 0;
         }
 
@@ -247,10 +234,14 @@ namespace Izrune.iOS
                 case 4:
                     {
                         if (NextClicked)
-                            AddViewController(parent2RegVc, parentRegVc);
+                        {
+                            AddViewController(AddMoreStudentVc, choosePacketVc);
+                            choosePacketVc.SendClicked?.Invoke();
+                            paymentViewController.PaymentUrl = AddMoreStudentVc.PaymenUrl;
+                        }
                         else
                         {
-                            AddViewController(parentRegVc, parent2RegVc);
+                            AddViewController(studentRegVc2, choosePacketVc);
                             HideHeader(false);
                         }
                             
@@ -259,9 +250,17 @@ namespace Izrune.iOS
                 case 5:
                     {
                         if (NextClicked)
-                            AddViewController(parent2RegVc, parentRegVc);
+                        {
+                            AddViewController(paymentViewController, AddMoreStudentVc);
+                            AddMoreStudentVc.SendClicked?.Invoke();
+                            AddMoreStudentVc.SendClicked?.Invoke();
+                        }
                         else
-                            AddViewController(parentRegVc, parent2RegVc);
+                        {
+                            AddViewController(studentRegVc2, AddMoreStudentVc);
+                            HideHeader(false);
+                        }
+
                         break;
                     }
                 default:

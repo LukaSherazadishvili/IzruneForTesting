@@ -44,6 +44,9 @@ namespace Izrune.Fragments
             
         }
 
+
+        bool IsChec=false;
+
         public  override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
@@ -61,16 +64,24 @@ namespace Izrune.Fragments
                 Body.AddView(Vw);
 
                 Vw.Click += Vw_Click;
-                NextButton.Click += NextButton_Click;
+               
 
             }
+            NextButton.Click += NextButton_Click;
         }
 
         private async void NextButton_Click(object sender, EventArgs e)
         {
-           //await UserControl.Instance.FinishRegistration();
-            Intent intent = new Intent(this,typeof(RullesActivity));
-            StartActivity(intent);
+            //await UserControl.Instance.FinishRegistration();
+            if (IsChec)
+            {
+                Intent intent = new Intent(this, typeof(RullesActivity));
+                StartActivity(intent);
+            }
+            else
+            {
+                Toast.MakeText(this, "გთხოვთ აირჩიოთ მომსახურების პაკეტი", ToastLength.Long).Show();
+            }
         }
 
         private void Vw_Click(object sender, EventArgs e)
@@ -86,8 +97,8 @@ namespace Izrune.Fragments
 
           var Result=PriceList.ElementAt(Index);
 
-            UserControl.Instance.SetPromoPack(Result.months);
-         
+            UserControl.Instance.SetPromoPack(Result.months,Result.price);
+            IsChec = true;
             
         }
     }

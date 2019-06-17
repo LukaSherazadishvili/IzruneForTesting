@@ -11,6 +11,8 @@ using MPDC.iOS.Utils;
 using System.Collections.Generic;
 using IZrune.PCL.Abstraction.Models;
 using System.Linq;
+using IZrune.PCL.Helpers;
+using System.Diagnostics;
 
 namespace Izrune.iOS
 {
@@ -35,6 +37,9 @@ namespace Izrune.iOS
         private int SelectedCityindex;
         private string[] cityArray;
 
+        IRegion region;
+        ISchool _school;
+        int ClassId;
         private SelectSchoolViewController ScholVc;
 
         public override void ViewDidLoad()
@@ -46,6 +51,7 @@ namespace Izrune.iOS
 
             ScholVc.SchoolSelected = (school) =>
             {
+                _school = school;
                 SchoolSelected?.Invoke(school);
                 schoolLbl.Text = school.title;
             };
@@ -59,6 +65,8 @@ namespace Izrune.iOS
                     this.NavigationController.PushViewController(ScholVc, true);
                 }));
             }
+
+            SendClicked = () => SenData();
         }
 
         private void DropDownInit()
@@ -83,10 +91,14 @@ namespace Izrune.iOS
             cityArray = CityList?.Select(x => x.title)?.ToArray();
             CityDpD.DataSource = cityArray;
 
+            ClassDpD.DataSource = Enumerable.Range(1, 12).Select(x => x.ToString() + " კლასი")?.ToArray();
+
             CityDpD.SelectionAction = (nint index, string name) =>
             {
                 //TODO
                 SelectedCityindex = (int)index;
+
+                region = CityList[SelectedCityindex];
 
                 selectSchoolView.UserInteractionEnabled = true;
                 ScholVc.SchoolList = CityList?[SelectedCityindex].Schools?.OrderBy(x => x.title)?.ToList();
@@ -100,6 +112,12 @@ namespace Izrune.iOS
 
                 classView.UserInteractionEnabled = true;
             };
+
+            ClassDpD.SelectionAction = (nint index, string name) =>
+            {
+                ClassId = (int)(index + 1);
+                classLbl.Text = name;
+            };
         }
 
         private void SetupDropDown(DropDown dropDown, UIView viewForDpD, UILabel dropDownLbl)
@@ -108,11 +126,6 @@ namespace Izrune.iOS
             dropDown.BottomOffset = new CoreGraphics.CGPoint(0, viewForDpD.Bounds.Height);
             dropDown.Width = View.Frame.Width;
             dropDown.Direction = Direction.Bottom;
-
-            //var array = Students?.Select(x => x.Name + " " + x.LastName)?.ToArray();
-
-            //CityDpD.DataSource = array;
-
         }
 
         private void InitDropDownUI(DropDown dropDown)
@@ -137,7 +150,24 @@ namespace Izrune.iOS
                     InitDropDownUI(dropDown);
                 }));
             }
+
         }
 
+        private void SenData()
+        {
+            try
+            {
+                UserControl.Instance.RegistrationStudentPartTwo(
+                region.id,
+                villageTextField.Text,
+                _school.id,
+                ClassId
+                );
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
     }
 }
