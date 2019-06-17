@@ -49,7 +49,7 @@ namespace Izrune.iOS
             promoCodeTf.Layer.BorderColor = UIColor.FromRGB(243, 243, 243).CGColor;
             promoCodeTf.MakeRoundedTextField(25, UIColor.White, 0);
 
-            HidePromo(string.IsNullOrEmpty(PromoInfo.PrommoCode) || string.IsNullOrWhiteSpace(PromoInfo.PrommoCode));
+            HidePromo(string.IsNullOrEmpty(PromoInfo?.PrommoCode) || string.IsNullOrWhiteSpace(PromoInfo?.PrommoCode));
         }
         private void CheckCode(bool isRight)
         {
@@ -67,7 +67,7 @@ namespace Izrune.iOS
             MonthDropDown.Width = this.View.Frame.Width;
             MonthDropDown.Direction = Direction.Bottom;
 
-            var array = PromoInfo.Prices.Select(x => x.months.ToString() + "თვე")?.ToArray();
+            var array = PromoInfo?.Prices?.Select(x => x.months.ToString() + "თვე")?.ToArray();
 
             MonthDropDown.DataSource = array;
 

@@ -36,7 +36,7 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
-            var asd = View.Frame;
+            //var asd = View.Frame;
 
             await GetPromoDataAsync();
 
@@ -57,7 +57,7 @@ namespace Izrune.iOS
 
             SendClicked = () => SelectPacketVc.SendClicked?.Invoke();
 
-            asd = View.Frame;
+            //asd = View.Frame;
         }
 
 

@@ -26,7 +26,8 @@ namespace Izrune.iOS
             var request = new NSUrlRequest(nsUrl);
 
 
-            paymentWebView.LoadRequest(request);
+            if(nsUrl != null)
+                paymentWebView.LoadRequest(request);
         }
     }
 }

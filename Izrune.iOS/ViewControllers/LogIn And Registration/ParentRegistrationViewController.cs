@@ -37,6 +37,8 @@ namespace Izrune.iOS
         private AddStudentViewController AddMoreStudentVc;
 
         private PaymentViewController paymentViewController;
+
+        
         private int CurrentIndex = 0;
 
 
@@ -54,6 +56,8 @@ namespace Izrune.iOS
             InitViewControllers();
 
             InitUI();
+
+            this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
 
             await LoadDataAsync();
             View.LayoutIfNeeded();
@@ -139,7 +143,7 @@ namespace Izrune.iOS
             oldVc.View.RemoveFromSuperview();
             oldVc.RemoveFromParentViewController();
 
-            viewForPager.BackgroundColor = UIColor.Green;
+
             var scrollView = newVc.View.OfType<UIScrollView>().FirstOrDefault();
             if(scrollView != null)
             {
@@ -216,18 +220,16 @@ namespace Izrune.iOS
                             studentRegVc2.SendClicked?.Invoke();
                             if (studentRegVc2.IsAllSelected)
                             {
-                                AddViewController(choosePacketVc, studentRegVc2);
+                                //AddViewController(choosePacketVc, studentRegVc2);
 
-                                HideHeader(true);
+                                this.NavigationController.PushViewController(choosePacketVc, false);
+                                //HideHeader(true);
                             }
                             else
                             {
                                 CurrentIndex--;
-                                var alertVc = UIAlertController.Create("ყურადღება!", "აუცილებელია *-ით აღნიშნული ველების შევსება", UIAlertControllerStyle.Alert);
-                                alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
-                                this.PresentViewController(alertVc, true, null);
+                                ShowAlert();
                             }
-
                         }
                         else
                         {
@@ -247,7 +249,7 @@ namespace Izrune.iOS
                         else
                         {
                             AddViewController(studentRegVc2, choosePacketVc);
-                            HideHeader(false);
+                            //HideHeader(false);
                         }
                             
                         break;
@@ -258,12 +260,11 @@ namespace Izrune.iOS
                         {
                             AddViewController(paymentViewController, AddMoreStudentVc);
                             AddMoreStudentVc.SendClicked?.Invoke();
-                            AddMoreStudentVc.SendClicked?.Invoke();
                         }
                         else
                         {
-                            AddViewController(studentRegVc2, AddMoreStudentVc);
-                            HideHeader(false);
+                            AddViewController(choosePacketVc, AddMoreStudentVc);
+                            //HideHeader(false);
                         }
 
                         break;
@@ -271,6 +272,13 @@ namespace Izrune.iOS
                 default:
                     break;
             }
+        }
+
+        private void ShowAlert()
+        {
+            var alertVc = UIAlertController.Create("ყურადღება!", "აუცილებელია *-ით აღნიშნული ველების შევსება", UIAlertControllerStyle.Alert);
+            alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            this.PresentViewController(alertVc, true, null);
         }
 
         private void ChangeHeader(bool isParent)
