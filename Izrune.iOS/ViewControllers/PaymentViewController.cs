@@ -21,13 +21,15 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
-            var nsUrl = NSUrl.FromString(PaymentUrl);
-
-            var request = new NSUrlRequest(nsUrl);
 
 
-            if(nsUrl != null)
+            if(PaymentUrl != null)
+            {
+                var nsUrl = NSUrl.FromString(PaymentUrl);
+                var request = new NSUrlRequest(nsUrl);
                 paymentWebView.LoadRequest(request);
+            }
+
         }
     }
 }

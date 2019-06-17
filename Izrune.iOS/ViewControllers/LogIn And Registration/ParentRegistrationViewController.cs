@@ -86,7 +86,7 @@ namespace Izrune.iOS
                     safeAreaSize = (float)UIApplication.SharedApplication.KeyWindow.SafeAreaInsets.Bottom;
                 }
 
-                subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height + (diff) -130 - safeAreaSize;
+                subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height + (diff) -130;
                 View.LayoutIfNeeded();
             }
 
@@ -244,7 +244,6 @@ namespace Izrune.iOS
                         {
                             AddViewController(AddMoreStudentVc, choosePacketVc);
                             choosePacketVc.SendClicked?.Invoke();
-                            paymentViewController.PaymentUrl = AddMoreStudentVc.PaymenUrl;
                         }
                         else
                         {
@@ -258,13 +257,14 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
+                            AddMoreStudentVc?.SendClicked?.Invoke();
+                            paymentViewController.PaymentUrl = AddMoreStudentVc.PaymenUrl;
                             AddViewController(paymentViewController, AddMoreStudentVc);
-                            AddMoreStudentVc.SendClicked?.Invoke();
                         }
                         else
                         {
-                            AddViewController(choosePacketVc, AddMoreStudentVc);
-                            //HideHeader(false);
+                            AddViewController(studentRegVc2, AddMoreStudentVc);
+                            //this.NavigationController.PushViewController(choosePacketVc, false);
                         }
 
                         break;
@@ -344,7 +344,7 @@ namespace Izrune.iOS
                 }
 
                 //var size = (safeAreaSize > 0 ? safeAreaSize : 25);
-                subViewsContentHeightConstraint.Constant = contentHeight + diff - 155 + safeAreaSize;
+                subViewsContentHeightConstraint.Constant = contentHeight + diff - 155;
                 View.LayoutIfNeeded();
             }
 
