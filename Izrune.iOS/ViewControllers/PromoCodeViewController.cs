@@ -48,6 +48,8 @@ namespace Izrune.iOS
             promoCodeTf.Layer.BorderWidth = 2;
             promoCodeTf.Layer.BorderColor = UIColor.FromRGB(243, 243, 243).CGColor;
             promoCodeTf.MakeRoundedTextField(25, UIColor.White, 0);
+
+            HidePromo(string.IsNullOrEmpty(PromoInfo.PrommoCode) || string.IsNullOrWhiteSpace(PromoInfo.PrommoCode));
         }
         private void CheckCode(bool isRight)
         {
@@ -98,6 +100,15 @@ namespace Izrune.iOS
             dropDown.TextFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 15);
             dropDown.ClipsToBounds = true;
             dropDown.Layer.CornerRadius = 20;
+        }
+
+        private void HidePromo(bool Hide)
+        {
+            specialPacketLbl.Hidden = !Hide;
+
+            promoStackView.Hidden = Hide;
+            promoCodeErorLbl.Hidden = Hide;
+            confirmBtn.Hidden = Hide;
         }
     }
 }

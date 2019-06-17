@@ -42,6 +42,8 @@ namespace Izrune.iOS
         int ClassId;
         private SelectSchoolViewController ScholVc;
 
+        public bool IsAllSelected { get; set; }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -66,7 +68,18 @@ namespace Izrune.iOS
                 }));
             }
 
-            SendClicked = () => SenData();
+            SendClicked = () =>
+            {
+            
+                if(_school!= null && !string.IsNullOrEmpty(ClassDpD.SelectedItem))
+                {
+                    IsAllSelected = true;
+                    SenData();
+                }
+                else
+                    IsAllSelected = false;
+            };
+
         }
 
         private void DropDownInit()

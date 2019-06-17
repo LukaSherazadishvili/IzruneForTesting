@@ -26,6 +26,7 @@ namespace Izrune.iOS
 
         //UIViewController[] RegistrationPages;
 
+        #region Fields
         private ParentRegiFirstViewController parentRegVc;
         private ParentRegSecondViewController parent2RegVc;
 
@@ -45,16 +46,8 @@ namespace Izrune.iOS
 
         private const int HeaderAndFooterHeight = 275;
 
-        /*
-         * 
-         * UserControl RegisterParent(student)Part1-2
-         * 
-         * IregisterService RegisterInfo for dropdown
-         * 
-         * User Control GetPromoCode
-        */
+        #endregion
 
-        
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -220,9 +213,21 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            AddViewController(choosePacketVc, studentRegVc2);
                             studentRegVc2.SendClicked?.Invoke();
-                            HideHeader(true);
+                            if (studentRegVc2.IsAllSelected)
+                            {
+                                AddViewController(choosePacketVc, studentRegVc2);
+
+                                HideHeader(true);
+                            }
+                            else
+                            {
+                                CurrentIndex--;
+                                var alertVc = UIAlertController.Create("ყურადღება!", "აუცილებელია *-ით აღნიშნული ველების შევსება", UIAlertControllerStyle.Alert);
+                                alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+                                this.PresentViewController(alertVc, true, null);
+                            }
+
                         }
                         else
                         {
@@ -340,5 +345,6 @@ namespace Izrune.iOS
 
             View.LayoutIfNeeded();
         }
+
     }
 }

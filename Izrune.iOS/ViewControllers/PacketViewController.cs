@@ -60,6 +60,7 @@ namespace Izrune.iOS
             asd = View.Frame;
         }
 
+
         private async Task GetPromoDataAsync()
         {
             ShowLoading();
