@@ -3,6 +3,7 @@
 using System;
 using System.Threading.Tasks;
 using Foundation;
+using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Helpers;
 using UIKit;
 
@@ -18,11 +19,13 @@ namespace Izrune.iOS
 
         public Action SendClicked { get; set; }
 
+        public Action<IPay> DataSent { get; set; }
+
         public Action AddMoreStudentClicked { get; set; }
 
         public string PaymenUrl;
 
-        public override void ViewDidLoad()
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
@@ -43,8 +46,16 @@ namespace Izrune.iOS
 
             if(IsMarked)
             {
-                var ipay = (await UserControl.Instance.FinishRegistration());
-                PaymenUrl = ipay.CurrentUserPayURl;
+                try
+                {
+                    var ipay = (await UserControl.Instance.FinishRegistration());
+                    DataSent?.Invoke(ipay);
+                    PaymenUrl = ipay.CurrentUserPayURl;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
 
             }
 
