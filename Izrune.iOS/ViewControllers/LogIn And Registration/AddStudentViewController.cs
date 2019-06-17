@@ -18,6 +18,8 @@ namespace Izrune.iOS
 
         public Action SendClicked { get; set; }
 
+        public Action AddMoreStudentClicked { get; set; }
+
         public string PaymenUrl;
 
         public override void ViewDidLoad()
@@ -29,6 +31,10 @@ namespace Izrune.iOS
             InitUI();
 
             SendClicked = async () => await SendData();
+
+            addNewStudentBtn.TouchUpInside += delegate {
+                AddMoreStudentClicked?.Invoke();
+            };
         }
 
         private async Task SendData()

@@ -48,7 +48,11 @@ namespace Izrune.iOS
 
             SelectPacketVc = Storyboard.InstantiateViewController(SelectPacketViewController.StoryboardId) as SelectPacketViewController;
             SelectPacketVc.SchoolId = SchoolId;
-            SelectPacketVc.PriceSelected = (price) => PriceSelected?.Invoke(price);
+            SelectPacketVc.PriceSelected = (price) =>
+            {
+                UserControl.Instance.SetPromoPack(price.months, price.price);
+                PriceSelected?.Invoke(price);
+            };
 
             PromoVc = Storyboard.InstantiateViewController(PromoCodeViewController.StoryboardId) as PromoCodeViewController;
             PromoVc.PromoInfo = PromoCode;
