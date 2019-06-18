@@ -59,6 +59,14 @@ namespace Izrune.iOS
             packetCollectionView.ReloadData();
 
             EndLoading();
+
+            var firstCell = packetCollectionView.DequeueReusableCell(PacketCollectionViewCell.Identifier, NSIndexPath.FromRowSection(0, 0)) as PacketCollectionViewCell;
+            var lastCell = packetCollectionView.DequeueReusableCell(PacketCollectionViewCell.Identifier, NSIndexPath.FromRowSection((System.nint)(PriceList?.Count - 1), 0)) as PacketCollectionViewCell;
+
+            var contentHeight = lastCell.Frame.Y + lastCell.Frame.Height - firstCell.Frame.Y;
+
+            packetCollectionHeightConstraint.Constant = contentHeight;
+
         }
         private void CollectionViewSettings()
         {

@@ -2373,21 +2373,21 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KP4-aw-AMV" userLabel="FooterView">
                                                 <rect key="frame" x="0.0" y="581" width="414" height="150"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="nav-0d-kc9">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
-                                                    </imageView>
                                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKc-kZ-dbe">
-                                                        <rect key="frame" x="100" y="50" width="214" height="50"/>
+                                                        <rect key="frame" x="90" y="50" width="234" height="50"/>
                                                         <color key="backgroundColor" red="0.79607843137254897" green="0.52941176470588236" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="cMw-q4-FeL"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="13"/>
-                                                        <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                                        <inset key="contentEdgeInsets" minX="30" minY="0.0" maxX="30" maxY="0.0"/>
                                                         <state key="normal" title="+ დაამატეთ მოსწავლე">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                     </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="nav-0d-kc9">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -2473,6 +2473,9 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Cj-NG-KKM">
                                 <rect key="frame" x="20" y="169" width="374" height="643"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="643" id="Ud9-Ps-nCR"/>
+                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Tiw-v2-EZ2">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -2500,16 +2503,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="sd5-QQ-Iw2" secondAttribute="trailing" constant="10" id="Ecp-tP-Wfx"/>
-                            <constraint firstItem="CgU-al-y6v" firstAttribute="bottom" secondItem="4Cj-NG-KKM" secondAttribute="bottom" constant="50" id="OpD-OH-SOF"/>
                             <constraint firstItem="4Cj-NG-KKM" firstAttribute="top" secondItem="sd5-QQ-Iw2" secondAttribute="bottom" constant="40" id="Pij-86-jGJ"/>
                             <constraint firstItem="sd5-QQ-Iw2" firstAttribute="top" secondItem="CgU-al-y6v" secondAttribute="top" constant="50" id="RAJ-la-tEA"/>
                             <constraint firstItem="4Cj-NG-KKM" firstAttribute="leading" secondItem="o25-eI-hSu" secondAttribute="leadingMargin" id="fy2-MW-zGO"/>
+                            <constraint firstItem="CgU-al-y6v" firstAttribute="bottom" secondItem="4Cj-NG-KKM" secondAttribute="bottom" constant="50" id="hI0-6R-2CJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4Cj-NG-KKM" secondAttribute="trailing" id="pWV-uW-peZ"/>
                             <constraint firstItem="sd5-QQ-Iw2" firstAttribute="leading" secondItem="o25-eI-hSu" secondAttribute="leadingMargin" constant="10" id="sLJ-5E-6x2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CgU-al-y6v"/>
                     </view>
                     <connections>
+                        <outlet property="packetCollectionHeightConstraint" destination="Ud9-Ps-nCR" id="LkP-NY-IYg"/>
                         <outlet property="packetCollectionView" destination="4Cj-NG-KKM" id="BlZ-e8-6I7"/>
                     </connections>
                 </viewController>
