@@ -2,14 +2,19 @@
 
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Foundation;
 using Izrune.iOS.Utils;
+using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
+using MPDCiOSPages.ViewControllers;
 using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS
 {
-	public partial class PacketViewController : UIViewController
+	public partial class PacketViewController : BaseViewController
 	{
 		public PacketViewController (IntPtr handle) : base (handle)
 		{
@@ -22,9 +27,18 @@ namespace Izrune.iOS
         public int SchoolId;
         public bool HideFooter { get; set; }
 
-        public override void ViewDidLoad()
+        IPromoCode PromoCode;
+        public Action<IPrice> PriceSelected { get; set; }
+
+        public Action SendClicked { get; set; }
+
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            //var asd = View.Frame;
+
+            await GetPromoDataAsync();
 
             SelectHeader();
 
@@ -34,12 +48,32 @@ namespace Izrune.iOS
 
             SelectPacketVc = Storyboard.InstantiateViewController(SelectPacketViewController.StoryboardId) as SelectPacketViewController;
             SelectPacketVc.SchoolId = SchoolId;
+            SelectPacketVc.PriceSelected = (price) =>
+            {
+                UserControl.Instance.SetPromoPack(price.months, price.price);
+                PriceSelected?.Invoke(price);
+            };
+
             PromoVc = Storyboard.InstantiateViewController(PromoCodeViewController.StoryboardId) as PromoCodeViewController;
+            PromoVc.PromoInfo = PromoCode;
 
             this.AddVcInView(viewForPeager, SelectPacketVc);
 
-            //footerHeightConstraint.Constant = HideFooter ? 0 : 180;
-            //nextBtn.Hidden = HideFooter;
+            SendClicked = () => SelectPacketVc.SendClicked?.Invoke();
+
+            nextBtn.TouchUpInside += delegate {
+                this.NavigationController.PopViewController(true);
+            };
+        }
+
+
+        private async Task GetPromoDataAsync()
+        {
+            ShowLoading();
+            var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
+            PromoCode = (await service.GetPromoCodeAsync(SchoolId));
+            EndLoading();
+
         }
 
         private bool IsIndividualSelected = true;
@@ -48,6 +82,13 @@ namespace Izrune.iOS
         {
             viewForIndividual.Layer.CornerRadius = 17.5f;
             viewForPromoCode.Layer.CornerRadius = 17.5f;
+
+            individualLbl.TextColor = UIColor.White;
+            promoLbl.TextColor = UIColor.FromRGB(184, 184, 184);
+
+            individualLbl.Text = "ინდივიდუალური";
+            promoLbl.Text = "პრომო კოდი";
+
             //nextBtn.AddShadowToView(5, 25, 0.8f, AppColors.TitleColor);
         }
 
@@ -74,6 +115,7 @@ namespace Izrune.iOS
             }
         }
 
+        //UserControl.Instance.SetPromoPack();
         private void SelectHeader()
         {
             viewForIndividual.BackgroundColor = IsIndividualSelected ? AppColors.TitleColor : UIColor.Clear;

@@ -40,7 +40,7 @@ namespace Izrune.iOS
 
             InitDroDown();
 
-            SendClicked = () => { SenData(); };
+            SendClicked = () => SenData();
         }
 
         private void InitUI()
@@ -95,7 +95,7 @@ namespace Izrune.iOS
 
             var cancelButton = new UIBarButtonItem("დახურვა", UIBarButtonItemStyle.Plain, (s,e) => { this.View.EndEditing(true); });
 
-            toolBar.SetItems(new UIBarButtonItem[] { doneButton, spaceButton, cancelButton }, false);
+            toolBar.SetItems(new UIBarButtonItem[] { cancelButton , spaceButton, doneButton }, false);
 
             transparentDateTextfield.InputAccessoryView = toolBar;
             transparentDateTextfield.InputView = datePicker;

@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 using System.Threading.Tasks;
@@ -15,16 +16,17 @@ using UIKit;
 
 namespace Izrune.iOS
 {
-	public partial class ParentRegistrationViewController : BaseViewController
-	{
-		public ParentRegistrationViewController (IntPtr handle) : base (handle)
-		{
-		}
+    public partial class ParentRegistrationViewController : BaseViewController
+    {
+        public ParentRegistrationViewController (IntPtr handle) : base (handle)
+        {
+        }
 
         public static readonly NSString StoryboardId = new NSString("ParentRegistrationStoryboardId");
 
         //UIViewController[] RegistrationPages;
 
+        #region Fields
         private ParentRegiFirstViewController parentRegVc;
         private ParentRegSecondViewController parent2RegVc;
 
@@ -32,30 +34,30 @@ namespace Izrune.iOS
         private StudentRegSecondViewController studentRegVc2;
 
         private PacketViewController choosePacketVc;
+        private AddStudentViewController AddMoreStudentVc;
+
+        private PaymentMethodViewController paymentViewController;
+
+        
         private int CurrentIndex = 0;
 
 
         bool NextClicked = true;
         private List<IRegion> CityList;
+        private IPrice SelectedPrice;
 
         private const int HeaderAndFooterHeight = 275;
 
-        /*
-         * 
-         * UserControl RegisterParent(student)Part1-2
-         * 
-         * IregisterService RegisterInfo for dropdown
-         * 
-         * User Control GetPromoCode
-        */
+        #endregion
 
-        
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
             InitViewControllers();
 
             InitUI();
+
+            this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
 
             await LoadDataAsync();
             View.LayoutIfNeeded();
@@ -65,7 +67,8 @@ namespace Izrune.iOS
             scrollView.LayoutIfNeeded();
 
             SetContentHeight(scrollView.ContentSize.Height);
-           
+
+            //scrollView.BackgroundColor = UIColor.Red;
             //subViewsContentHeightConstraint.Constant =scrollView.ContentSize.Height;// parentRegVc.View.Frame.Height;
 
 
@@ -76,17 +79,16 @@ namespace Izrune.iOS
             //if (diff > 0)
             //{
 
-            //    float safeAreaSize = default(float);
+                //float safeAreaSize = default(float);
 
-            //    if(UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
-            //    {
-            //        safeAreaSize = (float)UIApplication.SharedApplication.KeyWindow.SafeAreaInsets.Bottom;
-            //    }
+                //if(UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
+                //{
+                //    safeAreaSize = (float)UIApplication.SharedApplication.KeyWindow.SafeAreaInsets.Bottom;
+                //}
 
-            //    subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height + (diff) -130 - safeAreaSize;
-            //    View.LayoutIfNeeded();
+                //subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height + (diff) -130;
+                //View.LayoutIfNeeded();
             //}
-
 
 
 
@@ -110,7 +112,18 @@ namespace Izrune.iOS
 
 
             choosePacketVc = Storyboard.InstantiateViewController(PacketViewController.StoryboardId) as PacketViewController;
-            choosePacketVc.HideFooter = true;
+            choosePacketVc.PriceSelected = (price) => SelectedPrice = price;
+
+            AddMoreStudentVc = Storyboard.InstantiateViewController(AddStudentViewController.StoryboardId) as AddStudentViewController;
+            AddMoreStudentVc.AddMoreStudentClicked = () =>
+            {
+                studentRegVc1 = Storyboard.InstantiateViewController(StudentRegFirstViewController.StoryboardId) as StudentRegFirstViewController;
+
+                CurrentIndex = 2;
+                AddViewController(studentRegVc1, AddMoreStudentVc);
+            };
+
+            paymentViewController = Storyboard.InstantiateViewController(PaymentMethodViewController.StoryboardId) as PaymentMethodViewController;
         }
 
         private void InitGestures()
@@ -137,39 +150,17 @@ namespace Izrune.iOS
             oldVc.View.RemoveFromSuperview();
             oldVc.RemoveFromParentViewController();
 
-            viewForPager.BackgroundColor = UIColor.Green;
+
             var scrollView = newVc.View.OfType<UIScrollView>().FirstOrDefault();
             if(scrollView != null)
             {
                 scrollView.LayoutIfNeeded();
-                subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height;
+                //subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height;
             }
 
             this.AddVcInViewWithoutFrame(viewForPager, newVc);
 
             SetContentHeight(scrollView.ContentSize.Height);
-            //subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height;
-
-
-            //View.LayoutIfNeeded();
-
-            //var diff = this.View.Frame.Height - (scrollView.ContentSize.Height + HeaderAndFooterHeight);//(View.Subviews.OfType<UIScrollView>().FirstOrDefault().ContentSize.Height );
-
-            //if (diff > 0)
-            //{
-
-            //    float safeAreaSize = default(float);
-
-            //    if (UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
-            //    {
-            //        safeAreaSize = (float)UIApplication.SharedApplication.KeyWindow.SafeAreaInsets.Bottom;
-            //    }
-
-            //    subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height + (diff) - 130 - safeAreaSize;
-            //    View.LayoutIfNeeded();
-            //}
-
-
         }
 
         private void InitUI()
@@ -182,7 +173,7 @@ namespace Izrune.iOS
 
         private void CheckIndex()
         {
-            nextBtn.Enabled = CurrentIndex < 5;
+            nextBtn.Enabled = CurrentIndex < 6;
             prewBtn.Enabled = CurrentIndex > 0;
         }
 
@@ -233,9 +224,19 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            AddViewController(choosePacketVc, studentRegVc2);
                             studentRegVc2.SendClicked?.Invoke();
-                            HideHeader(true);
+                            if (studentRegVc2.IsAllSelected)
+                            {
+                                //AddViewController(choosePacketVc, studentRegVc2);
+
+                                this.NavigationController.PushViewController(choosePacketVc, false);
+                                //HideHeader(true);
+                            }
+                            else
+                            {
+                                CurrentIndex--;
+                                ShowAlert();
+                            }
                         }
                         else
                         {
@@ -247,10 +248,15 @@ namespace Izrune.iOS
                 case 4:
                     {
                         if (NextClicked)
-                            AddViewController(parent2RegVc, parentRegVc);
+                        {
+                            AddViewController(AddMoreStudentVc, studentRegVc2);
+                            choosePacketVc.SendClicked?.Invoke();
+                            HideHeader(true);
+                        }
                         else
                         {
-                            AddViewController(parentRegVc, parent2RegVc);
+                            AddViewController(studentRegVc2, studentRegVc2);
+                            ChangeHeader(false);
                             HideHeader(false);
                         }
                             
@@ -259,14 +265,35 @@ namespace Izrune.iOS
                 case 5:
                     {
                         if (NextClicked)
-                            AddViewController(parent2RegVc, parentRegVc);
+                        {
+                            AddMoreStudentVc?.SendClicked?.Invoke();
+
+                            AddMoreStudentVc.DataSent = (ipay) => {
+                                paymentViewController.PaymentUrl = ipay.CurrentUserPayURl;
+                                AddViewController(paymentViewController, AddMoreStudentVc);
+                            };
+
+                        }
                         else
-                            AddViewController(parentRegVc, parent2RegVc);
+                        {
+                            AddViewController(studentRegVc2, AddMoreStudentVc);
+                            ChangeHeader(false);
+                            HideHeader(false);
+                            //this.NavigationController.PushViewController(choosePacketVc, false);
+                        }
+
                         break;
                     }
                 default:
                     break;
             }
+        }
+
+        private void ShowAlert()
+        {
+            var alertVc = UIAlertController.Create("ყურადღება!", "აუცილებელია *-ით აღნიშნული ველების შევსება", UIAlertControllerStyle.Alert);
+            alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            this.PresentViewController(alertVc, true, null);
         }
 
         private void ChangeHeader(bool isParent)
@@ -313,33 +340,52 @@ namespace Izrune.iOS
             headerView.Hidden = hide;
         }
 
-        private void SetContentHeight(nfloat contentHeight)
+        private void SetContentHeight(nfloat scrollviewContentHeight)
         {
-            subViewsContentHeightConstraint.Constant = contentHeight;
+            //subViewsContentHeightConstraint.Constant = scrollviewContentHeight;
 
 
-            View.LayoutIfNeeded();
-            var diff = this.View.Frame.Height - (contentHeight + HeaderAndFooterHeight);
+            UIEdgeInsets safeAreaSize = new UIEdgeInsets();
 
-            if (diff >= 155)
+            if (UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
             {
-
-                float safeAreaSize = default(float);
-
-                if (UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
-                {
-                    safeAreaSize = (float)UIApplication.SharedApplication.KeyWindow.SafeAreaInsets.Bottom;
-                }
-
-                //var size = (safeAreaSize > 0 ? safeAreaSize : 25);
-                subViewsContentHeightConstraint.Constant = contentHeight + diff - 155 + safeAreaSize;
-                View.LayoutIfNeeded();
+                safeAreaSize = UIApplication.SharedApplication.KeyWindow.SafeAreaInsets;
             }
+
+            var currentContentHeight = this.View.Frame.Height - (HeaderAndFooterHeight + safeAreaSize.Top + safeAreaSize.Bottom);
+            var diffrenceWithContents = currentContentHeight - scrollviewContentHeight;
+
+            if(diffrenceWithContents >= 0)
+            {
+                subViewsContentHeightConstraint.Constant = currentContentHeight;
+
+            }
+
+            else
+            {
+                subViewsContentHeightConstraint.Constant = scrollviewContentHeight;
+            }
+
+            if (CurrentIndex == 4)
+                subViewsContentHeightConstraint.Constant += 120;
+            View.LayoutIfNeeded();
+            //var diff = this.View.Frame.Height - (scrollviewConstentHeight + HeaderAndFooterHeight);
+
+            //if (diff >= 155)
+            //{
+            
+            //    //var size = (safeAreaSize > 0 ? safeAreaSize : 25);
+            //    subViewsContentHeightConstraint.Constant = scrollviewConstentHeight + diff - 155 + safeAreaSize.Bottom;
+
+            //    View.LayoutIfNeeded();
+            //}
+
 
             viewForPager.Frame = new CoreGraphics.CGRect(viewForPager.Frame.X, viewForPager.Frame.Y,
                 viewForPager.Frame.Width, subViewsContentHeightConstraint.Constant);
 
             View.LayoutIfNeeded();
         }
+
     }
 }

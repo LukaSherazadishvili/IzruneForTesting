@@ -44,6 +44,16 @@ namespace Izrune.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (footerHeightConstraint != null) {
+				footerHeightConstraint.Dispose ();
+				footerHeightConstraint = null;
+			}
+
+			if (footerView != null) {
+				footerView.Dispose ();
+				footerView = null;
+			}
+
 			if (headerTitleLbl != null) {
 				headerTitleLbl.Dispose ();
 				headerTitleLbl = null;
@@ -82,16 +92,6 @@ namespace Izrune.iOS
 			if (viewForPromoCode != null) {
 				viewForPromoCode.Dispose ();
 				viewForPromoCode = null;
-			}
-
-			if (footerView != null) {
-				footerView.Dispose ();
-				footerView = null;
-			}
-
-			if (footerHeightConstraint != null) {
-				footerHeightConstraint.Dispose ();
-				footerHeightConstraint = null;
 			}
 		}
 	}
