@@ -69,26 +69,26 @@ namespace Izrune.iOS
             SetContentHeight(scrollView.ContentSize.Height);
 
             //scrollView.BackgroundColor = UIColor.Red;
-            subViewsContentHeightConstraint.Constant =scrollView.ContentSize.Height;// parentRegVc.View.Frame.Height;
+            //subViewsContentHeightConstraint.Constant =scrollView.ContentSize.Height;// parentRegVc.View.Frame.Height;
 
 
-            View.LayoutIfNeeded();
+            //View.LayoutIfNeeded();
 
-            var diff = this.View.Frame.Height - (scrollView.ContentSize.Height + HeaderAndFooterHeight);//(View.Subviews.OfType<UIScrollView>().FirstOrDefault().ContentSize.Height );
+            //var diff = this.View.Frame.Height - (scrollView.ContentSize.Height + HeaderAndFooterHeight);//(View.Subviews.OfType<UIScrollView>().FirstOrDefault().ContentSize.Height );
 
-            if (diff > 0)
-            {
+            //if (diff > 0)
+            //{
 
-                float safeAreaSize = default(float);
+                //float safeAreaSize = default(float);
 
-                if(UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
-                {
-                    safeAreaSize = (float)UIApplication.SharedApplication.KeyWindow.SafeAreaInsets.Bottom;
-                }
+                //if(UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
+                //{
+                //    safeAreaSize = (float)UIApplication.SharedApplication.KeyWindow.SafeAreaInsets.Bottom;
+                //}
 
-                subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height + (diff) -130;
-                View.LayoutIfNeeded();
-            }
+                //subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height + (diff) -130;
+                //View.LayoutIfNeeded();
+            //}
 
 
 
@@ -155,7 +155,7 @@ namespace Izrune.iOS
             if(scrollView != null)
             {
                 scrollView.LayoutIfNeeded();
-                subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height;
+                //subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height;
             }
 
             this.AddVcInViewWithoutFrame(viewForPager, newVc);
@@ -249,13 +249,14 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            AddViewController(AddMoreStudentVc, choosePacketVc);
+                            AddViewController(AddMoreStudentVc, studentRegVc2);
                             choosePacketVc.SendClicked?.Invoke();
                             HideHeader(true);
                         }
                         else
                         {
-                            AddViewController(studentRegVc2, choosePacketVc);
+                            AddViewController(studentRegVc2, studentRegVc2);
+                            ChangeHeader(false);
                             HideHeader(false);
                         }
                             
@@ -276,6 +277,8 @@ namespace Izrune.iOS
                         else
                         {
                             AddViewController(studentRegVc2, AddMoreStudentVc);
+                            ChangeHeader(false);
+                            HideHeader(false);
                             //this.NavigationController.PushViewController(choosePacketVc, false);
                         }
 
@@ -337,28 +340,45 @@ namespace Izrune.iOS
             headerView.Hidden = hide;
         }
 
-        private void SetContentHeight(nfloat contentHeight)
+        private void SetContentHeight(nfloat scrollviewContentHeight)
         {
-            subViewsContentHeightConstraint.Constant = contentHeight;
+            //subViewsContentHeightConstraint.Constant = scrollviewContentHeight;
 
 
-            View.LayoutIfNeeded();
-            var diff = this.View.Frame.Height - (contentHeight + HeaderAndFooterHeight);
+            UIEdgeInsets safeAreaSize = new UIEdgeInsets();
 
-            if (diff >= 155)
+            if (UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
             {
-
-                float safeAreaSize = default(float);
-
-                if (UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
-                {
-                    safeAreaSize = (float)UIApplication.SharedApplication.KeyWindow.SafeAreaInsets.Bottom;
-                }
-
-                //var size = (safeAreaSize > 0 ? safeAreaSize : 25);
-                subViewsContentHeightConstraint.Constant = contentHeight + diff - 155;
-                View.LayoutIfNeeded();
+                safeAreaSize = UIApplication.SharedApplication.KeyWindow.SafeAreaInsets;
             }
+
+            var currentContentHeight = this.View.Frame.Height - (HeaderAndFooterHeight + safeAreaSize.Top + safeAreaSize.Bottom);
+            var diffrenceWithContents = currentContentHeight - scrollviewContentHeight;
+
+            if(diffrenceWithContents >= 0)
+            {
+                subViewsContentHeightConstraint.Constant = currentContentHeight;
+            }
+
+            else
+            {
+                subViewsContentHeightConstraint.Constant = scrollviewContentHeight;
+            }
+
+            if (CurrentIndex == 4)
+                subViewsContentHeightConstraint.Constant += 120;
+            View.LayoutIfNeeded();
+            //var diff = this.View.Frame.Height - (scrollviewConstentHeight + HeaderAndFooterHeight);
+
+            //if (diff >= 155)
+            //{
+            
+            //    //var size = (safeAreaSize > 0 ? safeAreaSize : 25);
+            //    subViewsContentHeightConstraint.Constant = scrollviewConstentHeight + diff - 155 + safeAreaSize.Bottom;
+
+            //    View.LayoutIfNeeded();
+            //}
+
 
             viewForPager.Frame = new CoreGraphics.CGRect(viewForPager.Frame.X, viewForPager.Frame.Y,
                 viewForPager.Frame.Width, subViewsContentHeightConstraint.Constant);

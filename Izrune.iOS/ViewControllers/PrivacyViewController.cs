@@ -49,7 +49,7 @@ namespace Izrune.iOS
         {
             UIView.Animate(0.4f, () => {
 
-                this.mainBgView.BackgroundColor = UIColor.FromRGBA(0, 0, 0, 0);
+                this.View.BackgroundColor = UIColor.FromRGBA(0, 0, 0, 0);
             }, () => this.DismissViewController(true, null));
 
         }
