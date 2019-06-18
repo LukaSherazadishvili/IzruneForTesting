@@ -13,6 +13,7 @@ using Android.Widget;
 using Izrune.Adapters.RecyclerviewAdapters;
 using Izrune.Attributes;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
 using MpdcContainer = ServiceContainer.ServiceContainer;
 
 namespace Izrune.Fragments
@@ -50,7 +51,12 @@ namespace Izrune.Fragments
         {
             base.OnViewCreated(view, savedInstanceState);
 
+        
+
+
             var Statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam);
+
+
 
             if (Statistic.Count() > 0)
             {
@@ -63,6 +69,8 @@ namespace Izrune.Fragments
 
                 statisticRecycler.SetAdapter(adapter);
                 statisticRecycler.SetLayoutManager(new LinearLayoutManager(this));
+
+
             }
 
 

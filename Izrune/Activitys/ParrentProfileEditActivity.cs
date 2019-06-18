@@ -43,6 +43,14 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.ParentMailTxt)]
         EditText ParrentMail;
 
+        [MapControl(Resource.Id.ParrentBDayDay)]
+        TextView ParrentBadaDay;
+
+        [MapControl(Resource.Id.ParrentBdayMonth)]
+        TextView ParrentBadayMonth;
+
+        [MapControl(Resource.Id.ParrentdayYear)]
+        TextView ParrentBdayYear;
 
         [MapControl(Resource.Id.SaveButton)]
         LinearLayout SaveButton;
@@ -69,15 +77,29 @@ namespace Izrune.Activitys
             var DataAdapter = new ArrayAdapter<string>(this,
              Android.Resource.Layout.SimpleSpinnerDropDownItem,
             Region.Result.Select(i => i.title).ToList());
-
+            ParrentVillage.Text = Result.Result.Vilage;
             ParrentRegion.Adapter = DataAdapter;
+
+          var CurrentRegion=  Region.Result.FirstOrDefault(i => i.title == Result.Result.City);
+
+            var Index = Region.Result.ToList().IndexOf(CurrentRegion);
+
+            ParrentRegion.SetSelection(Index);
+
+            ParrentBadaDay.Text = Result.Result.bDate.Value.Day.ToString();
+            ParrentBadayMonth.Text = Result.Result.bDate.Value.Month.ToString();
+            ParrentBdayYear.Text = Result.Result.bDate.Value.Year.ToString();
+
 
 
         }
 
         private async void SaveButton_Click(object sender, EventArgs e)
         {
-            await MpdcContainer.Instance.Get<IUserServices>().EditParentProfileAsync(ParrentMail.Text, Phone.Text, ParrentRegion.SelectedItem.ToString(), ParrentVillage.Text);
+         await  UserControl.Instance.EditParrentProfile(ParrentMail.Text, Phone.Text, ParrentRegion.SelectedItem.ToString(), ParrentVillage.Text);
+
+            Toast.MakeText(this, "წარმატებით მოხდა პროფილის განახლება  ", ToastLength.Long).Show();
+
         }
 
         private void BackButton_Click(object sender, EventArgs e)

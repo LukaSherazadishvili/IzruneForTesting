@@ -55,7 +55,7 @@ android:id="@+id/Container">
 					android:fontFamily="@font/bpg_mrgvlovani"
 					android:textSize="10dp"
 					/>
-							<FrameLayout
+				<FrameLayout
 				android:layout_width="match_parent"
 				android:layout_height="38dp"
 				android:layout_marginTop="5dp"
@@ -150,7 +150,7 @@ android:id="@+id/Container">
 				android:layout_marginRight="4dp"
 				android:background="@drawable/izrune_editext_back"
 				android:layout_weight="0.6">
-					<Spinner
+					<TextView
 						android:id="@+id/StudentBDayDay"
 						android:layout_width="match_parent"
 						android:layout_height="38dp"
@@ -167,7 +167,7 @@ android:id="@+id/Container">
 						android:layout_weight="1"
 						android:layout_marginTop="10dp"
 						android:background="@drawable/izrune_editext_back">
-					<Spinner
+					<TextView
 			android:id="@+id/StudentBdayMonth"
             android:layout_width="match_parent"
             android:layout_height="38dp"
@@ -187,7 +187,7 @@ android:id="@+id/Container">
 				android:layout_marginLeft="4dp"
 				android:background="@drawable/izrune_editext_back"
 				android:layout_weight="0.6">
-					<Spinner
+					<TextView
 			android:id="@+id/StudentBdayYear"
             android:layout_width="match_parent"
             android:layout_height="38dp"
@@ -331,6 +331,7 @@ android:id="@+id/Container">
 					android:textSize="10dp"
 					/>
 				<TextView
+			android:id="@+id/StudentScholTxt"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"

@@ -202,5 +202,34 @@ namespace IZrune.PCL.Helpers
             return CUrrentPaimentInformation;
         }
 
+        public async Task EditParrentProfile(string ParrentMail, string ParrentPhone, string City, string Village)
+        {
+            try
+            {
+                await MpdcContainer.Instance.Get<IUserServices>().EditParentProfileAsync(ParrentMail, ParrentPhone, City, Village);
+                Parent = await MpdcContainer.Instance.Get<IUserServices>().GetUserAsync();
+                
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+        public async Task EditStudentprofile(string Email, string Phone, int regionId, string village, int SchoolId)
+        {
+            try
+            {
+                await MpdcContainer.Instance.Get<IUserServices>().EditStudentProfile(Email, Phone, regionId, village, SchoolId);
+                Parent = await MpdcContainer.Instance.Get<IUserServices>().GetUserAsync();
+               
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+
     }
 }

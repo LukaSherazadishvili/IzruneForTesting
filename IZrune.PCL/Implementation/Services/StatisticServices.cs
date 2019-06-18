@@ -56,9 +56,10 @@ namespace IZrune.PCL.Implementation.Services
 
         public async Task<IEnumerable<IStudentsStatistic>> GetStudentStatisticsAsync(QuezCategory type)
         {
-            IEnumerable<IStudentsStatistic> StudentStat;
+           
             try
             {
+                IEnumerable<IStudentsStatistic> StudentStat;
                 if (AppCore.Instance.IsOnline)
                 {
 

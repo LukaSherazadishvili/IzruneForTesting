@@ -14,9 +14,11 @@ using Android.Widget;
 using Izrune.Adapters.ViewPagerAdapter;
 using Izrune.Attributes;
 using Izrune.Fragments;
+using IZrune.PCL;
 
 namespace Izrune.Activitys
 {
+    [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
     class MainExamStatisticActivity : MPDCBaseActivity
     {
         protected override int LayoutResource { get; } = Resource.Layout.LayoutMainExamStatistic;
@@ -28,17 +30,20 @@ namespace Izrune.Activitys
         ViewPager pager;
 
         private List<MPDCBaseFragment> FrmList = new List<MPDCBaseFragment>() {
-          new ResultStatisticFragment() , new ResultQuestionStatisticFragment()
+          new ExamStatisticFragment() , new ResultQuestionStatisticFragment()
         };
 
         private List<string> Headers = new List<string>()
         {
             "შედეგები","კითხვები"
         };
+
+
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
+            AppCore.Instance.InitServices();
 
             var adapter = new TabAdapter(SupportFragmentManager, FrmList, Headers);
             ResultPagePagerAdapter PagerAdapter = new ResultPagePagerAdapter(SupportFragmentManager, FrmList, Headers);

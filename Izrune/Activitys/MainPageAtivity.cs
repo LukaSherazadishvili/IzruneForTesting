@@ -71,7 +71,8 @@ namespace Izrune.Activitys
                 case Resource.Id.statistic:
                     {
                         HeaderText.Text = "სტატისტიკა/ისტორია";
-                        ChangeFragmentPage(new StatisticFragment(), MainContainer.Id);
+                       // ChangeFragmentPage(new StatisticFragment(), MainContainer.Id);
+                        ChangeFragmentPage(new DiagramFragment(), MainContainer.Id);
                         drawer.CloseDrawers();
                         break;
                     }

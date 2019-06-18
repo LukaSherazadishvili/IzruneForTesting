@@ -88,6 +88,7 @@
     <Compile Include="Attributes\MapControlAttribute.cs" />
     <Compile Include="Fragments\ContinueRegistrationParrent.cs" />
     <Compile Include="Fragments\ContinueRegistrationParrentFragment.cs" />
+    <Compile Include="Fragments\DiagramFragment.cs" />
     <Compile Include="Fragments\DiplomaFragment.cs" />
     <Compile Include="Fragments\ExamStatisticFragment.cs" />
     <Compile Include="Fragments\IndividualServiceFragmentcs.cs" />

@@ -11,8 +11,9 @@ using Android.Views;
 using Android.Widget;
 using Izrune.Attributes;
 using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
-
+using MpdcContainer = ServiceContainer.ServiceContainer;
 namespace Izrune.Activitys
 {
     [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
@@ -39,7 +40,23 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.StudentMobile)]
         EditText MobilePhone;
 
+        [MapControl(Resource.Id.StudentScholTxt)]
+        TextView StudentSchool;
 
+        [MapControl(Resource.Id.StudentClasses)]
+        TextView StudentClass;
+
+        [MapControl(Resource.Id.StudentCity)]
+        Spinner StudentCity;
+
+        [MapControl(Resource.Id.SaveButton)]
+        LinearLayout SaveButton;
+
+        [MapControl(Resource.Id.StudentMail)]
+        EditText StudentMail;
+
+        [MapControl(Resource.Id.StudentVillage)]
+        EditText StudentVillage;
 
         protected override int LayoutResource { get; } = Resource.Layout.layoutStudentProfile;
 
@@ -53,12 +70,22 @@ namespace Izrune.Activitys
             BotBackButton.Click += BotBackButton_Click;
 
             var Result = await UserControl.Instance.GetCurrentUser();
+            var Regions = await MpdcContainer.Instance.Get<IRegistrationServices>().GetRegionsAsync();
 
             var DataAdapter = new ArrayAdapter<string>(this,
               Android.Resource.Layout.SimpleSpinnerDropDownItem,
               Result.Students.Select(i => ($"{i.Name}   {i.LastName}")).ToList());
 
             StudentSpiner.Adapter = DataAdapter;
+
+
+            var RegionAdapter = new ArrayAdapter<string>(this,
+            Android.Resource.Layout.SimpleSpinnerDropDownItem,
+           Regions.Select(i => i.title).ToList());
+
+            StudentCity.Adapter = RegionAdapter;
+
+           
 
             StudentSpiner.ItemSelected += (s, e) =>
             {
@@ -69,11 +96,38 @@ namespace Izrune.Activitys
                 StudentLastName.Text = student.LastName;
                 StudentId.Text = student.PersonalNumber;
                 MobilePhone.Text = student.Phone;
+                StudentClass.Text = student.Class.ToString();
+               // StudentSchool.Text = Regions.FirstOrDefault(i => i.id == student.RegionId).Schools.Where(i => i.id == student.SchoolId).FirstOrDefault().title;
+                StudentMail.Text = student.Email;
+                StudentVillage.Text = student.Village;
 
             };
+            bool isCheck = false;
+            StudentCity.ItemSelected += (s, e) =>
+            {
+                if (isCheck)
+                {
+                    student.RegionId = Regions.ElementAt(e.Position).id;
+                    isCheck = true;
+                }
+            };
 
+            SaveButton.Click +=async (s, e) =>
+            {
+                if(!(string.IsNullOrEmpty(StudentName.Text)
+                && string.IsNullOrEmpty(StudentLastName.Text)
+                && string.IsNullOrEmpty(StudentId.Text)
+                && string.IsNullOrEmpty(MobilePhone.Text)
+                && string.IsNullOrEmpty(StudentClass.Text)
+                && string.IsNullOrEmpty(StudentSchool.Text)
+                &&string.IsNullOrEmpty(StudentMail.Text)
+                ))
+                {
+                  await UserControl.Instance.EditStudentprofile(StudentMail.Text, MobilePhone.Text, student.RegionId, StudentVillage.Text, student.SchoolId);
 
-           
+                    Toast.MakeText(this, "წარმატებით მოხდა პროფილის განახლება  ", ToastLength.Long).Show();
+                }
+            };
 
 
         }

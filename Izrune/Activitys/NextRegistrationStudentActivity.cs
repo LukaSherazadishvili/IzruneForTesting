@@ -46,7 +46,7 @@ namespace Izrune.Activitys
         Spinner School;
 
         [MapControl(Resource.Id.StudentClass)]
-        EditText StudentClass;
+        Spinner StudentClass;
 
         private IEnumerable<IZrune.PCL.Abstraction.Models.IRegion> Regions;
         private IRegion CurrentRegion;
@@ -64,8 +64,19 @@ namespace Izrune.Activitys
             var DataAdapter = new ArrayAdapter<string>(this,
             Android.Resource.Layout.SimpleSpinnerDropDownItem,
            Regions.Select(i => i.title).ToList());
-            
 
+            List<int> Classes = new List<int>()
+            {
+                1,2,3,4,5,6,7,8,9,10,11,12
+            };
+
+            var ClassDataAdapter = new ArrayAdapter<int>(this,
+           Android.Resource.Layout.SimpleSpinnerDropDownItem,
+          Classes);
+
+            StudentClass.Adapter = ClassDataAdapter;
+
+            StudentClass.ItemSelected += StudentClass_ItemSelected;
             City.Adapter = DataAdapter;
             City.ItemSelected += City_ItemSelected;
 
@@ -74,16 +85,23 @@ namespace Izrune.Activitys
             NextButton.Click += NextButton_Click;
         }
 
+        private void StudentClass_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            SelectedClass = e.Position + 1;
+        }
+
         private void School_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             CurrentSchool = CurrentRegion.Schools.ElementAt(e.Position);
         }
 
+        int SelectedClass;
+
         private void NextButton_Click(object sender, EventArgs e)
         {
 
 
-            UserControl.Instance.RegistrationStudentPartTwo(CurrentRegion.id, Village.Text, CurrentSchool.id, Convert.ToInt32(StudentClass.Text));
+            UserControl.Instance.RegistrationStudentPartTwo(CurrentRegion.id, Village.Text, CurrentSchool.id, SelectedClass);
 
             ChangeFragmentPage(new ServiceFragment() {CurrentId=UserControl.Instance.RegistrationStudent.SchoolId }, container.Id);
         }
