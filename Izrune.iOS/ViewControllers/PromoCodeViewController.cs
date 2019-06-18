@@ -9,6 +9,7 @@ using FPT.Framework.iOS.UI.DropDown;
 using IZrune.PCL.Abstraction.Models;
 using System.Linq;
 using MpdcViewExtentions;
+using IZrune.PCL.Helpers;
 
 namespace Izrune.iOS
 {
@@ -29,10 +30,10 @@ namespace Izrune.iOS
             base.ViewDidLoad();
 
             confirmBtn.TouchUpInside += delegate {
-                //TODO
-                //CheckCode()
 
                 CheckCode(promoCodeTf.Text == PromoInfo.PrommoCode);
+
+                //UserControl.Instance.SetPromoPack();
             };
 
             InitUI();

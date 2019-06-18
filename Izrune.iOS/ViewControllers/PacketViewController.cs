@@ -112,7 +112,7 @@ namespace Izrune.iOS
                 {
                     HeaderGesture(true);
                     AddPacketVc();
-                    //TODO Change Page
+
                 }));
             }
 
@@ -122,7 +122,7 @@ namespace Izrune.iOS
                 {
                     HeaderGesture(false);
                     AddPromoVc();
-                    //TODO Change Page
+
                 }));
             }
         }
