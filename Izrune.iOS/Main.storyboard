@@ -720,6 +720,9 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vfO-9o-KR0">
                                                 <rect key="frame" x="0.0" y="102" width="414" height="576"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="576" id="5p2-dF-Tfh"/>
+                                                </constraints>
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="K0U-fL-qwU">
                                                 <rect key="frame" x="0.0" y="678" width="414" height="140"/>
@@ -785,6 +788,7 @@
                         <viewLayoutGuide key="safeArea" id="wUN-VL-MDd"/>
                     </view>
                     <connections>
+                        <outlet property="contentHeightConstraint" destination="5p2-dF-Tfh" id="Kiu-pl-MeA"/>
                         <outlet property="individualLbl" destination="bYR-Ld-m2d" id="udC-zO-vGx"/>
                         <outlet property="nextBtn" destination="eGO-XC-PzB" id="6bO-KR-UFn"/>
                         <outlet property="promoLbl" destination="YPk-JT-nGX" id="Sxi-Ci-CIP"/>
@@ -2470,7 +2474,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdk-WO-TSm">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdk-WO-TSm">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aTS-0X-STa" userLabel="ContentView">
@@ -2487,7 +2491,7 @@
                                                     </label>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Cj-NG-KKM">
                                                         <rect key="frame" x="0.0" y="85" width="364" height="400"/>
-                                                        <color key="backgroundColor" red="0.2846269011" green="0.71026319270000005" blue="0.25455555320000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="400" id="Ud9-Ps-nCR"/>
                                                         </constraints>

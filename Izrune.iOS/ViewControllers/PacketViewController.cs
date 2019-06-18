@@ -64,6 +64,18 @@ namespace Izrune.iOS
             nextBtn.TouchUpInside += delegate {
                 this.NavigationController.PopViewController(true);
             };
+
+
+            SelectPacketVc.DataLoaded = () =>
+            {
+                var scrollView = SelectPacketVc.View.OfType<UIScrollView>().FirstOrDefault();
+                SelectPacketVc.View.LayoutIfNeeded();
+                scrollView.LayoutIfNeeded();
+
+                SetContentHeight(scrollView.ContentSize.Height);
+            };
+
+
         }
 
 
@@ -147,6 +159,37 @@ namespace Izrune.iOS
             PromoVc.RemoveFromParentViewController();
 
             this.AddVcInView(viewForPeager, SelectPacketVc);
+        }
+
+        float HederHeight = 97;
+        float FooterHeight = 140;
+
+        private void SetContentHeight(nfloat scrollviewContentHeight)
+        {
+
+            UIEdgeInsets safeAreaSize = new UIEdgeInsets();
+
+            if (UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
+            {
+                safeAreaSize = UIApplication.SharedApplication.KeyWindow.SafeAreaInsets;
+            }
+
+            var currentContentHeight = this.View.Frame.Height - (HederHeight + FooterHeight + safeAreaSize.Top + safeAreaSize.Bottom);
+            var diffrenceWithContents = currentContentHeight - scrollviewContentHeight;
+
+            if (diffrenceWithContents >= 0)
+                contentHeightConstraint.Constant = currentContentHeight;
+                
+            else
+                contentHeightConstraint.Constant = scrollviewContentHeight;
+                
+
+            View.LayoutIfNeeded();
+
+            viewForPeager.Frame = new CoreGraphics.CGRect(viewForPeager.Frame.X, viewForPeager.Frame.Y,
+                viewForPeager.Frame.Width, contentHeightConstraint.Constant);
+
+            View.LayoutIfNeeded();
         }
     }
 }

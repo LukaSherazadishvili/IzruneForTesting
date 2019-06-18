@@ -28,6 +28,8 @@ namespace Izrune.iOS
         public Action<IPrice> PriceSelected { get; set; }
         public Action SendClicked { get; set; }
 
+        public Action DataLoaded { get; set; }
+
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -66,6 +68,8 @@ namespace Izrune.iOS
             var contentHeight = lastCell.Frame.Y + lastCell.Frame.Height - firstCell.Frame.Y;
 
             packetCollectionHeightConstraint.Constant = contentHeight;
+
+            DataLoaded?.Invoke();
 
         }
         private void CollectionViewSettings()
