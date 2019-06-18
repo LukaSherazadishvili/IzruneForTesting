@@ -30,20 +30,32 @@ namespace Izrune.iOS
 
         private void InitUI()
         {
-            var views = editStackView.Subviews.ToList();
+            //var views = editStackView.Subviews.ToList();
 
-            foreach (var item in views)
-            {
-                item.Layer.BorderWidth = 3;
-                item.Layer.BorderColor = UIColor.White.CGColor;
-                item.Layer.CornerRadius = 25;
-                item.ApplyGradient(AppColors.PurpleGradient);
-            }
+            //foreach (var item in views)
+            //{
+            //    item.Layer.BorderWidth = 3;
+            //    item.Layer.BorderColor = UIColor.White.CGColor;
+            //    item.Layer.CornerRadius = 25;
+            //    item.
+            //}
 
-            firstShadowView.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
-            secondShadowView.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
-            thirdShadovView.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
+
+            initView(parentView, parentShadow);
+            initView(studentView, studentShadow);
+            initView(passowrdView, passwordShadow);
+
             addStudentBtn.Layer.CornerRadius = 25;
+        }
+
+        private void initView(UIView view, UIView viewForShadow)
+        {
+            view.Layer.BorderWidth = 3;
+            view.Layer.BorderColor = UIColor.White.CGColor;
+            view.Layer.CornerRadius = 25;
+            view.ApplyGradient(AppColors.PurpleGradient);
+
+            viewForShadow.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
         }
     }
 }
