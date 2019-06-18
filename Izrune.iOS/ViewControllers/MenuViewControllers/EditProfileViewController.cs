@@ -26,21 +26,13 @@ namespace Izrune.iOS
             View.LayoutIfNeeded();
 
             InitUI();
+
+            InitGestures();
         }
 
         private void InitUI()
         {
-            //var views = editStackView.Subviews.ToList();
-
-            //foreach (var item in views)
-            //{
-            //    item.Layer.BorderWidth = 3;
-            //    item.Layer.BorderColor = UIColor.White.CGColor;
-            //    item.Layer.CornerRadius = 25;
-            //    item.
-            //}
-
-
+        
             initView(parentView, parentShadow);
             initView(studentView, studentShadow);
             initView(passowrdView, passwordShadow);
@@ -56,6 +48,38 @@ namespace Izrune.iOS
             view.ApplyGradient(AppColors.PurpleGradient);
 
             viewForShadow.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
+        }
+
+        private void InitGestures()
+        {
+            if(parentView.GestureRecognizers == null || parentView.GestureRecognizers?.Length == 0)
+            {
+                parentView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
+                    //TODO
+
+                }));
+            }
+
+            if (studentView.GestureRecognizers == null || studentView.GestureRecognizers?.Length == 0)
+            {
+                studentView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
+
+                    //TODO
+                }));
+            }
+
+            if (passowrdView.GestureRecognizers == null || passowrdView.GestureRecognizers?.Length == 0)
+            {
+                passowrdView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
+
+                    //TODO
+                }));
+            }
+
+            addStudentBtn.TouchUpInside += delegate {
+
+                //TODO
+            };
         }
     }
 }
