@@ -65,32 +65,8 @@ namespace Izrune.iOS
             this.AddVcInViewWithoutFrame(viewForPager, parentRegVc);
             var scrollView = parentRegVc.View.OfType<UIScrollView>().FirstOrDefault();
             scrollView.LayoutIfNeeded();
-
+             
             SetContentHeight(scrollView.ContentSize.Height);
-
-            //scrollView.BackgroundColor = UIColor.Red;
-            //subViewsContentHeightConstraint.Constant =scrollView.ContentSize.Height;// parentRegVc.View.Frame.Height;
-
-
-            //View.LayoutIfNeeded();
-
-            //var diff = this.View.Frame.Height - (scrollView.ContentSize.Height + HeaderAndFooterHeight);//(View.Subviews.OfType<UIScrollView>().FirstOrDefault().ContentSize.Height );
-
-            //if (diff > 0)
-            //{
-
-                //float safeAreaSize = default(float);
-
-                //if(UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
-                //{
-                //    safeAreaSize = (float)UIApplication.SharedApplication.KeyWindow.SafeAreaInsets.Bottom;
-                //}
-
-                //subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height + (diff) -130;
-                //View.LayoutIfNeeded();
-            //}
-
-
 
             InitGestures();
 
@@ -121,6 +97,8 @@ namespace Izrune.iOS
 
                 CurrentIndex = 2;
                 AddViewController(studentRegVc1, AddMoreStudentVc);
+                ChangeHeader(false);
+                HideHeader(false);
             };
 
             paymentViewController = Storyboard.InstantiateViewController(PaymentMethodViewController.StoryboardId) as PaymentMethodViewController;

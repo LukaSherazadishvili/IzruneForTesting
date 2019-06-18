@@ -25,7 +25,7 @@ namespace Izrune.iOS
 
         public string PaymenUrl;
 
-        public async override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
