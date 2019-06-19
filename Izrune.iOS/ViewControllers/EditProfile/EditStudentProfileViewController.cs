@@ -44,23 +44,31 @@ namespace Izrune.iOS
 
             await LoadDataAsync();
 
-            CurrentStudent = Students?.First();
-
             InitUI();
 
             InitForm(CurrentStudent);
 
             SetupDropDowns();
+
         }
 
         private async Task LoadDataAsync()
         {
             Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
 
+            CurrentStudent = Students?.First();
+
             var registerService = ServiceContainer.ServiceContainer.Instance.Get<IRegistrationServices>();
             Regions = (await registerService.GetRegionsAsync())?.ToList();
+
         }
 
+        private void GetSchools()
+        {
+            var region = (Regions?.FirstOrDefault(x => x.id == CurrentStudent?.SchoolId));
+            var scool = region?.Schools?.ToList();
+            Schools = scool;
+        }
         private void InitUI()
         {
             cityView.Layer.CornerRadius = 20;
