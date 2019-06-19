@@ -158,7 +158,7 @@ namespace Izrune.iOS
             {
                 if (currentStudentIndex != index)
                 {
-                    RegionId = Regions?[index].id;
+                    RegionId = Regions[(int)index].id;
 
                     currentStudentIndex = (int)index;
 
