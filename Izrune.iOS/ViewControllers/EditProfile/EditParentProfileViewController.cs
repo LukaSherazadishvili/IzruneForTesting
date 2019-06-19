@@ -3,6 +3,8 @@
 using System;
 
 using Foundation;
+using Izrune.iOS.Utils;
+using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS
@@ -18,6 +20,20 @@ namespace Izrune.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            InitUI();
+        }
+
+        private void InitUI()
+        {
+            cityView.Layer.CornerRadius = 20;
+            dateTransparentTf.MakeRoundedTextField(20.0f, UIColor.Clear, 20);
+            villageTf.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 20);
+            phoneTf.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 20);
+            emailTf.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 20);
+            dayTf.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 0);
+            monthTf.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 0);
+            yearTf.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 0);
         }
     }
 }
