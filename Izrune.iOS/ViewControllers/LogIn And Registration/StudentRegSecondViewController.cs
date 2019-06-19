@@ -114,8 +114,12 @@ namespace Izrune.iOS
                 region = CityList[SelectedCityindex];
 
                 selectSchoolView.UserInteractionEnabled = true;
+                ScholVc.SchoolList?.Clear();
                 ScholVc.SchoolList = CityList?[SelectedCityindex].Schools?.OrderBy(x => x.title)?.ToList();
+
                 cityLbl.Text = name;
+                _school = null;
+                schoolLbl.Text = "აირჩიეთ სკოლა";
 
             };
 

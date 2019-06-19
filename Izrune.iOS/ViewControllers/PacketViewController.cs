@@ -32,6 +32,8 @@ namespace Izrune.iOS
 
         public Action SendClicked { get; set; }
 
+        public Action NextClicked { get; set; }
+
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -54,6 +56,8 @@ namespace Izrune.iOS
                 PriceSelected?.Invoke(price);
             };
 
+
+
             PromoVc = Storyboard.InstantiateViewController(PromoCodeViewController.StoryboardId) as PromoCodeViewController;
             PromoVc.PromoInfo = PromoCode;
 
@@ -62,6 +66,7 @@ namespace Izrune.iOS
             SendClicked = () => SelectPacketVc.SendClicked?.Invoke();
 
             nextBtn.TouchUpInside += delegate {
+                NextClicked?.Invoke();
                 this.NavigationController.PopViewController(true);
             };
 

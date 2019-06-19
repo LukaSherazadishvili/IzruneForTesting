@@ -24,6 +24,9 @@ namespace Izrune.iOS
         public static readonly NSString StoryboardId = new NSString("PromoCodeStoryboardId");
 
         DropDown MonthDropDown = new DropDown();
+        public Action<string, int> PromoCodeSelected { get; set; }
+
+        private int SelectedMont;
 
         public override void ViewDidLoad()
         {
@@ -33,7 +36,10 @@ namespace Izrune.iOS
 
                 CheckCode(promoCodeTf.Text == PromoInfo.PrommoCode);
 
-                //UserControl.Instance.SetPromoPack();
+                var result = string.Equals(promoCodeTf.Text, PromoInfo.PrommoCode);
+
+                if (result)
+                    PromoCodeSelected?.Invoke(PromoInfo.PrommoCode, SelectedMont);
             };
 
             InitUI();
@@ -75,7 +81,7 @@ namespace Izrune.iOS
             MonthDropDown.SelectionAction = (nint index, string name) =>
             {
                 monthLbl.Text = name;
-
+                SelectedMont = (PromoInfo?.Prices?.ElementAt((int)index).months).Value;
             };
         }
 
