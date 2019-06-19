@@ -67,7 +67,9 @@ namespace Izrune.iOS
             {
                 studentView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
 
-                    //TODO
+                    var editParentVc = Storyboard.InstantiateViewController(EditStudentProfileViewController.StoryboardId) as EditStudentProfileViewController;
+
+                    this.NavigationController.PushViewController(editParentVc, true);
                 }));
             }
 

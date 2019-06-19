@@ -36,23 +36,23 @@ namespace Izrune.iOS
             }
         }
 
-        [Export("webView:shouldStartLoadWithRequest:navigationType:")]
-        public bool ShouldStartLoad(UIWebView webView, NSUrlRequest request, UIWebViewNavigationType navigationType)
-        {
-            if(request.Url.AbsoluteString == PayInfo.SuccesUrl)
-            {
-                //TODO
-                GoToLogin?.Invoke();
-            }
+        //[Export("webView:shouldStartLoadWithRequest:navigationType:")]
+        //public bool ShouldStartLoad(UIWebView webView, NSUrlRequest request, UIWebViewNavigationType navigationType)
+        //{
+        //    if(request.Url.AbsoluteString == PayInfo.SuccesUrl)
+        //    {
+        //        //TODO
+        //        GoToLogin?.Invoke();
+        //    }
 
-            else
-            {
-                //TODO
-                GoToLogin?.Invoke();
-            }
+        //    else
+        //    {
+        //        //TODO
+        //        GoToLogin?.Invoke();
+        //    }
 
-            return true;
-        }
+        //    return true;
+        //}
 
     }
 }

@@ -367,6 +367,10 @@
         <Compile Include="ViewControllers\EditProfile\EditProfileViewController.designer.cs">
           <DependentUpon>EditProfileViewController.cs</DependentUpon>
         </Compile>
+        <Compile Include="ViewControllers\EditProfile\EditStudentProfileViewController.cs" />
+        <Compile Include="ViewControllers\EditProfile\EditStudentProfileViewController.designer.cs">
+          <DependentUpon>EditStudentProfileViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />

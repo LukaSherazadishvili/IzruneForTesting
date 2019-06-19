@@ -719,7 +719,7 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vfO-9o-KR0">
                                                 <rect key="frame" x="0.0" y="102" width="375" height="576"/>
-                                                <color key="backgroundColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="576" id="5p2-dF-Tfh"/>
                                                 </constraints>
@@ -4868,7 +4868,7 @@
                                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="თვე" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cUy-I3-KX9">
-                                                        <rect key="frame" x="78.5" y="0.0" width="158.5" height="40"/>
+                                                        <rect key="frame" x="78.5" y="0.0" width="158" height="40"/>
                                                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="bfe-Wd-ab7"/>
@@ -4992,7 +4992,373 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MHT-gn-z7a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2921" y="4103"/>
+            <point key="canvasLocation" x="-2919" y="4101"/>
+        </scene>
+        <!--Edit Student Profile View Controller-->
+        <scene sceneID="jrX-3x-uzK">
+            <objects>
+                <viewController storyboardIdentifier="EditStudentStoryboardId" id="dx8-np-vWQ" customClass="EditStudentProfileViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SMn-fB-dbe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOr-9l-17t">
+                                <rect key="frame" x="0.0" y="20" width="375" height="1180"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YGl-PE-htX" userLabel="ContentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1023.5"/>
+                                        <subviews>
+                                            <stackView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="jXf-x5-lBo">
+                                                <rect key="frame" x="25" y="25" width="325" height="75.5"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 248.png" translatesAutoresizingMaskIntoConstraints="NO" id="3qB-1V-Juu">
+                                                        <rect key="frame" x="149.5" y="0.0" width="26" height="26"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="26" id="b9G-bX-SRt"/>
+                                                            <constraint firstAttribute="height" constant="26" id="s3h-ph-thQ"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="მოსწავლის მონაცემების რედაქტირება" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVx-Ch-rj2">
+                                                        <rect key="frame" x="45.5" y="38" width="234.5" height="37.5"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="16"/>
+                                                        <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="მოსწავლე" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pp6-EB-Ixh">
+                                                <rect key="frame" x="30" y="131" width="315" height="16.5"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                <color key="textColor" red="0.72156862749999995" green="0.72156862749999995" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HGn-yc-5HE">
+                                                <rect key="frame" x="30" y="162.5" width="315" height="40"/>
+                                                <subviews>
+                                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="თბილისი" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnO-cO-SZU">
+                                                        <rect key="frame" x="15" y="12" width="260" height="16.5"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                        <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="70c-3y-Zu9">
+                                                        <rect key="frame" x="285" y="13" width="20" height="14"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="20" id="qYE-oT-fhy"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.95208579299999996" green="0.95280700920000005" blue="0.95219749210000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="70c-3y-Zu9" secondAttribute="bottom" constant="13" id="G0V-oU-4BT"/>
+                                                    <constraint firstItem="70c-3y-Zu9" firstAttribute="leading" secondItem="qnO-cO-SZU" secondAttribute="trailing" constant="10" id="JjR-CE-7hw"/>
+                                                    <constraint firstItem="qnO-cO-SZU" firstAttribute="centerY" secondItem="HGn-yc-5HE" secondAttribute="centerY" id="ZCb-TM-X1v"/>
+                                                    <constraint firstAttribute="trailing" secondItem="70c-3y-Zu9" secondAttribute="trailing" constant="10" id="ZwB-x1-xSb"/>
+                                                    <constraint firstItem="qnO-cO-SZU" firstAttribute="leading" secondItem="HGn-yc-5HE" secondAttribute="leading" constant="15" id="dvl-tA-jtf"/>
+                                                    <constraint firstItem="70c-3y-Zu9" firstAttribute="top" secondItem="HGn-yc-5HE" secondAttribute="top" constant="13" id="eFE-Zp-3zU"/>
+                                                    <constraint firstAttribute="height" constant="40" id="fGn-39-vc9"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6iO-Ub-6h8">
+                                                <rect key="frame" x="20" y="217.5" width="335" height="1"/>
+                                                <color key="backgroundColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="0.20007152288732388" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="dhw-XP-q2y"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*სახელი" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQu-ic-0aB">
+                                                <rect key="frame" x="30" y="243.5" width="315" height="16.5"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                <color key="textColor" red="0.72156862749999995" green="0.72156862749999995" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="მაია" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7l-ax-P4F">
+                                                <rect key="frame" x="45" y="285" width="300" height="16.5"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                <color key="textColor" red="0.41568627450000001" green="0.41568627450000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*გვარი" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2IV-0w-jZY">
+                                                <rect key="frame" x="30" y="326.5" width="315" height="16.5"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                <color key="textColor" red="0.72156862749999995" green="0.72156862749999995" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="კიკნაძე" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RC5-nu-fl5">
+                                                <rect key="frame" x="45" y="368" width="300" height="16.5"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                <color key="textColor" red="0.41568627450000001" green="0.41568627450000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="mdW-ov-e9f" userLabel="BD Stack View">
+                                                <rect key="frame" x="30" y="409.5" width="315" height="71.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*დაბადების თარიღი" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bI-hw-S1g">
+                                                        <rect key="frame" x="0.0" y="0.0" width="315" height="16.5"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                        <color key="textColor" red="0.72156862749999995" green="0.72156862749999995" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RDu-Tx-g6M">
+                                                        <rect key="frame" x="0.0" y="31.5" width="315" height="40"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="დღე" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gGL-20-fKm">
+                                                                <rect key="frame" x="0.0" y="0.0" width="64" height="40"/>
+                                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="ZpC-Nk-paJ"/>
+                                                                </constraints>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                            </textField>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="თვე" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7fe-le-sh2">
+                                                                <rect key="frame" x="78.5" y="0.0" width="158" height="40"/>
+                                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="zKy-Mp-5qd"/>
+                                                                </constraints>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                            </textField>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="წელი" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6RP-45-cXw">
+                                                                <rect key="frame" x="251" y="0.0" width="64" height="40"/>
+                                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="OFT-qa-oH1"/>
+                                                                </constraints>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                            </textField>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="gGL-20-fKm" firstAttribute="width" secondItem="RDu-Tx-g6M" secondAttribute="width" multiplier="0.2" constant="1" id="OEN-o3-V1f"/>
+                                                            <constraint firstItem="6RP-45-cXw" firstAttribute="width" secondItem="gGL-20-fKm" secondAttribute="width" id="ojK-lE-U8J"/>
+                                                            <constraint firstItem="7fe-le-sh2" firstAttribute="width" secondItem="RDu-Tx-g6M" secondAttribute="width" multiplier="0.5" constant="1" id="rmU-fI-Edg"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fQP-iS-DIp">
+                                                <rect key="frame" x="30" y="409.5" width="315" height="71.5"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*პირადი ნომერი" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F82-IG-Frc">
+                                                <rect key="frame" x="30" y="496" width="315" height="16.5"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                <color key="textColor" red="0.72156862749999995" green="0.72156862749999995" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HRd-1j-m9O">
+                                                <rect key="frame" x="30" y="527.5" width="315" height="40"/>
+                                                <color key="backgroundColor" red="0.97886353729999998" green="0.75800699000000005" blue="0.17533075810000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="l0z-ql-8CR" userLabel="Contact Stack View">
+                                                <rect key="frame" x="30" y="582.5" width="315" height="95"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ტელეფონი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sy0-yC-e6o">
+                                                        <rect key="frame" x="0.0" y="0.0" width="315" height="40"/>
+                                                        <color key="backgroundColor" red="0.97886353729999998" green="0.75800699000000005" blue="0.17533075810000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="6mv-sw-ziB"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ელ. ფოსტა" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wqf-oA-uHH">
+                                                        <rect key="frame" x="0.0" y="55" width="315" height="40"/>
+                                                        <color key="backgroundColor" red="0.97886353729999998" green="0.75800699000000005" blue="0.17533075810000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="wqf-oA-uHH" firstAttribute="height" secondItem="sy0-yC-e6o" secondAttribute="height" id="fOa-L8-429"/>
+                                                </constraints>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*ქალაქი/მუნიციპალიტეტი" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5i-VW-lb7">
+                                                <rect key="frame" x="30" y="692.5" width="315" height="16.5"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                <color key="textColor" red="0.72156862749999995" green="0.72156862749999995" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ggh-su-pae">
+                                                <rect key="frame" x="30" y="726" width="315" height="40"/>
+                                                <subviews>
+                                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="თბილისი" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpc-Cw-grT">
+                                                        <rect key="frame" x="15" y="12" width="260" height="16.5"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                        <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="pgx-6m-AdC">
+                                                        <rect key="frame" x="285" y="13" width="20" height="14"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="20" id="XeT-q3-Gm3"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.95208579299999996" green="0.95280700920000005" blue="0.95219749210000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="wpc-Cw-grT" firstAttribute="leading" secondItem="Ggh-su-pae" secondAttribute="leading" constant="15" id="3HJ-uG-Qz0"/>
+                                                    <constraint firstItem="pgx-6m-AdC" firstAttribute="top" secondItem="Ggh-su-pae" secondAttribute="top" constant="13" id="6Yk-jY-UCJ"/>
+                                                    <constraint firstItem="pgx-6m-AdC" firstAttribute="leading" secondItem="wpc-Cw-grT" secondAttribute="trailing" constant="10" id="HK7-ou-NVf"/>
+                                                    <constraint firstAttribute="height" constant="40" id="IMr-GD-G4I"/>
+                                                    <constraint firstAttribute="bottom" secondItem="pgx-6m-AdC" secondAttribute="bottom" constant="13" id="shM-iR-kbb"/>
+                                                    <constraint firstAttribute="trailing" secondItem="pgx-6m-AdC" secondAttribute="trailing" constant="10" id="yEp-50-bCK"/>
+                                                    <constraint firstItem="wpc-Cw-grT" firstAttribute="centerY" secondItem="Ggh-su-pae" secondAttribute="centerY" id="zsn-Yi-qRz"/>
+                                                </constraints>
+                                            </view>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="სოფელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W8w-db-5lN">
+                                                <rect key="frame" x="30" y="781" width="315" height="40"/>
+                                                <color key="backgroundColor" red="0.97886353729999998" green="0.75800699000000005" blue="0.17533075810000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*სკოლა" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akq-Ou-yPB">
+                                                <rect key="frame" x="30" y="836" width="315" height="16.5"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                <color key="textColor" red="0.72156862749999995" green="0.72156862749999995" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="სსიპ ვანის მუნიციპალიტეტის სოფელ ძულუხის საჯარო სკოლა" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYh-aU-nag">
+                                                <rect key="frame" x="45" y="867.5" width="300" height="33"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                <color key="textColor" red="0.41568627450000001" green="0.41568627450000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*კლასი" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="78z-S0-hfC">
+                                                <rect key="frame" x="30" y="915.5" width="315" height="16.5"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                <color key="textColor" red="0.72156862749999995" green="0.72156862749999995" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3S-JL-V9b">
+                                                <rect key="frame" x="45" y="947" width="300" height="16.5"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                <color key="textColor" red="0.41568627450000001" green="0.41568627450000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="HRd-1j-m9O" firstAttribute="top" secondItem="F82-IG-Frc" secondAttribute="bottom" constant="15" id="17l-wp-rKW"/>
+                                            <constraint firstItem="S5i-VW-lb7" firstAttribute="top" secondItem="l0z-ql-8CR" secondAttribute="bottom" constant="15" id="2In-Yj-5LW"/>
+                                            <constraint firstItem="6iO-Ub-6h8" firstAttribute="top" secondItem="HGn-yc-5HE" secondAttribute="bottom" constant="15" id="3vg-oq-ILv"/>
+                                            <constraint firstItem="mdW-ov-e9f" firstAttribute="top" secondItem="RC5-nu-fl5" secondAttribute="bottom" constant="25" id="6Cg-8j-JYZ"/>
+                                            <constraint firstItem="jXf-x5-lBo" firstAttribute="top" secondItem="YGl-PE-htX" secondAttribute="top" constant="25" id="6gX-x8-mW9"/>
+                                            <constraint firstItem="RC5-nu-fl5" firstAttribute="top" secondItem="2IV-0w-jZY" secondAttribute="bottom" constant="25" id="7cd-nA-ZND"/>
+                                            <constraint firstItem="S5i-VW-lb7" firstAttribute="trailing" secondItem="2IV-0w-jZY" secondAttribute="trailing" id="8hj-Ik-xwE"/>
+                                            <constraint firstItem="akq-Ou-yPB" firstAttribute="trailing" secondItem="W8w-db-5lN" secondAttribute="trailing" id="9s1-x4-2qm"/>
+                                            <constraint firstItem="W8w-db-5lN" firstAttribute="top" secondItem="Ggh-su-pae" secondAttribute="bottom" constant="15" id="DFK-Hv-cJF"/>
+                                            <constraint firstItem="YYh-aU-nag" firstAttribute="trailing" secondItem="RC5-nu-fl5" secondAttribute="trailing" id="EeU-3P-QKk"/>
+                                            <constraint firstItem="HRd-1j-m9O" firstAttribute="leading" secondItem="YGl-PE-htX" secondAttribute="leading" constant="30" id="GAX-4u-0wJ"/>
+                                            <constraint firstItem="F82-IG-Frc" firstAttribute="trailing" secondItem="2IV-0w-jZY" secondAttribute="trailing" id="GBp-Ec-qbE"/>
+                                            <constraint firstItem="mdW-ov-e9f" firstAttribute="trailing" secondItem="2IV-0w-jZY" secondAttribute="trailing" id="GNX-eM-dTj"/>
+                                            <constraint firstAttribute="trailing" secondItem="eQu-ic-0aB" secondAttribute="trailing" constant="30" id="Gc8-IF-exl"/>
+                                            <constraint firstItem="W8w-db-5lN" firstAttribute="leading" secondItem="Ggh-su-pae" secondAttribute="leading" id="HKV-9A-eoH"/>
+                                            <constraint firstItem="HGn-yc-5HE" firstAttribute="top" secondItem="pp6-EB-Ixh" secondAttribute="bottom" constant="15" id="Jdi-FR-KMf"/>
+                                            <constraint firstItem="RC5-nu-fl5" firstAttribute="trailing" secondItem="U7l-ax-P4F" secondAttribute="trailing" id="K7V-qj-Mtf"/>
+                                            <constraint firstItem="W8w-db-5lN" firstAttribute="height" secondItem="Ggh-su-pae" secondAttribute="height" id="M4J-cR-fCz"/>
+                                            <constraint firstItem="pp6-EB-Ixh" firstAttribute="trailing" secondItem="eQu-ic-0aB" secondAttribute="trailing" id="M9h-N2-OFt"/>
+                                            <constraint firstItem="YYh-aU-nag" firstAttribute="top" secondItem="akq-Ou-yPB" secondAttribute="bottom" constant="15" id="MLg-uY-5vE"/>
+                                            <constraint firstItem="HRd-1j-m9O" firstAttribute="height" secondItem="W8w-db-5lN" secondAttribute="height" id="OHB-Fp-CwT"/>
+                                            <constraint firstItem="fQP-iS-DIp" firstAttribute="centerY" secondItem="mdW-ov-e9f" secondAttribute="centerY" id="Qbm-a6-GdU"/>
+                                            <constraint firstItem="F82-IG-Frc" firstAttribute="leading" secondItem="2IV-0w-jZY" secondAttribute="leading" id="QiZ-m2-ox4"/>
+                                            <constraint firstItem="F82-IG-Frc" firstAttribute="top" secondItem="fQP-iS-DIp" secondAttribute="bottom" constant="15" id="RF6-Ov-0pU"/>
+                                            <constraint firstItem="HRd-1j-m9O" firstAttribute="trailing" secondItem="F82-IG-Frc" secondAttribute="trailing" id="VPT-iq-p1F"/>
+                                            <constraint firstAttribute="trailing" secondItem="jXf-x5-lBo" secondAttribute="trailing" constant="25" id="WGZ-gB-loa"/>
+                                            <constraint firstItem="eQu-ic-0aB" firstAttribute="leading" secondItem="YGl-PE-htX" secondAttribute="leading" constant="30" id="WeJ-3K-Go4"/>
+                                            <constraint firstItem="2IV-0w-jZY" firstAttribute="top" secondItem="U7l-ax-P4F" secondAttribute="bottom" constant="25" id="Wme-yQ-44B"/>
+                                            <constraint firstItem="B3S-JL-V9b" firstAttribute="trailing" secondItem="YYh-aU-nag" secondAttribute="trailing" id="Wnl-Tm-PS9"/>
+                                            <constraint firstAttribute="trailing" secondItem="U7l-ax-P4F" secondAttribute="trailing" constant="30" id="WyR-Zp-L9A"/>
+                                            <constraint firstItem="fQP-iS-DIp" firstAttribute="trailing" secondItem="mdW-ov-e9f" secondAttribute="trailing" id="XQY-mS-NFc"/>
+                                            <constraint firstItem="S5i-VW-lb7" firstAttribute="leading" secondItem="2IV-0w-jZY" secondAttribute="leading" id="aJU-Jc-ERF"/>
+                                            <constraint firstItem="RC5-nu-fl5" firstAttribute="leading" secondItem="U7l-ax-P4F" secondAttribute="leading" id="aO6-O3-Yzb"/>
+                                            <constraint firstItem="YYh-aU-nag" firstAttribute="leading" secondItem="RC5-nu-fl5" secondAttribute="leading" id="bDf-Pa-0nK"/>
+                                            <constraint firstItem="HGn-yc-5HE" firstAttribute="leading" secondItem="pp6-EB-Ixh" secondAttribute="leading" id="bsf-Ih-1ZX"/>
+                                            <constraint firstItem="Ggh-su-pae" firstAttribute="leading" secondItem="S5i-VW-lb7" secondAttribute="leading" id="c2z-FQ-3zC"/>
+                                            <constraint firstItem="2IV-0w-jZY" firstAttribute="trailing" secondItem="eQu-ic-0aB" secondAttribute="trailing" id="cNg-U7-2uG"/>
+                                            <constraint firstItem="78z-S0-hfC" firstAttribute="leading" secondItem="akq-Ou-yPB" secondAttribute="leading" id="dKR-0O-taJ"/>
+                                            <constraint firstItem="78z-S0-hfC" firstAttribute="top" secondItem="YYh-aU-nag" secondAttribute="bottom" constant="15" id="dMi-dG-Pzz"/>
+                                            <constraint firstItem="Ggh-su-pae" firstAttribute="trailing" secondItem="S5i-VW-lb7" secondAttribute="trailing" id="dfl-Xe-bze"/>
+                                            <constraint firstItem="U7l-ax-P4F" firstAttribute="leading" secondItem="YGl-PE-htX" secondAttribute="leading" constant="45" id="fDc-lm-8Si"/>
+                                            <constraint firstItem="l0z-ql-8CR" firstAttribute="trailing" secondItem="HRd-1j-m9O" secondAttribute="trailing" id="fny-Ko-4wt"/>
+                                            <constraint firstItem="l0z-ql-8CR" firstAttribute="top" secondItem="HRd-1j-m9O" secondAttribute="bottom" constant="15" id="fs8-xX-Awm"/>
+                                            <constraint firstItem="l0z-ql-8CR" firstAttribute="leading" secondItem="HRd-1j-m9O" secondAttribute="leading" id="gCg-Tf-kwv"/>
+                                            <constraint firstAttribute="trailing" secondItem="6iO-Ub-6h8" secondAttribute="trailing" constant="20" id="hpC-9l-QHw"/>
+                                            <constraint firstItem="B3S-JL-V9b" firstAttribute="leading" secondItem="YYh-aU-nag" secondAttribute="leading" id="iCg-Ax-kr8"/>
+                                            <constraint firstItem="pp6-EB-Ixh" firstAttribute="top" secondItem="rVx-Ch-rj2" secondAttribute="bottom" constant="30.5" id="iI2-cy-ARn"/>
+                                            <constraint firstItem="6iO-Ub-6h8" firstAttribute="leading" secondItem="YGl-PE-htX" secondAttribute="leading" constant="20" id="iXr-Vl-bkQ"/>
+                                            <constraint firstItem="U7l-ax-P4F" firstAttribute="top" secondItem="eQu-ic-0aB" secondAttribute="bottom" constant="25" id="idf-hU-RK4"/>
+                                            <constraint firstAttribute="bottom" secondItem="B3S-JL-V9b" secondAttribute="bottom" constant="60" id="ig5-ht-PCo"/>
+                                            <constraint firstItem="jXf-x5-lBo" firstAttribute="leading" secondItem="YGl-PE-htX" secondAttribute="leading" constant="25" id="joi-JT-G7K"/>
+                                            <constraint firstItem="akq-Ou-yPB" firstAttribute="leading" secondItem="W8w-db-5lN" secondAttribute="leading" id="lpu-fl-Zym"/>
+                                            <constraint firstItem="fQP-iS-DIp" firstAttribute="height" secondItem="mdW-ov-e9f" secondAttribute="height" id="oLG-Yg-XdJ"/>
+                                            <constraint firstItem="eQu-ic-0aB" firstAttribute="top" secondItem="6iO-Ub-6h8" secondAttribute="bottom" constant="25" id="pLG-JG-dOJ"/>
+                                            <constraint firstItem="mdW-ov-e9f" firstAttribute="leading" secondItem="2IV-0w-jZY" secondAttribute="leading" id="rNa-IZ-YBL"/>
+                                            <constraint firstItem="Ggh-su-pae" firstAttribute="top" secondItem="S5i-VW-lb7" secondAttribute="bottom" constant="17" id="rox-M3-sd3"/>
+                                            <constraint firstItem="W8w-db-5lN" firstAttribute="trailing" secondItem="Ggh-su-pae" secondAttribute="trailing" id="rv1-PQ-wiL"/>
+                                            <constraint firstItem="fQP-iS-DIp" firstAttribute="leading" secondItem="mdW-ov-e9f" secondAttribute="leading" id="s3S-Mx-lRh"/>
+                                            <constraint firstItem="78z-S0-hfC" firstAttribute="trailing" secondItem="akq-Ou-yPB" secondAttribute="trailing" id="udd-WU-L5V"/>
+                                            <constraint firstItem="pp6-EB-Ixh" firstAttribute="leading" secondItem="eQu-ic-0aB" secondAttribute="leading" id="vft-X5-9Dy"/>
+                                            <constraint firstItem="HGn-yc-5HE" firstAttribute="trailing" secondItem="pp6-EB-Ixh" secondAttribute="trailing" id="x3e-Ca-Pg6"/>
+                                            <constraint firstItem="akq-Ou-yPB" firstAttribute="top" secondItem="W8w-db-5lN" secondAttribute="bottom" constant="15" id="yOU-hZ-7g9"/>
+                                            <constraint firstItem="B3S-JL-V9b" firstAttribute="top" secondItem="78z-S0-hfC" secondAttribute="bottom" constant="15" id="zVH-XY-grj"/>
+                                            <constraint firstItem="2IV-0w-jZY" firstAttribute="leading" secondItem="eQu-ic-0aB" secondAttribute="leading" id="zwf-DT-hrb"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="YGl-PE-htX" secondAttribute="trailing" id="O5z-Ro-08i"/>
+                                    <constraint firstItem="YGl-PE-htX" firstAttribute="top" secondItem="dOr-9l-17t" secondAttribute="top" id="Oys-CV-a2k"/>
+                                    <constraint firstItem="YGl-PE-htX" firstAttribute="leading" secondItem="dOr-9l-17t" secondAttribute="leading" id="Rfp-90-jJy"/>
+                                    <constraint firstAttribute="bottom" secondItem="YGl-PE-htX" secondAttribute="bottom" id="vcb-50-N7Q"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fjP-eb-LOc" firstAttribute="bottom" secondItem="dOr-9l-17t" secondAttribute="bottom" id="3Xr-QD-dV8"/>
+                            <constraint firstItem="dOr-9l-17t" firstAttribute="leading" secondItem="fjP-eb-LOc" secondAttribute="leading" id="Dcp-rh-7rL"/>
+                            <constraint firstItem="YGl-PE-htX" firstAttribute="width" secondItem="fjP-eb-LOc" secondAttribute="width" id="PNr-7x-o8i"/>
+                            <constraint firstItem="fjP-eb-LOc" firstAttribute="trailing" secondItem="dOr-9l-17t" secondAttribute="trailing" id="Rx3-4t-M2z"/>
+                            <constraint firstItem="YGl-PE-htX" firstAttribute="height" secondItem="fjP-eb-LOc" secondAttribute="height" priority="250" constant="1" id="jOQ-tL-vvH"/>
+                            <constraint firstItem="dOr-9l-17t" firstAttribute="top" secondItem="fjP-eb-LOc" secondAttribute="top" id="sO4-Un-9fg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fjP-eb-LOc"/>
+                    </view>
+                    <size key="freeformSize" width="375" height="1200"/>
+                    <connections>
+                        <outlet property="cityLbl" destination="wpc-Cw-grT" id="0EH-TL-dwz"/>
+                        <outlet property="cityView" destination="Ggh-su-pae" id="n1B-Bd-OQZ"/>
+                        <outlet property="curentStudentView" destination="HGn-yc-5HE" id="kNm-jG-OcT"/>
+                        <outlet property="currentStudentLbl" destination="qnO-cO-SZU" id="MKU-93-CBz"/>
+                        <outlet property="dateTransparentTf" destination="fQP-iS-DIp" id="hkz-OZ-fBe"/>
+                        <outlet property="dayTf" destination="gGL-20-fKm" id="GlL-vT-eyj"/>
+                        <outlet property="emailTf" destination="wqf-oA-uHH" id="R9I-by-1bB"/>
+                        <outlet property="lastNameLbl" destination="RC5-nu-fl5" id="Acd-S7-UmO"/>
+                        <outlet property="monthTf" destination="7fe-le-sh2" id="1Wr-Xy-kry"/>
+                        <outlet property="nameLbl" destination="U7l-ax-P4F" id="oqB-iY-COU"/>
+                        <outlet property="phoneTf" destination="sy0-yC-e6o" id="2Af-mW-tgh"/>
+                        <outlet property="pnTf" destination="HRd-1j-m9O" id="IcA-aZ-v1s"/>
+                        <outlet property="villageTf" destination="W8w-db-5lN" id="2SJ-3F-YWG"/>
+                        <outlet property="yearTf" destination="6RP-45-cXw" id="Mp8-jt-5ec"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pg0-97-hYo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2186" y="4340"/>
         </scene>
     </scenes>
     <resources>
