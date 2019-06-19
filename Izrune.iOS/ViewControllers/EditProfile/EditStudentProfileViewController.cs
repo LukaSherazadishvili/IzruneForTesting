@@ -46,7 +46,6 @@ namespace Izrune.iOS
 
             InitUI();
 
-            InitForm(CurrentStudent);
 
             SetupDropDowns();
 
@@ -61,11 +60,14 @@ namespace Izrune.iOS
             var registerService = ServiceContainer.ServiceContainer.Instance.Get<IRegistrationServices>();
             Regions = (await registerService.GetRegionsAsync())?.ToList();
 
+            GetSchools();
+
+            InitForm(CurrentStudent);
         }
 
         private void GetSchools()
         {
-            var region = (Regions?.FirstOrDefault(x => x.id == CurrentStudent?.SchoolId));
+            var region = (Regions?.FirstOrDefault(x => x.id == CurrentStudent?.RegionId));
             var scool = region?.Schools?.ToList();
             Schools = scool;
         }
@@ -100,7 +102,7 @@ namespace Izrune.iOS
             emailTf.Text = student?.Email;
             cityLbl.Text = Regions?.FirstOrDefault(x => x.id == student?.RegionId).title;
             villageTf.Text = student?.Village;
-            schoolLbl.Text = Schools?.FirstOrDefault(x => x.id == student?.SchoolId).title;
+            //schoolLbl.Text = Schools?.FirstOrDefault(x => x.id == student?.SchoolId).title;
             classLbl.Text = student?.Class.ToString();
         }
 
