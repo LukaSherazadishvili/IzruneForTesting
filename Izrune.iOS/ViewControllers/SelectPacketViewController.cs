@@ -30,6 +30,8 @@ namespace Izrune.iOS
 
         public Action DataLoaded { get; set; }
 
+        public Action RefrehData { get; set; }
+
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -39,6 +41,13 @@ namespace Izrune.iOS
             await LoadDataAsync();
 
             SendClicked = () => SendData();
+
+            RefrehData = async () => 
+            {
+                PriceList?.Clear();
+                await LoadDataAsync(); 
+
+                };
         }
 
 

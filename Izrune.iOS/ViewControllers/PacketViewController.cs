@@ -34,6 +34,7 @@ namespace Izrune.iOS
 
         public Action NextClicked { get; set; }
 
+        public Action RefreshData { get; set; }
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -63,6 +64,7 @@ namespace Izrune.iOS
             this.AddVcInView(viewForPeager, SelectPacketVc);
 
             SendClicked = () => SelectPacketVc.SendClicked?.Invoke();
+            RefreshData = () => SelectPacketVc.RefrehData?.Invoke();
 
             nextBtn.TouchUpInside += delegate {
                 NextClicked?.Invoke();
@@ -83,10 +85,7 @@ namespace Izrune.iOS
 
                 SetContentHeight(scrollView.ContentSize.Height);
             };
-
-
         }
-
 
         private async Task GetPromoDataAsync()
         {

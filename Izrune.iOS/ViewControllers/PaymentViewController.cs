@@ -3,11 +3,12 @@
 using System;
 
 using Foundation;
+using IZrune.PCL.Abstraction.Models;
 using UIKit;
 
 namespace Izrune.iOS
 {
-	public partial class PaymentViewController : UIViewController
+	public partial class PaymentViewController : UIViewController, IUIWebViewDelegate
 	{
 		public PaymentViewController (IntPtr handle) : base (handle)
 		{
@@ -15,21 +16,43 @@ namespace Izrune.iOS
 
         public string PaymentUrl;
 
+        public IPay PayInfo { get; set; }
+
         public static readonly NSString StoryboardId = new NSString("PaymentStoryboardId");
+
+        public Action GoToLogin { get; set; }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
-
+            paymentWebView.Delegate = this;
 
             if(PaymentUrl != null)
             {
-                var nsUrl = NSUrl.FromString(PaymentUrl);
+                var nsUrl = NSUrl.FromString(PayInfo?.CurrentUserPayURl);
                 var request = new NSUrlRequest(nsUrl);
                 paymentWebView.LoadRequest(request);
             }
-
         }
+
+        [Export("webView:shouldStartLoadWithRequest:navigationType:")]
+        public bool ShouldStartLoad(UIWebView webView, NSUrlRequest request, UIWebViewNavigationType navigationType)
+        {
+            if(request.Url.AbsoluteString == PayInfo.SuccesUrl)
+            {
+                //TODO
+                GoToLogin?.Invoke();
+            }
+
+            else
+            {
+                //TODO
+                GoToLogin?.Invoke();
+            }
+
+            return true;
+        }
+
     }
 }

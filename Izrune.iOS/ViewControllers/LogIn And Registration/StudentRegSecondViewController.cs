@@ -110,7 +110,7 @@ namespace Izrune.iOS
             {
                 //TODO
                 SelectedCityindex = (int)index;
-
+                IsAllSelected = false;
                 region = CityList[SelectedCityindex];
 
                 selectSchoolView.UserInteractionEnabled = true;

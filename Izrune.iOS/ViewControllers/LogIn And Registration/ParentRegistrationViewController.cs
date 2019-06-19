@@ -84,7 +84,11 @@ namespace Izrune.iOS
             studentRegVc1 = Storyboard.InstantiateViewController(StudentRegFirstViewController.StoryboardId) as StudentRegFirstViewController;
 
             studentRegVc2 = Storyboard.InstantiateViewController(StudentRegSecondViewController.StoryboardId) as StudentRegSecondViewController;
-            studentRegVc2.SchoolSelected = (school) => { choosePacketVc.SchoolId = school.id; };
+            studentRegVc2.SchoolSelected = (school) => 
+            { 
+                choosePacketVc.SchoolId = school.id;
+                choosePacketVc.RefreshData?.Invoke();
+            };
 
 
             choosePacketVc = Storyboard.InstantiateViewController(PacketViewController.StoryboardId) as PacketViewController;
@@ -102,6 +106,7 @@ namespace Izrune.iOS
             };
 
             paymentViewController = Storyboard.InstantiateViewController(PaymentMethodViewController.StoryboardId) as PaymentMethodViewController;
+            paymentViewController.GoToLogin = () => { this.NavigationController.PopViewController(true); };
         }
 
         private void InitGestures()
@@ -212,9 +217,10 @@ namespace Izrune.iOS
                             }
                             else
                             {
-                                CurrentIndex--;
                                 ShowAlert();
                             }
+
+                            CurrentIndex--;
                         }
                         else
                         {
@@ -233,7 +239,7 @@ namespace Izrune.iOS
                         }
                         else
                         {
-                            AddViewController(studentRegVc2, studentRegVc2);
+                            AddViewController(studentRegVc1, studentRegVc2);
                             ChangeHeader(false);
                             HideHeader(false);
                         }
@@ -247,7 +253,7 @@ namespace Izrune.iOS
                             AddMoreStudentVc?.SendClicked?.Invoke();
 
                             AddMoreStudentVc.DataSent = (ipay) => {
-                                paymentViewController.PaymentUrl = ipay.CurrentUserPayURl;
+                                paymentViewController.PayInfo = ipay;
                                 AddViewController(paymentViewController, AddMoreStudentVc);
                             };
 
