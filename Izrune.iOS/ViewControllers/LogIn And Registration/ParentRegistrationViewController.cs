@@ -89,10 +89,18 @@ namespace Izrune.iOS
                 choosePacketVc.SchoolId = school.id;
                 choosePacketVc.RefreshData?.Invoke();
             };
-            studentRegVc2.CitySelected = () => { SelectedPrice = null; CurrentIndex--; };
+            studentRegVc2.CitySelected = () => { 
+                SelectedPrice = null; 
+            };
 
             choosePacketVc = Storyboard.InstantiateViewController(PacketViewController.StoryboardId) as PacketViewController;
-            choosePacketVc.PriceSelected = (price) => SelectedPrice = price;
+            choosePacketVc.PriceSelected = (price) => {
+
+                SelectedPrice = price;
+                CurrentIndex = 4;
+                HideHeader(true);
+                AddViewController(AddMoreStudentVc, studentRegVc2);
+            };
 
             AddMoreStudentVc = Storyboard.InstantiateViewController(AddStudentViewController.StoryboardId) as AddStudentViewController;
             AddMoreStudentVc.AddMoreStudentClicked = () =>
@@ -192,14 +200,14 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            AddViewController(studentRegVc2, studentRegVc1);
                             studentRegVc1.SendClicked?.Invoke();
                             ChangeHeader(false);
+                            AddViewController(studentRegVc2, studentRegVc1);
                         }
                         else
                         {
-                            AddViewController(parent2RegVc, studentRegVc1);
                             ChangeHeader(true);
+                            AddViewController(parent2RegVc, studentRegVc1);
                         }
                         break;
                     }
@@ -208,6 +216,7 @@ namespace Izrune.iOS
                         if (NextClicked)
                         {
                             studentRegVc2.SendClicked?.Invoke();
+
                             if (SelectedPrice == null && studentRegVc2.IsAllSelected)
                             {
                                 //AddViewController(choosePacketVc, studentRegVc2);
@@ -215,17 +224,24 @@ namespace Izrune.iOS
                                 this.NavigationController.PushViewController(choosePacketVc, false);
                                 //HideHeader(true);
                             }
+
+                            else if (SelectedPrice == null && !studentRegVc2.IsAllSelected)
+                            {
+                                CurrentIndex = 2;
+                                ShowAlert();
+                            }
+
                             else
                             {
-                                CurrentIndex--;
-                                ShowAlert();
+                                HideHeader(true);
+                                AddViewController(AddMoreStudentVc, studentRegVc2);
                             }
 
                         }
                         else
                         {
-                            AddViewController(studentRegVc1, studentRegVc2);
                             ChangeHeader(false);
+                            AddViewController(studentRegVc1, studentRegVc2);
                         }
                         break;
                     }
@@ -233,15 +249,15 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
+                            HideHeader(true);
                             AddViewController(AddMoreStudentVc, studentRegVc2);
                             choosePacketVc.SendClicked?.Invoke();
-                            HideHeader(true);
                         }
                         else
                         {
-                            AddViewController(studentRegVc1, studentRegVc2);
                             ChangeHeader(false);
                             HideHeader(false);
+                            AddViewController(studentRegVc2, AddMoreStudentVc);
                         }
                             
                         break;
@@ -351,8 +367,9 @@ namespace Izrune.iOS
 
             }
 
-            if (CurrentIndex == 4)
-                subViewsContentHeightConstraint.Constant += 120;
+            //if (CurrentIndex >= 4)
+                //subViewsContentHeightConstraint.Constant += 120;
+
             View.LayoutIfNeeded();
             //var diff = this.View.Frame.Height - (scrollviewConstentHeight + HeaderAndFooterHeight);
 

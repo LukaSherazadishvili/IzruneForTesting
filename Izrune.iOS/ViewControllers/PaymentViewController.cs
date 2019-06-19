@@ -28,7 +28,7 @@ namespace Izrune.iOS
 
             paymentWebView.Delegate = this;
 
-            if(PaymentUrl != null)
+            if(PayInfo.CurrentUserPayURl != null)
             {
                 var nsUrl = NSUrl.FromString(PayInfo?.CurrentUserPayURl);
                 var request = new NSUrlRequest(nsUrl);
