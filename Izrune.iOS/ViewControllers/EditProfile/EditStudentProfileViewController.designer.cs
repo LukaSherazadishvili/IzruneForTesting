@@ -19,6 +19,9 @@ namespace Izrune.iOS
 		UIKit.UIView cityView { get; set; }
 
 		[Outlet]
+		UIKit.UILabel classLbl { get; set; }
+
+		[Outlet]
 		UIKit.UIView curentStudentView { get; set; }
 
 		[Outlet]
@@ -49,6 +52,9 @@ namespace Izrune.iOS
 		UIKit.UITextField pnTf { get; set; }
 
 		[Outlet]
+		UIKit.UILabel schoolLbl { get; set; }
+
+		[Outlet]
 		UIKit.UITextField villageTf { get; set; }
 
 		[Outlet]
@@ -56,59 +62,14 @@ namespace Izrune.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (cityView != null) {
-				cityView.Dispose ();
-				cityView = null;
-			}
-
 			if (cityLbl != null) {
 				cityLbl.Dispose ();
 				cityLbl = null;
 			}
 
-			if (nameLbl != null) {
-				nameLbl.Dispose ();
-				nameLbl = null;
-			}
-
-			if (lastNameLbl != null) {
-				lastNameLbl.Dispose ();
-				lastNameLbl = null;
-			}
-
-			if (dayTf != null) {
-				dayTf.Dispose ();
-				dayTf = null;
-			}
-
-			if (monthTf != null) {
-				monthTf.Dispose ();
-				monthTf = null;
-			}
-
-			if (yearTf != null) {
-				yearTf.Dispose ();
-				yearTf = null;
-			}
-
-			if (dateTransparentTf != null) {
-				dateTransparentTf.Dispose ();
-				dateTransparentTf = null;
-			}
-
-			if (pnTf != null) {
-				pnTf.Dispose ();
-				pnTf = null;
-			}
-
-			if (phoneTf != null) {
-				phoneTf.Dispose ();
-				phoneTf = null;
-			}
-
-			if (emailTf != null) {
-				emailTf.Dispose ();
-				emailTf = null;
+			if (cityView != null) {
+				cityView.Dispose ();
+				cityView = null;
 			}
 
 			if (curentStudentView != null) {
@@ -116,14 +77,69 @@ namespace Izrune.iOS
 				curentStudentView = null;
 			}
 
+			if (currentStudentLbl != null) {
+				currentStudentLbl.Dispose ();
+				currentStudentLbl = null;
+			}
+
+			if (dateTransparentTf != null) {
+				dateTransparentTf.Dispose ();
+				dateTransparentTf = null;
+			}
+
+			if (dayTf != null) {
+				dayTf.Dispose ();
+				dayTf = null;
+			}
+
+			if (emailTf != null) {
+				emailTf.Dispose ();
+				emailTf = null;
+			}
+
+			if (lastNameLbl != null) {
+				lastNameLbl.Dispose ();
+				lastNameLbl = null;
+			}
+
+			if (monthTf != null) {
+				monthTf.Dispose ();
+				monthTf = null;
+			}
+
+			if (nameLbl != null) {
+				nameLbl.Dispose ();
+				nameLbl = null;
+			}
+
+			if (phoneTf != null) {
+				phoneTf.Dispose ();
+				phoneTf = null;
+			}
+
+			if (pnTf != null) {
+				pnTf.Dispose ();
+				pnTf = null;
+			}
+
 			if (villageTf != null) {
 				villageTf.Dispose ();
 				villageTf = null;
 			}
 
-			if (currentStudentLbl != null) {
-				currentStudentLbl.Dispose ();
-				currentStudentLbl = null;
+			if (yearTf != null) {
+				yearTf.Dispose ();
+				yearTf = null;
+			}
+
+			if (classLbl != null) {
+				classLbl.Dispose ();
+				classLbl = null;
+			}
+
+			if (schoolLbl != null) {
+				schoolLbl.Dispose ();
+				schoolLbl = null;
 			}
 		}
 	}

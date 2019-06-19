@@ -6,6 +6,10 @@ using Foundation;
 using Izrune.iOS.Utils;
 using MpdcViewExtentions;
 using UIKit;
+using FPT.Framework.iOS.UI.DropDown;
+using IZrune.PCL.Abstraction.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Izrune.iOS
 {
@@ -16,6 +20,15 @@ namespace Izrune.iOS
 		}
 
         public static readonly NSString StoryboardId = new NSString("EditStudentStoryboardId");
+
+
+        DropDown CurentStudentDP = new DropDown();
+        DropDown CityDP = new DropDown();
+
+        IStudent CurrentStudent;
+
+        private List<IRegion> Regions;
+        private List<ISchool> Schools;
 
         public override void ViewDidLoad()
         {
@@ -39,6 +52,37 @@ namespace Izrune.iOS
             dayTf.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 0);
             monthTf.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 0);
             yearTf.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 0);
+        }
+         
+        private void InitForm(IStudent student)
+        {
+            nameLbl.Text = student?.Name;
+            lastNameLbl.Text = student?.LastName;
+
+            dayTf.Text = student?.Bdate.Day.ToString();
+            monthTf.Text = student?.Bdate.Month.ToString();
+            yearTf.Text = student?.Bdate.Year.ToString();
+
+            pnTf.Text = student?.PersonalNumber;
+            phoneTf.Text = student?.Phone;
+            emailTf.Text = student?.Email;
+            cityLbl.Text = Regions?.FirstOrDefault(x => x.id == student?.RegionId).title;
+            villageTf.Text = student?.Village;
+            schoolLbl.Text = Schools?.FirstOrDefault(x => x.id == student?.SchoolId).title;
+            classLbl.Text = student?.Class.ToString();
+        }
+
+        private void UpdateStudenProfile(string firstName, string lastName, DateTime birthDate,
+                                            string phoneNumber, string email, int regionId, string village)
+        {
+            CurrentStudent.Name = firstName;
+            CurrentStudent.LastName = lastName;
+            CurrentStudent.Bdate = birthDate;
+            CurrentStudent.Phone = phoneNumber;
+            CurrentStudent.Email = email;
+            CurrentStudent.RegionId = regionId;
+            CurrentStudent.Village = village;
+
         }
     }
 }

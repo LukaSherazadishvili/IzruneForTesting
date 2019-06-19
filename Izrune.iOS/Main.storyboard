@@ -5342,6 +5342,7 @@
                     <connections>
                         <outlet property="cityLbl" destination="wpc-Cw-grT" id="0EH-TL-dwz"/>
                         <outlet property="cityView" destination="Ggh-su-pae" id="n1B-Bd-OQZ"/>
+                        <outlet property="classLbl" destination="B3S-JL-V9b" id="J3z-gL-FtE"/>
                         <outlet property="curentStudentView" destination="HGn-yc-5HE" id="kNm-jG-OcT"/>
                         <outlet property="currentStudentLbl" destination="qnO-cO-SZU" id="MKU-93-CBz"/>
                         <outlet property="dateTransparentTf" destination="fQP-iS-DIp" id="hkz-OZ-fBe"/>
@@ -5352,6 +5353,7 @@
                         <outlet property="nameLbl" destination="U7l-ax-P4F" id="oqB-iY-COU"/>
                         <outlet property="phoneTf" destination="sy0-yC-e6o" id="2Af-mW-tgh"/>
                         <outlet property="pnTf" destination="HRd-1j-m9O" id="IcA-aZ-v1s"/>
+                        <outlet property="schoolLbl" destination="YYh-aU-nag" id="dM9-vO-xBL"/>
                         <outlet property="villageTf" destination="W8w-db-5lN" id="2SJ-3F-YWG"/>
                         <outlet property="yearTf" destination="6RP-45-cXw" id="Mp8-jt-5ec"/>
                     </connections>
