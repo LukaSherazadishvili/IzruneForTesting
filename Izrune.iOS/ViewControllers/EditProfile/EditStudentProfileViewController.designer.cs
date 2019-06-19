@@ -13,6 +13,9 @@ namespace Izrune.iOS
 	partial class EditStudentProfileViewController
 	{
 		[Outlet]
+		UIKit.UIButton backBtn { get; set; }
+
+		[Outlet]
 		UIKit.UILabel cityLbl { get; set; }
 
 		[Outlet]
@@ -52,6 +55,9 @@ namespace Izrune.iOS
 		UIKit.UITextField pnTf { get; set; }
 
 		[Outlet]
+		UIKit.UIButton saveBtn { get; set; }
+
+		[Outlet]
 		UIKit.UILabel schoolLbl { get; set; }
 
 		[Outlet]
@@ -70,6 +76,11 @@ namespace Izrune.iOS
 			if (cityView != null) {
 				cityView.Dispose ();
 				cityView = null;
+			}
+
+			if (classLbl != null) {
+				classLbl.Dispose ();
+				classLbl = null;
 			}
 
 			if (curentStudentView != null) {
@@ -122,6 +133,11 @@ namespace Izrune.iOS
 				pnTf = null;
 			}
 
+			if (schoolLbl != null) {
+				schoolLbl.Dispose ();
+				schoolLbl = null;
+			}
+
 			if (villageTf != null) {
 				villageTf.Dispose ();
 				villageTf = null;
@@ -132,14 +148,14 @@ namespace Izrune.iOS
 				yearTf = null;
 			}
 
-			if (classLbl != null) {
-				classLbl.Dispose ();
-				classLbl = null;
+			if (saveBtn != null) {
+				saveBtn.Dispose ();
+				saveBtn = null;
 			}
 
-			if (schoolLbl != null) {
-				schoolLbl.Dispose ();
-				schoolLbl = null;
+			if (backBtn != null) {
+				backBtn.Dispose ();
+				backBtn = null;
 			}
 		}
 	}

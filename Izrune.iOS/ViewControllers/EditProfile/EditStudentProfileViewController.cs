@@ -38,6 +38,9 @@ namespace Izrune.iOS
         private int currentStudentIndex;
         private int currentRegionIndex;
 
+        private int RegionId;
+        private int SchoolId;
+
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -63,6 +66,20 @@ namespace Izrune.iOS
             GetSchools();
 
             InitForm(CurrentStudent);
+        }
+
+        private void InitGestures()
+        {
+            saveBtn.TouchUpInside += async delegate
+           {
+               UpdateStudenProfile(nameLbl.Text, lastNameLbl.Text, new DateTime(), phoneTf.Text, emailTf.Text, RegionId, villageTf.Text);
+
+               await UserControl.Instance.EditStudentprofile(emailTf.Text, phoneTf.Text, RegionId, villageTf.Text, SchoolId);
+           };
+
+            backBtn.TouchUpInside += delegate {
+                this.NavigationController.PopViewController(true);
+            };
         }
 
         private void GetSchools()
@@ -141,6 +158,8 @@ namespace Izrune.iOS
             {
                 if (currentStudentIndex != index)
                 {
+                    RegionId = Regions?[index].id;
+
                     currentStudentIndex = (int)index;
 
                     CurrentStudent = Students?[(int)index];

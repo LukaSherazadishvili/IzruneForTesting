@@ -13,6 +13,9 @@ namespace Izrune.iOS
 	partial class EditParentProfileViewController
 	{
 		[Outlet]
+		UIKit.UIButton backBtn { get; set; }
+
+		[Outlet]
 		UIKit.UILabel cityLbl { get; set; }
 
 		[Outlet]
@@ -40,6 +43,9 @@ namespace Izrune.iOS
 		UIKit.UITextField phoneTf { get; set; }
 
 		[Outlet]
+		UIKit.UIButton saveBtn { get; set; }
+
+		[Outlet]
 		UIKit.UITextField villageTf { get; set; }
 
 		[Outlet]
@@ -47,39 +53,14 @@ namespace Izrune.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (parentNameLbl != null) {
-				parentNameLbl.Dispose ();
-				parentNameLbl = null;
-			}
-
-			if (parentLastNameLbl != null) {
-				parentLastNameLbl.Dispose ();
-				parentLastNameLbl = null;
-			}
-
-			if (cityView != null) {
-				cityView.Dispose ();
-				cityView = null;
-			}
-
 			if (cityLbl != null) {
 				cityLbl.Dispose ();
 				cityLbl = null;
 			}
 
-			if (villageTf != null) {
-				villageTf.Dispose ();
-				villageTf = null;
-			}
-
-			if (phoneTf != null) {
-				phoneTf.Dispose ();
-				phoneTf = null;
-			}
-
-			if (emailTf != null) {
-				emailTf.Dispose ();
-				emailTf = null;
+			if (cityView != null) {
+				cityView.Dispose ();
+				cityView = null;
 			}
 
 			if (dateTransparentTf != null) {
@@ -92,14 +73,49 @@ namespace Izrune.iOS
 				dayTf = null;
 			}
 
+			if (emailTf != null) {
+				emailTf.Dispose ();
+				emailTf = null;
+			}
+
 			if (monthTf != null) {
 				monthTf.Dispose ();
 				monthTf = null;
 			}
 
+			if (parentLastNameLbl != null) {
+				parentLastNameLbl.Dispose ();
+				parentLastNameLbl = null;
+			}
+
+			if (parentNameLbl != null) {
+				parentNameLbl.Dispose ();
+				parentNameLbl = null;
+			}
+
+			if (phoneTf != null) {
+				phoneTf.Dispose ();
+				phoneTf = null;
+			}
+
+			if (villageTf != null) {
+				villageTf.Dispose ();
+				villageTf = null;
+			}
+
 			if (yearTf != null) {
 				yearTf.Dispose ();
 				yearTf = null;
+			}
+
+			if (saveBtn != null) {
+				saveBtn.Dispose ();
+				saveBtn = null;
+			}
+
+			if (backBtn != null) {
+				backBtn.Dispose ();
+				backBtn = null;
 			}
 		}
 	}
