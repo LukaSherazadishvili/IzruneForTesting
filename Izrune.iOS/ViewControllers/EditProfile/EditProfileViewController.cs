@@ -22,6 +22,7 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
+            this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
 
             View.LayoutIfNeeded();
 
@@ -55,7 +56,9 @@ namespace Izrune.iOS
             if(parentView.GestureRecognizers == null || parentView.GestureRecognizers?.Length == 0)
             {
                 parentView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
-                    //TODO
+                    var editParentVc = Storyboard.InstantiateViewController(EditParentProfileViewController.StoryboardId) as EditParentProfileViewController;
+
+                    this.NavigationController.PushViewController(editParentVc, true);
 
                 }));
             }

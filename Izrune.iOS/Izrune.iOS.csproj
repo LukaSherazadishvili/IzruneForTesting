@@ -135,6 +135,7 @@
         <Folder Include="Models\" />
         <Folder Include="ViewControllers\MenuViewControllers\" />
         <Folder Include="ViewControllers\Quiz\" />
+        <Folder Include="ViewControllers\EditProfile\" />
     </ItemGroup>
     <ItemGroup>
         <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -214,10 +215,6 @@
         <Compile Include="ViewControllers\MenuViewControllers\UpdatePacketViewController.cs" />
         <Compile Include="ViewControllers\MenuViewControllers\UpdatePacketViewController.designer.cs">
           <DependentUpon>UpdatePacketViewController.cs</DependentUpon>
-        </Compile>
-        <Compile Include="ViewControllers\MenuViewControllers\EditProfileViewController.cs" />
-        <Compile Include="ViewControllers\MenuViewControllers\EditProfileViewController.designer.cs">
-          <DependentUpon>EditProfileViewController.cs</DependentUpon>
         </Compile>
         <Compile Include="CollectionViewCells\TestCollectionViewCell.cs" />
         <Compile Include="CollectionViewCells\TestCollectionViewCell.designer.cs">
@@ -362,9 +359,13 @@
         <Compile Include="ViewControllers\StudentStatisticViewController.designer.cs">
           <DependentUpon>StudentStatisticViewController.cs</DependentUpon>
         </Compile>
-        <Compile Include="ViewControllers\EditParentProfileViewController.cs" />
-        <Compile Include="ViewControllers\EditParentProfileViewController.designer.cs">
+        <Compile Include="ViewControllers\EditProfile\EditParentProfileViewController.cs" />
+        <Compile Include="ViewControllers\EditProfile\EditParentProfileViewController.designer.cs">
           <DependentUpon>EditParentProfileViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\EditProfile\EditProfileViewController.cs" />
+        <Compile Include="ViewControllers\EditProfile\EditProfileViewController.designer.cs">
+          <DependentUpon>EditProfileViewController.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup>

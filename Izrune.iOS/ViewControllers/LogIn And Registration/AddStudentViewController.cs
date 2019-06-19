@@ -54,7 +54,7 @@ namespace Izrune.iOS
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("finish exception: " + ex.Message);
                 }
 
             }
