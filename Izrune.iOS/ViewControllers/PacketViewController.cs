@@ -57,7 +57,6 @@ namespace Izrune.iOS
             };
 
 
-
             PromoVc = Storyboard.InstantiateViewController(PromoCodeViewController.StoryboardId) as PromoCodeViewController;
             PromoVc.PromoInfo = PromoCode;
 
@@ -70,6 +69,11 @@ namespace Izrune.iOS
                 this.NavigationController.PopViewController(true);
             };
 
+            PromoVc.PromoCodeSelected = (promoCode, month) =>
+            {
+                UserControl.Instance.SetPromoPack(month, month, promoCode);
+
+            };
 
             SelectPacketVc.DataLoaded = () =>
             {

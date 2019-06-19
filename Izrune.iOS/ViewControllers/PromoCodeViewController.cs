@@ -24,6 +24,7 @@ namespace Izrune.iOS
         public static readonly NSString StoryboardId = new NSString("PromoCodeStoryboardId");
 
         DropDown MonthDropDown = new DropDown();
+
         public Action<string, int> PromoCodeSelected { get; set; }
 
         private int SelectedMont;
