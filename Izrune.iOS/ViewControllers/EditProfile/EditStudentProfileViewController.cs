@@ -93,6 +93,8 @@ namespace Izrune.iOS
             cityView.Layer.CornerRadius = 20;
             curentStudentView.Layer.CornerRadius = 20;
 
+            backBtn.Layer.CornerRadius = 25;
+
             dateTransparentTf.MakeRoundedTextField(20.0f, UIColor.Clear, 20);
             villageTf.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 20);
 
