@@ -164,7 +164,7 @@ namespace Izrune.iOS
 
         private void CheckIndex()
         {
-            nextBtn.Enabled = CurrentIndex < 6;
+            nextBtn.Enabled = CurrentIndex < 5;
             prewBtn.Enabled = CurrentIndex > 0;
         }
 
@@ -250,8 +250,15 @@ namespace Izrune.iOS
                         if (NextClicked)
                         {
                             HideHeader(true);
-                            AddViewController(AddMoreStudentVc, studentRegVc2);
-                            choosePacketVc.SendClicked?.Invoke();
+                            //AddViewController(AddMoreStudentVc, studentRegVc2);
+                            //choosePacketVc.SendClicked?.Invoke();
+
+                            AddMoreStudentVc?.SendClicked?.Invoke();
+
+                            AddMoreStudentVc.DataSent = (ipay) => {
+                                paymentViewController.PayInfo = ipay;
+                                AddViewController(paymentViewController, AddMoreStudentVc);
+                            };
                         }
                         else
                         {
