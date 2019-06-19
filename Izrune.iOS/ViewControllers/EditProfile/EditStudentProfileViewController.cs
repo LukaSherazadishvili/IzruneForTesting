@@ -10,6 +10,7 @@ using FPT.Framework.iOS.UI.DropDown;
 using IZrune.PCL.Abstraction.Models;
 using System.Collections.Generic;
 using System.Linq;
+using IZrune.PCL.Helpers;
 
 namespace Izrune.iOS
 {
@@ -30,11 +31,24 @@ namespace Izrune.iOS
         private List<IRegion> Regions;
         private List<ISchool> Schools;
 
-        public override void ViewDidLoad()
+        private List<IStudent> Students;
+
+        private int currentStudentIndex;
+        private int currentRegionIndex;
+
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
+            Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
+
+            CurrentStudent = Students?.First();
+
             InitUI();
+
+            InitForm(CurrentStudent);
+
+            SetupDropDowns();
         }
 
         private void InitUI()
@@ -72,8 +86,7 @@ namespace Izrune.iOS
             classLbl.Text = student?.Class.ToString();
         }
 
-        private void UpdateStudenProfile(string firstName, string lastName, DateTime birthDate,
-                                            string phoneNumber, string email, int regionId, string village)
+        private void UpdateStudenProfile(string firstName, string lastName, DateTime birthDate, string phoneNumber, string email, int regionId, string village)
         {
             CurrentStudent.Name = firstName;
             CurrentStudent.LastName = lastName;
@@ -82,6 +95,77 @@ namespace Izrune.iOS
             CurrentStudent.Email = email;
             CurrentStudent.RegionId = regionId;
             CurrentStudent.Village = village;
+
+        }
+
+        private void SetupDropDowns()
+        {
+            SetupDropDownGesture(CurentStudentDP, curentStudentView);
+            SetupDropDownGesture(CityDP, cityView);
+
+            InitDropDowns();
+        }
+
+        private void InitDropDowns()
+        {
+            SetupDropDown(CurentStudentDP, curentStudentView, currentStudentLbl);
+            SetupDropDown(CityDP, cityView, cityLbl);
+
+            var studentsArray = Students?.Select(x => x.Name)?.ToArray();
+            CurentStudentDP.DataSource = studentsArray;
+
+            var regionsArray = Regions?.Select(x => x.title)?.ToArray();
+            CityDP.DataSource = regionsArray;
+
+            CurentStudentDP.SelectionAction = (nint index, string name) =>
+            {
+                if (currentStudentIndex != index)
+                {
+                    CurrentStudent = Students?[(int)index];
+
+                    InitForm(CurrentStudent);
+                }
+            };
+
+            CityDP.SelectionAction = (nint index, string name) =>
+            {
+                if(currentRegionIndex != index)
+                {
+                    cityLbl.Text = Regions?[(int)index].title;
+                }
+            };
+        }
+
+        private void SetupDropDown(DropDown dropDown, UIView viewForDpD, UILabel dropDownLbl)
+        {
+            dropDown.AnchorView = new WeakReference<UIView>(viewForDpD);
+            dropDown.BottomOffset = new CoreGraphics.CGPoint(0, viewForDpD.Bounds.Height);
+            dropDown.Width = View.Frame.Width;
+            dropDown.Direction = Direction.Bottom;
+        }
+
+        private void InitDropDownUI(DropDown dropDown)
+        {
+            dropDown.BackgroundColor = UIColor.FromRGB(243, 243, 243);
+            dropDown.SelectionBackgroundColor = AppColors.TitleColor;
+            DPDConstants.UI.TextColor = AppColors.TitleColor;
+            DPDConstants.UI.SelectedTextColor = UIColor.White;
+
+            dropDown.TextFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 15);
+            dropDown.ClipsToBounds = true;
+            dropDown.Layer.CornerRadius = 20;
+        }
+
+        private void SetupDropDownGesture(DropDown dropDown, UIView viewforDpD)
+        {
+            if (viewforDpD.GestureRecognizers == null || viewforDpD.GestureRecognizers?.Length == 0)
+            {
+                viewforDpD.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    dropDown.Show();
+                    InitDropDownUI(dropDown);
+                }));
+            }
 
         }
     }
