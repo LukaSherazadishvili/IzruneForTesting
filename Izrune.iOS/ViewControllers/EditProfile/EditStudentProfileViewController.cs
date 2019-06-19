@@ -11,14 +11,16 @@ using IZrune.PCL.Abstraction.Models;
 using System.Collections.Generic;
 using System.Linq;
 using IZrune.PCL.Helpers;
+using System.Threading.Tasks;
+using IZrune.PCL.Abstraction.Services;
 
 namespace Izrune.iOS
 {
-	public partial class EditStudentProfileViewController : UIViewController
-	{
-		public EditStudentProfileViewController (IntPtr handle) : base (handle)
-		{
-		}
+    public partial class EditStudentProfileViewController : UIViewController
+    {
+        public EditStudentProfileViewController (IntPtr handle) : base (handle)
+        {
+        }
 
         public static readonly NSString StoryboardId = new NSString("EditStudentStoryboardId");
 
@@ -40,7 +42,7 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
-            Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
+            await LoadDataAsync();
 
             CurrentStudent = Students?.First();
 
@@ -49,6 +51,14 @@ namespace Izrune.iOS
             InitForm(CurrentStudent);
 
             SetupDropDowns();
+        }
+
+        private async Task LoadDataAsync()
+        {
+            Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
+
+            var registerService = ServiceContainer.ServiceContainer.Instance.Get<IRegistrationServices>();
+            Regions = (await registerService.GetRegionsAsync())?.ToList();
         }
 
         private void InitUI()
@@ -121,6 +131,8 @@ namespace Izrune.iOS
             {
                 if (currentStudentIndex != index)
                 {
+                    currentStudentIndex = (int)index;
+
                     CurrentStudent = Students?[(int)index];
 
                     InitForm(CurrentStudent);
@@ -131,6 +143,8 @@ namespace Izrune.iOS
             {
                 if(currentRegionIndex != index)
                 {
+                    currentRegionIndex = (int)index;
+
                     cityLbl.Text = Regions?[(int)index].title;
                 }
             };
