@@ -89,7 +89,7 @@ namespace Izrune.iOS
                 choosePacketVc.SchoolId = school.id;
                 choosePacketVc.RefreshData?.Invoke();
             };
-
+            studentRegVc2.CitySelected = () => { SelectedPrice = null; CurrentIndex--; };
 
             choosePacketVc = Storyboard.InstantiateViewController(PacketViewController.StoryboardId) as PacketViewController;
             choosePacketVc.PriceSelected = (price) => SelectedPrice = price;
@@ -208,7 +208,7 @@ namespace Izrune.iOS
                         if (NextClicked)
                         {
                             studentRegVc2.SendClicked?.Invoke();
-                            if (studentRegVc2.IsAllSelected)
+                            if (SelectedPrice == null && studentRegVc2.IsAllSelected)
                             {
                                 //AddViewController(choosePacketVc, studentRegVc2);
 
@@ -217,10 +217,10 @@ namespace Izrune.iOS
                             }
                             else
                             {
+                                CurrentIndex--;
                                 ShowAlert();
                             }
 
-                            CurrentIndex--;
                         }
                         else
                         {

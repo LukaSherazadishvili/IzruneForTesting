@@ -30,6 +30,8 @@ namespace Izrune.iOS
 
         public Action SendClicked { get; set; }
         public Action<ISchool> SchoolSelected { get; set; }
+        public Action CitySelected { get; set; }
+
         public string[] schoolArrray { get; private set; }
 
         public List<IRegion> CityList;
@@ -109,6 +111,7 @@ namespace Izrune.iOS
             CityDpD.SelectionAction = (nint index, string name) =>
             {
                 //TODO
+                CitySelected?.Invoke();
                 SelectedCityindex = (int)index;
                 IsAllSelected = false;
                 region = CityList[SelectedCityindex];
