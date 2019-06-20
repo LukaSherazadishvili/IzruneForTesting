@@ -22,6 +22,9 @@ namespace Izrune.iOS
 		UIKit.UIView cityView { get; set; }
 
 		[Outlet]
+		UIKit.UIView contentView { get; set; }
+
+		[Outlet]
 		UIKit.UITextField dateTransparentTf { get; set; }
 
 		[Outlet]
@@ -116,6 +119,11 @@ namespace Izrune.iOS
 			if (backBtn != null) {
 				backBtn.Dispose ();
 				backBtn = null;
+			}
+
+			if (contentView != null) {
+				contentView.Dispose ();
+				contentView = null;
 			}
 		}
 	}

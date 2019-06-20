@@ -5041,6 +5041,7 @@
                         <outlet property="backBtn" destination="M9U-rT-QC6" id="xIo-oI-KBB"/>
                         <outlet property="cityLbl" destination="rpe-GT-FN8" id="ovt-DM-ae7"/>
                         <outlet property="cityView" destination="r6u-F9-KoJ" id="FFD-gr-IwD"/>
+                        <outlet property="contentView" destination="6sp-fn-H1A" id="B38-4U-bbv"/>
                         <outlet property="dateTransparentTf" destination="tFz-eB-vas" id="wgG-DZ-tn1"/>
                         <outlet property="dayTf" destination="3Kh-HM-moq" id="79S-WB-NCG"/>
                         <outlet property="emailTf" destination="HaK-YS-FWT" id="d8c-Nm-reI"/>
@@ -5468,6 +5469,7 @@
                         <outlet property="cityLbl" destination="wpc-Cw-grT" id="0EH-TL-dwz"/>
                         <outlet property="cityView" destination="Ggh-su-pae" id="n1B-Bd-OQZ"/>
                         <outlet property="classLbl" destination="B3S-JL-V9b" id="J3z-gL-FtE"/>
+                        <outlet property="contentView" destination="YGl-PE-htX" id="twd-jL-9Em"/>
                         <outlet property="curentStudentView" destination="HGn-yc-5HE" id="kNm-jG-OcT"/>
                         <outlet property="currentStudentLbl" destination="qnO-cO-SZU" id="MKU-93-CBz"/>
                         <outlet property="dateTransparentTf" destination="fQP-iS-DIp" id="hkz-OZ-fBe"/>

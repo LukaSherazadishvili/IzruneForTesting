@@ -13,10 +13,11 @@ using System.Linq;
 using IZrune.PCL.Helpers;
 using System.Threading.Tasks;
 using IZrune.PCL.Abstraction.Services;
+using MPDCiOSPages.ViewControllers;
 
 namespace Izrune.iOS
 {
-    public partial class EditStudentProfileViewController : UIViewController
+    public partial class EditStudentProfileViewController : BaseViewController
     {
         public EditStudentProfileViewController (IntPtr handle) : base (handle)
         {
@@ -56,6 +57,8 @@ namespace Izrune.iOS
 
         private async Task LoadDataAsync()
         {
+            contentView.Hidden = true;
+            ShowLoading();
             Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
 
             CurrentStudent = Students?.First();
@@ -66,6 +69,8 @@ namespace Izrune.iOS
             GetSchools();
 
             InitForm(CurrentStudent);
+            EndLoading();
+            contentView.Hidden = false;
         }
 
         private void InitGestures()

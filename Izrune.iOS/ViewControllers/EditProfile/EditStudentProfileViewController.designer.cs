@@ -25,6 +25,9 @@ namespace Izrune.iOS
 		UIKit.UILabel classLbl { get; set; }
 
 		[Outlet]
+		UIKit.UIView contentView { get; set; }
+
+		[Outlet]
 		UIKit.UIView curentStudentView { get; set; }
 
 		[Outlet]
@@ -156,6 +159,11 @@ namespace Izrune.iOS
 			if (backBtn != null) {
 				backBtn.Dispose ();
 				backBtn = null;
+			}
+
+			if (contentView != null) {
+				contentView.Dispose ();
+				contentView = null;
 			}
 		}
 	}
