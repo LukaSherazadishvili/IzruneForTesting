@@ -36,6 +36,7 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
+            this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
             await LoadDataAsync();
 
             InitGestures();

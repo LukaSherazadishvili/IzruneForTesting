@@ -42,14 +42,19 @@ namespace Izrune.iOS
         private int RegionId;
         private int SchoolId;
 
+        private SelectSchoolViewController SchoolVc;
+
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            SchoolVc = Storyboard.InstantiateViewController(SelectSchoolViewController.StoryboardId) as SelectSchoolViewController;
 
             await LoadDataAsync();
 
             InitUI();
 
+            InitGestures();
 
             SetupDropDowns();
 
@@ -67,6 +72,7 @@ namespace Izrune.iOS
             Regions = (await registerService.GetRegionsAsync())?.ToList();
 
             GetSchools();
+            InitGestures();
 
             InitForm(CurrentStudent);
             EndLoading();
@@ -85,6 +91,18 @@ namespace Izrune.iOS
             backBtn.TouchUpInside += delegate {
                 this.NavigationController.PopViewController(true);
             };
+
+            if(schoolLbl.GestureRecognizers == null || schoolLbl.GestureRecognizers?.Length == 0)
+            {
+                schoolLbl.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    SchoolVc.SchoolList = Schools;
+
+                    SchoolVc.SchoolSelected = (school) => { schoolLbl.Text = school.title; CurrentStudent.SchoolId = school.id; };
+                    this.NavigationController.PushViewController(SchoolVc, true);
+
+                }));
+            }
         }
 
         private void GetSchools()
@@ -129,6 +147,8 @@ namespace Izrune.iOS
             villageTf.Text = student?.Village;
             //schoolLbl.Text = Schools?.FirstOrDefault(x => x.id == student?.SchoolId).title;
             classLbl.Text = student?.Class.ToString();
+
+            Schools = Regions?.FirstOrDefault(x => x.id == student.RegionId)?.Schools?.ToList();
         }
 
         private void UpdateStudenProfile(string firstName, string lastName, DateTime birthDate, string phoneNumber, string email, int regionId, string village)
@@ -162,7 +182,7 @@ namespace Izrune.iOS
             var regionsArray = Regions?.Select(x => x.title)?.ToArray();
             CityDP.DataSource = regionsArray;
 
-            CurentStudentDP.SelectionAction = (nint index, string name) =>
+            CurentStudentDP.SelectionAction = async (nint index, string name) =>
             {
                 if (currentStudentIndex != index)
                 {
@@ -173,6 +193,8 @@ namespace Izrune.iOS
                     CurrentStudent = Students?[(int)index];
 
                     InitForm(CurrentStudent);
+
+                    Schools = Regions?[(int)index].Schools?.ToList();
                 }
             };
 

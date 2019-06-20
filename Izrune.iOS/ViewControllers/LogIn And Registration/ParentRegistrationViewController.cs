@@ -88,6 +88,8 @@ namespace Izrune.iOS
             { 
                 choosePacketVc.SchoolId = school.id;
                 choosePacketVc.RefreshData?.Invoke();
+                SelectedPrice = null;
+                CurrentIndex = 3;
             };
             studentRegVc2.CitySelected = () => { 
                 SelectedPrice = null; 
@@ -255,6 +257,7 @@ namespace Izrune.iOS
 
                             AddMoreStudentVc?.SendClicked?.Invoke();
 
+                            AddViewController(AddMoreStudentVc, studentRegVc2);
                             AddMoreStudentVc.DataSent = (ipay) => {
                                 paymentViewController.PayInfo = ipay;
                                 AddViewController(paymentViewController, AddMoreStudentVc);

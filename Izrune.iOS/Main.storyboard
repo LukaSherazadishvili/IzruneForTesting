@@ -2639,6 +2639,36 @@
                                 <color key="textColor" red="0.28627450980000002" green="0.70980392160000005" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y9e-aO-Coh" userLabel="FooterView">
+                                <rect key="frame" x="0.0" y="712" width="414" height="150"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="TsU-OO-9QH">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                    </imageView>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="baI-Sv-iAj">
+                                        <rect key="frame" x="90" y="50" width="234" height="50"/>
+                                        <color key="backgroundColor" red="0.79607843140000001" green="0.52941176469999995" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="3pL-eS-52l"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="13"/>
+                                        <inset key="contentEdgeInsets" minX="30" minY="0.0" maxX="30" maxY="0.0"/>
+                                        <state key="normal" title="+ დაამატეთ მოსწავლე">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="TsU-OO-9QH" firstAttribute="top" secondItem="y9e-aO-Coh" secondAttribute="top" id="6uJ-X7-hgf"/>
+                                    <constraint firstItem="baI-Sv-iAj" firstAttribute="centerY" secondItem="y9e-aO-Coh" secondAttribute="centerY" id="ULj-Oh-ISg"/>
+                                    <constraint firstAttribute="trailing" secondItem="TsU-OO-9QH" secondAttribute="trailing" id="doP-fh-sVQ"/>
+                                    <constraint firstItem="baI-Sv-iAj" firstAttribute="centerX" secondItem="y9e-aO-Coh" secondAttribute="centerX" id="ntJ-Ph-CEj"/>
+                                    <constraint firstItem="TsU-OO-9QH" firstAttribute="leading" secondItem="y9e-aO-Coh" secondAttribute="leading" id="tpG-3I-e7K"/>
+                                    <constraint firstAttribute="height" constant="150" id="tun-gb-6cS"/>
+                                    <constraint firstAttribute="bottom" secondItem="TsU-OO-9QH" secondAttribute="bottom" id="z8S-TM-1eo"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -2647,10 +2677,13 @@
                             <constraint firstItem="GtF-Th-qkt" firstAttribute="leading" secondItem="NAa-UC-kGd" secondAttribute="leading" constant="25" id="8il-u5-Yv6"/>
                             <constraint firstItem="XMn-5l-Kq4" firstAttribute="centerX" secondItem="uEV-NR-R8n" secondAttribute="centerX" id="AZZ-aa-arF"/>
                             <constraint firstItem="9v5-7U-TFc" firstAttribute="top" secondItem="XMn-5l-Kq4" secondAttribute="bottom" constant="11" id="Bzd-fv-GMr"/>
+                            <constraint firstItem="y9e-aO-Coh" firstAttribute="leading" secondItem="l9F-f6-FEO" secondAttribute="leading" id="DjF-jF-K7B"/>
                             <constraint firstItem="I64-2L-him" firstAttribute="top" secondItem="l9F-f6-FEO" secondAttribute="top" constant="50" id="EKG-bi-Rj2"/>
+                            <constraint firstAttribute="trailing" secondItem="y9e-aO-Coh" secondAttribute="trailing" id="GCv-yy-Mi7"/>
                             <constraint firstItem="zpB-9s-LLd" firstAttribute="trailing" secondItem="I64-2L-him" secondAttribute="trailing" id="Ghd-fT-nVt"/>
                             <constraint firstItem="I82-Dj-lhd" firstAttribute="top" secondItem="GtF-Th-qkt" secondAttribute="bottom" constant="50" id="HY6-Q6-GFw"/>
                             <constraint firstItem="I82-Dj-lhd" firstAttribute="centerX" secondItem="NAa-UC-kGd" secondAttribute="centerX" id="LOL-hr-PAd"/>
+                            <constraint firstItem="l9F-f6-FEO" firstAttribute="bottom" secondItem="y9e-aO-Coh" secondAttribute="bottom" id="ST1-oW-cWP"/>
                             <constraint firstItem="9v5-7U-TFc" firstAttribute="leading" secondItem="l9F-f6-FEO" secondAttribute="leading" constant="27" id="TjO-hd-MMi"/>
                             <constraint firstItem="zpB-9s-LLd" firstAttribute="leading" secondItem="I64-2L-him" secondAttribute="leading" id="X5t-4D-Db9"/>
                             <constraint firstItem="GtF-Th-qkt" firstAttribute="top" secondItem="9v5-7U-TFc" secondAttribute="bottom" constant="30" id="bZr-Dw-sJf"/>
@@ -5177,7 +5210,7 @@
                                                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                             </textField>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="თვე" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7fe-le-sh2">
-                                                                <rect key="frame" x="78.5" y="0.0" width="158.5" height="40"/>
+                                                                <rect key="frame" x="78.5" y="0.0" width="158" height="40"/>
                                                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="zKy-Mp-5qd"/>
@@ -5206,7 +5239,7 @@
                                                 </subviews>
                                             </stackView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fQP-iS-DIp">
-                                                <rect key="frame" x="30" y="409.5" width="315" height="71.5"/>
+                                                <rect key="frame" x="30" y="441" width="315" height="40"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -5219,7 +5252,7 @@
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HRd-1j-m9O">
                                                 <rect key="frame" x="30" y="527.5" width="315" height="40"/>
-                                                <color key="backgroundColor" red="0.97886353729999998" green="0.75800699000000005" blue="0.17533075810000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -5229,7 +5262,7 @@
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ტელეფონი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sy0-yC-e6o">
                                                         <rect key="frame" x="0.0" y="0.0" width="315" height="40"/>
-                                                        <color key="backgroundColor" red="0.97886353729999998" green="0.75800699000000005" blue="0.17533075810000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="6mv-sw-ziB"/>
                                                         </constraints>
@@ -5239,7 +5272,7 @@
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ელ. ფოსტა" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wqf-oA-uHH">
                                                         <rect key="frame" x="0.0" y="55" width="315" height="40"/>
-                                                        <color key="backgroundColor" red="0.97886353729999998" green="0.75800699000000005" blue="0.17533075810000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -5284,7 +5317,7 @@
                                             </view>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="სოფელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W8w-db-5lN">
                                                 <rect key="frame" x="30" y="781" width="315" height="40"/>
-                                                <color key="backgroundColor" red="0.97886353729999998" green="0.75800699000000005" blue="0.17533075810000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -5295,7 +5328,7 @@
                                                 <color key="textColor" red="0.72156862749999995" green="0.72156862749999995" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="სსიპ ვანის მუნიციპალიტეტის სოფელ ძულუხის საჯარო სკოლა" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYh-aU-nag">
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="სსიპ ვანის მუნიციპალიტეტის სოფელ ძულუხის საჯარო სკოლა" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYh-aU-nag">
                                                 <rect key="frame" x="45" y="867.5" width="300" height="33"/>
                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                                 <color key="textColor" red="0.41568627450000001" green="0.41568627450000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -5373,6 +5406,7 @@
                                         <constraints>
                                             <constraint firstItem="Fie-2S-AAg" firstAttribute="leading" secondItem="YGl-PE-htX" secondAttribute="leading" id="0Gh-ys-bAW"/>
                                             <constraint firstItem="HRd-1j-m9O" firstAttribute="top" secondItem="F82-IG-Frc" secondAttribute="bottom" constant="15" id="17l-wp-rKW"/>
+                                            <constraint firstItem="fQP-iS-DIp" firstAttribute="height" secondItem="7fe-le-sh2" secondAttribute="height" id="1pA-ui-gAV"/>
                                             <constraint firstItem="S5i-VW-lb7" firstAttribute="top" secondItem="l0z-ql-8CR" secondAttribute="bottom" constant="15" id="2In-Yj-5LW"/>
                                             <constraint firstItem="la4-bn-FDg" firstAttribute="top" secondItem="Fie-2S-AAg" secondAttribute="top" constant="-25" id="2dB-1y-qIL"/>
                                             <constraint firstItem="6iO-Ub-6h8" firstAttribute="top" secondItem="HGn-yc-5HE" secondAttribute="bottom" constant="15" id="3vg-oq-ILv"/>
@@ -5387,6 +5421,7 @@
                                             <constraint firstItem="HRd-1j-m9O" firstAttribute="leading" secondItem="YGl-PE-htX" secondAttribute="leading" constant="30" id="GAX-4u-0wJ"/>
                                             <constraint firstItem="F82-IG-Frc" firstAttribute="trailing" secondItem="2IV-0w-jZY" secondAttribute="trailing" id="GBp-Ec-qbE"/>
                                             <constraint firstItem="mdW-ov-e9f" firstAttribute="trailing" secondItem="2IV-0w-jZY" secondAttribute="trailing" id="GNX-eM-dTj"/>
+                                            <constraint firstItem="fQP-iS-DIp" firstAttribute="centerY" secondItem="RDu-Tx-g6M" secondAttribute="centerY" id="GZa-Tj-wPi"/>
                                             <constraint firstAttribute="trailing" secondItem="eQu-ic-0aB" secondAttribute="trailing" constant="30" id="Gc8-IF-exl"/>
                                             <constraint firstItem="W8w-db-5lN" firstAttribute="leading" secondItem="Ggh-su-pae" secondAttribute="leading" id="HKV-9A-eoH"/>
                                             <constraint firstItem="HGn-yc-5HE" firstAttribute="top" secondItem="pp6-EB-Ixh" secondAttribute="bottom" constant="15" id="Jdi-FR-KMf"/>
@@ -5395,7 +5430,6 @@
                                             <constraint firstItem="pp6-EB-Ixh" firstAttribute="trailing" secondItem="eQu-ic-0aB" secondAttribute="trailing" id="M9h-N2-OFt"/>
                                             <constraint firstItem="YYh-aU-nag" firstAttribute="top" secondItem="akq-Ou-yPB" secondAttribute="bottom" constant="15" id="MLg-uY-5vE"/>
                                             <constraint firstItem="HRd-1j-m9O" firstAttribute="height" secondItem="W8w-db-5lN" secondAttribute="height" id="OHB-Fp-CwT"/>
-                                            <constraint firstItem="fQP-iS-DIp" firstAttribute="centerY" secondItem="mdW-ov-e9f" secondAttribute="centerY" id="Qbm-a6-GdU"/>
                                             <constraint firstItem="F82-IG-Frc" firstAttribute="leading" secondItem="2IV-0w-jZY" secondAttribute="leading" id="QiZ-m2-ox4"/>
                                             <constraint firstItem="F82-IG-Frc" firstAttribute="top" secondItem="fQP-iS-DIp" secondAttribute="bottom" constant="15" id="RF6-Ov-0pU"/>
                                             <constraint firstItem="la4-bn-FDg" firstAttribute="centerX" secondItem="Fie-2S-AAg" secondAttribute="centerX" id="Uud-ut-fS1"/>
@@ -5429,7 +5463,6 @@
                                             <constraint firstAttribute="bottom" secondItem="B3S-JL-V9b" secondAttribute="bottom" constant="60" id="ig5-ht-PCo"/>
                                             <constraint firstItem="jXf-x5-lBo" firstAttribute="leading" secondItem="YGl-PE-htX" secondAttribute="leading" constant="25" id="joi-JT-G7K"/>
                                             <constraint firstItem="akq-Ou-yPB" firstAttribute="leading" secondItem="W8w-db-5lN" secondAttribute="leading" id="lpu-fl-Zym"/>
-                                            <constraint firstItem="fQP-iS-DIp" firstAttribute="height" secondItem="mdW-ov-e9f" secondAttribute="height" id="oLG-Yg-XdJ"/>
                                             <constraint firstItem="eQu-ic-0aB" firstAttribute="top" secondItem="6iO-Ub-6h8" secondAttribute="bottom" constant="25" id="pLG-JG-dOJ"/>
                                             <constraint firstItem="mdW-ov-e9f" firstAttribute="leading" secondItem="2IV-0w-jZY" secondAttribute="leading" id="rNa-IZ-YBL"/>
                                             <constraint firstItem="Ggh-su-pae" firstAttribute="top" secondItem="S5i-VW-lb7" secondAttribute="bottom" constant="17" id="rox-M3-sd3"/>
