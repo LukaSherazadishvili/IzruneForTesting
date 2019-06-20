@@ -38,7 +38,8 @@ namespace Izrune.iOS
 
         private PaymentMethodViewController paymentViewController;
 
-        
+        private bool AddMoreStudentClicked;
+
         private int CurrentIndex = 0;
 
 
@@ -107,9 +108,16 @@ namespace Izrune.iOS
             AddMoreStudentVc = Storyboard.InstantiateViewController(AddStudentViewController.StoryboardId) as AddStudentViewController;
             AddMoreStudentVc.AddMoreStudentClicked = () =>
             {
-                studentRegVc1 = Storyboard.InstantiateViewController(StudentRegFirstViewController.StoryboardId) as StudentRegFirstViewController;
+                //////////////////////////////
+                //////Add More Student ///////
+                //////////////////////////////
 
-                CurrentIndex = 2;
+
+                AddMoreStudentClicked = true;
+
+                ReseteViewControllers();
+
+                AddStudentIndex = 1;
                 AddViewController(studentRegVc1, AddMoreStudentVc);
                 ChangeHeader(false);
                 HideHeader(false);
@@ -172,133 +180,218 @@ namespace Izrune.iOS
             prewBtn.Enabled = CurrentIndex > 0;
         }
 
+
+        private int AddStudentIndex;
+
         private void GetCurrentPage(int pageIndex)
         {
-            switch (pageIndex)
+        
+            if(!AddMoreStudentClicked)
             {
-                case 0:
-                    {
-                        if (NextClicked)
+                switch (pageIndex)
+                {
+                    case 0:
                         {
-                            AddViewController(parent2RegVc, parentRegVc);
-                            parentRegVc.SendClicked?.Invoke();
-                        }
-                        break;
-                    }
-                case 1:
-                    {
-                        if (NextClicked)
-                        {
-                            AddViewController(studentRegVc1, parent2RegVc);
-                            parent2RegVc.SendClicked?.Invoke();
-                            ChangeHeader(false);
-                        }
-                        else
-                        {
-                            AddViewController(parentRegVc, parent2RegVc);
-                            ChangeHeader(true);
-                        }
-                        break;
-                    }
-                case 2:
-                    {
-                        if (NextClicked)
-                        {
-                            studentRegVc1.SendClicked?.Invoke();
-                            ChangeHeader(false);
-                            AddViewController(studentRegVc2, studentRegVc1);
-                        }
-                        else
-                        {
-                            ChangeHeader(true);
-                            AddViewController(parent2RegVc, studentRegVc1);
-                        }
-                        break;
-                    }
-                case 3:
-                    {
-                        if (NextClicked)
-                        {
-                            studentRegVc2.SendClicked?.Invoke();
-
-                            if (SelectedPrice == null && studentRegVc2.IsAllSelected)
+                            if (NextClicked)
                             {
-                                //AddViewController(choosePacketVc, studentRegVc2);
-
-                                this.NavigationController.PushViewController(choosePacketVc, false);
-                                //HideHeader(true);
+                                AddViewController(parent2RegVc, parentRegVc);
+                                parentRegVc.SendClicked?.Invoke();
                             }
-
-                            else if (SelectedPrice == null && !studentRegVc2.IsAllSelected)
+                            break;
+                        }
+                    case 1:
+                        {
+                            if (NextClicked)
                             {
-                                CurrentIndex = 2;
-                                ShowAlert();
+                                AddViewController(studentRegVc1, parent2RegVc);
+                                parent2RegVc.SendClicked?.Invoke();
+                                ChangeHeader(false);
                             }
-
                             else
                             {
+                                AddViewController(parentRegVc, parent2RegVc);
+                                ChangeHeader(true);
+                            }
+                            break;
+                        }
+                    case 2:
+                        {
+                            if (NextClicked)
+                            {
+                                studentRegVc1.SendClicked?.Invoke();
+                                ChangeHeader(false);
+                                AddViewController(studentRegVc2, studentRegVc1);
+                            }
+                            else
+                            {
+                                ChangeHeader(true);
+                                AddViewController(parent2RegVc, studentRegVc1);
+                            }
+                            break;
+                        }
+                    case 3:
+                        {
+                            if (NextClicked)
+                            {
+                                studentRegVc2.SendClicked?.Invoke();
+
+                                if (SelectedPrice == null && studentRegVc2.IsAllSelected)
+                                {
+                                    //AddViewController(choosePacketVc, studentRegVc2);
+
+                                    this.NavigationController.PushViewController(choosePacketVc, false);
+                                    //HideHeader(true);
+                                }
+
+                                else if (SelectedPrice == null && !studentRegVc2.IsAllSelected)
+                                {
+                                    CurrentIndex = 2;
+                                    ShowAlert();
+                                }
+
+                                else
+                                {
+                                    HideHeader(true);
+                                    AddViewController(AddMoreStudentVc, studentRegVc2);
+                                }
+
+                            }
+                            else
+                            {
+                                ChangeHeader(false);
+                                AddViewController(studentRegVc1, studentRegVc2);
+                            }
+                            break;
+                        }
+                    case 4:
+                        {
+                            if (NextClicked)
+                            {
                                 HideHeader(true);
+                                //AddViewController(AddMoreStudentVc, studentRegVc2);
+                                //choosePacketVc.SendClicked?.Invoke();
+
+                                AddMoreStudentVc?.SendClicked?.Invoke();
+
                                 AddViewController(AddMoreStudentVc, studentRegVc2);
+                                AddMoreStudentVc.DataSent = (ipay) => {
+                                    paymentViewController.PayInfo = ipay;
+                                    AddViewController(paymentViewController, AddMoreStudentVc);
+                                };
+                            }
+                            else
+                            {
+                                ChangeHeader(false);
+                                HideHeader(false);
+                                AddViewController(studentRegVc2, AddMoreStudentVc);
                             }
 
+                            break;
                         }
-                        else
+                    case 5:
                         {
-                            ChangeHeader(false);
-                            AddViewController(studentRegVc1, studentRegVc2);
+                            if (NextClicked)
+                            {
+                                AddMoreStudentVc?.SendClicked?.Invoke();
+
+                                AddMoreStudentVc.DataSent = (ipay) => {
+                                    paymentViewController.PayInfo = ipay;
+                                    AddViewController(paymentViewController, AddMoreStudentVc);
+                                };
+
+                            }
+                            else
+                            {
+                                AddViewController(studentRegVc2, AddMoreStudentVc);
+                                ChangeHeader(false);
+                                HideHeader(false);
+                                //this.NavigationController.PushViewController(choosePacketVc, false);
+                            }
+
+                            break;
                         }
+                    default:
                         break;
-                    }
-                case 4:
-                    {
-                        if (NextClicked)
-                        {
-                            HideHeader(true);
-                            //AddViewController(AddMoreStudentVc, studentRegVc2);
-                            //choosePacketVc.SendClicked?.Invoke();
-
-                            AddMoreStudentVc?.SendClicked?.Invoke();
-
-                            AddViewController(AddMoreStudentVc, studentRegVc2);
-                            AddMoreStudentVc.DataSent = (ipay) => {
-                                paymentViewController.PayInfo = ipay;
-                                AddViewController(paymentViewController, AddMoreStudentVc);
-                            };
-                        }
-                        else
-                        {
-                            ChangeHeader(false);
-                            HideHeader(false);
-                            AddViewController(studentRegVc2, AddMoreStudentVc);
-                        }
-                            
-                        break;
-                    }
-                case 5:
-                    {
-                        if (NextClicked)
-                        {
-                            AddMoreStudentVc?.SendClicked?.Invoke();
-
-                            AddMoreStudentVc.DataSent = (ipay) => {
-                                paymentViewController.PayInfo = ipay;
-                                AddViewController(paymentViewController, AddMoreStudentVc);
-                            };
-
-                        }
-                        else
-                        {
-                            AddViewController(studentRegVc2, AddMoreStudentVc);
-                            ChangeHeader(false);
-                            HideHeader(false);
-                            //this.NavigationController.PushViewController(choosePacketVc, false);
-                        }
-
-                        break;
-                    }
-                default:
-                    break;
+                }
             }
+
+            else
+            {
+                //TODO
+                switch (AddStudentIndex)
+                {
+                    case 0:
+                        {
+                            if(NextClicked)
+                            {
+                                AddViewController(studentRegVc2, studentRegVc1);
+                            }
+
+                            break;
+                        }
+                    case 1:
+                        {
+                            if (NextClicked)
+                            {
+                                AddViewController(studentRegVc2, studentRegVc2);
+                            }
+                            else
+                            {
+                                AddViewController(studentRegVc1, studentRegVc2);
+                            }
+                            break;
+                        }
+                    case 2:
+                        {
+                            if (NextClicked)
+                            {
+                                studentRegVc2.SendClicked?.Invoke();
+
+                                if (SelectedPrice == null && studentRegVc2.IsAllSelected)
+                                {
+                                    //AddViewController(choosePacketVc, studentRegVc2);
+
+                                    this.NavigationController.PushViewController(choosePacketVc, false);
+                                    //HideHeader(true);
+                                }
+
+                                else if (SelectedPrice == null && !studentRegVc2.IsAllSelected)
+                                {
+                                    CurrentIndex = 2;
+                                    ShowAlert();
+                                }
+
+                                else
+                                {
+                                    HideHeader(true);
+                                    AddViewController(AddMoreStudentVc, studentRegVc2);
+                                }
+
+                            }
+                            else
+                            {
+                                ChangeHeader(false);
+                                AddViewController(studentRegVc1, studentRegVc2);
+                            }
+                            break;
+                        }
+                    case 3:
+                        {
+                            if (NextClicked)
+                            {
+
+                            }
+                            else
+                            {
+                                AddViewController(studentRegVc1, AddMoreStudentVc);
+                            }
+                            break;
+                        }
+                    default:
+                        break;
+                }
+            }
+
         }
 
         private void ShowAlert()
@@ -401,5 +494,16 @@ namespace Izrune.iOS
             View.LayoutIfNeeded();
         }
 
+        private void ReseteViewControllers()
+        {
+            studentRegVc1 = Storyboard.InstantiateViewController(StudentRegFirstViewController.StoryboardId) as StudentRegFirstViewController;
+            studentRegVc2 = Storyboard.InstantiateViewController(StudentRegSecondViewController.StoryboardId) as StudentRegSecondViewController;
+            studentRegVc2.CityList = CityList;
+
+            choosePacketVc = Storyboard.InstantiateViewController(PacketViewController.StoryboardId) as PacketViewController;
+            AddMoreStudentVc = Storyboard.InstantiateViewController(AddStudentViewController.StoryboardId) as AddStudentViewController;
+
+
+        }
     }
 }
