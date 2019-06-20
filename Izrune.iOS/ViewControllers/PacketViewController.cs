@@ -35,6 +35,9 @@ namespace Izrune.iOS
         public Action NextClicked { get; set; }
 
         public Action RefreshData { get; set; }
+
+        bool IsPromoSelected;
+
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -53,7 +56,6 @@ namespace Izrune.iOS
             SelectPacketVc.SchoolId = SchoolId;
             SelectPacketVc.PriceSelected = (price) =>
             {
-                UserControl.Instance.SetPromoPack(price.months, price.price);
                 PriceSelected?.Invoke(price);
             };
 
@@ -67,13 +69,23 @@ namespace Izrune.iOS
             RefreshData = () => SelectPacketVc.RefrehData?.Invoke();
 
             nextBtn.TouchUpInside += delegate {
+
+                if(IsPromoSelected)
+                    UserControl.Instance.SetPromoPack(PromoVc.month, PromoVc.month, PromoVc.PromoCode);
+                else
+                    UserControl.Instance.SetPromoPack(SelectPacketVc.SelectedPrice.months, SelectPacketVc.SelectedPrice.price);
                 NextClicked?.Invoke();
                 this.NavigationController.PopViewController(true);
             };
 
             PromoVc.PromoCodeSelected = (promoCode, month) =>
             {
-                UserControl.Instance.SetPromoPack(month, month, promoCode);
+                if (month > 0)
+                {
+                    IsPromoSelected = true;
+                }
+                else
+                    IsPromoSelected = false;
 
             };
 

@@ -13,11 +13,11 @@ using IZrune.PCL.Helpers;
 
 namespace Izrune.iOS
 {
-	public partial class PromoCodeViewController : UIViewController
-	{
-		public PromoCodeViewController (IntPtr handle) : base (handle)
-		{
-		}
+    public partial class PromoCodeViewController : UIViewController
+    {
+        public PromoCodeViewController (IntPtr handle) : base (handle)
+        {
+        }
 
         public IPromoCode PromoInfo { get; set; }
 
@@ -29,23 +29,32 @@ namespace Izrune.iOS
 
         private int SelectedMont;
 
+        public string PromoCode = "";
+        public int month;
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
+            monthView.UserInteractionEnabled = false;
             confirmBtn.TouchUpInside += delegate {
 
                 CheckCode(promoCodeTf.Text == PromoInfo.PrommoCode);
 
                 var result = string.Equals(promoCodeTf.Text, PromoInfo.PrommoCode);
-
+                //17756347
                 if (result)
-                    PromoCodeSelected?.Invoke(PromoInfo.PrommoCode, SelectedMont);
+                {
+                    monthView.UserInteractionEnabled = true;
+                    InitDropDown();
+                    if(SelectedMont > 0)
+                        PromoCodeSelected?.Invoke(PromoInfo.PrommoCode, SelectedMont);
+                }
             };
 
             InitUI();
             InitGestures();
-            InitDropDown();
+
 
         }
 
@@ -75,7 +84,7 @@ namespace Izrune.iOS
             MonthDropDown.Width = this.View.Frame.Width;
             MonthDropDown.Direction = Direction.Bottom;
 
-            var array = PromoInfo?.Prices?.Select(x => x.months.ToString() + "თვე")?.ToArray();
+            var array = PromoInfo?.Prices?.Select(x => x.months.ToString() + " თვე")?.ToArray();
 
             MonthDropDown.DataSource = array;
 

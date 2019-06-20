@@ -32,6 +32,8 @@ namespace Izrune.iOS
 
         public Action RefrehData { get; set; }
 
+        public IPrice SelectedPrice;
+
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -63,7 +65,7 @@ namespace Izrune.iOS
 
             var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-            var data = (await service.GetPromoCodeAsync(SchoolId));
+            var data = (await service.GetPromoCodeAsync(0));
 
             PriceList = data.Prices?.ToList();
 
@@ -100,6 +102,8 @@ namespace Izrune.iOS
                 SelectedPriceIndex = PriceList.IndexOf(PriceList?.FirstOrDefault(x => x.price == priice.price));
 
                 packetCollectionView.ReloadData();
+
+                SelectedPrice = priice;
 
                 PriceSelected?.Invoke(priice);
             };
