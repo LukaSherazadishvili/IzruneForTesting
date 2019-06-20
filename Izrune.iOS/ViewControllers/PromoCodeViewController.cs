@@ -42,6 +42,7 @@ namespace Izrune.iOS
                 CheckCode(promoCodeTf.Text == PromoInfo.PrommoCode);
 
                 var result = string.Equals(promoCodeTf.Text, PromoInfo.PrommoCode);
+                //16295166
                 //17756347
                 if (result)
                 {
@@ -91,7 +92,7 @@ namespace Izrune.iOS
             MonthDropDown.SelectionAction = (nint index, string name) =>
             {
                 monthLbl.Text = name;
-                SelectedMont = (PromoInfo?.Prices?.ElementAt((int)index).months).Value;
+                SelectedMont = (PromoInfo.Prices.ElementAt((int)index).months);
             };
         }
 

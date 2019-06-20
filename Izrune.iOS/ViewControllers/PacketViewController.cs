@@ -11,6 +11,7 @@ using IZrune.PCL.Helpers;
 using MPDCiOSPages.ViewControllers;
 using MpdcViewExtentions;
 using UIKit;
+using IZrune.PCL.Implementation.Models;
 
 namespace Izrune.iOS
 {
@@ -56,7 +57,7 @@ namespace Izrune.iOS
             SelectPacketVc.SchoolId = SchoolId;
             SelectPacketVc.PriceSelected = (price) =>
             {
-                PriceSelected?.Invoke(price);
+
             };
 
 
@@ -70,10 +71,11 @@ namespace Izrune.iOS
 
             nextBtn.TouchUpInside += delegate {
 
-                if(IsPromoSelected)
+                if(IsPromoSelected )
                     UserControl.Instance.SetPromoPack(PromoVc.month, PromoVc.month, PromoVc.PromoCode);
                 else
                     UserControl.Instance.SetPromoPack(SelectPacketVc.SelectedPrice.months, SelectPacketVc.SelectedPrice.price);
+                PriceSelected?.Invoke(IsPromoSelected? new Price() { price = PromoVc.month , months = PromoVc.month } : SelectPacketVc.SelectedPrice);
                 NextClicked?.Invoke();
                 this.NavigationController.PopViewController(true);
             };
