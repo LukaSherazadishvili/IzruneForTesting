@@ -116,7 +116,7 @@ namespace Izrune.iOS
                 AddMoreStudentClicked = true;
 
                 ReseteViewControllers();
-
+                CurrentIndex = 0;
                 AddStudentIndex = 0;
                 AddViewController(studentRegVc1, AddMoreStudentVc);
                 ChangeHeader(false);
