@@ -50,6 +50,8 @@ namespace Izrune.iOS
                 await LoadDataAsync(); 
 
                 };
+
+            SelectedPrice = PriceList?[0];
         }
 
 
