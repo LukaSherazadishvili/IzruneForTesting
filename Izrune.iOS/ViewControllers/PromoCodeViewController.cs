@@ -27,7 +27,7 @@ namespace Izrune.iOS
 
         public Action<string, int> PromoCodeSelected { get; set; }
 
-        private int SelectedMont;
+        public int SelectedMont;
 
         public string PromoCode = "";
         public int month;
@@ -48,8 +48,7 @@ namespace Izrune.iOS
                 {
                     monthView.UserInteractionEnabled = true;
                     InitDropDown();
-                    if(SelectedMont > 0)
-                        PromoCodeSelected?.Invoke(PromoInfo.PrommoCode, SelectedMont);
+                    PromoCode = PromoInfo.PrommoCode;
                 }
             };
 
@@ -93,6 +92,7 @@ namespace Izrune.iOS
             {
                 monthLbl.Text = name;
                 SelectedMont = (PromoInfo.Prices.ElementAt((int)index).months);
+                PromoCodeSelected?.Invoke(PromoInfo.PrommoCode, SelectedMont);
             };
         }
 

@@ -51,7 +51,7 @@ namespace Izrune.iOS
 
                 };
 
-            SelectedPrice = PriceList?[0];
+            //SelectedPrice = PriceList?[0];
         }
 
 

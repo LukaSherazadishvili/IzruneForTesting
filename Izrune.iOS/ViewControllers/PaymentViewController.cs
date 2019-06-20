@@ -36,23 +36,27 @@ namespace Izrune.iOS
             }
         }
 
-        //[Export("webView:shouldStartLoadWithRequest:navigationType:")]
-        //public bool ShouldStartLoad(UIWebView webView, NSUrlRequest request, UIWebViewNavigationType navigationType)
-        //{
-        //    if(request.Url.AbsoluteString == PayInfo.SuccesUrl)
-        //    {
-        //        //TODO
-        //        GoToLogin?.Invoke();
-        //    }
+        [Export("webView:shouldStartLoadWithRequest:navigationType:")]
+        public bool ShouldStartLoad(UIWebView webView, NSUrlRequest request, UIWebViewNavigationType navigationType)
+        {
+            if(request.Url.AbsoluteString == PayInfo.SuccesUrl)
+            {
+                //TODO
+                GoToLogin?.Invoke();
+            }
 
-        //    else
-        //    {
-        //        //TODO
-        //        GoToLogin?.Invoke();
-        //    }
+            else if(request.Url.AbsoluteString == PayInfo.FailUrl)
+            {
+                //TODO
+                GoToLogin?.Invoke();
+            }
 
-        //    return true;
-        //}
+            else if(request.Url.AbsoluteString == "http://www.izrune.ge/")
+            {
+                GoToLogin?.Invoke();
+            }
+            return true;
+        }
 
     }
 }

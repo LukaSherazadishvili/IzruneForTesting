@@ -71,13 +71,20 @@ namespace Izrune.iOS
 
             nextBtn.TouchUpInside += delegate {
 
-                if(IsPromoSelected )
-                    UserControl.Instance.SetPromoPack(PromoVc.month, PromoVc.month, PromoVc.PromoCode);
+                if(SelectPacketVc.SelectedPrice == null && PromoVc.SelectedMont == 0)
+                {
+                    ShowAlert();
+                }
                 else
-                    UserControl.Instance.SetPromoPack(SelectPacketVc.SelectedPrice.months, SelectPacketVc.SelectedPrice.price);
-                PriceSelected?.Invoke(IsPromoSelected? new Price() { price = PromoVc.month , months = PromoVc.month } : SelectPacketVc.SelectedPrice);
-                NextClicked?.Invoke();
-                this.NavigationController.PopViewController(true);
+                {
+                    if (IsPromoSelected)
+                        UserControl.Instance.SetPromoPack(PromoVc.SelectedMont, PromoVc.SelectedMont, PromoVc.PromoCode);
+                    else
+                        UserControl.Instance.SetPromoPack(SelectPacketVc.SelectedPrice.months, SelectPacketVc.SelectedPrice.price);
+                    PriceSelected?.Invoke(IsPromoSelected ? new Price() { price = PromoVc.SelectedMont, months = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
+                    NextClicked?.Invoke();
+                    this.NavigationController.PopViewController(true);
+                }
             };
 
             PromoVc.PromoCodeSelected = (promoCode, month) =>
@@ -212,6 +219,13 @@ namespace Izrune.iOS
                 viewForPeager.Frame.Width, contentHeightConstraint.Constant);
 
             View.LayoutIfNeeded();
+        }
+
+        private void ShowAlert()
+        {
+            var alertVc = UIAlertController.Create("ყურადღება!", "აუცილებელია პაკეტის არჩევა", UIAlertControllerStyle.Alert);
+            alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            this.PresentViewController(alertVc, true, null);
         }
     }
 }
