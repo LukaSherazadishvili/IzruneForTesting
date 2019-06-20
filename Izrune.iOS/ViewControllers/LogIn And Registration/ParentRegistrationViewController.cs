@@ -333,18 +333,6 @@ namespace Izrune.iOS
                         {
                             if (NextClicked)
                             {
-                                AddViewController(studentRegVc2, studentRegVc2);
-                            }
-                            else
-                            {
-                                AddViewController(studentRegVc1, studentRegVc2);
-                            }
-                            break;
-                        }
-                    case 2:
-                        {
-                            if (NextClicked)
-                            {
                                 studentRegVc2.SendClicked?.Invoke();
 
                                 if (SelectedPrice == null && studentRegVc2.IsAllSelected)
@@ -373,6 +361,10 @@ namespace Izrune.iOS
                                 ChangeHeader(false);
                                 AddViewController(studentRegVc1, studentRegVc2);
                             }
+                            break;
+                        }
+                    case 2:
+                        {
                             break;
                         }
                     case 3:
