@@ -31,7 +31,10 @@ namespace Izrune.iOS
 
             InitGestures();
 
-            paymentVc.GoToLogin = () => { GoToLogin?.Invoke(); };
+            paymentVc.GoToLogin = () => {
+                this.NavigationController.PopViewController(false);
+                GoToLogin?.Invoke(); 
+                };
         }
 
         private void InitGestures()

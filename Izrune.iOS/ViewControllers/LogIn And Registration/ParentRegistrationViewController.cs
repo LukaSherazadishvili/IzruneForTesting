@@ -116,7 +116,9 @@ namespace Izrune.iOS
             };
 
             paymentViewController = Storyboard.InstantiateViewController(PaymentMethodViewController.StoryboardId) as PaymentMethodViewController;
-            paymentViewController.GoToLogin = () => { this.NavigationController.PopViewController(true); };
+            paymentViewController.GoToLogin = () => { 
+                this.NavigationController.PopViewController(true); 
+                };
         }
 
         private void InitGestures()
