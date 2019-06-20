@@ -114,6 +114,7 @@ namespace Izrune.iOS
          
         private void InitForm(IStudent student)
         {
+            currentStudentLbl.Text = student.Name;
             nameLbl.Text = student?.Name;
             lastNameLbl.Text = student?.LastName;
 
