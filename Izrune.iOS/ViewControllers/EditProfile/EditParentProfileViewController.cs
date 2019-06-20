@@ -63,7 +63,7 @@ namespace Izrune.iOS
             {
                 //UpdateStudenProfile(nameLbl.Text, lastNameLbl.Text, new DateTime(), phoneTf.Text, emailTf.Text, RegionId, villageTf.Text);
 
-                //await UserControl.Instance.EditStudentprofile(emailTf.Text, phoneTf.Text, RegionId, villageTf.Text, SchoolId);
+                await UserControl.Instance.EditParrentProfile(emailTf.Text, phoneTf.Text, cityLbl.Text, villageTf.Text);
             };
 
             backBtn.TouchUpInside += delegate {
