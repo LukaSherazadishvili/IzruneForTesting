@@ -13,6 +13,7 @@ using IZrune.PCL.Abstraction.Models;
 using System.Linq;
 using IZrune.PCL.Helpers;
 using System.Diagnostics;
+using IZrune.PCL.Implementation.Models;
 
 namespace Izrune.iOS
 {
@@ -30,6 +31,8 @@ namespace Izrune.iOS
 
         public Action SendClicked { get; set; }
         public Action<ISchool> SchoolSelected { get; set; }
+        public Action CitySelected { get; set; }
+
         public string[] schoolArrray { get; private set; }
 
         public List<IRegion> CityList;
@@ -43,6 +46,9 @@ namespace Izrune.iOS
         private SelectSchoolViewController ScholVc;
 
         public bool IsAllSelected { get; set; }
+
+        public IStudent Student;
+        public Action StudentSelected { get; set; }
 
         public override void ViewDidLoad()
         {
@@ -80,6 +86,23 @@ namespace Izrune.iOS
                     IsAllSelected = false;
             };
 
+            StudentSelected = () =>
+            {
+                Student = new Student()
+                {
+                    RegionId = region.id,
+                    Village = villageTextField.Text,
+                    SchoolId = _school.id,
+                    Class = ClassId
+                };
+            };
+
+        }
+
+        public bool IsFormFilled()
+        {
+            var res = (region != null && _school != null && ClassId > 0);
+            return res;
         }
 
         private void DropDownInit()
@@ -109,13 +132,18 @@ namespace Izrune.iOS
             CityDpD.SelectionAction = (nint index, string name) =>
             {
                 //TODO
+                CitySelected?.Invoke();
                 SelectedCityindex = (int)index;
-
+                IsAllSelected = false;
                 region = CityList[SelectedCityindex];
 
                 selectSchoolView.UserInteractionEnabled = true;
+                ScholVc.SchoolList?.Clear();
                 ScholVc.SchoolList = CityList?[SelectedCityindex].Schools?.OrderBy(x => x.title)?.ToList();
+
                 cityLbl.Text = name;
+                _school = null;
+                schoolLbl.Text = "აირჩიეთ სკოლა";
 
             };
 

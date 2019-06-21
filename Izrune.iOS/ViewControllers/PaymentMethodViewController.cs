@@ -3,6 +3,7 @@
 using System;
 
 using Foundation;
+using IZrune.PCL.Abstraction.Models;
 using UIKit;
 
 namespace Izrune.iOS
@@ -17,14 +18,23 @@ namespace Izrune.iOS
         private PaymentViewController paymentVc;
         public string PaymentUrl { get; set; }
 
+        public IPay PayInfo { get; set; }
+
+        public Action GoToLogin { get; set; }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
             paymentVc = Storyboard.InstantiateViewController(PaymentViewController.StoryboardId) as PaymentViewController;
-            paymentVc.PaymentUrl = PaymentUrl;
+            paymentVc.PayInfo = PayInfo;
 
             InitGestures();
+
+            paymentVc.GoToLogin = () => {
+                this.NavigationController.PopViewController(false);
+                GoToLogin?.Invoke(); 
+                };
         }
 
         private void InitGestures()

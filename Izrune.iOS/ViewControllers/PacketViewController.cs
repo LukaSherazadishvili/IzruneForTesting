@@ -11,6 +11,7 @@ using IZrune.PCL.Helpers;
 using MPDCiOSPages.ViewControllers;
 using MpdcViewExtentions;
 using UIKit;
+using IZrune.PCL.Implementation.Models;
 
 namespace Izrune.iOS
 {
@@ -32,6 +33,12 @@ namespace Izrune.iOS
 
         public Action SendClicked { get; set; }
 
+        public Action NextClicked { get; set; }
+
+        public Action RefreshData { get; set; }
+
+        bool IsPromoSelected;
+
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -50,9 +57,9 @@ namespace Izrune.iOS
             SelectPacketVc.SchoolId = SchoolId;
             SelectPacketVc.PriceSelected = (price) =>
             {
-                UserControl.Instance.SetPromoPack(price.months, price.price);
-                PriceSelected?.Invoke(price);
+
             };
+
 
             PromoVc = Storyboard.InstantiateViewController(PromoCodeViewController.StoryboardId) as PromoCodeViewController;
             PromoVc.PromoInfo = PromoCode;
@@ -60,12 +67,46 @@ namespace Izrune.iOS
             this.AddVcInView(viewForPeager, SelectPacketVc);
 
             SendClicked = () => SelectPacketVc.SendClicked?.Invoke();
+            RefreshData = () => SelectPacketVc.RefrehData?.Invoke();
 
             nextBtn.TouchUpInside += delegate {
-                this.NavigationController.PopViewController(true);
+
+                if(SelectPacketVc.SelectedPrice == null && PromoVc.SelectedMont == 0)
+                {
+                    ShowAlert();
+                }
+                else
+                {
+                    if (IsPromoSelected)
+                        UserControl.Instance.SetPromoPack(PromoVc.SelectedMont, PromoVc.SelectedMont, PromoVc.PromoCode);
+                    else
+                        UserControl.Instance.SetPromoPack(SelectPacketVc.SelectedPrice.months, SelectPacketVc.SelectedPrice.price);
+                    PriceSelected?.Invoke(IsPromoSelected ? new Price() { price = PromoVc.SelectedMont, months = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
+                    NextClicked?.Invoke();
+                    this.NavigationController.PopViewController(true);
+                }
+            };
+
+            PromoVc.PromoCodeSelected = (promoCode, month) =>
+            {
+                if (month > 0)
+                {
+                    IsPromoSelected = true;
+                }
+                else
+                    IsPromoSelected = false;
+
+            };
+
+            SelectPacketVc.DataLoaded = () =>
+            {
+                var scrollView = SelectPacketVc.View.OfType<UIScrollView>().FirstOrDefault();
+                SelectPacketVc.View.LayoutIfNeeded();
+                scrollView.LayoutIfNeeded();
+
+                SetContentHeight(scrollView.ContentSize.Height);
             };
         }
-
 
         private async Task GetPromoDataAsync()
         {
@@ -100,7 +141,7 @@ namespace Izrune.iOS
                 {
                     HeaderGesture(true);
                     AddPacketVc();
-                    //TODO Change Page
+
                 }));
             }
 
@@ -110,7 +151,7 @@ namespace Izrune.iOS
                 {
                     HeaderGesture(false);
                     AddPromoVc();
-                    //TODO Change Page
+
                 }));
             }
         }
@@ -147,6 +188,44 @@ namespace Izrune.iOS
             PromoVc.RemoveFromParentViewController();
 
             this.AddVcInView(viewForPeager, SelectPacketVc);
+        }
+
+        float HederHeight = 97;
+        float FooterHeight = 140;
+
+        private void SetContentHeight(nfloat scrollviewContentHeight)
+        {
+
+            UIEdgeInsets safeAreaSize = new UIEdgeInsets();
+
+            if (UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
+            {
+                safeAreaSize = UIApplication.SharedApplication.KeyWindow.SafeAreaInsets;
+            }
+
+            var currentContentHeight = this.View.Frame.Height - (HederHeight + FooterHeight + safeAreaSize.Top + safeAreaSize.Bottom);
+            var diffrenceWithContents = currentContentHeight - scrollviewContentHeight;
+
+            if (diffrenceWithContents >= 0)
+                contentHeightConstraint.Constant = currentContentHeight;
+                
+            else
+                contentHeightConstraint.Constant = scrollviewContentHeight;
+                
+
+            View.LayoutIfNeeded();
+
+            viewForPeager.Frame = new CoreGraphics.CGRect(viewForPeager.Frame.X, viewForPeager.Frame.Y,
+                viewForPeager.Frame.Width, contentHeightConstraint.Constant);
+
+            View.LayoutIfNeeded();
+        }
+
+        private void ShowAlert()
+        {
+            var alertVc = UIAlertController.Create("ყურადღება!", "აუცილებელია პაკეტის არჩევა", UIAlertControllerStyle.Alert);
+            alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            this.PresentViewController(alertVc, true, null);
         }
     }
 }

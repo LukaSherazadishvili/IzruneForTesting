@@ -13,6 +13,9 @@ namespace Izrune.iOS
 	partial class PacketViewController
 	{
 		[Outlet]
+		UIKit.NSLayoutConstraint contentHeightConstraint { get; set; }
+
+		[Outlet]
 		UIKit.NSLayoutConstraint footerHeightConstraint { get; set; }
 
 		[Outlet]
@@ -92,6 +95,11 @@ namespace Izrune.iOS
 			if (viewForPromoCode != null) {
 				viewForPromoCode.Dispose ();
 				viewForPromoCode = null;
+			}
+
+			if (contentHeightConstraint != null) {
+				contentHeightConstraint.Dispose ();
+				contentHeightConstraint = null;
 			}
 		}
 	}

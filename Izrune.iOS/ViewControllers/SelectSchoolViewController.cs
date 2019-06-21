@@ -29,6 +29,12 @@ namespace Izrune.iOS
             InitCollectionView();
         }
 
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+
+            schoolCollectionView.ReloadData();
+        }
         public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {
             var cell = schoolCollectionView.DequeueReusableCell(SelectSchoolCollectionViewCell.Identifier, indexPath) as SelectSchoolCollectionViewCell;

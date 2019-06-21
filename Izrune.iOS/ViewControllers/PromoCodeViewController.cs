@@ -9,14 +9,15 @@ using FPT.Framework.iOS.UI.DropDown;
 using IZrune.PCL.Abstraction.Models;
 using System.Linq;
 using MpdcViewExtentions;
+using IZrune.PCL.Helpers;
 
 namespace Izrune.iOS
 {
-	public partial class PromoCodeViewController : UIViewController
-	{
-		public PromoCodeViewController (IntPtr handle) : base (handle)
-		{
-		}
+    public partial class PromoCodeViewController : UIViewController
+    {
+        public PromoCodeViewController (IntPtr handle) : base (handle)
+        {
+        }
 
         public IPromoCode PromoInfo { get; set; }
 
@@ -24,20 +25,36 @@ namespace Izrune.iOS
 
         DropDown MonthDropDown = new DropDown();
 
+        public Action<string, int> PromoCodeSelected { get; set; }
+
+        public int SelectedMont;
+
+        public string PromoCode = "";
+        public int month;
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
+            monthView.UserInteractionEnabled = false;
             confirmBtn.TouchUpInside += delegate {
-                //TODO
-                //CheckCode()
 
                 CheckCode(promoCodeTf.Text == PromoInfo.PrommoCode);
+
+                var result = string.Equals(promoCodeTf.Text, PromoInfo.PrommoCode);
+                //16295166
+                //17756347
+                if (result)
+                {
+                    monthView.UserInteractionEnabled = true;
+                    InitDropDown();
+                    PromoCode = PromoInfo.PrommoCode;
+                }
             };
 
             InitUI();
             InitGestures();
-            InitDropDown();
+
 
         }
 
@@ -67,14 +84,15 @@ namespace Izrune.iOS
             MonthDropDown.Width = this.View.Frame.Width;
             MonthDropDown.Direction = Direction.Bottom;
 
-            var array = PromoInfo?.Prices?.Select(x => x.months.ToString() + "თვე")?.ToArray();
+            var array = PromoInfo?.Prices?.Select(x => x.months.ToString() + " თვე")?.ToArray();
 
             MonthDropDown.DataSource = array;
 
             MonthDropDown.SelectionAction = (nint index, string name) =>
             {
                 monthLbl.Text = name;
-
+                SelectedMont = (PromoInfo.Prices.ElementAt((int)index).months);
+                PromoCodeSelected?.Invoke(PromoInfo.PrommoCode, SelectedMont);
             };
         }
 

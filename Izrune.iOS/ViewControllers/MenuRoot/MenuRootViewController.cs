@@ -30,7 +30,7 @@ namespace Izrune.iOS.ViewControllers
         const string NewsStoryboardId = "NewsViewControllerStoryboardId";
         const string ContactStoryboardId = "ContactViewControllerStoryboardId";
         const string MoreInfoStoryboardId = "MoreInfoViewControllerStoryboardId";
-        const string StatisticStoryboardId = "StatisticStoryboardId";
+        const string StatisticStoryboardId = "StudentStatisticStoryboardId";
         const string StartTestStoryboardId = "StartTestStoryboardId";
         const string UpdatePacketStoryboardId = "PacketViewControllerStoryboardId";
         const string EditProfileStoryboardId = "EditProfileStoryboardId";
@@ -46,9 +46,9 @@ namespace Izrune.iOS.ViewControllers
                 {MenuType.LogIn, () => CreateViewControllerByStoryboard(LogInStoryboardId)},
                 {MenuType.News, () => CreateViewControllerByStoryboard(SelectPacketViewController.StoryboardId)},
                 {MenuType.MoreInfo, () => CreateViewControllerByStoryboard(MoreInfoStoryboardId)},
-                {MenuType.Contact, () => CreateViewControllerByStoryboard(ResultTabbedViewController.StoryboardId)},
+                {MenuType.Contact, () => CreateViewControllerByStoryboard(ContactStoryboardId)},
                 {MenuType.Main, () => CreateViewControllerByStoryboard(StartTestStoryboardId)},
-                {MenuType.Statistic, () => CreateViewControllerByStoryboard(TestResultsViewController.StoryboardId)},
+                {MenuType.Statistic, () => CreateViewControllerByStoryboard(StatisticStoryboardId)},
                 {MenuType.UpdatePacket, () => CreateViewControllerByStoryboard(UpdatePacketStoryboardId)},
                 {MenuType.EditProfile, () => CreateViewControllerByStoryboard(EditProfileStoryboardId)},
                 {MenuType.LogOut, () => CreateViewControllerByStoryboard(AddStudentViewController.StoryboardId)},

@@ -28,6 +28,12 @@ namespace Izrune.iOS
         public Action<IPrice> PriceSelected { get; set; }
         public Action SendClicked { get; set; }
 
+        public Action DataLoaded { get; set; }
+
+        public Action RefrehData { get; set; }
+
+        public IPrice SelectedPrice;
+
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -37,6 +43,15 @@ namespace Izrune.iOS
             await LoadDataAsync();
 
             SendClicked = () => SendData();
+
+            RefrehData = async () => 
+            {
+                PriceList?.Clear();
+                await LoadDataAsync(); 
+
+                };
+
+            //SelectedPrice = PriceList?[0];
         }
 
 
@@ -52,13 +67,23 @@ namespace Izrune.iOS
 
             var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-            var data = (await service.GetPromoCodeAsync(SchoolId));
+            var data = (await service.GetPromoCodeAsync(0));
 
             PriceList = data.Prices?.ToList();
 
             packetCollectionView.ReloadData();
 
             EndLoading();
+
+            var firstCell = packetCollectionView.DequeueReusableCell(PacketCollectionViewCell.Identifier, NSIndexPath.FromRowSection(0, 0)) as PacketCollectionViewCell;
+            var lastCell = packetCollectionView.DequeueReusableCell(PacketCollectionViewCell.Identifier, NSIndexPath.FromRowSection((System.nint)(PriceList?.Count - 1), 0)) as PacketCollectionViewCell;
+
+            var contentHeight = lastCell.Frame.Y + lastCell.Frame.Height - firstCell.Frame.Y;
+
+            packetCollectionHeightConstraint.Constant = contentHeight;
+
+            DataLoaded?.Invoke();
+
         }
         private void CollectionViewSettings()
         {
@@ -79,6 +104,8 @@ namespace Izrune.iOS
                 SelectedPriceIndex = PriceList.IndexOf(PriceList?.FirstOrDefault(x => x.price == priice.price));
 
                 packetCollectionView.ReloadData();
+
+                SelectedPrice = priice;
 
                 PriceSelected?.Invoke(priice);
             };

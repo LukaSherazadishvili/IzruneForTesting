@@ -38,7 +38,8 @@ namespace Izrune.iOS
 
         private PaymentMethodViewController paymentViewController;
 
-        
+        private bool AddMoreStudentClicked;
+
         private int CurrentIndex = 0;
 
 
@@ -47,6 +48,8 @@ namespace Izrune.iOS
         private IPrice SelectedPrice;
 
         private const int HeaderAndFooterHeight = 275;
+
+        private IStudent MoreStudent;
 
         #endregion
 
@@ -65,38 +68,13 @@ namespace Izrune.iOS
             this.AddVcInViewWithoutFrame(viewForPager, parentRegVc);
             var scrollView = parentRegVc.View.OfType<UIScrollView>().FirstOrDefault();
             scrollView.LayoutIfNeeded();
-
+             
             SetContentHeight(scrollView.ContentSize.Height);
-
-            //scrollView.BackgroundColor = UIColor.Red;
-            //subViewsContentHeightConstraint.Constant =scrollView.ContentSize.Height;// parentRegVc.View.Frame.Height;
-
-
-            //View.LayoutIfNeeded();
-
-            //var diff = this.View.Frame.Height - (scrollView.ContentSize.Height + HeaderAndFooterHeight);//(View.Subviews.OfType<UIScrollView>().FirstOrDefault().ContentSize.Height );
-
-            //if (diff > 0)
-            //{
-
-                //float safeAreaSize = default(float);
-
-                //if(UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
-                //{
-                //    safeAreaSize = (float)UIApplication.SharedApplication.KeyWindow.SafeAreaInsets.Bottom;
-                //}
-
-                //subViewsContentHeightConstraint.Constant = scrollView.ContentSize.Height + (diff) -130;
-                //View.LayoutIfNeeded();
-            //}
-
-
 
             InitGestures();
 
             ChangeHeader(true);
         }
-
 
 
         private void InitViewControllers()
@@ -108,22 +86,49 @@ namespace Izrune.iOS
             studentRegVc1 = Storyboard.InstantiateViewController(StudentRegFirstViewController.StoryboardId) as StudentRegFirstViewController;
 
             studentRegVc2 = Storyboard.InstantiateViewController(StudentRegSecondViewController.StoryboardId) as StudentRegSecondViewController;
-            studentRegVc2.SchoolSelected = (school) => { choosePacketVc.SchoolId = school.id; };
-
+            studentRegVc2.SchoolSelected = (school) => 
+            { 
+                choosePacketVc.SchoolId = school.id;
+                choosePacketVc.RefreshData?.Invoke();
+                SelectedPrice = null;
+                CurrentIndex = 3;
+            };
+            studentRegVc2.CitySelected = () => { 
+                SelectedPrice = null; 
+            };
 
             choosePacketVc = Storyboard.InstantiateViewController(PacketViewController.StoryboardId) as PacketViewController;
-            choosePacketVc.PriceSelected = (price) => SelectedPrice = price;
+            choosePacketVc.PriceSelected = (price) => {
+
+                SelectedPrice = price;
+                CurrentIndex = 4;
+                HideHeader(true);
+                AddViewController(AddMoreStudentVc, studentRegVc2);
+            };
 
             AddMoreStudentVc = Storyboard.InstantiateViewController(AddStudentViewController.StoryboardId) as AddStudentViewController;
             AddMoreStudentVc.AddMoreStudentClicked = () =>
             {
-                studentRegVc1 = Storyboard.InstantiateViewController(StudentRegFirstViewController.StoryboardId) as StudentRegFirstViewController;
+                //////////////////////////////
+                //////Add More Student ///////
+                //////////////////////////////
 
+
+                AddMoreStudentClicked = true;
+                prewBtn.Enabled = false;
+                ReseteViewControllers();
                 CurrentIndex = 2;
+                SelectedPrice = null;
+                AddStudentIndex = 0;
                 AddViewController(studentRegVc1, AddMoreStudentVc);
+                ChangeHeader(false);
+                HideHeader(false);
             };
 
             paymentViewController = Storyboard.InstantiateViewController(PaymentMethodViewController.StoryboardId) as PaymentMethodViewController;
+            paymentViewController.GoToLogin = () => { 
+                this.NavigationController.PopViewController(true); 
+                };
         }
 
         private void InitGestures()
@@ -132,15 +137,29 @@ namespace Izrune.iOS
             {
                 NextClicked = true;
                 GetCurrentPage(CurrentIndex);
-                CurrentIndex++;
+                //CurrentIndex++;
                 CheckIndex();
+
             };
 
             prewBtn.TouchUpInside += delegate {
-                NextClicked = false;
-                GetCurrentPage(CurrentIndex);
-                CurrentIndex--;
-                CheckIndex();
+
+                if(AddMoreStudentClicked)
+                {
+                    //TODO
+                    prewBtn.Enabled = CurrentIndex <= 2;
+                    NextClicked = false;
+                    GetCurrentPage(CurrentIndex);
+                    CheckIndex();
+                }
+                else
+                {
+                    NextClicked = false;
+                    GetCurrentPage(CurrentIndex);
+                    //CurrentIndex--;
+                    CheckIndex();
+                }
+
             };
         }
 
@@ -173,20 +192,36 @@ namespace Izrune.iOS
 
         private void CheckIndex()
         {
-            nextBtn.Enabled = CurrentIndex < 6;
+            nextBtn.Enabled = CurrentIndex < 5;
             prewBtn.Enabled = CurrentIndex > 0;
         }
 
+
+        private int AddStudentIndex;
+
         private void GetCurrentPage(int pageIndex)
         {
+        
             switch (pageIndex)
             {
                 case 0:
                     {
                         if (NextClicked)
                         {
-                            AddViewController(parent2RegVc, parentRegVc);
-                            parentRegVc.SendClicked?.Invoke();
+                            var res = parentRegVc.IsFormFilled();
+
+                            if (res)
+                            {
+                                AddViewController(parent2RegVc, parentRegVc);
+                                CurrentIndex++;
+                                parentRegVc.SendClicked?.Invoke();
+                            }
+
+                            else
+                            {
+                                ShowAlert();
+                                CurrentIndex = 0;
+                            }
                         }
                         break;
                     }
@@ -194,13 +229,27 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            AddViewController(studentRegVc1, parent2RegVc);
-                            parent2RegVc.SendClicked?.Invoke();
-                            ChangeHeader(false);
+                            var res = parent2RegVc.IsFormFilled();
+
+                            if(res)
+                            {
+                                AddViewController(studentRegVc1, parent2RegVc);
+                                CurrentIndex++;
+                                parent2RegVc.SendClicked?.Invoke();
+                                ChangeHeader(false);
+                            }
+
+                            else
+                            {
+                                ShowAlert();
+                                CurrentIndex = 1;
+                            }
+
                         }
                         else
                         {
                             AddViewController(parentRegVc, parent2RegVc);
+                            CurrentIndex--;
                             ChangeHeader(true);
                         }
                         break;
@@ -209,14 +258,36 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            AddViewController(studentRegVc2, studentRegVc1);
-                            studentRegVc1.SendClicked?.Invoke();
-                            ChangeHeader(false);
+                            var res = studentRegVc1.IsFormFilled();
+
+                            if(res)
+                            {
+                                prewBtn.Enabled = true;
+                                if (AddMoreStudentClicked)
+                                {
+                                    studentRegVc1.StudentSelected?.Invoke();
+                                    MoreStudent = studentRegVc1.Student;
+                                }
+                                else
+                                    studentRegVc1.SendClicked?.Invoke();
+
+                                ChangeHeader(false);
+                                AddViewController(studentRegVc2, studentRegVc1);
+                                CurrentIndex++;
+                            }
+
+                            else
+                            {
+                                ShowAlert();
+                                CurrentIndex = 2;
+                            }
+
                         }
                         else
                         {
-                            AddViewController(parent2RegVc, studentRegVc1);
                             ChangeHeader(true);
+                            AddViewController(parent2RegVc, studentRegVc1);
+                            CurrentIndex--;
                         }
                         break;
                     }
@@ -224,24 +295,64 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            studentRegVc2.SendClicked?.Invoke();
-                            if (studentRegVc2.IsAllSelected)
-                            {
-                                //AddViewController(choosePacketVc, studentRegVc2);
 
-                                this.NavigationController.PushViewController(choosePacketVc, false);
-                                //HideHeader(true);
+                            var res = studentRegVc2.IsFormFilled();
+
+                            if(res)
+                            {
+                                if (AddMoreStudentClicked)
+                                {
+                                    studentRegVc2.StudentSelected?.Invoke();
+                                    MoreStudent.RegionId = studentRegVc2.Student.RegionId;
+                                    MoreStudent.Village = studentRegVc2.Student.Village;
+                                    MoreStudent.SchoolId = studentRegVc2.Student.SchoolId;
+                                    MoreStudent.Class = studentRegVc2.Student.Class;
+                                }
+
+                                studentRegVc2.SendClicked?.Invoke();
+
+                                if (SelectedPrice == null && studentRegVc2.IsAllSelected)
+                                {
+                                    //AddViewController(choosePacketVc, studentRegVc2);
+
+                                    this.NavigationController.PushViewController(choosePacketVc, false);
+                                    //HideHeader(true);
+                                }
+
+                                else if (SelectedPrice == null && !studentRegVc2.IsAllSelected)
+                                {
+                                    CurrentIndex = 2;
+                                    ShowAlert();
+                                }
+
+                                else
+                                {
+                                    HideHeader(true);
+                                    try
+                                    {
+                                        var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
+                                        //await service.AddStudent(MoreStudent);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine(ex.Message);
+                                    }
+                                    AddViewController(AddMoreStudentVc, studentRegVc2);
+                                    CurrentIndex++;
+                                }
                             }
+
                             else
                             {
-                                CurrentIndex--;
                                 ShowAlert();
+                                CurrentIndex = 3;
                             }
                         }
                         else
                         {
-                            AddViewController(studentRegVc1, studentRegVc2);
                             ChangeHeader(false);
+                            AddViewController(studentRegVc1, studentRegVc2);
+                            CurrentIndex--;
                         }
                         break;
                     }
@@ -249,44 +360,55 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            AddViewController(AddMoreStudentVc, studentRegVc2);
-                            choosePacketVc.SendClicked?.Invoke();
                             HideHeader(true);
-                        }
-                        else
-                        {
-                            AddViewController(studentRegVc2, studentRegVc2);
-                            ChangeHeader(false);
-                            HideHeader(false);
-                        }
-                            
-                        break;
-                    }
-                case 5:
-                    {
-                        if (NextClicked)
-                        {
+                            //AddViewController(AddMoreStudentVc, studentRegVc2);
+                            //choosePacketVc.SendClicked?.Invoke();
+
                             AddMoreStudentVc?.SendClicked?.Invoke();
 
+                            //AddViewController(AddMoreStudentVc, studentRegVc2);
                             AddMoreStudentVc.DataSent = (ipay) => {
-                                paymentViewController.PaymentUrl = ipay.CurrentUserPayURl;
-                                AddViewController(paymentViewController, AddMoreStudentVc);
+                                paymentViewController.PayInfo = ipay;
+                                //AddViewController(paymentViewController, AddMoreStudentVc);
+                                this.NavigationController.PushViewController(paymentViewController, true);
                             };
-
                         }
                         else
                         {
-                            AddViewController(studentRegVc2, AddMoreStudentVc);
                             ChangeHeader(false);
                             HideHeader(false);
-                            //this.NavigationController.PushViewController(choosePacketVc, false);
+                            AddViewController(studentRegVc2, AddMoreStudentVc);
+                            CurrentIndex--;
                         }
 
                         break;
                     }
+                //case 5:
+                    //{
+                    //    if (NextClicked)
+                    //    {
+                    //        AddMoreStudentVc?.SendClicked?.Invoke();
+
+                    //        AddMoreStudentVc.DataSent = (ipay) => {
+                    //            paymentViewController.PayInfo = ipay;
+                    //            AddViewController(paymentViewController, AddMoreStudentVc);
+                    //        };
+
+                    //    }
+                    //    else
+                    //    {
+                    //        AddViewController(studentRegVc2, AddMoreStudentVc);
+                    //        ChangeHeader(false);
+                    //        HideHeader(false);
+                    //        //this.NavigationController.PushViewController(choosePacketVc, false);
+                    //    }
+
+                    //    break;
+                    //}
                 default:
                     break;
             }
+
         }
 
         private void ShowAlert()
@@ -364,10 +486,12 @@ namespace Izrune.iOS
             else
             {
                 subViewsContentHeightConstraint.Constant = scrollviewContentHeight;
+
             }
 
-            if (CurrentIndex == 4)
-                subViewsContentHeightConstraint.Constant += 120;
+            //if (CurrentIndex >= 4)
+                //subViewsContentHeightConstraint.Constant += 120;
+
             View.LayoutIfNeeded();
             //var diff = this.View.Frame.Height - (scrollviewConstentHeight + HeaderAndFooterHeight);
 
@@ -387,5 +511,37 @@ namespace Izrune.iOS
             View.LayoutIfNeeded();
         }
 
+        private void ReseteViewControllers()
+        {
+            studentRegVc1 = Storyboard.InstantiateViewController(StudentRegFirstViewController.StoryboardId) as StudentRegFirstViewController;
+            studentRegVc2 = Storyboard.InstantiateViewController(StudentRegSecondViewController.StoryboardId) as StudentRegSecondViewController;
+            studentRegVc2.CityList = CityList;
+
+            studentRegVc2.SchoolSelected = (school) =>
+            {
+                choosePacketVc.SchoolId = school.id;
+                choosePacketVc.RefreshData?.Invoke();
+                SelectedPrice = null;
+                CurrentIndex = 3;
+            };
+
+            studentRegVc2.CitySelected = () => {
+                SelectedPrice = null;
+            };
+
+            choosePacketVc = Storyboard.InstantiateViewController(PacketViewController.StoryboardId) as PacketViewController;
+            choosePacketVc.PriceSelected = (price) => {
+
+                MoreStudent.PackageMonthCount = price.months;
+                SelectedPrice = price;
+                CurrentIndex = 4;
+                HideHeader(true);
+                AddViewController(AddMoreStudentVc, studentRegVc2);
+            };
+
+            AddMoreStudentVc = Storyboard.InstantiateViewController(AddStudentViewController.StoryboardId) as AddStudentViewController;
+
+
+        }
     }
 }

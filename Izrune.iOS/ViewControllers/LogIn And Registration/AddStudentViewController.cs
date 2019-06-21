@@ -25,7 +25,9 @@ namespace Izrune.iOS
 
         public string PaymenUrl;
 
-        public async override void ViewDidLoad()
+        public IPay Pay { get; set; }
+
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
@@ -42,19 +44,17 @@ namespace Izrune.iOS
 
         private async Task SendData()
         {
-            //TODO
-
             if(IsMarked)
             {
                 try
                 {
                     var ipay = (await UserControl.Instance.FinishRegistration());
+                    Pay = ipay;
                     DataSent?.Invoke(ipay);
-                    PaymenUrl = ipay.CurrentUserPayURl;
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("finish exception: " + ex.Message);
                 }
 
             }

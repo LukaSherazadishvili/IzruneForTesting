@@ -22,13 +22,21 @@ namespace Izrune.iOS
 		}
 
         public static readonly NSString StoryboardId = new NSString("ParentRegiFirstStoryboardId");
-        private DateTime date;
-
+        private DateTime date = default(DateTime);
         public Action SendClicked { get; set; }
 
         DropDown CityDropDown = new DropDown();
 
         public List<IRegion> CityList;
+
+        private string City="";
+
+
+        public bool IsFormFilled()
+        {
+            var res = (firstNameTextfield.Text.IsEmtyOrNull() && lastNameTextField.Text.IsEmtyOrNull() && date.Year > 0001 && City.IsEmtyOrNull());
+            return res;
+        }
 
         public override void ViewDidLoad()
         {
@@ -126,7 +134,7 @@ namespace Izrune.iOS
             CityDropDown.SelectionAction = (nint index, string name) =>
             {
                 cityLbl.Text = name;
-
+                City = name;
             };
         }
 
