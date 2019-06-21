@@ -316,7 +316,8 @@ namespace Izrune.iOS
                             //AddViewController(AddMoreStudentVc, studentRegVc2);
                             AddMoreStudentVc.DataSent = (ipay) => {
                                 paymentViewController.PayInfo = ipay;
-                                AddViewController(paymentViewController, AddMoreStudentVc);
+                                //AddViewController(paymentViewController, AddMoreStudentVc);
+                                this.NavigationController.PushViewController(paymentViewController, true);
                             };
                         }
                         else
