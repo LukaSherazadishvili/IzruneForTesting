@@ -38,6 +38,8 @@ namespace Izrune.iOS
 
             View.LayoutIfNeeded();
 
+            InitDropDowns();
+
             InitUI();
 
             InitGestures();
@@ -101,11 +103,13 @@ namespace Izrune.iOS
 
                 //TODO
             };
+
         }
 
         private void InitDropDowns()
         {
             SetupDropDown(CurentStudentDP, currentStudentView, currentStudentLbl);
+            SetupDropDownGesture(CurentStudentDP, currentStudentView);
 
             var studentsArray = Students?.Select(x => x.Name)?.ToArray();
             CurentStudentDP.DataSource = studentsArray;
@@ -139,6 +143,19 @@ namespace Izrune.iOS
             dropDown.TextFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 15);
             dropDown.ClipsToBounds = true;
             dropDown.Layer.CornerRadius = 20;
+        }
+
+        private void SetupDropDownGesture(DropDown dropDown, UIView viewforDpD)
+        {
+            if (viewforDpD.GestureRecognizers == null || viewforDpD.GestureRecognizers?.Length == 0)
+            {
+                viewforDpD.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    dropDown.Show();
+                    InitDropDownUI(dropDown);
+                }));
+            }
+
         }
     }
 }
