@@ -13,6 +13,12 @@ namespace Izrune.iOS
 	partial class StudentStatisticViewController
 	{
 		[Outlet]
+		UIKit.UILabel currentStudentLbl { get; set; }
+
+		[Outlet]
+		UIKit.UIView currentStudentView { get; set; }
+
+		[Outlet]
 		UIKit.UIView diplomeShadow { get; set; }
 
 		[Outlet]
@@ -25,6 +31,9 @@ namespace Izrune.iOS
 		UIKit.UIView exTestView { get; set; }
 
 		[Outlet]
+		UIKit.UILabel packetDateLbl { get; set; }
+
+		[Outlet]
 		UIKit.UIButton paymentHostoryBtn { get; set; }
 
 		[Outlet]
@@ -35,29 +44,14 @@ namespace Izrune.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (diplomeView != null) {
-				diplomeView.Dispose ();
-				diplomeView = null;
-			}
-
-			if (sumTestsView != null) {
-				sumTestsView.Dispose ();
-				sumTestsView = null;
-			}
-
-			if (exTestView != null) {
-				exTestView.Dispose ();
-				exTestView = null;
-			}
-
 			if (diplomeShadow != null) {
 				diplomeShadow.Dispose ();
 				diplomeShadow = null;
 			}
 
-			if (sumShadow != null) {
-				sumShadow.Dispose ();
-				sumShadow = null;
+			if (diplomeView != null) {
+				diplomeView.Dispose ();
+				diplomeView = null;
 			}
 
 			if (exShadow != null) {
@@ -65,9 +59,39 @@ namespace Izrune.iOS
 				exShadow = null;
 			}
 
+			if (exTestView != null) {
+				exTestView.Dispose ();
+				exTestView = null;
+			}
+
 			if (paymentHostoryBtn != null) {
 				paymentHostoryBtn.Dispose ();
 				paymentHostoryBtn = null;
+			}
+
+			if (sumShadow != null) {
+				sumShadow.Dispose ();
+				sumShadow = null;
+			}
+
+			if (sumTestsView != null) {
+				sumTestsView.Dispose ();
+				sumTestsView = null;
+			}
+
+			if (currentStudentView != null) {
+				currentStudentView.Dispose ();
+				currentStudentView = null;
+			}
+
+			if (currentStudentLbl != null) {
+				currentStudentLbl.Dispose ();
+				currentStudentLbl = null;
+			}
+
+			if (packetDateLbl != null) {
+				packetDateLbl.Dispose ();
+				packetDateLbl = null;
 			}
 		}
 	}
