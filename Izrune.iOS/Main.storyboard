@@ -1355,7 +1355,7 @@
                                             <constraint firstAttribute="height" constant="15" id="pTi-5v-kcj"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="შემაჯამებელი ტესტის დიპლომი" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kD-AC-RFf">
+                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="2018-2019 სასწავლო წელი" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kD-AC-RFf">
                                         <rect key="frame" x="15" y="11.999999999999998" width="300" height="16.333333333333329"/>
                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                         <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1399,7 +1399,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ihb-P4-QTG">
-                                <rect key="frame" x="0.0" y="211" width="375" height="462"/>
+                                <rect key="frame" x="25" y="211" width="325" height="462"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="l7p-6C-fh4">
                                     <size key="itemSize" width="50" height="50"/>
@@ -1421,6 +1421,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Ihb-P4-QTG" firstAttribute="leading" secondItem="hH7-nE-2o7" secondAttribute="leading" id="32Y-U1-ZcT"/>
                             <constraint firstItem="Fik-Ss-5q7" firstAttribute="trailing" secondItem="pcH-6N-U9T" secondAttribute="trailing" constant="25" id="3s8-bY-QSv"/>
                             <constraint firstItem="Ihb-P4-QTG" firstAttribute="top" secondItem="hH7-nE-2o7" secondAttribute="bottom" constant="23.333333333333343" id="52b-Ac-2CF"/>
                             <constraint firstItem="hH7-nE-2o7" firstAttribute="leading" secondItem="Fik-Ss-5q7" secondAttribute="leading" constant="25" id="B9e-7m-1H4"/>
@@ -1428,15 +1429,14 @@
                             <constraint firstItem="hH7-nE-2o7" firstAttribute="top" secondItem="pcH-6N-U9T" secondAttribute="bottom" constant="30" id="LGs-mz-c5F"/>
                             <constraint firstItem="kF7-AZ-fEw" firstAttribute="top" secondItem="Ihb-P4-QTG" secondAttribute="bottom" constant="-1" id="NHg-kI-A5I"/>
                             <constraint firstItem="fjS-nM-ELr" firstAttribute="centerY" secondItem="kF7-AZ-fEw" secondAttribute="centerY" constant="-15" id="PBA-eg-gcB"/>
+                            <constraint firstItem="Ihb-P4-QTG" firstAttribute="trailing" secondItem="hH7-nE-2o7" secondAttribute="trailing" id="Qxr-r3-kU3"/>
                             <constraint firstItem="kF7-AZ-fEw" firstAttribute="leading" secondItem="Fik-Ss-5q7" secondAttribute="leading" id="RKY-88-vo5"/>
                             <constraint firstAttribute="trailing" secondItem="kF7-AZ-fEw" secondAttribute="trailing" id="Z7O-KB-eK0"/>
                             <constraint firstItem="pcH-6N-U9T" firstAttribute="leading" secondItem="Fik-Ss-5q7" secondAttribute="leading" constant="25" id="Z8d-Ww-gOO"/>
                             <constraint firstItem="Fik-Ss-5q7" firstAttribute="trailing" secondItem="sEi-zD-RBQ" secondAttribute="trailing" constant="20" id="ZNK-Qy-fYO"/>
                             <constraint firstItem="fjS-nM-ELr" firstAttribute="centerX" secondItem="lGF-7F-OXv" secondAttribute="centerX" id="acW-CB-bL4"/>
-                            <constraint firstItem="Ihb-P4-QTG" firstAttribute="leading" secondItem="Fik-Ss-5q7" secondAttribute="leading" id="aqo-Bd-wqe"/>
                             <constraint firstItem="8aX-uh-Ut4" firstAttribute="centerX" secondItem="lGF-7F-OXv" secondAttribute="centerX" id="c55-iE-1Hv"/>
                             <constraint firstItem="8aX-uh-Ut4" firstAttribute="top" secondItem="Fik-Ss-5q7" secondAttribute="top" constant="20" id="hjP-Ly-69L"/>
-                            <constraint firstAttribute="trailing" secondItem="Ihb-P4-QTG" secondAttribute="trailing" id="ifo-sg-JSD"/>
                             <constraint firstAttribute="bottom" secondItem="kF7-AZ-fEw" secondAttribute="bottom" id="n95-Jh-2C6"/>
                             <constraint firstItem="pcH-6N-U9T" firstAttribute="top" secondItem="8aX-uh-Ut4" secondAttribute="bottom" constant="7" id="tqE-zf-Hb1"/>
                             <constraint firstItem="sEi-zD-RBQ" firstAttribute="leading" secondItem="Fik-Ss-5q7" secondAttribute="leading" constant="20" id="vog-JR-LeZ"/>

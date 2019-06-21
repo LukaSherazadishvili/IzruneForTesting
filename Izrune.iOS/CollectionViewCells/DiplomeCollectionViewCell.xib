@@ -26,7 +26,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xpk-Bm-o7X">
                         <rect key="frame" x="0.0" y="0.0" width="444" height="137"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8K-9g-jS3">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sks-K3-YuX">
+                                <rect key="frame" x="5" y="48.5" width="434" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8K-9g-jS3">
                                 <rect key="frame" x="5" y="48.5" width="434" height="40"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 აპრილი" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="knp-vY-BB3">
@@ -47,7 +51,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Sks-K3-YuX" firstAttribute="bottom" secondItem="S8K-9g-jS3" secondAttribute="bottom" id="4Rq-Tb-OTV"/>
+                            <constraint firstItem="Sks-K3-YuX" firstAttribute="trailing" secondItem="S8K-9g-jS3" secondAttribute="trailing" id="4uT-zN-n9N"/>
                             <constraint firstItem="S8K-9g-jS3" firstAttribute="leading" secondItem="Xpk-Bm-o7X" secondAttribute="leading" constant="5" id="D7e-GB-mWS"/>
+                            <constraint firstItem="Sks-K3-YuX" firstAttribute="top" secondItem="S8K-9g-jS3" secondAttribute="top" id="KSz-1e-SMg"/>
+                            <constraint firstItem="Sks-K3-YuX" firstAttribute="leading" secondItem="S8K-9g-jS3" secondAttribute="leading" id="gfH-r7-8PX"/>
                             <constraint firstItem="S8K-9g-jS3" firstAttribute="centerY" secondItem="Xpk-Bm-o7X" secondAttribute="centerY" id="lFo-gm-ubF"/>
                             <constraint firstAttribute="trailing" secondItem="S8K-9g-jS3" secondAttribute="trailing" constant="5" id="mgD-qf-Xg4"/>
                         </constraints>
@@ -64,6 +72,7 @@
             <connections>
                 <outlet property="dateLbl" destination="knp-vY-BB3" id="H7R-FC-Vwm"/>
                 <outlet property="mainView" destination="S8K-9g-jS3" id="khN-SI-Wgp"/>
+                <outlet property="viewForShadow" destination="Sks-K3-YuX" id="ftT-mb-8jQ"/>
             </connections>
             <point key="canvasLocation" x="318.84057971014494" y="82.700892857142847"/>
         </collectionViewCell>

@@ -30,11 +30,18 @@ namespace Izrune.iOS
         private List<IStudent> Students;
         private int currentStudentIndex;
 
+        private DiplomeViewController diplomeVc;
+        private TestResultsViewController resultVc;
+
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
+            this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+
             await LoadDataAsync();
+
+            InitViewCOntrollers();
 
             View.LayoutIfNeeded();
 
@@ -45,6 +52,11 @@ namespace Izrune.iOS
             InitGestures();
         }
 
+        private void InitViewCOntrollers()
+        {
+            diplomeVc = Storyboard.InstantiateViewController(DiplomeViewController.StoryboardId) as DiplomeViewController;
+            resultVc = Storyboard.InstantiateViewController(TestResultsViewController.StoryboardId) as TestResultsViewController;
+        }
         private async Task LoadDataAsync()
         {
             Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
@@ -88,6 +100,7 @@ namespace Izrune.iOS
                 diplomeView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
                     //TODO
 
+                    this.NavigationController.PushViewController(diplomeVc, true);
                 }));
             }
 
@@ -96,6 +109,7 @@ namespace Izrune.iOS
                 sumTestsView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
 
                     //TODO
+                    this.NavigationController.PushViewController(resultVc, true);
                 }));
             }
 
@@ -104,6 +118,7 @@ namespace Izrune.iOS
                 exTestView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
 
                     //TODO
+                    this.NavigationController.PushViewController(resultVc, true);
                 }));
             }
 

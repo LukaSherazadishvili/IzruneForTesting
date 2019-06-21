@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Foundation;
+using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS.CollectionViewCells
@@ -37,6 +38,8 @@ namespace Izrune.iOS.CollectionViewCells
             mainView.Layer.BorderColor = UIColor.White.CGColor;
 
             mainView.Layer.CornerRadius = 20;
+
+            viewForShadow.AddShadowToView(5, 20, 0.6f, UIColor.FromRGBA(203, 135, 214, 153));
 
             if(mainView.GestureRecognizers == null || mainView.GestureRecognizers?.Length == 0)
             {

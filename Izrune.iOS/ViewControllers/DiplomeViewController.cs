@@ -51,7 +51,7 @@ namespace Izrune.iOS
         [Export("collectionView:layout:sizeForItemAtIndexPath:")]
         public CoreGraphics.CGSize GetSizeForItem(UICollectionView collectionView, UICollectionViewLayout layout, NSIndexPath indexPath)
         {
-            return new CoreGraphics.CGSize(collectionView.Frame.Width * 0.5, 40);
+            return new CoreGraphics.CGSize(collectionView.Frame.Width * 0.45, 50);
         }
     }
 }
