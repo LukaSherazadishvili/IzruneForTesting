@@ -53,6 +53,12 @@ namespace Izrune.iOS
 
         }
 
+        private void InitForm(IStudent student)
+        {
+            currentStudentLbl.Text = student.Name + " " + student.LastName;
+            packetDateLbl.Text = student.PackageStartDate.ToShortDateString();
+        }
+
         private void InitUI()
         {
 
@@ -61,6 +67,8 @@ namespace Izrune.iOS
             initView(exTestView, exShadow);
 
             paymentHostoryBtn.Layer.CornerRadius = 25;
+
+            InitForm(CurrentStudent);
         }
 
         private void initView(UIView view, UIView viewForShadow)
@@ -111,7 +119,7 @@ namespace Izrune.iOS
             SetupDropDown(CurentStudentDP, currentStudentView, currentStudentLbl);
             SetupDropDownGesture(CurentStudentDP, currentStudentView);
 
-            var studentsArray = Students?.Select(x => x.Name)?.ToArray();
+            var studentsArray = Students?.Select(x => x.Name +" " + x.LastName)?.ToArray();
             CurentStudentDP.DataSource = studentsArray;
 
 
@@ -119,7 +127,9 @@ namespace Izrune.iOS
             {
                 if (currentStudentIndex != index)
                 {
+                    currentStudentIndex = (int)index;
                     CurrentStudent = Students?[(int)index];
+                    InitForm(CurrentStudent);
                 }
             };
 

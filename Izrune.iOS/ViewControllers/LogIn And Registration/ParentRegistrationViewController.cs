@@ -327,16 +327,7 @@ namespace Izrune.iOS
 
                                 else
                                 {
-                                    HideHeader(true);
-                                    try
-                                    {
-                                        var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
-                                        //await service.AddStudent(MoreStudent);
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Console.WriteLine(ex.Message);
-                                    }
+
                                     AddViewController(AddMoreStudentVc, studentRegVc2);
                                     CurrentIndex++;
                                 }
