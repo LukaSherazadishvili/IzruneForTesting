@@ -1891,7 +1891,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvE-GU-erz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-107" y="2010"/>
+            <point key="canvasLocation" x="-1466" y="3351"/>
         </scene>
         <!--Diagram View Controller-->
         <scene sceneID="Du8-jm-GPb">

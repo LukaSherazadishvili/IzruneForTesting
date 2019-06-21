@@ -29,11 +29,12 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
+            InitUI();
+
             await LoadDataAsync();
 
             InitCollectionViewSettings();
 
-            InitUI();
         }
 
         private void InitUI()

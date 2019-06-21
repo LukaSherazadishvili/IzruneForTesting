@@ -24,7 +24,7 @@ namespace Izrune.iOS.CollectionViewCells
             // Note: this .ctor should not contain any initialization logic.
         }
 
-        private void InitData(IStudentsStatistic studentsStatistic)
+        public void InitData(IStudentsStatistic studentsStatistic)
         {
             dateLbl.Text = studentsStatistic.ExamDate.ToString();
             correctAnswersCountLbl.Text = studentsStatistic.CorrectAnswersCount.ToString();

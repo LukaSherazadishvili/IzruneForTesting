@@ -8,6 +8,11 @@ using MPDCiOSPages.ViewControllers;
 using UIKit;
 using FPT.Framework.iOS.UI.DropDown;
 using Izrune.iOS.Utils;
+using System.Threading.Tasks;
+using IZrune.PCL.Abstraction.Services;
+using System.Linq;
+using System.Collections.Generic;
+using IZrune.PCL.Abstraction.Models;
 
 namespace Izrune.iOS
 {
@@ -22,8 +27,9 @@ namespace Izrune.iOS
         DropDown YearDropDown = new DropDown();
         DropDown MonthDropDown = new DropDown();
 
+        private List<IStudentsStatistic> StudentsStatistics;
 
-        public override void ViewDidLoad()
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
@@ -33,9 +39,25 @@ namespace Izrune.iOS
 
             InitCollectionViewSettings();
 
+            await LoadDataAsync();
+
             resultCollectionView.ReloadData();
 
         }
+
+        public async Task LoadDataAsync()
+        {
+
+            ShowLoading();
+
+            var diplomeService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
+
+            StudentsStatistics = (await diplomeService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest))?.ToList();
+
+
+            EndLoading();
+        }
+
 
         private void InitCollectionViewSettings()
         {
@@ -48,12 +70,16 @@ namespace Izrune.iOS
 
         public nint GetItemsCount(UICollectionView collectionView, nint section)
         {
-            return 10;
+            return StudentsStatistics?.Count ?? 0;
         }
 
         public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {
             var resultCell = resultCollectionView.DequeueReusableCell(ResultCollectionViewCell.Identifier, indexPath) as ResultCollectionViewCell;
+
+            var data = StudentsStatistics?[indexPath.Row];
+
+            resultCell.InitData(data);
 
             return resultCell;
         }
