@@ -4,7 +4,9 @@ using System;
 using System.Linq;
 using Foundation;
 using Izrune.iOS.Utils;
+using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Helpers;
+using IZrune.PCL.Implementation.Models;
 using MPDC.iOS.Utils;
 using MpdcViewExtentions;
 using UIKit;
@@ -18,9 +20,14 @@ namespace Izrune.iOS
 		}
 
         public static readonly NSString StoryboardId = new NSString("StudentRegFirstStoryboardId");
+
         private DateTime date;
 
         public Action SendClicked { get; set; }
+
+        public IStudent Student;
+
+        public Action StudentSelected { get; set; }
 
         public override void ViewDidLoad()
         {
@@ -31,6 +38,19 @@ namespace Izrune.iOS
             InitGestures();
 
             SendClicked = () => { SenData(); };
+
+            StudentSelected = () =>
+            {
+                Student = new Student()
+                {
+                    Name = firstNameTf.Text,
+                    LastName = lastNameLTf.Text,
+                    Bdate = new DateTime(int.Parse(yearTextField.Text), int.Parse(monthTextField.Text), int.Parse(dayTextField.Text)),
+                    PersonalNumber = privateNumberTf.Text,
+                    Phone = phoneTf.Text,
+                    Email = emailTf.Text
+                };
+            };
         }
 
         private void InitGestures()

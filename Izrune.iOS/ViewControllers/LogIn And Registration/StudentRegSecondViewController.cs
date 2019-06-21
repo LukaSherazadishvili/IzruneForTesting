@@ -13,6 +13,7 @@ using IZrune.PCL.Abstraction.Models;
 using System.Linq;
 using IZrune.PCL.Helpers;
 using System.Diagnostics;
+using IZrune.PCL.Implementation.Models;
 
 namespace Izrune.iOS
 {
@@ -45,6 +46,9 @@ namespace Izrune.iOS
         private SelectSchoolViewController ScholVc;
 
         public bool IsAllSelected { get; set; }
+
+        public IStudent Student;
+        public Action StudentSelected { get; set; }
 
         public override void ViewDidLoad()
         {
@@ -80,6 +84,17 @@ namespace Izrune.iOS
                 }
                 else
                     IsAllSelected = false;
+            };
+
+            StudentSelected = () =>
+            {
+                Student = new Student()
+                {
+                    RegionId = region.id,
+                    Village = villageTextField.Text,
+                    SchoolId = _school.id,
+                    Class = ClassId
+                };
             };
 
         }

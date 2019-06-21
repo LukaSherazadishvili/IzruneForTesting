@@ -49,6 +49,8 @@ namespace Izrune.iOS
 
         private const int HeaderAndFooterHeight = 275;
 
+        private IStudent MoreStudent;
+
         #endregion
 
         public async override void ViewDidLoad()
@@ -73,7 +75,6 @@ namespace Izrune.iOS
 
             ChangeHeader(true);
         }
-
 
 
         private void InitViewControllers()
@@ -114,7 +115,7 @@ namespace Izrune.iOS
 
 
                 AddMoreStudentClicked = true;
-
+                prewBtn.Enabled = false;
                 ReseteViewControllers();
                 CurrentIndex = 2;
                 SelectedPrice = null;
@@ -231,7 +232,15 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            studentRegVc1.SendClicked?.Invoke();
+                            prewBtn.Enabled = true;
+                            if (AddMoreStudentClicked)
+                            {
+                                studentRegVc1.StudentSelected?.Invoke();
+                                MoreStudent = studentRegVc1.Student;
+                            }
+                            else
+                                studentRegVc1.SendClicked?.Invoke();
+
                             ChangeHeader(false);
                             AddViewController(studentRegVc2, studentRegVc1);
                         }
@@ -246,6 +255,15 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
+                            if(AddMoreStudentClicked)
+                            {
+                                studentRegVc2.StudentSelected?.Invoke();
+                                MoreStudent.RegionId = studentRegVc2.Student.RegionId;
+                                MoreStudent.Village = studentRegVc2.Student.Village;
+                                MoreStudent.SchoolId = studentRegVc2.Student.SchoolId;
+                                MoreStudent.Class = studentRegVc2.Student.Class;
+                            }
+
                             studentRegVc2.SendClicked?.Invoke();
 
                             if (SelectedPrice == null && studentRegVc2.IsAllSelected)
@@ -265,6 +283,15 @@ namespace Izrune.iOS
                             else
                             {
                                 HideHeader(true);
+                                try
+                                {
+                                    var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
+                                    //await service.AddStudent(MoreStudent);
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine(ex.Message);
+                                }
                                 AddViewController(AddMoreStudentVc, studentRegVc2);
                             }
 
@@ -442,6 +469,7 @@ namespace Izrune.iOS
                 SelectedPrice = null;
                 CurrentIndex = 3;
             };
+
             studentRegVc2.CitySelected = () => {
                 SelectedPrice = null;
             };
@@ -449,6 +477,7 @@ namespace Izrune.iOS
             choosePacketVc = Storyboard.InstantiateViewController(PacketViewController.StoryboardId) as PacketViewController;
             choosePacketVc.PriceSelected = (price) => {
 
+                MoreStudent.PackageMonthCount = price.months;
                 SelectedPrice = price;
                 CurrentIndex = 4;
                 HideHeader(true);
