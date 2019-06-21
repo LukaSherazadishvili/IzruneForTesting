@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:overScrollMode="never">
+
+  <RelativeLayout
+      android:id="@+id/chartlayout"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+		<TextView
+			android:id="@+id/textView1"
+			android:fontFamily="@font/bpg_mrgvlovani"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textAlignment="center"
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="20dp"
+			android:layout_marginTop="10dp"
+			android:layout_marginBottom="10dp"
+			android:textSize="15dp"
+			android:textColor="#3F51B5"
+			android:text="ტესტებზე დახარჯული დრო" />
+
+		<com.github.mikephil.charting.charts.BarChart
+			android:id="@+id/chart1"
+			android:layout_below="@+id/textView1"
+			android:layout_width="match_parent"
+			android:layout_height="200dp"/>
+
+		<TextView
+			android:id="@+id/textView2"
+			android:layout_below="@+id/chart1"
+			android:fontFamily="@font/bpg_mrgvlovani"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textAlignment="center"
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="20dp"
+			android:layout_marginTop="10dp"
+			android:textSize="15dp"
+			android:textColor="#E74C3C"
+			android:text="დაგროვებული ქულები" />
+
+		<com.github.mikephil.charting.charts.BarChart
+			android:id="@+id/chart2"
+			android:layout_below="@+id/textView2"
+			android:layout_width="match_parent"
+			android:layout_height="200dp"/>
+
+		<TextView
+			android:id="@+id/textView3"
+			android:layout_below="@+id/chart2"
+			android:fontFamily="@font/bpg_mrgvlovani"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textAlignment="center"
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="20dp"
+			android:layout_marginTop="10dp"
+			android:textSize="15dp"
+			android:textColor="#49B541"
+			android:text="შესრულებული ტესტები" />
+
+
+		<com.github.mikephil.charting.charts.BarChart
+			android:id="@+id/chart3"
+			android:layout_below="@+id/textView3"
+			android:layout_width="match_parent"
+			android:layout_height="200dp"/>
+  </RelativeLayout>  
+</ScrollView>

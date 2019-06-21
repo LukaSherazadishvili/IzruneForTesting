@@ -6,6 +6,7 @@ namespace IZrune.TransferModels
 {
    public class TestDTO
     {
+        public string test_id { get; set; }
         public string test_type { get; set; }
         public string date { get; set; }
         public string score { get; set; }

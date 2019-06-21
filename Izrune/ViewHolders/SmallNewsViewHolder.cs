@@ -19,11 +19,15 @@ namespace Izrune.ViewHolders
         public ImageViewAsync Image { get; set; }
         public TextView SmallDate { get; set; }
         public TextView SmallTitle { get; set; }
+        public LinearLayout Container { get; set; }
+
+
         public SmallNewsViewHolder(View view) : base(view)
         {
             Image = view.FindViewById<ImageViewAsync>(Resource.Id.MainSmallImage);
             SmallDate = view.FindViewById<TextView>(Resource.Id.SmaillNewsDate);
             SmallTitle = view.FindViewById<TextView>(Resource.Id.SmallNewsTitle);
+            Container = view.FindViewById<LinearLayout>(Resource.Id.MainLinearContainer);
         }
     }
 }

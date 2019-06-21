@@ -12,6 +12,8 @@ using Android.Views;
 using Android.Widget;
 using Izrune.Adapters.RecyclerviewAdapters;
 using Izrune.Attributes;
+using Izrune.Helpers;
+using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
 using MpdcContainer = ServiceContainer.ServiceContainer;
@@ -21,6 +23,9 @@ namespace Izrune.Fragments
     class ExamStatisticFragment : MPDCBaseFragment
     {
         protected override int LayoutResource { get; } = Resource.Layout.ItemBestExamStatistic;
+
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get ; set; }
 
         [MapControl(Resource.Id.StatisticRecycler)]
         RecyclerView statisticRecycler;
@@ -37,6 +42,8 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.minute)]
         TextView Minute;
 
+        [MapControl(Resource.Id.BestTimeDate)]
+        TextView TimeDate;
 
         [MapControl(Resource.Id.second)]
         TextView Second;
@@ -47,23 +54,56 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.BetwenDate)]
         TextView BetwenDate;
 
+        [MapControl(Resource.Id.YearSpinner)]
+        Spinner YearSpinner;
+
+        [MapControl(Resource.Id.MonthSpinner)]
+        Spinner MonthSpinner;
+
+        [MapControl(Resource.Id.BestExamContainer)]
+        LinearLayout FavCont;
+
+        IEnumerable<IStudentsStatistic> Statistic;
+
+
+        bool FirstIncome = false;
+
         public override async void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
 
-        
+            Startloading();
 
 
-            var Statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam);
+             Statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam);
+
 
 
 
             if (Statistic.Count() > 0)
             {
+
+
                 var Result = Statistic.OrderByDescending(i => i.Point).FirstOrDefault();
 
 
 
+                var DateResult = Statistic.DistinctBy(i => i.ExamDate.Year);
+
+                var YearAdapter = new ArrayAdapter<string>(this,
+             Android.Resource.Layout.SimpleSpinnerDropDownItem,
+             DateResult.Select(i => $"{i.ExamDate.Year} წელი").ToList());
+
+                YearSpinner.Adapter = YearAdapter;
+
+                var MonthAdapter = new ArrayAdapter<string>(this,
+            Android.Resource.Layout.SimpleSpinnerDropDownItem,
+           IzruneHellper.Instance.Monthes);
+
+
+
+
+                MonthSpinner.Adapter = MonthAdapter;
 
                 var adapter = new ExamStatisticRecyclerAdapter(Statistic?.ToList());
 
@@ -71,8 +111,94 @@ namespace Izrune.Fragments
                 statisticRecycler.SetLayoutManager(new LinearLayoutManager(this));
 
 
-            }
+                int Year = 0;
+                int Month = 0;
 
+              
+                    YearSpinner.ItemSelected += (s, e) =>
+                    {
+
+                        Activity.RunOnUiThread(() =>
+                        {
+                            if (FirstIncome)
+                            {
+                                Year = DateResult.ElementAt(e.Position).ExamDate.Year;
+                                var Res = Statistic.Where(i => i.ExamDate.Year == Year && i.ExamDate.Month == IzruneHellper.Instance.Monthes.IndexOf(IzruneHellper.Instance.Monthes.ElementAt(MonthSpinner.SelectedItemPosition)) + 1);
+
+                                if (Res.Count()<0)
+                                    FavCont.Visibility = ViewStates.Gone;
+                                else
+                                    FavCont.Visibility = ViewStates.Visible;
+
+                                var CurrentStatistic = Res.OrderByDescending(i => i.Point).FirstOrDefault();
+                                if (CurrentStatistic != null)
+                                { 
+                                    date.Text = CurrentStatistic.ExamDate.ToShortDateString();
+                                    Point.Text = CurrentStatistic.Point.ToString();
+
+                                }
+                                var bestStatisticByTime = Res.OrderByDescending(i => i.TestTimeInSecconds).LastOrDefault();
+
+                                if (bestStatisticByTime != null)
+                                {
+                                    TimeDate.Text = bestStatisticByTime.ExamDate.ToShortDateString();
+                                    Minute.Text = (bestStatisticByTime.TestTimeInSecconds / 60).ToString();
+                                    Second.Text = (bestStatisticByTime.TestTimeInSecconds % 60).ToString();
+                                }
+
+                                adapter = new ExamStatisticRecyclerAdapter(Res.ToList());
+                                statisticRecycler.SetAdapter(adapter);
+
+                            }
+                        });
+                    };
+
+                    MonthSpinner.ItemSelected += (s, e) =>
+                    {
+                        if (FirstIncome)
+                        {
+                            Month = e.Position + 1;
+                            var Res = Statistic.Where(i => i.ExamDate.Month == Month && i.ExamDate.Year == Year);
+
+                            adapter = new ExamStatisticRecyclerAdapter(Res.ToList());
+                            statisticRecycler.SetAdapter(adapter);
+
+                            if (Res.ToList().Count==0)
+                                FavCont.Visibility = ViewStates.Gone;
+                            else
+                                FavCont.Visibility = ViewStates.Visible;
+
+
+                            var CurrentStatistic = Res.OrderByDescending(i => i.Point).FirstOrDefault();
+                            if (CurrentStatistic != null)
+                            {
+                                date.Text = CurrentStatistic.ExamDate.ToShortDateString();
+                                Point.Text = CurrentStatistic.Point.ToString();
+
+                            }
+                            var bestStatisticByTime = Res.OrderByDescending(i => i.TestTimeInSecconds).LastOrDefault();
+
+                            if (bestStatisticByTime != null)
+                            {
+                                TimeDate.Text = bestStatisticByTime.ExamDate.ToShortDateString();
+                                Minute.Text = (bestStatisticByTime.TestTimeInSecconds / 60).ToString();
+                                Second.Text = (bestStatisticByTime.TestTimeInSecconds % 60).ToString();
+                            }
+
+                            adapter = new ExamStatisticRecyclerAdapter(Res.ToList());
+                            statisticRecycler.SetAdapter(adapter);
+
+
+                        }
+                    };
+                FirstIncome = true;
+               
+            }
+            else
+            {
+                FavContainer.Visibility = ViewStates.Gone;
+            }
+            StopLoading();
 
         }
 

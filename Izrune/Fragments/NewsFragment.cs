@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Izrune.Activitys;
 using Izrune.Adapters.RecyclerviewAdapters;
 using Izrune.Attributes;
 using Izrune.testModels;
@@ -42,6 +43,15 @@ namespace Izrune.Fragments
             var Adapter = new NewsRecyclerAdapter(Result?.ToList());
             NewsRecyclerView.SetLayoutManager(manager);
             NewsRecyclerView.SetAdapter(Adapter);
+            Adapter.OnItemClick += (() => {
+
+                Intent intent = new Intent(this,typeof(NewsDetailActivity));
+                StartActivity(intent);
+
+            });
+        
+
+            
         }
     }
 }

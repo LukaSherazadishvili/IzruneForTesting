@@ -136,6 +136,8 @@ namespace IZrune.PCL.Helpers
             }
         }
 
+        private List<Student> MyRegistrationStudent = new List<Student>();
+
        public Parent RegistrationUser { get; set; }
         public  void RegistrationParrentPartOne(string Name,string LastName,DateTime date,string city,string Village="")
         {
@@ -156,6 +158,9 @@ namespace IZrune.PCL.Helpers
         }
 
         public Student RegistrationStudent { get; set; }
+
+
+
         public  void RegistrationStudentPartOne(string Name,string LastName,DateTime date,string PersonalId,string Phone,string Mail)
         {
             RegistrationStudent = new Student();
@@ -167,18 +172,26 @@ namespace IZrune.PCL.Helpers
             RegistrationStudent.Email = Mail;
         }
 
+
+
         public  void RegistrationStudentPartTwo(int RegionID,string Village,int Schoold,int Clas)
         {
             RegistrationStudent.RegionId = RegionID;
             RegistrationStudent.Village = Village;
             RegistrationStudent.SchoolId = Schoold;
             RegistrationStudent.Class = Clas;
+
         }
+
+
 
         public async void AddStudent()
         {
             await MpdcContainer.Instance.Get<IUserServices>().AddStudent(RegistrationStudent);
         }
+
+
+
 
         public void SetPromoPack(int MonthCount,int Amount,string PromoCode="0")
         {
@@ -186,13 +199,15 @@ namespace IZrune.PCL.Helpers
             RegistrationStudent.PackageMonthCount = MonthCount;
             RegistrationStudent.Amount = Amount;
             RegistrationStudent.Promocode = PromoCode;
+
+            MyRegistrationStudent.Add(RegistrationStudent);
         }
 
 
         IPay CUrrentPaimentInformation;
         public async Task<IPay> FinishRegistration()
         {
-           CUrrentPaimentInformation=await MpdcContainer.Instance.Get<IRegistrationServices>().RegistrationUser(RegistrationUser, RegistrationStudent);
+           CUrrentPaimentInformation=await MpdcContainer.Instance.Get<IRegistrationServices>().RegistrationUser(RegistrationUser,MyRegistrationStudent);
 
             return CUrrentPaimentInformation;
         }

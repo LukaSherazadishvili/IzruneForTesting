@@ -12,5 +12,7 @@ namespace IZrune.PCL.Abstraction.Services
         Task<IEnumerable<IStudentsStatistic>> GetStudentStatisticsAsync( QuezCategory type);
 
         Task<IEnumerable<IQuestion>> GetFinalQuestionResult();
+
+        Task<IQuisResultInfo> GetCurrentTestDiplomaInfo(int TestId);
     }
 }

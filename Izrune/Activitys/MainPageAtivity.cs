@@ -72,7 +72,7 @@ namespace Izrune.Activitys
                     {
                         HeaderText.Text = "სტატისტიკა/ისტორია";
                        // ChangeFragmentPage(new StatisticFragment(), MainContainer.Id);
-                        ChangeFragmentPage(new DiagramFragment(), MainContainer.Id);
+                        ChangeFragmentPage(new StatisticHistoryFragment(), MainContainer.Id);
                         drawer.CloseDrawers();
                         break;
                     }

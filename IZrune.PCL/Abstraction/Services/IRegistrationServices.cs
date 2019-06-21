@@ -9,7 +9,7 @@ namespace IZrune.PCL.Abstraction.Services
    public interface IRegistrationServices
     {
         Task<IEnumerable<IRegion>> GetRegionsAsync();
-        Task<IPay> RegistrationUser(IParent user,IStudent student);
+        Task<IPay> RegistrationUser(IParent user,IEnumerable<IStudent> student);
 
         Task<string> GetAgreement();
 

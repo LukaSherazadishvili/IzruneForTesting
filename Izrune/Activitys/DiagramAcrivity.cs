@@ -243,17 +243,17 @@ namespace Izrune.Activitys
                 Typeface = SKTypeface.FromFamilyName("Georgia")
             };
 
-            var chartView = FindViewById<ChartView>(Resource.Id.chartView);
-            chartView.Chart = chart;
-            chartView.LayoutParameters.Width = 205 * entries.Count;
+            //var chartView = FindViewById<ChartView>(Resource.Id.chartView);
+            //chartView.Chart = chart;
+            //chartView.LayoutParameters.Width = 205 * entries.Count;
 
-            var chartView2 = FindViewById<ChartView>(Resource.Id.chartView1);
-            chartView2.Chart = chart2;
-            chartView2.LayoutParameters.Width = 205 * entries2.Count;
+            //var chartView2 = FindViewById<ChartView>(Resource.Id.chartView1);
+            //chartView2.Chart = chart2;
+            //chartView2.LayoutParameters.Width = 205 * entries2.Count;
 
-            var chartView3 = FindViewById<ChartView>(Resource.Id.chartView2);
-            chartView3.Chart = chart3;
-            chartView3.LayoutParameters.Width = 205 * entries3.Count;
+            //var chartView3 = FindViewById<ChartView>(Resource.Id.chartView2);
+            //chartView3.Chart = chart3;
+            //chartView3.LayoutParameters.Width = 205 * entries3.Count;
         }
     }
 }

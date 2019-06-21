@@ -30,12 +30,12 @@ namespace Izrune.Activitys
         ViewPager pager;
 
         private List<MPDCBaseFragment> FrmList = new List<MPDCBaseFragment>() {
-          new ExamStatisticFragment() , new ResultQuestionStatisticFragment()
+          new ExamStatisticFragment() , new DiagramFragment()
         };
 
         private List<string> Headers = new List<string>()
         {
-            "შედეგები","კითხვები"
+            "შედეგები","დიაგრამები"
         };
 
 
