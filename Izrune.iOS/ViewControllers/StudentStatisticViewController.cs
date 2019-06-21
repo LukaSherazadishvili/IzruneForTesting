@@ -98,8 +98,8 @@ namespace Izrune.iOS
             if (diplomeView.GestureRecognizers == null || diplomeView.GestureRecognizers?.Length == 0)
             {
                 diplomeView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
-                    //TODO
 
+                    diplomeVc.Student = CurrentStudent;
                     this.NavigationController.PushViewController(diplomeVc, true);
                 }));
             }

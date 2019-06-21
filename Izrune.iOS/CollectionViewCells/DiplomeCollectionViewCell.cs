@@ -1,6 +1,7 @@
 ﻿using System;
-
+using System.Globalization;
 using Foundation;
+using IZrune.PCL.Abstraction.Models;
 using MpdcViewExtentions;
 using UIKit;
 
@@ -15,6 +16,10 @@ namespace Izrune.iOS.CollectionViewCells
 
         public Action CellClicked { get; set; }
 
+        private IStudentsStatistic StudentsStatistic;
+
+        DateTimeFormatInfo ge = new CultureInfo("ka-GE", false).DateTimeFormat;
+
         static DiplomeCollectionViewCell()
         {
             Nib = UINib.FromName("DiplomeCollectionViewCell", NSBundle.MainBundle);
@@ -25,9 +30,14 @@ namespace Izrune.iOS.CollectionViewCells
             // Note: this .ctor should not contain any initialization logic.
         }
 
-        public void InitData()
+        public void InitData(IStudentsStatistic studentsStatistic)
         {
             //TODO
+
+            StudentsStatistic = studentsStatistic;
+
+            dateLbl.Text = studentsStatistic.ExamDate.ToString(ge.ShortDatePattern);
+
         }
 
         public override void AwakeFromNib()
