@@ -137,7 +137,7 @@ namespace Izrune.iOS
             {
                 NextClicked = true;
                 GetCurrentPage(CurrentIndex);
-                CurrentIndex++;
+                //CurrentIndex++;
                 CheckIndex();
 
             };
@@ -156,7 +156,7 @@ namespace Izrune.iOS
                 {
                     NextClicked = false;
                     GetCurrentPage(CurrentIndex);
-                    CurrentIndex--;
+                    //CurrentIndex--;
                     CheckIndex();
                 }
 
@@ -208,8 +208,20 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            AddViewController(parent2RegVc, parentRegVc);
-                            parentRegVc.SendClicked?.Invoke();
+                            var res = parentRegVc.IsFormFilled();
+
+                            if (res)
+                            {
+                                AddViewController(parent2RegVc, parentRegVc);
+                                CurrentIndex++;
+                                parentRegVc.SendClicked?.Invoke();
+                            }
+
+                            else
+                            {
+                                ShowAlert();
+                                CurrentIndex = 0;
+                            }
                         }
                         break;
                     }
@@ -217,13 +229,27 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            AddViewController(studentRegVc1, parent2RegVc);
-                            parent2RegVc.SendClicked?.Invoke();
-                            ChangeHeader(false);
+                            var res = parent2RegVc.IsFormFilled();
+
+                            if(res)
+                            {
+                                AddViewController(studentRegVc1, parent2RegVc);
+                                CurrentIndex++;
+                                parent2RegVc.SendClicked?.Invoke();
+                                ChangeHeader(false);
+                            }
+
+                            else
+                            {
+                                ShowAlert();
+                                CurrentIndex = 1;
+                            }
+
                         }
                         else
                         {
                             AddViewController(parentRegVc, parent2RegVc);
+                            CurrentIndex--;
                             ChangeHeader(true);
                         }
                         break;
@@ -232,22 +258,36 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            prewBtn.Enabled = true;
-                            if (AddMoreStudentClicked)
-                            {
-                                studentRegVc1.StudentSelected?.Invoke();
-                                MoreStudent = studentRegVc1.Student;
-                            }
-                            else
-                                studentRegVc1.SendClicked?.Invoke();
+                            var res = studentRegVc1.IsFormFilled();
 
-                            ChangeHeader(false);
-                            AddViewController(studentRegVc2, studentRegVc1);
+                            if(res)
+                            {
+                                prewBtn.Enabled = true;
+                                if (AddMoreStudentClicked)
+                                {
+                                    studentRegVc1.StudentSelected?.Invoke();
+                                    MoreStudent = studentRegVc1.Student;
+                                }
+                                else
+                                    studentRegVc1.SendClicked?.Invoke();
+
+                                ChangeHeader(false);
+                                AddViewController(studentRegVc2, studentRegVc1);
+                                CurrentIndex++;
+                            }
+
+                            else
+                            {
+                                ShowAlert();
+                                CurrentIndex = 2;
+                            }
+
                         }
                         else
                         {
                             ChangeHeader(true);
                             AddViewController(parent2RegVc, studentRegVc1);
+                            CurrentIndex--;
                         }
                         break;
                     }
@@ -255,51 +295,64 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            if(AddMoreStudentClicked)
+
+                            var res = studentRegVc2.IsFormFilled();
+
+                            if(res)
                             {
-                                studentRegVc2.StudentSelected?.Invoke();
-                                MoreStudent.RegionId = studentRegVc2.Student.RegionId;
-                                MoreStudent.Village = studentRegVc2.Student.Village;
-                                MoreStudent.SchoolId = studentRegVc2.Student.SchoolId;
-                                MoreStudent.Class = studentRegVc2.Student.Class;
-                            }
+                                if (AddMoreStudentClicked)
+                                {
+                                    studentRegVc2.StudentSelected?.Invoke();
+                                    MoreStudent.RegionId = studentRegVc2.Student.RegionId;
+                                    MoreStudent.Village = studentRegVc2.Student.Village;
+                                    MoreStudent.SchoolId = studentRegVc2.Student.SchoolId;
+                                    MoreStudent.Class = studentRegVc2.Student.Class;
+                                }
 
-                            studentRegVc2.SendClicked?.Invoke();
+                                studentRegVc2.SendClicked?.Invoke();
 
-                            if (SelectedPrice == null && studentRegVc2.IsAllSelected)
-                            {
-                                //AddViewController(choosePacketVc, studentRegVc2);
+                                if (SelectedPrice == null && studentRegVc2.IsAllSelected)
+                                {
+                                    //AddViewController(choosePacketVc, studentRegVc2);
 
-                                this.NavigationController.PushViewController(choosePacketVc, false);
-                                //HideHeader(true);
-                            }
+                                    this.NavigationController.PushViewController(choosePacketVc, false);
+                                    //HideHeader(true);
+                                }
 
-                            else if (SelectedPrice == null && !studentRegVc2.IsAllSelected)
-                            {
-                                CurrentIndex = 2;
-                                ShowAlert();
+                                else if (SelectedPrice == null && !studentRegVc2.IsAllSelected)
+                                {
+                                    CurrentIndex = 2;
+                                    ShowAlert();
+                                }
+
+                                else
+                                {
+                                    HideHeader(true);
+                                    try
+                                    {
+                                        var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
+                                        //await service.AddStudent(MoreStudent);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine(ex.Message);
+                                    }
+                                    AddViewController(AddMoreStudentVc, studentRegVc2);
+                                    CurrentIndex++;
+                                }
                             }
 
                             else
                             {
-                                HideHeader(true);
-                                try
-                                {
-                                    var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
-                                    //await service.AddStudent(MoreStudent);
-                                }
-                                catch (Exception ex)
-                                {
-                                    Console.WriteLine(ex.Message);
-                                }
-                                AddViewController(AddMoreStudentVc, studentRegVc2);
+                                ShowAlert();
+                                CurrentIndex = 3;
                             }
-
                         }
                         else
                         {
                             ChangeHeader(false);
                             AddViewController(studentRegVc1, studentRegVc2);
+                            CurrentIndex--;
                         }
                         break;
                     }
@@ -325,32 +378,33 @@ namespace Izrune.iOS
                             ChangeHeader(false);
                             HideHeader(false);
                             AddViewController(studentRegVc2, AddMoreStudentVc);
+                            CurrentIndex--;
                         }
 
                         break;
                     }
-                case 5:
-                    {
-                        if (NextClicked)
-                        {
-                            AddMoreStudentVc?.SendClicked?.Invoke();
+                //case 5:
+                    //{
+                    //    if (NextClicked)
+                    //    {
+                    //        AddMoreStudentVc?.SendClicked?.Invoke();
 
-                            AddMoreStudentVc.DataSent = (ipay) => {
-                                paymentViewController.PayInfo = ipay;
-                                AddViewController(paymentViewController, AddMoreStudentVc);
-                            };
+                    //        AddMoreStudentVc.DataSent = (ipay) => {
+                    //            paymentViewController.PayInfo = ipay;
+                    //            AddViewController(paymentViewController, AddMoreStudentVc);
+                    //        };
 
-                        }
-                        else
-                        {
-                            AddViewController(studentRegVc2, AddMoreStudentVc);
-                            ChangeHeader(false);
-                            HideHeader(false);
-                            //this.NavigationController.PushViewController(choosePacketVc, false);
-                        }
+                    //    }
+                    //    else
+                    //    {
+                    //        AddViewController(studentRegVc2, AddMoreStudentVc);
+                    //        ChangeHeader(false);
+                    //        HideHeader(false);
+                    //        //this.NavigationController.PushViewController(choosePacketVc, false);
+                    //    }
 
-                        break;
-                    }
+                    //    break;
+                    //}
                 default:
                     break;
             }

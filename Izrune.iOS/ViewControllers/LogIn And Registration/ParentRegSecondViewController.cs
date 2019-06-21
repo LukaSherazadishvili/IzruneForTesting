@@ -5,6 +5,7 @@ using System.Linq;
 using Foundation;
 using Izrune.iOS.Utils;
 using IZrune.PCL.Helpers;
+using MPDC.iOS.Utils;
 using MpdcViewExtentions;
 using UIKit;
 
@@ -27,6 +28,12 @@ namespace Izrune.iOS
             InitUI();
 
             SendClicked = () => { SenData(); };
+        }
+
+        public bool IsFormFilled()
+        {
+            var res = (phoneTextField.Text.IsEmtyOrNull() && userNameTextField.Text.IsEmtyOrNull() && passwordTextField.Text.IsEmtyOrNull() && repeatPasswordTextField.Text.IsEmtyOrNull());
+            return res;
         }
 
         private void InitUI()

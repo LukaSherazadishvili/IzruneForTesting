@@ -67,5 +67,10 @@ namespace MPDC.iOS.Utils
         {
             return ((DateTime)date).ToLocalTime();
         }
+
+        public static bool IsEmtyOrNull(this string text)
+        {
+            return (!string.IsNullOrEmpty(text) && !string.IsNullOrWhiteSpace(text));
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("StudentRegFirstStoryboardId");
 
-        private DateTime date;
+        private DateTime date = default(DateTime);
 
         public Action SendClicked { get; set; }
 
@@ -52,6 +52,13 @@ namespace Izrune.iOS
                 };
             };
         }
+
+        public bool IsFormFilled()
+        {
+            var res = (firstNameTf.Text.IsEmtyOrNull() && lastNameLTf.Text.IsEmtyOrNull() && date.Year > 0001 && privateNumberTf.Text.IsEmtyOrNull());
+            return res;
+        }
+
 
         private void InitGestures()
         {

@@ -99,6 +99,12 @@ namespace Izrune.iOS
 
         }
 
+        public bool IsFormFilled()
+        {
+            var res = (region != null && _school != null && ClassId > 0);
+            return res;
+        }
+
         private void DropDownInit()
         {
             SetupDropDownGesture(CityDpD, cityView);
