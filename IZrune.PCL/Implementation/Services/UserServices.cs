@@ -37,6 +37,7 @@ namespace IZrune.PCL.Implementation.Services
                 });
 
             var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=addStudent&hashcode=d529edb90d98f79c0c0e2e799933c1c4", FormContent);
+            var jsn = await Data.Content.ReadAsStringAsync();
 
 
         }

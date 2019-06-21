@@ -22,6 +22,8 @@ namespace Izrune.Adapters.RecyclerviewAdapters
 
         private List<INews> MyNewsList;
 
+        public Action OnItemClick { get; set; }
+
         public NewsRecyclerAdapter(List<INews> lst)
         {
             MyNewsList = lst;
@@ -49,12 +51,27 @@ namespace Izrune.Adapters.RecyclerviewAdapters
                 (holder as BigNewsViewHolder).Image.LoadImage(MyNewsList.ElementAt(position).ImageUrl);
                 (holder as BigNewsViewHolder).Title.Text = MyNewsList.ElementAt(position).Title;
                 (holder as BigNewsViewHolder).Date.Text = MyNewsList.ElementAt(position).date.ToShortDateString();
+
+                (holder as BigNewsViewHolder).MainContainer.Click += (s, e) =>
+                {
+                    IzruneHellper.Instance.CurrentNews = MyNewsList.ElementAt(position);
+
+                    OnItemClick?.Invoke();
+                };
             }
             else if(holder is SmallNewsViewHolder)
             {
                 (holder as SmallNewsViewHolder).Image.LoadImage(MyNewsList.ElementAt(position).ImageUrl);
                 (holder as SmallNewsViewHolder).SmallTitle.Text = MyNewsList.ElementAt(position).Title;
                 (holder as SmallNewsViewHolder).SmallDate.Text = MyNewsList.ElementAt(position).date.ToShortDateString();
+
+                (holder as SmallNewsViewHolder).Container.Click += (s, e) =>
+                {
+
+                    IzruneHellper.Instance.CurrentNews = MyNewsList.ElementAt(position);
+
+                    OnItemClick?.Invoke();
+                };
             }
         }
 

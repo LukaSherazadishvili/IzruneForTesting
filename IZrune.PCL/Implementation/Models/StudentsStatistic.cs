@@ -13,5 +13,7 @@ namespace IZrune.PCL.Implementation.Models
         public int? SkippedQuestionsCount { get; set; }
         public int TestTimeInSecconds { get; set; }
         public int Point { get; set; }
+        public string DiplomaUrl { get; set; }
+        public int Id { get; set; }
     }
 }

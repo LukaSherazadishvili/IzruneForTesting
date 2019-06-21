@@ -12,8 +12,9 @@ using Android.Widget;
 using FFImageLoading.Views;
 using Izrune.Attributes;
 using Izrune.Helpers;
+using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
-
+using MpdcContainer = ServiceContainer.ServiceContainer;
 namespace Izrune.Activitys
 {
     [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
@@ -48,26 +49,42 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.StarsContainer)]
         LinearLayout starsContr;
 
+        [MapControl(Resource.Id.PointText)]
+        TextView PointTxt;
+
+        [MapControl(Resource.Id.MarkTXt)]
+        TextView Mark;
+
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get; set; }
+
+
+
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            var Result = await QuezControll.Instance.GetExamInfoAsync();
+            var Result = await MpdcContainer.Instance.Get<IStatisticServices>().GetCurrentTestDiplomaInfo(IzruneHellper.Instance.CurrentStatistic.Id);
 
-            var QuisInfo = Result.QueisResult;
+            
+
+           // var QuisInfo = Result.QueisResult;
 
             StudentNameLastName.Text = $"{UserControl.Instance.CurrentStudent.Name}  {UserControl.Instance.CurrentStudent.LastName}";
 
-            Score.Text = QuisInfo.Score.ToString();
-            Time.Text = $"{QuisInfo.Duration / 60}:{QuisInfo.Duration % 60}";
-            Correctanswers.Text = QuisInfo.RightAnswer.ToString();
-            IncorectAnswers.Text = QuisInfo.WronAnswers.ToString();
-            SkippedAnswer.Text = QuisInfo.SkipedAnswers.ToString();
 
-            if (!string.IsNullOrEmpty(Result.DiplomaURl))
+
+            Score.Text = Result.Score.ToString();
+            Time.Text = $"{Result.Duration / 60}:{Result.Duration % 60}";
+            Correctanswers.Text = IzruneHellper.Instance.CurrentStatistic.CorrectAnswersCount.ToString();
+            IncorectAnswers.Text = IzruneHellper.Instance.CurrentStatistic.IncorrectAnswersCount.ToString();
+            SkippedAnswer.Text = IzruneHellper.Instance.CurrentStatistic.SkippedQuestionsCount.ToString();
+            PointTxt.Text = Result.text_title;
+            Mark.Text = Result.text_description;
+            if (!string.IsNullOrEmpty(IzruneHellper.Instance.CurrentStatistic.DiplomaUrl))
             {
                 DiplomaImage.Visibility = ViewStates.Visible;
-                DiplomaImage.LoadImage(Result.DiplomaURl);
+                DiplomaImage.LoadImage(IzruneHellper.Instance.CurrentStatistic.DiplomaUrl);
 
             }
 
@@ -80,7 +97,7 @@ namespace Izrune.Activitys
                 var Image = new ImageView(this);
                 Image.LayoutParameters = imgViewParams;
                 
-                Image.SetBackgroundResource(i<QuisInfo.Stars?Resource.Drawable.ActiveStar:Resource.Drawable.PasiveStar);
+                Image.SetBackgroundResource(i<Result.Stars?Resource.Drawable.ActiveStar:Resource.Drawable.PasiveStar);
                 starsContr.AddView(Image);
 
 

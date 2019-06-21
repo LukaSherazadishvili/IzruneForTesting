@@ -32,7 +32,7 @@
                 android:textAlignment="center"
                 android:textColor="#AE71B7"
                 android:textSize="15dp"
-				android:padding="1dp"/>
+				/>
 			<FrameLayout
 					android:background="@drawable/izrune_editext_back"
 					android:layout_width="match_parent"
@@ -80,7 +80,7 @@
                         android:textColor="#70FFFFFF"
                         android:layout_weight="1"
                         android:textSize="10dp"
-						android:padding="1dp"/>
+						/>
                     <TextView
                         android:id="@+id/textView7"
                         android:fontFamily="@font/bpg_mrgvlovani"
@@ -92,8 +92,7 @@
                         android:text="შვილებზე განსაკუთრებულად ზრუნვის დღე"
                         android:textAlignment="center"
                         android:textColor="#FFFFFF"
-                        android:textSize="12dp"
-						android:padding="1dp"/>
+                        android:textSize="12dp"/>
                     <TextView
                         android:id="@+id/textView7"
                         android:fontFamily="@font/bpg_mrgvlovani"
@@ -103,8 +102,7 @@
                         android:text="შემაჯამებელი ტესტი"
                         android:textAlignment="center"
                         android:textColor="#FFFFFF"
-                        android:textSize="15dp"
-						android:padding="1dp"/>
+                        android:textSize="15dp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -125,8 +123,7 @@
                         android:textColor="#901E78"
                         android:layout_weight="10"
 						android:textSize="10dp"
-                        android:text="დარჩა:  "
-						android:padding="1dp"/>
+                        android:text="დარჩა:  "/>
 
                     <TextView
                         android:id="@+id/textView22"
@@ -136,8 +133,7 @@
                         android:layout_marginHorizontal="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
-                        android:text="2"
-						android:padding="1dp"/>
+                        android:text="2"/>
 
                     <TextView
                         android:id="@+id/textView3"
@@ -147,8 +143,7 @@
                         android:layout_marginHorizontal="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
-                        android:text="დღე"
-						android:padding="1dp"/>
+                        android:text="დღე"/>
 
                     <TextView
                         android:id="@+id/textView6"
@@ -158,8 +153,7 @@
                         android:layout_marginHorizontal="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
-                        android:text="22"
-						android:padding="1dp"/>
+                        android:text="22"/>
 
                     <TextView
                         android:id="@+id/textView23"
@@ -169,8 +163,7 @@
                         android:layout_marginHorizontal="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
-                        android:text="საათი"
-						android:padding="1dp"/>
+                        android:text="საათი"/>
 
                     <TextView
                         android:id="@+id/textView24"
@@ -180,8 +173,7 @@
                         android:layout_marginHorizontal="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
-                        android:text="44"
-						android:padding="1dp"/>
+                        android:text="44"/>
 
                     <TextView
                         android:id="@+id/textView25"
@@ -191,8 +183,7 @@
                         android:layout_marginHorizontal="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
-                        android:text="წუთი"
-						android:padding="1dp"/>
+                        android:text="წუთი"/>
                 </LinearLayout>
             </FrameLayout>
 
@@ -220,8 +211,7 @@
                         android:textAlignment="center"
                         android:textColor="#98FFFFFF"
                         android:layout_weight="1"
-                        android:textSize="12dp"
-						android:padding="1dp"/>
+                        android:textSize="12dp"/>
                     <TextView
                         android:id="@+id/textView7"
                         android:fontFamily="@font/bpg_mrgvlovani"
@@ -231,8 +221,7 @@
                         android:text="სავარჯიშო ტესტი"
                         android:textAlignment="center"
                         android:textColor="#FFFFFF"
-                        android:textSize="15dp"
-						android:padding="1dp"/>
+                        android:textSize="15dp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -253,8 +242,7 @@
                         android:textColor="#901E78"
                         android:layout_weight="10"
 						android:textSize="10dp"
-                        android:text="დარჩა:  "
-						android:padding="1dp"/>
+                        android:text="დარჩა:  "/>
 
                     <TextView
                         android:id="@+id/textView22"
@@ -264,8 +252,7 @@
                         android:layout_marginHorizontal="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
-                        android:text="2"
-						android:padding="1dp"/>
+                        android:text="2"/>
 
                     <TextView
                         android:id="@+id/textView3"
@@ -275,8 +262,7 @@
                         android:layout_marginHorizontal="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
-                        android:text="დღე"
-						android:padding="1dp"/>
+                        android:text="დღე"/>
 
                     <TextView
 						android:fontFamily="@font/bpg_mrgvlovani"
@@ -285,8 +271,7 @@
                         android:layout_marginHorizontal="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
-                        android:text="22"
-						android:padding="1dp"/>
+                        android:text="22"/>
 
                     <TextView
 						android:fontFamily="@font/bpg_mrgvlovani"
@@ -295,8 +280,7 @@
                         android:layout_marginHorizontal="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
-                        android:text="საათი"
-						android:padding="1dp"/>
+                        android:text="საათი"/>
 
                     <TextView
 						android:fontFamily="@font/bpg_mrgvlovani"
@@ -305,8 +289,7 @@
                         android:layout_marginHorizontal="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
-                        android:text="44"
-						android:padding="1dp"/>
+                        android:text="44"/>
 
                     <TextView
 						android:fontFamily="@font/bpg_mrgvlovani"
@@ -315,8 +298,7 @@
                         android:layout_marginHorizontal="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
-                        android:text="წუთი"
-						android:padding="1dp"/>
+                        android:text="წუთი"/>
                 </LinearLayout>
     </FrameLayout>
 

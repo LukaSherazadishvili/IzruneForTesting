@@ -18,6 +18,33 @@ namespace IZrune.PCL.Implementation.Services
 {
     public class StatisticServices : IStatisticServices
     {
+        public async Task<IQuisResultInfo> GetCurrentTestDiplomaInfo(int TestId)
+        {
+            var FormContent = new FormUrlEncodedContent(new[]
+                    {
+                new KeyValuePair<string,string>("test_id",TestId.ToString()),
+
+            });
+            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getTestInfo&hashcode=1218b084b72f42914d4c868a2eec191b", FormContent);
+            var jsn = await Data.Content.ReadAsStringAsync();
+            var Result = JsonConvert.DeserializeObject<QuisResultInfoRootDTO>(jsn);
+            var info = Result.info;
+            QuisResultInfo QuesResult = new QuisResultInfo();
+
+            DateTime.TryParse(info.date, out DateTime date);
+            int.TryParse(info.duration, out int Time);
+            QuesResult.Date = date;
+            QuesResult.Duration = Time;
+            QuesResult.Egmu = info.egmu;
+            QuesResult.Score = info.score;
+            QuesResult.Stars = info.stars;
+            QuesResult.test_type = info.test_type == "1" ? QuezCategory.QuezExam : QuezCategory.QuezTest;
+            QuesResult.text_description = info.text_description;
+            QuesResult.text_title = info.text_title;
+
+            return QuesResult;
+        }
+
         public async Task<IEnumerable<IQuestion>> GetFinalQuestionResult()
         {
             try
@@ -76,10 +103,10 @@ namespace IZrune.PCL.Implementation.Services
                     StudentStat = Result.tests.Where(i=>i.test_type==type.ConverEnumToInt())
                         .Select(i => new StudentsStatistic()
                     {
+                         Id=Convert.ToInt32(i.test_id),
                         CorrectAnswersCount = i.questions
                         .Where(o => o.answers
-                        .Where(x => x.right == "1").SingleOrDefault().student_answer == 1).Count(),
-
+                        .Where(x => x.right == "1").SingleOrDefault().student_answer == 1).Count(),                        
                         IncorrectAnswersCount = i.questions
                         .Where(o => o.answers
                         .Where(x => x.right == "1").SingleOrDefault().student_answer == 0).Count()-
@@ -91,7 +118,7 @@ namespace IZrune.PCL.Implementation.Services
                         .Where(x => x.answers
                         .All(o => o.student_answer == 0)).Count(),
 
-
+                        DiplomaUrl=i.diploma_url,
                         ExamDate = Convert.ToDateTime(i.date),
                         Point = Convert.ToInt32(i.score),
                         TestTimeInSecconds = Convert.ToInt32( i.duration)

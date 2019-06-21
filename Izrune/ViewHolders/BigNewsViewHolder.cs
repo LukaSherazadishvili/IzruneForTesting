@@ -19,12 +19,13 @@ namespace Izrune.ViewHolders
         public ImageViewAsync Image { get; set; }
         public TextView Date { get; set; }
         public TextView Title { get; set; }
+        public CardView MainContainer { get; set; }
         public BigNewsViewHolder(View view) : base(view)
         {
             Image = view.FindViewById<ImageViewAsync>(Resource.Id.MainImage);
             Date = view.FindViewById<TextView>(Resource.Id.BigNewsDatetime);
             Title = view.FindViewById<TextView>(Resource.Id.BigNewsTitle);
-
+            MainContainer = view.FindViewById<CardView>(Resource.Id.MainCarDView);
         }
     }
 }
