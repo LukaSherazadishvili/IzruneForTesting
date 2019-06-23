@@ -13,6 +13,7 @@ using IZrune.PCL.Abstraction.Services;
 using System.Linq;
 using System.Collections.Generic;
 using IZrune.PCL.Abstraction.Models;
+using MpdcViewExtentions;
 
 namespace Izrune.iOS
 {
@@ -29,9 +30,12 @@ namespace Izrune.iOS
 
         private List<IStudentsStatistic> StudentsStatistics;
 
+        public bool Hideheader = true;
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            InitUI();
 
             InitDroDown();
 
@@ -41,20 +45,46 @@ namespace Izrune.iOS
 
             await LoadDataAsync();
 
+            HideHeader(Hideheader);
+
             resultCollectionView.ReloadData();
 
+        }
+
+        private void InitUI()
+        {
+            headerView.Layer.CornerRadius = 15;
+            viewForShadow.AddShadowToView(5, 15, 0.5f, UIColor.FromRGBA(0, 0, 0, 38.5f));
+
+            var dates = dateStackView.Subviews.ToList();
+            var results = testResultStackView.Subviews.ToList();
+
+            for (int i = 0; i < dates.Count; i++)
+            {
+                dates[i].Layer.CornerRadius = 17;
+                results[i].Layer.CornerRadius = 17;
+            }
+        }
+
+        private void HideAll(bool hide)
+        {
+            headerView.Hidden = hide;
+            viewForShadow.Hidden = hide;
+            mainStackView.Hidden = hide;
+            statisticStackView.Hidden = hide;
         }
 
         public async Task LoadDataAsync()
         {
 
+            HideAll(true);
             ShowLoading();
 
             var diplomeService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
 
             StudentsStatistics = (await diplomeService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest))?.ToList();
 
-
+            HideAll(false);
             EndLoading();
         }
 
@@ -64,6 +94,14 @@ namespace Izrune.iOS
             resultCollectionView.RegisterNibForCell(ResultCollectionViewCell.Nib, ResultCollectionViewCell.Identifier);
             resultCollectionView.Delegate = this;
             resultCollectionView.DataSource = this;
+        }
+
+        public void HideHeader(bool hide)
+        {
+            viewForShadow.Hidden = hide;
+            resultStackView.Hidden = hide;
+            headerView.Hidden = hide;
+            headerLine.Hidden = hide;
         }
 
         #region CollectionView
