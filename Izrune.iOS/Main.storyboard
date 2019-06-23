@@ -2165,6 +2165,21 @@
             </objects>
             <point key="canvasLocation" x="-1472" y="3552"/>
         </scene>
+        <!--Exam Tab View Controller-->
+        <scene sceneID="UJN-ut-CmF">
+            <objects>
+                <viewController storyboardIdentifier="ExamTabStoryboardId" id="bqn-ZB-nRp" customClass="ExamTabViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TcQ-1p-zBe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Vnt-Qf-Q5s"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Qk-s5-RNb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-814" y="3350"/>
+        </scene>
         <!--Diagram View Controller-->
         <scene sceneID="Du8-jm-GPb">
             <objects>
