@@ -47,8 +47,6 @@ namespace Izrune.Activitys
 
         protected void Startloading(bool transparent = false)
         {
-            if (MainFrame == null)
-                return;
             try
             {
                 try
@@ -64,12 +62,12 @@ namespace Izrune.Activitys
                     LayoutParameters = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MatchParent, FrameLayout.LayoutParams.MatchParent)
                 };
                 loadingFrame.Clickable = true;
-                loadingFrame.SetBackgroundColor((transparent) ? Android.Graphics.Color.Argb(0, 0, 0, 0) : Android.Graphics.Color.Rgb(0, 0, 0));
+                loadingFrame.SetBackgroundColor((transparent) ? Android.Graphics.Color.Argb(0, 0, 0, 0) : Android.Graphics.Color.Rgb(255, 255, 255));
                 image = new ImageView(this)
                 {
                     LayoutParameters = new FrameLayout.LayoutParams((int)System.Math.Round(80 * this.Resources.DisplayMetrics.Density), (int)System.Math.Round(80 * this.Resources.DisplayMetrics.Density), GravityFlags.Center)
                 };
-                // image.SetImageResource(MyHoroscopeList.ElementAt(HoroscopeIndex));
+                image.SetImageResource(Resource.Drawable.logo);
                 scale1 = ObjectAnimator.OfPropertyValuesHolder(image,
                     PropertyValuesHolder.OfFloat("scaleX", 1.3f),
                     PropertyValuesHolder.OfFloat("scaleY", 1.3f),
@@ -104,12 +102,8 @@ namespace Izrune.Activitys
         {
             try
             {
-                if (HoroscopeIndex == 11)
-                {
-                    HoroscopeIndex = -1;
-                }
-                ++HoroscopeIndex;
-                image.SetBackgroundResource(LoadingImageList.ElementAt(HoroscopeIndex));
+
+
 
                 scale1.Start();
             }
@@ -120,8 +114,6 @@ namespace Izrune.Activitys
 
         public void StopLoading(bool ClearChildren = false)
         {
-            if (MainFrame == null)
-                return;
             try
             {
                 try

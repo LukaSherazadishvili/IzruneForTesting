@@ -79,7 +79,7 @@ namespace Izrune.Activitys
                 case Resource.Id.ReUpdate:
                     {
                         HeaderText.Text = "";
-                        ChangeFragmentPage(new ServiceFragment(), MainContainer.Id);
+                        ChangeFragmentPage(new InnerChangePackFragment(), MainContainer.Id);
                         drawer.CloseDrawers();
                         break;
                     }

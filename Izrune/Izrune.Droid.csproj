@@ -96,6 +96,9 @@
     <Compile Include="Fragments\DiplomaFragment.cs" />
     <Compile Include="Fragments\ExamStatisticFragment.cs" />
     <Compile Include="Fragments\IndividualServiceFragmentcs.cs" />
+    <Compile Include="Fragments\InnerChangePackFragment.cs" />
+    <Compile Include="Fragments\InnerIndividualFragment.cs" />
+    <Compile Include="Fragments\InnerPromoFragment.cs" />
     <Compile Include="Fragments\MainPageTestFragment.cs" />
     <Compile Include="Fragments\MPDCBaseFragment.cs" />
     <Compile Include="Fragments\NewsFragment.cs" />
@@ -608,6 +611,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\NewsDetailLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\LayoutInnerChangePack.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

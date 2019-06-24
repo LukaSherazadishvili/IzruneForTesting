@@ -212,10 +212,22 @@ namespace IZrune.PCL.Helpers
             return CUrrentPaimentInformation;
         }
 
+
+        public async Task ReNewPack(int studentId,int MonthCount, int Amount, string PromoCode = "0")
+        {
+            CUrrentPaimentInformation = await MpdcContainer.Instance.Get<IPaymentService>().GetPaymentUrlsAsync(studentId, MonthCount, Amount, PromoCode);
+
+           
+
+        }
+
+
         public IPay GetPaymentInformation()
         {
             return CUrrentPaimentInformation;
         }
+
+
 
         public async Task EditParrentProfile(string ParrentMail, string ParrentPhone, string City, string Village)
         {
@@ -244,6 +256,27 @@ namespace IZrune.PCL.Helpers
 
             }
         }
+
+        private IQuisInfo QuisInf;
+
+        public async Task<IQuisInfo> GetQuisInfo(int Id)
+        {
+           var Result=  MpdcContainer.Instance.Get<IStatisticServices>().GetCurrentTestDiplomaInfo(Id);
+            var DiplomaResult =  MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(Enum.QuezCategory.QuezExam);
+
+           await Task.WhenAll(Result, DiplomaResult);
+
+            var FinalDiplomaResult = DiplomaResult.Result.Where(i => i.Id == Id).FirstOrDefault();
+
+
+
+            QuisInf.QueisResult = Result.Result;
+            QuisInf.DiplomaURl = FinalDiplomaResult.DiplomaUrl;
+
+
+            return QuisInf;
+        }
+
 
 
     }

@@ -38,6 +38,7 @@ namespace Izrune.Activitys
                 else
                 {
                     view.LoadUrl(url);
+                    
                 }
               
             
@@ -71,13 +72,23 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.BackButton)]
         FrameLayout BackButton;
 
+
+        private static string MainUrl = "";
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
+          
+
 
             CurrentPay = UserControl.Instance.GetPaymentInformation();
             string Url = CurrentPay.CurrentUserPayURl;
+
+            if (MainUrl == "")
+            {
+                MainUrl = CurrentPay.CurrentUserPayURl;
+            }
 
 
             MWebView.Settings.JavaScriptEnabled = true;
@@ -91,7 +102,15 @@ namespace Izrune.Activitys
 
                 })
             });
-            MWebView.LoadUrl(Url);
+
+            if (Url == "http://www.izrune.ge/")
+            {
+                MWebView.LoadUrl(MainUrl);
+            }
+            else
+            {
+                MWebView.LoadUrl(Url);
+            }
            
 
             BackButton.Click += BackButton_Click;

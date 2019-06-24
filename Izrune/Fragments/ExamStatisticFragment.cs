@@ -78,8 +78,8 @@ namespace Izrune.Fragments
              Statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam);
 
 
-
-
+           
+            
             if (Statistic.Count() > 0)
             {
 
@@ -101,7 +101,7 @@ namespace Izrune.Fragments
            IzruneHellper.Instance.Monthes);
 
 
-
+               
 
                 MonthSpinner.Adapter = MonthAdapter;
 
@@ -146,6 +146,19 @@ namespace Izrune.Fragments
                                     Second.Text = (bestStatisticByTime.TestTimeInSecconds % 60).ToString();
                                 }
 
+                                var GroupdExams = Res.GroupBy(c =>
+                                     c.ExamDate.Day
+                                   ).Select(i => i.Select(o => o.ExamDate.ToShortDateString()).ToList()).ToList();
+
+                                if (GroupdExams.Count() > 0)
+                                {
+                                    var GroupdResult = GroupdExams.OrderByDescending(i => i.Count).FirstOrDefault();
+
+                                    BetwenDate.Text = GroupdResult[0];
+                                    TestCount.Text = GroupdResult.Count.ToString();
+                                }
+                                //    BetwenDate.Text=GroupdResult.FirstOrDefault()?
+
                                 adapter = new ExamStatisticRecyclerAdapter(Res.ToList());
                                 statisticRecycler.SetAdapter(adapter);
 
@@ -184,6 +197,23 @@ namespace Izrune.Fragments
                                 Minute.Text = (bestStatisticByTime.TestTimeInSecconds / 60).ToString();
                                 Second.Text = (bestStatisticByTime.TestTimeInSecconds % 60).ToString();
                             }
+
+                            var GroupdExams = Res.GroupBy(c =>
+                                    c.ExamDate.Day
+                                  ).Select(i => i.Select(o => o.ExamDate.ToShortDateString()).ToList()).ToList();
+
+                            if (GroupdExams.Count() > 0)
+                            {
+                                var GroupdResult = GroupdExams.OrderByDescending(i => i.Count).FirstOrDefault();
+
+
+                             //   var Groupdcount = GroupdExams.Select(i => i.Where(x => x == GroupdResult)).FirstOrDefault().Count();
+
+                                BetwenDate.Text = GroupdResult[0];
+                                TestCount.Text = GroupdResult.Count.ToString();
+
+                            }
+
 
                             adapter = new ExamStatisticRecyclerAdapter(Res.ToList());
                             statisticRecycler.SetAdapter(adapter);

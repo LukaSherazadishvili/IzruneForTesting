@@ -77,8 +77,14 @@ namespace Izrune.Activitys
             var DataAdapter = new ArrayAdapter<string>(this,
              Android.Resource.Layout.SimpleSpinnerDropDownItem,
             Region.Result.Select(i => i.title).ToList());
+
+
             ParrentVillage.Text = Result.Result.Vilage;
             ParrentRegion.Adapter = DataAdapter;
+
+            int SpinerPosition = DataAdapter.GetPosition(Result.Result.City);
+            ParrentRegion.SetSelection(SpinerPosition);
+
 
           var CurrentRegion=  Region.Result.FirstOrDefault(i => i.title == Result.Result.City);
 

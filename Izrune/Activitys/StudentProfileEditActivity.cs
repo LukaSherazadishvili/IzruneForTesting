@@ -97,6 +97,8 @@ namespace Izrune.Activitys
                 StudentId.Text = student.PersonalNumber;
                 MobilePhone.Text = student.Phone;
                 StudentClass.Text = student.Class.ToString();
+                
+
                // StudentSchool.Text = Regions.FirstOrDefault(i => i.id == student.RegionId).Schools.Where(i => i.id == student.SchoolId).FirstOrDefault().title;
                 StudentMail.Text = student.Email;
                 StudentVillage.Text = student.Village;
@@ -111,6 +113,12 @@ namespace Izrune.Activitys
                     isCheck = true;
                 }
             };
+
+            var reg = Regions.Where(i => i.id == student.RegionId).FirstOrDefault();
+
+           var pos= RegionAdapter.GetPosition(reg.title);
+            StudentCity.SetSelection(pos);
+
 
             SaveButton.Click +=async (s, e) =>
             {
