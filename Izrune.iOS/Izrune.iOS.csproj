@@ -450,6 +450,7 @@
       <BundleResource Include="Resources\checkFilled.png" />
       <BundleResource Include="Resources\downArrow.png" />
       <BundleResource Include="Resources\Group 250.png" />
+      <BundleResource Include="Resources\checkWhite.png" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\IZrune.PCL\IZrune.PCL.csproj">
