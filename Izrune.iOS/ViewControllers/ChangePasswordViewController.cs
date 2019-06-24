@@ -31,6 +31,16 @@ namespace Izrune.iOS
             saveBtn.TouchUpInside += async delegate
             {
                 //TODO
+
+                if(CheckPassword())
+                {
+
+                }
+
+                else
+                {
+
+                }
             };
 
             backBtn.TouchUpInside += delegate {
@@ -56,6 +66,18 @@ namespace Izrune.iOS
 
             textField.MakeRoundedTextField(25, UIColor.FromRGB(243,243,243), 20);
             view.AddShadowToView(3, 25, 0.3f, UIColor.FromRGBA(0, 0, 0, 0.25f));
+        }
+
+        private bool CheckPassword()
+        {
+            return (passwordNewTf.Text == repeatNewPasswordTf.Text);
+        }
+
+        private void ShowAlert()
+        {
+            var alertVc = UIAlertController.Create("ყურადღება!", "პაროლი წარმატებით შეიცვალა", UIAlertControllerStyle.Alert);
+            alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            this.PresentViewController(alertVc, true, null);
         }
     }
 }
