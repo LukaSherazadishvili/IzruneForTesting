@@ -78,10 +78,19 @@ namespace Izrune.iOS
                 else
                 {
                     if (IsPromoSelected)
+                    {
                         UserControl.Instance.SetPromoPack(PromoVc.SelectedMont, PromoVc.SelectedMont, PromoVc.PromoCode);
+
+                    }
+                        
                     else
+                    {
                         UserControl.Instance.SetPromoPack(SelectPacketVc.SelectedPrice.months, SelectPacketVc.SelectedPrice.price);
-                    PriceSelected?.Invoke(IsPromoSelected ? new Price() { price = PromoVc.SelectedMont, months = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
+                    }
+
+                    var price = (IsPromoSelected ? new Price() { price = PromoVc.SelectedMont, months = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
+
+                    PriceSelected?.Invoke(price);
                     NextClicked?.Invoke();
                     this.NavigationController.PopViewController(true);
                 }

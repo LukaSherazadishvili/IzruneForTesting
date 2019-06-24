@@ -3,26 +3,37 @@
 using System;
 
 using Foundation;
+using OxyPlot;
+using OxyPlot.Xamarin.iOS;
 using UIKit;
+using XLPagerTabStrip;
 
 namespace Izrune.iOS
 {
-	public partial class DiagramViewController : UIViewController
-	{
+	public partial class DiagramViewController : UIViewController, IIndicatorInfoProvider
+    {
 		public DiagramViewController (IntPtr handle) : base (handle)
 		{
 		}
 
         public static readonly NSString StoryboardId = new NSString("DiagramStoryboardId");
 
+        private PlotModel _plotModel;
+        private PlotView _plotView;
 
-
-
-
+        bool _isAllData = true;
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+
         }
+
+        public IndicatorInfo IndicatorInfoForPagerTabStrip(PagerTabStripViewController pagerTabStripController)
+        {
+            return new IndicatorInfo("დიაგრამები");
+        }
+
     }
 }

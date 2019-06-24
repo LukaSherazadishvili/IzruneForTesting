@@ -83,6 +83,8 @@ namespace Izrune.iOS
             paymentHostoryBtn.Layer.CornerRadius = 25;
 
             InitForm(CurrentStudent);
+
+            this.NavigationController.NavigationBar.InitNavigationBarColorWithNoShadow(UIColor.White);
         }
 
         private void initView(UIView view, UIView viewForShadow)
@@ -120,6 +122,7 @@ namespace Izrune.iOS
                 exTestView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
 
                     //TODO
+                    this.NavigationController.PopToRootViewController(false);
                     this.NavigationController.PushViewController(examTabVc, true);
                 }));
             }

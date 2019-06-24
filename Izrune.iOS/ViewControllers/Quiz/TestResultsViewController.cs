@@ -14,11 +14,12 @@ using System.Linq;
 using System.Collections.Generic;
 using IZrune.PCL.Abstraction.Models;
 using MpdcViewExtentions;
+using XLPagerTabStrip;
 
 namespace Izrune.iOS
 {
-	public partial class TestResultsViewController : BaseViewController, IUICollectionViewDelegate, IUICollectionViewDataSource, IUICollectionViewDelegateFlowLayout
-	{
+	public partial class TestResultsViewController : BaseViewController, IUICollectionViewDelegate, IUICollectionViewDataSource, IUICollectionViewDelegateFlowLayout, IIndicatorInfoProvider
+    {
 		public TestResultsViewController (IntPtr handle) : base (handle)
 		{
 		}
@@ -208,6 +209,11 @@ namespace Izrune.iOS
                     YearDropDown.Show();
                 }));
             }
+        }
+
+        public IndicatorInfo IndicatorInfoForPagerTabStrip(PagerTabStripViewController pagerTabStripController)
+        {
+            return new IndicatorInfo("შედეგები");
         }
     }
 }
