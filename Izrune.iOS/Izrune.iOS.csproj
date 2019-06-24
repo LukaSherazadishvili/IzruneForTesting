@@ -382,6 +382,10 @@
         <Compile Include="ViewControllers\ChangePasswordViewController.designer.cs">
           <DependentUpon>ChangePasswordViewController.cs</DependentUpon>
         </Compile>
+        <Compile Include="ViewControllers\SmsVerificationViewController.cs" />
+        <Compile Include="ViewControllers\SmsVerificationViewController.designer.cs">
+          <DependentUpon>SmsVerificationViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />

@@ -2531,6 +2531,21 @@
             </objects>
             <point key="canvasLocation" x="-783" y="2010"/>
         </scene>
+        <!--Sms Verification View Controller-->
+        <scene sceneID="IJw-Zh-JRo">
+            <objects>
+                <viewController storyboardIdentifier="SmsVerificationStoryboardId" id="b5E-Rt-rD6" customClass="SmsVerificationViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1ve-te-saS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="dR8-4c-UdT"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TZM-iy-aZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-99" y="2010"/>
+        </scene>
         <!--Statistic View Controller-->
         <scene sceneID="Uci-Ip-PeG">
             <objects>
