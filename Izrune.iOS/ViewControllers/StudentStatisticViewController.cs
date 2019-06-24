@@ -32,6 +32,7 @@ namespace Izrune.iOS
 
         private DiplomeViewController diplomeVc;
         private TestResultsViewController resultVc;
+        private ExamTabViewController examTabVc;
 
         public async override void ViewDidLoad()
         {
@@ -56,6 +57,7 @@ namespace Izrune.iOS
         {
             diplomeVc = Storyboard.InstantiateViewController(DiplomeViewController.StoryboardId) as DiplomeViewController;
             resultVc = Storyboard.InstantiateViewController(TestResultsViewController.StoryboardId) as TestResultsViewController;
+            examTabVc = Storyboard.InstantiateViewController(ExamTabViewController.StoryboardId) as ExamTabViewController;
         }
         private async Task LoadDataAsync()
         {
@@ -118,13 +120,14 @@ namespace Izrune.iOS
                 exTestView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
 
                     //TODO
-                    this.NavigationController.PushViewController(resultVc, true);
+                    this.NavigationController.PushViewController(examTabVc, true);
                 }));
             }
 
             paymentHostoryBtn.TouchUpInside += delegate {
 
                 //TODO
+
             };
 
         }

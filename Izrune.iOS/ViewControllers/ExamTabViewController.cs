@@ -12,5 +12,12 @@ namespace Izrune.iOS
 		public ExamTabViewController (IntPtr handle) : base (handle)
 		{
 		}
-	}
+
+        public static readonly NSString StoryboardId = new NSString("ExamTabStoryboardId");
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+        }
+    }
 }

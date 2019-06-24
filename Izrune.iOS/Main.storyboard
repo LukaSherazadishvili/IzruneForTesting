@@ -2175,7 +2175,19 @@
                     <view key="view" contentMode="scaleToFill" id="TcQ-1p-zBe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exam Tab" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mxy-8P-LzZ">
+                                <rect key="frame" x="170" y="437.5" width="74" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Mxy-8P-LzZ" firstAttribute="centerX" secondItem="TcQ-1p-zBe" secondAttribute="centerX" id="41m-Cs-Xkd"/>
+                            <constraint firstItem="Mxy-8P-LzZ" firstAttribute="centerY" secondItem="TcQ-1p-zBe" secondAttribute="centerY" id="8zd-Vu-fHh"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Vnt-Qf-Q5s"/>
                     </view>
                 </viewController>
