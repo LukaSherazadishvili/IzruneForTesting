@@ -111,6 +111,7 @@ namespace Izrune.iOS
             var scool = region?.Schools?.ToList();
             Schools = scool;
         }
+
         private void InitUI()
         {
             cityView.Layer.CornerRadius = 20;
@@ -241,5 +242,7 @@ namespace Izrune.iOS
             }
 
         }
+
+
     }
 }

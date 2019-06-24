@@ -4,13 +4,6 @@ using System;
 
 using Foundation;
 using UIKit;
-using FPT.Framework.iOS.UI.DropDown;
-using IZrune.PCL.Abstraction.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using IZrune.PCL.Helpers;
-using System.Linq;
-using Izrune.iOS.Utils;
 
 namespace Izrune.iOS
 {
@@ -21,77 +14,5 @@ namespace Izrune.iOS
 		}
 
         public static readonly NSString StoryboardId = new NSString("StatisticStoryboardId");
-
-
-        DropDown CurentStudentDP = new DropDown();
-
-        IStudent CurrentStudent;
-
-        private List<IStudent> Students;
-
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-
-        }
-
-
-        private void InitDropDowns()
-        {
-            SetupDropDown(CurentStudentDP,, currentStudentLbl);
-            SetupDropDown(CityDP, cityView, cityLbl);
-
-            var studentsArray = Students?.Select(x => x.Name)?.ToArray();
-            CurentStudentDP.DataSource = studentsArray;
-
-            var regionsArray = Regions?.Select(x => x.title)?.ToArray();
-            CityDP.DataSource = regionsArray;
-
-            CurentStudentDP.SelectionAction = async (nint index, string name) =>
-            {
-                if (currentStudentIndex != index)
-                {
-                    RegionId = Regions[(int)index].id;
-
-                    currentStudentIndex = (int)index;
-
-                    CurrentStudent = Students?[(int)index];
-
-                    InitForm(CurrentStudent);
-
-                    Schools = Regions?[(int)index].Schools?.ToList();
-                }
-            };
-
-            CityDP.SelectionAction = (nint index, string name) =>
-            {
-                if (currentRegionIndex != index)
-                {
-                    currentRegionIndex = (int)index;
-
-                    cityLbl.Text = Regions?[(int)index].title;
-                }
-            };
-        }
-
-        private void SetupDropDown(DropDown dropDown, UIView viewForDpD, UILabel dropDownLbl)
-        {
-            dropDown.AnchorView = new WeakReference<UIView>(viewForDpD);
-            dropDown.BottomOffset = new CoreGraphics.CGPoint(0, viewForDpD.Bounds.Height);
-            dropDown.Width = View.Frame.Width;
-            dropDown.Direction = Direction.Bottom;
-        }
-
-        private void InitDropDownUI(DropDown dropDown)
-        {
-            dropDown.BackgroundColor = UIColor.FromRGB(243, 243, 243);
-            dropDown.SelectionBackgroundColor = AppColors.TitleColor;
-            DPDConstants.UI.TextColor = AppColors.TitleColor;
-            DPDConstants.UI.SelectedTextColor = UIColor.White;
-
-            dropDown.TextFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 15);
-            dropDown.ClipsToBounds = true;
-            dropDown.Layer.CornerRadius = 20;
-        }
     }
 }

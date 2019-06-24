@@ -30,25 +30,47 @@ namespace Izrune.iOS
         private List<IStudent> Students;
         private int currentStudentIndex;
 
+        private DiplomeViewController diplomeVc;
+        private TestResultsViewController resultVc;
+        private ExamTabViewController examTabVc;
+
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
+            this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+
             await LoadDataAsync();
 
+            InitViewCOntrollers();
+
             View.LayoutIfNeeded();
+
+            InitDropDowns();
 
             InitUI();
 
             InitGestures();
         }
 
+        private void InitViewCOntrollers()
+        {
+            diplomeVc = Storyboard.InstantiateViewController(DiplomeViewController.StoryboardId) as DiplomeViewController;
+            resultVc = Storyboard.InstantiateViewController(TestResultsViewController.StoryboardId) as TestResultsViewController;
+            examTabVc = Storyboard.InstantiateViewController(ExamTabViewController.StoryboardId) as ExamTabViewController;
+        }
         private async Task LoadDataAsync()
         {
             Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
 
             CurrentStudent = Students?[0];
 
+        }
+
+        private void InitForm(IStudent student)
+        {
+            currentStudentLbl.Text = student.Name + " " + student.LastName;
+            packetDateLbl.Text = student.PackageStartDate.ToShortDateString();
         }
 
         private void InitUI()
@@ -59,6 +81,10 @@ namespace Izrune.iOS
             initView(exTestView, exShadow);
 
             paymentHostoryBtn.Layer.CornerRadius = 25;
+
+            InitForm(CurrentStudent);
+
+            this.NavigationController.NavigationBar.InitNavigationBarColorWithNoShadow(UIColor.White);
         }
 
         private void initView(UIView view, UIView viewForShadow)
@@ -76,8 +102,9 @@ namespace Izrune.iOS
             if (diplomeView.GestureRecognizers == null || diplomeView.GestureRecognizers?.Length == 0)
             {
                 diplomeView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
-                    //TODO
 
+                    diplomeVc.Student = CurrentStudent;
+                    this.NavigationController.PushViewController(diplomeVc, true);
                 }));
             }
 
@@ -86,6 +113,7 @@ namespace Izrune.iOS
                 sumTestsView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
 
                     //TODO
+                    this.NavigationController.PushViewController(resultVc, true);
                 }));
             }
 
@@ -94,20 +122,25 @@ namespace Izrune.iOS
                 exTestView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
 
                     //TODO
+                    this.NavigationController.PopToRootViewController(false);
+                    this.NavigationController.PushViewController(examTabVc, true);
                 }));
             }
 
             paymentHostoryBtn.TouchUpInside += delegate {
 
                 //TODO
+
             };
+
         }
 
         private void InitDropDowns()
         {
             SetupDropDown(CurentStudentDP, currentStudentView, currentStudentLbl);
+            SetupDropDownGesture(CurentStudentDP, currentStudentView);
 
-            var studentsArray = Students?.Select(x => x.Name)?.ToArray();
+            var studentsArray = Students?.Select(x => x.Name +" " + x.LastName)?.ToArray();
             CurentStudentDP.DataSource = studentsArray;
 
 
@@ -115,7 +148,9 @@ namespace Izrune.iOS
             {
                 if (currentStudentIndex != index)
                 {
+                    currentStudentIndex = (int)index;
                     CurrentStudent = Students?[(int)index];
+                    InitForm(CurrentStudent);
                 }
             };
 
@@ -139,6 +174,19 @@ namespace Izrune.iOS
             dropDown.TextFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 15);
             dropDown.ClipsToBounds = true;
             dropDown.Layer.CornerRadius = 20;
+        }
+
+        private void SetupDropDownGesture(DropDown dropDown, UIView viewforDpD)
+        {
+            if (viewforDpD.GestureRecognizers == null || viewforDpD.GestureRecognizers?.Length == 0)
+            {
+                viewforDpD.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    dropDown.Show();
+                    InitDropDownUI(dropDown);
+                }));
+            }
+
         }
     }
 }

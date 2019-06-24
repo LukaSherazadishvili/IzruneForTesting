@@ -8,11 +8,18 @@ using MPDCiOSPages.ViewControllers;
 using UIKit;
 using FPT.Framework.iOS.UI.DropDown;
 using Izrune.iOS.Utils;
+using System.Threading.Tasks;
+using IZrune.PCL.Abstraction.Services;
+using System.Linq;
+using System.Collections.Generic;
+using IZrune.PCL.Abstraction.Models;
+using MpdcViewExtentions;
+using XLPagerTabStrip;
 
 namespace Izrune.iOS
 {
-	public partial class TestResultsViewController : BaseViewController, IUICollectionViewDelegate, IUICollectionViewDataSource, IUICollectionViewDelegateFlowLayout
-	{
+	public partial class TestResultsViewController : BaseViewController, IUICollectionViewDelegate, IUICollectionViewDataSource, IUICollectionViewDelegateFlowLayout, IIndicatorInfoProvider
+    {
 		public TestResultsViewController (IntPtr handle) : base (handle)
 		{
 		}
@@ -22,10 +29,14 @@ namespace Izrune.iOS
         DropDown YearDropDown = new DropDown();
         DropDown MonthDropDown = new DropDown();
 
+        private List<IStudentsStatistic> StudentsStatistics;
 
-        public override void ViewDidLoad()
+        public bool Hideheader = true;
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            InitUI();
 
             InitDroDown();
 
@@ -33,9 +44,51 @@ namespace Izrune.iOS
 
             InitCollectionViewSettings();
 
+            await LoadDataAsync();
+
+            HideHeader(Hideheader);
+
             resultCollectionView.ReloadData();
 
         }
+
+        private void InitUI()
+        {
+            headerView.Layer.CornerRadius = 15;
+            viewForShadow.AddShadowToView(5, 15, 0.5f, UIColor.FromRGBA(0, 0, 0, 38.5f));
+
+            var dates = dateStackView.Subviews.ToList();
+            var results = testResultStackView.Subviews.ToList();
+
+            for (int i = 0; i < dates.Count; i++)
+            {
+                dates[i].Layer.CornerRadius = 17;
+                results[i].Layer.CornerRadius = 17;
+            }
+        }
+
+        private void HideAll(bool hide)
+        {
+            headerView.Hidden = hide;
+            viewForShadow.Hidden = hide;
+            mainStackView.Hidden = hide;
+            statisticStackView.Hidden = hide;
+        }
+
+        public async Task LoadDataAsync()
+        {
+
+            HideAll(true);
+            ShowLoading();
+
+            var diplomeService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
+
+            StudentsStatistics = (await diplomeService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest))?.ToList();
+
+            HideAll(false);
+            EndLoading();
+        }
+
 
         private void InitCollectionViewSettings()
         {
@@ -44,16 +97,28 @@ namespace Izrune.iOS
             resultCollectionView.DataSource = this;
         }
 
+        public void HideHeader(bool hide)
+        {
+            viewForShadow.Hidden = hide;
+            resultStackView.Hidden = hide;
+            headerView.Hidden = hide;
+            headerLine.Hidden = hide;
+        }
+
         #region CollectionView
 
         public nint GetItemsCount(UICollectionView collectionView, nint section)
         {
-            return 10;
+            return StudentsStatistics?.Count ?? 0;
         }
 
         public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {
             var resultCell = resultCollectionView.DequeueReusableCell(ResultCollectionViewCell.Identifier, indexPath) as ResultCollectionViewCell;
+
+            var data = StudentsStatistics?[indexPath.Row];
+
+            resultCell.InitData(data);
 
             return resultCell;
         }
@@ -144,6 +209,11 @@ namespace Izrune.iOS
                     YearDropDown.Show();
                 }));
             }
+        }
+
+        public IndicatorInfo IndicatorInfoForPagerTabStrip(PagerTabStripViewController pagerTabStripController)
+        {
+            return new IndicatorInfo("შედეგები");
         }
     }
 }

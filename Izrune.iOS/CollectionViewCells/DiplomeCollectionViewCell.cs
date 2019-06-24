@@ -1,6 +1,8 @@
 ﻿using System;
-
+using System.Globalization;
 using Foundation;
+using IZrune.PCL.Abstraction.Models;
+using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS.CollectionViewCells
@@ -12,7 +14,11 @@ namespace Izrune.iOS.CollectionViewCells
 
         public static readonly NSString Identifier = new NSString("DiplomeCellIdentifier");
 
-        public Action CellClicked { get; set; }
+        public Action<IStudentsStatistic> CellClicked { get; set; }
+
+        private IStudentsStatistic StudentsStatistic;
+
+        DateTimeFormatInfo ge = new CultureInfo("ka-GE", false).DateTimeFormat;
 
         static DiplomeCollectionViewCell()
         {
@@ -24,9 +30,14 @@ namespace Izrune.iOS.CollectionViewCells
             // Note: this .ctor should not contain any initialization logic.
         }
 
-        public void InitData()
+        public void InitData(IStudentsStatistic studentsStatistic)
         {
             //TODO
+
+            StudentsStatistic = studentsStatistic;
+
+            dateLbl.Text = studentsStatistic.ExamDate.ToString(ge.ShortDatePattern);
+
         }
 
         public override void AwakeFromNib()
@@ -38,11 +49,13 @@ namespace Izrune.iOS.CollectionViewCells
 
             mainView.Layer.CornerRadius = 20;
 
+            viewForShadow.AddShadowToView(5, 20, 0.6f, UIColor.FromRGBA(203, 135, 214, 153));
+
             if(mainView.GestureRecognizers == null || mainView.GestureRecognizers?.Length == 0)
             {
                 mainView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-                    CellClicked?.Invoke();
+                    CellClicked?.Invoke(StudentsStatistic);
                 }));
             }
         }

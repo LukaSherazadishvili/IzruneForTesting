@@ -17,10 +17,15 @@ namespace Izrune.iOS
 		}
 
         public static readonly NSString StoryboardId = new NSString("EditProfileStoryboardId");
+        private EditParentProfileViewController editParentVc;
+        private EditStudentProfileViewController editStudentVc;
+        private ChangePasswordViewController changePasswordVc;
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            InitViewControllers();
 
             this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
 
@@ -51,24 +56,25 @@ namespace Izrune.iOS
             viewForShadow.AddShadowToView(10, 25, 0.8f, AppColors.TitleColor);
         }
 
+        private void InitViewControllers()
+        {
+            editParentVc = Storyboard.InstantiateViewController(EditParentProfileViewController.StoryboardId) as EditParentProfileViewController;
+            editStudentVc = Storyboard.InstantiateViewController(EditStudentProfileViewController.StoryboardId) as EditStudentProfileViewController;
+            changePasswordVc = Storyboard.InstantiateViewController(ChangePasswordViewController.StoryboardId) as ChangePasswordViewController;
+        }
+
         private void InitGestures()
         {
             if(parentView.GestureRecognizers == null || parentView.GestureRecognizers?.Length == 0)
             {
                 parentView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
-                    var editParentVc = Storyboard.InstantiateViewController(EditParentProfileViewController.StoryboardId) as EditParentProfileViewController;
-
                     this.NavigationController.PushViewController(editParentVc, true);
-
                 }));
             }
 
             if (studentView.GestureRecognizers == null || studentView.GestureRecognizers?.Length == 0)
             {
                 studentView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
-
-                    var editParentVc = Storyboard.InstantiateViewController(EditStudentProfileViewController.StoryboardId) as EditStudentProfileViewController;
-
                     this.NavigationController.PushViewController(editParentVc, true);
                 }));
             }
@@ -76,8 +82,7 @@ namespace Izrune.iOS
             if (passowrdView.GestureRecognizers == null || passowrdView.GestureRecognizers?.Length == 0)
             {
                 passowrdView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
-
-                    //TODO
+                    this.NavigationController.PushViewController(changePasswordVc, true);
                 }));
             }
 
