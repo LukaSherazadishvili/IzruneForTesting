@@ -14,7 +14,7 @@ namespace Izrune.iOS.CollectionViewCells
 
         public static readonly NSString Identifier = new NSString("DiplomeCellIdentifier");
 
-        public Action CellClicked { get; set; }
+        public Action<IStudentsStatistic> CellClicked { get; set; }
 
         private IStudentsStatistic StudentsStatistic;
 
@@ -55,7 +55,7 @@ namespace Izrune.iOS.CollectionViewCells
             {
                 mainView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-                    CellClicked?.Invoke();
+                    CellClicked?.Invoke(StudentsStatistic);
                 }));
             }
         }

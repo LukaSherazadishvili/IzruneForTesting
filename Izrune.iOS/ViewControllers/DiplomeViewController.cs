@@ -22,8 +22,10 @@ namespace Izrune.iOS
         public static readonly NSString StoryboardId = new NSString("DiplomeStoryboardId");
 
         public IStudent Student;
-
+        private IStatisticServices diplomeService;
         private List<IStudentsStatistic> StudentsStatistics;
+
+        private ResultTabbedViewController diplomeDetailVc;
 
         public async override void ViewDidLoad()
         {
@@ -34,6 +36,8 @@ namespace Izrune.iOS
             await LoadDataAsync();
 
             InitCollectionViewSettings();
+
+            diplomeDetailVc = Storyboard.InstantiateViewController(ResultTabbedViewController.StoryboardId) as ResultTabbedViewController;
 
         }
 
@@ -47,7 +51,7 @@ namespace Izrune.iOS
 
             ShowLoading();
 
-            var diplomeService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
+            diplomeService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
 
             StudentsStatistics = (await diplomeService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam))?.Where(x => x.DiplomaUrl != null)?.ToList();
 
@@ -65,9 +69,12 @@ namespace Izrune.iOS
 
             var data = StudentsStatistics?[indexPath.Row];
 
-            cell.CellClicked = () =>
+            cell.CellClicked = async (studentStatistic) =>
             {
-                //TODO
+                ShowLoading();
+
+                var diplomedata = await diplomeService.GetCurrentTestDiplomaInfo(studentStatistic.Id);
+                this.NavigationController.PushViewController(diplomeDetailVc, true);
             };
 
             cell.InitData(data);
