@@ -445,6 +445,7 @@
       <BundleResource Include="Resources\Group 136.png" />
       <BundleResource Include="Resources\checkFilled.png" />
       <BundleResource Include="Resources\downArrow.png" />
+      <BundleResource Include="Resources\Group 250.png" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\IZrune.PCL\IZrune.PCL.csproj">
