@@ -20,6 +20,7 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("SmsVerificationStoryboardId");
         private IParent parent;
+        private int code;
 
         public async override void ViewDidLoad()
         {
@@ -29,7 +30,7 @@ namespace Izrune.iOS
 
             parent = await UserControl.Instance.GetCurrentUser();
             
-            var code = await ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>().GetSmsCodeAsync(parent.id);
+            code = await ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>().GetSmsCodeAsync(parent.id);
             smsTf.EditingDidEnd += (s,e) => {
                 //TODO
 
@@ -40,14 +41,19 @@ namespace Izrune.iOS
                 //TODO
                 CheckSms(Convert.ToInt32(smsTf.Text) == code);
             };
+
+            getCodeBtn.TouchUpInside += async delegate
+            {
+                code = await ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>().GetSmsCodeAsync(parent.id);
+            };
         }
 
-        public async override void ViewWillAppear(bool animated)
-        {
-            base.ViewWillAppear(animated);
-            await ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>().GetSmsCodeAsync(parent.id);
+        //public async override void ViewWillAppear(bool animated)
+        //{
+        //    base.ViewWillAppear(animated);
+        //    await ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>().GetSmsCodeAsync(parent.id);
 
-        }
+        //}
         private void CheckSms(bool isValid)
         {
 
