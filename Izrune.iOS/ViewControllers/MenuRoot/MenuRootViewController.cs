@@ -75,6 +75,16 @@ namespace Izrune.iOS.ViewControllers
             {
                 try
                 {
+
+                    if(menu.Type == MenuType.LogOut)
+                    {
+                        menuVc.IsLogedIn = false;
+                        menuVc.ReloadMenu();
+
+                        var login = menuViewControllerCreations[MenuType.LogIn]?.Invoke();
+                        SideBarController.ChangeContentView(login);
+                        return;
+                    }
                     CurrentMenu = menu.Type;
 
                     var asd = menuViewControllerCreations[menu.Type]?.Invoke();
