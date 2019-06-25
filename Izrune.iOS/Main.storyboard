@@ -473,8 +473,8 @@
                                 <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Rg-vA-hxp">
-                                <rect key="frame" x="0.0" y="103" width="414" height="793"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Rg-vA-hxp">
+                                <rect key="frame" x="25" y="103" width="364" height="793"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XlR-rj-Tdg">
                                     <size key="itemSize" width="50" height="50"/>
@@ -497,11 +497,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4Rg-vA-hxp" firstAttribute="top" secondItem="cDp-mu-xYC" secondAttribute="bottom" constant="20" id="1Fs-ma-AJh"/>
-                            <constraint firstItem="4Rg-vA-hxp" firstAttribute="leading" secondItem="PMR-bX-yuj" secondAttribute="leading" id="2jH-Kh-s4E"/>
+                            <constraint firstItem="4Rg-vA-hxp" firstAttribute="leading" secondItem="PMR-bX-yuj" secondAttribute="leading" constant="25" id="2jH-Kh-s4E"/>
                             <constraint firstAttribute="bottom" secondItem="4Rg-vA-hxp" secondAttribute="bottom" id="Loy-D2-X0N"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cDp-mu-xYC" secondAttribute="trailing" constant="20" id="Mag-Q6-JwE"/>
                             <constraint firstItem="cDp-mu-xYC" firstAttribute="leading" secondItem="STK-DL-NpO" secondAttribute="leadingMargin" constant="20" id="R4m-Uq-2hq"/>
-                            <constraint firstItem="PMR-bX-yuj" firstAttribute="trailing" secondItem="4Rg-vA-hxp" secondAttribute="trailing" id="kGa-26-0vq"/>
+                            <constraint firstItem="PMR-bX-yuj" firstAttribute="trailing" secondItem="4Rg-vA-hxp" secondAttribute="trailing" constant="25" id="kGa-26-0vq"/>
                             <constraint firstItem="cDp-mu-xYC" firstAttribute="top" secondItem="PMR-bX-yuj" secondAttribute="top" constant="20" id="kkF-SN-M7f"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PMR-bX-yuj"/>

@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Foundation;
+using IZrune.PCL.Abstraction.Models;
 using UIKit;
 
 namespace Izrune.iOS.CollectionViewCells
@@ -21,6 +22,20 @@ namespace Izrune.iOS.CollectionViewCells
         protected NewsBigCell(IntPtr handle) : base(handle)
         {
             // Note: this .ctor should not contain any initialization logic.
+        }
+
+
+        private INews News;
+        public Action<INews> NewsClicked { get; set; }
+
+        public void InitData(INews news)
+        {
+
+        }
+
+        public override void AwakeFromNib()
+        {
+            base.AwakeFromNib();
         }
     }
 }
