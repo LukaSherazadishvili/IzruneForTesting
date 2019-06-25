@@ -52,7 +52,7 @@ namespace Izrune.iOS
         {
 
             smsTextLbl.Text = isValid ? "SMS კოდი სწორია" : "SMS კოდი არ არის სწორი";
-            smsTf.Layer.BorderColor = isValid ? AppColors.Succesful.CGColor : AppColors.PlaceHolder.CGColor;
+            smsTf.Layer.BorderColor = isValid ? AppColors.Succesful.CGColor : AppColors.ErrorTitle.CGColor;
 
             smsTf.TextColor = UIColor.White;
             smsTextLbl.TextColor = isValid ? AppColors.Succesful : AppColors.ErrorTitle;
