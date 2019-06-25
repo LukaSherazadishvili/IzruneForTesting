@@ -39,6 +39,8 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.QuestionCountRecycler)]
         RecyclerView ShedulRecycler;
 
+        [MapControl(Resource.Id.StudenQuesName)]
+        TextView StudentName;
 
         
 
@@ -86,11 +88,12 @@ namespace Izrune.Activitys
             var Adapter = new ShedulerRecyclerAdapter(Sheduler);
             ShedulRecycler.SetAdapter(Adapter);
 
-           
+
+            StudentName.Text =  UserControl.Instance.CurrentStudent.Name +" "+ UserControl.Instance.CurrentStudent.LastName;
 
 
                 
-                var FragmentQuestion = new QuezFragment(QuezControll.Instance.GetCurrentQuestion());
+            var FragmentQuestion = new QuezFragment(QuezControll.Instance.GetCurrentQuestion());
 
             FragmentQuestion.AnswerClick = () =>
             {

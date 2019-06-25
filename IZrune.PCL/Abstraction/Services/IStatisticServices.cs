@@ -14,5 +14,7 @@ namespace IZrune.PCL.Abstraction.Services
         Task<IEnumerable<IQuestion>> GetFinalQuestionResult();
 
         Task<IQuisResultInfo> GetCurrentTestDiplomaInfo(int TestId);
+
+        
     }
 }
