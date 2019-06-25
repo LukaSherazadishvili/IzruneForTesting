@@ -280,6 +280,29 @@ namespace IZrune.PCL.Helpers
         }
 
 
+        public async Task<List<List<string>>>GetDiagramStatistic()
+        {
+
+            try
+            {
+
+                var Statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam);
+
+
+                var GroupdExams = Statistic.GroupBy(c =>
+                                         c.ExamDate.Day
+                                       ).Select(i => i.Select(o => o.ExamDate.ToShortDateString()).ToList()).ToList();
+
+                return GroupdExams;
+
+
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+        }
+
 
     }
 }
