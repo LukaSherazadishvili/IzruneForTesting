@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using IZrune.PCL.Abstraction.Services;
 using MPDCiOSPages.ViewControllers;
 using MPDC.iOS.Utils;
+using System.Globalization;
 
 namespace Izrune.iOS
 {
@@ -32,6 +33,8 @@ namespace Izrune.iOS
 
         IStudent CurrentStudent;
 
+        CultureInfo cultureInfo = new CultureInfo("ka-GE");
+            
         private List<IRegion> Regions;
         private List<ISchool> Schools;
 
@@ -145,9 +148,7 @@ namespace Izrune.iOS
             nameLbl.Text = student?.Name;
             lastNameLbl.Text = student?.LastName;
 
-            dayTf.Text = student?.Bdate.Day.ToString();
-            monthTf.Text = student?.Bdate.Month.ToString();
-            yearTf.Text = student?.Bdate.Year.ToString();
+            InitDate(student.Bdate);
 
             pnTf.Text = student?.PersonalNumber;
             phoneTf.Text = student?.Phone;
@@ -263,9 +264,7 @@ namespace Izrune.iOS
             var doneButton = new UIBarButtonItem("არჩევა", UIBarButtonItemStyle.Plain, (sender, e) => {
 
                 date = datePicker.Date.NSDateToDateTime();
-                dayTf.Text = date.Day.ToString();
-                monthTf.Text = date.Month.ToString();
-                yearTf.Text = date.Year.ToString();
+                InitDate(date);
                 this.View.EndEditing(true);
             });
 
@@ -277,6 +276,13 @@ namespace Izrune.iOS
 
             dateTransparentTf.InputAccessoryView = toolBar;
             dateTransparentTf.InputView = datePicker;
+        }
+
+        private void InitDate(DateTime _date)
+        {
+            dayTf.Text = _date.Day.ToString();
+            monthTf.Text = _date.ToString("MMMM", cultureInfo);
+            yearTf.Text = _date.Year.ToString();
         }
     }
 }

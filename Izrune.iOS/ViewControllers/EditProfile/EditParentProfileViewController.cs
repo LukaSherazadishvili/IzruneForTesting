@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Foundation;
@@ -25,6 +26,7 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("EditParentStoryboardId");
 
+        CultureInfo cultureInfo = new CultureInfo("ka-GE");
 
         private IParent Parent;
         DropDown CityDP = new DropDown();
@@ -109,9 +111,10 @@ namespace Izrune.iOS
             parentNameLbl.Text = parent?.Name;
             parentLastNameLbl.Text = parent?.LastName;
 
-            dayTf.Text = parent?.bDate?.Day.ToString();
-            monthTf.Text = parent?.bDate?.Month.ToString();
-            yearTf.Text = parent?.bDate?.Year.ToString();
+            if (parent.bDate.HasValue)
+            {
+                InitDate(parent.bDate.Value);
+            }
 
             phoneTf.Text = parent?.Phone;
             emailTf.Text = parent?.Email;
@@ -180,12 +183,11 @@ namespace Izrune.iOS
 
             var toolBar = new UIToolbar();
             toolBar.SizeToFit();
-            var doneButton = new UIBarButtonItem("არჩევა", UIBarButtonItemStyle.Plain, (sender, e) => {
+            var doneButton = new UIBarButtonItem("არჩევა", UIBarButtonItemStyle.Plain, (sender, e) =>
+            {
 
                 date = datePicker.Date.NSDateToDateTime();
-                dayTf.Text = date.Day.ToString();
-                monthTf.Text = date.Month.ToString();
-                yearTf.Text = date.Year.ToString();
+                InitDate(date);
                 this.View.EndEditing(true);
             });
 
@@ -197,6 +199,13 @@ namespace Izrune.iOS
 
             dateTransparentTf.InputAccessoryView = toolBar;
             dateTransparentTf.InputView = datePicker;
+        }
+
+        private void InitDate(DateTime _date)
+        {
+            dayTf.Text = _date.Day.ToString();
+            monthTf.Text = _date.ToString("MMMM", cultureInfo);
+            yearTf.Text = _date.Year.ToString();
         }
     }
 }
