@@ -72,7 +72,7 @@ namespace Izrune.Activitys
 
             StudentNameLastName.Text = $"{UserControl.Instance.CurrentStudent.Name}  {UserControl.Instance.CurrentStudent.LastName}";
 
-
+            var rrr = await UserControl.Instance.GetQuisInfo(IzruneHellper.Instance.CurrentStatistic.Id);
 
             Score.Text = Result.Score.ToString();
             Time.Text = $"{Result.Duration / 60}:{Result.Duration % 60}";
