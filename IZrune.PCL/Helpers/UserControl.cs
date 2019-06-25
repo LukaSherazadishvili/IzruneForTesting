@@ -261,6 +261,8 @@ namespace IZrune.PCL.Helpers
 
         public async Task<IQuisInfo> GetQuisInfo(int Id)
         {
+            QuisInf = new QuisInfo();
+            
            var Result=  MpdcContainer.Instance.Get<IStatisticServices>().GetCurrentTestDiplomaInfo(Id);
             var DiplomaResult =  MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(Enum.QuezCategory.QuezExam);
 
