@@ -32,9 +32,10 @@ namespace Izrune.iOS.CollectionViewCells
 
         public void InitData(INews news)
         {
+            News = news;
             newsImageView.InitImageFromWeb(news?.ImageUrl, false, false);
 
-            descriptionLbl.Text = news?.Description;
+            descriptionLbl.Text = news?.Title;
             dateLbl.Text = news?.date.ToString("dd MMMM yyyy", cultureInfo);
         }
 

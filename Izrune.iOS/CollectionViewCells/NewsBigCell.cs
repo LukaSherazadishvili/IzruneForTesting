@@ -1,8 +1,9 @@
 ﻿using System;
-
+using System.Globalization;
 using Foundation;
 using IZrune.PCL.Abstraction.Models;
 using UIKit;
+using MpdcViewExtentions;
 
 namespace Izrune.iOS.CollectionViewCells
 {
@@ -13,7 +14,7 @@ namespace Izrune.iOS.CollectionViewCells
 
         public static readonly NSString Identifier = new NSString("NewsBigCellIdentifier");
 
-
+        CultureInfo cultureInfo = new CultureInfo("ka-GE");
         static NewsBigCell()
         {
             Nib = UINib.FromName("NewsBigCell", NSBundle.MainBundle);
@@ -30,12 +31,18 @@ namespace Izrune.iOS.CollectionViewCells
 
         public void InitData(INews news)
         {
+            News = news;
+            newsImageView.InitImageFromWeb(news?.ImageUrl, false, false);
 
+            titleLbl.Text = news?.Title;
+            dateLbl.Text = news?.date.ToString("dd MMMM yyyy", cultureInfo);
         }
 
         public override void AwakeFromNib()
         {
             base.AwakeFromNib();
+
+            newsImageView.Layer.CornerRadius = 10;
         }
     }
 }

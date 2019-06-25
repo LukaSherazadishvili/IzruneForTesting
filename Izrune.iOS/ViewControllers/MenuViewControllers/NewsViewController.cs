@@ -72,6 +72,7 @@ namespace Izrune.iOS
             {
                 var cell = newsCollectionView.DequeueReusableCell(NewsBigCell.Identifier, indexPath) as NewsBigCell;
 
+                cell.InitData(data);
                 return cell;
             }
 
@@ -81,6 +82,7 @@ namespace Izrune.iOS
                 {
                     var cell = newsCollectionView.DequeueReusableCell(NewsBigCell.Identifier, indexPath) as NewsBigCell;
 
+                    cell.InitData(data);
                     return cell;
                 }
 
