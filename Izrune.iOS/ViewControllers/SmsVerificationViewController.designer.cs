@@ -12,9 +12,31 @@ namespace Izrune.iOS
 	[Register ("SmsVerificationViewController")]
 	partial class SmsVerificationViewController
 	{
+		[Outlet]
+		UIKit.UIButton confirmBtn { get; set; }
+
+		[Outlet]
+		UIKit.UILabel sentTextLbl { get; set; }
+
+		[Outlet]
+		UIKit.UITextField smsTf { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (sentTextLbl != null) {
+				sentTextLbl.Dispose ();
+				sentTextLbl = null;
+			}
+
+			if (smsTf != null) {
+				smsTf.Dispose ();
+				smsTf = null;
+			}
+
+			if (confirmBtn != null) {
+				confirmBtn.Dispose ();
+				confirmBtn = null;
+			}
 		}
 	}
 }
