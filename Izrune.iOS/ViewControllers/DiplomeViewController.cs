@@ -8,6 +8,8 @@ using Foundation;
 using Izrune.iOS.CollectionViewCells;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
+using IZrune.PCL.Implementation.Models;
 using MPDCiOSPages.ViewControllers;
 using UIKit;
 
@@ -73,7 +75,12 @@ namespace Izrune.iOS
             {
                 ShowLoading();
 
-                var diplomedata = await diplomeService.GetCurrentTestDiplomaInfo(studentStatistic.Id);
+                var quisInfo = await UserControl.Instance.GetQuisInfo(studentStatistic.Id);
+
+                diplomeDetailVc.QuisInfo = quisInfo;
+
+                EndLoading();
+
                 this.NavigationController.PushViewController(diplomeDetailVc, true);
             };
 

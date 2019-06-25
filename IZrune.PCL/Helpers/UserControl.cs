@@ -261,6 +261,8 @@ namespace IZrune.PCL.Helpers
 
         public async Task<IQuisInfo> GetQuisInfo(int Id)
         {
+            QuisInf = new QuisInfo();
+            
            var Result=  MpdcContainer.Instance.Get<IStatisticServices>().GetCurrentTestDiplomaInfo(Id);
             var DiplomaResult =  MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(Enum.QuezCategory.QuezExam);
 
@@ -277,6 +279,29 @@ namespace IZrune.PCL.Helpers
             return QuisInf;
         }
 
+
+        public async Task<List<List<string>>>GetDiagramStatistic()
+        {
+
+            try
+            {
+
+                var Statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam);
+
+
+                var GroupdExams = Statistic.GroupBy(c =>
+                                         c.ExamDate.Day
+                                       ).Select(i => i.Select(o => o.ExamDate.ToShortDateString()).ToList()).ToList();
+
+                return GroupdExams;
+
+
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+        }
 
 
     }
