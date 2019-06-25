@@ -85,10 +85,10 @@ namespace Izrune.iOS
                 this.NavigationController.PopViewController(true);
             };
 
-            dateTransparentTf.EditingDidBegin += (sender, e) =>
-            {
-                ShowDatePicker();
-            };
+            //dateTransparentTf.EditingDidBegin += (sender, e) =>
+            //{
+            //    ShowDatePicker();
+            //};
 
         }
 

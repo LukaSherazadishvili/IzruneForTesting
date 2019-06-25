@@ -109,10 +109,10 @@ namespace Izrune.iOS
                 }));
             }
 
-            dateTransparentTf.EditingDidBegin += (sender, e) =>
-            {
-                ShowDatePicker();
-            };
+            //dateTransparentTf.EditingDidBegin += (sender, e) =>
+            //{
+            //    ShowDatePicker();
+            //};
 
         }
 

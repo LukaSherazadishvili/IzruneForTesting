@@ -190,7 +190,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sJp-ey-F9L">
                                 <rect key="frame" x="35" y="426.5" width="344" height="100"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="irakli123" placeholder="სახელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VN0-gk-bHy">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="bekabeka123" placeholder="სახელი" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VN0-gk-bHy">
                                         <rect key="frame" x="0.0" y="0.0" width="344" height="40"/>
                                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -5511,7 +5511,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="s22-1c-faG">
                                                 <rect key="frame" x="30" y="651.5" width="315" height="40"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="დღე" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Kh-HM-moq">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="დღე" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Kh-HM-moq">
                                                         <rect key="frame" x="0.0" y="0.0" width="64" height="40"/>
                                                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -5521,7 +5521,7 @@
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                     </textField>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="თვე" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cUy-I3-KX9">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="თვე" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cUy-I3-KX9">
                                                         <rect key="frame" x="78.5" y="0.0" width="158.5" height="40"/>
                                                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -5531,7 +5531,7 @@
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                     </textField>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="წელი" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yu6-u5-ORk">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="წელი" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yu6-u5-ORk">
                                                         <rect key="frame" x="251" y="0.0" width="64" height="40"/>
                                                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -5548,7 +5548,7 @@
                                                     <constraint firstItem="cUy-I3-KX9" firstAttribute="width" secondItem="s22-1c-faG" secondAttribute="width" multiplier="0.5" constant="1" id="vVP-U0-olL"/>
                                                 </constraints>
                                             </stackView>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tFz-eB-vas">
+                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tFz-eB-vas">
                                                 <rect key="frame" x="30" y="651.5" width="315" height="40"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -5820,7 +5820,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RDu-Tx-g6M">
                                                         <rect key="frame" x="0.0" y="31.5" width="315" height="40"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="დღე" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gGL-20-fKm">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="დღე" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gGL-20-fKm">
                                                                 <rect key="frame" x="0.0" y="0.0" width="64" height="40"/>
                                                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
@@ -5830,8 +5830,8 @@
                                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                             </textField>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="თვე" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7fe-le-sh2">
-                                                                <rect key="frame" x="78.5" y="0.0" width="158" height="40"/>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="თვე" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7fe-le-sh2">
+                                                                <rect key="frame" x="78.5" y="0.0" width="158.5" height="40"/>
                                                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="zKy-Mp-5qd"/>
@@ -5840,7 +5840,7 @@
                                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                             </textField>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="წელი" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6RP-45-cXw">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="წელი" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6RP-45-cXw">
                                                                 <rect key="frame" x="251" y="0.0" width="64" height="40"/>
                                                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
@@ -5859,7 +5859,7 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fQP-iS-DIp">
+                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fQP-iS-DIp">
                                                 <rect key="frame" x="30" y="441" width="315" height="40"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
