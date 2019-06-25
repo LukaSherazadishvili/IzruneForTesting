@@ -90,6 +90,7 @@ namespace Izrune.iOS
             var datePicker = new UIDatePicker();
 
             datePicker.Mode = UIDatePickerMode.Date;
+            datePicker.Locale = new NSLocale("ka-GE");
 
             var toolBar = new UIToolbar();
             toolBar.SizeToFit();

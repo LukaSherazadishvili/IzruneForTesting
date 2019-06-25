@@ -10,6 +10,7 @@ using Izrune.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
+using MPDC.iOS.Utils;
 using MPDCiOSPages.ViewControllers;
 using MpdcViewExtentions;
 using UIKit;
@@ -31,6 +32,7 @@ namespace Izrune.iOS
         private List<IRegion> Regions;
         private int currentRegionIndex;
         private int RegionId;
+        private DateTime date;
 
         public async override void ViewDidLoad()
         {
@@ -58,6 +60,16 @@ namespace Izrune.iOS
             contentView.Hidden = false;
         }
 
+        private void UpdateStudenProfile(string firstName, string lastName, DateTime birthDate, string phoneNumber, string email, string city, string village)
+        {
+            Parent.Name = firstName;
+            Parent.LastName = lastName;
+            Parent.bDate = birthDate;
+            Parent.Phone = phoneNumber;
+            Parent.Email = email;
+            Parent.City = city;
+        }
+
         private void InitGestures()
         {
             saveBtn.TouchUpInside += async delegate
@@ -70,6 +82,12 @@ namespace Izrune.iOS
             backBtn.TouchUpInside += delegate {
                 this.NavigationController.PopViewController(true);
             };
+
+            dateTransparentTf.EditingDidBegin += (sender, e) =>
+            {
+                ShowDatePicker();
+            };
+
         }
 
         private void InitUI()
@@ -99,16 +117,6 @@ namespace Izrune.iOS
             emailTf.Text = parent?.Email;
             cityLbl.Text = parent?.City;
             villageTf.Text = parent?.Vilage;
-        }
-
-        private void UpdateStudenProfile(string firstName, string lastName, DateTime birthDate, string phoneNumber, string email, string city, string village)
-        {
-            Parent.Name = firstName;
-            Parent.LastName = lastName;
-            Parent.bDate = birthDate;
-            Parent.Phone = phoneNumber;
-            Parent.Email = email;
-            Parent.City = city;
         }
 
         private void SetupDropDown(DropDown dropDown, UIView viewForDpD, UILabel dropDownLbl)
@@ -161,6 +169,34 @@ namespace Izrune.iOS
                     cityLbl.Text = Regions?[(int)index].title;
                 }
             };
+        }
+
+        private void ShowDatePicker()
+        {
+            var datePicker = new UIDatePicker();
+
+            datePicker.Mode = UIDatePickerMode.Date;
+            datePicker.Locale = new NSLocale("ka-GE");
+
+            var toolBar = new UIToolbar();
+            toolBar.SizeToFit();
+            var doneButton = new UIBarButtonItem("არჩევა", UIBarButtonItemStyle.Plain, (sender, e) => {
+
+                date = datePicker.Date.NSDateToDateTime();
+                dayTf.Text = date.Day.ToString();
+                monthTf.Text = date.Month.ToString();
+                yearTf.Text = date.Year.ToString();
+                this.View.EndEditing(true);
+            });
+
+            var spaceButton = new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace, null, null);
+
+            var cancelButton = new UIBarButtonItem("დახურვა", UIBarButtonItemStyle.Plain, (s, e) => { this.View.EndEditing(true); });
+
+            toolBar.SetItems(new UIBarButtonItem[] { cancelButton, spaceButton, doneButton }, false);
+
+            dateTransparentTf.InputAccessoryView = toolBar;
+            dateTransparentTf.InputView = datePicker;
         }
     }
 }

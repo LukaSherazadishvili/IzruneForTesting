@@ -14,6 +14,7 @@ using IZrune.PCL.Helpers;
 using System.Threading.Tasks;
 using IZrune.PCL.Abstraction.Services;
 using MPDCiOSPages.ViewControllers;
+using MPDC.iOS.Utils;
 
 namespace Izrune.iOS
 {
@@ -43,6 +44,7 @@ namespace Izrune.iOS
         private int SchoolId;
 
         private SelectSchoolViewController SchoolVc;
+        private DateTime date;
 
         public async override void ViewDidLoad()
         {
@@ -103,6 +105,12 @@ namespace Izrune.iOS
 
                 }));
             }
+
+            dateTransparentTf.EditingDidBegin += (sender, e) =>
+            {
+                ShowDatePicker();
+            };
+
         }
 
         private void GetSchools()
@@ -243,6 +251,32 @@ namespace Izrune.iOS
 
         }
 
+        private void ShowDatePicker()
+        {
+            var datePicker = new UIDatePicker();
 
+            datePicker.Mode = UIDatePickerMode.Date;
+            datePicker.Locale = new NSLocale("ka-GE");
+
+            var toolBar = new UIToolbar();
+            toolBar.SizeToFit();
+            var doneButton = new UIBarButtonItem("არჩევა", UIBarButtonItemStyle.Plain, (sender, e) => {
+
+                date = datePicker.Date.NSDateToDateTime();
+                dayTf.Text = date.Day.ToString();
+                monthTf.Text = date.Month.ToString();
+                yearTf.Text = date.Year.ToString();
+                this.View.EndEditing(true);
+            });
+
+            var spaceButton = new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace, null, null);
+
+            var cancelButton = new UIBarButtonItem("დახურვა", UIBarButtonItemStyle.Plain, (s, e) => { this.View.EndEditing(true); });
+
+            toolBar.SetItems(new UIBarButtonItem[] { cancelButton, spaceButton, doneButton }, false);
+
+            dateTransparentTf.InputAccessoryView = toolBar;
+            dateTransparentTf.InputView = datePicker;
+        }
     }
 }
