@@ -3,6 +3,11 @@
 using System;
 
 using Foundation;
+using Izrune.iOS.Utils;
+using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
+using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS
@@ -14,10 +19,57 @@ namespace Izrune.iOS
 		}
 
         public static readonly NSString StoryboardId = new NSString("SmsVerificationStoryboardId");
+        private IParent parent;
 
-        public override void ViewDidLoad()
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            InitUI();
+
+            parent = await UserControl.Instance.GetCurrentUser();
+            
+            var code = await ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>().GetSmsCodeAsync(parent.id);
+            smsTf.EditingDidEnd += (s,e) => {
+                //TODO
+
+            };
+
+            confirmBtn.TouchUpInside += delegate {
+
+                //TODO
+                CheckSms(Convert.ToInt32(smsTf.Text) == code);
+            };
+        }
+
+        public async override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            await ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>().GetSmsCodeAsync(parent.id);
+
+        }
+        private void CheckSms(bool isValid)
+        {
+
+            smsTextLbl.Text = isValid ? "SMS კოდი სწორია" : "SMS კოდი არ არის სწორი";
+            smsTf.Layer.BorderColor = isValid ? AppColors.Succesful.CGColor : AppColors.PlaceHolder.CGColor;
+
+            smsTf.TextColor = UIColor.White;
+            smsTextLbl.TextColor = isValid ? AppColors.Succesful : AppColors.ErrorTitle;
+            smsTf.BackgroundColor = isValid ? AppColors.LightGreen : AppColors.LightRed;
+            smsTf.AddShadowToView(5, 25, 0.8f, isValid ? AppColors.GreenShadow : AppColors.RedShadow);
+        }
+
+        private void InitUI()
+        {
+            smsTf.MakeRoundedTextField(25, UIColor.FromRGB(243, 243, 243));
+            smsTf.TextAlignment = UITextAlignment.Center;
+            smsTf.Layer.BorderWidth = 2;
+            smsTf.Layer.BorderColor = UIColor.White.CGColor;
+
+            smsShadowView.AddShadowToView(2, 25, 0.3f, UIColor.FromRGBA(0, 0, 0, 0.25f));
+            confirmBtn.AddShadowToView(2, 25, 0.4f, AppColors.Tint);
+            getCodeBtn.AddShadowToView(2, 25, 0.4f, UIColor.FromRGBA(99, 222, 255, 153));
         }
     }
 }

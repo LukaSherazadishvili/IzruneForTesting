@@ -8,9 +8,13 @@ namespace Izrune.iOS.Utils
 
         public static UIColor Succesful => UIColor.FromRGB(73, 181, 65);
 
+        public static UIColor LightGreen => UIColor.FromRGBA(152, 216, 147, 255);
+
         public static UIColor Tint => UIColor.FromRGB(203, 135, 214);
 
         public static UIColor ErrorTitle => UIColor.FromRGB(231, 76, 60);
+
+        public static UIColor LightRed => UIColor.FromRGBA(255, 160, 151, 255);
 
         public static UIColor TextFieldBackground => UIColor.FromRGB(243, 243, 243);
 
@@ -21,6 +25,8 @@ namespace Izrune.iOS.Utils
         public static UIColor TitleColor => UIColor.FromRGB(174, 113, 183);
 
         public static UIColor GreenShadow => UIColor.FromRGBA(73, 181, 65, 0);
+
+        public static UIColor RedShadow => UIColor.FromRGBA(231, 76, 60, 153);
 
         public static UIColor UnselectedColor => UIColor.FromRGB(106,106,106);
 

@@ -2643,118 +2643,164 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fagarati.png" translatesAutoresizingMaskIntoConstraints="NO" id="8zi-69-myX">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="შემაჯამებელი ტესტი" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPa-Rg-GWv">
-                                <rect key="frame" x="25" y="74" width="364" height="21"/>
-                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="18"/>
-                                <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="SzV-f9-WjW">
-                                <rect key="frame" x="25" y="195" width="364" height="83"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fag-AI-JvE">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="გააქტიურე შემაჯამებელი ტესტი SMS კოდით, რომელიც მიიღეთ მითითებულ ტელეფონის ნომერზე" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cot-as-dOn">
-                                        <rect key="frame" x="0.0" y="0.0" width="364" height="42"/>
-                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
-                                        <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SMS კოდი გაგზავნილია რეგისტრაციის დროს მითითებულ ნომერზე" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ob-Kz-rFl">
-                                        <rect key="frame" x="0.0" y="57" width="364" height="26"/>
-                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="11"/>
-                                        <color key="textColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.15294117647058825" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="3Zo-FI-bwL">
-                                <rect key="frame" x="25" y="384" width="364" height="135"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="SMS კოდი" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s1b-2K-ieb">
-                                        <rect key="frame" x="0.0" y="0.0" width="364" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c1b-NE-jLr" userLabel="ContentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="811"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fagarati.png" translatesAutoresizingMaskIntoConstraints="NO" id="8zi-69-myX">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="811"/>
+                                            </imageView>
+                                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="შემაჯამებელი ტესტი" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPa-Rg-GWv">
+                                                <rect key="frame" x="25" y="20" width="364" height="21"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="18"/>
+                                                <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="SzV-f9-WjW">
+                                                <rect key="frame" x="25" y="191" width="364" height="42"/>
+                                                <subviews>
+                                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="გააქტიურე შემაჯამებელი ტესტი SMS კოდით, რომელიც მიიღეთ მითითებულ ტელეფონის ნომერზე" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cot-as-dOn">
+                                                        <rect key="frame" x="0.0" y="0.0" width="364" height="42"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
+                                                        <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SMS კოდი გაგზავნილია რეგისტრაციის დროს მითითებულ ნომერზე" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ob-Kz-rFl">
+                                                <rect key="frame" x="25" y="248" width="364" height="26"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="11"/>
+                                                <color key="textColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.15294117647058825" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qE4-jI-bxL">
+                                                <rect key="frame" x="25" y="284" width="364" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="3Zo-FI-bwL">
+                                                <rect key="frame" x="25" y="284" width="364" height="125"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="SMS კოდი" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s1b-2K-ieb">
+                                                        <rect key="frame" x="0.0" y="0.0" width="364" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="mM1-ug-72V"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="one-time-code"/>
+                                                    </textField>
+                                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0j-Is-SQm">
+                                                        <rect key="frame" x="0.0" y="75" width="364" height="50"/>
+                                                        <color key="backgroundColor" red="0.79607843140000001" green="0.52941176469999995" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="xfu-7p-GIf"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="15"/>
+                                                        <inset key="contentEdgeInsets" minX="40" minY="0.0" maxX="40" maxY="0.0"/>
+                                                        <state key="normal" title="დადასტურება">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="s1b-2K-ieb" secondAttribute="trailing" id="7J9-0a-DPR"/>
+                                                    <constraint firstAttribute="trailing" secondItem="l0j-Is-SQm" secondAttribute="trailing" id="PfI-9H-Pfq"/>
+                                                    <constraint firstItem="s1b-2K-ieb" firstAttribute="leading" secondItem="3Zo-FI-bwL" secondAttribute="leading" id="WNf-44-Fch"/>
+                                                    <constraint firstItem="l0j-Is-SQm" firstAttribute="leading" secondItem="3Zo-FI-bwL" secondAttribute="leading" id="yXM-Ca-RD3"/>
+                                                </constraints>
+                                            </stackView>
+                                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="თუ SMS კოდი ვერ მიიღეთ, ჩვენ მას ახლიდან გამოგიგზავნით" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVo-f2-ViN">
+                                                <rect key="frame" x="25" y="449" width="364" height="28"/>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
+                                                <color key="textColor" red="0.24705882352941178" green="0.31764705882352939" blue="0.70980392156862748" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="EaM-Jl-UgW">
+                                                <rect key="frame" x="0.0" y="641" width="414" height="170"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="170" id="s6W-EU-oEb"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAC-fy-S61">
+                                                <rect key="frame" x="25" y="616" width="364" height="50"/>
+                                                <color key="backgroundColor" red="0.38823529410000002" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="aRY-gw-uxG"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="13"/>
+                                                <inset key="contentEdgeInsets" minX="50" minY="0.0" maxX="50" maxY="0.0"/>
+                                                <state key="normal" title="SMS კოდის მიღება">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="25"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="mM1-ug-72V"/>
+                                            <constraint firstItem="TPa-Rg-GWv" firstAttribute="leading" secondItem="c1b-NE-jLr" secondAttribute="leading" constant="25" id="1BO-Ry-pWo"/>
+                                            <constraint firstItem="3Zo-FI-bwL" firstAttribute="top" secondItem="6ob-Kz-rFl" secondAttribute="bottom" constant="10" id="2sF-Hg-9nn"/>
+                                            <constraint firstItem="rAC-fy-S61" firstAttribute="leading" secondItem="l0j-Is-SQm" secondAttribute="leading" id="3nV-Ts-rz1"/>
+                                            <constraint firstItem="SzV-f9-WjW" firstAttribute="top" secondItem="TPa-Rg-GWv" secondAttribute="bottom" constant="150" id="3oP-jH-jft"/>
+                                            <constraint firstAttribute="trailing" secondItem="6ob-Kz-rFl" secondAttribute="trailing" constant="25" id="4D5-NB-r00"/>
+                                            <constraint firstItem="qE4-jI-bxL" firstAttribute="leading" secondItem="s1b-2K-ieb" secondAttribute="leading" id="4cb-Bg-UDT"/>
+                                            <constraint firstItem="rAC-fy-S61" firstAttribute="centerX" secondItem="l0j-Is-SQm" secondAttribute="centerX" id="4hM-8T-okb"/>
+                                            <constraint firstItem="uVo-f2-ViN" firstAttribute="leading" secondItem="c1b-NE-jLr" secondAttribute="leading" constant="25" id="5PF-be-7Rb"/>
+                                            <constraint firstAttribute="trailing" secondItem="SzV-f9-WjW" secondAttribute="trailing" constant="25" id="ALw-Cn-CGE"/>
+                                            <constraint firstAttribute="trailing" secondItem="EaM-Jl-UgW" secondAttribute="trailing" id="BKU-LJ-Wrk"/>
+                                            <constraint firstItem="rAC-fy-S61" firstAttribute="top" secondItem="EaM-Jl-UgW" secondAttribute="top" constant="-25" id="Cpz-um-mA0"/>
+                                            <constraint firstAttribute="trailing" secondItem="3Zo-FI-bwL" secondAttribute="trailing" constant="25" id="FG6-1r-yVv"/>
+                                            <constraint firstItem="TPa-Rg-GWv" firstAttribute="top" secondItem="c1b-NE-jLr" secondAttribute="top" constant="20" id="Gf9-NG-Y38"/>
+                                            <constraint firstItem="qE4-jI-bxL" firstAttribute="bottom" secondItem="s1b-2K-ieb" secondAttribute="bottom" id="M0P-G3-r3H"/>
+                                            <constraint firstAttribute="bottom" secondItem="EaM-Jl-UgW" secondAttribute="bottom" id="QbM-Ua-rxh"/>
+                                            <constraint firstItem="qE4-jI-bxL" firstAttribute="trailing" secondItem="s1b-2K-ieb" secondAttribute="trailing" id="Uxe-Fj-fe6"/>
+                                            <constraint firstItem="6ob-Kz-rFl" firstAttribute="top" secondItem="SzV-f9-WjW" secondAttribute="bottom" constant="15" id="VBG-hW-fKe"/>
+                                            <constraint firstItem="uVo-f2-ViN" firstAttribute="top" secondItem="3Zo-FI-bwL" secondAttribute="bottom" constant="40" id="Wjp-wg-84X"/>
+                                            <constraint firstAttribute="trailing" secondItem="8zi-69-myX" secondAttribute="trailing" id="by1-Xk-OG4"/>
+                                            <constraint firstItem="qE4-jI-bxL" firstAttribute="top" secondItem="s1b-2K-ieb" secondAttribute="top" id="cLM-43-iwb"/>
+                                            <constraint firstItem="8zi-69-myX" firstAttribute="top" secondItem="c1b-NE-jLr" secondAttribute="top" id="jaU-9J-PSb"/>
+                                            <constraint firstItem="8zi-69-myX" firstAttribute="leading" secondItem="c1b-NE-jLr" secondAttribute="leading" id="kpY-g2-fBA"/>
+                                            <constraint firstAttribute="trailing" secondItem="TPa-Rg-GWv" secondAttribute="trailing" constant="25" id="lIk-9g-Qi1"/>
+                                            <constraint firstAttribute="trailing" secondItem="uVo-f2-ViN" secondAttribute="trailing" constant="25" id="lSf-JN-6ay"/>
+                                            <constraint firstItem="3Zo-FI-bwL" firstAttribute="leading" secondItem="c1b-NE-jLr" secondAttribute="leading" constant="25" id="nia-xr-gY9"/>
+                                            <constraint firstItem="6ob-Kz-rFl" firstAttribute="leading" secondItem="c1b-NE-jLr" secondAttribute="leading" constant="25" id="rOK-AJ-wvB"/>
+                                            <constraint firstItem="SzV-f9-WjW" firstAttribute="leading" secondItem="c1b-NE-jLr" secondAttribute="leading" constant="25" id="sTy-88-l3S"/>
+                                            <constraint firstAttribute="bottom" secondItem="8zi-69-myX" secondAttribute="bottom" id="v73-xf-buH"/>
+                                            <constraint firstItem="EaM-Jl-UgW" firstAttribute="leading" secondItem="c1b-NE-jLr" secondAttribute="leading" id="vce-6P-i8h"/>
+                                            <constraint firstItem="rAC-fy-S61" firstAttribute="trailing" secondItem="l0j-Is-SQm" secondAttribute="trailing" id="x2m-cE-YfB"/>
                                         </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0j-Is-SQm">
-                                        <rect key="frame" x="81.5" y="85" width="201" height="50"/>
-                                        <color key="backgroundColor" red="0.79607843140000001" green="0.52941176469999995" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="xfu-7p-GIf"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="15"/>
-                                        <inset key="contentEdgeInsets" minX="40" minY="0.0" maxX="40" maxY="0.0"/>
-                                        <state key="normal" title="დადასტურება">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="s1b-2K-ieb" secondAttribute="trailing" id="7J9-0a-DPR"/>
-                                    <constraint firstItem="s1b-2K-ieb" firstAttribute="leading" secondItem="3Zo-FI-bwL" secondAttribute="leading" id="WNf-44-Fch"/>
+                                    <constraint firstAttribute="bottom" secondItem="c1b-NE-jLr" secondAttribute="bottom" id="7gh-l2-rGd"/>
+                                    <constraint firstItem="c1b-NE-jLr" firstAttribute="top" secondItem="Fag-AI-JvE" secondAttribute="top" id="DvC-CE-iWY"/>
+                                    <constraint firstItem="c1b-NE-jLr" firstAttribute="leading" secondItem="Fag-AI-JvE" secondAttribute="leading" id="M7A-SL-dMG"/>
+                                    <constraint firstAttribute="trailing" secondItem="c1b-NE-jLr" secondAttribute="trailing" id="qaG-0q-MWp"/>
                                 </constraints>
-                            </stackView>
-                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="თუ SMS კოდი ვერ მიიღეთ, ჩვენ მას ახლიდან გამოგიგზავნით" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVo-f2-ViN">
-                                <rect key="frame" x="25" y="569" width="364" height="28"/>
-                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
-                                <color key="textColor" red="0.24705882352941178" green="0.31764705882352939" blue="0.70980392156862748" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="EaM-Jl-UgW">
-                                <rect key="frame" x="0.0" y="692" width="414" height="170"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="170" id="s6W-EU-oEb"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAC-fy-S61">
-                                <rect key="frame" x="87.5" y="667" width="239" height="50"/>
-                                <color key="backgroundColor" red="0.38823529410000002" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="aRY-gw-uxG"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="13"/>
-                                <inset key="contentEdgeInsets" minX="50" minY="0.0" maxX="50" maxY="0.0"/>
-                                <state key="normal" title="SMS კოდის მიღება">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="SzV-f9-WjW" firstAttribute="top" secondItem="TPa-Rg-GWv" secondAttribute="bottom" constant="100" id="6Of-tI-EZ9"/>
-                            <constraint firstItem="TPa-Rg-GWv" firstAttribute="leading" secondItem="dR8-4c-UdT" secondAttribute="leading" constant="25" id="AEA-3q-zfM"/>
-                            <constraint firstItem="EaM-Jl-UgW" firstAttribute="leading" secondItem="dR8-4c-UdT" secondAttribute="leading" id="Chq-h5-xRc"/>
-                            <constraint firstItem="uVo-f2-ViN" firstAttribute="leading" secondItem="dR8-4c-UdT" secondAttribute="leading" constant="25" id="MUV-Pc-Iyt"/>
-                            <constraint firstItem="dR8-4c-UdT" firstAttribute="trailing" secondItem="uVo-f2-ViN" secondAttribute="trailing" constant="25" id="Rjh-tC-sd6"/>
-                            <constraint firstItem="rAC-fy-S61" firstAttribute="top" secondItem="EaM-Jl-UgW" secondAttribute="top" constant="-25" id="Rsc-wA-tQv"/>
-                            <constraint firstAttribute="trailing" secondItem="SzV-f9-WjW" secondAttribute="trailing" constant="25" id="Tuf-Ha-53H"/>
-                            <constraint firstItem="TPa-Rg-GWv" firstAttribute="top" secondItem="dR8-4c-UdT" secondAttribute="top" constant="30" id="aWx-IT-FeQ"/>
-                            <constraint firstItem="dR8-4c-UdT" firstAttribute="trailing" secondItem="3Zo-FI-bwL" secondAttribute="trailing" constant="25" id="cXN-MF-0kB"/>
-                            <constraint firstItem="dR8-4c-UdT" firstAttribute="bottom" secondItem="EaM-Jl-UgW" secondAttribute="bottom" id="eAc-Mo-0yh"/>
-                            <constraint firstItem="SzV-f9-WjW" firstAttribute="leading" secondItem="dR8-4c-UdT" secondAttribute="leading" constant="25" id="gaQ-4i-IgB"/>
-                            <constraint firstAttribute="trailing" secondItem="EaM-Jl-UgW" secondAttribute="trailing" id="nIG-0s-ohi"/>
-                            <constraint firstItem="3Zo-FI-bwL" firstAttribute="top" secondItem="SzV-f9-WjW" secondAttribute="bottom" constant="106" id="nhm-Zt-URP"/>
-                            <constraint firstItem="uVo-f2-ViN" firstAttribute="top" secondItem="3Zo-FI-bwL" secondAttribute="bottom" constant="50" id="pXh-4S-Yby"/>
-                            <constraint firstItem="dR8-4c-UdT" firstAttribute="trailing" secondItem="TPa-Rg-GWv" secondAttribute="trailing" constant="25" id="tK1-8U-Idx"/>
-                            <constraint firstItem="rAC-fy-S61" firstAttribute="centerX" secondItem="1ve-te-saS" secondAttribute="centerX" id="x1B-x7-7BG"/>
-                            <constraint firstItem="3Zo-FI-bwL" firstAttribute="leading" secondItem="dR8-4c-UdT" secondAttribute="leading" constant="25" id="zVb-ih-dYW"/>
+                            <constraint firstItem="Fag-AI-JvE" firstAttribute="leading" secondItem="dR8-4c-UdT" secondAttribute="leading" id="4oU-8e-sxl"/>
+                            <constraint firstItem="Fag-AI-JvE" firstAttribute="width" secondItem="1ve-te-saS" secondAttribute="width" id="Cfk-KZ-V8G"/>
+                            <constraint firstItem="c1b-NE-jLr" firstAttribute="width" secondItem="dR8-4c-UdT" secondAttribute="width" id="JbY-wk-CzG"/>
+                            <constraint firstItem="dR8-4c-UdT" firstAttribute="bottom" secondItem="Fag-AI-JvE" secondAttribute="bottom" id="LS8-bh-77I"/>
+                            <constraint firstItem="Fag-AI-JvE" firstAttribute="trailing" secondItem="dR8-4c-UdT" secondAttribute="trailing" id="O8q-3F-Waa"/>
+                            <constraint firstItem="c1b-NE-jLr" firstAttribute="height" secondItem="dR8-4c-UdT" secondAttribute="height" priority="250" id="Q2W-WV-jhU"/>
+                            <constraint firstItem="Fag-AI-JvE" firstAttribute="top" secondItem="dR8-4c-UdT" secondAttribute="top" id="sPP-JR-jrj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dR8-4c-UdT"/>
                     </view>
                     <connections>
                         <outlet property="confirmBtn" destination="l0j-Is-SQm" id="TqR-Gf-ucW"/>
-                        <outlet property="sentTextLbl" destination="6ob-Kz-rFl" id="PBh-bt-jcm"/>
+                        <outlet property="getCodeBtn" destination="rAC-fy-S61" id="bT4-E4-4de"/>
+                        <outlet property="smsShadowView" destination="qE4-jI-bxL" id="E8t-Ew-SCm"/>
+                        <outlet property="smsTextLbl" destination="6ob-Kz-rFl" id="yfM-2I-dhm"/>
                         <outlet property="smsTf" destination="s1b-2K-ieb" id="Yx8-K4-wWE"/>
                     </connections>
                 </viewController>
