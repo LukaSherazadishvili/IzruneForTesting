@@ -75,8 +75,14 @@ namespace Izrune.iOS.ViewControllers
             {
                 try
                 {
+                    if (CurrentMenu == menu.Type)
+                        return;
 
-                    if(menu.Type == MenuType.LogOut)
+                    CurrentMenu = menu.Type;
+
+                    var currentVc = menuViewControllerCreations[menu.Type]?.Invoke();
+
+                    if (menu.Type == MenuType.LogOut)
                     {
                         menuVc.IsLogedIn = false;
                         menuVc.ReloadMenu();
@@ -85,11 +91,22 @@ namespace Izrune.iOS.ViewControllers
                         SideBarController.ChangeContentView(login);
                         return;
                     }
-                    CurrentMenu = menu.Type;
 
-                    var asd = menuViewControllerCreations[menu.Type]?.Invoke();
+                    if(menu.Type == MenuType.LogIn)
+                    {
+                        var navVc = currentVc as UINavigationController;
 
-                    SideBarController.ChangeContentView(asd);
+                        var loginVc = navVc.ViewControllers[0] as LogInViewController;
+
+                        loginVc.LogedIn = (logedIn) =>
+                        {
+                            menuVc.IsLogedIn = logedIn;
+                            menuVc.ReloadMenu();
+                            SideBarController.ChangeContentView(menuViewControllerCreations[MenuType.Main].Invoke());
+                        };
+                    }
+
+                    SideBarController.ChangeContentView(currentVc);
                 }
                 catch (Exception ex)
                 {
