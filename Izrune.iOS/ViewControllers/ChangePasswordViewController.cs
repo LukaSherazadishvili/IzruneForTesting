@@ -38,7 +38,7 @@ namespace Izrune.iOS
             {
                 var userService = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-                if(oldPassTf.Text == user.Password)
+                try
                 {
                     if (CheckPassword())
                     {
@@ -50,8 +50,7 @@ namespace Izrune.iOS
                     else
                         ShowAlert("სცადეთ თავიდან");
                 }
-
-                else
+                catch (Exception ex)
                 {
                     ShowAlert("სცადეთ თავიდან");
                 }
@@ -90,7 +89,7 @@ namespace Izrune.iOS
         private void ShowAlert(string message)
         {
             var alertVc = UIAlertController.Create("ყურადღება!", message, UIAlertControllerStyle.Alert);
-            alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, (obj) => this.NavigationController.PopViewController(true)));
             this.PresentViewController(alertVc, true, null);
         }
     }
