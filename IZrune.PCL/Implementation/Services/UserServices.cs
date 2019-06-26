@@ -167,7 +167,7 @@ namespace IZrune.PCL.Implementation.Services
             }
         }
 
-        public async Task RecoverPasswordAsync(string PhoneNumber)
+        public async Task<bool> RecoverPasswordAsync(string PhoneNumber)
         {
             var FormContent = new FormUrlEncodedContent(new[]
                   {
@@ -177,10 +177,16 @@ namespace IZrune.PCL.Implementation.Services
             var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=recoverPassword&hashcode=f8da048644f6752faca46da3d3d38229", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
 
+            var Result = JsonConvert.DeserializeObject<RecoverStatusDTO>(jsn);
+
+            if (Result.Code == 0)
+                return true;
+            else
+                return false;
 
         }
 
-        public async Task RecoverUserNamedAsync(string PhoneNumber)
+        public async Task<bool> RecoverUserNamedAsync(string PhoneNumber)
         {
             var FormContent = new FormUrlEncodedContent(new[]
                  {
@@ -189,6 +195,12 @@ namespace IZrune.PCL.Implementation.Services
 
             var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=recoverUsername&hashcode=82a93889e6a50556b3c1805dd55d59e9", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
+            var Result = JsonConvert.DeserializeObject<RecoverStatusDTO>(jsn);
+
+            if (Result.Code == 0)
+                return true;
+            else
+                return false;
         }
     }
 }

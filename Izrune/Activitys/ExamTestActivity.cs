@@ -20,10 +20,37 @@ namespace Izrune.Activitys
 
         [MapControl(Resource.Id.BackButton)]
         FrameLayout BackButton;
+
+        [MapControl(Resource.Id.PartTimeExamButton)]
+        LinearLayout ExamPartTimeButton;
+
+        [MapControl(Resource.Id.FullTimeExamButton)]
+        LinearLayout FullTimeExamButton;
+
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             BackButton.Click += BackButton_Click;
+
+            ExamPartTimeButton.Click += ExamPartTimeButton_Click;
+            FullTimeExamButton.Click += FullTimeExamButton_Click;
+        }
+
+        private void FullTimeExamButton_Click(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(QuezActivity));
+            intent.PutExtra("TimeType", "1");
+            intent.PutExtra("ExamType", "1");
+            StartActivity(intent);
+        }
+
+        private void ExamPartTimeButton_Click(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(QuezActivity));
+            intent.PutExtra("TimeType", "0");
+            intent.PutExtra("ExamType", "1");
+            StartActivity(intent);
         }
 
         private void BackButton_Click(object sender, EventArgs e)
