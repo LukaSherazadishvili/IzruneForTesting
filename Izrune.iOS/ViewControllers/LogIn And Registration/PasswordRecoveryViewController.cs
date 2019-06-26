@@ -4,12 +4,16 @@ using System;
 
 using Foundation;
 using Izrune.iOS.Utils;
+using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
+using MPDCiOSPages.ViewControllers;
 using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS
 {
-	public partial class PasswordRecoveryViewController : UIViewController
+	public partial class PasswordRecoveryViewController : BaseViewController
 	{
 		public PasswordRecoveryViewController (IntPtr handle) : base (handle)
 		{
@@ -23,20 +27,40 @@ namespace Izrune.iOS
 
         public bool IsPassworPage = true;
 
+        public IParent user { get; private set; }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
             InitUI();
 
-            sendBtn.TouchUpInside += delegate {
-                ShowError(true);
+            var userService = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
+
+            sendBtn.TouchUpInside += async delegate {
+
                 this.View.EndEditing(true);
 
-                var succsessVc = Storyboard.InstantiateViewController(SuccesViewController.StoryboardId) as SuccesViewController;
-                succsessVc.TitleText = IsPassworPage ? "პაროლი გაგზავნილია მითითებულ ნომერზე" : "მომხმარებლის სახელი გაგზავნილია მითითებულ ტელეფონის ნომერზე";
+                var phone = phoneTextField.Text.Replace(" ", string.Empty);
 
-                this.AddVcInView(this.View, succsessVc);
+                ShowLoading();
+
+                var result = IsPassworPage ? await userService.RecoverPasswordAsync(phone) : await userService.RecoverUserNamedAsync(phone);
+
+                EndLoading();
+
+
+                if (result)
+                {
+                    var succsessVc = Storyboard.InstantiateViewController(SuccesViewController.StoryboardId) as SuccesViewController;
+                    succsessVc.TitleText = IsPassworPage ? "პაროლი გაგზავნილია მითითებულ ნომერზე" : "მომხმარებლის სახელი გაგზავნილია მითითებულ ტელეფონის ნომერზე";
+
+                    this.AddVcInView(this.View, succsessVc);
+                }
+                else
+                    ShowError(true);
+
+
             };
 
             backBtn.TouchUpInside += delegate {
