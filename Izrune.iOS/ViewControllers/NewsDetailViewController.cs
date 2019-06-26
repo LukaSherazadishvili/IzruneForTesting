@@ -3,16 +3,41 @@
 using System;
 
 using Foundation;
+using IZrune.PCL.Abstraction.Models;
 using UIKit;
+using MpdcViewExtentions;
+using System.Globalization;
 
 namespace Izrune.iOS
 {
-	public partial class NewsDetailViewController : UIViewController
+	public partial class NewsDetailViewController : UIViewController, IUIWebViewDelegate
 	{
 		public NewsDetailViewController (IntPtr handle) : base (handle)
 		{
 		}
 
         public static readonly NSString StoryboardId = new NSString("NewsDetailStoryboardId");
-	}
+
+        public INews News;
+
+        CultureInfo cultureInfo = new CultureInfo("ka-GE");
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            newsWebView.Delegate = this;
+
+            InitUI();
+
+        }
+
+        private void InitUI()
+        {
+            newsImageView.Layer.CornerRadius = 10;
+            newstitleLbl.Text = News?.Title;
+            newsDateLbl.Text = News?.date.ToString("dd MMMM yyyy", cultureInfo);
+
+            newsWebView.LoadHtmlString(News?.Content, NSUrl.FromString("https://www.google.com/"));
+        }
+    }
 }

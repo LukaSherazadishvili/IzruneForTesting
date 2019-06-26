@@ -35,6 +35,8 @@ namespace Izrune.iOS.CollectionViewCells
             newsImageView.InitImageFromWeb(news?.ImageUrl, false, false);
 
             titleLbl.Text = news?.Title;
+
+            //titleLbl.InitHTML(news?.Description);
             dateLbl.Text = news?.date.ToString("dd MMMM yyyy", cultureInfo);
         }
 
@@ -43,6 +45,14 @@ namespace Izrune.iOS.CollectionViewCells
             base.AwakeFromNib();
 
             newsImageView.Layer.CornerRadius = 10;
+
+            if(newsTransparentView.GestureRecognizers == null || newsTransparentView.GestureRecognizers?.Length == 0)
+            {
+                newsTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    NewsClicked?.Invoke(News);
+                }));
+            }
         }
     }
 }

@@ -44,6 +44,14 @@ namespace Izrune.iOS.CollectionViewCells
             base.AwakeFromNib();
 
             newsImageView.Layer.CornerRadius = 10;
+
+            if (newsTransparentView.GestureRecognizers == null || newsTransparentView.GestureRecognizers?.Length == 0)
+            {
+                newsTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    NewsClicked?.Invoke(News);
+                }));
+            }
         }
     }
 }

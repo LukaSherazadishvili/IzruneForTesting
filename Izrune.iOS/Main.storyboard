@@ -545,15 +545,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
-                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arx-1D-sul">
-                                                <rect key="frame" x="20" y="59" width="374" height="150"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="calibratedRGB"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="10"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
                                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="მრავალეროვანი საქართველოს სახელმწიფო ენა - მზრუნველი პერსპექტივა სამცხე-ჯავახეთში" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fk0-LA-AMd">
                                                 <rect key="frame" x="20" y="224" width="374" height="28"/>
                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
@@ -566,23 +557,27 @@
                                                 <color key="textColor" red="0.41568627450980389" green="0.41568627450980389" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vcd-AA-irO">
+                                                <rect key="frame" x="20" y="285.5" width="374" height="536.5"/>
+                                                <color key="backgroundColor" red="0.36078431372549019" green="0.38823529411764707" blue="0.40392156862745099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </webView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="fk0-LA-AMd" firstAttribute="top" secondItem="arx-1D-sul" secondAttribute="bottom" constant="15" id="6HC-ji-PZ0"/>
-                                            <constraint firstItem="fk0-LA-AMd" firstAttribute="leading" secondItem="arx-1D-sul" secondAttribute="leading" id="7qF-5e-6AN"/>
+                                            <constraint firstItem="Vcd-AA-irO" firstAttribute="leading" secondItem="dye-DT-meR" secondAttribute="leading" id="1aU-n0-Yb8"/>
                                             <constraint firstItem="bNF-EA-m9T" firstAttribute="leading" secondItem="fk0-LA-AMd" secondAttribute="leading" id="8oW-jY-DRC"/>
-                                            <constraint firstItem="arx-1D-sul" firstAttribute="leading" secondItem="dye-DT-meR" secondAttribute="leading" id="BHb-Tm-KbT"/>
+                                            <constraint firstItem="Vcd-AA-irO" firstAttribute="top" secondItem="bNF-EA-m9T" secondAttribute="bottom" constant="15" id="AMu-RX-Bh5"/>
                                             <constraint firstItem="ROn-Rx-XAX" firstAttribute="top" secondItem="bZA-xG-Phn" secondAttribute="top" constant="20" id="JeT-ma-r6M"/>
                                             <constraint firstAttribute="trailing" secondItem="ROn-Rx-XAX" secondAttribute="trailing" constant="20" id="Jjn-vC-kEh"/>
-                                            <constraint firstItem="arx-1D-sul" firstAttribute="bottom" secondItem="dye-DT-meR" secondAttribute="bottom" id="K8I-on-NOH"/>
+                                            <constraint firstItem="fk0-LA-AMd" firstAttribute="top" secondItem="dye-DT-meR" secondAttribute="bottom" constant="15" id="QDh-M9-OzW"/>
                                             <constraint firstItem="bNF-EA-m9T" firstAttribute="trailing" secondItem="fk0-LA-AMd" secondAttribute="trailing" id="RBV-DZ-kc1"/>
-                                            <constraint firstItem="fk0-LA-AMd" firstAttribute="trailing" secondItem="arx-1D-sul" secondAttribute="trailing" id="aEc-9y-98M"/>
-                                            <constraint firstItem="arx-1D-sul" firstAttribute="top" secondItem="dye-DT-meR" secondAttribute="top" id="aZc-Uq-EGf"/>
-                                            <constraint firstItem="arx-1D-sul" firstAttribute="trailing" secondItem="dye-DT-meR" secondAttribute="trailing" id="b1q-Ax-2Wb"/>
+                                            <constraint firstAttribute="bottom" secondItem="Vcd-AA-irO" secondAttribute="bottom" constant="30" id="UEp-w1-8Rm"/>
                                             <constraint firstItem="bNF-EA-m9T" firstAttribute="top" secondItem="fk0-LA-AMd" secondAttribute="bottom" constant="8" id="faB-jL-H49"/>
+                                            <constraint firstItem="fk0-LA-AMd" firstAttribute="leading" secondItem="dye-DT-meR" secondAttribute="leading" id="fxL-HP-d8d"/>
+                                            <constraint firstItem="Vcd-AA-irO" firstAttribute="trailing" secondItem="dye-DT-meR" secondAttribute="trailing" id="iu1-ge-wuJ"/>
                                             <constraint firstItem="dye-DT-meR" firstAttribute="leading" secondItem="ROn-Rx-XAX" secondAttribute="leading" id="mPf-Dp-OH6"/>
                                             <constraint firstItem="ROn-Rx-XAX" firstAttribute="leading" secondItem="bZA-xG-Phn" secondAttribute="leading" constant="20" id="qWp-3B-rhy"/>
+                                            <constraint firstItem="fk0-LA-AMd" firstAttribute="trailing" secondItem="dye-DT-meR" secondAttribute="trailing" id="rbZ-Pa-oSb"/>
                                             <constraint firstItem="dye-DT-meR" firstAttribute="top" secondItem="ROn-Rx-XAX" secondAttribute="bottom" constant="20" id="t7c-tx-RLH"/>
                                             <constraint firstItem="dye-DT-meR" firstAttribute="trailing" secondItem="ROn-Rx-XAX" secondAttribute="trailing" id="vbx-bz-WI2"/>
                                         </constraints>
@@ -590,7 +585,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="bZA-xG-Phn" firstAttribute="leading" secondItem="yXv-aC-k3k" secondAttribute="leading" id="4Z3-oN-VKN"/>
-                                    <constraint firstItem="bZA-xG-Phn" firstAttribute="height" secondItem="yXv-aC-k3k" secondAttribute="height" id="4cu-bS-50K"/>
+                                    <constraint firstItem="bZA-xG-Phn" firstAttribute="height" secondItem="yXv-aC-k3k" secondAttribute="height" priority="250" id="4cu-bS-50K"/>
                                     <constraint firstAttribute="trailing" secondItem="bZA-xG-Phn" secondAttribute="trailing" id="64f-Df-Pxf"/>
                                     <constraint firstItem="bZA-xG-Phn" firstAttribute="top" secondItem="yXv-aC-k3k" secondAttribute="top" id="B4E-IW-MHG"/>
                                     <constraint firstAttribute="bottom" secondItem="bZA-xG-Phn" secondAttribute="bottom" id="ZGU-e8-xeV"/>
@@ -608,6 +603,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Irp-u4-pXD"/>
                     </view>
+                    <connections>
+                        <outlet property="newsDateLbl" destination="bNF-EA-m9T" id="jBg-Hg-o4k"/>
+                        <outlet property="newsImageView" destination="dye-DT-meR" id="dCX-d7-MN2"/>
+                        <outlet property="newsWebView" destination="Vcd-AA-irO" id="bNS-IT-XQW"/>
+                        <outlet property="newstitleLbl" destination="fk0-LA-AMd" id="zDz-3L-b2I"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C8N-RK-zYh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

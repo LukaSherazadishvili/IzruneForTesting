@@ -19,6 +19,9 @@ namespace Izrune.iOS.CollectionViewCells
 		UIKit.UIImageView newsImageView { get; set; }
 
 		[Outlet]
+		UIKit.UIView newsTransparentView { get; set; }
+
+		[Outlet]
 		UIKit.UILabel titleLbl { get; set; }
 		
 		void ReleaseDesignerOutlets ()
@@ -28,14 +31,19 @@ namespace Izrune.iOS.CollectionViewCells
 				dateLbl = null;
 			}
 
+			if (newsImageView != null) {
+				newsImageView.Dispose ();
+				newsImageView = null;
+			}
+
 			if (titleLbl != null) {
 				titleLbl.Dispose ();
 				titleLbl = null;
 			}
 
-			if (newsImageView != null) {
-				newsImageView.Dispose ();
-				newsImageView = null;
+			if (newsTransparentView != null) {
+				newsTransparentView.Dispose ();
+				newsTransparentView = null;
 			}
 		}
 	}

@@ -25,11 +25,15 @@ namespace Izrune.iOS
 
         private List<INews> NewsList;
 
-        private bool IsBigCell = true;
+        //private bool IsBigCell = true;
+
+        private NewsDetailViewController NewsDetailVc;
 
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
 
             CollectionViewSettings();
 
@@ -67,12 +71,21 @@ namespace Izrune.iOS
         {
             var data = NewsList?[indexPath.Row];
 
-
             if(indexPath.Row == 0)
             {
                 var cell = newsCollectionView.DequeueReusableCell(NewsBigCell.Identifier, indexPath) as NewsBigCell;
 
                 cell.InitData(data);
+
+                cell.NewsClicked = (news) =>
+                {
+                    NewsDetailVc = Storyboard.InstantiateViewController(NewsDetailViewController.StoryboardId) as NewsDetailViewController;
+
+                    NewsDetailVc.News = news;
+
+                    this.NavigationController.PushViewController(NewsDetailVc, true);
+                };
+
                 return cell;
             }
 
@@ -83,6 +96,16 @@ namespace Izrune.iOS
                     var cell = newsCollectionView.DequeueReusableCell(NewsBigCell.Identifier, indexPath) as NewsBigCell;
 
                     cell.InitData(data);
+
+                    cell.NewsClicked = (news) =>
+                    {
+                        NewsDetailVc = Storyboard.InstantiateViewController(NewsDetailViewController.StoryboardId) as NewsDetailViewController;
+
+                        NewsDetailVc.News = news;
+
+                        this.NavigationController.PushViewController(NewsDetailVc, true);
+                    };
+
                     return cell;
                 }
 
@@ -91,6 +114,16 @@ namespace Izrune.iOS
                     var cell = newsCollectionView.DequeueReusableCell(NewsMinCell.Identifier, indexPath) as NewsMinCell;
 
                     cell.InitData(data);
+
+                    cell.NewsClicked = (news) =>
+                    {
+                        NewsDetailVc = Storyboard.InstantiateViewController(NewsDetailViewController.StoryboardId) as NewsDetailViewController;
+
+                        NewsDetailVc.News = news;
+
+                        this.NavigationController.PushViewController(NewsDetailVc, true);
+                    };
+
                     return cell;
                 }
             }
