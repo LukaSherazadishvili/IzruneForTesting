@@ -21,7 +21,7 @@ namespace Izrune.iOS
 
         public string ErrorText { get; set; }
 
-        bool IsError;
+        public bool IsPassworPage = true;
 
         public override void ViewDidLoad()
         {
@@ -29,17 +29,12 @@ namespace Izrune.iOS
 
             InitUI();
 
-            phoneTextField.EditingDidBegin += delegate {
-                ShowError(false);
-            };
-
             sendBtn.TouchUpInside += delegate {
-                ShowError(IsError);
-                IsError = !IsError;
+                ShowError(true);
                 this.View.EndEditing(true);
 
                 var succsessVc = Storyboard.InstantiateViewController(SuccesViewController.StoryboardId) as SuccesViewController;
-                succsessVc.TitleText = "პაროლი გაგზავნილი მითითებულ ნომერზე";
+                succsessVc.TitleText = IsPassworPage ? "პაროლი გაგზავნილია მითითებულ ნომერზე" : "მომხმარებლის სახელი გაგზავნილია მითითებულ ტელეფონის ნომერზე";
 
                 this.AddVcInView(this.View, succsessVc);
             };
@@ -55,12 +50,11 @@ namespace Izrune.iOS
             sendBtn.ToCardView(25, 3, 0.2f, AppColors.Tint);
             backBtn.Layer.CornerRadius = 25;
 
-            //backImageView.Image = backImageView.Image.GetImageWithColor(UIColor.FromRGB(63, 81, 181));
-
             phoneTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 17);
 
-            titleLbl.Text = TitleText;
-            //errorLbl.Text = ErrorText;
+            titleLbl.Text = IsPassworPage? "პაროლის აღდგენა" : "მომხმარებლის სახელის აღდგენა";
+
+
         }
 
         private void ShowError(bool isError)
