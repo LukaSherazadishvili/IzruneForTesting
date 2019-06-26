@@ -176,13 +176,19 @@
                                 <rect key="frame" x="80" y="54" width="254" height="342.5"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="პაროლის აღდგენა" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJo-ye-Fef">
-                                <rect key="frame" x="35" y="798" width="344" height="14"/>
+                                <rect key="frame" x="35" y="772" width="344" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="JrC-mP-5KS"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="მომხმარებლის სახელის აღდგენა" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0KV-mn-PHJ">
-                                <rect key="frame" x="35" y="827" width="344" height="14"/>
+                                <rect key="frame" x="35" y="822" width="344" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="1YG-Mm-vj1"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -242,7 +248,7 @@
                             <constraint firstItem="JhC-gR-0mA" firstAttribute="centerX" secondItem="j0b-fN-NsL" secondAttribute="centerX" id="2Nh-BH-rjZ"/>
                             <constraint firstItem="JhC-gR-0mA" firstAttribute="leading" secondItem="r2u-rP-uGH" secondAttribute="leadingMargin" constant="60" id="3pE-fu-QR8"/>
                             <constraint firstItem="gdI-d7-FSl" firstAttribute="top" secondItem="Krp-8l-7Ka" secondAttribute="top" constant="-25" id="4pL-X7-JbV"/>
-                            <constraint firstItem="0KV-mn-PHJ" firstAttribute="top" secondItem="sJo-ye-Fef" secondAttribute="bottom" constant="15" id="648-zi-gfX"/>
+                            <constraint firstItem="0KV-mn-PHJ" firstAttribute="top" secondItem="sJo-ye-Fef" secondAttribute="bottom" constant="20" id="648-zi-gfX"/>
                             <constraint firstItem="gdI-d7-FSl" firstAttribute="leading" secondItem="j0b-fN-NsL" secondAttribute="leading" constant="35" id="8Xy-bE-E9a"/>
                             <constraint firstItem="sJp-ey-F9L" firstAttribute="leading" secondItem="gdI-d7-FSl" secondAttribute="leading" id="9iG-bG-5HB"/>
                             <constraint firstItem="0KV-mn-PHJ" firstAttribute="leading" secondItem="r2u-rP-uGH" secondAttribute="leadingMargin" constant="15" id="Sr0-Fz-pKx"/>
@@ -253,7 +259,7 @@
                             <constraint firstItem="sJo-ye-Fef" firstAttribute="leading" secondItem="r2u-rP-uGH" secondAttribute="leadingMargin" constant="15" id="hut-JI-nOJ"/>
                             <constraint firstItem="Krp-8l-7Ka" firstAttribute="height" secondItem="r2u-rP-uGH" secondAttribute="height" multiplier="0.35" constant="1" id="iar-SL-T8f"/>
                             <constraint firstItem="Krp-8l-7Ka" firstAttribute="leading" secondItem="j0b-fN-NsL" secondAttribute="leading" id="jCm-yk-WhP"/>
-                            <constraint firstItem="j0b-fN-NsL" firstAttribute="bottom" secondItem="0KV-mn-PHJ" secondAttribute="bottom" constant="21" id="ltr-pT-wqO"/>
+                            <constraint firstItem="j0b-fN-NsL" firstAttribute="bottom" secondItem="0KV-mn-PHJ" secondAttribute="bottom" constant="15" id="ltr-pT-wqO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="sJo-ye-Fef" secondAttribute="trailing" constant="15" id="mSG-UL-CmO"/>
                             <constraint firstItem="j0b-fN-NsL" firstAttribute="trailing" secondItem="Krp-8l-7Ka" secondAttribute="trailing" id="nTP-6E-KTS"/>
                             <constraint firstItem="TdS-Ja-u5r" firstAttribute="trailing" secondItem="gdI-d7-FSl" secondAttribute="trailing" id="nki-Ph-suc"/>

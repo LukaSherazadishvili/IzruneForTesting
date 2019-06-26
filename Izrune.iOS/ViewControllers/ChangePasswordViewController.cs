@@ -5,7 +5,8 @@ using System;
 using Foundation;
 using UIKit;
 using MpdcViewExtentions;
-
+using IZrune.PCL.Helpers;
+using IZrune.PCL.Abstraction.Models;
 
 namespace Izrune.iOS
 {
@@ -16,10 +17,13 @@ namespace Izrune.iOS
 		}
 
         public static readonly NSString StoryboardId = new NSString("ChangePasswordStoryboardId");
+        private IParent user;
 
-        public override void ViewDidLoad()
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            user = await UserControl.Instance.GetCurrentUser();
 
             InitUI();
 
@@ -30,8 +34,6 @@ namespace Izrune.iOS
         {
             saveBtn.TouchUpInside += async delegate
             {
-                //TODO
-
                 if(CheckPassword())
                 {
 
