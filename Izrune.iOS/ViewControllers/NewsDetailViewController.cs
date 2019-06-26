@@ -7,6 +7,7 @@ using IZrune.PCL.Abstraction.Models;
 using UIKit;
 using MpdcViewExtentions;
 using System.Globalization;
+using MPDC.iOS.Utils;
 
 namespace Izrune.iOS
 {
@@ -26,6 +27,7 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
             newsWebView.Delegate = this;
+            newsWebView.ScrollView.ScrollEnabled = false;
 
             InitUI();
 
@@ -34,10 +36,24 @@ namespace Izrune.iOS
         private void InitUI()
         {
             newsImageView.Layer.CornerRadius = 10;
+            newsImageView.InitImageFromWeb(News?.ImageUrl, false, false);
+
             newstitleLbl.Text = News?.Title;
             newsDateLbl.Text = News?.date.ToString("dd MMMM yyyy", cultureInfo);
 
             newsWebView.LoadHtmlString(News?.Content, NSUrl.FromString("https://www.google.com/"));
+        }
+
+        [Export("webViewDidFinishLoad:")]
+        public void LoadingFinished(UIWebView webView)
+        {
+            var height = News?.Title.GetStringHeight((float)newsImageView.Frame.Width, 0, 12);
+
+            var webviewHeight = webView.ScrollView.ContentSize.Height;
+
+            var headerHeight = 225 + 25 + height + webviewHeight;
+
+            contentViewHeight.Constant = (System.nfloat)headerHeight;
         }
     }
 }

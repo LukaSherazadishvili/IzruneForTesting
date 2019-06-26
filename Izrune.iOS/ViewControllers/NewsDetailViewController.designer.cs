@@ -13,6 +13,9 @@ namespace Izrune.iOS
 	partial class NewsDetailViewController
 	{
 		[Outlet]
+		UIKit.NSLayoutConstraint contentViewHeight { get; set; }
+
+		[Outlet]
 		UIKit.UILabel newsDateLbl { get; set; }
 
 		[Outlet]
@@ -44,6 +47,11 @@ namespace Izrune.iOS
 			if (newsWebView != null) {
 				newsWebView.Dispose ();
 				newsWebView = null;
+			}
+
+			if (contentViewHeight != null) {
+				contentViewHeight.Dispose ();
+				contentViewHeight = null;
 			}
 		}
 	}
