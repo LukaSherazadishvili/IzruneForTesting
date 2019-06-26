@@ -44,7 +44,7 @@ namespace Izrune.iOS.ViewControllers
             menuViewControllerCreations = new Dictionary<MenuType, Func<UIViewController>>()
             {
                 {MenuType.LogIn, () => CreateViewControllerByStoryboard(LogInStoryboardId)},
-                {MenuType.News, () => CreateViewControllerByStoryboard(SelectPacketViewController.StoryboardId)},
+                {MenuType.News, () => CreateViewControllerByStoryboard(NewsStoryboardId)},
                 {MenuType.MoreInfo, () => CreateViewControllerByStoryboard(MoreInfoStoryboardId)},
                 {MenuType.Contact, () => CreateViewControllerByStoryboard(ContactStoryboardId)},
                 {MenuType.Main, () => CreateViewControllerByStoryboard(StartTestStoryboardId)},
@@ -75,6 +75,16 @@ namespace Izrune.iOS.ViewControllers
             {
                 try
                 {
+
+                    if(menu.Type == MenuType.LogOut)
+                    {
+                        menuVc.IsLogedIn = false;
+                        menuVc.ReloadMenu();
+
+                        var login = menuViewControllerCreations[MenuType.LogIn]?.Invoke();
+                        SideBarController.ChangeContentView(login);
+                        return;
+                    }
                     CurrentMenu = menu.Type;
 
                     var asd = menuViewControllerCreations[menu.Type]?.Invoke();

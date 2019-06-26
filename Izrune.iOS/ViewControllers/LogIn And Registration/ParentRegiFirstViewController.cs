@@ -12,6 +12,7 @@ using IZrune.PCL.Helpers;
 using System.Collections.Generic;
 using IZrune.PCL.Abstraction.Models;
 using FPT.Framework.iOS.UI.DropDown;
+using System.Globalization;
 
 namespace Izrune.iOS
 {
@@ -31,6 +32,7 @@ namespace Izrune.iOS
 
         private string City="";
 
+        CultureInfo cultureInfo = new CultureInfo("ka-GE");
 
         public bool IsFormFilled()
         {
@@ -87,15 +89,14 @@ namespace Izrune.iOS
             var datePicker = new UIDatePicker();
 
             datePicker.Mode = UIDatePickerMode.Date;
+            datePicker.Locale = new NSLocale("ka-GE");
 
             var toolBar = new UIToolbar();
             toolBar.SizeToFit();
             var doneButton = new UIBarButtonItem("არჩევა", UIBarButtonItemStyle.Plain, (sender, e) => {
 
                 date = datePicker.Date.NSDateToDateTime();
-                daylLbl.Text = date.Day.ToString();
-                monthLbl.Text = date.Month.ToString();
-                yearLbl.Text = date.Year.ToString();
+                InitDate(date);
                 this.View.EndEditing(true);
             });
 
@@ -148,6 +149,13 @@ namespace Izrune.iOS
             dropDown.TextFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 15);
             dropDown.ClipsToBounds = true;
             dropDown.Layer.CornerRadius = 20;
+        }
+
+        private void InitDate(DateTime _date)
+        {
+            daylLbl.Text = _date.Day.ToString();
+            monthLbl.Text = _date.ToString("MMMM", cultureInfo);
+            yearLbl.Text = _date.Year.ToString();
         }
     }
 }

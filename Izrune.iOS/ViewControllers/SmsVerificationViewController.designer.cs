@@ -16,16 +16,22 @@ namespace Izrune.iOS
 		UIKit.UIButton confirmBtn { get; set; }
 
 		[Outlet]
-		UIKit.UILabel sentTextLbl { get; set; }
+		UIKit.UIButton getCodeBtn { get; set; }
+
+		[Outlet]
+		UIKit.UIView smsShadowView { get; set; }
+
+		[Outlet]
+		UIKit.UILabel smsTextLbl { get; set; }
 
 		[Outlet]
 		UIKit.UITextField smsTf { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (sentTextLbl != null) {
-				sentTextLbl.Dispose ();
-				sentTextLbl = null;
+			if (smsTextLbl != null) {
+				smsTextLbl.Dispose ();
+				smsTextLbl = null;
 			}
 
 			if (smsTf != null) {
@@ -36,6 +42,16 @@ namespace Izrune.iOS
 			if (confirmBtn != null) {
 				confirmBtn.Dispose ();
 				confirmBtn = null;
+			}
+
+			if (getCodeBtn != null) {
+				getCodeBtn.Dispose ();
+				getCodeBtn = null;
+			}
+
+			if (smsShadowView != null) {
+				smsShadowView.Dispose ();
+				smsShadowView = null;
 			}
 		}
 	}

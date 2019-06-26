@@ -48,16 +48,18 @@ namespace Izrune.iOS
 
                     var loginSevice = ServiceContainer.ServiceContainer.Instance.Get<ILoginServices>();
                     var isLogedIn = (await loginSevice.LoginUser(userName, passord));
+                    EndLoading();
 
-                    if(isLogedIn)
+                    if (isLogedIn)
                     {
-
-                        //var testVc = Storyboard.InstantiateViewController(StartTestViewController.StoryboardId) as StartTestViewController;
-                        //this.NavigationController.PushViewController(testVc, true);
+                    
                         LogedIn?.Invoke(isLogedIn);
                     }
+                    else
+                    {
+                        ShowLoginAlert();
+                    }
 
-                    EndLoading();
                 }
 
                 catch (Exception ex)
@@ -76,16 +78,16 @@ namespace Izrune.iOS
             forgotPasswordLbl.AddGestureRecognizer(new UITapGestureRecognizer(() => {
 
                 var recoveryVc = Storyboard.InstantiateViewController(PasswordRecoveryViewController.StoryboardId) as PasswordRecoveryViewController;
-                recoveryVc.TitleText = "პაროლის აღდგენა";
-                //recoveryVc.ErrorText = "ტელეფონის ნომერი არ არის რეგისტრირებული";
+
                 this.NavigationController.PushViewController(recoveryVc, true);
 
             }));
 
             forgotUserNameLbl.AddGestureRecognizer(new UITapGestureRecognizer(() => {
                 var recoveryVc = Storyboard.InstantiateViewController(PasswordRecoveryViewController.StoryboardId) as PasswordRecoveryViewController;
-                recoveryVc.TitleText = "მომხმარებლის სახელის აღდგენა";
-                //recoveryVc.ErrorText = "";
+
+                recoveryVc.IsPassworPage = false;
+
                 this.NavigationController.PushViewController(recoveryVc, true);
             }));
         }

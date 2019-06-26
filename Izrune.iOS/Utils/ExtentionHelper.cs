@@ -72,5 +72,6 @@ namespace MPDC.iOS.Utils
         {
             return (!string.IsNullOrEmpty(text) && !string.IsNullOrWhiteSpace(text));
         }
+
     }
 }

@@ -3,16 +3,150 @@
 using System;
 
 using Foundation;
+using MPDCiOSPages.ViewControllers;
 using UIKit;
+using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Abstraction.Services;
+using Izrune.iOS.CollectionViewCells;
 
 namespace Izrune.iOS
 {
-	public partial class NewsViewController : UIViewController
+	public partial class NewsViewController : BaseViewController, IUICollectionViewDelegate, IUICollectionViewDataSource, IUICollectionViewDelegateFlowLayout
 	{
 		public NewsViewController (IntPtr handle) : base (handle)
 		{
 		}
 
         public static readonly NSString StoryboardId = new NSString("NewsViewControllerStoryboardId");
+
+
+        private List<INews> NewsList;
+
+        //private bool IsBigCell = true;
+
+        private NewsDetailViewController NewsDetailVc;
+
+        public async override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+
+            this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+
+            CollectionViewSettings();
+
+            await LoadDataAsync();
+        }
+
+        private void CollectionViewSettings()
+        {
+            newsCollectionView.Delegate = this;
+            newsCollectionView.DataSource = this;
+
+            newsCollectionView.RegisterNibForCell(NewsBigCell.Nib, NewsBigCell.Identifier);
+            newsCollectionView.RegisterNibForCell(NewsMinCell.Nib, NewsMinCell.Identifier);
+        }
+
+        private async Task LoadDataAsync()
+        {
+            ShowLoading();
+
+            var newsService = ServiceContainer.ServiceContainer.Instance.Get<INewsService>();
+
+            NewsList = (await newsService.GetNewsAsync())?.OrderBy(x => x.date)?.ToList();
+
+            newsCollectionView.ReloadData();
+
+            EndLoading();
+        }
+
+        public nint GetItemsCount(UICollectionView collectionView, nint section)
+        {
+            return NewsList?.Count ?? 0;
+        }
+
+        public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
+        {
+            var data = NewsList?[indexPath.Row];
+
+            if(indexPath.Row == 0)
+            {
+                var cell = newsCollectionView.DequeueReusableCell(NewsBigCell.Identifier, indexPath) as NewsBigCell;
+
+                cell.InitData(data);
+
+                cell.NewsClicked = (news) =>
+                {
+                    NewsDetailVc = Storyboard.InstantiateViewController(NewsDetailViewController.StoryboardId) as NewsDetailViewController;
+
+                    NewsDetailVc.News = news;
+
+                    this.NavigationController.PushViewController(NewsDetailVc, true);
+                };
+
+                return cell;
+            }
+
+            else
+            {
+                if(indexPath.Row % 3 == 0)
+                {
+                    var cell = newsCollectionView.DequeueReusableCell(NewsBigCell.Identifier, indexPath) as NewsBigCell;
+
+                    cell.InitData(data);
+
+                    cell.NewsClicked = (news) =>
+                    {
+                        NewsDetailVc = Storyboard.InstantiateViewController(NewsDetailViewController.StoryboardId) as NewsDetailViewController;
+
+                        NewsDetailVc.News = news;
+
+                        this.NavigationController.PushViewController(NewsDetailVc, true);
+                    };
+
+                    return cell;
+                }
+
+                else
+                {
+                    var cell = newsCollectionView.DequeueReusableCell(NewsMinCell.Identifier, indexPath) as NewsMinCell;
+
+                    cell.InitData(data);
+
+                    cell.NewsClicked = (news) =>
+                    {
+                        NewsDetailVc = Storyboard.InstantiateViewController(NewsDetailViewController.StoryboardId) as NewsDetailViewController;
+
+                        NewsDetailVc.News = news;
+
+                        this.NavigationController.PushViewController(NewsDetailVc, true);
+                    };
+
+                    return cell;
+                }
+            }
+        }
+
+        [Export("collectionView:layout:sizeForItemAtIndexPath:")]
+        public CoreGraphics.CGSize GetSizeForItem(UICollectionView collectionView, UICollectionViewLayout layout, NSIndexPath indexPath)
+        {
+            if(indexPath.Row == 0)
+            {
+                return new CoreGraphics.CGSize(collectionView.Frame.Width, 160);
+            }
+
+            else
+            {
+                if(indexPath.Row % 3 == 0)
+                {
+                    return new CoreGraphics.CGSize(collectionView.Frame.Width, 160);
+                }
+
+                else
+                    return new CoreGraphics.CGSize(collectionView.Frame.Width, 85);
+            }
+        }
     }
 }
