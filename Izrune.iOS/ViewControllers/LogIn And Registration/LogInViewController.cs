@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using CoreAnimation;
 using Foundation;
 using Izrune.iOS.Utils;
+using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
 using MPDCiOSPages.ViewControllers;
 using MpdcViewExtentions;
 using UIKit;
@@ -22,6 +24,7 @@ namespace Izrune.iOS
         public static readonly NSString StoryboardId = new NSString("LogInViewControllerStoryboardId");
 
         public Action<bool> LogedIn { get; set; }
+
 
         public override void ViewDidLoad()
         {

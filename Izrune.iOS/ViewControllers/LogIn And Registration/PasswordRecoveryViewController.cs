@@ -4,6 +4,9 @@ using System;
 
 using Foundation;
 using Izrune.iOS.Utils;
+using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
 using MpdcViewExtentions;
 using UIKit;
 
@@ -23,20 +26,35 @@ namespace Izrune.iOS
 
         public bool IsPassworPage = true;
 
-        public override void ViewDidLoad()
+        public IParent user { get; private set; }
+
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
             InitUI();
 
+            var userService = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
+
             sendBtn.TouchUpInside += delegate {
-                ShowError(true);
+
+                var result = 
                 this.View.EndEditing(true);
 
-                var succsessVc = Storyboard.InstantiateViewController(SuccesViewController.StoryboardId) as SuccesViewController;
-                succsessVc.TitleText = IsPassworPage ? "პაროლი გაგზავნილია მითითებულ ნომერზე" : "მომხმარებლის სახელი გაგზავნილია მითითებულ ტელეფონის ნომერზე";
+                var phone = phoneTextField.Text.Replace(" ", string.Empty);
+                var userPhone = user.Phone.Replace(" ", string.Empty);
 
-                this.AddVcInView(this.View, succsessVc);
+                if (phone == userPhone)
+                {
+                    var succsessVc = Storyboard.InstantiateViewController(SuccesViewController.StoryboardId) as SuccesViewController;
+                    succsessVc.TitleText = IsPassworPage ? "პაროლი გაგზავნილია მითითებულ ნომერზე" : "მომხმარებლის სახელი გაგზავნილია მითითებულ ტელეფონის ნომერზე";
+
+                    this.AddVcInView(this.View, succsessVc);
+                }
+                else
+                    ShowError(true);
+
+
             };
 
             backBtn.TouchUpInside += delegate {
