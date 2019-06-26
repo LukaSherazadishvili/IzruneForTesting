@@ -24,7 +24,7 @@ namespace IZrune.PCL.Abstraction.Services
 
         Task AddStudent(IStudent student);
 
-
+        Task<bool> EditePassword( string oldPassword, string NewPassword);
 
     }
 }

@@ -41,6 +41,10 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.ExamHoursCount)]
         TextView ExamHours;
 
+        [MapControl(Resource.Id.TestHoursCount)]
+        TextView TestHours;
+       
+
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -64,10 +68,25 @@ namespace Izrune.Fragments
            // var adapter = new CategorySpinnerAdapter(this, Resource.Layout.itemSpinnerText, Result.Students.Select(i => ($"{i.Name}   {i.LastName}")).ToList(), StudSpiner);
            // var add = new MySpinnerAdapter(this, Result.Students.Select(i => ($"{i.Name}   {i.LastName}")).ToList());
             StudSpiner.Adapter = DataAdapter;
-            StudSpiner.ItemSelected += (s, e) =>
+            StudSpiner.ItemSelected += async(s, e) =>
             {
                 UserControl.Instance.SeTSelectedStudent(Result.Students.ElementAt(e.Position).id);
-               
+
+                var TimeResult =await QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezExam);
+
+                if (TimeResult.Days <= 0 && TimeResult.Hours <= 0 && TimeResult.Minutes <= 0)
+                {
+
+                }
+                else
+                {
+                    ExamDay.Text = TimeResult.Days.ToString();
+                    ExamHours.Text = TimeResult.Hours.ToString();
+                    ExamMinit.Text = TimeResult.Minutes.ToString();
+
+                }
+
+
             };
         }
 

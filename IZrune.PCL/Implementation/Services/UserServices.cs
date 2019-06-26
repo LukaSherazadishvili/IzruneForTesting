@@ -42,6 +42,29 @@ namespace IZrune.PCL.Implementation.Services
 
         }
 
+        public async Task<bool> EditePassword( string oldPassword, string NewPassword)
+        {
+            var FormContent = new FormUrlEncodedContent(new[]
+                {
+                new KeyValuePair<string,string>("parent_id",UserControl.Instance.GetCurrentUser().Result.id.ToString()),
+                 new KeyValuePair<string,string>("old_password",oldPassword),
+                  new KeyValuePair<string,string>("new_password",NewPassword),
+                
+                });
+
+            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=editPassword&hashcode=0912a1be35b2f263eb97149b2e67f40a", FormContent);
+            var jsn = await Data.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<RecoverStatusDTO>(jsn);
+
+            if (result.Code == 0)
+                return true;
+            else
+                return false;
+
+
+
+        }
+
         public async Task EditParentProfileAsync( string ParrentMail, string ParrentPhone, string City, string Village)
         {
 
@@ -55,9 +78,7 @@ namespace IZrune.PCL.Implementation.Services
                 });
             var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=editParentProfile&hashcode=0a3110bbe8a96c91eb33bf6072598368", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
-
-            
-
+         
         }
 
         public async Task EditStudentProfile(string Email, string Phone, int regionId, string village, int SchoolId)
@@ -202,5 +223,7 @@ namespace IZrune.PCL.Implementation.Services
             else
                 return false;
         }
+
+
     }
 }
