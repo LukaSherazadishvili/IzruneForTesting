@@ -32,6 +32,16 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.StudentSpiner)]
         Spinner StudSpiner;
 
+        [MapControl(Resource.Id.ExamDayCount)]
+        TextView ExamDay;
+
+        [MapControl(Resource.Id.ExamMinitCount)]
+        TextView ExamMinit;
+
+        [MapControl(Resource.Id.ExamHoursCount)]
+        TextView ExamHours;
+
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

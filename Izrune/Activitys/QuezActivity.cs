@@ -13,6 +13,7 @@ using Android.Widget;
 using Izrune.Adapters.RecyclerviewAdapters;
 using Izrune.Attributes;
 using Izrune.Fragments;
+using Izrune.Fragments.DialogFrag;
 using Izrune.Helpers;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
@@ -53,25 +54,61 @@ namespace Izrune.Activitys
         int minit = 1;
 
 
-        private List<IQuestion> QuestionsList;
-
+      
+        private int CurrentTime=0;
 
         private int Position = 0;
 
         private List<QuestionShedule> Sheduler = new List<QuestionShedule>();
 
+        private IEnumerable<IQuestion> QuestionsList;
 
+        string TimeType;
+        string ExamType;
         protected async  override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            progBar.Max = 90;
+
+
+              ExamType = Intent.GetStringExtra("ExamType");
+             TimeType = Intent.GetStringExtra("TimeType");
+
+            if (TimeType == "1")
+            {
+                CurrentTime = 1799;
+                
+            }
+            else
+            {
+                CurrentTime = 90;
+            }
+
+            
+            int CircProgress = 0;
+            int EndProgress =CurrentTime;
+            int Progr =CurrentTime;
+            int Sec = CurrentTime%60;
+            int minit = CurrentTime/60;
+
+
+            if (ExamType == "1")
+            {
+                QuestionsList = await QuezControll.Instance.GetAllQuestion(IZrune.PCL.Enum.QuezCategory.QuezExam);
+            }
+            else
+            {
+                QuestionsList = await QuezControll.Instance.GetAllQuestion(IZrune.PCL.Enum.QuezCategory.QuezTest);
+            }
+
+
+
+            progBar.Max = CurrentTime;
             progBar.SecondaryProgress = 0;
-          
-           
+
            
 
-            var QuestionsList =await QuezControll.Instance.GetAllQuestion(IZrune.PCL.Enum.QuezCategory.QuezExam);
+
 
 
             for (int i = 1; i <QuestionsList.Count()+1; i++)
@@ -93,17 +130,19 @@ namespace Izrune.Activitys
 
 
                 
-            var FragmentQuestion = new QuezFragment(QuezControll.Instance.GetCurrentQuestion());
+            var FragmentQuestion = new QuezFragment(QuezControll.Instance.GetCurrentQuestion(),ExamType);
 
             FragmentQuestion.AnswerClick = () =>
             {
                 Position++;
-                Progr = 90;
-                Sec = 30;
-                minit = 1;
-                CircProgress = 0;
-                progBar.Progress = 0;
-
+                if (TimeType != "1")
+                {
+                    Progr = CurrentTime;
+                    Sec = CurrentTime % 60;
+                    minit = CurrentTime / 60;
+                    CircProgress = 0;
+                    progBar.Progress = 0;
+                }
                 if (Position < 20)
                 {
                     foreach (var items in Sheduler)
@@ -160,17 +199,25 @@ namespace Izrune.Activitys
                         }
                     }
                     progBar.Progress = CircProgress++;
+
+                    if (Progr == 0 && TimeType == "1" && Position < 19)
+                    {
+                        OnBackPressed();
+                    }
                     if (Progr == 0)
                     {
 
                         Position++;
-                        Progr = 90;
-                        Sec = 30;
-                        minit = 1;
-                        CircProgress = 0;
-                        progBar.Progress = 0;
+                        if (TimeType != "1")
+                        {
+                            Progr = CurrentTime;
+                            Sec = CurrentTime % 60;
+                            minit = CurrentTime / 60;
+                            CircProgress = 0;
+                            progBar.Progress = 0;
+                        }
 
-                        var frg = new QuezFragment(QuezControll.Instance.GetCurrentQuestion());
+                        var frg = new QuezFragment(QuezControll.Instance.GetCurrentQuestion(),ExamType);
                         frg.ChangeResultPage = () =>
                         {
                             ChangeFragmentPage(new DiplomaFragment(), Resource.Id.MainFuckingContainer);
@@ -178,12 +225,14 @@ namespace Izrune.Activitys
                         frg.AnswerClick = () =>
                         {
                             Position++;
-                            Progr = 90;
-                            Sec = 30;
-                            minit = 1;
-                            CircProgress = 0;
-                            progBar.Progress = 0;
-
+                            if (TimeType != "1")
+                            {
+                                Progr = CurrentTime;
+                                Sec = CurrentTime % 60;
+                                minit = CurrentTime / 60;
+                                CircProgress = 0;
+                                progBar.Progress = 0;
+                            }
                             if (Position < 20)
                             {
                                 foreach (var items in Sheduler)
@@ -204,7 +253,7 @@ namespace Izrune.Activitys
                         };
 
 
-
+                       
 
 
 
@@ -231,6 +280,7 @@ namespace Izrune.Activitys
                     TimerTxt.Text = string.Format($"{minit.ToString().PadLeft(2, '0')}:{Sec.ToString().PadLeft(2, '0')}");
                     await Task.Delay(1000);
 
+                   
                     
                 }
             });
@@ -242,6 +292,13 @@ namespace Izrune.Activitys
         {
             base.OnBackPressed();
             this.Finish();
+        }
+
+        public void OpenDialog(string ImageUrl)
+        {
+            var transcation = FragmentManager.BeginTransaction();
+            ImageDialogFragment dialog = new ImageDialogFragment(ImageUrl);
+            dialog.Show(transcation, "Image Dialog");
         }
 
     }
