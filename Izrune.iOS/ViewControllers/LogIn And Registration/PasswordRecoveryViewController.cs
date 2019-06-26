@@ -7,12 +7,13 @@ using Izrune.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
+using MPDCiOSPages.ViewControllers;
 using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS
 {
-	public partial class PasswordRecoveryViewController : UIViewController
+	public partial class PasswordRecoveryViewController : BaseViewController
 	{
 		public PasswordRecoveryViewController (IntPtr handle) : base (handle)
 		{
@@ -28,7 +29,7 @@ namespace Izrune.iOS
 
         public IParent user { get; private set; }
 
-        public async override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
@@ -36,15 +37,20 @@ namespace Izrune.iOS
 
             var userService = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-            sendBtn.TouchUpInside += delegate {
+            sendBtn.TouchUpInside += async delegate {
 
-                var result = 
                 this.View.EndEditing(true);
 
                 var phone = phoneTextField.Text.Replace(" ", string.Empty);
-                var userPhone = user.Phone.Replace(" ", string.Empty);
 
-                if (phone == userPhone)
+                ShowLoading();
+
+                var result = IsPassworPage ? await userService.RecoverPasswordAsync(phone) : await userService.RecoverUserNamedAsync(phone);
+
+                EndLoading();
+
+
+                if (result)
                 {
                     var succsessVc = Storyboard.InstantiateViewController(SuccesViewController.StoryboardId) as SuccesViewController;
                     succsessVc.TitleText = IsPassworPage ? "პაროლი გაგზავნილია მითითებულ ნომერზე" : "მომხმარებლის სახელი გაგზავნილია მითითებულ ტელეფონის ნომერზე";
