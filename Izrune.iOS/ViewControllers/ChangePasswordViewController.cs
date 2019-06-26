@@ -7,10 +7,12 @@ using UIKit;
 using MpdcViewExtentions;
 using IZrune.PCL.Helpers;
 using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Abstraction.Services;
+using MPDCiOSPages.ViewControllers;
 
 namespace Izrune.iOS
 {
-	public partial class ChangePasswordViewController : UIViewController
+	public partial class ChangePasswordViewController : BaseViewController
 	{
 		public ChangePasswordViewController (IntPtr handle) : base (handle)
 		{
@@ -34,14 +36,24 @@ namespace Izrune.iOS
         {
             saveBtn.TouchUpInside += async delegate
             {
-                if(CheckPassword())
-                {
+                var userService = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
+                if(oldPassTf.Text == user.Password)
+                {
+                    if (CheckPassword())
+                    {
+                        ShowLoading();
+                        var result = await userService.EditePassword(oldPassTf.Text, passwordNewTf.Text);
+                        EndLoading();
+                        ShowAlert("პაროლი წარმატებით შეიცვალა");
+                    }
+                    else
+                        ShowAlert("სცადეთ თავიდან");
                 }
 
                 else
                 {
-
+                    ShowAlert("სცადეთ თავიდან");
                 }
             };
 
@@ -75,9 +87,9 @@ namespace Izrune.iOS
             return (passwordNewTf.Text == repeatNewPasswordTf.Text);
         }
 
-        private void ShowAlert()
+        private void ShowAlert(string message)
         {
-            var alertVc = UIAlertController.Create("ყურადღება!", "პაროლი წარმატებით შეიცვალა", UIAlertControllerStyle.Alert);
+            var alertVc = UIAlertController.Create("ყურადღება!", message, UIAlertControllerStyle.Alert);
             alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
             this.PresentViewController(alertVc, true, null);
         }
