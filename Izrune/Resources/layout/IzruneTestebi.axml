@@ -265,7 +265,8 @@
                         android:text="დღე"/>
 
                     <TextView
-						android:fontFamily="@font/TestHoursCount"
+						android:id="@+id/TestHoursCount"
+						android:fontFamily="@font/bpg_mrgvlovani"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="2dp"
@@ -283,7 +284,8 @@
                         android:text="საათი"/>
 
                     <TextView
-						android:fontFamily="@font/TestMinitCount"
+						android:id="@+id/TestMinitCount"
+						android:fontFamily="@font/bpg_mrgvlovani"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="2dp"
