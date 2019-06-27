@@ -55,7 +55,7 @@ namespace Izrune.iOS
 
             var newsService = ServiceContainer.ServiceContainer.Instance.Get<INewsService>();
 
-            NewsList = (await newsService.GetNewsAsync())?.OrderBy(x => x.date)?.ToList();
+            NewsList = (await newsService.GetNewsAsync())?.OrderByDescending(x => x.date)?.ToList();
 
             newsCollectionView.ReloadData();
 
