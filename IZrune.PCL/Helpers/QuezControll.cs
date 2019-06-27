@@ -146,10 +146,7 @@ namespace IZrune.PCL.Helpers
             }
             var res = Sheduler;
            
-            
-         
-            
-           
+
         }
 
         QuisInfo quisInfo;
