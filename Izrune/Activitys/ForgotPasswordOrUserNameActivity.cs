@@ -11,6 +11,9 @@ using Android.Views;
 using Android.Widget;
 using Izrune.Attributes;
 using Izrune.Fragments;
+using IZrune.PCL.Abstraction.Services;
+using MpdcContainer = ServiceContainer.ServiceContainer;
+
 
 namespace Izrune.Activitys
 {
@@ -31,16 +34,17 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.BottomBackButton)]
         LinearLayout BotBackButton;
 
+        [MapControl(Resource.Id.PhoneEditext)]
+        EditText ForgotPassword;
+
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             var result = Convert.ToBoolean(Intent.GetStringExtra("IsPasswordOrNot"));
 
-            SendButton.Click += (s, e) =>
-            {
-                ChangeFragmentPage(new SaccesFragment(), Container.Id);
-            };
+           
 
 
             if (!result)
@@ -48,6 +52,31 @@ namespace Izrune.Activitys
                 Pastxt.Text = "მომხმარებლის სახელის აღდგენა";
             }
 
+            SendButton.Click += async(s, e) =>
+            {
+
+                bool Result;
+
+                if (!result)
+                {
+                   Result=  await MpdcContainer.Instance.Get<IUserServices>().RecoverPasswordAsync(ForgotPassword.Text);                   
+                }
+                else
+                {
+                    Result = await MpdcContainer.Instance.Get<IUserServices>().RecoverUserNamedAsync(ForgotPassword.Text);
+                }
+
+
+                if (!Result)
+                {
+                    ForgotPassword.SetBackgroundResource(Resource.Drawable.RedEditTextBorder);
+                }
+                else
+                {
+                    ChangeFragmentPage(new SaccesFragment(), Container.Id);
+
+                }
+            };
 
             BotBackButton.Click += BotBackButton_Click;
         }
@@ -60,6 +89,7 @@ namespace Izrune.Activitys
         public override void OnBackPressed()
         {
             base.OnBackPressed();
+            this.Finish();
         }
     }
 }

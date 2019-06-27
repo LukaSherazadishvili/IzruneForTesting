@@ -43,8 +43,12 @@ namespace Izrune.Fragments
 
         [MapControl(Resource.Id.TestHoursCount)]
         TextView TestHours;
-       
 
+        [MapControl(Resource.Id.TestDayCount)]
+        TextView TestDayCount;
+
+        [MapControl(Resource.Id.TestMinitCount)]
+        TextView TestMinit;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -86,6 +90,20 @@ namespace Izrune.Fragments
 
                 }
 
+
+               var  TestTimeRes = await QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezTest);
+
+                if (TestTimeRes.Days <= 0 && TestTimeRes.Hours <= 0 && TestTimeRes.Minutes <= 0)
+                {
+
+                }
+                else
+                {
+                    TestDayCount.Text = TimeResult.Days.ToString();
+                    TestHours.Text = TimeResult.Hours.ToString();
+                    TestMinit.Text = TimeResult.Minutes.ToString();
+
+                }
 
             };
         }

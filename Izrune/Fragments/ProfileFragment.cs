@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Izrune.Activitys;
+using Izrune.Activitys.InnerActivity;
 using Izrune.Attributes;
 
 namespace Izrune.Fragments
@@ -23,6 +24,10 @@ namespace Izrune.Fragments
 
         [MapControl(Resource.Id.StudentProfileEdit)]
         RelativeLayout StudentEdit;
+
+        [MapControl(Resource.Id.AddStudentButton)]
+        LinearLayout AddStudent;
+
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -45,6 +50,12 @@ namespace Izrune.Fragments
             StudentEdit.Click += (s, e) =>
             {
                 Intent intent = new Intent(this, typeof(StudentProfileEditActivity));
+                StartActivity(intent);
+            };
+
+            AddStudent.Click += (s, e) =>
+            {
+                Intent intent = new Intent(this, typeof(InnerRegisterStudent));
                 StartActivity(intent);
             };
         }
