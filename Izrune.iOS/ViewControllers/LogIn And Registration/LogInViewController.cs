@@ -44,7 +44,7 @@ namespace Izrune.iOS
                 //ShowLoginAlert();
                 try
                 {
-                    ShowLoading();
+                    ShowLoading(); 
                     var userName = userNameTextField.Text;
                     var passord = passwordTextField.Text;
                     //await Task.Delay(10000);

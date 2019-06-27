@@ -22,7 +22,7 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
-            infoWebView.LoadHtmlString(HtmlString, NSUrl.FromString("https://www.google.com/"));
+            //infoWebView.LoadHtmlString(HtmlString, NSUrl.FromString("https://www.google.com/"));
         }
     }
 }
