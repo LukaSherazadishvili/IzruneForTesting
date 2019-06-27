@@ -289,7 +289,7 @@ namespace IZrune.PCL.Helpers
                 var Statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest);
 
 
-                var GroupdExams = Statistic.GroupBy(c =>
+                var GroupdExams = Statistic.ToList().GroupBy(c =>
                                          c.ExamDate.Month
                                        ).Select(i => i.Select(o => o.ExamDate).ToList()).ToList();
 
