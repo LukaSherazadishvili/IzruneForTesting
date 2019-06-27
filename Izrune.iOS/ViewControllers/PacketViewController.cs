@@ -76,6 +76,8 @@ namespace Izrune.iOS
 
             this.AddVcInView(viewForPeager, SelectPacketVc);
 
+            PromoVc.PromoInfo = PromoCode;
+
             if (IsFromMenu)
             {
                 Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
