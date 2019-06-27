@@ -200,9 +200,9 @@ namespace Izrune.iOS
             {
                 UserControl.Instance.RegistrationStudentPartTwo(
                 region.id,
-                villageTextField.Text,
-                _school.id,
-                ClassId
+                 _school.id,               
+                ClassId,
+                villageTextField.Text
                 );
             }
             catch (Exception ex)

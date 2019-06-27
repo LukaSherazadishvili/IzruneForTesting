@@ -215,5 +215,6 @@ namespace Izrune.iOS
         {
             return new IndicatorInfo("შედეგები");
         }
+
     }
 }

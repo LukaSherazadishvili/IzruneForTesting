@@ -37,6 +37,12 @@ namespace Izrune.iOS
 		UIKit.UILabel promoLbl { get; set; }
 
 		[Outlet]
+		UIKit.UILabel selectedStudentLbl { get; set; }
+
+		[Outlet]
+		UIKit.UIView selectStudentDP { get; set; }
+
+		[Outlet]
 		UIKit.UIView viewForIndividual { get; set; }
 
 		[Outlet]
@@ -47,6 +53,11 @@ namespace Izrune.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (contentHeightConstraint != null) {
+				contentHeightConstraint.Dispose ();
+				contentHeightConstraint = null;
+			}
+
 			if (footerHeightConstraint != null) {
 				footerHeightConstraint.Dispose ();
 				footerHeightConstraint = null;
@@ -97,9 +108,14 @@ namespace Izrune.iOS
 				viewForPromoCode = null;
 			}
 
-			if (contentHeightConstraint != null) {
-				contentHeightConstraint.Dispose ();
-				contentHeightConstraint = null;
+			if (selectStudentDP != null) {
+				selectStudentDP.Dispose ();
+				selectStudentDP = null;
+			}
+
+			if (selectedStudentLbl != null) {
+				selectedStudentLbl.Dispose ();
+				selectedStudentLbl = null;
 			}
 		}
 	}
