@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using CoreGraphics;
 using Foundation;
@@ -16,6 +18,11 @@ namespace MPDC.iOS.Utils
             var size = nsString.GetSizeUsingAttributes(attribs);
 
             return (float)size.Width;
+        }
+
+        public static IEnumerable<T> DistinctBy<T, TKey>(this IEnumerable<T> items, Func<T, TKey> property)
+        {
+            return items.GroupBy(property).Select(x => x.First());
         }
 
         public static CGSize  GetSizeByText(this string text, UIFont font)
