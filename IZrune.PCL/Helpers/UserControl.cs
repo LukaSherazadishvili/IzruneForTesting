@@ -280,7 +280,7 @@ namespace IZrune.PCL.Helpers
         }
 
 
-        public async Task<List<List<string>>>GetDiagramStatistic()
+        public async Task<IEnumerable<IDiagram>>  GetDiagramStatistic()
         {
 
             try
@@ -290,10 +290,17 @@ namespace IZrune.PCL.Helpers
 
 
                 var GroupdExams = Statistic.GroupBy(c =>
-                                         c.ExamDate.Day
-                                       ).Select(i => i.Select(o => o.ExamDate.ToShortDateString()).ToList()).ToList();
+                                         c.ExamDate.Month
+                                       ).Select(i => i.Select(o => o.ExamDate).ToList()).ToList();
 
-                return GroupdExams;
+
+              var Result=  GroupdExams.Select(i => new Diagram()
+                {
+                    CurrentDate=i.FirstOrDefault(),
+                    TestCount=i.Count()
+
+                });
+                return Result;
 
 
             }
