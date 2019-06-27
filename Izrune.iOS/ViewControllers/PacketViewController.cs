@@ -12,6 +12,8 @@ using MPDCiOSPages.ViewControllers;
 using MpdcViewExtentions;
 using UIKit;
 using IZrune.PCL.Implementation.Models;
+using FPT.Framework.iOS.UI.DropDown;
+using System.Collections.Generic;
 
 namespace Izrune.iOS
 {
@@ -23,10 +25,18 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("PacketViewControllerStoryboardId");
 
+        #region Fields
+
         PromoCodeViewController PromoVc;
         SelectPacketViewController SelectPacketVc;
+
         public int SchoolId;
         public bool HideFooter { get; set; }
+
+        float HederHeight = 97;
+        float FooterHeight = 140;
+
+        DropDown StudentDp = new DropDown();
 
         IPromoCode PromoCode;
         public Action<IPrice> PriceSelected { get; set; }
@@ -38,6 +48,14 @@ namespace Izrune.iOS
         public Action RefreshData { get; set; }
 
         bool IsPromoSelected;
+
+        IStudent SelectedStudent;
+
+        List<IStudent> Students;
+
+        public bool IsFromMenu = true;
+
+        #endregion
 
         public async override void ViewDidLoad()
         {
@@ -54,67 +72,82 @@ namespace Izrune.iOS
             InitGesture();
 
             SelectPacketVc = Storyboard.InstantiateViewController(SelectPacketViewController.StoryboardId) as SelectPacketViewController;
-            SelectPacketVc.SchoolId = SchoolId;
-            SelectPacketVc.PriceSelected = (price) =>
-            {
-
-            };
-
-
             PromoVc = Storyboard.InstantiateViewController(PromoCodeViewController.StoryboardId) as PromoCodeViewController;
-            PromoVc.PromoInfo = PromoCode;
 
             this.AddVcInView(viewForPeager, SelectPacketVc);
 
-            SendClicked = () => SelectPacketVc.SendClicked?.Invoke();
-            RefreshData = () => SelectPacketVc.RefrehData?.Invoke();
+            if (IsFromMenu)
+            {
+                //TODO FromMenu
+                Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
+                SelectedStudent = Students?[0];
 
-            nextBtn.TouchUpInside += delegate {
+                InitDropDowns();
+            }
 
-                if(SelectPacketVc.SelectedPrice == null && PromoVc.SelectedMont == 0)
+            else
+            {
+                SelectPacketVc.SchoolId = SchoolId;
+                SelectPacketVc.PriceSelected = (price) =>
                 {
-                    ShowAlert();
-                }
-                else
-                {
-                    if (IsPromoSelected)
+
+                };
+
+                PromoVc.PromoInfo = PromoCode;
+
+                this.AddVcInView(viewForPeager, SelectPacketVc);
+
+                SendClicked = () => SelectPacketVc.SendClicked?.Invoke();
+                RefreshData = () => SelectPacketVc.RefrehData?.Invoke();
+
+                nextBtn.TouchUpInside += delegate {
+
+                    if (SelectPacketVc.SelectedPrice == null && PromoVc.SelectedMont == 0)
                     {
-                        UserControl.Instance.SetPromoPack(PromoVc.SelectedMont, PromoVc.SelectedMont, PromoVc.PromoCode);
-
+                        ShowAlert();
                     }
-                        
                     else
                     {
-                        UserControl.Instance.SetPromoPack(SelectPacketVc.SelectedPrice.months, SelectPacketVc.SelectedPrice.price);
+                        if (IsPromoSelected)
+                        {
+                            UserControl.Instance.SetPromoPack(PromoVc.SelectedMont, PromoVc.SelectedMont, PromoVc.PromoCode);
+
+                        }
+
+                        else
+                        {
+                            UserControl.Instance.SetPromoPack(SelectPacketVc.SelectedPrice.months, SelectPacketVc.SelectedPrice.price);
+                        }
+
+                        var price = (IsPromoSelected ? new Price() { price = PromoVc.SelectedMont, months = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
+
+                        PriceSelected?.Invoke(price);
+                        NextClicked?.Invoke();
+                        this.NavigationController.PopViewController(true);
                     }
+                };
 
-                    var price = (IsPromoSelected ? new Price() { price = PromoVc.SelectedMont, months = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
-
-                    PriceSelected?.Invoke(price);
-                    NextClicked?.Invoke();
-                    this.NavigationController.PopViewController(true);
-                }
-            };
-
-            PromoVc.PromoCodeSelected = (promoCode, month) =>
-            {
-                if (month > 0)
+                PromoVc.PromoCodeSelected = (promoCode, month) =>
                 {
-                    IsPromoSelected = true;
-                }
-                else
-                    IsPromoSelected = false;
+                    if (month > 0)
+                    {
+                        IsPromoSelected = true;
+                    }
+                    else
+                        IsPromoSelected = false;
 
-            };
+                };
 
-            SelectPacketVc.DataLoaded = () =>
-            {
-                var scrollView = SelectPacketVc.View.OfType<UIScrollView>().FirstOrDefault();
-                SelectPacketVc.View.LayoutIfNeeded();
-                scrollView.LayoutIfNeeded();
+                SelectPacketVc.DataLoaded = () =>
+                {
+                    var scrollView = SelectPacketVc.View.OfType<UIScrollView>().FirstOrDefault();
+                    SelectPacketVc.View.LayoutIfNeeded();
+                    scrollView.LayoutIfNeeded();
 
-                SetContentHeight(scrollView.ContentSize.Height);
-            };
+                    SetContentHeight(scrollView.ContentSize.Height);
+                };
+            }
+
         }
 
         private async Task GetPromoDataAsync()
@@ -130,6 +163,9 @@ namespace Izrune.iOS
 
         private void InitUI()
         {
+
+            selectStudentDP.Hidden = !IsFromMenu;
+
             viewForIndividual.Layer.CornerRadius = 17.5f;
             viewForPromoCode.Layer.CornerRadius = 17.5f;
 
@@ -165,7 +201,6 @@ namespace Izrune.iOS
             }
         }
 
-        //UserControl.Instance.SetPromoPack();
         private void SelectHeader()
         {
             viewForIndividual.BackgroundColor = IsIndividualSelected ? AppColors.TitleColor : UIColor.Clear;
@@ -198,9 +233,6 @@ namespace Izrune.iOS
 
             this.AddVcInView(viewForPeager, SelectPacketVc);
         }
-
-        float HederHeight = 97;
-        float FooterHeight = 140;
 
         private void SetContentHeight(nfloat scrollviewContentHeight)
         {
@@ -235,6 +267,63 @@ namespace Izrune.iOS
             var alertVc = UIAlertController.Create("ყურადღება!", "აუცილებელია პაკეტის არჩევა", UIAlertControllerStyle.Alert);
             alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
             this.PresentViewController(alertVc, true, null);
+        }
+
+
+        private void SetupDropDown()
+        {
+            StudentDp.AnchorView = new WeakReference<UIView>(selectStudentDP);
+            StudentDp.BottomOffset = new CoreGraphics.CGPoint(0, selectStudentDP.Bounds.Height);
+            StudentDp.Width = View.Frame.Width;
+            StudentDp.Direction = Direction.Bottom;
+        }
+
+        private void InitDropDownUI(DropDown dropDown)
+        {
+            dropDown.BackgroundColor = UIColor.FromRGB(243, 243, 243);
+            dropDown.SelectionBackgroundColor = AppColors.TitleColor;
+            DPDConstants.UI.TextColor = AppColors.TitleColor;
+            DPDConstants.UI.SelectedTextColor = UIColor.White;
+
+            dropDown.TextFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 15);
+            dropDown.ClipsToBounds = true;
+            dropDown.Layer.CornerRadius = 20;
+        }
+
+        private void SetupDropDownGesture(DropDown dropDown, UIView viewforDpD)
+        {
+            if (viewforDpD.GestureRecognizers == null || viewforDpD.GestureRecognizers?.Length == 0)
+            {
+                viewforDpD.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    dropDown.Show();
+                    InitDropDownUI(dropDown);
+                }));
+            }
+
+        }
+
+        private void InitDropDowns()
+        {
+
+            SetupDropDown();
+
+            SetupDropDownGesture(StudentDp, selectStudentDP);
+
+            selectedStudentLbl.Text = SelectedStudent.Name + " " + SelectedStudent.LastName;
+
+            var studentsArray = Students?.Select(x => x.Name + " " + x.LastName)?.ToArray();
+            StudentDp.DataSource = studentsArray;
+
+            StudentDp.SelectionAction = (nint index, string name) =>
+            {
+                //TODO
+
+                selectedStudentLbl.Text = SelectedStudent.Name + " " + SelectedStudent.LastName;
+
+                SelectedStudent = Students?[(int)index];
+
+            };
         }
     }
 }
