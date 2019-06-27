@@ -26,6 +26,8 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
+            this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+
             paymentVc = Storyboard.InstantiateViewController(PaymentViewController.StoryboardId) as PaymentViewController;
             paymentVc.PayInfo = PayInfo;
 

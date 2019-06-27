@@ -61,9 +61,9 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
-            //var asd = View.Frame;
+            this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
 
-            if(!IsFromMenu)
+            if (!IsFromMenu)
                 await GetPromoDataAsync(SchoolId);
 
             SelectHeader();
@@ -110,6 +110,10 @@ namespace Izrune.iOS
                             var payInfo = UserControl.Instance.GetPaymentInformation();
 
                             var payVc = Storyboard.InstantiateViewController(PaymentMethodViewController.StoryboardId) as PaymentMethodViewController;
+
+                            payVc.PayInfo = payInfo;
+
+                            this.NavigationController.PushViewController(payVc, true);
                         }
                     }
 
@@ -362,7 +366,8 @@ namespace Izrune.iOS
 
                 PromoVc.PromoInfo = PromoCode;
 
-                PromoVc.CheckPromo();
+                if(IsPromoSelected)
+                    PromoVc.CheckPromo();
             };
         }
     }
