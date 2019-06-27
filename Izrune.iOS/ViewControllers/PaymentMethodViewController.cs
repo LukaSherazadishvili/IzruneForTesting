@@ -22,6 +22,8 @@ namespace Izrune.iOS
 
         public Action GoToLogin { get; set; }
 
+        public bool HideTitle { get; set; }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -37,6 +39,8 @@ namespace Izrune.iOS
                 this.NavigationController.PopViewController(false);
                 GoToLogin?.Invoke(); 
                 };
+
+            titleLbl.Hidden = HideTitle;
         }
 
         private void InitGestures()

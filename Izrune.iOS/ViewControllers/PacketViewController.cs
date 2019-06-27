@@ -112,6 +112,7 @@ namespace Izrune.iOS
                             var payVc = Storyboard.InstantiateViewController(PaymentMethodViewController.StoryboardId) as PaymentMethodViewController;
 
                             payVc.PayInfo = payInfo;
+                            payVc.HideTitle = true;
 
                             this.NavigationController.PushViewController(payVc, true);
                         }

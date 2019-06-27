@@ -3405,28 +3405,28 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4dK-dd-N11" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="705.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="665.66666666666663"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="გილოცავთ! თქვენ წარმატებით გაიარეთ რეგისტრაცია." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WV3-sh-DxZ">
-                                                <rect key="frame" x="25" y="140" width="325" height="39.666666666666657"/>
+                                                <rect key="frame" x="25" y="100" width="325" height="39.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="17"/>
                                                 <color key="textColor" red="0.28627450980392155" green="0.70980392156862748" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="გადახდის მეთოდები" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ND-5C-TX9">
-                                                <rect key="frame" x="25" y="279.66666666666669" width="325" height="21"/>
+                                                <rect key="frame" x="25" y="239.66666666666669" width="325" height="21"/>
                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="18"/>
                                                 <color key="textColor" red="0.68235294117647061" green="0.44313725490196076" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="UZ6-NB-ksr">
-                                                <rect key="frame" x="0.0" y="505.66666666666663" width="375" height="200"/>
+                                                <rect key="frame" x="0.0" y="465.66666666666674" width="375" height="200"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="k2A-GR-gUg"/>
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="NUj-z0-hOv">
-                                                <rect key="frame" x="74" y="400.66666666666669" width="227" height="210.00000000000006"/>
+                                                <rect key="frame" x="74" y="360.66666666666669" width="227" height="210.00000000000006"/>
                                                 <subviews>
                                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojK-Sp-dHF">
                                                         <rect key="frame" x="0.0" y="0.0" width="227" height="50"/>
@@ -3446,7 +3446,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txO-l1-Wsi">
-                                                        <rect key="frame" x="0.0" y="79.999999999999943" width="227" height="50"/>
+                                                        <rect key="frame" x="0.0" y="80" width="227" height="50"/>
                                                         <color key="backgroundColor" red="0.79607843140000001" green="0.52941176469999995" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="xmk-23-HBi"/>
@@ -3485,7 +3485,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="NUj-z0-hOv" firstAttribute="centerX" secondItem="4dK-dd-N11" secondAttribute="centerX" id="3JA-hs-vqf"/>
-                                            <constraint firstItem="WV3-sh-DxZ" firstAttribute="top" secondItem="4dK-dd-N11" secondAttribute="top" constant="140" id="FGv-kE-ina"/>
+                                            <constraint firstItem="WV3-sh-DxZ" firstAttribute="top" secondItem="4dK-dd-N11" secondAttribute="top" constant="100" id="FGv-kE-ina"/>
                                             <constraint firstAttribute="trailing" secondItem="UZ6-NB-ksr" secondAttribute="trailing" id="Mcp-2l-Jfs"/>
                                             <constraint firstAttribute="trailing" secondItem="WV3-sh-DxZ" secondAttribute="trailing" constant="25" id="eff-we-RzV"/>
                                             <constraint firstItem="UZ6-NB-ksr" firstAttribute="leading" secondItem="4dK-dd-N11" secondAttribute="leading" id="fcH-vQ-gF1"/>
@@ -3523,6 +3523,7 @@
                         <outlet property="payViaBankBtn" destination="txO-l1-Wsi" id="Ow6-9S-RPq"/>
                         <outlet property="payViaCardBtn" destination="ojK-Sp-dHF" id="64y-pR-tFt"/>
                         <outlet property="payViaPayBoxBtn" destination="czT-qE-KQH" id="eeP-fh-69c"/>
+                        <outlet property="titleLbl" destination="WV3-sh-DxZ" id="hiP-00-ZdM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bij-GA-sMg" userLabel="First Responder" sceneMemberID="firstResponder"/>
