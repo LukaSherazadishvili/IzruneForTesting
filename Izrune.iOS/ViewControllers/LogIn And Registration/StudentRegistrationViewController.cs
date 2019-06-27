@@ -166,6 +166,7 @@ namespace Izrune.iOS
                 studentRegVc1 = Storyboard.InstantiateViewController(StudentRegFirstViewController.StoryboardId) as StudentRegFirstViewController;
 
                 studentRegVc2 = Storyboard.InstantiateViewController(StudentRegSecondViewController.StoryboardId) as StudentRegSecondViewController;
+                studentRegVc2.CityList = CityList;
 
                 studentRegVc2.SchoolSelected = (school) =>
                 {
