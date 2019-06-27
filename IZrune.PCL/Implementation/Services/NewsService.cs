@@ -13,6 +13,22 @@ namespace IZrune.PCL.Implementation.Services
 {
     class NewsService : INewsService
     {
+        public async Task<string> GetMoreInfoAsync()
+        {
+            try
+            {
+                var Data = await IzruneWebClient.Instance.GetDataAsync<MoreInfoDTO>("http://izrune.ge/api.php?op=getMoreInfo&hashcode=4bb9341135d155cf4f1079d7b146895b");
+              
+                
+
+                return Data.info;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public async Task<IEnumerable<INews>> GetNewsAsync()
         {
             try

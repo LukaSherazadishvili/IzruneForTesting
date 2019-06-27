@@ -9,5 +9,7 @@ namespace IZrune.PCL.Abstraction.Services
   public  interface INewsService
     {
         Task<IEnumerable<INews>> GetNewsAsync();
+
+        Task<string> GetMoreInfoAsync();
     }
 }
