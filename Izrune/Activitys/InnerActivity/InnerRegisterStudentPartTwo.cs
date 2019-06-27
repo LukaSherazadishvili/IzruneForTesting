@@ -1,26 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
-using IZrune.PCL.Abstraction.Services;
-
+using MpdcContainer = ServiceContainer.ServiceContainer;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Izrune.Attributes;
-using MpdcContainer = ServiceContainer.ServiceContainer;
 using IZrune.PCL.Helpers;
+using Java.Util;
+using static Android.App.DatePickerDialog;
 using IZrune.PCL.Abstraction.Models;
-using Izrune.Fragments;
 
-namespace Izrune.Activitys
+namespace Izrune.Activitys.InnerActivity
 {
     [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
-    class NextRegistrationStudentActivity : MPDCBaseActivity
+    class InnerRegisterStudentPartTwo:MPDCBaseActivity
     {
         protected override int LayoutResource { get; } = Resource.Layout.layoutRegistrationStudent;
 
@@ -59,7 +58,7 @@ namespace Izrune.Activitys
             BackButton.Click += BackButton_Click;
             BotBackButton.Click += BotBackButton_Click;
 
-             Regions = await MpdcContainer.Instance.Get<IZrune.PCL.Abstraction.Services.IRegistrationServices>().GetRegionsAsync();
+            Regions = await MpdcContainer.Instance.Get<IZrune.PCL.Abstraction.Services.IRegistrationServices>().GetRegionsAsync();
 
             var DataAdapter = new ArrayAdapter<string>(this,
             Android.Resource.Layout.SimpleSpinnerDropDownItem,
@@ -103,9 +102,8 @@ namespace Izrune.Activitys
 
             UserControl.Instance.RegistrationStudentPartTwo(CurrentRegion.id, CurrentSchool.id, SelectedClass, Village.Text);
 
-
-
-            ChangeFragmentPage(new ServiceFragment() {CurrentId=UserControl.Instance.RegistrationStudent.SchoolId }, container.Id);
+            UserControl.Instance.AddStudent();
+           
         }
 
         private void City_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
@@ -132,5 +130,6 @@ namespace Izrune.Activitys
         {
             base.OnBackPressed();
         }
+
     }
 }

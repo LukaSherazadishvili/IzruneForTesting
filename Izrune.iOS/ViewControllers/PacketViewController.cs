@@ -78,7 +78,6 @@ namespace Izrune.iOS
 
             if (IsFromMenu)
             {
-                //TODO FromMenu
                 Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
                 SelectedStudent = Students?[0];
 

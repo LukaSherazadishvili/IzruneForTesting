@@ -29,7 +29,7 @@ namespace IZrune.PCL.Implementation.Services
                   new KeyValuePair<string,string>("phone",student.Phone),
                  new KeyValuePair<string,string>("region_id",student.RegionId.ToString()),
                   new KeyValuePair<string,string>("village",student.Village),
-                  new KeyValuePair<string,string>("bdate",student.Bdate.ToShortTimeString()),
+                  new KeyValuePair<string,string>("bdate",$"{student.Bdate.Year}-{student.Bdate.Month}={student.Bdate.Month}"),
                   new KeyValuePair<string,string>("school_id",student.SchoolId.ToString()),
                   new KeyValuePair<string,string>("class",student.Class.ToString()),
                   new KeyValuePair<string,string>("sdate",DateTime.Now.ToShortDateString()),
