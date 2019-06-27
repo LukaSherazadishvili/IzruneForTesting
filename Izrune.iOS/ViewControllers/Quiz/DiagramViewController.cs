@@ -32,7 +32,7 @@ namespace Izrune.iOS
 
         bool _isAllData = true;
         private List<IStudentsStatistic> statistisData;
-        private IEnumerable<IDiagram> userMonthStatistics;
+        private List<IDiagram> userMonthStatistics;
 
         public override async void ViewDidLoad()
         {
@@ -44,17 +44,19 @@ namespace Izrune.iOS
 
              statistisData = (await statisticsService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam)).ToList();
 
-             userMonthStatistics =await UserControl.Instance.GetDiagramStatistic(); 
+             userMonthStatistics =(await UserControl.Instance.GetDiagramStatistic()).ToList(); 
             setUpTimeView();
             setUpPointView();
-            setUpThirdView();
+
+            if(userMonthStatistics.Count>0)
+                setUpThirdView();
 
         }
 
         void setUpThirdView()
         {
 
-            statistisData = statistisData.DistinctBy(o => o.ExamDate.Date).ToList();
+          
             _plotView = new PlotView(new CoreGraphics.CGRect(0, 25, timeChartView.Frame.Width,
                                                                                    timeChartView.Frame.Height))
             {
@@ -100,10 +102,10 @@ namespace Izrune.iOS
 
             LinearAxis yaxis = new LinearAxis()
             {
-                AbsoluteMinimum = statistisData.Count == 1 ? 0 : statistisData.Min(o => o.Point),
-                AbsoluteMaximum = statistisData.Max(o => o.Point),
-                Minimum = statistisData.Count == 1 ? 0 : statistisData.Min(o => o.Point),
-                Maximum = statistisData.Max(o => o.Point),
+                AbsoluteMinimum = userMonthStatistics.Count() == 1 ? 0 : userMonthStatistics.Min(o => o.TestCount),
+                AbsoluteMaximum = userMonthStatistics.Max(o => o.TestCount),
+                Minimum = userMonthStatistics.Count() == 1 ? 0 : userMonthStatistics.Min(o => o.TestCount),
+                Maximum = userMonthStatistics.Max(o => o.TestCount),
                 Position = AxisPosition.Left,
                 MinimumPadding = 0,
                 MaximumPadding = 0.06
@@ -118,10 +120,10 @@ namespace Izrune.iOS
             //s1.IsStacked = true;
 
 
-            foreach (var item in statistisData)
+            foreach (var item in userMonthStatistics)
             {
-                xaxis.Labels.Add(item.ExamDate.ToString("dd/MM/yyyy"));
-                s1.Items.Add(new ColumnItem(item.Point, statistisData.IndexOf(item)));
+                xaxis.Labels.Add(item.CurrentDate);
+                s1.Items.Add(new ColumnItem(item.TestCount, userMonthStatistics.IndexOf(item)));
             }
 
             _plotModel.Series.Add(s1);
