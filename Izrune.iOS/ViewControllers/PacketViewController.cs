@@ -63,7 +63,8 @@ namespace Izrune.iOS
 
             //var asd = View.Frame;
 
-            await GetPromoDataAsync();
+            if(!IsFromMenu)
+                await GetPromoDataAsync(SchoolId);
 
             SelectHeader();
 
@@ -82,6 +83,8 @@ namespace Izrune.iOS
             {
                 Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
                 SelectedStudent = Students?[0];
+
+                await GetPromoDataAsync(SelectedStudent.id);
 
                 InitDropDowns();
             }
@@ -151,11 +154,11 @@ namespace Izrune.iOS
 
         }
 
-        private async Task GetPromoDataAsync()
+        private async Task GetPromoDataAsync(int schoolId)
         {
             ShowLoading();
             var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
-            PromoCode = (await service.GetPromoCodeAsync(SchoolId));
+            PromoCode = (await service.GetPromoCodeAsync(schoolId));
             EndLoading();
 
         }
@@ -270,7 +273,6 @@ namespace Izrune.iOS
             this.PresentViewController(alertVc, true, null);
         }
 
-
         private void SetupDropDown()
         {
             StudentDp.AnchorView = new WeakReference<UIView>(selectStudentDP);
@@ -316,7 +318,7 @@ namespace Izrune.iOS
             var studentsArray = Students?.Select(x => x.Name + " " + x.LastName)?.ToArray();
             StudentDp.DataSource = studentsArray;
 
-            StudentDp.SelectionAction = (nint index, string name) =>
+            StudentDp.SelectionAction = async (nint index, string name) =>
             {
                 //TODO
 
@@ -324,6 +326,19 @@ namespace Izrune.iOS
 
                 SelectedStudent = Students?[(int)index];
 
+                await GetPromoDataAsync(SelectedStudent.SchoolId);
+
+
+                PromoVc.PromoInfo = PromoCode;
+
+                if(IsPromoSelected)
+                {
+                    PromoVc.WillMoveToParentViewController(this);
+                    PromoVc.View.RemoveFromSuperview();
+                    PromoVc.RemoveFromParentViewController();
+
+                    AddPromoVc();
+                }
             };
         }
     }

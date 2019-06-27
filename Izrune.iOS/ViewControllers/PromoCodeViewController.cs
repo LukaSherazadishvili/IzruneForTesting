@@ -68,6 +68,14 @@ namespace Izrune.iOS
 
             HidePromo(string.IsNullOrEmpty(PromoInfo?.PrommoCode) || string.IsNullOrWhiteSpace(PromoInfo?.PrommoCode));
         }
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+
+            HidePromo(string.IsNullOrEmpty(PromoInfo?.PrommoCode) || string.IsNullOrWhiteSpace(PromoInfo?.PrommoCode));
+        }
+
         private void CheckCode(bool isRight)
         {
             promoCodeTf.TextColor = UIColor.White;
