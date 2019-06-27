@@ -5,21 +5,27 @@ using System;
 using Foundation;
 using UIKit;
 using MpdcViewExtentions;
-
+using IZrune.PCL.Helpers;
+using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Abstraction.Services;
+using MPDCiOSPages.ViewControllers;
 
 namespace Izrune.iOS
 {
-	public partial class ChangePasswordViewController : UIViewController
+	public partial class ChangePasswordViewController : BaseViewController
 	{
 		public ChangePasswordViewController (IntPtr handle) : base (handle)
 		{
 		}
 
         public static readonly NSString StoryboardId = new NSString("ChangePasswordStoryboardId");
+        private IParent user;
 
-        public override void ViewDidLoad()
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            user = await UserControl.Instance.GetCurrentUser();
 
             InitUI();
 
@@ -30,16 +36,23 @@ namespace Izrune.iOS
         {
             saveBtn.TouchUpInside += async delegate
             {
-                //TODO
+                var userService = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-                if(CheckPassword())
+                try
                 {
-
+                    if (CheckPassword())
+                    {
+                        ShowLoading();
+                        var result = await userService.EditePassword(oldPassTf.Text, passwordNewTf.Text);
+                        EndLoading();
+                        ShowAlert("პაროლი წარმატებით შეიცვალა");
+                    }
+                    else
+                        ShowAlert("სცადეთ თავიდან");
                 }
-
-                else
+                catch (Exception ex)
                 {
-
+                    ShowAlert("სცადეთ თავიდან");
                 }
             };
 
@@ -73,10 +86,10 @@ namespace Izrune.iOS
             return (passwordNewTf.Text == repeatNewPasswordTf.Text);
         }
 
-        private void ShowAlert()
+        private void ShowAlert(string message)
         {
-            var alertVc = UIAlertController.Create("ყურადღება!", "პაროლი წარმატებით შეიცვალა", UIAlertControllerStyle.Alert);
-            alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            var alertVc = UIAlertController.Create("ყურადღება!", message, UIAlertControllerStyle.Alert);
+            alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, (obj) => this.NavigationController.PopViewController(true)));
             this.PresentViewController(alertVc, true, null);
         }
     }

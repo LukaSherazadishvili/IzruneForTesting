@@ -49,12 +49,13 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
+            View.LayoutIfNeeded();
+
             this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
             InitUI();
 
             this.NavigationController.NavigationBar.InitTransparencyToNavBar();
-           // this.EdgesForExtendedLayout = UIRectEdge.All;
-
+           
             Parent = await UserControl.Instance.GetCurrentUser();
 
             examDate = (await QuezControll.Instance.GetExamDate(QuezCategory.QuezExam));
