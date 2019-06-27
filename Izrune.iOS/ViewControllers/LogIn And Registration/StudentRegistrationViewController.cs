@@ -32,6 +32,9 @@ namespace Izrune.iOS
 
         private List<IRegion> CityList;
 
+        private int CurrentIndex = 0;
+        bool NextClicked = true;
+
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -49,7 +52,7 @@ namespace Izrune.iOS
             SetContentHeight(scrollView.ContentSize.Height);
             View.LayoutIfNeeded();
 
-
+            InitGestures();
         }
 
         private void InitUI()
@@ -155,8 +158,118 @@ namespace Izrune.iOS
 
             };
 
+            AddMoreStudentVc = Storyboard.InstantiateViewController(AddStudentViewController.StoryboardId) as AddStudentViewController;
+            AddMoreStudentVc.AddMoreStudentClicked = () =>
+            {
+                //TODO
+            };
+        }
+
+        private void GetCurrentPage(int pageIndex)
+        {
+
+            switch (pageIndex)
+            {
+                case 0:
+                    {
+                        if (NextClicked)
+                        {
+                            var res = studentRegVc1.IsFormFilled();
+
+                            if (res)
+                            {
+                                AddViewController(studentRegVc2, studentRegVc1);
+                                CurrentIndex++;
+                                studentRegVc1.SendClicked?.Invoke();
+                            }
+
+                            else
+                            {
+                                ShowAlert();
+                                CurrentIndex = 0;
+                            }
+                        }
+                        break;
+                    }
+                case 1:
+                    {
+                        if (NextClicked)
+                        {
+                            var res = studentRegVc2.IsFormFilled();
+
+                            if (res)
+                            {
+                                AddViewController(AddMoreStudentVc, studentRegVc2);
+                                CurrentIndex++;
+                                studentRegVc2.SendClicked?.Invoke();
+                            }
+
+                            else
+                            {
+                                ShowAlert();
+                                CurrentIndex = 1;
+                            }
+
+                        }
+                        else
+                        {
+                            AddViewController(studentRegVc1, studentRegVc2);
+                            CurrentIndex--;
+                        }
+                        break;
+                    }
+                case 2:
+                    {
+                        if (NextClicked)
+                        {
+                            //TODO Add more student again
+
+                        }
+                        else
+                        {
+                            AddViewController(AddMoreStudentVc, studentRegVc2);
+                            CurrentIndex--;
+                        }
+                        break;
+                    }
+                default:
+                    break;
+            }
 
         }
 
+        private void ShowAlert()
+        {
+            var alertVc = UIAlertController.Create("ყურადღება!", "აუცილებელია *-ით აღნიშნული ველების შევსება", UIAlertControllerStyle.Alert);
+            alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            this.PresentViewController(alertVc, true, null);
+        }
+
+        private void InitGestures()
+        {
+            nextBtn.TouchUpInside += delegate
+            {
+                NextClicked = true;
+                GetCurrentPage(CurrentIndex);
+                //CurrentIndex++;
+                CheckIndex();
+
+            };
+
+            backBtn.TouchUpInside += delegate {
+
+                NextClicked = false;
+                GetCurrentPage(CurrentIndex);
+                //CurrentIndex--;
+                CheckIndex();
+
+            };
+        }
+
+        private void CheckIndex()
+        {
+            nextBtn.Enabled = CurrentIndex < 3;
+            backBtn.Enabled = CurrentIndex > 0;
+        }
     }
 }

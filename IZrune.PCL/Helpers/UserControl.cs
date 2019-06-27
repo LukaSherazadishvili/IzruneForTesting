@@ -289,16 +289,15 @@ namespace IZrune.PCL.Helpers
                 var Statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest);
 
 
-                var GroupdExams = Statistic.GroupBy(c =>
+                var GroupdExams = Statistic.ToList().GroupBy(c =>
                                          c.ExamDate.Month
                                        ).Select(i => i.Select(o => o.ExamDate).ToList()).ToList();
 
 
-              var Result=  GroupdExams.Select(i => new Diagram()
+                var Result = GroupdExams.Select(i => new Diagram()
                 {
-                    CurrentDate=i.FirstOrDefault(),
+                    CurrentDate = $"{Monthes.ElementAt(i.FirstOrDefault().Month)} {i.FirstOrDefault().Year}",
                     TestCount=i.Count()
-
                 });
                 return Result;
 
@@ -310,6 +309,20 @@ namespace IZrune.PCL.Helpers
             }
         }
 
-
+        public List<string> Monthes = new List<string>
+            {
+                "იანვარი",
+                "თებერვალი",
+                "მარტი",
+                "აპრილი",
+                "მაისი",
+                "ივნისი",
+                "ივლისი",
+                "აგვისტო",
+                "სექტემბერი",
+                "ოქტომბერი",
+                "ნოემვერი",
+                "დეკემბერი",
+            };
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace MpdcViewExtentions
         public static void ApplyGradient(this UIView view, UIColor[] colors)
                => view.ApplyGradient(colors, null);
 
+       
 
         #region Colors
         private static void ApplyGradient(this UIView view, UIColor[] colors, NSNumber[] locations)
