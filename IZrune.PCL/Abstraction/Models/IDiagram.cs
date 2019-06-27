@@ -6,7 +6,7 @@ namespace IZrune.PCL.Abstraction.Models
 {
   public  interface IDiagram
     {
-        DateTime CurrentDate { get; set; }
+        string CurrentDate { get; set; }
         int TestCount { get; set; }
 
     }

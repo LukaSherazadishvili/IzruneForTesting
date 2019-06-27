@@ -7,7 +7,7 @@ namespace IZrune.PCL.Implementation.Models
 {
     class Diagram : IDiagram
     {
-        public DateTime CurrentDate { get; set; }
+        public string CurrentDate { get; set; }
         public int TestCount { get; set; }
     }
 }

@@ -54,6 +54,16 @@ namespace Izrune.Activitys
 
             BackButton.Click += BackButton_Click;
             BotBackButton.Click += BotBackButton_Click;
+
+            Phone.TextChanged += Phone_TextChanged;
+            Password.TextChanged += Phone_TextChanged;
+            RepPassword.TextChanged += Phone_TextChanged;
+            Name.TextChanged += Phone_TextChanged;
+        }
+
+        private void Phone_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            (sender as EditText).SetBackgroundResource(Resource.Drawable.izrune_editext_back);
         }
 
         private void BotBackButton_Click(object sender, EventArgs e)
@@ -73,10 +83,41 @@ namespace Izrune.Activitys
         private void NextButton_Click(object sender, EventArgs e)
         {
 
-            UserControl.Instance.RegistrationParrentPartTwo(Phone.Text, Email.Text, Name.Text, Password.Text);
+            if (string.IsNullOrEmpty(Phone.Text))
+            {
+                Phone.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+            }
+            if (string.IsNullOrEmpty(Name.Text))
+            {
+                Name.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+            }
+            if (string.IsNullOrEmpty(Password.Text))
+            {
+                Password.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+            }
+            if (string.IsNullOrEmpty(RepPassword.Text))
+            {
+                RepPassword.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+            }
 
-            Intent intent = new Intent(this, typeof(RegistrationStudentActivity));
-            StartActivity(intent);
+            if (!(string.IsNullOrEmpty(Phone.Text) && string.IsNullOrEmpty(Name.Text) && string.IsNullOrEmpty(Password.Text) && string.IsNullOrEmpty(RepPassword.Text)))
+            {
+
+                if (Password.Text == RepPassword.Text)
+                {
+
+                    UserControl.Instance.RegistrationParrentPartTwo(Phone.Text, Email.Text, Name.Text, Password.Text);
+
+                    Intent intent = new Intent(this, typeof(RegistrationStudentActivity));
+                    StartActivity(intent);
+                }
+                else
+                {
+                    Password.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                    RepPassword.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                }
+
+            }
         }
     }
 }
