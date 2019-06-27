@@ -41,34 +41,43 @@ namespace Izrune.iOS
         {
         
             logInBtn.TouchUpInside += async delegate {
-                //ShowLoginAlert();
-                try
+
+                if (Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
                 {
-                    ShowLoading(); 
-                    var userName = userNameTextField.Text;
-                    var passord = passwordTextField.Text;
-                    //await Task.Delay(10000);
-
-                    var loginSevice = ServiceContainer.ServiceContainer.Instance.Get<ILoginServices>();
-                    var isLogedIn = (await loginSevice.LoginUser(userName, passord));
-                    EndLoading();
-
-                    if (isLogedIn)
+                    try
                     {
-                    
-                        LogedIn?.Invoke(isLogedIn);
-                    }
-                    else
-                    {
-                        ShowLoginAlert();
+                        ShowLoading();
+                        var userName = userNameTextField.Text;
+                        var passord = passwordTextField.Text;
+                        //await Task.Delay(10000);
+
+                        var loginSevice = ServiceContainer.ServiceContainer.Instance.Get<ILoginServices>();
+                        var isLogedIn = (await loginSevice.LoginUser(userName, passord));
+                        EndLoading();
+
+                        if (isLogedIn)
+                        {
+
+                            LogedIn?.Invoke(isLogedIn);
+                        }
+                        else
+                        {
+                            ShowLoginAlert();
+                        }
+
                     }
 
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
                 }
 
-                catch (Exception ex)
+                else
                 {
-                    Console.WriteLine(ex.Message);
+                    ShowConnectionAlert();
                 }
+
             };
 
             registrationBtn.TouchUpInside += delegate {
@@ -112,8 +121,16 @@ namespace Izrune.iOS
         private void ShowLoginAlert()
         {
             var alert = UIAlertController.Create("შეცდომა", "მომხმარებელი ან პაროლი არასორია.", UIAlertControllerStyle.Alert);
-            alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+            alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
             this.PresentViewController(alert, true, null);
         }
+
+        private void ShowConnectionAlert()
+        {
+            var alert = UIAlertController.Create("შეცდომა", "შეამოწმეთ კავშირი ინტერნეტთან", UIAlertControllerStyle.Alert);
+            alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            this.PresentViewController(alert, true, null);
+        }
+
     }
 }
