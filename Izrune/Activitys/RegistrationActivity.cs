@@ -137,9 +137,7 @@ namespace Izrune.Activitys
             ContinueButton.Click += ContinueButton_Click;
             UserName.TextChanged += UserName_Click;
             LastName.TextChanged += UserName_Click;
-            //BdayDay.TextChanged += UserName_Click;
-            //BDayMonth.TextChanged += UserName_Click;
-            //BdayYear.TextChanged += UserName_Click;
+           
 
             BdayDay.Click += BdayDay_Click;
             BDayMonth.Click += BdayDay_Click;

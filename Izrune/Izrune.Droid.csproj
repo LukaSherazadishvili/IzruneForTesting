@@ -62,6 +62,8 @@
     <Compile Include="Activitys\ExamStatisticActivity.cs" />
     <Compile Include="Activitys\ExamTestActivity.cs" />
     <Compile Include="Activitys\ForgotPasswordOrUserNameActivity.cs" />
+    <Compile Include="Activitys\InnerActivity\InnerRegisterStudent.cs" />
+    <Compile Include="Activitys\InnerActivity\InnerRegisterStudentPartTwo.cs" />
     <Compile Include="Activitys\LogInActivity.cs" />
     <Compile Include="Activitys\MainDiplomaActivity.cs" />
     <Compile Include="Activitys\MainExamStatisticActivity.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Fragments\ContinueRegistrationParrent.cs" />
     <Compile Include="Fragments\ContinueRegistrationParrentFragment.cs" />
     <Compile Include="Fragments\DiagramFragment.cs" />
+    <Compile Include="Fragments\DialogFrag\ImageDialogFragment.cs" />
     <Compile Include="Fragments\DiplomaFragment.cs" />
     <Compile Include="Fragments\ExamStatisticFragment.cs" />
     <Compile Include="Fragments\IndividualServiceFragmentcs.cs" />
@@ -618,6 +621,19 @@
     <AndroidResource Include="Resources\layout\LayoutInnerChangePack.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ItemQuestionImage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\LayoutDialogForImages.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\RedEditTextBorder.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

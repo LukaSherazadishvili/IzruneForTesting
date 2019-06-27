@@ -44,7 +44,7 @@ namespace Izrune.iOS.ViewControllers
             menuViewControllerCreations = new Dictionary<MenuType, Func<UIViewController>>()
             {
                 {MenuType.LogIn, () => CreateViewControllerByStoryboard(LogInStoryboardId)},
-                {MenuType.News, () => CreateViewControllerByStoryboard(SelectPacketViewController.StoryboardId)},
+                {MenuType.News, () => CreateViewControllerByStoryboard(NewsStoryboardId)},
                 {MenuType.MoreInfo, () => CreateViewControllerByStoryboard(MoreInfoStoryboardId)},
                 {MenuType.Contact, () => CreateViewControllerByStoryboard(ContactStoryboardId)},
                 {MenuType.Main, () => CreateViewControllerByStoryboard(StartTestStoryboardId)},
@@ -75,11 +75,38 @@ namespace Izrune.iOS.ViewControllers
             {
                 try
                 {
+                    if (CurrentMenu == menu.Type)
+                        return;
+
                     CurrentMenu = menu.Type;
 
-                    var asd = menuViewControllerCreations[menu.Type]?.Invoke();
+                    var currentVc = menuViewControllerCreations[menu.Type]?.Invoke();
 
-                    SideBarController.ChangeContentView(asd);
+                    if (menu.Type == MenuType.LogOut)
+                    {
+                        menuVc.IsLogedIn = false;
+                        menuVc.ReloadMenu();
+
+                        var login = menuViewControllerCreations[MenuType.LogIn]?.Invoke();
+                        SideBarController.ChangeContentView(login);
+                        return;
+                    }
+
+                    if(menu.Type == MenuType.LogIn)
+                    {
+                        var navVc = currentVc as UINavigationController;
+
+                        var loginVc = navVc.ViewControllers[0] as LogInViewController;
+
+                        loginVc.LogedIn = (logedIn) =>
+                        {
+                            menuVc.IsLogedIn = logedIn;
+                            menuVc.ReloadMenu();
+                            SideBarController.ChangeContentView(menuViewControllerCreations[MenuType.Main].Invoke());
+                        };
+                    }
+
+                    SideBarController.ChangeContentView(currentVc);
                 }
                 catch (Exception ex)
                 {

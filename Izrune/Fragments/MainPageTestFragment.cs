@@ -32,6 +32,24 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.StudentSpiner)]
         Spinner StudSpiner;
 
+        [MapControl(Resource.Id.ExamDayCount)]
+        TextView ExamDay;
+
+        [MapControl(Resource.Id.ExamMinitCount)]
+        TextView ExamMinit;
+
+        [MapControl(Resource.Id.ExamHoursCount)]
+        TextView ExamHours;
+
+        [MapControl(Resource.Id.TestHoursCount)]
+        TextView TestHours;
+
+        [MapControl(Resource.Id.TestDayCount)]
+        TextView TestDayCount;
+
+        [MapControl(Resource.Id.TestMinitCount)]
+        TextView TestMinit;
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -54,10 +72,39 @@ namespace Izrune.Fragments
            // var adapter = new CategorySpinnerAdapter(this, Resource.Layout.itemSpinnerText, Result.Students.Select(i => ($"{i.Name}   {i.LastName}")).ToList(), StudSpiner);
            // var add = new MySpinnerAdapter(this, Result.Students.Select(i => ($"{i.Name}   {i.LastName}")).ToList());
             StudSpiner.Adapter = DataAdapter;
-            StudSpiner.ItemSelected += (s, e) =>
+            StudSpiner.ItemSelected += async(s, e) =>
             {
                 UserControl.Instance.SeTSelectedStudent(Result.Students.ElementAt(e.Position).id);
-               
+
+                var TimeResult =await QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezExam);
+
+                if (TimeResult.Days <= 0 && TimeResult.Hours <= 0 && TimeResult.Minutes <= 0)
+                {
+
+                }
+                else
+                {
+                    ExamDay.Text = TimeResult.Days.ToString();
+                    ExamHours.Text = TimeResult.Hours.ToString();
+                    ExamMinit.Text = TimeResult.Minutes.ToString();
+
+                }
+
+
+               var  TestTimeRes = await QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezTest);
+
+                if (TestTimeRes.Days <= 0 && TestTimeRes.Hours <= 0 && TestTimeRes.Minutes <= 0)
+                {
+
+                }
+                else
+                {
+                    TestDayCount.Text = TimeResult.Days.ToString();
+                    TestHours.Text = TimeResult.Hours.ToString();
+                    TestMinit.Text = TimeResult.Minutes.ToString();
+
+                }
+
             };
         }
 

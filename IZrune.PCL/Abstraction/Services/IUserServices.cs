@@ -18,13 +18,13 @@ namespace IZrune.PCL.Abstraction.Services
      
         Task EditStudentProfile(string Email, string Phone, int regionId, string village, int SchoolId);
 
-        Task RecoverPasswordAsync(string PhoneNumber);
+        Task<bool> RecoverPasswordAsync(string PhoneNumber);
 
-        Task RecoverUserNamedAsync(string PhoneNumber);
+        Task<bool> RecoverUserNamedAsync(string PhoneNumber);
 
         Task AddStudent(IStudent student);
 
-
+        Task<bool> EditePassword( string oldPassword, string NewPassword);
 
     }
 }

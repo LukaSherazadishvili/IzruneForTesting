@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Foundation;
@@ -10,6 +11,7 @@ using Izrune.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
+using MPDC.iOS.Utils;
 using MPDCiOSPages.ViewControllers;
 using MpdcViewExtentions;
 using UIKit;
@@ -24,6 +26,7 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("EditParentStoryboardId");
 
+        CultureInfo cultureInfo = new CultureInfo("ka-GE");
 
         private IParent Parent;
         DropDown CityDP = new DropDown();
@@ -31,6 +34,7 @@ namespace Izrune.iOS
         private List<IRegion> Regions;
         private int currentRegionIndex;
         private int RegionId;
+        private DateTime date;
 
         public async override void ViewDidLoad()
         {
@@ -58,6 +62,16 @@ namespace Izrune.iOS
             contentView.Hidden = false;
         }
 
+        private void UpdateStudenProfile(string firstName, string lastName, DateTime birthDate, string phoneNumber, string email, string city, string village)
+        {
+            Parent.Name = firstName;
+            Parent.LastName = lastName;
+            Parent.bDate = birthDate;
+            Parent.Phone = phoneNumber;
+            Parent.Email = email;
+            Parent.City = city;
+        }
+
         private void InitGestures()
         {
             saveBtn.TouchUpInside += async delegate
@@ -70,6 +84,12 @@ namespace Izrune.iOS
             backBtn.TouchUpInside += delegate {
                 this.NavigationController.PopViewController(true);
             };
+
+            //dateTransparentTf.EditingDidBegin += (sender, e) =>
+            //{
+            //    ShowDatePicker();
+            //};
+
         }
 
         private void InitUI()
@@ -91,24 +111,15 @@ namespace Izrune.iOS
             parentNameLbl.Text = parent?.Name;
             parentLastNameLbl.Text = parent?.LastName;
 
-            dayTf.Text = parent?.bDate?.Day.ToString();
-            monthTf.Text = parent?.bDate?.Month.ToString();
-            yearTf.Text = parent?.bDate?.Year.ToString();
+            if (parent.bDate.HasValue)
+            {
+                InitDate(parent.bDate.Value);
+            }
 
             phoneTf.Text = parent?.Phone;
             emailTf.Text = parent?.Email;
             cityLbl.Text = parent?.City;
             villageTf.Text = parent?.Vilage;
-        }
-
-        private void UpdateStudenProfile(string firstName, string lastName, DateTime birthDate, string phoneNumber, string email, string city, string village)
-        {
-            Parent.Name = firstName;
-            Parent.LastName = lastName;
-            Parent.bDate = birthDate;
-            Parent.Phone = phoneNumber;
-            Parent.Email = email;
-            Parent.City = city;
         }
 
         private void SetupDropDown(DropDown dropDown, UIView viewForDpD, UILabel dropDownLbl)
@@ -161,6 +172,40 @@ namespace Izrune.iOS
                     cityLbl.Text = Regions?[(int)index].title;
                 }
             };
+        }
+
+        private void ShowDatePicker()
+        {
+            var datePicker = new UIDatePicker();
+
+            datePicker.Mode = UIDatePickerMode.Date;
+            datePicker.Locale = new NSLocale("ka-GE");
+
+            var toolBar = new UIToolbar();
+            toolBar.SizeToFit();
+            var doneButton = new UIBarButtonItem("არჩევა", UIBarButtonItemStyle.Plain, (sender, e) =>
+            {
+
+                date = datePicker.Date.NSDateToDateTime();
+                InitDate(date);
+                this.View.EndEditing(true);
+            });
+
+            var spaceButton = new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace, null, null);
+
+            var cancelButton = new UIBarButtonItem("დახურვა", UIBarButtonItemStyle.Plain, (s, e) => { this.View.EndEditing(true); });
+
+            toolBar.SetItems(new UIBarButtonItem[] { cancelButton, spaceButton, doneButton }, false);
+
+            dateTransparentTf.InputAccessoryView = toolBar;
+            dateTransparentTf.InputView = datePicker;
+        }
+
+        private void InitDate(DateTime _date)
+        {
+            dayTf.Text = _date.Day.ToString();
+            monthTf.Text = _date.ToString("MMMM", cultureInfo);
+            yearTf.Text = _date.Year.ToString();
         }
     }
 }

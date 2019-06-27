@@ -33,6 +33,7 @@
 				android:textColor="#AE71B7"
 				android:textSize="15dp" />   
 			<LinearLayout
+				android:id="@+id/FullTimeExamButton"
 				android:paddingTop="20dp"
 				android:paddingBottom="40dp"
 				android:paddingLeft="10dp"
@@ -115,6 +116,7 @@
 
 			</LinearLayout>
 		<LinearLayout
+				android:id="@+id/PartTimeExamButton"
 				android:paddingTop="20dp"
 				android:paddingBottom="20dp"
 				android:paddingLeft="10dp"

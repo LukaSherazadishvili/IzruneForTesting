@@ -98,6 +98,8 @@ namespace Izrune.iOS
             };
 
             choosePacketVc = Storyboard.InstantiateViewController(PacketViewController.StoryboardId) as PacketViewController;
+            choosePacketVc.IsFromMenu = false;
+
             choosePacketVc.PriceSelected = (price) => {
 
                 SelectedPrice = price;
@@ -521,6 +523,8 @@ namespace Izrune.iOS
             };
 
             choosePacketVc = Storyboard.InstantiateViewController(PacketViewController.StoryboardId) as PacketViewController;
+            choosePacketVc.IsFromMenu = false;
+
             choosePacketVc.PriceSelected = (price) => {
 
                 MoreStudent.PackageMonthCount = price.months;

@@ -1,19 +1,85 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1" />
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="bpg_mrgvlovani_2010.ttf">
+            <string>BPGMrgvlovani2010</string>
+        </array>
+    </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" />
-        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder" />
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" customClass="NewsBigCell" id="cZE-iV-UFb">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50" />
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" />
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cZE-iV-UFb" customClass="NewsBigCell">
+            <rect key="frame" x="0.0" y="0.0" width="334" height="168"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50" />
-                <autoresizingMask key="autoresizingMask" />
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite" />
+                <rect key="frame" x="0.0" y="0.0" width="334" height="168"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vrB-o6-hHP">
+                        <rect key="frame" x="0.0" y="0.0" width="334" height="168"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xh1-rL-N6X">
+                                <rect key="frame" x="0.0" y="0.0" width="334" height="168"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TG-dg-oLF">
+                                <rect key="frame" x="5" y="5" width="324" height="9.5"/>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="8"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qff-rV-bRs">
+                                <rect key="frame" x="5" y="151" width="324" height="12"/>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="10"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dR9-kU-5iK">
+                                <rect key="frame" x="0.0" y="0.0" width="334" height="168"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dR9-kU-5iK" firstAttribute="centerX" secondItem="vrB-o6-hHP" secondAttribute="centerX" id="52P-nf-3oK"/>
+                            <constraint firstItem="Xh1-rL-N6X" firstAttribute="top" secondItem="vrB-o6-hHP" secondAttribute="top" id="7P2-yn-Xmr"/>
+                            <constraint firstItem="qff-rV-bRs" firstAttribute="leading" secondItem="vrB-o6-hHP" secondAttribute="leading" constant="5" id="Dri-Za-9Ak"/>
+                            <constraint firstItem="dR9-kU-5iK" firstAttribute="height" secondItem="vrB-o6-hHP" secondAttribute="height" id="Lpf-sN-qPD"/>
+                            <constraint firstAttribute="trailing" secondItem="Xh1-rL-N6X" secondAttribute="trailing" id="PhY-Kq-Dwi"/>
+                            <constraint firstAttribute="bottom" secondItem="Xh1-rL-N6X" secondAttribute="bottom" id="VUl-zP-tcq"/>
+                            <constraint firstItem="dR9-kU-5iK" firstAttribute="width" secondItem="vrB-o6-hHP" secondAttribute="width" id="W17-7B-gS6"/>
+                            <constraint firstItem="Xh1-rL-N6X" firstAttribute="leading" secondItem="vrB-o6-hHP" secondAttribute="leading" id="ZQe-iU-7Aa"/>
+                            <constraint firstItem="8TG-dg-oLF" firstAttribute="top" secondItem="vrB-o6-hHP" secondAttribute="top" constant="5" id="dvt-Qm-J2x"/>
+                            <constraint firstItem="dR9-kU-5iK" firstAttribute="centerY" secondItem="vrB-o6-hHP" secondAttribute="centerY" id="ecN-UX-APl"/>
+                            <constraint firstAttribute="bottom" secondItem="qff-rV-bRs" secondAttribute="bottom" constant="5" id="jDu-X1-La8"/>
+                            <constraint firstItem="8TG-dg-oLF" firstAttribute="leading" secondItem="vrB-o6-hHP" secondAttribute="leading" constant="5" id="nVS-7h-LKt"/>
+                            <constraint firstAttribute="trailing" secondItem="8TG-dg-oLF" secondAttribute="trailing" constant="5" id="ukS-7a-Lwx"/>
+                            <constraint firstAttribute="trailing" secondItem="qff-rV-bRs" secondAttribute="trailing" constant="5" id="zIv-RQ-Haf"/>
+                        </constraints>
+                    </view>
+                </subviews>
             </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="vrB-o6-hHP" secondAttribute="bottom" id="5M6-OR-6u6"/>
+                <constraint firstAttribute="trailing" secondItem="vrB-o6-hHP" secondAttribute="trailing" id="VSP-I7-msR"/>
+                <constraint firstItem="vrB-o6-hHP" firstAttribute="top" secondItem="cZE-iV-UFb" secondAttribute="top" id="idt-G4-huf"/>
+                <constraint firstItem="vrB-o6-hHP" firstAttribute="leading" secondItem="cZE-iV-UFb" secondAttribute="leading" id="wNb-cs-W0m"/>
+            </constraints>
+            <size key="customSize" width="334" height="168"/>
+            <connections>
+                <outlet property="dateLbl" destination="8TG-dg-oLF" id="4Vc-7u-BcZ"/>
+                <outlet property="newsImageView" destination="Xh1-rL-N6X" id="t8v-00-Ar4"/>
+                <outlet property="newsTransparentView" destination="dR9-kU-5iK" id="EYc-5r-vTc"/>
+                <outlet property="titleLbl" destination="qff-rV-bRs" id="xqR-lF-rTb"/>
+            </connections>
+            <point key="canvasLocation" x="253.62318840579712" y="75"/>
         </collectionViewCell>
     </objects>
 </document>

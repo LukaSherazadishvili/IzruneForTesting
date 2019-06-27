@@ -4,12 +4,16 @@ using System;
 
 using Foundation;
 using Izrune.iOS.Utils;
+using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
+using MPDCiOSPages.ViewControllers;
 using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS
 {
-	public partial class PasswordRecoveryViewController : UIViewController
+	public partial class PasswordRecoveryViewController : BaseViewController
 	{
 		public PasswordRecoveryViewController (IntPtr handle) : base (handle)
 		{
@@ -21,7 +25,9 @@ namespace Izrune.iOS
 
         public string ErrorText { get; set; }
 
-        bool IsError;
+        public bool IsPassworPage = true;
+
+        public IParent user { get; private set; }
 
         public override void ViewDidLoad()
         {
@@ -29,19 +35,32 @@ namespace Izrune.iOS
 
             InitUI();
 
-            phoneTextField.EditingDidBegin += delegate {
-                ShowError(false);
-            };
+            var userService = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-            sendBtn.TouchUpInside += delegate {
-                ShowError(IsError);
-                IsError = !IsError;
+            sendBtn.TouchUpInside += async delegate {
+
                 this.View.EndEditing(true);
 
-                var succsessVc = Storyboard.InstantiateViewController(SuccesViewController.StoryboardId) as SuccesViewController;
-                succsessVc.TitleText = "პაროლი გაგზავნილი მითითებულ ნომერზე";
+                var phone = phoneTextField.Text.Replace(" ", string.Empty);
 
-                this.AddVcInView(this.View, succsessVc);
+                ShowLoading();
+
+                var result = IsPassworPage ? await userService.RecoverPasswordAsync(phone) : await userService.RecoverUserNamedAsync(phone);
+
+                EndLoading();
+
+
+                if (result)
+                {
+                    var succsessVc = Storyboard.InstantiateViewController(SuccesViewController.StoryboardId) as SuccesViewController;
+                    succsessVc.TitleText = IsPassworPage ? "პაროლი გაგზავნილია მითითებულ ნომერზე" : "მომხმარებლის სახელი გაგზავნილია მითითებულ ტელეფონის ნომერზე";
+
+                    this.AddVcInView(this.View, succsessVc);
+                }
+                else
+                    ShowError(true);
+
+
             };
 
             backBtn.TouchUpInside += delegate {
@@ -55,12 +74,11 @@ namespace Izrune.iOS
             sendBtn.ToCardView(25, 3, 0.2f, AppColors.Tint);
             backBtn.Layer.CornerRadius = 25;
 
-            //backImageView.Image = backImageView.Image.GetImageWithColor(UIColor.FromRGB(63, 81, 181));
-
             phoneTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 17);
 
-            titleLbl.Text = TitleText;
-            //errorLbl.Text = ErrorText;
+            titleLbl.Text = IsPassworPage? "პაროლის აღდგენა" : "მომხმარებლის სახელის აღდგენა";
+
+
         }
 
         private void ShowError(bool isError)

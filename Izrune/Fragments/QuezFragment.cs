@@ -13,6 +13,7 @@ using Android.Widget;
 using FFImageLoading.Views;
 using Izrune.Activitys;
 using Izrune.Attributes;
+using Izrune.Fragments.DialogFrag;
 using Izrune.Helpers;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Helpers;
@@ -35,15 +36,19 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.MainImage)]
         ImageViewAsync MainImage;
 
+        [MapControl(Resource.Id.GridForImages)]
+        GridLayout ImagesGrid;
 
        public Action ChangeResultPage { get; set; }
 
         IQuestion question;
         public Func<IQuestion> AnswerClick { get; set; }
+        string testType;
 
-        public QuezFragment(IQuestion obj)
+        public QuezFragment(IQuestion obj,string TestType)
         {
             question = obj;
+            testType = TestType;
         }
 
         
@@ -64,13 +69,30 @@ namespace Izrune.Fragments
 
         }
 
+        List<View> ImageViews = new List<View>();
+
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
 
             QuestionTitle.Text = question.title;
+            if (question.images.ToList().Count > 1)
+            {
+                ImageViews.Clear();
+                foreach(var items in question.images)
+                {
+                    var Images = LayoutInflater.Inflate(Resource.Layout.ItemQuestionImage, null);
+                    Images.FindViewById<ImageViewAsync>(Resource.Id.CardImage).LoadImage(items);
+                    ImageViews.Add(Images);
+                    Images.Click += Images_Click;
+                    ImagesGrid.AddView(Images);
 
-            if (question.images.ToList().Count > 0)
+                }
+
+              
+
+            }
+            if (question.images.ToList().Count == 1)
             {
                 ImageCard.Visibility = ViewStates.Visible;
                 MainImage.LoadImage(question.images.ElementAt(0));
@@ -93,6 +115,14 @@ namespace Izrune.Fragments
 
            
            
+        }
+
+        private void Images_Click(object sender, EventArgs e)
+        {
+            var Index = ImageViews.IndexOf((sender as View));
+
+          
+            (Activity as QuezActivity).OpenDialog(question.images.ElementAt(Index));
         }
 
         private async void AnswerView_Click(object sender, EventArgs e)
@@ -127,8 +157,11 @@ namespace Izrune.Fragments
 
 
             question = AnswerClick?.Invoke();
-
-            if (question == null)
+            if (question == null && testType != "1")
+            {
+                (Activity as QuezActivity).OnBackPressed();
+            }
+           else if (question == null)
             {
 
                 // ChangeResultPage?.Invoke();
@@ -142,7 +175,27 @@ namespace Izrune.Fragments
 
                 ContainerForAnswer.RemoveAllViews();
                 MyViews.Clear();
-                if (question.images.ToList().Count > 0)
+
+                ImageViews.Clear();
+
+                if (question.images.ToList().Count > 1)
+                {
+                   
+                    foreach (var items in question.images)
+                    {
+                        var Images = LayoutInflater.Inflate(Resource.Layout.ItemQuestionImage, null);
+                        Images.FindViewById<ImageViewAsync>(Resource.Id.CardImage).LoadImage(items);
+                        ImageViews.Add(Images);
+                        Images.Click += Images_Click;
+                        ImagesGrid.AddView(Images);
+
+                    }
+
+
+
+                }
+
+                if (question.images.ToList().Count == 1)
                 {
                     ImageCard.Visibility = ViewStates.Visible;
                     MainImage.LoadImage(question.images.ElementAt(0));

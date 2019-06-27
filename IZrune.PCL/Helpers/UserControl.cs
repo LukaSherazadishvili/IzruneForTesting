@@ -174,7 +174,7 @@ namespace IZrune.PCL.Helpers
 
 
 
-        public  void RegistrationStudentPartTwo(int RegionID,string Village,int Schoold,int Clas)
+        public  void RegistrationStudentPartTwo(int RegionID,int Schoold,int Clas, string Village ="")
         {
             RegistrationStudent.RegionId = RegionID;
             RegistrationStudent.Village = Village;
@@ -229,7 +229,7 @@ namespace IZrune.PCL.Helpers
 
 
 
-        public async Task EditParrentProfile(string ParrentMail, string ParrentPhone, string City, string Village)
+        public async Task EditParrentProfile(string ParrentMail, string ParrentPhone, string City, string Village="")
         {
             try
             {
@@ -280,20 +280,27 @@ namespace IZrune.PCL.Helpers
         }
 
 
-        public async Task<List<List<string>>>GetDiagramStatistic()
+        public async Task<IEnumerable<IDiagram>>  GetDiagramStatistic()
         {
 
             try
             {
 
-                var Statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam);
+                var Statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest);
 
 
                 var GroupdExams = Statistic.GroupBy(c =>
-                                         c.ExamDate.Day
-                                       ).Select(i => i.Select(o => o.ExamDate.ToShortDateString()).ToList()).ToList();
+                                         c.ExamDate.Month
+                                       ).Select(i => i.Select(o => o.ExamDate).ToList()).ToList();
 
-                return GroupdExams;
+
+              var Result=  GroupdExams.Select(i => new Diagram()
+                {
+                    CurrentDate=i.FirstOrDefault(),
+                    TestCount=i.Count()
+
+                });
+                return Result;
 
 
             }

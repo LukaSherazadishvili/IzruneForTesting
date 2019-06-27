@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using CoreAnimation;
 using Foundation;
 using Izrune.iOS.Utils;
+using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
 using MPDCiOSPages.ViewControllers;
 using MpdcViewExtentions;
 using UIKit;
@@ -22,6 +24,7 @@ namespace Izrune.iOS
         public static readonly NSString StoryboardId = new NSString("LogInViewControllerStoryboardId");
 
         public Action<bool> LogedIn { get; set; }
+
 
         public override void ViewDidLoad()
         {
@@ -41,23 +44,25 @@ namespace Izrune.iOS
                 //ShowLoginAlert();
                 try
                 {
-                    ShowLoading();
+                    ShowLoading(); 
                     var userName = userNameTextField.Text;
                     var passord = passwordTextField.Text;
                     //await Task.Delay(10000);
 
                     var loginSevice = ServiceContainer.ServiceContainer.Instance.Get<ILoginServices>();
                     var isLogedIn = (await loginSevice.LoginUser(userName, passord));
+                    EndLoading();
 
-                    if(isLogedIn)
+                    if (isLogedIn)
                     {
-
-                        //var testVc = Storyboard.InstantiateViewController(StartTestViewController.StoryboardId) as StartTestViewController;
-                        //this.NavigationController.PushViewController(testVc, true);
+                    
                         LogedIn?.Invoke(isLogedIn);
                     }
+                    else
+                    {
+                        ShowLoginAlert();
+                    }
 
-                    EndLoading();
                 }
 
                 catch (Exception ex)
@@ -76,16 +81,16 @@ namespace Izrune.iOS
             forgotPasswordLbl.AddGestureRecognizer(new UITapGestureRecognizer(() => {
 
                 var recoveryVc = Storyboard.InstantiateViewController(PasswordRecoveryViewController.StoryboardId) as PasswordRecoveryViewController;
-                recoveryVc.TitleText = "პაროლის აღდგენა";
-                //recoveryVc.ErrorText = "ტელეფონის ნომერი არ არის რეგისტრირებული";
+
                 this.NavigationController.PushViewController(recoveryVc, true);
 
             }));
 
             forgotUserNameLbl.AddGestureRecognizer(new UITapGestureRecognizer(() => {
                 var recoveryVc = Storyboard.InstantiateViewController(PasswordRecoveryViewController.StoryboardId) as PasswordRecoveryViewController;
-                recoveryVc.TitleText = "მომხმარებლის სახელის აღდგენა";
-                //recoveryVc.ErrorText = "";
+
+                recoveryVc.IsPassworPage = false;
+
                 this.NavigationController.PushViewController(recoveryVc, true);
             }));
         }

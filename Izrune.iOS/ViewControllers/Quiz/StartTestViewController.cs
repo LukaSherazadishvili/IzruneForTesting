@@ -49,12 +49,13 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
+            View.LayoutIfNeeded();
+
             this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
             InitUI();
 
             this.NavigationController.NavigationBar.InitTransparencyToNavBar();
-           // this.EdgesForExtendedLayout = UIRectEdge.All;
-
+           
             Parent = await UserControl.Instance.GetCurrentUser();
 
             examDate = (await QuezControll.Instance.GetExamDate(QuezCategory.QuezExam));
@@ -137,17 +138,18 @@ namespace Izrune.iOS
             {
                 summQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-                    //TODO
-
-                    if (IsSummTestActive)
+                
+                    if (!IsSummTestActive)
                     {
                         IsSummSelected = true;
-                        var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
-                        chooseTimeVc.IsSumtTest = IsSummSelected;
-                        chooseTimeVc.SelectedStudent = SelectedStudent;
-                        chooseTimeVc.SelectedCategory = QuezCategory.QuezTest;
+                        var smsVc = Storyboard.InstantiateViewController(SmsVerificationViewController.StoryboardId) as SmsVerificationViewController;
+                        smsVc.SelectedStudent = SelectedStudent;
 
-                        this.NavigationController.PushViewController(chooseTimeVc, true);
+                        //chooseTimeVc.IsSumtTest = IsSummSelected;
+                        //chooseTimeVc.SelectedStudent = SelectedStudent;
+                        //chooseTimeVc.SelectedCategory = QuezCategory.QuezTest;
+
+                        this.NavigationController.PushViewController(smsVc, true);
                     }
                     else
                         ShowAlert();
@@ -159,7 +161,7 @@ namespace Izrune.iOS
                 exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
 
                     IsSummSelected = false;
-                    var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
+                    var chooseTimeVc = Storyboard.InstantiateViewController(SmsVerificationViewController.StoryboardId) as ChooseTimeViewController;
                     chooseTimeVc.IsSumtTest = IsSummSelected;
                     chooseTimeVc.SelectedStudent = SelectedStudent;
                     chooseTimeVc.SelectedCategory = QuezCategory.QuezExam;

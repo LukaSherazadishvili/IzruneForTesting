@@ -29,7 +29,7 @@ namespace IZrune.PCL.Implementation.Services
                   new KeyValuePair<string,string>("phone",student.Phone),
                  new KeyValuePair<string,string>("region_id",student.RegionId.ToString()),
                   new KeyValuePair<string,string>("village",student.Village),
-                  new KeyValuePair<string,string>("bdate",student.Bdate.ToShortTimeString()),
+                  new KeyValuePair<string,string>("bdate",$"{student.Bdate.Year}-{student.Bdate.Month}={student.Bdate.Month}"),
                   new KeyValuePair<string,string>("school_id",student.SchoolId.ToString()),
                   new KeyValuePair<string,string>("class",student.Class.ToString()),
                   new KeyValuePair<string,string>("sdate",DateTime.Now.ToShortDateString()),
@@ -38,6 +38,29 @@ namespace IZrune.PCL.Implementation.Services
 
             var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=addStudent&hashcode=d529edb90d98f79c0c0e2e799933c1c4", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
+
+
+        }
+
+        public async Task<bool> EditePassword( string oldPassword, string NewPassword)
+        {
+            var FormContent = new FormUrlEncodedContent(new[]
+                {
+                new KeyValuePair<string,string>("parent_id",UserControl.Instance.GetCurrentUser().Result.id.ToString()),
+                 new KeyValuePair<string,string>("old_password",oldPassword),
+                  new KeyValuePair<string,string>("new_password",NewPassword),
+                
+                });
+
+            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=editPassword&hashcode=0912a1be35b2f263eb97149b2e67f40a", FormContent);
+            var jsn = await Data.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<RecoverStatusDTO>(jsn);
+
+            if (result.Code == 0)
+                return true;
+            else
+                return false;
+
 
 
         }
@@ -55,9 +78,7 @@ namespace IZrune.PCL.Implementation.Services
                 });
             var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=editParentProfile&hashcode=0a3110bbe8a96c91eb33bf6072598368", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
-
-            
-
+         
         }
 
         public async Task EditStudentProfile(string Email, string Phone, int regionId, string village, int SchoolId)
@@ -167,7 +188,7 @@ namespace IZrune.PCL.Implementation.Services
             }
         }
 
-        public async Task RecoverPasswordAsync(string PhoneNumber)
+        public async Task<bool> RecoverPasswordAsync(string PhoneNumber)
         {
             var FormContent = new FormUrlEncodedContent(new[]
                   {
@@ -177,10 +198,16 @@ namespace IZrune.PCL.Implementation.Services
             var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=recoverPassword&hashcode=f8da048644f6752faca46da3d3d38229", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
 
+            var Result = JsonConvert.DeserializeObject<RecoverStatusDTO>(jsn);
+
+            if (Result.Code == 0)
+                return true;
+            else
+                return false;
 
         }
 
-        public async Task RecoverUserNamedAsync(string PhoneNumber)
+        public async Task<bool> RecoverUserNamedAsync(string PhoneNumber)
         {
             var FormContent = new FormUrlEncodedContent(new[]
                  {
@@ -189,6 +216,14 @@ namespace IZrune.PCL.Implementation.Services
 
             var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=recoverUsername&hashcode=82a93889e6a50556b3c1805dd55d59e9", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
+            var Result = JsonConvert.DeserializeObject<RecoverStatusDTO>(jsn);
+
+            if (Result.Code == 0)
+                return true;
+            else
+                return false;
         }
+
+
     }
 }

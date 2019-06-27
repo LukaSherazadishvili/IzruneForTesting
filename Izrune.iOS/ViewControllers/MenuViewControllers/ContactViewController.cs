@@ -20,6 +20,10 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
             InitUI();
+
+            AddGesture(phoneView, "tel://+995577683232");
+            AddGesture(mailView, "http://www.izrune.ge/");
+            AddGesture(facebookView, "https://www.facebook.com/izrune.ge");
         }
 
         private void InitUI()
@@ -27,8 +31,36 @@ namespace Izrune.iOS
             phoneView.ToCardView(26, 3, 0.2f, UIColor.Black);
             mailView.ToCardView(26, 3, 0.2f, UIColor.Black);
             facebookView.ToCardView(26, 3, 0.2f, UIColor.Black);
+        }
 
+        private void InitGestures()
+        {
+            if(phoneView.GestureRecognizers == null || phoneView.GestureRecognizers?.Length == 0)
+            {
+                phoneView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
+                    var number = NSUrl.FromString("tel://+995577683232");
+                    UIApplication.SharedApplication.OpenUrl(number);
+                }));
+            }
+        }
 
+        private void AddGesture(UIView _view, string url)
+        {
+
+            _view.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+            {
+                var Url = new NSUrl(url);
+
+                try
+                {
+                    if (UIApplication.SharedApplication.CanOpenUrl(Url))
+                        UIApplication.SharedApplication.OpenUrl(Url);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }));
         }
     }
 }
