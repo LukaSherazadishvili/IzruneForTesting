@@ -226,7 +226,7 @@ namespace Izrune.iOS
                 {
                     HeaderGesture(true);
                     AddPacketVc();
-
+                    IsPromoSelected = false;
                 }));
             }
 
@@ -236,7 +236,7 @@ namespace Izrune.iOS
                 {
                     HeaderGesture(false);
                     AddPromoVc();
-
+                    IsPromoSelected = true;
                 }));
             }
         }
