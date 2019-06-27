@@ -89,6 +89,12 @@ namespace Izrune.iOS
                 PromoVc.PromoInfo = PromoCode;
                 //PromoVc.CheckPromo();
                 InitDropDowns();
+
+                nextBtn.TouchUpInside += delegate {
+
+                    //TODO Call packet methods
+
+                };;
             }
 
             else
@@ -112,6 +118,7 @@ namespace Izrune.iOS
                     {
                         ShowAlert();
                     }
+
                     else
                     {
                         if (IsPromoSelected)
