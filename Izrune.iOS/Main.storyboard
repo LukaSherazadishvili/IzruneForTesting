@@ -5152,7 +5152,10 @@
                     <connections>
                         <outlet property="addNewStudentBtn" destination="3Vp-Pj-jBO" id="jia-Ec-WJo"/>
                         <outlet property="agreeView" destination="MOe-zs-Gvp" id="Hfu-3g-BS7"/>
+                        <outlet property="arrowImageView" destination="Amr-2X-OeM" id="oc0-7Y-nTf"/>
+                        <outlet property="finishLbl" destination="unZ-2i-Rn4" id="ol7-IK-lmC"/>
                         <outlet property="privacyLbl" destination="V1a-Tt-yUd" id="q60-5X-pbN"/>
+                        <outlet property="privacyStackView" destination="RiK-qZ-ik9" id="Wyf-n6-zLr"/>
                         <outlet property="selectedAgreeView" destination="rKU-qS-zwh" id="b3h-WM-Ofx"/>
                     </connections>
                 </viewController>

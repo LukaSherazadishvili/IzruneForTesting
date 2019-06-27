@@ -23,6 +23,7 @@ namespace Izrune.iOS
 
         public Action AddMoreStudentClicked { get; set; }
 
+        public bool HideFooter { get; set; }
         public string PaymenUrl;
 
         public IPay Pay { get; set; }
@@ -31,6 +32,8 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
+            hideFooter(HideFooter);
+            
             InitGestures();
 
             InitUI();
@@ -104,6 +107,13 @@ namespace Izrune.iOS
                     selectedAgreeView.Hidden = !IsMarked;
                 }));
             }
+        }
+
+        private void hideFooter(bool hide)
+        {
+            finishLbl.Hidden = hide;
+            privacyStackView.Hidden = hide;
+            arrowImageView.Hidden = hide;
         }
     }
 }

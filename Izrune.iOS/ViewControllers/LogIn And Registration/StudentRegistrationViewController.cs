@@ -159,6 +159,7 @@ namespace Izrune.iOS
             };
 
             AddMoreStudentVc = Storyboard.InstantiateViewController(AddStudentViewController.StoryboardId) as AddStudentViewController;
+            AddMoreStudentVc.HideFooter = true;
             AddMoreStudentVc.AddMoreStudentClicked = () =>
             {
                 //TODO
