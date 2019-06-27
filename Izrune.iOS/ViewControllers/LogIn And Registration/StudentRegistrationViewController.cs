@@ -163,6 +163,21 @@ namespace Izrune.iOS
             AddMoreStudentVc.AddMoreStudentClicked = () =>
             {
                 //TODO
+                studentRegVc1 = Storyboard.InstantiateViewController(StudentRegFirstViewController.StoryboardId) as StudentRegFirstViewController;
+
+                studentRegVc2 = Storyboard.InstantiateViewController(StudentRegSecondViewController.StoryboardId) as StudentRegSecondViewController;
+
+                studentRegVc2.SchoolSelected = (school) =>
+                {
+                    SchoolId = school.id;
+                };
+
+                studentRegVc2.CitySelected = () => {
+
+                };
+
+                CurrentIndex = 0;
+                AddViewController(studentRegVc1, AddMoreStudentVc);
             };
         }
 
@@ -223,7 +238,15 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            //TODO Add more student again
+                            try
+                            {
+                                IZrune.PCL.Helpers.UserControl.Instance.AddStudent();
+                                ShowSuccsessAlert();
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Diagnostics.Debug.WriteLine(ex.Message);
+                            }
 
                         }
                         else
@@ -243,6 +266,13 @@ namespace Izrune.iOS
         {
             var alertVc = UIAlertController.Create("ყურადღება!", "აუცილებელია *-ით აღნიშნული ველების შევსება", UIAlertControllerStyle.Alert);
             alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            this.PresentViewController(alertVc, true, null);
+        }
+
+        private void ShowSuccsessAlert()
+        {
+            var alertVc = UIAlertController.Create("ყურადღება!", "მოსწავლე წარმატებით დაემატა", UIAlertControllerStyle.Alert);
+            alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, (obj) => { this.NavigationController.PopViewController(true); }));
             this.PresentViewController(alertVc, true, null);
         }
 

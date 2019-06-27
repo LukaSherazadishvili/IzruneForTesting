@@ -31,6 +31,7 @@ namespace Izrune.iOS
         public IStudent Student;
 
         public Action StudentSelected { get; set; }
+        public Action AddStudentClicked { get; set; }
 
         public override void ViewDidLoad()
         {
