@@ -91,10 +91,32 @@ namespace Izrune.iOS
                 InitDropDowns();
 
                 nextBtn.TouchUpInside += delegate {
-
                     //TODO Call packet methods
 
-                };;
+                    try
+                    {
+                        if (SelectPacketVc.SelectedPrice == null && PromoVc.SelectedMont == 0)
+                            ShowAlert();
+                        else
+                        {
+                            if (IsPromoSelected)
+                                UserControl.Instance.SetPromoPack(PromoVc.SelectedMont, PromoVc.SelectedMont, PromoVc.PromoCode);
+
+                            else
+                                UserControl.Instance.SetPromoPack(SelectPacketVc.SelectedPrice.months, SelectPacketVc.SelectedPrice.price);
+
+                            var price = (IsPromoSelected ? new Price() { price = PromoVc.SelectedMont, months = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
+
+                            var payInfo = UserControl.Instance.GetPaymentInformation();
+
+                            var payVc = Storyboard.InstantiateViewController(PaymentMethodViewController.StoryboardId) as PaymentMethodViewController;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine(ex.Message);
+                    }
+                }; ;
             }
 
             else
