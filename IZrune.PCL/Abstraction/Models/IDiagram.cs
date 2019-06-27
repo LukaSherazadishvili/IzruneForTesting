@@ -8,6 +8,5 @@ namespace IZrune.PCL.Abstraction.Models
     {
         DateTime CurrentDate { get; set; }
         int TestCount { get; set; }
-
     }
 }

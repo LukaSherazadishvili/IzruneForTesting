@@ -32,7 +32,7 @@ namespace Izrune.iOS
 
         bool _isAllData = true;
         private List<IStudentsStatistic> statistisData;
-        private List<List<string>> userMonthStatistics;
+        private IEnumerable<IDiagram> userMonthStatistics;
 
         public override async void ViewDidLoad()
         {
@@ -53,7 +53,6 @@ namespace Izrune.iOS
 
         void setUpThirdView()
         {
-
 
             statistisData = statistisData.DistinctBy(o => o.ExamDate.Date).ToList();
             _plotView = new PlotView(new CoreGraphics.CGRect(0, 25, timeChartView.Frame.Width,
