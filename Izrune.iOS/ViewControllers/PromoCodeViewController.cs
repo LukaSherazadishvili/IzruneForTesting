@@ -66,16 +66,20 @@ namespace Izrune.iOS
             promoCodeTf.Layer.BorderColor = UIColor.FromRGB(243, 243, 243).CGColor;
             promoCodeTf.MakeRoundedTextField(25, UIColor.White, 0);
 
-            HidePromo(string.IsNullOrEmpty(PromoInfo?.PrommoCode) || string.IsNullOrWhiteSpace(PromoInfo?.PrommoCode));
+            CheckPromo();
         }
 
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
 
-            HidePromo(string.IsNullOrEmpty(PromoInfo?.PrommoCode) || string.IsNullOrWhiteSpace(PromoInfo?.PrommoCode));
+            CheckPromo();
         }
 
+        public void CheckPromo()
+        {
+            HidePromo(string.IsNullOrEmpty(PromoInfo?.PrommoCode) || string.IsNullOrWhiteSpace(PromoInfo?.PrommoCode));
+        }
         private void CheckCode(bool isRight)
         {
             promoCodeTf.TextColor = UIColor.White;

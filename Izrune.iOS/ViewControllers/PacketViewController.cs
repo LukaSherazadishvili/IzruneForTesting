@@ -84,8 +84,10 @@ namespace Izrune.iOS
                 Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
                 SelectedStudent = Students?[0];
 
-                await GetPromoDataAsync(SelectedStudent.id);
+                await GetPromoDataAsync(SelectedStudent.SchoolId);
 
+                PromoVc.PromoInfo = PromoCode;
+                //PromoVc.CheckPromo();
                 InitDropDowns();
             }
 
@@ -321,24 +323,16 @@ namespace Izrune.iOS
             StudentDp.SelectionAction = async (nint index, string name) =>
             {
                 //TODO
+                SelectedStudent = Students?[(int)index];
 
                 selectedStudentLbl.Text = SelectedStudent.Name + " " + SelectedStudent.LastName;
-
-                SelectedStudent = Students?[(int)index];
 
                 await GetPromoDataAsync(SelectedStudent.SchoolId);
 
 
                 PromoVc.PromoInfo = PromoCode;
 
-                if(IsPromoSelected)
-                {
-                    PromoVc.WillMoveToParentViewController(this);
-                    PromoVc.View.RemoveFromSuperview();
-                    PromoVc.RemoveFromParentViewController();
-
-                    AddPromoVc();
-                }
+                PromoVc.CheckPromo();
             };
         }
     }
