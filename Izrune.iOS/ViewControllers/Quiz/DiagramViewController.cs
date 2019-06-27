@@ -44,9 +44,13 @@ namespace Izrune.iOS
 
              statistisData = (await statisticsService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam)).ToList();
 
-             userMonthStatistics =(await UserControl.Instance.GetDiagramStatistic()).ToList(); 
-            setUpTimeView();
-            setUpPointView();
+             userMonthStatistics =(await UserControl.Instance.GetDiagramStatistic()).ToList();
+
+            if (statistisData.Count > 0)
+            {
+                setUpTimeView();
+                setUpPointView();
+            }
 
             if(userMonthStatistics.Count>0)
                 setUpThirdView();
@@ -64,9 +68,9 @@ namespace Izrune.iOS
             };
             _plotView.BackgroundColor = UIColor.Clear;
 
-            pointChartView.AddSubview(_plotView);
+            testChartView.AddSubview(_plotView);
 
-            UIColor.FromRGB(231, 76, 60).GetRGBA(out nfloat red, out nfloat green, out nfloat blue, out nfloat alpha);
+            UIColor.FromRGB(73, 181, 65).GetRGBA(out nfloat red, out nfloat green, out nfloat blue, out nfloat alpha);
 
             var oxyColor = OxyColor.FromRgb((byte)(red * 255), (byte)(green * 255), (byte)(blue * 255));
             _plotModel = new PlotModel()
