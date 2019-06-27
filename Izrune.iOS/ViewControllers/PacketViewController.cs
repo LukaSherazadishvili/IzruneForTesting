@@ -90,7 +90,7 @@ namespace Izrune.iOS
                 //PromoVc.CheckPromo();
                 InitDropDowns();
 
-                nextBtn.TouchUpInside += delegate {
+                nextBtn.TouchUpInside += async delegate {
                     //TODO Call packet methods
 
                     try
@@ -100,10 +100,10 @@ namespace Izrune.iOS
                         else
                         {
                             if (IsPromoSelected)
-                                UserControl.Instance.SetPromoPack(PromoVc.SelectedMont, PromoVc.SelectedMont, PromoVc.PromoCode);
+                                await UserControl.Instance.ReNewPack(SelectedStudent.id, PromoVc.SelectedMont, PromoVc.SelectedMont, PromoVc.PromoCode);
 
                             else
-                                UserControl.Instance.SetPromoPack(SelectPacketVc.SelectedPrice.months, SelectPacketVc.SelectedPrice.price);
+                                await UserControl.Instance.ReNewPack(SelectedStudent.id, SelectPacketVc.SelectedPrice.months, SelectPacketVc.SelectedPrice.price);
 
                             var price = (IsPromoSelected ? new Price() { price = PromoVc.SelectedMont, months = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
 
@@ -112,6 +112,7 @@ namespace Izrune.iOS
                             var payVc = Storyboard.InstantiateViewController(PaymentMethodViewController.StoryboardId) as PaymentMethodViewController;
                         }
                     }
+
                     catch (Exception ex)
                     {
                         System.Diagnostics.Debug.WriteLine(ex.Message);
