@@ -117,6 +117,8 @@ namespace Izrune.iOS
             resultCollectionView.ReloadData();
         }
 
+
+        //statistic service getdiploma
         private void InitCollectionViewSettings()
         {
             resultCollectionView.RegisterNibForCell(ResultCollectionViewCell.Nib, ResultCollectionViewCell.Identifier);

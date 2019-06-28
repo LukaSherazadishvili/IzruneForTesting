@@ -8,6 +8,7 @@ using Foundation;
 using FPT.Framework.iOS.UI.DropDown;
 using Izrune.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
 using MpdcViewExtentions;
 using UIKit;
@@ -24,7 +25,7 @@ namespace Izrune.iOS
 
 
         DropDown CurentStudentDP = new DropDown();
-
+        private IEnumerable<IDiplomStatistic> diplomeStatistics;
         IStudent CurrentStudent;
 
         private List<IStudent> Students;
@@ -67,6 +68,10 @@ namespace Izrune.iOS
         private async Task LoadDataAsync()
         {
             Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
+
+            var statisticService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
+
+            //diplomeStatistics = await statisticService.GetDiplomaStatisticAsync();
 
             CurrentStudent = Students?[0];
 
