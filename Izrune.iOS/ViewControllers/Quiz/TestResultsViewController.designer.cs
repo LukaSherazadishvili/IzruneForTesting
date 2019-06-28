@@ -40,6 +40,9 @@ namespace Izrune.iOS
 		UIKit.UICollectionView resultCollectionView { get; set; }
 
 		[Outlet]
+		UIKit.NSLayoutConstraint resultCollectionViewHeightConstraint { get; set; }
+
+		[Outlet]
 		UIKit.UIStackView resultStackView { get; set; }
 
 		[Outlet]
@@ -59,6 +62,9 @@ namespace Izrune.iOS
 
 		[Outlet]
 		UIKit.UILabel timeLbl { get; set; }
+
+		[Outlet]
+		UIKit.UILabel titleLbl { get; set; }
 
 		[Outlet]
 		UIKit.UIView viewForShadow { get; set; }
@@ -84,6 +90,11 @@ namespace Izrune.iOS
 			if (headerView != null) {
 				headerView.Dispose ();
 				headerView = null;
+			}
+
+			if (mainStackView != null) {
+				mainStackView.Dispose ();
+				mainStackView = null;
 			}
 
 			if (monthDropdownView != null) {
@@ -114,6 +125,11 @@ namespace Izrune.iOS
 			if (resultStackView != null) {
 				resultStackView.Dispose ();
 				resultStackView = null;
+			}
+
+			if (statisticStackView != null) {
+				statisticStackView.Dispose ();
+				statisticStackView = null;
 			}
 
 			if (testDate != null) {
@@ -156,14 +172,14 @@ namespace Izrune.iOS
 				yearLbl = null;
 			}
 
-			if (mainStackView != null) {
-				mainStackView.Dispose ();
-				mainStackView = null;
+			if (titleLbl != null) {
+				titleLbl.Dispose ();
+				titleLbl = null;
 			}
 
-			if (statisticStackView != null) {
-				statisticStackView.Dispose ();
-				statisticStackView = null;
+			if (resultCollectionViewHeightConstraint != null) {
+				resultCollectionViewHeightConstraint.Dispose ();
+				resultCollectionViewHeightConstraint = null;
 			}
 		}
 	}

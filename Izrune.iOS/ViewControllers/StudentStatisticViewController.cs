@@ -39,16 +39,21 @@ namespace Izrune.iOS
             base.ViewDidLoad();
 
             this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+            // this.NavigationController.NavigationBar.InitTransparencyToNavBar();
+            this.NavigationController.NavigationBar.Translucent = false;
 
+            
+
+            InitUI();
             await LoadDataAsync();
-
+            InitForm(CurrentStudent);
             InitViewCOntrollers();
 
             View.LayoutIfNeeded();
 
             InitDropDowns();
 
-            InitUI();
+           
 
             InitGestures();
         }
@@ -70,6 +75,7 @@ namespace Izrune.iOS
         private void InitForm(IStudent student)
         {
             currentStudentLbl.Text = student.Name + " " + student.LastName;
+
             packetDateLbl.Text = student.PackageStartDate.ToShortDateString();
         }
 
@@ -82,7 +88,7 @@ namespace Izrune.iOS
 
             paymentHostoryBtn.Layer.CornerRadius = 25;
 
-            InitForm(CurrentStudent);
+            
 
             this.NavigationController.NavigationBar.InitNavigationBarColorWithNoShadow(UIColor.White);
         }
@@ -122,7 +128,9 @@ namespace Izrune.iOS
                 exTestView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
 
                     //TODO
-                    this.NavigationController.PopToRootViewController(false);
+
+                    examTabVc.HideHeader = false;
+
                     this.NavigationController.PushViewController(examTabVc, true);
                 }));
             }
@@ -188,5 +196,6 @@ namespace Izrune.iOS
             }
 
         }
+
     }
 }

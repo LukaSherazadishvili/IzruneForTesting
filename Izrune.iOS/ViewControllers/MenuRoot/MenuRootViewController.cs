@@ -51,7 +51,7 @@ namespace Izrune.iOS.ViewControllers
                 {MenuType.Statistic, () => CreateViewControllerByStoryboard(StatisticStoryboardId)},
                 {MenuType.UpdatePacket, () => CreateViewControllerByStoryboard(UpdatePacketStoryboardId)},
                 {MenuType.EditProfile, () => CreateViewControllerByStoryboard(EditProfileStoryboardId)},
-                {MenuType.LogOut, () => CreateViewControllerByStoryboard(AddStudentViewController.StoryboardId)},
+                {MenuType.LogOut, () => CreateViewControllerByStoryboard(LogInStoryboardId)},
             };
         }
 
@@ -87,9 +87,16 @@ namespace Izrune.iOS.ViewControllers
                         menuVc.IsLogedIn = false;
                         menuVc.ReloadMenu();
 
-                        var login = menuViewControllerCreations[MenuType.LogIn]?.Invoke();
-                        SideBarController.ChangeContentView(login);
-                        return;
+                        var navVc = GetMainViewController() as UINavigationController;
+
+                        var loginVc = navVc.ViewControllers[0] as LogInViewController;
+
+                        loginVc.LogedIn = (logedIn) =>
+                        {
+                            menuVc.IsLogedIn = logedIn;
+                            menuVc.ReloadMenu();
+                            SideBarController.ChangeContentView(menuViewControllerCreations[MenuType.Main].Invoke());
+                        };
                     }
 
                     if(menu.Type == MenuType.LogIn)
