@@ -296,9 +296,9 @@ namespace IZrune.PCL.Helpers
 
                 var Result = GroupdExams.Select(i => new Diagram()
                 {
-                    CurrentDate = $"{Monthes.ElementAt(i.FirstOrDefault().Month)} {i.FirstOrDefault().Year}",
+                    CurrentDate = $"{Monthes.ElementAt(i.FirstOrDefault().Month-1)} {i.FirstOrDefault().Year}",
                     TestCount=i.Count()
-                });
+                })?.ToList();
                 return Result;
 
 
