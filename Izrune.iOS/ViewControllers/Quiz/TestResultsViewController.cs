@@ -55,6 +55,8 @@ namespace Izrune.iOS
 
             resultCollectionView.ReloadData();
 
+            InitHeader();
+
         }
 
         private void InitUI()
@@ -284,6 +286,12 @@ namespace Izrune.iOS
         {
             var maxPoint = StudentsStatistics?.OrderByDescending(x => x.Point)?.FirstOrDefault();
             var minTime = StudentsStatistics?.OrderBy(x => x.TestTimeInSecconds)?.FirstOrDefault();
+
+            var testCounts = StudentsStatistics?.GroupBy(x => x.ExamDate);
+
+            var maxTests = testCounts?.OrderBy(x => x.Count());
+
+            System.Diagnostics.Debug.WriteLine(testCounts);
         }
     }
 }
