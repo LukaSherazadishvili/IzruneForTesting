@@ -20,22 +20,30 @@ namespace Izrune.iOS
 
 		[Outlet]
 		UIKit.UIButton payViaPayBoxBtn { get; set; }
+
+		[Outlet]
+		UIKit.UILabel titleLbl { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (payViaCardBtn != null) {
-				payViaCardBtn.Dispose ();
-				payViaCardBtn = null;
-			}
-
 			if (payViaBankBtn != null) {
 				payViaBankBtn.Dispose ();
 				payViaBankBtn = null;
 			}
 
+			if (payViaCardBtn != null) {
+				payViaCardBtn.Dispose ();
+				payViaCardBtn = null;
+			}
+
 			if (payViaPayBoxBtn != null) {
 				payViaPayBoxBtn.Dispose ();
 				payViaPayBoxBtn = null;
+			}
+
+			if (titleLbl != null) {
+				titleLbl.Dispose ();
+				titleLbl = null;
 			}
 		}
 	}

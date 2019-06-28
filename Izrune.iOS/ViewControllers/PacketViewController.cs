@@ -61,9 +61,10 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
-            //var asd = View.Frame;
+            this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
 
-            await GetPromoDataAsync();
+            if (!IsFromMenu)
+                await GetPromoDataAsync(SchoolId);
 
             SelectHeader();
 
@@ -76,12 +77,52 @@ namespace Izrune.iOS
 
             this.AddVcInView(viewForPeager, SelectPacketVc);
 
+            PromoVc.PromoInfo = PromoCode;
+
             if (IsFromMenu)
             {
                 Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
                 SelectedStudent = Students?[0];
 
+                await GetPromoDataAsync(SelectedStudent.SchoolId);
+
+                PromoVc.PromoInfo = PromoCode;
+                //PromoVc.CheckPromo();
                 InitDropDowns();
+
+                nextBtn.TouchUpInside += async delegate {
+                    //TODO Call packet methods
+
+                    try
+                    {
+                        if (SelectPacketVc.SelectedPrice == null && PromoVc.SelectedMont == 0)
+                            ShowAlert();
+                        else
+                        {
+                            if (IsPromoSelected)
+                                await UserControl.Instance.ReNewPack(SelectedStudent.id, PromoVc.SelectedMont, PromoVc.SelectedMont, PromoVc.PromoCode);
+
+                            else
+                                await UserControl.Instance.ReNewPack(SelectedStudent.id, SelectPacketVc.SelectedPrice.months, SelectPacketVc.SelectedPrice.price);
+
+                            var price = (IsPromoSelected ? new Price() { price = PromoVc.SelectedMont, months = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
+
+                            var payInfo = UserControl.Instance.GetPaymentInformation();
+
+                            var payVc = Storyboard.InstantiateViewController(PaymentMethodViewController.StoryboardId) as PaymentMethodViewController;
+
+                            payVc.PayInfo = payInfo;
+                            payVc.HideTitle = true;
+
+                            this.NavigationController.PushViewController(payVc, true);
+                        }
+                    }
+
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine(ex.Message);
+                    }
+                }; ;
             }
 
             else
@@ -105,6 +146,7 @@ namespace Izrune.iOS
                     {
                         ShowAlert();
                     }
+
                     else
                     {
                         if (IsPromoSelected)
@@ -149,11 +191,11 @@ namespace Izrune.iOS
 
         }
 
-        private async Task GetPromoDataAsync()
+        private async Task GetPromoDataAsync(int schoolId)
         {
             ShowLoading();
             var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
-            PromoCode = (await service.GetPromoCodeAsync(SchoolId));
+            PromoCode = (await service.GetPromoCodeAsync(schoolId));
             EndLoading();
 
         }
@@ -185,7 +227,7 @@ namespace Izrune.iOS
                 {
                     HeaderGesture(true);
                     AddPacketVc();
-
+                    IsPromoSelected = false;
                 }));
             }
 
@@ -195,7 +237,7 @@ namespace Izrune.iOS
                 {
                     HeaderGesture(false);
                     AddPromoVc();
-
+                    IsPromoSelected = true;
                 }));
             }
         }
@@ -268,7 +310,6 @@ namespace Izrune.iOS
             this.PresentViewController(alertVc, true, null);
         }
 
-
         private void SetupDropDown()
         {
             StudentDp.AnchorView = new WeakReference<UIView>(selectStudentDP);
@@ -314,14 +355,20 @@ namespace Izrune.iOS
             var studentsArray = Students?.Select(x => x.Name + " " + x.LastName)?.ToArray();
             StudentDp.DataSource = studentsArray;
 
-            StudentDp.SelectionAction = (nint index, string name) =>
+            StudentDp.SelectionAction = async (nint index, string name) =>
             {
                 //TODO
+                SelectedStudent = Students?[(int)index];
 
                 selectedStudentLbl.Text = SelectedStudent.Name + " " + SelectedStudent.LastName;
 
-                SelectedStudent = Students?[(int)index];
+                await GetPromoDataAsync(SelectedStudent.SchoolId);
 
+
+                PromoVc.PromoInfo = PromoCode;
+
+                if(IsPromoSelected)
+                    PromoVc.CheckPromo();
             };
         }
     }

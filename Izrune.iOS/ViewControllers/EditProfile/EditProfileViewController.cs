@@ -88,7 +88,9 @@ namespace Izrune.iOS
 
             addStudentBtn.TouchUpInside += delegate {
 
-                //TODO
+                var studentRegVc = Storyboard.InstantiateViewController(StudentRegistrationViewController.StoryboardId) as StudentRegistrationViewController;
+
+                this.NavigationController.PushViewController(studentRegVc, true);
             };
         }
     }

@@ -114,6 +114,9 @@ namespace Izrune.iOS
 
         private void InitDroDown()
         {
+
+            userNameLbl.Text = SelectedStudent?.Name + " " + SelectedStudent?.LastName;
+
             UserNameDropDown.AnchorView = new WeakReference<UIView>(viewForDropDown);
             UserNameDropDown.BottomOffset = new CoreGraphics.CGPoint(0, viewForDropDown.Bounds.Height);
             UserNameDropDown.Width = this.viewForDropDown.Frame.Width;
@@ -139,7 +142,7 @@ namespace Izrune.iOS
                 summQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
                 
-                    if (!IsSummTestActive)
+                    if (IsSummTestActive)
                     {
                         IsSummSelected = true;
                         var smsVc = Storyboard.InstantiateViewController(SmsVerificationViewController.StoryboardId) as SmsVerificationViewController;
@@ -158,15 +161,21 @@ namespace Izrune.iOS
 
             if (exQuizTransparentView.GestureRecognizers == null || exQuizTransparentView.GestureRecognizers?.Count() == 0)
             {
-                exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
+                exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
 
-                    IsSummSelected = false;
-                    var chooseTimeVc = Storyboard.InstantiateViewController(SmsVerificationViewController.StoryboardId) as ChooseTimeViewController;
-                    chooseTimeVc.IsSumtTest = IsSummSelected;
-                    chooseTimeVc.SelectedStudent = SelectedStudent;
-                    chooseTimeVc.SelectedCategory = QuezCategory.QuezExam;
+                    if (IsExTestActive)
+                    {
+                        IsSummSelected = false;
+                        var chooseTimeVc = Storyboard.InstantiateViewController(SmsVerificationViewController.StoryboardId) as ChooseTimeViewController;
+                        chooseTimeVc.IsSumtTest = IsSummSelected;
+                        chooseTimeVc.SelectedStudent = SelectedStudent;
+                        chooseTimeVc.SelectedCategory = QuezCategory.QuezExam;
 
-                    this.NavigationController.PushViewController(chooseTimeVc, true);
+                        this.NavigationController.PushViewController(chooseTimeVc, true);
+                    }
+                    else
+                        ShowAlert();
                 }));
             }
 

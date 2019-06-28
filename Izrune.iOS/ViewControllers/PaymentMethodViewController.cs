@@ -22,9 +22,13 @@ namespace Izrune.iOS
 
         public Action GoToLogin { get; set; }
 
+        public bool HideTitle { get; set; }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
 
             paymentVc = Storyboard.InstantiateViewController(PaymentViewController.StoryboardId) as PaymentViewController;
             paymentVc.PayInfo = PayInfo;
@@ -35,6 +39,8 @@ namespace Izrune.iOS
                 this.NavigationController.PopViewController(false);
                 GoToLogin?.Invoke(); 
                 };
+
+            titleLbl.Hidden = HideTitle;
         }
 
         private void InitGestures()

@@ -46,7 +46,7 @@ namespace Izrune.iOS
         bool NextClicked = true;
         private List<IRegion> CityList;
         private IPrice SelectedPrice;
-
+        private int AddStudentIndex;
         private const int HeaderAndFooterHeight = 275;
 
         private IStudent MoreStudent;
@@ -197,9 +197,6 @@ namespace Izrune.iOS
             nextBtn.Enabled = CurrentIndex < 5;
             prewBtn.Enabled = CurrentIndex > 0;
         }
-
-
-        private int AddStudentIndex;
 
         private void GetCurrentPage(int pageIndex)
         {
@@ -411,18 +408,6 @@ namespace Izrune.iOS
             this.PresentViewController(alertVc, true, null);
         }
 
-        private void ChangeHeader(bool isParent)
-        {
-            headerTitleLbl.Text = isParent? "მშობლის (ან სხვა მზრუნველის) რეგისტრაცია" : "დაარეგისტრირეთ მოსწავლე";
-            headerImageView.Image = isParent ? UIImage.FromBundle("1 – 6.png") : UIImage.FromBundle("Group 248.png");
-        }
-
-        private void HideHeader(bool hide)
-        {
-            headerStackView.Hidden = hide;
-            headerHeightConstant.Constant = hide ? 0 : 120;
-        }
-
         private async Task LoadDataAsync()
         {
             ShowLoading();
@@ -535,6 +520,18 @@ namespace Izrune.iOS
             };
 
             AddMoreStudentVc = Storyboard.InstantiateViewController(AddStudentViewController.StoryboardId) as AddStudentViewController;
+        }
+
+        private void ChangeHeader(bool isParent)
+        {
+            headerTitleLbl.Text = isParent ? "მშობლის (ან სხვა მზრუნველის) რეგისტრაცია" : "დაარეგისტრირეთ მოსწავლე";
+            headerImageView.Image = isParent ? UIImage.FromBundle("1 – 6.png") : UIImage.FromBundle("Group 248.png");
+        }
+
+        private void HideHeader(bool hide)
+        {
+            headerStackView.Hidden = hide;
+            headerHeightConstant.Constant = hide ? 0 : 120;
         }
     }
 }
