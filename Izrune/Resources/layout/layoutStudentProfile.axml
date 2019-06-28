@@ -269,7 +269,7 @@ android:id="@+id/Container">
             android:paddingLeft="15dp"
             android:textColor="#AE71B7"
 			android:fontFamily="@font/bpg_mrgvlovani"
-            android:hint="maia.kiknadze90@gmail.com"
+            android:hint=""
 			android:textSize="13dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
@@ -299,8 +299,7 @@ android:id="@+id/Container">
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:textColor="#AE71B7"
-			android:fontFamily="@font/bpg_mrgvlovani"
-            android:hint="*მომხმარებლის სახელი"
+			android:fontFamily="@font/bpg_mrgvlovani"           
 			android:textSize="13dp"
             android:layout_gravity="center_horizontal"
             />
@@ -330,18 +329,23 @@ android:id="@+id/Container">
 					android:fontFamily="@font/bpg_mrgvlovani"
 					android:textSize="10dp"
 					/>
-				<TextView
-			android:id="@+id/StudentScholTxt"
+				<FrameLayout
+					android:layout_width="match_parent"
+					android:layout_height="38dp"
+					android:paddingLeft="15dp"
+					android:background="@drawable/izrune_editext_back">
+				<Spinner
+				android:id="@+id/StudentScholTxt"
             android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:paddingLeft="15dp"
-            android:textColor="#6A6A6A"
-			android:fontFamily="@font/bpg_mrgvlovani"
+            android:textColor="#AE71B7"
+			android:fontFamily="@font/bpg_mrgvlovani"           
 			android:textSize="13dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            
-            />	
+            />
+				</FrameLayout>
+
+				
 
 			<TextView
 					android:layout_marginTop="10dp"

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IZrune.TransferModels
 {
-  public  class PaymentDTO
+    public class PaymentDTO
     {
         public string url { get; set; }
         public string PurchaseDesc { get; set; }

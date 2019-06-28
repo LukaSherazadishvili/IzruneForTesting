@@ -160,6 +160,8 @@ namespace IZrune.PCL.Helpers
             var Questions = MpdcContainer.Instance.Get<IStatisticServices>().GetFinalQuestionResult();
            await Task.WhenAll(InfoResult, Diploma,Questions);
 
+
+
             var statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(InfoResult.Result.test_type);
             var AnswerResult = statistic.FirstOrDefault();
 
@@ -178,7 +180,30 @@ namespace IZrune.PCL.Helpers
 
         }
 
+        public async Task<IQuisInfo> GetTestInfoAsync()
+        {
+            var statistic =  MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(QuezCategory.QuezTest);
+            var InfoResult = MpdcContainer.Instance.Get<IQuezServices>().GetQuisResult();
+            var Questions = MpdcContainer.Instance.Get<IStatisticServices>().GetFinalQuestionResult();
 
+            await Task.WhenAll(InfoResult, statistic,Questions);
+
+
+            var Result =  statistic.Result.FirstOrDefault();
+
+            quisInfo = new QuisInfo();
+
+            quisInfo.QueisResult.RightAnswer = Result.CorrectAnswersCount;
+            quisInfo.QueisResult.WronAnswers = Result.IncorrectAnswersCount;
+            quisInfo.QueisResult.SkipedAnswers = Result.SkippedQuestionsCount;
+
+            quisInfo.QueisResult= quisInfo.QueisResult = InfoResult.Result;
+            quisInfo.DiplomaURl = "";
+            quisInfo.QuestionResult = Questions.Result;
+
+            return quisInfo;
+
+        }
         
 
     }

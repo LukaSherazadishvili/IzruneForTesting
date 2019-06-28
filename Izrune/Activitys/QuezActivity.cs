@@ -216,7 +216,7 @@ namespace Izrune.Activitys
                             CircProgress = 0;
                             progBar.Progress = 0;
                         }
-
+                       await QuezControll.Instance.AddQuestion();
                         var frg = new QuezFragment(QuezControll.Instance.GetCurrentQuestion(),ExamType);
                         frg.ChangeResultPage = () =>
                         {

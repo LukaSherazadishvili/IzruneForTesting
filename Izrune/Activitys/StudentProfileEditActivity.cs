@@ -19,6 +19,9 @@ namespace Izrune.Activitys
     [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
     class StudentProfileEditActivity : MPDCBaseActivity
     {
+
+        protected override int LayoutResource { get; } = Resource.Layout.layoutStudentProfile;
+
         [MapControl(Resource.Id.BackButton)]
         FrameLayout BackButton;
 
@@ -41,7 +44,7 @@ namespace Izrune.Activitys
         EditText MobilePhone;
 
         [MapControl(Resource.Id.StudentScholTxt)]
-        TextView StudentSchool;
+        Spinner StudentSchool;
 
         [MapControl(Resource.Id.StudentClasses)]
         TextView StudentClass;
@@ -58,7 +61,9 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.StudentVillage)]
         EditText StudentVillage;
 
-        protected override int LayoutResource { get; } = Resource.Layout.layoutStudentProfile;
+
+
+        
 
         IStudent student;
         protected async override void OnCreate(Bundle savedInstanceState)
@@ -76,17 +81,9 @@ namespace Izrune.Activitys
               Android.Resource.Layout.SimpleSpinnerDropDownItem,
               Result.Students.Select(i => ($"{i.Name}   {i.LastName}")).ToList());
 
+            student = Result.Students.ElementAt(0);
+
             StudentSpiner.Adapter = DataAdapter;
-
-
-            var RegionAdapter = new ArrayAdapter<string>(this,
-            Android.Resource.Layout.SimpleSpinnerDropDownItem,
-           Regions.Select(i => i.title).ToList());
-
-            StudentCity.Adapter = RegionAdapter;
-
-           
-
             StudentSpiner.ItemSelected += (s, e) =>
             {
 
@@ -97,27 +94,72 @@ namespace Izrune.Activitys
                 StudentId.Text = student.PersonalNumber;
                 MobilePhone.Text = student.Phone;
                 StudentClass.Text = student.Class.ToString();
-                
 
-               // StudentSchool.Text = Regions.FirstOrDefault(i => i.id == student.RegionId).Schools.Where(i => i.id == student.SchoolId).FirstOrDefault().title;
+
+                // StudentSchool.Text = Regions.FirstOrDefault(i => i.id == student.RegionId).Schools.Where(i => i.id == student.SchoolId).FirstOrDefault().title;
                 StudentMail.Text = student.Email;
                 StudentVillage.Text = student.Village;
 
+
+
             };
+
+
+
+            var RegionAdapter = new ArrayAdapter<string>(this,
+            Android.Resource.Layout.SimpleSpinnerDropDownItem,
+           Regions.Select(i => i.title).ToList());
+
+            StudentCity.Adapter = RegionAdapter;
+
+           
+
+            
             bool isCheck = false;
             StudentCity.ItemSelected += (s, e) =>
             {
-                if (isCheck)
-                {
+               
                     student.RegionId = Regions.ElementAt(e.Position).id;
-                    isCheck = true;
-                }
+
+                var schladapter = new ArrayAdapter<string>(this,
+          Android.Resource.Layout.SimpleSpinnerDropDownItem,
+         Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Select(x => x.title).ToList());
+                StudentSchool.Adapter = schladapter;
+
+                StudentSchool.ItemSelected += (sender, eargs) =>
+                {
+                    student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.FirstOrDefault().id;
+
+                };
+                // isCheck = true;
+
             };
 
             var reg = Regions.Where(i => i.id == student.RegionId).FirstOrDefault();
 
            var pos= RegionAdapter.GetPosition(reg.title);
             StudentCity.SetSelection(pos);
+
+
+            
+           
+
+            var SchoolAdapter = new ArrayAdapter<string>(this,
+           Android.Resource.Layout.SimpleSpinnerDropDownItem,
+          Regions.Where(i=>i.id==student.RegionId).FirstOrDefault().Schools.Select(x=>x.title).ToList());
+            StudentSchool.Adapter = SchoolAdapter;
+            var Res = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Where(i => i.id == student.SchoolId).FirstOrDefault();
+
+            StudentSchool.ItemSelected += (s, e) =>
+            {
+                student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.FirstOrDefault().id;
+
+            };
+
+            var ScholdPos = SchoolAdapter.GetPosition(Res.title);
+            StudentSchool.SetSelection(ScholdPos);
+
+
 
 
             SaveButton.Click +=async (s, e) =>
@@ -127,7 +169,7 @@ namespace Izrune.Activitys
                 && string.IsNullOrEmpty(StudentId.Text)
                 && string.IsNullOrEmpty(MobilePhone.Text)
                 && string.IsNullOrEmpty(StudentClass.Text)
-                && string.IsNullOrEmpty(StudentSchool.Text)
+                
                 &&string.IsNullOrEmpty(StudentMail.Text)
                 ))
                 {
