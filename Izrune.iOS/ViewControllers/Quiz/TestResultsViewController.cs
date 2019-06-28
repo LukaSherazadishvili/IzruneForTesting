@@ -62,7 +62,7 @@ namespace Izrune.iOS
         private void InitUI()
         {
             headerView.Layer.CornerRadius = 15;
-            viewForShadow.AddShadowToView(5, 15, 0.5f, UIColor.FromRGBA(0, 0, 0, 38.5f));
+            viewForShadow.AddShadowToView(3, 15, 0.2f, UIColor.FromRGBA(0, 0, 0, 38.5f));
 
             var dates = dateStackView.Subviews.ToList();
             var results = testResultStackView.Subviews.ToList();
@@ -301,6 +301,7 @@ namespace Izrune.iOS
             if (GroupdExams.Count() > 0)
             {
                 var GroupdResult = GroupdExams.OrderByDescending(i => i.Count).FirstOrDefault();
+
 
                 testDate.Text = GroupdResult[0];
                 testLbl.Text = GroupdResult.Count.ToString() + " ტესტი";
