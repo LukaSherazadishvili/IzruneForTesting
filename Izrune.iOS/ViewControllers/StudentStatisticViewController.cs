@@ -54,10 +54,9 @@ namespace Izrune.iOS
 
             InitDropDowns();
 
-           
-
             InitGestures();
         }
+
 
         private void InitViewCOntrollers()
         {
@@ -71,11 +70,12 @@ namespace Izrune.iOS
 
             var statisticService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
 
-            //diplomeStatistics = await statisticService.GetDiplomaStatisticAsync();
+            diplomeStatistics = await statisticService.GetDiplomaStatisticAsync();
 
             CurrentStudent = Students?[0];
 
         }
+
 
         private void InitForm(IStudent student)
         {
@@ -90,11 +90,7 @@ namespace Izrune.iOS
             initView(diplomeView, diplomeShadow);
             initView(sumTestsView, sumShadow);
             initView(exTestView, exShadow);
-
             paymentHostoryBtn.Layer.CornerRadius = 25;
-
-            
-
             this.NavigationController.NavigationBar.InitNavigationBarColorWithNoShadow(UIColor.White);
         }
 
