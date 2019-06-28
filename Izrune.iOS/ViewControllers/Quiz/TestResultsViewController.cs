@@ -114,6 +114,7 @@ namespace Izrune.iOS
             resultStackView.Hidden = hide;
             headerView.Hidden = hide;
             headerLine.Hidden = hide;
+            titleLbl.Hidden = !hide;
         }
 
         #region CollectionView
