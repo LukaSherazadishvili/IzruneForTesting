@@ -39,16 +39,21 @@ namespace Izrune.iOS
             base.ViewDidLoad();
 
             this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+            // this.NavigationController.NavigationBar.InitTransparencyToNavBar();
+            this.NavigationController.NavigationBar.Translucent = false;
 
+            
+
+            InitUI();
             await LoadDataAsync();
-
+            InitForm(CurrentStudent);
             InitViewCOntrollers();
 
             View.LayoutIfNeeded();
 
             InitDropDowns();
 
-            InitUI();
+           
 
             InitGestures();
         }
@@ -83,7 +88,7 @@ namespace Izrune.iOS
 
             paymentHostoryBtn.Layer.CornerRadius = 25;
 
-            InitForm(CurrentStudent);
+            
 
             this.NavigationController.NavigationBar.InitNavigationBarColorWithNoShadow(UIColor.White);
         }
@@ -123,7 +128,8 @@ namespace Izrune.iOS
                 exTestView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
 
                     //TODO
-                    this.NavigationController.PopToRootViewController(false);
+                    //this.NavigationController.PopToRootViewController(false);
+                    
                     this.NavigationController.PushViewController(examTabVc, true);
                 }));
             }

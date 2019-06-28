@@ -29,12 +29,15 @@ namespace Izrune.iOS
         public override void ViewDidLoad()
         {
             _navc = NavigationController;
+            
 
-            this.NavigationController.NavigationBar.Translucent = false;
+            //this.NavigationController.NavigationBar.Translucent = false;
+            //this.NavigationController.NavigationBar.InitNavigationBarColorWithNoShadow(UIColor.White);
+
             TesResultVc = Storyboard.InstantiateViewController(TestResultsViewController.StoryboardId) as TestResultsViewController;
 
             DiagramVc = Storyboard.InstantiateViewController(DiagramViewController.StoryboardId) as DiagramViewController;
-
+            
             TabVcs.Add(TesResultVc);
             TabVcs.Add(DiagramVc);
 
@@ -44,6 +47,12 @@ namespace Izrune.iOS
 
             base.ViewDidLoad();
 
+            this.NavigationController.NavigationBar.Translucent = false;
+            NavigationController.View.BackgroundColor = UIColor.White;
+            NavigationController.NavigationBar.InitNavigationBarColorWithNoShadow(UIColor.White);
+            
+            EdgesForExtendedLayout = UIRectEdge.None;
+            View.LayoutIfNeeded();
             var barButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, null);
 
             barButton.Clicked += delegate {
