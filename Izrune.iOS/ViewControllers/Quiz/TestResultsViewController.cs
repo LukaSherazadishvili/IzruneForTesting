@@ -131,7 +131,6 @@ namespace Izrune.iOS
 
         #endregion
 
-
         private void InitDroDown()
         {
             YearDropDown.AnchorView = new WeakReference<UIView>(yearDropdownView);

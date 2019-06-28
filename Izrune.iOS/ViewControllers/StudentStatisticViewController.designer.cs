@@ -41,9 +41,22 @@ namespace Izrune.iOS
 
 		[Outlet]
 		UIKit.UIView sumTestsView { get; set; }
+
+		[Outlet]
+		UIKit.UILabel titleLbl { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (currentStudentLbl != null) {
+				currentStudentLbl.Dispose ();
+				currentStudentLbl = null;
+			}
+
+			if (currentStudentView != null) {
+				currentStudentView.Dispose ();
+				currentStudentView = null;
+			}
+
 			if (diplomeShadow != null) {
 				diplomeShadow.Dispose ();
 				diplomeShadow = null;
@@ -64,6 +77,11 @@ namespace Izrune.iOS
 				exTestView = null;
 			}
 
+			if (packetDateLbl != null) {
+				packetDateLbl.Dispose ();
+				packetDateLbl = null;
+			}
+
 			if (paymentHostoryBtn != null) {
 				paymentHostoryBtn.Dispose ();
 				paymentHostoryBtn = null;
@@ -79,19 +97,9 @@ namespace Izrune.iOS
 				sumTestsView = null;
 			}
 
-			if (currentStudentView != null) {
-				currentStudentView.Dispose ();
-				currentStudentView = null;
-			}
-
-			if (currentStudentLbl != null) {
-				currentStudentLbl.Dispose ();
-				currentStudentLbl = null;
-			}
-
-			if (packetDateLbl != null) {
-				packetDateLbl.Dispose ();
-				packetDateLbl = null;
+			if (titleLbl != null) {
+				titleLbl.Dispose ();
+				titleLbl = null;
 			}
 		}
 	}

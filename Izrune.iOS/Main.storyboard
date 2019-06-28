@@ -37,7 +37,7 @@
         <!--Menu View Controller-->
         <scene sceneID="Vc0-NG-dEs">
             <objects>
-                <viewController storyboardIdentifier="MenuViewControllerStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="JFS-xG-h2b" customClass="MenuViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuViewControllerStoryboardId" id="JFS-xG-h2b" customClass="MenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vRM-5P-OXd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -149,7 +149,7 @@
         <!--Test Choose View Controller-->
         <scene sceneID="CIu-1t-wUP">
             <objects>
-                <viewController storyboardIdentifier="TestChooseStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="PSU-rf-xFP" customClass="TestChooseViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TestChooseStoryboardId" id="PSU-rf-xFP" customClass="TestChooseViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QbI-zW-rIJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -164,7 +164,7 @@
         <!--Log In View Controller-->
         <scene sceneID="tzx-3v-Bm1">
             <objects>
-                <viewController storyboardIdentifier="LogInViewControllerStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="8GI-jJ-Od9" customClass="LogInViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogInViewControllerStoryboardId" id="8GI-jJ-Od9" customClass="LogInViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r2u-rP-uGH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -855,7 +855,7 @@
         <!--Start Test View Controller-->
         <scene sceneID="jHV-Q4-gez">
             <objects>
-                <viewController storyboardIdentifier="StartTestStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="bgC-2P-vaU" customClass="StartTestViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StartTestStoryboardId" id="bgC-2P-vaU" customClass="StartTestViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zq4-uG-dJ7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2381,7 +2381,7 @@
         <!--Test View Controller-->
         <scene sceneID="ctW-fe-mOh">
             <objects>
-                <viewController storyboardIdentifier="TestViewControllerStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="YVP-eX-9lg" customClass="TestViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TestViewControllerStoryboardId" id="YVP-eX-9lg" customClass="TestViewController" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="2KA-35-UOB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2888,7 +2888,7 @@
         <!--Edit Profile View Controller-->
         <scene sceneID="1rI-Iw-9og">
             <objects>
-                <viewController storyboardIdentifier="EditProfileStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="Y68-yf-S37" customClass="EditProfileViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditProfileStoryboardId" id="Y68-yf-S37" customClass="EditProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pzg-c7-FuJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3756,7 +3756,7 @@
         <!--Password Recovery View Controller-->
         <scene sceneID="6Ig-Td-Md1">
             <objects>
-                <viewController storyboardIdentifier="PasswordRecoveryStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="HOJ-vJ-4FS" customClass="PasswordRecoveryViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PasswordRecoveryStoryboardId" id="HOJ-vJ-4FS" customClass="PasswordRecoveryViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dtb-ry-XFW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3955,7 +3955,7 @@
         <!--Choose Time View Controller-->
         <scene sceneID="sGo-gV-Xi2">
             <objects>
-                <viewController storyboardIdentifier="ChooseTimeStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="zsR-Fr-Onu" customClass="ChooseTimeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChooseTimeStoryboardId" id="zsR-Fr-Onu" customClass="ChooseTimeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1yo-dr-AFR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4273,7 +4273,7 @@
         <!--Parent Regi First View Controller-->
         <scene sceneID="39S-oz-5ZW">
             <objects>
-                <viewController storyboardIdentifier="ParentRegiFirstStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="e5h-GZ-m32" customClass="ParentRegiFirstViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ParentRegiFirstStoryboardId" id="e5h-GZ-m32" customClass="ParentRegiFirstViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qk3-6C-y2Z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4471,7 +4471,7 @@
         <!--Parent Reg Second View Controller-->
         <scene sceneID="ekj-Cf-VOm">
             <objects>
-                <viewController storyboardIdentifier="ParentRegSecondStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="nVj-92-rLf" customClass="ParentRegSecondViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ParentRegSecondStoryboardId" id="nVj-92-rLf" customClass="ParentRegSecondViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nhp-8j-ABE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4630,7 +4630,7 @@
         <!--Student Reg First View Controller-->
         <scene sceneID="hXR-vO-dax">
             <objects>
-                <viewController storyboardIdentifier="StudentRegFirstStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="doC-QP-iJx" customClass="StudentRegFirstViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StudentRegFirstStoryboardId" id="doC-QP-iJx" customClass="StudentRegFirstViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ajn-Kf-cXc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4818,7 +4818,7 @@
         <!--Student Reg Second View Controller-->
         <scene sceneID="sSH-t4-mzn">
             <objects>
-                <viewController storyboardIdentifier="StudentRegSecondStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="6G0-no-caG" customClass="StudentRegSecondViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StudentRegSecondStoryboardId" id="6G0-no-caG" customClass="StudentRegSecondViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="75f-tY-GJv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5025,7 +5025,7 @@
         <!--Add Student View Controller-->
         <scene sceneID="bKg-WA-bS5">
             <objects>
-                <viewController storyboardIdentifier="AddStudentViewControllerStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="vny-3B-CKc" customClass="AddStudentViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddStudentViewControllerStoryboardId" id="vny-3B-CKc" customClass="AddStudentViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UW6-Mb-lId">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5167,7 +5167,7 @@
         <!--Student Statistic View Controller-->
         <scene sceneID="u9p-kV-25g">
             <objects>
-                <viewController storyboardIdentifier="StudentStatisticStoryboardId" automaticallyAdjustsScrollViewInsets="NO" id="bNZ-hu-5dw" customClass="StudentStatisticViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StudentStatisticStoryboardId" id="bNZ-hu-5dw" customClass="StudentStatisticViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lsD-Kl-0K3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5432,6 +5432,7 @@
                         <outlet property="paymentHostoryBtn" destination="gk1-xq-sZ2" id="k9l-b7-JTc"/>
                         <outlet property="sumShadow" destination="2fC-uy-FUk" id="GHl-dL-KyG"/>
                         <outlet property="sumTestsView" destination="mTu-NU-JYB" id="qq9-kd-kBh"/>
+                        <outlet property="titleLbl" destination="1Yo-0f-6Ov" id="6J7-nQ-mXR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XFI-ZJ-ToG" userLabel="First Responder" sceneMemberID="firstResponder"/>

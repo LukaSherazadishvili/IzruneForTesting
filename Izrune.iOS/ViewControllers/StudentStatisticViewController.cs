@@ -70,6 +70,7 @@ namespace Izrune.iOS
         private void InitForm(IStudent student)
         {
             currentStudentLbl.Text = student.Name + " " + student.LastName;
+
             packetDateLbl.Text = student.PackageStartDate.ToShortDateString();
         }
 
