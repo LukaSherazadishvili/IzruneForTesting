@@ -69,7 +69,7 @@ namespace Izrune.Fragments
                Android.Resource.Layout.SimpleSpinnerDropDownItem, 
                Result.Students.Select(i=> ($"{i.Name}   {i.LastName}")).ToList());
 
-           var r=await UserControl.Instance.GetDiagramStatistic();
+          
 
            // var adapter = new CategorySpinnerAdapter(this, Resource.Layout.itemSpinnerText, Result.Students.Select(i => ($"{i.Name}   {i.LastName}")).ToList(), StudSpiner);
            // var add = new MySpinnerAdapter(this, Result.Students.Select(i => ($"{i.Name}   {i.LastName}")).ToList());

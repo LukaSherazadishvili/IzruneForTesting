@@ -161,7 +161,7 @@ namespace IZrune.PCL.Helpers
 
 
 
-        public  void RegistrationStudentPartOne(string Name,string LastName,DateTime date,string PersonalId,string Phone,string Mail)
+        public  void RegistrationStudentPartOne(string Name,string LastName,DateTime date,string PersonalId,string Phone,string Mail="")
         {
             RegistrationStudent = new Student();
             RegistrationStudent.Name = Name;

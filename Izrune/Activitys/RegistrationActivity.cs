@@ -192,10 +192,7 @@ namespace Izrune.Activitys
             {
                 ParrentCity.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
             }
-            if (string.IsNullOrEmpty(ParrentVillage.Text))
-            {
-                ParrentVillage.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
-            }
+          
         }
 
         private bool ValidateUser()
@@ -203,7 +200,7 @@ namespace Izrune.Activitys
             if (string.IsNullOrEmpty(UserName.Text) || string.IsNullOrEmpty(LastName.Text) || string.IsNullOrEmpty(BdayDay.Text)
                 || string.IsNullOrEmpty(BDayMonth.Text) || string.IsNullOrEmpty(BdayYear.Text)
                 ||string.IsNullOrEmpty(city)
-                || string.IsNullOrEmpty(ParrentVillage.Text))
+                )
             {
                 return false;
             }

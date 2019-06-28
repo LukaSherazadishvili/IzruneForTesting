@@ -100,7 +100,7 @@ namespace Izrune.Activitys
                 RepPassword.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
             }
 
-            if (!(string.IsNullOrEmpty(Phone.Text) && string.IsNullOrEmpty(Name.Text) && string.IsNullOrEmpty(Password.Text) && string.IsNullOrEmpty(RepPassword.Text)))
+            if (!(string.IsNullOrEmpty(Phone.Text) || string.IsNullOrEmpty(Name.Text) || string.IsNullOrEmpty(Password.Text) || string.IsNullOrEmpty(RepPassword.Text)))
             {
 
                 if (Password.Text == RepPassword.Text)

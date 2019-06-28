@@ -65,6 +65,7 @@
     <Compile Include="Activitys\InnerActivity\InnerRegisterStudent.cs" />
     <Compile Include="Activitys\InnerActivity\InnerRegisterStudentPartTwo.cs" />
     <Compile Include="Activitys\LogInActivity.cs" />
+    <Compile Include="Activitys\MainActivity.cs" />
     <Compile Include="Activitys\MainDiplomaActivity.cs" />
     <Compile Include="Activitys\MainExamStatisticActivity.cs" />
     <Compile Include="Activitys\MainPageAtivity.cs" />
@@ -92,16 +93,19 @@
     <Compile Include="Adapters\ViewPagerAdapter\TabAdapter.cs" />
     <Compile Include="AppInfo.cs" />
     <Compile Include="Attributes\MapControlAttribute.cs" />
+    <Compile Include="Fragments\ContactFragment.cs" />
     <Compile Include="Fragments\ContinueRegistrationParrent.cs" />
     <Compile Include="Fragments\ContinueRegistrationParrentFragment.cs" />
     <Compile Include="Fragments\DiagramFragment.cs" />
     <Compile Include="Fragments\DialogFrag\ImageDialogFragment.cs" />
     <Compile Include="Fragments\DiplomaFragment.cs" />
     <Compile Include="Fragments\ExamStatisticFragment.cs" />
+    <Compile Include="Fragments\GetMoreInfoFragment.cs" />
     <Compile Include="Fragments\IndividualServiceFragmentcs.cs" />
     <Compile Include="Fragments\InnerChangePackFragment.cs" />
     <Compile Include="Fragments\InnerIndividualFragment.cs" />
     <Compile Include="Fragments\InnerPromoFragment.cs" />
+    <Compile Include="Fragments\LogInFragment.cs" />
     <Compile Include="Fragments\MainPageTestFragment.cs" />
     <Compile Include="Fragments\MPDCBaseFragment.cs" />
     <Compile Include="Fragments\NewsFragment.cs" />
@@ -634,6 +638,39 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\RedEditTextBorder.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\loginmenu.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\LayoutMainIncomePage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\LayoutContact.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ContactBack.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\MobileIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\smsIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\FbIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\MainBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\LayoutGetMoreInfo.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
