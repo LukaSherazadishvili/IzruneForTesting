@@ -128,8 +128,9 @@ namespace Izrune.iOS
                 exTestView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
 
                     //TODO
-                    //this.NavigationController.PopToRootViewController(false);
-                    
+
+                    examTabVc.HideHeader = false;
+
                     this.NavigationController.PushViewController(examTabVc, true);
                 }));
             }
@@ -195,5 +196,6 @@ namespace Izrune.iOS
             }
 
         }
+
     }
 }

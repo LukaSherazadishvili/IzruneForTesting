@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using IZrune.PCL.Abstraction.Models;
 using MpdcViewExtentions;
 using XLPagerTabStrip;
+using System.Globalization;
 
 namespace Izrune.iOS
 {
@@ -31,10 +32,16 @@ namespace Izrune.iOS
 
         private List<IStudentsStatistic> StudentsStatistics;
 
+        private List<IStudentsStatistic> OriginalList = new List<IStudentsStatistic>();
+
         public bool Hideheader = true;
+        private CultureInfo cultureInfo;
+
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            await LoadDataAsync();
 
             InitUI();
 
@@ -44,18 +51,18 @@ namespace Izrune.iOS
 
             InitCollectionViewSettings();
 
-            await LoadDataAsync();
-
             HideHeader(Hideheader);
 
             resultCollectionView.ReloadData();
+
+            InitHeader();
 
         }
 
         private void InitUI()
         {
             headerView.Layer.CornerRadius = 15;
-            viewForShadow.AddShadowToView(5, 15, 0.5f, UIColor.FromRGBA(0, 0, 0, 38.5f));
+            viewForShadow.AddShadowToView(3, 15, 0.2f, UIColor.FromRGBA(0, 0, 0, 38.5f));
 
             var dates = dateStackView.Subviews.ToList();
             var results = testResultStackView.Subviews.ToList();
@@ -85,10 +92,14 @@ namespace Izrune.iOS
 
             StudentsStatistics = (await diplomeService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest))?.ToList();
 
+            foreach (var item in StudentsStatistics)
+            {
+                OriginalList.Add(item);
+            }
+
             HideAll(false);
             EndLoading();
         }
-
 
         private void InitCollectionViewSettings()
         {
@@ -103,6 +114,7 @@ namespace Izrune.iOS
             resultStackView.Hidden = hide;
             headerView.Hidden = hide;
             headerLine.Hidden = hide;
+            titleLbl.Hidden = !hide;
         }
 
         #region CollectionView
@@ -138,13 +150,26 @@ namespace Izrune.iOS
             YearDropDown.Width = this.View.Frame.Width;
             YearDropDown.Direction = Direction.Bottom;
 
-            //var array = Students?.Select(x => x.Name + " " + x.LastName)?.ToArray();
+            var minYear = StudentsStatistics?.Min(x => x.ExamDate);
+            var maxYear = StudentsStatistics?.Max(x => x.ExamDate);
 
-            //YearDropDown.DataSource = array;
+            var yearArray = GetYears(minYear, maxYear);
+
+            YearDropDown.DataSource = yearArray;
 
             YearDropDown.SelectionAction = (nint index, string name) =>
             {
-                //TODO
+                yearLbl.Text = name;
+
+                if(index == 0)
+                {
+                    StudentsStatistics = OriginalList;
+                    resultCollectionView.ReloadData();
+                    return;
+                }
+
+                StudentsStatistics = OriginalList?.Where(x => x.ExamDate.Year == Convert.ToInt32(name))?.ToList();
+                resultCollectionView.ReloadData();
             };
 
             MonthDropDown.AnchorView = new WeakReference<UIView>(monthDropdownView);
@@ -152,14 +177,35 @@ namespace Izrune.iOS
             MonthDropDown.Width = this.View.Frame.Width;
             MonthDropDown.Direction = Direction.Bottom;
 
-            //var array = Students?.Select(x => x.Name + " " + x.LastName)?.ToArray();
+            var monthArray = GetMonth();
 
-            //YearDropDown.DataSource = array;
-
+            MonthDropDown.DataSource = monthArray;
             MonthDropDown.SelectionAction = (nint index, string name) =>
             {
-                //TODO
+                monthLbl.Text = name;
+
+                if(index == 0)
+                {
+                    StudentsStatistics = OriginalList;
+                    resultCollectionView.ReloadData();
+                    return;
+                }
+
+                StudentsStatistics = OriginalList?.Where(x => x.ExamDate.Month == index)?.ToList();
+                resultCollectionView.ReloadData();
+
+                if(StudentsStatistics == null || StudentsStatistics?.Count == 0)
+                {
+                    ShowAlert();
+                }
             };
+        }
+
+        private void ShowAlert()
+        { 
+            var alert = UIAlertController.Create("შეცდომა", "ინფორმაცია ვერ მოიძებნა.", UIAlertControllerStyle.Alert);
+            alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            this.PresentViewController(alert, true, null);
         }
 
         private void InitDropDownUI()
@@ -191,8 +237,6 @@ namespace Izrune.iOS
                 {
                     InitDropDownUI();
 
-                    //YearDropDown.Layer.CornerRadius = 20;
-
                     YearDropDown.Show();
                 }));
             }
@@ -203,9 +247,7 @@ namespace Izrune.iOS
                 {
                     InitDropDownUI();
 
-                    //YearDropDown.Layer.CornerRadius = 20;
-
-                    YearDropDown.Show();
+                    MonthDropDown.Show();
                 }));
             }
         }
@@ -215,5 +257,56 @@ namespace Izrune.iOS
             return new IndicatorInfo("შედეგები");
         }
 
+        private string[] GetYears(DateTime? minDate, DateTime? maxDate)
+        {
+            var minYear = minDate?.Year;
+            var maxYear = maxDate?.Year;
+
+            if (minDate?.Year != maxDate?.Year)
+            {
+                var years = Enumerable.Range(minYear.Value, maxYear.Value)?.Select(x => x.ToString())?.ToList();
+                years.Insert(0, "წელი");
+                return years.ToArray();
+            }
+
+            return new string[] { minYear.Value.ToString() };
+        }
+
+        private string[] GetMonth()
+        {
+            cultureInfo = new CultureInfo("ka-GE");
+
+            var month = cultureInfo.DateTimeFormat.MonthNames.ToList();
+
+            month.Insert(0, "თვე");
+
+            return month?.ToArray();
+        }
+
+        private void InitHeader()
+        {
+            var maxPoint = StudentsStatistics?.OrderByDescending(x => x.Point)?.FirstOrDefault();
+            var minTime = StudentsStatistics?.OrderBy(x => x.TestTimeInSecconds)?.FirstOrDefault();
+
+            var testCounts = StudentsStatistics?.GroupBy(x => x.ExamDate);
+
+            var maxTests = testCounts?.OrderBy(x => x.Count());
+
+            System.Diagnostics.Debug.WriteLine(testCounts);
+
+
+            var GroupdExams = StudentsStatistics.GroupBy(c =>
+                                    c.ExamDate.Day
+                                  ).Select(i => i.Select(o => o.ExamDate.ToShortDateString()).ToList()).ToList();
+
+            if (GroupdExams.Count() > 0)
+            {
+                var GroupdResult = GroupdExams.OrderByDescending(i => i.Count).FirstOrDefault();
+
+
+                testDate.Text = GroupdResult[0];
+                testLbl.Text = GroupdResult.Count.ToString() + " ტესტი";
+            }
+        }
     }
 }
