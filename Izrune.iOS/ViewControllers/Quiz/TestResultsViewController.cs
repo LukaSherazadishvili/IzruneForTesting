@@ -41,6 +41,8 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
+            InitCollectionViewSettings();
+
             await LoadDataAsync();
 
             InitUI();
@@ -48,8 +50,6 @@ namespace Izrune.iOS
             InitDroDown();
 
             InitGestures();
-
-            InitCollectionViewSettings();
 
             HideHeader(Hideheader);
 
@@ -99,6 +99,22 @@ namespace Izrune.iOS
 
             HideAll(false);
             EndLoading();
+
+
+            if(!Hideheader)
+            {
+                var firstCell = resultCollectionView.DequeueReusableCell(ResultCollectionViewCell.Identifier, NSIndexPath.FromRowSection(0, 0)) as ResultCollectionViewCell;
+                var lastCell = resultCollectionView.DequeueReusableCell(ResultCollectionViewCell.Identifier, NSIndexPath.FromRowSection((System.nint)(StudentsStatistics?.Count - 1), 0)) as ResultCollectionViewCell;
+
+                var contentHeight = lastCell.Frame.Y + lastCell.Frame.Height - firstCell.Frame.Y;
+
+                var totalHeight = (System.nfloat)(305 + ((StudentsStatistics?.Count-1) * 220));
+
+                resultCollectionViewHeightConstraint.Constant = totalHeight;
+
+            }
+
+            resultCollectionView.ReloadData();
         }
 
         private void InitCollectionViewSettings()
@@ -159,17 +175,21 @@ namespace Izrune.iOS
 
             YearDropDown.SelectionAction = (nint index, string name) =>
             {
+                ShowLoading();
                 yearLbl.Text = name;
 
                 if(index == 0)
                 {
                     StudentsStatistics = OriginalList;
                     resultCollectionView.ReloadData();
+
+                    InitHeader();
                     return;
                 }
 
                 StudentsStatistics = OriginalList?.Where(x => x.ExamDate.Year == Convert.ToInt32(name))?.ToList();
                 resultCollectionView.ReloadData();
+                EndLoading();
             };
 
             MonthDropDown.AnchorView = new WeakReference<UIView>(monthDropdownView);
@@ -184,6 +204,7 @@ namespace Izrune.iOS
             {
                 monthLbl.Text = name;
 
+                ShowLoading();
                 if(index == 0)
                 {
                     StudentsStatistics = OriginalList;
@@ -194,6 +215,7 @@ namespace Izrune.iOS
                 StudentsStatistics = OriginalList?.Where(x => x.ExamDate.Month == index)?.ToList();
                 resultCollectionView.ReloadData();
 
+                EndLoading();
                 if(StudentsStatistics == null || StudentsStatistics?.Count == 0)
                 {
                     ShowAlert();
