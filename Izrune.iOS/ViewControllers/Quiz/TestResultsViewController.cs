@@ -279,5 +279,11 @@ namespace Izrune.iOS
 
             return month?.ToArray();
         }
+
+        private void InitHeader()
+        {
+            var maxPoint = StudentsStatistics?.OrderByDescending(x => x.Point)?.FirstOrDefault();
+            var minTime = StudentsStatistics?.OrderBy(x => x.TestTimeInSecconds)?.FirstOrDefault();
+        }
     }
 }
