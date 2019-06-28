@@ -40,6 +40,9 @@ namespace Izrune.iOS
 		UIKit.UICollectionView resultCollectionView { get; set; }
 
 		[Outlet]
+		UIKit.NSLayoutConstraint resultCollectionViewHeightConstraint { get; set; }
+
+		[Outlet]
 		UIKit.UIStackView resultStackView { get; set; }
 
 		[Outlet]
@@ -172,6 +175,11 @@ namespace Izrune.iOS
 			if (titleLbl != null) {
 				titleLbl.Dispose ();
 				titleLbl = null;
+			}
+
+			if (resultCollectionViewHeightConstraint != null) {
+				resultCollectionViewHeightConstraint.Dispose ();
+				resultCollectionViewHeightConstraint = null;
 			}
 		}
 	}

@@ -15,6 +15,8 @@ namespace IZrune.PCL.Abstraction.Services
 
         Task<IQuisResultInfo> GetCurrentTestDiplomaInfo(int TestId);
 
-        
+        Task<IEnumerable<IDiplomStatistic>> GetDiplomaStatisticAsync();
+
+
     }
 }

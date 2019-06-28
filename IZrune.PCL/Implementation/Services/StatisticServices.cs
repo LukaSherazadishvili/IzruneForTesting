@@ -140,6 +140,43 @@ namespace IZrune.PCL.Implementation.Services
             }
         }
 
+        public async Task<IEnumerable<IDiplomStatistic>> GetDiplomaStatisticAsync()
+        {
+
+            var temp = new List<IDiplomStatistic>();
+
+            var Data = await GetStudentStatisticsAsync(QuezCategory.QuezExam);
+
+            var Result = Data.Where(i => i.DiplomaUrl != "").ToList();
+
+
+            var Years = Result.DistinctBy(i => i.ExamDate.Year).ToList();
+
+            foreach(var Items in Years)
+            {
+                var dploma = new DiplomaStatisticc()
+                {
+                    DiplomaDate=$"{Items.ExamDate.Year}-{Items.ExamDate.Year-1}"
+                };
+            }
+
+            for(int i = 0; i < Years.Count; i++)
+            {
+
+                var After = new DateTime(Years.ElementAt(i).ExamDate.Year, 6, 30);
+                var FromDate = new DateTime(Years.ElementAt(i).ExamDate.Year, 9, 1);
+
+
+                temp.ElementAt(i).DiplomaStatistic = Result.Where(x => x.ExamDate <= After && x.ExamDate >= FromDate);
+
+
+
+
+            }
+
+            return temp;
+
+        }
         
     }
 }
