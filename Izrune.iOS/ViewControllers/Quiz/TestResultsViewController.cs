@@ -292,6 +292,19 @@ namespace Izrune.iOS
             var maxTests = testCounts?.OrderBy(x => x.Count());
 
             System.Diagnostics.Debug.WriteLine(testCounts);
+
+
+            var GroupdExams = StudentsStatistics.GroupBy(c =>
+                                    c.ExamDate.Day
+                                  ).Select(i => i.Select(o => o.ExamDate.ToShortDateString()).ToList()).ToList();
+
+            if (GroupdExams.Count() > 0)
+            {
+                var GroupdResult = GroupdExams.OrderByDescending(i => i.Count).FirstOrDefault();
+
+                testDate.Text = GroupdResult[0];
+                testLbl.Text = GroupdResult.Count.ToString() + " ტესტი";
+            }
         }
     }
 }

@@ -26,12 +26,15 @@ namespace Izrune.iOS
 
         UINavigationController _navc;
 
+        public bool HideHeader = true;
+
         public override void ViewDidLoad()
         {
             _navc = NavigationController;
 
             this.NavigationController.NavigationBar.Translucent = false;
             TesResultVc = Storyboard.InstantiateViewController(TestResultsViewController.StoryboardId) as TestResultsViewController;
+            TesResultVc.Hideheader = HideHeader;
 
             DiagramVc = Storyboard.InstantiateViewController(DiagramViewController.StoryboardId) as DiagramViewController;
 
@@ -55,7 +58,6 @@ namespace Izrune.iOS
                 }
             };
             this.NavigationItem.RightBarButtonItem = barButton;
-
         }
 
         public override void ViewDidDisappear(bool animated)
