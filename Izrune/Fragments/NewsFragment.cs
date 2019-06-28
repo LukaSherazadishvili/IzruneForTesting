@@ -25,7 +25,9 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.NewsRecyclerView)]
         RecyclerView NewsRecyclerView;
 
-      
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get ; set ; }
+
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -37,6 +39,8 @@ namespace Izrune.Fragments
         {
             base.OnViewCreated(view, savedInstanceState);
 
+
+            Startloading();
             var Result = await MpdcContainer.Instance.Get<INewsService>().GetNewsAsync();
 
             var manager = new LinearLayoutManager(this);
@@ -49,8 +53,8 @@ namespace Izrune.Fragments
                 StartActivity(intent);
 
             });
-        
 
+            StopLoading();
             
         }
     }

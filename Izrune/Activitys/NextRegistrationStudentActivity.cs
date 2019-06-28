@@ -52,6 +52,7 @@ namespace Izrune.Activitys
         private IRegion CurrentRegion;
         private ISchool CurrentSchool;
 
+        int CurrentClass = 0;
 
         protected async override void OnCreate(Bundle savedInstanceState)
         {
@@ -70,13 +71,20 @@ namespace Izrune.Activitys
                 1,2,3,4,5,6,7,8,9,10,11,12
             };
 
-            var ClassDataAdapter = new ArrayAdapter<int>(this,
+            var ClassDataAdapter = new ArrayAdapter<string>(this,
            Android.Resource.Layout.SimpleSpinnerDropDownItem,
-          Classes);
+          Classes.Select(i=>$" {i} კლასი").ToList());
+
+
 
             StudentClass.Adapter = ClassDataAdapter;
 
-            StudentClass.ItemSelected += StudentClass_ItemSelected;
+            StudentClass.ItemSelected += (s, e) =>
+            {
+                CurrentClass = Classes.ElementAt(e.Position);
+            };
+
+            
             City.Adapter = DataAdapter;
             City.ItemSelected += City_ItemSelected;
 
@@ -85,10 +93,7 @@ namespace Izrune.Activitys
             NextButton.Click += NextButton_Click;
         }
 
-        private void StudentClass_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
-        {
-            SelectedClass = e.Position + 1;
-        }
+       
 
         private void School_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
@@ -101,7 +106,7 @@ namespace Izrune.Activitys
         {
 
 
-            UserControl.Instance.RegistrationStudentPartTwo(CurrentRegion.id, CurrentSchool.id, SelectedClass, Village.Text);
+            UserControl.Instance.RegistrationStudentPartTwo(CurrentRegion.id, CurrentSchool.id, CurrentClass, Village.Text);
 
 
 

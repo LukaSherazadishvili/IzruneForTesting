@@ -14,15 +14,13 @@ using Android.Widget;
 using Izrune.Attributes;
 using Izrune.Fragments;
 using IZrune.PCL;
-using IZrune.PCL.Helpers;
-using IZrune.PCL.Implementation.Services;
 
 namespace Izrune.Activitys
 {
-    [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
-    class MainPageAtivity:MPDCBaseActivity
+    [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = true)]
+    class MainActivity : MPDCBaseActivity
     {
-        protected override int LayoutResource { get; } = Resource.Layout.LayoutMainPage;
+        protected override int LayoutResource { get; } = Resource.Layout.LayoutMainIncomePage;
 
         [MapControl(Resource.Id.nav_view)]
         NavigationView navigationView;
@@ -42,14 +40,10 @@ namespace Izrune.Activitys
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            
+            AppCore.Instance.InitServices();
 
 
-            RegistrationServices test = new RegistrationServices();
-
-            var result = await test.GetRegionsAsync();
-
-            ChangeFragmentPage(new MainPageTestFragment(), MainContainer.Id);
+            ChangeFragmentPage(new LogInFragment(), MainContainer.Id);
             navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
             Hamburger.Click += Hamburger_Click;
 
@@ -68,47 +62,32 @@ namespace Izrune.Activitys
                 case Resource.Id.mainGroup:
                     {
                         HeaderText.Text = "";
-                        ChangeFragmentPage(new MainPageTestFragment(), MainContainer.Id);
+                        ChangeFragmentPage(new LogInFragment(), MainContainer.Id);
                         drawer.CloseDrawers();
                         break;
                     }
-                case Resource.Id.statistic:
-                    {
-                        HeaderText.Text = "სტატისტიკა/ისტორია";
-                       // ChangeFragmentPage(new StatisticFragment(), MainContainer.Id);
-                        ChangeFragmentPage(new StatisticHistoryFragment(), MainContainer.Id);
-                        drawer.CloseDrawers();
-                        break;
-                    }
-                case Resource.Id.ReUpdate:
-                    {
-                        HeaderText.Text = "";
-                        ChangeFragmentPage(new InnerChangePackFragment(), MainContainer.Id);
-                        drawer.CloseDrawers();
-                        break;
-                    }
-                case Resource.Id.profile:
-                    {
-                        HeaderText.Text = "";
-                        ChangeFragmentPage(new ProfileFragment(), MainContainer.Id);
-                        drawer.CloseDrawers();
-                        break;
-                    }
-                case Resource.Id.News:
+                case Resource.Id.LoginNews:
                     {
                         HeaderText.Text = "საგანმანათლებლო სიახლეები";
                         ChangeFragmentPage(new NewsFragment(), MainContainer.Id);
                         drawer.CloseDrawers();
                         break;
                     }
-                case Resource.Id.Exit:
+                case Resource.Id.LoginGetInfo:
                     {
-                        UserControl.Instance.Parent = null;
-                        //Intent intent = new Intent(this,typeof(LogInActivity));
-                        //StartActivity(intent);
-                        OnBackPressed();
+                        HeaderText.Text = "გაიგეთ მეტი";
+                        ChangeFragmentPage(new GetMoreInfoFragment(), MainContainer.Id);
+                        drawer.CloseDrawers();
                         break;
                     }
+                case Resource.Id.LoginContact:
+                    {
+                        HeaderText.Text = "კონტაქტი";
+                        ChangeFragmentPage(new ContactFragment(), MainContainer.Id);
+                        drawer.CloseDrawers();
+                        break;
+                    }
+               
             }
         }
 
@@ -120,5 +99,7 @@ namespace Izrune.Activitys
             //StartActivity(intent);
             this.Finish();
         }
+
+
     }
 }

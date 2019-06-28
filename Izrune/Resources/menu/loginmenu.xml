@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools">
+  <group
+    android:id="@+id/mainGroup"
+    android:checkableBehavior="single">
+    <item android:id="@+id/MainMenu"
+          android:checked="true"
+          android:icon="@drawable/homeicon"
+          android:title="შესვლა"/>
+  </group>
+  <group
+    android:id="@+id/LoginNews"
+    android:checkableBehavior="single">
+    <item android:id="@+id/SalesMenu"
+          android:icon="@drawable/diagram"
+          android:title="სიახლეები"/>
+  </group>
+  <group
+    android:id="@+id/LoginGetInfo"
+    android:checkableBehavior="single">
+    <item android:id="@+id/NewsMenu"
+          android:icon="@drawable/reload"
+          android:title="გაიგე მეტი"/>
+  </group>
+ 
+  <group
+    android:id="@+id/LoginContact"
+    android:checkableBehavior="single">
+    <item android:id="@+id/BranchesMenu"
+          android:icon="@drawable/news"
+          android:title="კონტაქტი"/>
+  </group>
+ 
+
+
+
+</menu>

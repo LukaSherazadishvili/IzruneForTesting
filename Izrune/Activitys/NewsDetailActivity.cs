@@ -50,6 +50,10 @@ namespace Izrune.Activitys
     {
         protected override int LayoutResource { get; } = Resource.Layout.NewsDetailLayout;
 
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get ; set ; }
+
+
         [MapControl(Resource.Id.MainImage)]
         ImageViewAsync MainImage;
 
@@ -73,6 +77,7 @@ namespace Izrune.Activitys
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            Startloading();
             var Result = IzruneHellper.Instance.CurrentNews;
             MainImage.LoadImage(Result.ImageUrl);
             HeaderText.Text = Result.Title;
@@ -85,6 +90,8 @@ namespace Izrune.Activitys
             });
             MainContent.LoadData(Result.Content, "text/html; charset=UTF-8", null);
             backButton.Click += BackButton_Click;
+
+            StopLoading();
         }
 
         private void BackButton_Click(object sender, EventArgs e)
