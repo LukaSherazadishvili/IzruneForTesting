@@ -116,7 +116,7 @@ namespace Izrune.iOS
 
             resultCollectionView.ReloadData();
         }
-
+        
 
         //statistic service getdiploma
         private void InitCollectionViewSettings()
@@ -192,6 +192,11 @@ namespace Izrune.iOS
                 StudentsStatistics = OriginalList?.Where(x => x.ExamDate.Year == Convert.ToInt32(name))?.ToList();
                 resultCollectionView.ReloadData();
                 EndLoading();
+
+                if (StudentsStatistics == null || StudentsStatistics?.Count == 0)
+                {
+                    ShowAlert();
+                }
             };
 
             MonthDropDown.AnchorView = new WeakReference<UIView>(monthDropdownView);
