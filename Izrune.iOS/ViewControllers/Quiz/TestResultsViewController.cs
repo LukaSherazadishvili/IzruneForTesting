@@ -44,7 +44,7 @@ namespace Izrune.iOS
             InitCollectionViewSettings();
 
             await LoadDataAsync();
-
+            
             InitUI();
 
             InitDroDown();
@@ -56,6 +56,8 @@ namespace Izrune.iOS
             resultCollectionView.ReloadData();
 
             InitHeader();
+
+            mainStackView.Hidden = Hideheader;
 
         }
 
@@ -101,18 +103,16 @@ namespace Izrune.iOS
             EndLoading();
 
 
-            if(!Hideheader)
-            {
-                var firstCell = resultCollectionView.DequeueReusableCell(ResultCollectionViewCell.Identifier, NSIndexPath.FromRowSection(0, 0)) as ResultCollectionViewCell;
-                var lastCell = resultCollectionView.DequeueReusableCell(ResultCollectionViewCell.Identifier, NSIndexPath.FromRowSection((System.nint)(StudentsStatistics?.Count - 1), 0)) as ResultCollectionViewCell;
+            //var firstCell = resultCollectionView.DequeueReusableCell(ResultCollectionViewCell.Identifier, NSIndexPath.FromRowSection(0, 0)) as ResultCollectionViewCell;
+            //var lastCell = resultCollectionView.DequeueReusableCell(ResultCollectionViewCell.Identifier, NSIndexPath.FromRowSection((System.nint)(StudentsStatistics?.Count - 1), 0)) as ResultCollectionViewCell;
 
-                var contentHeight = lastCell.Frame.Y + lastCell.Frame.Height - firstCell.Frame.Y;
+            //var contentHeight = lastCell.Frame.Y + lastCell.Frame.Height - firstCell.Frame.Y;
 
-                var totalHeight = (System.nfloat)(305 + ((StudentsStatistics?.Count-1) * 220));
+            var totalHeight = (System.nfloat)(305 + ((StudentsStatistics?.Count - 1) * 220));
 
-                resultCollectionViewHeightConstraint.Constant = totalHeight;
+            resultCollectionViewHeightConstraint.Constant = totalHeight;
 
-            }
+
 
             resultCollectionView.ReloadData();
         }
