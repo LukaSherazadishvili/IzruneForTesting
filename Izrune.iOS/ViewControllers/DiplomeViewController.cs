@@ -33,6 +33,8 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
+            this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+
             InitUI();
 
             await LoadDataAsync();
@@ -40,7 +42,7 @@ namespace Izrune.iOS
             InitCollectionViewSettings();
 
             diplomeDetailVc = Storyboard.InstantiateViewController(ResultTabbedViewController.StoryboardId) as ResultTabbedViewController;
-
+            diplomeDetailVc.IsDiplome = true;
         }
 
         private void InitUI()
