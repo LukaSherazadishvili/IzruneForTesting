@@ -30,8 +30,6 @@ namespace Izrune.iOS
 
         UINavigationController _navc;
 
-        public bool IsDiplome;
-
         public override void ViewWillDisappear(bool animated)
         {
             base.ViewWillDisappear(animated);
@@ -60,8 +58,7 @@ namespace Izrune.iOS
 
 
             TabVcs.Add(ExRes);
-            if(!IsDiplome)
-                TabVcs.Add(QuestionRes);
+            TabVcs.Add(QuestionRes);
 
             InitBarStyle();
 

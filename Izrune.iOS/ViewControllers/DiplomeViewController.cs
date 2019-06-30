@@ -27,7 +27,7 @@ namespace Izrune.iOS
         private IStatisticServices diplomeService;
         private List<IStudentsStatistic> StudentsStatistics;
 
-        private ResultTabbedViewController diplomeDetailVc;
+        private ExamResultViewController diplomeDetailVc;
 
         public async override void ViewDidLoad()
         {
@@ -41,8 +41,8 @@ namespace Izrune.iOS
 
             InitCollectionViewSettings();
 
-            diplomeDetailVc = Storyboard.InstantiateViewController(ResultTabbedViewController.StoryboardId) as ResultTabbedViewController;
-            diplomeDetailVc.IsDiplome = true;
+            diplomeDetailVc = Storyboard.InstantiateViewController(ExamResultViewController.StoryboardId) as ExamResultViewController;
+
         }
 
         private void InitUI()
