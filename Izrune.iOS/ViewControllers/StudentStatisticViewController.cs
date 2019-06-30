@@ -81,7 +81,9 @@ namespace Izrune.iOS
         {
             currentStudentLbl.Text = student.Name + " " + student.LastName;
 
-            packetDateLbl.Text = student.PackageStartDate.ToShortDateString();
+            var endDate = student?.PackageStartDate.AddMonths(student.PackageMonthCount);
+
+            packetDateLbl.Text = endDate?.ToShortDateString();
         }
 
         private void InitUI()
