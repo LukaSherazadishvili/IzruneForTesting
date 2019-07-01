@@ -75,7 +75,7 @@ namespace Izrune.iOS
             if (studentView.GestureRecognizers == null || studentView.GestureRecognizers?.Length == 0)
             {
                 studentView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
-                    this.NavigationController.PushViewController(editParentVc, true);
+                    this.NavigationController.PushViewController(editStudentVc, true);
                 }));
             }
 
