@@ -87,13 +87,9 @@ namespace Izrune.iOS.ViewControllers
                     if (menu.Type == MenuType.LogOut)
                     {
                         menuVc.IsLogedIn = false;
-
                         menuVc.ShowUserInfo(false);
-
                         menuVc.ReloadMenu();
-
                         var navVc = currentVc as UINavigationController;
-
                         var loginVc = navVc.ViewControllers[0] as LogInViewController;
 
                         loginVc.LogedIn = (logedIn) =>
@@ -109,9 +105,7 @@ namespace Izrune.iOS.ViewControllers
                     if (menu.Type == MenuType.LogIn)
                     {
                         var navVc = currentVc as UINavigationController;
-
                         var loginVc = navVc.ViewControllers[0] as LogInViewController;
-
                         loginVc.LogedIn = (logedIn) =>
                         {
                             menuVc.IsLogedIn = logedIn;
