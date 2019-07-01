@@ -85,8 +85,8 @@ namespace Izrune.iOS
         private void ShowAlert()
         {
             var alert = UIAlertController.Create("შეცდომა", "ინფორმაცია ვერ მოიძებნა.", UIAlertControllerStyle.Alert);
-            alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
-            this.PresentViewController(alert, true, () => { this.NavigationController.PopViewController(true); });
+            alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, (s) => { this.NavigationController.PopViewController(true); }));
+            this.PresentViewController(alert, true, null );
         }
 
         public nint GetItemsCount(UICollectionView collectionView, nint section)
