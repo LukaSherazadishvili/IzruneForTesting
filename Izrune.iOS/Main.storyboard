@@ -2233,6 +2233,7 @@
                     </view>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
+                        <outlet property="contentView" destination="VTp-m4-f2v" id="qNM-f0-5Pd"/>
                         <outlet property="dateStackView" destination="nbl-qF-2M3" id="cJq-U8-l86"/>
                         <outlet property="headerLine" destination="hG8-Gn-72B" id="O1o-Kk-Y6z"/>
                         <outlet property="headerView" destination="UZx-hF-Eup" id="V7k-av-0wQ"/>

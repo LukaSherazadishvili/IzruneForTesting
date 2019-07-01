@@ -44,8 +44,6 @@ namespace Izrune.iOS
             // this.NavigationController.NavigationBar.InitTransparencyToNavBar();
             this.NavigationController.NavigationBar.Translucent = false;
 
-            
-
             InitUI();
             await LoadDataAsync();
             InitForm(CurrentStudent);

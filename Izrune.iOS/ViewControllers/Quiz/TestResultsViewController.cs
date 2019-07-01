@@ -44,8 +44,6 @@ namespace Izrune.iOS
             InitCollectionViewSettings();
 
             await LoadDataAsync();
-            
-
 
             InitGestures();
 
@@ -76,10 +74,7 @@ namespace Izrune.iOS
 
         private void HideAll(bool hide)
         {
-            headerView.Hidden = hide;
-            viewForShadow.Hidden = hide;
-            mainStackView.Hidden = hide;
-            statisticStackView.Hidden = hide;
+            contentView.Hidden = hide;
         }
 
         public async Task LoadDataAsync()
