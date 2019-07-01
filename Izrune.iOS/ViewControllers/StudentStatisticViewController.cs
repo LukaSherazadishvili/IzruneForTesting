@@ -66,6 +66,7 @@ namespace Izrune.iOS
         }
         private async Task LoadDataAsync()
         {
+            contentView.Hidden = true;
             Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
 
             var statisticService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
@@ -73,7 +74,7 @@ namespace Izrune.iOS
             diplomeStatistics = await statisticService.GetDiplomaStatisticAsync();
 
             CurrentStudent = Students?[0];
-
+            contentView.Hidden = false;
         }
 
 

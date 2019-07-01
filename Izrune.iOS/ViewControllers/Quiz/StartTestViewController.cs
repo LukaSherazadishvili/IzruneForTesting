@@ -55,25 +55,12 @@ namespace Izrune.iOS
             InitUI();
 
             this.NavigationController.NavigationBar.InitTransparencyToNavBar();
-           
-            Parent = await UserControl.Instance.GetCurrentUser();
 
-            examDate = (await QuezControll.Instance.GetExamDate(QuezCategory.QuezExam));
-
-            testDate = (await QuezControll.Instance.GetExamDate(QuezCategory.QuezTest));
-
-
-            InitSummTimer();
-
-            Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
-
-            var item = Students[0];
+            await LoadDataAsync();
 
             SelectedStudent = Students[0];
 
             UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
-            Students.Add(item);
-            Students.Add(item);
 
             InitGestures();
 
@@ -81,9 +68,26 @@ namespace Izrune.iOS
 
             View.LayoutIfNeeded();
 
-           
+
 
             UserNameDropDown.SelectRow(0);
+        }
+
+        private async Task LoadDataAsync()
+        {
+            contentView.Hidden = true;
+
+            Parent = await UserControl.Instance.GetCurrentUser();
+
+            examDate = (await QuezControll.Instance.GetExamDate(QuezCategory.QuezExam));
+
+            testDate = (await QuezControll.Instance.GetExamDate(QuezCategory.QuezTest));
+
+            InitSummTimer();
+
+            Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
+
+            contentView.Hidden = false;
         }
 
         private bool IsExamActive(TimeSpan span)

@@ -13,6 +13,9 @@ namespace Izrune.iOS
 	partial class StudentStatisticViewController
 	{
 		[Outlet]
+		UIKit.UIView contentView { get; set; }
+
+		[Outlet]
 		UIKit.UILabel currentStudentLbl { get; set; }
 
 		[Outlet]
@@ -100,6 +103,11 @@ namespace Izrune.iOS
 			if (titleLbl != null) {
 				titleLbl.Dispose ();
 				titleLbl = null;
+			}
+
+			if (contentView != null) {
+				contentView.Dispose ();
+				contentView = null;
 			}
 		}
 	}

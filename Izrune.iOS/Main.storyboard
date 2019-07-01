@@ -1336,6 +1336,7 @@
                         <viewLayoutGuide key="safeArea" id="Rem-f1-Kvm"/>
                     </view>
                     <connections>
+                        <outlet property="contentView" destination="3Ju-rS-ZWf" id="fGc-Eu-F9G"/>
                         <outlet property="exQuizActiveStatusLbl" destination="8kY-3s-adO" id="02k-58-62B"/>
                         <outlet property="exQuizTransparentView" destination="bxk-pV-gpC" id="jQu-EU-gcu"/>
                         <outlet property="exTestContentView" destination="WbI-5d-E6J" id="c8H-jH-IYx"/>
@@ -1532,7 +1533,7 @@
                                                         <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalCompressionResistancePriority="749" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="yXR-VS-dcK">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" verticalCompressionResistancePriority="749" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="yXR-VS-dcK">
                                                         <rect key="frame" x="0.0" y="57.333333333333329" width="375" height="244.66666666666669"/>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bqT-py-Rnb" userLabel="RatingStackView">
@@ -1602,9 +1603,7 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="DKo-2N-nEN" firstAttribute="leading" secondItem="j5g-c1-bkv" secondAttribute="leading" constant="15" id="JFY-0n-qPI"/>
-                                                    <constraint firstAttribute="trailing" secondItem="yXR-VS-dcK" secondAttribute="trailing" id="Ycy-OU-aeE"/>
                                                     <constraint firstAttribute="trailing" secondItem="DKo-2N-nEN" secondAttribute="trailing" constant="15" id="dfH-TN-Lqr"/>
-                                                    <constraint firstItem="yXR-VS-dcK" firstAttribute="leading" secondItem="j5g-c1-bkv" secondAttribute="leading" id="qgp-1c-By1"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
@@ -5463,6 +5462,7 @@
                         <viewLayoutGuide key="safeArea" id="Zey-my-fQ7"/>
                     </view>
                     <connections>
+                        <outlet property="contentView" destination="h5a-PI-yEE" id="feN-ew-Ks1"/>
                         <outlet property="currentStudentLbl" destination="AxI-EH-Meh" id="XMC-dm-qQS"/>
                         <outlet property="currentStudentView" destination="U43-Td-U7F" id="Vka-uw-5gZ"/>
                         <outlet property="diplomeShadow" destination="fDD-lL-aJF" id="yxp-mo-KVa"/>
