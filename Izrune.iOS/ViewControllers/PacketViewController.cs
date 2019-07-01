@@ -83,6 +83,7 @@ namespace Izrune.iOS
             {
                 Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
                 SelectedStudent = Students?[0];
+                SelectPacketVc.SelectedStudent = SelectedStudent;
 
                 await GetPromoDataAsync(SelectedStudent.SchoolId);
 
