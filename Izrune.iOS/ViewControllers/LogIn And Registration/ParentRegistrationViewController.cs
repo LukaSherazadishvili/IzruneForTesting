@@ -512,7 +512,7 @@ namespace Izrune.iOS
 
             choosePacketVc.PriceSelected = (price) => {
 
-                MoreStudent.PackageMonthCount = price.months;
+                //MoreStudent.PackageMonthCount = price.months;
                 SelectedPrice = price;
                 CurrentIndex = 4;
                 HideHeader(true);
