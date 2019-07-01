@@ -52,14 +52,26 @@ namespace Izrune.iOS
 
         public async Task LoadDataAsync()
         {
-
+            HideHeader(true);
             ShowLoading();
+
 
             diplomeService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
 
             StudentsStatistics = (await diplomeService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam))?.Where(x => x.DiplomaUrl != null)?.ToList();
 
+            if (StudentsStatistics == null || StudentsStatistics?.Count == 0)
+                HideHeader(true);
+            else
+                HideHeader(false);
             EndLoading();
+        }
+
+        private void HideHeader(bool hide)
+        {
+            headerImageView.Hidden = hide;
+            headerLbl.Hidden = hide;
+            viewForDropDown.Hidden = hide;
         }
 
         public nint GetItemsCount(UICollectionView collectionView, nint section)

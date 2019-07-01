@@ -1533,7 +1533,7 @@
                                                         <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" verticalCompressionResistancePriority="749" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="yXR-VS-dcK">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalCompressionResistancePriority="749" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="yXR-VS-dcK">
                                                         <rect key="frame" x="0.0" y="57.333333333333329" width="375" height="244.66666666666669"/>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bqT-py-Rnb" userLabel="RatingStackView">
@@ -1603,6 +1603,8 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="DKo-2N-nEN" firstAttribute="leading" secondItem="j5g-c1-bkv" secondAttribute="leading" constant="15" id="JFY-0n-qPI"/>
+                                                    <constraint firstItem="yXR-VS-dcK" firstAttribute="leading" secondItem="j5g-c1-bkv" secondAttribute="leading" id="VOj-gb-wCX"/>
+                                                    <constraint firstAttribute="trailing" secondItem="yXR-VS-dcK" secondAttribute="trailing" id="XCC-tF-K34"/>
                                                     <constraint firstAttribute="trailing" secondItem="DKo-2N-nEN" secondAttribute="trailing" constant="15" id="dfH-TN-Lqr"/>
                                                 </constraints>
                                             </stackView>
