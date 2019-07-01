@@ -27,11 +27,13 @@ namespace Izrune.iOS
         private IStatisticServices diplomeService;
         private List<IStudentsStatistic> StudentsStatistics;
 
-        private ResultTabbedViewController diplomeDetailVc;
+        private ExamResultViewController diplomeDetailVc;
 
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
 
             InitUI();
 
@@ -39,8 +41,8 @@ namespace Izrune.iOS
 
             InitCollectionViewSettings();
 
-            diplomeDetailVc = Storyboard.InstantiateViewController(ResultTabbedViewController.StoryboardId) as ResultTabbedViewController;
-
+            diplomeDetailVc = Storyboard.InstantiateViewController(ExamResultViewController.StoryboardId) as ExamResultViewController;
+            diplomeDetailVc.Student = Student;
         }
 
         private void InitUI()

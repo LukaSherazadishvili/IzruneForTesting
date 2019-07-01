@@ -1336,6 +1336,7 @@
                         <viewLayoutGuide key="safeArea" id="Rem-f1-Kvm"/>
                     </view>
                     <connections>
+                        <outlet property="contentView" destination="3Ju-rS-ZWf" id="fGc-Eu-F9G"/>
                         <outlet property="exQuizActiveStatusLbl" destination="8kY-3s-adO" id="02k-58-62B"/>
                         <outlet property="exQuizTransparentView" destination="bxk-pV-gpC" id="jQu-EU-gcu"/>
                         <outlet property="exTestContentView" destination="WbI-5d-E6J" id="c8H-jH-IYx"/>
@@ -5461,6 +5462,7 @@
                         <viewLayoutGuide key="safeArea" id="Zey-my-fQ7"/>
                     </view>
                     <connections>
+                        <outlet property="contentView" destination="h5a-PI-yEE" id="feN-ew-Ks1"/>
                         <outlet property="currentStudentLbl" destination="AxI-EH-Meh" id="XMC-dm-qQS"/>
                         <outlet property="currentStudentView" destination="U43-Td-U7F" id="Vka-uw-5gZ"/>
                         <outlet property="diplomeShadow" destination="fDD-lL-aJF" id="yxp-mo-KVa"/>

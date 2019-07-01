@@ -27,6 +27,7 @@ namespace Izrune.iOS
         UINavigationController _navc;
 
         public bool HideHeader = true;
+        public bool IsStatistic;
 
         public override void ViewDidLoad()
         {

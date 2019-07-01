@@ -3,6 +3,7 @@
 using System;
 
 using Foundation;
+using IZrune.PCL.Abstraction.Services;
 using UIKit;
 
 namespace Izrune.iOS
@@ -18,11 +19,15 @@ namespace Izrune.iOS
 
         public string HtmlString { get; set; }
 
-        public override void ViewDidLoad()
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
-            //infoWebView.LoadHtmlString(HtmlString, NSUrl.FromString("https://www.google.com/"));
+            var newsService = ServiceContainer.ServiceContainer.Instance.Get<INewsService>();
+
+            var data = await newsService.GetMoreInfoAsync();
+
+            infoWebView.LoadHtmlString(data, NSUrl.FromString("https://www.google.com/"));
         }
     }
 }

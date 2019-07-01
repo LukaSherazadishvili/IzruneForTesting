@@ -21,6 +21,7 @@ namespace Izrune.iOS
 
         public IQuisInfo QuisInfo;
 
+        public IStudent Student;
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -51,6 +52,7 @@ namespace Izrune.iOS
                 ratingImages.ElementAt(i).Image = UIImage.FromBundle("1 – 24.png");
             }
 
+            userNameLbl.Text = Student?.Name + " " + Student?.LastName;
             resultQualityLbl.Text = QuisInfo.QueisResult.text_title;
             resultTextLbl.Text = QuisInfo.QueisResult.text_description;
 

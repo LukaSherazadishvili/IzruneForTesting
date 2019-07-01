@@ -8,13 +8,15 @@ using Foundation;
 using FPT.Framework.iOS.UI.DropDown;
 using Izrune.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
+using MPDCiOSPages.ViewControllers;
 using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS
 {
-	public partial class StudentStatisticViewController : UIViewController
+	public partial class StudentStatisticViewController : BaseViewController
 	{
 		public StudentStatisticViewController (IntPtr handle) : base (handle)
 		{
@@ -24,7 +26,7 @@ namespace Izrune.iOS
 
 
         DropDown CurentStudentDP = new DropDown();
-
+        private IEnumerable<IDiplomStatistic> diplomeStatistics;
         IStudent CurrentStudent;
 
         private List<IStudent> Students;
@@ -53,10 +55,9 @@ namespace Izrune.iOS
 
             InitDropDowns();
 
-           
-
             InitGestures();
         }
+
 
         private void InitViewCOntrollers()
         {
@@ -66,17 +67,27 @@ namespace Izrune.iOS
         }
         private async Task LoadDataAsync()
         {
+            contentView.Hidden = true;
+            ShowLoading();
             Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
 
-            CurrentStudent = Students?[0];
+            var statisticService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
 
+            diplomeStatistics = await statisticService.GetDiplomaStatisticAsync();
+
+            CurrentStudent = Students?[0];
+            EndLoading();
+            contentView.Hidden = false;
         }
+
 
         private void InitForm(IStudent student)
         {
             currentStudentLbl.Text = student.Name + " " + student.LastName;
 
-            packetDateLbl.Text = student.PackageStartDate.ToShortDateString();
+            var endDate = student?.PackageStartDate.AddMonths(student.PackageMonthCount);
+
+            packetDateLbl.Text = endDate?.ToShortDateString();
         }
 
         private void InitUI()
@@ -85,11 +96,7 @@ namespace Izrune.iOS
             initView(diplomeView, diplomeShadow);
             initView(sumTestsView, sumShadow);
             initView(exTestView, exShadow);
-
             paymentHostoryBtn.Layer.CornerRadius = 25;
-
-            
-
             this.NavigationController.NavigationBar.InitNavigationBarColorWithNoShadow(UIColor.White);
         }
 
