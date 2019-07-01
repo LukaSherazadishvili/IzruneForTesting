@@ -109,23 +109,35 @@ namespace IZrune.PCL.Implementation.Services
                 });
                 var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getPromoCode&hashcode=52c490da82162ed3cfaff1d7f5bb9287", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<PromoCodeDTO>(jsn);
-                PromoCode promCod = new PromoCode();
-
-
-                if (result.Code == 0)
+                if (SchoolId != 0)
                 {
-                    promCod.PrommoCode = result?.promocode;
-                    promCod.Prices = result?.prices?.Select(i =>
-                    new Price() {
-                        price = i.price,
-                        StartDate = DateTime.ParseExact(i.start_date, "dd.MM.yyyy", CultureInfo.InvariantCulture),
-                        EndDate = DateTime.ParseExact(i.end_date, "dd.MM.yyyy", CultureInfo.InvariantCulture)
-                    });
-                    return promCod;
+                    var result = JsonConvert.DeserializeObject<PromoCodeDTO>(jsn);
+                    PromoCode promCod = new PromoCode();
+
+
+                    if (result.Code == 0)
+                    {
+                        promCod.PrommoCode = result?.promocode;
+                        promCod.Prices = result?.prices?.Select(i =>
+                        new Price()
+                        {
+                            price = i.price,
+                            StartDate = DateTime.ParseExact(i.start_date, "dd.MM.yyyy", CultureInfo.InvariantCulture),
+                            EndDate = DateTime.ParseExact(i.end_date, "dd.MM.yyyy", CultureInfo.InvariantCulture),
+                            MonthCount = MonthDifference(DateTime.ParseExact(i.end_date, "dd.MM.yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(i.start_date, "dd.MM.yyyy", CultureInfo.InvariantCulture))
+
+                        });
+                        return promCod;
+                    }
+                    else
+                        return null;
                 }
                 else
-                    return null;
+                {
+
+
+
+                }
             }
             catch(Exception ex)
             {
@@ -226,6 +238,9 @@ namespace IZrune.PCL.Implementation.Services
                 return false;
         }
 
-
+        private int MonthDifference(DateTime lValue, DateTime rValue)
+        {
+            return (lValue.Month - rValue.Month) + 12 * (lValue.Year - rValue.Year);
+        }
     }
 }

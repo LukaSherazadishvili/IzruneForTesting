@@ -114,7 +114,17 @@ namespace Izrune.Fragments
             TestCharts.AxisLeft.AxisMinimum = 0;
             TestCharts.AxisRight.AxisMinimum = 0;
 
-            data.BarWidth = 0.5f;
+            if (entries.Count < 7)
+            {
+                for(int i = 1; i <= entries.Count; i++)
+                {
+                    data.BarWidth = (0.5f / 7) * i;
+                }
+            }
+            else
+            {
+                data.BarWidth = 0.5f;
+            }
 
             TestCharts.Invalidate();
 
@@ -155,7 +165,17 @@ namespace Izrune.Fragments
             PointCharst.AxisRight.AxisMinimum = 0;
             //PointCharst.AxisLeft.Typeface = Typeface.CreateFromFile(".../Resources/font/bpg_mrgvlovani.ttf");
 
-            data2.BarWidth = 0.5f;
+            if (entriesTwo.Count < 7)
+            {
+                for (int i = 1; i <= entriesTwo.Count; i++)
+                {
+                    data2.BarWidth = (0.5f / 7) * i;
+                }
+            }
+            else
+            {
+                data2.BarWidth = 0.5f;
+            }
 
             PointCharst.Invalidate();
 
@@ -196,7 +216,17 @@ namespace Izrune.Fragments
             QuesChart.AxisLeft.AxisMinimum = 0;
             QuesChart.AxisRight.AxisMinimum = 0;
 
-            data3.BarWidth = 0.5f;
+            if (entriesThree.Count < 7)
+            {
+                for (int i = 1; i <= entriesThree.Count; i++)
+                {
+                    data3.BarWidth = (0.5f / 7) * i;
+                }
+            }
+            else
+            {
+                data3.BarWidth = 0.5f;
+            }
 
             QuesChart.Invalidate();
 
