@@ -13,6 +13,7 @@ using Izrune.Attributes;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
+using IZrune.PCL.Implementation.Models;
 using MpdcContainer = ServiceContainer.ServiceContainer;
 namespace Izrune.Activitys
 {
@@ -61,9 +62,14 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.StudentVillage)]
         EditText StudentVillage;
 
+        [MapControl(Resource.Id.StudentBDayDay)]
+        TextView BDayDay;
 
+        [MapControl(Resource.Id.StudentBdayMonth)]
+        TextView BdayMonth;
 
-        
+        [MapControl(Resource.Id.StudentBdayYear)]
+        TextView BdayYear;
 
         IStudent student;
         protected async override void OnCreate(Bundle savedInstanceState)
@@ -77,45 +83,77 @@ namespace Izrune.Activitys
             var Result = await UserControl.Instance.GetCurrentUser();
             var Regions = await MpdcContainer.Instance.Get<IRegistrationServices>().GetRegionsAsync();
 
+            student = Result.Students.FirstOrDefault(); 
+
             var DataAdapter = new ArrayAdapter<string>(this,
               Android.Resource.Layout.SimpleSpinnerDropDownItem,
               Result.Students.Select(i => ($"{i.Name}   {i.LastName}")).ToList());
 
-            student = Result.Students.ElementAt(0);
+
+            var RegionAdapter = new ArrayAdapter<string>(this,
+          Android.Resource.Layout.SimpleSpinnerDropDownItem,
+         Regions.Select(i => i.title).ToList());
+
+
+
+
+
+           
 
             StudentSpiner.Adapter = DataAdapter;
             StudentSpiner.ItemSelected += (s, e) =>
             {
-
-                student = Result.Students.ElementAt(e.Position);
+                UserControl.Instance.SeTSelectedStudent(Result.Students.ElementAt(e.Position).id);
+                student = UserControl.Instance.CurrentStudent;
 
                 StudentName.Text = student.Name;
                 StudentLastName.Text = student.LastName;
                 StudentId.Text = student.PersonalNumber;
                 MobilePhone.Text = student.Phone;
                 StudentClass.Text = student.Class.ToString();
-
+                BDayDay.Text = student.Bdate.Day.ToString();
+                BdayMonth.Text = student.Bdate.Month.ToString();
+                BdayYear.Text = student.Bdate.Year.ToString();
 
                 // StudentSchool.Text = Regions.FirstOrDefault(i => i.id == student.RegionId).Schools.Where(i => i.id == student.SchoolId).FirstOrDefault().title;
                 StudentMail.Text = student.Email;
                 StudentVillage.Text = student.Village;
 
+                StudentCity.Adapter = RegionAdapter;
 
+                var regg = Regions.Where(i => i.id == student.RegionId).FirstOrDefault();
+
+                var poss = RegionAdapter.GetPosition(regg.title);
+                StudentCity.SetSelection(poss);
+
+
+
+                var SchoolAdapterr = new ArrayAdapter<string>(this,
+              Android.Resource.Layout.SimpleSpinnerDropDownItem,
+             Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Select(x => x.title).ToList());
+
+
+
+                var Ress = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Where(i => i.id == student.SchoolId).FirstOrDefault();
+                StudentSchool.Adapter = SchoolAdapterr;
+
+                var ScholdPoss = SchoolAdapterr.GetPosition(Ress.title);
+                StudentSchool.SetSelection(ScholdPoss);
 
             };
 
 
 
-            var RegionAdapter = new ArrayAdapter<string>(this,
-            Android.Resource.Layout.SimpleSpinnerDropDownItem,
-           Regions.Select(i => i.title).ToList());
 
-            StudentCity.Adapter = RegionAdapter;
 
-           
+            //  StudentCity.Adapter = RegionAdapter;
 
-            
-            bool isCheck = false;
+            var SchoolAdapter = new ArrayAdapter<string>(this,
+         Android.Resource.Layout.SimpleSpinnerDropDownItem,
+        Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Select(x => x.title).ToList());
+
+
+         //   bool isCheck = false;
             StudentCity.ItemSelected += (s, e) =>
             {
                
@@ -128,7 +166,7 @@ namespace Izrune.Activitys
 
                 StudentSchool.ItemSelected += (sender, eargs) =>
                 {
-                    student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.FirstOrDefault().id;
+                    student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.ElementAt(eargs.Position).id;
 
                 };
                 // isCheck = true;
@@ -144,9 +182,7 @@ namespace Izrune.Activitys
             
            
 
-            var SchoolAdapter = new ArrayAdapter<string>(this,
-           Android.Resource.Layout.SimpleSpinnerDropDownItem,
-          Regions.Where(i=>i.id==student.RegionId).FirstOrDefault().Schools.Select(x=>x.title).ToList());
+           
             StudentSchool.Adapter = SchoolAdapter;
             var Res = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Where(i => i.id == student.SchoolId).FirstOrDefault();
 

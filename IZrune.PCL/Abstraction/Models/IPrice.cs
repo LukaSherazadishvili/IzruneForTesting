@@ -6,7 +6,8 @@ namespace IZrune.PCL.Abstraction.Models
 {
    public interface IPrice
     {
-         int months { get; set; }
-         int price { get; set; }
+         DateTime StartDate { get; set; }
+         DateTime EndDate { get; set; }
+        int price { get; set; }
     }
 }

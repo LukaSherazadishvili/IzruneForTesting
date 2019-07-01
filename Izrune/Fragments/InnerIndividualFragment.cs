@@ -26,6 +26,10 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.NextButton)]
         LinearLayout NextButton;
 
+
+        [MapControl(Resource.Id.BotBackButton)]
+        LinearLayout BotbackButto;
+
         private int StudentId;
 
         public InnerIndividualFragment(List<IPrice> prices,int studentId)
@@ -55,12 +59,12 @@ namespace Izrune.Fragments
             base.OnViewCreated(view, savedInstanceState);
             ServiceViews.Clear();
 
-
+            BotbackButto.Visibility = ViewStates.Gone;
             foreach (var items in PriceList)
             {
                 var Vw = LayoutInflater.Inflate(Resource.Layout.ItemIndividualList, null);
 
-                Vw.FindViewById<TextView>(Resource.Id.TimeTxt).Text = items.months.ToString() + " თვე";
+                Vw.FindViewById<TextView>(Resource.Id.TimeTxt).Text = items.EndDate.ToString();
                 Vw.FindViewById<TextView>(Resource.Id.SaleTXt).Visibility = ViewStates.Gone;
                 Vw.FindViewById<TextView>(Resource.Id.PriceText).Text = items.price.ToString() + " ₾";
                 ServiceViews.Add(Vw);
@@ -71,7 +75,11 @@ namespace Izrune.Fragments
 
             }
             NextButton.Click += NextButton_Click;
+           
         }
+
+
+        
 
         private async void NextButton_Click(object sender, EventArgs e)
         {
@@ -101,7 +109,7 @@ namespace Izrune.Fragments
 
             var Result = PriceList.ElementAt(Index);
 
-            await UserControl.Instance.ReNewPack(StudentId, Result.months, Result.price);
+            await UserControl.Instance.ReNewPack(StudentId, MonthDifference( Result.EndDate,Result.StartDate), Result.price);
 
 
 
@@ -109,5 +117,10 @@ namespace Izrune.Fragments
             IsChec = true;
 
         }
+        private int MonthDifference(DateTime lValue, DateTime rValue)
+        {
+            return (lValue.Month - rValue.Month) + 12 * (lValue.Year - rValue.Year);
+        }
+
     }
 }

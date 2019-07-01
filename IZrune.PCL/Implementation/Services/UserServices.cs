@@ -29,7 +29,7 @@ namespace IZrune.PCL.Implementation.Services
                   new KeyValuePair<string,string>("phone",student.Phone),
                  new KeyValuePair<string,string>("region_id",student.RegionId.ToString()),
                   new KeyValuePair<string,string>("village",student.Village),
-                  new KeyValuePair<string,string>("bdate",$"{student.Bdate.Year}-{student.Bdate.Month}={student.Bdate.Month}"),
+                  new KeyValuePair<string,string>("bdate",$"{student.Bdate.Year}-{student.Bdate.Month}-{student.Bdate.Month}"),
                   new KeyValuePair<string,string>("school_id",student.SchoolId.ToString()),
                   new KeyValuePair<string,string>("class",student.Class.ToString()),
                   new KeyValuePair<string,string>("sdate",DateTime.Now.ToShortDateString()),
@@ -119,7 +119,9 @@ namespace IZrune.PCL.Implementation.Services
                     promCod.Prices = result?.prices?.Select(i =>
                     new Price() {
                         price = i.price,
-                        months = i.months });
+                        StartDate = DateTime.ParseExact(i.start_date, "dd.MM.yyyy", CultureInfo.InvariantCulture),
+                        EndDate = DateTime.ParseExact(i.end_date, "dd.MM.yyyy", CultureInfo.InvariantCulture)
+                    });
                     return promCod;
                 }
                 else
@@ -173,7 +175,7 @@ namespace IZrune.PCL.Implementation.Services
                             PersonalNumber=i.personal_number,
                             RegionId= Convert.ToInt32( i.region_id),
                             SchoolId=Convert.ToInt32(i.school_id),                            
-                            
+                           
                       });
                     return parent;
                 }

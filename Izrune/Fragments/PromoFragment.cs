@@ -84,7 +84,7 @@ namespace Izrune.Fragments
 
                     var DataAdapter = new ArrayAdapter<string>(this,
                   Android.Resource.Layout.SimpleSpinnerDropDownItem,
-                 PromoCod.Prices.Select(i =>$"{ i.months} თვე").ToList());
+                 PromoCod.Prices.Select(i =>$"{ i.EndDate} თვე").ToList());
 
                     monthSpiner.Adapter = DataAdapter;
                     monthSpiner.ItemSelected += MonthSpiner_ItemSelected;
@@ -100,7 +100,15 @@ namespace Izrune.Fragments
 
         private void MonthSpiner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            MonthCount = PromoCod.Prices.ElementAt(e.Position).months;
+            var Result =  PromoCod.Prices.ElementAt(e.Position).EndDate.Subtract(PromoCod.Prices.ElementAt(e.Position).StartDate);
+            
+            MonthCount = MonthDifference(PromoCod.Prices.ElementAt(e.Position).EndDate, PromoCod.Prices.ElementAt(e.Position).StartDate);
+        }
+
+
+        private   int MonthDifference( DateTime lValue, DateTime rValue)
+        {
+            return (lValue.Month - rValue.Month) + 12 * (lValue.Year - rValue.Year);
         }
     }
 }

@@ -28,6 +28,8 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.AddStudentButton)]
         LinearLayout AddStudent;
 
+        [MapControl(Resource.Id.ChangePasswordButton)]
+        RelativeLayout ChangePassword;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -56,6 +58,11 @@ namespace Izrune.Fragments
             AddStudent.Click += (s, e) =>
             {
                 Intent intent = new Intent(this, typeof(InnerRegisterStudent));
+                StartActivity(intent);
+            };
+            ChangePassword.Click += (s, e) =>
+            {
+                Intent intent = new Intent(this, typeof(ChangePasswordActivity));
                 StartActivity(intent);
             };
         }
