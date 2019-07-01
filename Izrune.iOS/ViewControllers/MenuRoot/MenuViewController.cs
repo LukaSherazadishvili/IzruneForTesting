@@ -7,6 +7,7 @@ using Foundation;
 using Izrune.iOS.CollectionViewCells;
 using Izrune.iOS.Models;
 using Izrune.iOS.Utils;
+using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Enum;
 using MpdcViewExtentions;
 using UIKit;
@@ -20,6 +21,8 @@ namespace Izrune.iOS
 		}
 
         public bool IsLogedIn;
+
+        public IParent CurrentUser;
 
         public static readonly NSString StoryboardId = new NSString("MenuViewControllerStoryboardId");
 
@@ -110,7 +113,16 @@ namespace Izrune.iOS
             ShowUserInfo(IsLogedIn);
         }
 
-        private void ShowUserInfo(bool Show)
+        public void InitUser()
+        {
+            if(CurrentUser != null)
+            {
+                userNameLbl.Text = CurrentUser?.Name + " " + CurrentUser?.LastName;
+                profileNumberLbl.Text = CurrentUser?.id.ToString();
+            }
+        }
+
+        public void ShowUserInfo(bool Show)
         {
             userNameLbl.Hidden = !Show;
             profileNumberStackView.Hidden = !Show;
