@@ -55,6 +55,9 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.SaveButton)]
         LinearLayout SaveButton;
 
+        [MapControl(Resource.Id.BottomBackButton)]
+        LinearLayout BtBack;
+
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -86,16 +89,22 @@ namespace Izrune.Activitys
             ParrentRegion.SetSelection(SpinerPosition);
 
 
-          var CurrentRegion=  Region.Result.FirstOrDefault(i => i.title == Result.Result.City);
+          //var CurrentRegion=  Region.Result.FirstOrDefault(i => i.title == Result.Result.City);
 
-            var Index = Region.Result.ToList().IndexOf(CurrentRegion);
+          //  var Index = Region.Result.ToList().IndexOf(CurrentRegion);
 
-            ParrentRegion.SetSelection(Index);
+          //  ParrentRegion.SetSelection(Index);
 
             ParrentBadaDay.Text = Result.Result.bDate.Value.Day.ToString();
             ParrentBadayMonth.Text = Result.Result.bDate.Value.Month.ToString();
             ParrentBdayYear.Text = Result.Result.bDate.Value.Year.ToString();
 
+
+
+            BtBack.Click += (s, e) =>
+            {
+                OnBackPressed();
+            };
 
 
         }

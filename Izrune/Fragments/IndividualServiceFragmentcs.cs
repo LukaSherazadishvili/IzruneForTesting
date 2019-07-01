@@ -57,7 +57,7 @@ namespace Izrune.Fragments
             {
                 var Vw = LayoutInflater.Inflate(Resource.Layout.ItemIndividualList, null);
 
-                Vw.FindViewById<TextView>(Resource.Id.TimeTxt).Text = items.months.ToString()+" თვე";
+                Vw.FindViewById<TextView>(Resource.Id.TimeTxt).Text = items.EndDate.ToString();
                 Vw.FindViewById<TextView>(Resource.Id.SaleTXt).Visibility = ViewStates.Gone;
                 Vw.FindViewById<TextView>(Resource.Id.PriceText).Text = items.price.ToString()+ " ₾";
                 ServiceViews.Add(Vw);
@@ -97,9 +97,16 @@ namespace Izrune.Fragments
 
           var Result=PriceList.ElementAt(Index);
 
-            UserControl.Instance.SetPromoPack(Result.months,Result.price);
+            var MonthCount = MonthDifference(Result.EndDate, Result.StartDate);
+
+            UserControl.Instance.SetPromoPack(MonthCount,Result.price);
             IsChec = true;
             
+        }
+
+        private int MonthDifference(DateTime lValue, DateTime rValue)
+        {
+            return (lValue.Month - rValue.Month) + 12 * (lValue.Year - rValue.Year);
         }
     }
 }

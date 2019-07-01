@@ -7,7 +7,8 @@ namespace IZrune.PCL.Implementation.Models
 {
     public class Price : IPrice
     {
-        public int months { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public int price { get; set; }
     }
 }

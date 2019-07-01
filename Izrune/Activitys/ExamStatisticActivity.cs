@@ -98,8 +98,7 @@ namespace Izrune.Activitys
             {
                 Month = e.Position + 1;
                 var Res = Statistic.Where(i => i.ExamDate.Month == Month && i.ExamDate.Year == Year);
-                if (Res.Count() > 0)
-                {
+              
 
                     var adapterr = new ExamStatisticRecyclerAdapter(Res?.ToList());
 
@@ -108,7 +107,7 @@ namespace Izrune.Activitys
 
 
 
-                }
+             
 
             };
 

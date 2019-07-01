@@ -59,14 +59,16 @@ namespace Izrune.Fragments
 
             QuesExamButton.Click += (s, e) =>
             {
-                Intent intent = new Intent(this, typeof(ExamStatisticActivity));
+                Intent intent = new Intent(this, typeof(MainExamStatisticActivity));
                 StartActivity(intent);
             };
 
             ExamTestButton.Click += (s, e) =>
             {
-                Intent intent = new Intent(this,typeof(MainExamStatisticActivity));
+                Intent intent = new Intent(this, typeof(ExamStatisticActivity));
                 StartActivity(intent);
+
+              
             };
 
             DiplomasButton.Click += (s, e) =>

@@ -96,7 +96,7 @@ android:id="@+id/Container">
             android:paddingLeft="15dp"
             android:textColor="#6A6A6A"
 			android:fontFamily="@font/bpg_mrgvlovani"
-            android:hint="Name"
+            android:hint=""
 			android:textSize="13dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
@@ -118,7 +118,7 @@ android:id="@+id/Container">
             android:paddingLeft="15dp"
             android:textColor="#6A6A6A"
 			android:fontFamily="@font/bpg_mrgvlovani"
-            android:hint="LastNameName"
+            android:hint=""
 			android:textSize="13dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
@@ -358,6 +358,7 @@ android:id="@+id/Container">
 					android:textSize="10dp"
 					/>
 				<TextView
+				android:visibility="gone"
 					android:id="@+id/StudentClasses"
             android:layout_width="match_parent"
             android:layout_height="38dp"

@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using Izrune.Attributes;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
 using Java.Lang;
 using MikePhil.Charting.Charts;
 using MikePhil.Charting.Components;
@@ -45,26 +46,35 @@ namespace Izrune.Fragments
             base.OnViewCreated(view, savedInstanceState);
 
             Startloading();
-            var Statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam);
+            var Statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest);
 
+            var LastDataDiagram =await UserControl.Instance.GetDiagramStatistic();
+            List<BarEntry> entriesThree = new List<BarEntry>();
+            foreach (var items in LastDataDiagram)
+            {
+                var resultThree = new BarEntry(entriesThree.Count, items.TestCount);
+                entriesThree.Add(resultThree);
+            }
+        
 
             List<BarEntry> entries = new List<BarEntry>();
             List<BarEntry> entriesTwo = new List<BarEntry>();
-            List<BarEntry> entriesThree = new List<BarEntry>();
+           
             List<string> day = new List<string>();
             foreach (var item in Statistic)
             {
-                var result = new BarEntry(entries.Count, item.TestTimeInSecconds);
+                var result = new BarEntry(entries.Count, item.TestTimeInSecconds/60);
+               
                 entries.Add(result);
 
                 var resultTwo = new BarEntry(entriesTwo.Count, item.Point);
 
                 entriesTwo.Add(resultTwo);
 
-                var resultThree = new BarEntry(entriesThree.Count, item.Point);
+             
 
-                entriesThree.Add(resultThree);
-                day.Add(item.ExamDate.ToString());
+              
+                day.Add(item.ExamDate.ToShortDateString());
             }
 
 
@@ -89,7 +99,7 @@ namespace Izrune.Fragments
             xAxis.Position = XAxis.XAxisPosition.Bottom;
             xAxis.Granularity = 1;
             xAxis.GranularityEnabled = true;
-            xAxis.TextSize = 5;
+            xAxis.TextSize = 7;
 
             
 
@@ -131,7 +141,7 @@ namespace Izrune.Fragments
             xAxis2.Position = XAxis.XAxisPosition.Bottom;
             xAxis2.Granularity = 1;
             xAxis2.GranularityEnabled = true;
-            xAxis2.TextSize = 5;
+            xAxis2.TextSize = 7;
 
             PointCharst.DragEnabled = true;
             PointCharst.SetVisibleXRangeMaximum(4);
@@ -169,28 +179,15 @@ namespace Izrune.Fragments
             QuesChart.XAxis.SetDrawGridLines(false);
             QuesChart.SetExtraOffsets(0, 0, 20, 12);
 
-            List<string> Months3 = new List<string>
-            {
-                "იანვარი",
-                "თებერვალი",
-                "მარტი",
-                "აპრილი",
-                "მაისი",
-                "ივნისი",
-                "ივლისი",
-                "აგვისტო",
-                "სექტემბერი",
-                "ოქტომბერი",
-                "ნოემვერი",
-                "დეკემბერი",
-            };
+
 
             XAxis xAxis3 = QuesChart.XAxis;
-            xAxis3.ValueFormatter = new IndexAxisValueFormatter(Months3);
+            xAxis3.ValueFormatter = new IndexAxisValueFormatter(LastDataDiagram.Select(i=>i.CurrentDate).ToList());
             //xAxis.SetCenterAxisLabels(true);
             xAxis3.Position = XAxis.XAxisPosition.Bottom;
             xAxis3.Granularity = 1;
             xAxis3.GranularityEnabled = true;
+            xAxis3.TextSize = 7;
 
             QuesChart.DragEnabled = true;
             QuesChart.SetVisibleXRangeMaximum(4);
