@@ -174,18 +174,10 @@ namespace Izrune.iOS
         {
             foreach (var item in menus)
             {
-                if(item.Type != MenuType.LogOut)
-                {
-                    if (item.Type == menuItem.Type)
-                        item.IsSelected = true;
-                    else
-                        item.IsSelected = false;
-                }
+                if (item.Type == menuItem.Type)
+                    item.IsSelected = true;
                 else
-                {
-                    var main = LogedInList?[0];
-                    main.IsSelected = true;
-                }
+                    item.IsSelected = false;
 
             }
         }

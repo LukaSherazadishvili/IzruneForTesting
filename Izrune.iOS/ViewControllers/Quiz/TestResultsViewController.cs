@@ -110,9 +110,14 @@ namespace Izrune.iOS
             //var lastCell = resultCollectionView.DequeueReusableCell(ResultCollectionViewCell.Identifier, NSIndexPath.FromRowSection((System.nint)(StudentsStatistics?.Count - 1), 0)) as ResultCollectionViewCell;
             //var contentHeight = lastCell.Frame.Y + lastCell.Frame.Height - firstCell.Frame.Y;
 
+            UpdateCollectionViewHeight();
+            resultCollectionView.ReloadData();
+        }
+
+        private void UpdateCollectionViewHeight()
+        {
             var totalHeight = (System.nfloat)(305 + ((StudentsStatistics?.Count - 1) * 220));
             resultCollectionViewHeightConstraint.Constant = totalHeight;
-            resultCollectionView.ReloadData();
         }
 
         private void InitCollectionViewSettings()
@@ -186,6 +191,7 @@ namespace Izrune.iOS
                 }
 
                 StudentsStatistics = OriginalList?.Where(x => x.ExamDate.Year == Convert.ToInt32(name))?.ToList();
+                UpdateCollectionViewHeight();
                 resultCollectionView.ReloadData();
                 EndLoading();
 
@@ -216,6 +222,7 @@ namespace Izrune.iOS
                 }
 
                 StudentsStatistics = OriginalList?.Where(x => x.ExamDate.Month == index)?.ToList();
+                UpdateCollectionViewHeight();
                 resultCollectionView.ReloadData();
 
                 EndLoading();
@@ -229,7 +236,7 @@ namespace Izrune.iOS
         private void ShowAlert()
         { 
             var alert = UIAlertController.Create("შეცდომა", "ინფორმაცია ვერ მოიძებნა.", UIAlertControllerStyle.Alert);
-            alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, (s) => { this.NavigationController.PopViewController(true); }));
+            alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
             this.PresentViewController(alert, true, null);
         }
 
