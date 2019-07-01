@@ -10,12 +10,13 @@ using Izrune.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
+using MPDCiOSPages.ViewControllers;
 using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS
 {
-	public partial class StudentStatisticViewController : UIViewController
+	public partial class StudentStatisticViewController : BaseViewController
 	{
 		public StudentStatisticViewController (IntPtr handle) : base (handle)
 		{
@@ -67,6 +68,7 @@ namespace Izrune.iOS
         private async Task LoadDataAsync()
         {
             contentView.Hidden = true;
+            ShowLoading();
             Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
 
             var statisticService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
@@ -74,6 +76,7 @@ namespace Izrune.iOS
             diplomeStatistics = await statisticService.GetDiplomaStatisticAsync();
 
             CurrentStudent = Students?[0];
+            EndLoading();
             contentView.Hidden = false;
         }
 
