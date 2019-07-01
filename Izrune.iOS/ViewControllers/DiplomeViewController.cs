@@ -42,7 +42,7 @@ namespace Izrune.iOS
             InitCollectionViewSettings();
 
             diplomeDetailVc = Storyboard.InstantiateViewController(ExamResultViewController.StoryboardId) as ExamResultViewController;
-
+            diplomeDetailVc.Student = Student;
         }
 
         private void InitUI()
