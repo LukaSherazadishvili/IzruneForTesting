@@ -157,6 +157,11 @@ namespace Izrune.iOS
             {
                 SelectItem((IsLogedIn ? LogedInList : LogOutList), menu);
                 MainMenuClicked?.Invoke(menu);
+                if(menu.Type == MenuType.LogOut)
+                {
+                    menu.IsSelected = false;
+                    LogedInList[0].IsSelected = true;
+                }
                 menuCollectionView.ReloadData();
                 //TODO Navigate To Page
             };

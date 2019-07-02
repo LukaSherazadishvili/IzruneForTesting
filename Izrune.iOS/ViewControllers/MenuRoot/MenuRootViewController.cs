@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Izrune.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Enum;
+using IZrune.PCL.Helpers;
 using MpdcViewExtentions;
 using SidebarNavigation;
 using UIKit;
@@ -72,7 +73,6 @@ namespace Izrune.iOS.ViewControllers
                 MenuWidth = 280
             };
 
-
             menuVc.MainMenuClicked = (menu) =>
             {
                 try
@@ -86,14 +86,16 @@ namespace Izrune.iOS.ViewControllers
 
                     if (menu.Type == MenuType.LogOut)
                     {
+                        UserControl.Instance.LogOut();
                         menuVc.IsLogedIn = false;
                         menuVc.ShowUserInfo(false);
                         menuVc.ReloadMenu();
                         var navVc = currentVc as UINavigationController;
                         var loginVc = navVc.ViewControllers[0] as LogInViewController;
 
-                        loginVc.LogedIn = (logedIn) =>
+                        loginVc.LogedIn = async (logedIn) =>
                         {
+                            await UpdateCurrentUser();
                             CurrentMenu = MenuType.Main;
                             menuVc.IsLogedIn = logedIn;
                             menuVc.ShowUserInfo(logedIn);
@@ -106,8 +108,9 @@ namespace Izrune.iOS.ViewControllers
                     {
                         var navVc = currentVc as UINavigationController;
                         var loginVc = navVc.ViewControllers[0] as LogInViewController;
-                        loginVc.LogedIn = (logedIn) =>
+                        loginVc.LogedIn = async (logedIn) =>
                         {
+                            await UpdateCurrentUser();
                             menuVc.IsLogedIn = logedIn;
                             menuVc.ShowUserInfo(logedIn);
                             menuVc.ReloadMenu();

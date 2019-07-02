@@ -46,6 +46,7 @@ namespace Izrune.iOS
         private void InitGestures()
         {
             payViaBankBtn.TouchUpInside += delegate {
+                //TODO Pay via bank
                 PaymentUrl = "https://www.youtube.com/";
                 GoToPayment();
             };
