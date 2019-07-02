@@ -390,6 +390,10 @@
         <Compile Include="ViewControllers\LogIn And Registration\StudentRegistrationViewController.designer.cs">
           <DependentUpon>StudentRegistrationViewController.cs</DependentUpon>
         </Compile>
+        <Compile Include="ViewControllers\PayViaBankViewController.cs" />
+        <Compile Include="ViewControllers\PayViaBankViewController.designer.cs">
+          <DependentUpon>PayViaBankViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 2.png" />

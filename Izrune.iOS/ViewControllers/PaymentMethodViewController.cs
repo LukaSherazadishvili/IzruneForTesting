@@ -57,7 +57,8 @@ namespace Izrune.iOS
 
             payViaPayBoxBtn.TouchUpInside += delegate {
                 PaymentUrl = "http://www.izrune.ge/images/tbcpay_image2.png";
-                GoToPayment();
+                if(UIApplication.SharedApplication.CanOpenUrl(NSUrl.FromString(PaymentUrl)))
+                    UIApplication.SharedApplication.OpenUrl(NSUrl.FromString(PaymentUrl));
             };
         }
 
