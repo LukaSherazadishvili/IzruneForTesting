@@ -116,6 +116,8 @@ namespace Izrune.iOS
             {
                 OriginalList.Add(item);
             }
+
+            resultCollectionView.ReloadData();
         }
 
         private void UpdateCollectionViewHeight()
