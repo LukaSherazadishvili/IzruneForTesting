@@ -77,20 +77,12 @@ namespace Izrune.iOS
             contentView.Hidden = hide;
         }
 
-        public async Task LoadDataAsync()
+        private async Task LoadDataAsync()
         {
 
             HideAll(true);
             ShowLoading();
-
-            var diplomeService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
-
-            StudentsStatistics = (await diplomeService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest))?.ToList();
-
-            foreach (var item in StudentsStatistics)
-            {
-                OriginalList.Add(item);
-            }
+            await UpdateData();
 
             EndLoading();
             if (StudentsStatistics == null || StudentsStatistics?.Count == 0)
@@ -112,6 +104,18 @@ namespace Izrune.iOS
 
             UpdateCollectionViewHeight();
             resultCollectionView.ReloadData();
+        }
+
+        public async Task UpdateData()
+        {
+            var diplomeService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
+
+            StudentsStatistics = (await diplomeService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest))?.ToList();
+
+            foreach (var item in StudentsStatistics)
+            {
+                OriginalList.Add(item);
+            }
         }
 
         private void UpdateCollectionViewHeight()

@@ -30,6 +30,9 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
+            userNameTextField.Text = "Cmbes";
+            passwordTextField.Text = "Cmbes123";
+
             this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
 
             InitUI();
