@@ -97,29 +97,29 @@ namespace Izrune.Fragments
                     StopLoading();
                 var adapterr = new ServiceViewPagerAdapter(ChildFragmentManager, FragmentList);
                 pager.Adapter = adapterr;
-
+                pager.PageSelected += Pager_PageSelected;
             };
-           
 
 
-            var Result = MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(CurrentId);
-            var Individualserv = MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(0);
 
-            await Task.WhenAll(Result, Individualserv);
+            //var Result = MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(CurrentId);
+            //var Individualserv = MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(0);
 
-            var Individual = new InnerIndividualFragment(Individualserv.Result.Prices.ToList(),StudentId);
-            var Promo = new InnerPromoFragment(Result.Result,StudentId);
-            FragmentList.Add(Individual);
-            FragmentList.Add(Promo);
-            Density = Resources.DisplayMetrics.Density;
+            //await Task.WhenAll(Result, Individualserv);
+
+            //var Individual = new InnerIndividualFragment(Individualserv.Result.Prices.ToList(),StudentId);
+            //var Promo = new InnerPromoFragment(Result.Result,StudentId);
+            //FragmentList.Add(Individual);
+            //FragmentList.Add(Promo);
+            //Density = Resources.DisplayMetrics.Density;
             PromoButton.Click += PromoButton_Click;
             IndividualButton.Click += IndividualButton_Click;
 
 
 
-            var adapter = new ServiceViewPagerAdapter(ChildFragmentManager, FragmentList);
-            pager.Adapter = adapter;
-            pager.PageSelected += Pager_PageSelected;
+           // var adapter = new ServiceViewPagerAdapter(ChildFragmentManager, FragmentList);
+            //pager.Adapter = adapter;
+            //pager.PageSelected += Pager_PageSelected;
 
 
 

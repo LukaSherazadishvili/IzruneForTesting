@@ -39,6 +39,9 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.HeaderText)]
         TextView HeaderText;
 
+        //[MapControl(Resource.Id.LeftSideBar)]
+        //LinearLayout sideBar;
+
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -116,8 +119,8 @@ namespace Izrune.Activitys
         public override void OnBackPressed()
         {
             base.OnBackPressed();
-            //Intent intent = new Intent(this, typeof(LogInActivity));
-            //StartActivity(intent);
+            UserControl.Instance.LogOut();
+           
             this.Finish();
         }
     }

@@ -123,6 +123,8 @@ namespace IZrune.PCL.Helpers
             CurrentStudent = null;
         }
 
+
+
         public async void SeTSelectedStudent(int StudentId)
         {
             try

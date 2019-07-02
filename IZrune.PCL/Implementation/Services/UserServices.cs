@@ -130,12 +130,36 @@ namespace IZrune.PCL.Implementation.Services
                         return promCod;
                     }
                     else
+                    {
+
                         return null;
+
+                    }
                 }
                 else
                 {
 
-                    return null;
+                    var IndividualResult = JsonConvert.DeserializeObject<IndividualRootDTO>(jsn);
+                    PromoCode InvididualCode = new PromoCode();
+
+
+                    if (IndividualResult.Code == 0)
+                    {
+                        InvididualCode.PrommoCode = IndividualResult?.promocode;
+                        InvididualCode.Prices = IndividualResult?.prices?.Select(i =>
+                        new Price()
+                        {
+                            price = i.price,
+
+                            MonthCount = i.months
+
+                        });
+                        return InvididualCode;
+                    }
+                    else
+                    {
+                        return null;
+                    }
 
                 }
             }
