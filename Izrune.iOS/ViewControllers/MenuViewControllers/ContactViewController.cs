@@ -3,12 +3,13 @@
 using System;
 
 using Foundation;
+using MessageUI;
 using MpdcViewExtentions;
 using UIKit;
 
 namespace Izrune.iOS
 {
-	public partial class ContactViewController : UIViewController
+	public partial class ContactViewController : UIViewController, IUINavigationControllerDelegate
 	{
 		public ContactViewController (IntPtr handle) : base (handle)
 		{
@@ -22,9 +23,25 @@ namespace Izrune.iOS
             InitUI();
 
             AddGesture(phoneView, "tel://+995577683232");
-            AddGesture(mailView, "http://www.izrune.ge/");
+            //AddGesture(mailView, "info@izrune.ge/");
             AddGesture(facebookView, "https://www.facebook.com/izrune.ge");
+
+            if(mailView.GestureRecognizers == null || mailView.GestureRecognizers?.Length == 0)
+            {
+                mailView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    string mailUrl = "info@izrune.ge";
+                    string subject = "";
+                    string body = "";
+                    using (var encoded = new NSString($"mailto:{mailUrl}?subject={subject}&body={body}").CreateStringByAddingPercentEscapes(NSStringEncoding.UTF8))
+                    using (var url = NSUrl.FromString(encoded))
+                    {
+                        UIApplication.SharedApplication.OpenUrl(url);
+                    }
+                }));
+            }
         }
+
 
         private void InitUI()
         {

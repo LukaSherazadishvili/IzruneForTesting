@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Izrune.iOS.Utils;
+using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Enum;
 using MpdcViewExtentions;
 using SidebarNavigation;
@@ -22,6 +23,7 @@ namespace Izrune.iOS.ViewControllers
         public MenuType SelectedMenu { get; set; } = MenuType.LogIn;
 
         private MenuViewController menuVc;
+        private IParent CurrentUser;
 
         #region ViewControllerStoryboardIds
 
@@ -85,29 +87,29 @@ namespace Izrune.iOS.ViewControllers
                     if (menu.Type == MenuType.LogOut)
                     {
                         menuVc.IsLogedIn = false;
+                        menuVc.ShowUserInfo(false);
                         menuVc.ReloadMenu();
-
-                        var navVc = GetMainViewController() as UINavigationController;
-
+                        var navVc = currentVc as UINavigationController;
                         var loginVc = navVc.ViewControllers[0] as LogInViewController;
 
                         loginVc.LogedIn = (logedIn) =>
                         {
+                            CurrentMenu = MenuType.Main;
                             menuVc.IsLogedIn = logedIn;
+                            menuVc.ShowUserInfo(logedIn);
                             menuVc.ReloadMenu();
                             SideBarController.ChangeContentView(menuViewControllerCreations[MenuType.Main].Invoke());
                         };
                     }
 
-                    if(menu.Type == MenuType.LogIn)
+                    if (menu.Type == MenuType.LogIn)
                     {
                         var navVc = currentVc as UINavigationController;
-
                         var loginVc = navVc.ViewControllers[0] as LogInViewController;
-
                         loginVc.LogedIn = (logedIn) =>
                         {
                             menuVc.IsLogedIn = logedIn;
+                            menuVc.ShowUserInfo(logedIn);
                             menuVc.ReloadMenu();
                             SideBarController.ChangeContentView(menuViewControllerCreations[MenuType.Main].Invoke());
                         };
@@ -122,6 +124,13 @@ namespace Izrune.iOS.ViewControllers
 
             };
 
+        }
+
+        private async System.Threading.Tasks.Task UpdateCurrentUser()
+        {
+            CurrentUser = await IZrune.PCL.Helpers.UserControl.Instance.GetCurrentUser();
+            menuVc.CurrentUser = CurrentUser;
+            menuVc.InitUser();
         }
 
         private void ShowMenu()
@@ -146,9 +155,11 @@ namespace Izrune.iOS.ViewControllers
 
             var loginVc = MainPageVc.ViewControllers[0] as LogInViewController;
 
-            loginVc.LogedIn = (logedIn) =>
+            loginVc.LogedIn = async (logedIn) =>
             {
+                await UpdateCurrentUser();
                 menuVc.IsLogedIn = logedIn;
+                menuVc.ShowUserInfo(logedIn);
                 menuVc.ReloadMenu();
                 SideBarController.ChangeContentView(menuViewControllerCreations[MenuType.Main].Invoke());
             };

@@ -13,6 +13,9 @@ namespace Izrune.iOS
 	partial class TestResultsViewController
 	{
 		[Outlet]
+		UIKit.UIView contentView { get; set; }
+
+		[Outlet]
 		UIKit.UIStackView dateStackView { get; set; }
 
 		[Outlet]
@@ -180,6 +183,11 @@ namespace Izrune.iOS
 			if (resultCollectionViewHeightConstraint != null) {
 				resultCollectionViewHeightConstraint.Dispose ();
 				resultCollectionViewHeightConstraint = null;
+			}
+
+			if (contentView != null) {
+				contentView.Dispose ();
+				contentView = null;
 			}
 		}
 	}

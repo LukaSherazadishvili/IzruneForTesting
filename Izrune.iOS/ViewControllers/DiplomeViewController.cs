@@ -43,6 +43,11 @@ namespace Izrune.iOS
 
             diplomeDetailVc = Storyboard.InstantiateViewController(ExamResultViewController.StoryboardId) as ExamResultViewController;
             diplomeDetailVc.Student = Student;
+
+            backBtn.TouchUpInside += delegate {
+                this.NavigationController.PopViewController(true);
+
+            };
         }
 
         private void InitUI()
@@ -52,14 +57,36 @@ namespace Izrune.iOS
 
         public async Task LoadDataAsync()
         {
-
+            HideHeader(true);
             ShowLoading();
+
 
             diplomeService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
 
             StudentsStatistics = (await diplomeService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam))?.Where(x => x.DiplomaUrl != null)?.ToList();
 
+            if (StudentsStatistics == null || StudentsStatistics?.Count == 0)
+            {
+                HideHeader(true);
+                ShowAlert();
+            }
+            else
+                HideHeader(false);
             EndLoading();
+        }
+
+        private void HideHeader(bool hide)
+        {
+            headerImageView.Hidden = hide;
+            headerLbl.Hidden = hide;
+            viewForDropDown.Hidden = hide;
+        }
+
+        private void ShowAlert()
+        {
+            var alert = UIAlertController.Create("შეცდომა", "ინფორმაცია ვერ მოიძებნა.", UIAlertControllerStyle.Alert);
+            alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, (s) => { this.NavigationController.PopViewController(true); }));
+            this.PresentViewController(alert, true, null );
         }
 
         public nint GetItemsCount(UICollectionView collectionView, nint section)

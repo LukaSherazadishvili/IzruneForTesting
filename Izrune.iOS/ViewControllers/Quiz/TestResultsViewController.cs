@@ -44,10 +44,6 @@ namespace Izrune.iOS
             InitCollectionViewSettings();
 
             await LoadDataAsync();
-            
-            InitUI();
-
-            InitDroDown();
 
             InitGestures();
 
@@ -78,10 +74,7 @@ namespace Izrune.iOS
 
         private void HideAll(bool hide)
         {
-            headerView.Hidden = hide;
-            viewForShadow.Hidden = hide;
-            mainStackView.Hidden = hide;
-            statisticStackView.Hidden = hide;
+            contentView.Hidden = hide;
         }
 
         public async Task LoadDataAsync()
@@ -99,26 +92,34 @@ namespace Izrune.iOS
                 OriginalList.Add(item);
             }
 
-            HideAll(false);
             EndLoading();
+            if (StudentsStatistics == null || StudentsStatistics?.Count == 0)
+            {
+                HideAll(true);
+                ShowAlert();
+            }
 
+            else
+            {
+                InitUI();
+                InitDroDown();
+                HideAll(false);
+            }
 
             //var firstCell = resultCollectionView.DequeueReusableCell(ResultCollectionViewCell.Identifier, NSIndexPath.FromRowSection(0, 0)) as ResultCollectionViewCell;
             //var lastCell = resultCollectionView.DequeueReusableCell(ResultCollectionViewCell.Identifier, NSIndexPath.FromRowSection((System.nint)(StudentsStatistics?.Count - 1), 0)) as ResultCollectionViewCell;
-
             //var contentHeight = lastCell.Frame.Y + lastCell.Frame.Height - firstCell.Frame.Y;
 
-            var totalHeight = (System.nfloat)(305 + ((StudentsStatistics?.Count - 1) * 220));
-
-            resultCollectionViewHeightConstraint.Constant = totalHeight;
-
-
-
+            UpdateCollectionViewHeight();
             resultCollectionView.ReloadData();
         }
-        
 
-        //statistic service getdiploma
+        private void UpdateCollectionViewHeight()
+        {
+            var totalHeight = (System.nfloat)(305 + ((StudentsStatistics?.Count - 1) * 220));
+            resultCollectionViewHeightConstraint.Constant = totalHeight;
+        }
+
         private void InitCollectionViewSettings()
         {
             resultCollectionView.RegisterNibForCell(ResultCollectionViewCell.Nib, ResultCollectionViewCell.Identifier);
@@ -190,6 +191,7 @@ namespace Izrune.iOS
                 }
 
                 StudentsStatistics = OriginalList?.Where(x => x.ExamDate.Year == Convert.ToInt32(name))?.ToList();
+                UpdateCollectionViewHeight();
                 resultCollectionView.ReloadData();
                 EndLoading();
 
@@ -220,6 +222,7 @@ namespace Izrune.iOS
                 }
 
                 StudentsStatistics = OriginalList?.Where(x => x.ExamDate.Month == index)?.ToList();
+                UpdateCollectionViewHeight();
                 resultCollectionView.ReloadData();
 
                 EndLoading();
