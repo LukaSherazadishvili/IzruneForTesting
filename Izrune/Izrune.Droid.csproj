@@ -80,6 +80,7 @@
     <Compile Include="Activitys\RegistrationActivity.cs" />
     <Compile Include="Activitys\RegistrationStudentActivity.cs" />
     <Compile Include="Activitys\RullesActivity.cs" />
+    <Compile Include="Activitys\SmsCodeActivity.cs" />
     <Compile Include="Activitys\StudentProfileEditActivity.cs" />
     <Compile Include="Activitys\TrainigTestActivity.cs" />
     <Compile Include="Adapters\RecyclerviewAdapters\DiplomaRecyclerViewAdapter.cs" />
@@ -670,6 +671,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\LayoutGetMoreInfo.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\LayoutSmsCode.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

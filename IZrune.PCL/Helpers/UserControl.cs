@@ -116,6 +116,13 @@ namespace IZrune.PCL.Helpers
            
         }
 
+
+        public void LogOut()
+        {
+            Parent = null;
+            CurrentStudent = null;
+        }
+
         public async void SeTSelectedStudent(int StudentId)
         {
             try

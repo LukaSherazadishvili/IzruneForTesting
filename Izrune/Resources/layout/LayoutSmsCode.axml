@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:fillViewport="true">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical">
+		<include
+				layout="@layout/mainarowbacktoolbar"
+				android:layout_width="match_parent"
+				android:layout_height="50dp"/>
+			
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="შემაჯამებელი ტესტი"
+			android:fontFamily="@font/bpg_mrgvlovani"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="20dp"
+			android:textSize="16dp"
+			android:textColor="#AE71B7"
+			/>
+
+
+			<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="გააქტიურე შემაჯამებელი ტესტი SMS კოდით, რომელიც მიიღეთ მითითებულ ტელეფონის ნომერზე"
+			android:fontFamily="@font/bpg_mrgvlovani"
+			android:layout_gravity="center"
+			android:gravity="center"
+			android:layout_marginTop="80dp"
+			android:textSize="12dp"
+			android:textColor="#AE71B7"
+			/>
+
+		<EditText
+				android:inputType="number"
+				android:id="@+id/SmsCodeEdiTxt"
+			android:layout_marginTop="50dp"
+			android:layout_width="240dp"
+			android:layout_height="40dp"
+			android:layout_gravity="center"
+			android:gravity="center"
+			android:hint="SMS კოდი"
+			android:textSize="15dp"
+			android:fontFamily="@font/bpg_mrgvlovani"
+			android:background="@drawable/izrune_editext_back"/>
+
+		<LinearLayout
+			android:id="@+id/AgreeButton"
+            android:elevation="5dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:gravity="center"
+            android:layout_marginTop="27dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/izrune_registration_buttonback"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="დადასტურება"
+                android:textColor="#ffffff"
+				android:fontFamily="@font/bpg_mrgvlovani"
+                />
+
+		
+        </LinearLayout>
+		<TextView
+			android:layout_width="240dp"
+			android:layout_height="wrap_content"
+			android:text="თუ SMS კოდი ვერ მიიღეთ, ჩვენ მას ახლიდან გამოგიგზავნით"
+			android:fontFamily="@font/bpg_mrgvlovani"
+			android:layout_gravity="center"
+			android:gravity="center"
+			android:layout_marginTop="25dp"
+			android:textSize="12dp"
+			android:textColor="#3F51B5"
+			/>
+
+
+		 <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+		android:layout_gravity="bottom"
+        >
+
+
+
+
+        <LinearLayout
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/background"/>
+        </LinearLayout>
+
+        <LinearLayout
+			android:id="@+id/GetSmsCodeButton"
+            android:elevation="5dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:gravity="center"
+            android:layout_marginTop="27dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bluebuttonbackgroundxml"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SMS კოდის მიღება"
+                android:textColor="#ffffff"
+				android:fontFamily="@font/bpg_mrgvlovani"
+                />
+        </LinearLayout>
+
+
+       
+		</FrameLayout>
+		</LinearLayout>
+	</ScrollView>
+</FrameLayout>
