@@ -64,7 +64,7 @@ namespace Izrune.Fragments
             {
                 var Vw = LayoutInflater.Inflate(Resource.Layout.ItemIndividualList, null);
 
-                Vw.FindViewById<TextView>(Resource.Id.TimeTxt).Text = items.EndDate.ToString();
+                Vw.FindViewById<TextView>(Resource.Id.TimeTxt).Text = items.MonthCount.ToString()+"თვე";
                 Vw.FindViewById<TextView>(Resource.Id.SaleTXt).Visibility = ViewStates.Gone;
                 Vw.FindViewById<TextView>(Resource.Id.PriceText).Text = items.price.ToString() + " ₾";
                 ServiceViews.Add(Vw);
@@ -109,7 +109,7 @@ namespace Izrune.Fragments
 
             var Result = PriceList.ElementAt(Index);
 
-            await UserControl.Instance.ReNewPack(StudentId, MonthDifference( Result.EndDate,Result.StartDate), Result.price);
+            await UserControl.Instance.ReNewPack(StudentId, Result.MonthCount, Result.price);
 
 
 

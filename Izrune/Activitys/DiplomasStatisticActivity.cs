@@ -30,12 +30,17 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.DateSpiner)]
         Spinner DateSpinner;
 
+        [MapControl(Resource.Id.BackButton)]
+        FrameLayout BackButton;
 
+        [MapControl(Resource.Id.BottmomBack)]
+        LinearLayout BotBacButton;
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
+            BackButton.Click += BackButton_Click;
+            BotBacButton.Click += BackButton_Click;
 
             var rrrrr = await MpdcContainer.Instance.Get<IStatisticServices>().GetDiplomaStatisticAsync();
 
@@ -74,6 +79,20 @@ namespace Izrune.Activitys
                 });
             };
 
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            OnBackPressed();
+        }
+
+
+
+
+        public override void OnBackPressed()
+        {
+            // base.OnBackPressed();
+            this.Finish();
         }
     }
 }

@@ -16,7 +16,10 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="vertical">
-
+			<include
+				layout="@layout/mainarowbacktoolbar"
+				android:layout_width="match_parent"
+				android:layout_height="50dp"/>
 		<LinearLayout
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
@@ -33,7 +36,7 @@
 				<ImageView
 					android:id="@+id/imageView7"
 					android:layout_marginTop="10dp"
-					android:layout_width="30dp"
+					android:layout_width="25dp"
 					android:layout_height="30dp"
 					android:layout_gravity="center"
 					android:src="@drawable/summary_test_diploma"
@@ -93,8 +96,8 @@
 			android:layout_height="0dp"
 			android:layout_weight="1"
 					/>
-        <LinearLayout
-		
+        <LinearLayout		
+				android:id="@+id/BottmomBack"
 		android:layout_width="match_parent"
         android:layout_height="180dp"		
         android:orientation="vertical"		
