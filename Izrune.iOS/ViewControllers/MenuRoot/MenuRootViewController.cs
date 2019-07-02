@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Izrune.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Enum;
+using IZrune.PCL.Helpers;
 using MpdcViewExtentions;
 using SidebarNavigation;
 using UIKit;
@@ -85,6 +86,7 @@ namespace Izrune.iOS.ViewControllers
 
                     if (menu.Type == MenuType.LogOut)
                     {
+                        UserControl.Instance.LogOut();
                         menuVc.IsLogedIn = false;
                         menuVc.ShowUserInfo(false);
                         menuVc.ReloadMenu();
