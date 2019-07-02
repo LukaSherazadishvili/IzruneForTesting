@@ -72,7 +72,6 @@ namespace Izrune.iOS.ViewControllers
                 MenuWidth = 280
             };
 
-
             menuVc.MainMenuClicked = (menu) =>
             {
                 try
@@ -92,8 +91,9 @@ namespace Izrune.iOS.ViewControllers
                         var navVc = currentVc as UINavigationController;
                         var loginVc = navVc.ViewControllers[0] as LogInViewController;
 
-                        loginVc.LogedIn = (logedIn) =>
+                        loginVc.LogedIn = async (logedIn) =>
                         {
+                            await UpdateCurrentUser();
                             CurrentMenu = MenuType.Main;
                             menuVc.IsLogedIn = logedIn;
                             menuVc.ShowUserInfo(logedIn);
@@ -106,8 +106,9 @@ namespace Izrune.iOS.ViewControllers
                     {
                         var navVc = currentVc as UINavigationController;
                         var loginVc = navVc.ViewControllers[0] as LogInViewController;
-                        loginVc.LogedIn = (logedIn) =>
+                        loginVc.LogedIn = async (logedIn) =>
                         {
+                            await UpdateCurrentUser();
                             menuVc.IsLogedIn = logedIn;
                             menuVc.ShowUserInfo(logedIn);
                             menuVc.ReloadMenu();

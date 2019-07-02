@@ -124,6 +124,7 @@ namespace Izrune.iOS
                 sumTestsView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
 
                     //TODO
+
                     this.NavigationController.PushViewController(resultVc, true);
                 }));
             }
