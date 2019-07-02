@@ -198,6 +198,7 @@ namespace Izrune.iOS
 
                 StudentsStatistics = OriginalList?.Where(x => x.ExamDate.Year == Convert.ToInt32(name))?.ToList();
                 UpdateCollectionViewHeight();
+                InitHeader();
                 resultCollectionView.ReloadData();
                 EndLoading();
 
@@ -229,6 +230,7 @@ namespace Izrune.iOS
 
                 StudentsStatistics = OriginalList?.Where(x => x.ExamDate.Month == index)?.ToList();
                 UpdateCollectionViewHeight();
+                InitHeader();
                 resultCollectionView.ReloadData();
 
                 EndLoading();
@@ -325,13 +327,18 @@ namespace Izrune.iOS
         {
             var maxPoint = StudentsStatistics?.OrderByDescending(x => x.Point)?.FirstOrDefault();
             var minTime = StudentsStatistics?.OrderBy(x => x.TestTimeInSecconds)?.FirstOrDefault();
-
             var testCounts = StudentsStatistics?.GroupBy(x => x.ExamDate);
 
             var maxTests = testCounts?.OrderBy(x => x.Count());
 
             System.Diagnostics.Debug.WriteLine(testCounts);
 
+
+            pointLbl.Text = maxPoint.Point.ToString() + " ქულა";
+            timeDate.Text = $"{minTime.TestTimeInSecconds / 60} წთ {minTime.TestTimeInSecconds % 60} წმ";
+            testDate.Text = "asdasd";
+            testLbl.Text = "";
+            timeLbl.Text = "dro";
 
             var GroupdExams = StudentsStatistics.GroupBy(c =>
                                     c.ExamDate.Day
