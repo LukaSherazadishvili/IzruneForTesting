@@ -70,10 +70,11 @@ namespace Izrune.iOS
             var students = await UserControl.Instance.GetCurrentUserStudents();
 
             SelectedStudent = students?.ElementAt(0);
-
+            if (SelectedStudent != null)
+                SchoolId = SelectedStudent.id;
             var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-            var data = (await service.GetPromoCodeAsync(SelectedStudent.SchoolId));
+            var data = (await service.GetPromoCodeAsync(SchoolId));
 
             PriceList = data?.Prices?.ToList();
 
