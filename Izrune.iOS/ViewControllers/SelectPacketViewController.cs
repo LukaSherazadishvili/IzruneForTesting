@@ -8,6 +8,7 @@ using Foundation;
 using Izrune.iOS.CollectionViewCells;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
 using MPDCiOSPages.ViewControllers;
 using UIKit;
 
@@ -65,6 +66,10 @@ namespace Izrune.iOS
         {
             ShowLoading();
             //TODO ProceList = ?
+
+            var students = await UserControl.Instance.GetCurrentUserStudents();
+
+            SelectedStudent = students?.ElementAt(0);
 
             var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 

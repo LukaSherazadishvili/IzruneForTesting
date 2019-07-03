@@ -116,11 +116,19 @@ namespace Izrune.iOS
                 diplomeDetailVc = Storyboard.InstantiateViewController(ExamResultViewController.StoryboardId) as ExamResultViewController;
                 diplomeDetailVc.Student = Student;
 
-                var quisInfo = await UserControl.Instance.GetQuisInfo(studentStatistic.Id);
-
-                diplomeDetailVc.QuisInfo = quisInfo;
-
-                EndLoading();
+                try
+                {
+                    var quisInfo = await UserControl.Instance.GetQuisInfo(studentStatistic.Id);
+                    diplomeDetailVc.QuisInfo = quisInfo;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    EndLoading();
+                }
 
                 this.NavigationController.PushViewController(diplomeDetailVc, true);
             };

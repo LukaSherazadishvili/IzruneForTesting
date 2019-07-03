@@ -116,8 +116,6 @@ namespace Izrune.iOS
             {
                 OriginalList.Add(item);
             }
-
-            resultCollectionView.ReloadData();
         }
 
         private void UpdateCollectionViewHeight()
@@ -334,8 +332,8 @@ namespace Izrune.iOS
             System.Diagnostics.Debug.WriteLine(testCounts);
 
 
-            pointLbl.Text = maxPoint.Point.ToString() + " ქულა";
-            timeDate.Text = $"{minTime.TestTimeInSecconds / 60} წთ {minTime.TestTimeInSecconds % 60} წმ";
+            pointLbl.Text = maxPoint?.Point.ToString() + " ქულა";
+            timeDate.Text = $"{minTime?.TestTimeInSecconds / 60} წთ {minTime?.TestTimeInSecconds % 60} წმ";
             testDate.Text = "asdasd";
             testLbl.Text = "";
             timeLbl.Text = "dro";
