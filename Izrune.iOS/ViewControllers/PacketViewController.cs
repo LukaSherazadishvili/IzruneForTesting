@@ -129,10 +129,10 @@ namespace Izrune.iOS
             else
             {
                 SelectPacketVc.SchoolId = SchoolId;
-                SelectPacketVc.PriceSelected = (price) =>
-                {
+                //SelectPacketVc.PriceSelected = (price) =>
+                //{
 
-                };
+                //};
 
                 PromoVc.PromoInfo = PromoCode;
 

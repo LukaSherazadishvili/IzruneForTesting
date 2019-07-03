@@ -82,12 +82,12 @@ namespace Izrune.iOS
 
             EndLoading();
 
-            var firstCell = packetCollectionView.DequeueReusableCell(PacketCollectionViewCell.Identifier, NSIndexPath.FromRowSection(0, 0)) as PacketCollectionViewCell;
-            var lastCell = packetCollectionView.DequeueReusableCell(PacketCollectionViewCell.Identifier, NSIndexPath.FromRowSection((System.nint)(PriceList?.Count - 1), 0)) as PacketCollectionViewCell;
+            //var firstCell = packetCollectionView.DequeueReusableCell(PacketCollectionViewCell.Identifier, NSIndexPath.FromRowSection(0, 0)) as PacketCollectionViewCell;
+            //var lastCell = packetCollectionView.DequeueReusableCell(PacketCollectionViewCell.Identifier, NSIndexPath.FromRowSection((System.nint)(PriceList?.Count - 1), 0)) as PacketCollectionViewCell;
 
-            var contentHeight = lastCell.Frame.Y + lastCell.Frame.Height - firstCell.Frame.Y;
+            var contentHeight = (PriceList?.Count - 1) * 70;
 
-            packetCollectionHeightConstraint.Constant = contentHeight;
+            packetCollectionHeightConstraint.Constant = (System.nfloat)contentHeight;
 
             DataLoaded?.Invoke();
 
