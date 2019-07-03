@@ -339,10 +339,12 @@ namespace Izrune.iOS
 
 
             pointLbl.Text = maxPoint?.Point.ToString() + " ქულა";
-            timeDate.Text = $"{minTime?.TestTimeInSecconds / 60} წთ {minTime?.TestTimeInSecconds % 60} წმ";
-            testDate.Text = "asdasd";
-            testLbl.Text = "";
-            timeLbl.Text = "dro";
+            pointDate.Text = maxPoint?.ExamDate.ToString("MM.dd.yyyy");
+
+            timeLbl.Text = $"{minTime?.TestTimeInSecconds / 60} წთ {minTime?.TestTimeInSecconds % 60} წმ";
+            testDate.Text = minTime?.ExamDate.ToShortDateString();
+
+            testLbl.Text = "asd";
 
             var GroupdExams = StudentsStatistics.GroupBy(c =>
                                     c.ExamDate.Day
