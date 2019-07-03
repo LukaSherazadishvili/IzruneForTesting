@@ -122,9 +122,9 @@ namespace IZrune.PCL.Implementation.Services
                         new Price()
                         {
                             price = i.price,
-                            StartDate = DateTime.ParseExact(i.start_date, "dd.MM.yyyy", CultureInfo.InvariantCulture),
-                            EndDate = DateTime.ParseExact(i.end_date, "dd.MM.yyyy", CultureInfo.InvariantCulture),
-                            MonthCount = MonthDifference(DateTime.ParseExact(i.end_date, "dd.MM.yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(i.start_date, "dd.MM.yyyy", CultureInfo.InvariantCulture))
+                            StartDate = DateTime.ParseExact(i.start_date, "yyyy-MM-dd", CultureInfo.InvariantCulture),
+                            EndDate = DateTime.ParseExact(i.end_date, "yyyy-MM-dd", CultureInfo.InvariantCulture),
+                           MonthCount = MonthDifference(DateTime.ParseExact(i.end_date, "yyyy-MM-dd", CultureInfo.InvariantCulture), DateTime.ParseExact(i.start_date, "yyyy-MM-dd", CultureInfo.InvariantCulture))
 
                         });
                         return promCod;
