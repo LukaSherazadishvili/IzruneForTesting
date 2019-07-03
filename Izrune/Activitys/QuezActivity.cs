@@ -134,6 +134,7 @@ namespace Izrune.Activitys
 
             FragmentQuestion.AnswerClick = () =>
             {
+                
                 Position++;
                 if (TimeType != "1")
                 {
