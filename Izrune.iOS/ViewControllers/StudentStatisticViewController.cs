@@ -78,7 +78,6 @@ namespace Izrune.iOS
             contentView.Hidden = false;
         }
 
-
         private void InitForm(IStudent student)
         {
             currentStudentLbl.Text = student.Name + " " + student.LastName;
@@ -158,13 +157,15 @@ namespace Izrune.iOS
             CurentStudentDP.DataSource = studentsArray;
 
 
-            CurentStudentDP.SelectionAction = (nint index, string name) =>
+            CurentStudentDP.SelectionAction = async (nint index, string name) =>
             {
                 if (currentStudentIndex != index)
                 {
                     currentStudentIndex = (int)index;
                     CurrentStudent = Students?[(int)index];
                     InitForm(CurrentStudent);
+                    UserControl.Instance.SeTSelectedStudent(CurrentStudent.id);
+                    await UpdateData();
                 }
             };
 
@@ -203,5 +204,12 @@ namespace Izrune.iOS
 
         }
 
+        private async Task UpdateData()
+        {
+            diplomeVc.Student = CurrentStudent;
+            await diplomeVc.UpdateData();
+
+            await resultVc.UpdateData();
+        }
     }
 }

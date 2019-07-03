@@ -22,6 +22,8 @@ namespace Izrune.iOS
         public IQuisInfo QuisInfo;
 
         public IStudent Student;
+
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();

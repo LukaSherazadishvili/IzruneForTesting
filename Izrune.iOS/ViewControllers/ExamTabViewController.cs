@@ -32,7 +32,6 @@ namespace Izrune.iOS
         public override void ViewDidLoad()
         {
             _navc = NavigationController;
-            
 
             //this.NavigationController.NavigationBar.Translucent = false;
             //this.NavigationController.NavigationBar.InitNavigationBarColorWithNoShadow(UIColor.White);

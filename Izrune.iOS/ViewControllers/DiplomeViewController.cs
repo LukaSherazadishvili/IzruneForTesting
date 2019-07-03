@@ -41,29 +41,30 @@ namespace Izrune.iOS
 
             InitCollectionViewSettings();
 
-            diplomeDetailVc = Storyboard.InstantiateViewController(ExamResultViewController.StoryboardId) as ExamResultViewController;
-            diplomeDetailVc.Student = Student;
-
             backBtn.TouchUpInside += delegate {
                 this.NavigationController.PopViewController(true);
 
             };
         }
 
+        public async override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+
+            await UpdateData();
+            diplomeCollectionView.ReloadData();
+        }
         private void InitUI()
         {
             viewForDropDown.Layer.CornerRadius = 20;
         }
 
-        public async Task LoadDataAsync()
+        private async Task LoadDataAsync()
         {
             HideHeader(true);
             ShowLoading();
 
-
-            diplomeService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
-
-            StudentsStatistics = (await diplomeService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam))?.Where(x => x.DiplomaUrl != null)?.ToList();
+            await UpdateData();
 
             if (StudentsStatistics == null || StudentsStatistics?.Count == 0)
             {
@@ -73,6 +74,14 @@ namespace Izrune.iOS
             else
                 HideHeader(false);
             EndLoading();
+            diplomeCollectionView.ReloadData();
+        }
+
+        public async Task UpdateData()
+        {
+            diplomeService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
+
+            StudentsStatistics = (await diplomeService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam))?.Where(x => x.DiplomaUrl != null)?.ToList();
         }
 
         private void HideHeader(bool hide)
@@ -103,6 +112,9 @@ namespace Izrune.iOS
             cell.CellClicked = async (studentStatistic) =>
             {
                 ShowLoading();
+
+                diplomeDetailVc = Storyboard.InstantiateViewController(ExamResultViewController.StoryboardId) as ExamResultViewController;
+                diplomeDetailVc.Student = Student;
 
                 var quisInfo = await UserControl.Instance.GetQuisInfo(studentStatistic.Id);
 
