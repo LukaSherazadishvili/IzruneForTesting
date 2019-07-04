@@ -159,7 +159,7 @@ namespace IZrune.PCL.Implementation.Services
                 {
                     var dploma = new DiplomaStatisticc()
                     {
-                        DiplomaDate = $"{Items.ExamDate.Year}-{Items.ExamDate.Year - 1}"
+                        DiplomaDate = $"{Items.ExamDate.Year - 1}-{Items.ExamDate.Year}"
                     };
 
                     temp.Add(dploma);

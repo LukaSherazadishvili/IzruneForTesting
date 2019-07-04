@@ -57,7 +57,7 @@ namespace Izrune.Fragments
             {
                 var Vw = LayoutInflater.Inflate(Resource.Layout.ItemIndividualList, null);
 
-                Vw.FindViewById<TextView>(Resource.Id.TimeTxt).Text = items.EndDate.ToString();
+                Vw.FindViewById<TextView>(Resource.Id.TimeTxt).Text = items.MonthCount.ToString();
                 Vw.FindViewById<TextView>(Resource.Id.SaleTXt).Visibility = ViewStates.Gone;
                 Vw.FindViewById<TextView>(Resource.Id.PriceText).Text = items.price.ToString()+ " ₾";
                 ServiceViews.Add(Vw);

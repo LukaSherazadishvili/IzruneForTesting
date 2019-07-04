@@ -211,8 +211,10 @@ namespace IZrune.PCL.Implementation.Services
                             PersonalNumber=i.personal_number,
                             RegionId= Convert.ToInt32( i.region_id),
                             SchoolId=Convert.ToInt32(i.school_id),                            
-                           
-                      });
+                           Class=int.Parse(i.Class),
+                          // PakEndDate= DateTime.ParseExact(i?.PackageEndDate, "yyyy-MM-dd", CultureInfo.InvariantCulture)
+
+                        });
                     return parent;
                 }
                 else

@@ -85,6 +85,7 @@
     <Compile Include="Activitys\TrainigTestActivity.cs" />
     <Compile Include="Adapters\RecyclerviewAdapters\DiplomaRecyclerViewAdapter.cs" />
     <Compile Include="Adapters\RecyclerviewAdapters\ExamStatisticRecyclerAdapter.cs" />
+    <Compile Include="Adapters\RecyclerviewAdapters\MenuRecyclerAdapter.cs" />
     <Compile Include="Adapters\RecyclerviewAdapters\NewsRecyclerAdapter.cs" />
     <Compile Include="Adapters\RecyclerviewAdapters\QuestionStatisticAdapter.cs" />
     <Compile Include="Adapters\RecyclerviewAdapters\ShedulerRecyclerAdapter.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Fragments\StudentRagistrationFirstFragment.cs" />
     <Compile Include="Helpers\IzruneHellper.cs" />
     <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\MenuItemClass.cs" />
     <Compile Include="Helpers\QuestionShedule.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -676,6 +678,26 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\LayoutSmsCode.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ItemMenu.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\test.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\loginmenuheader.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\innermenuheader.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -1,11 +1,14 @@
 ﻿using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
 using IZrune.PCL.Implementation.Models;
 using IZrune.PCL.WebUtils;
 using IZrune.TransferModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +17,44 @@ namespace IZrune.PCL.Implementation.Services
 {
     public class PaymentService : IPaymentService
     {
+        public async  Task<IEnumerable<IPaymentHistory>> GetPaymentHistory()
+        {
+            var FormContent = new FormUrlEncodedContent(new[]
+                  {
+                        new KeyValuePair<string,string>("parent_id",UserControl.Instance.GetCurrentUser().Id.ToString()),
+                         
+                     });
+
+            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getPaymentHistory&hashcode=e733269189a8065cc61d5d43b2f39c9d", FormContent);
+            var jsn = await Data.Content.ReadAsStringAsync();
+
+            var Result = JsonConvert.DeserializeObject<PaymentHistoryRootDTO>(jsn);
+
+            var students = await UserControl.Instance.GetCurrentUserStudents();
+
+            if (Result.Code == 0)
+            {
+
+
+                return Result.payment_history.Select(i => new PaymentHistory() {
+
+                    Amount = int.Parse(i.amount),
+                    Date = DateTime.ParseExact(i.date, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture),
+                    StudentName = students.FirstOrDefault(o => o.id == Convert.ToInt32(i.student_id)).Name
+                    
+
+                });
+                
+
+            }
+            else
+            {
+                return null;
+            }
+
+
+        }
+
         public async Task<IPay> GetPaymentUrlsAsync(int StudentId, int MonthCount, int Amount, string promoCode = "0")
         {
 
@@ -41,5 +82,7 @@ namespace IZrune.PCL.Implementation.Services
             return pay;
 
         }
+
+
     }
 }

@@ -10,6 +10,7 @@ namespace IZrune.PCL.Abstraction.Services
     {
         Task<IPay> GetPaymentUrlsAsync(int StudentId, int MonthCount, int Amount, string promoCode = "0");
 
+        Task<IEnumerable<IPaymentHistory>> GetPaymentHistory();
         
     }
 }

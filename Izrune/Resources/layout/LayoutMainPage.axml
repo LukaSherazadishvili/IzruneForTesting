@@ -42,20 +42,11 @@
             app:itemIconTint="@drawable/selectedmenuback"
             app:theme="@style/TextAppearance"          
             app:menu="@menu/menu"
+			app:headerLayout="@layout/innermenuheader"
 			android:fitsSystemWindows="true" 
 				android:layout_gravity="start"
-          >
-				<TextView
-				android:id="@+id/ParrentName"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:fontFamily="@font/bpg_mrgvlovani"/>
-		
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					text="პროფილის ნომერი: 686342"/>
-		</android.support.design.widget.NavigationView>
+          />
+	
 	
     </android.support.v4.widget.DrawerLayout>
    
