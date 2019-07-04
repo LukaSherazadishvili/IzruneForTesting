@@ -1507,7 +1507,6 @@
                         <outlet property="diplomeLbl" destination="1kD-AC-RFf" id="g8B-XG-u7y"/>
                         <outlet property="headerImageView" destination="8aX-uh-Ut4" id="K0e-9d-CBi"/>
                         <outlet property="headerLbl" destination="pcH-6N-U9T" id="PTc-Ae-fYX"/>
-                        <outlet property="testLbl" destination="1kD-AC-RFf" id="43a-YR-qav"/>
                         <outlet property="viewForDropDown" destination="hH7-nE-2o7" id="OZb-Gj-maE"/>
                     </connections>
                 </viewController>

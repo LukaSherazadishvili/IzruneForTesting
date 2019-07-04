@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Foundation;
+using FPT.Framework.iOS.UI.DropDown;
 using Izrune.iOS.CollectionViewCells;
+using Izrune.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
@@ -26,8 +28,10 @@ namespace Izrune.iOS
         public IStudent Student;
         private IStatisticServices diplomeService;
         private List<IStudentsStatistic> StudentsStatistics;
+        DropDown YearDropDown = new DropDown();
 
         private ExamResultViewController diplomeDetailVc;
+        private List<IDiplomStatistic> diplomeYears;
 
         public async override void ViewDidLoad()
         {
@@ -45,6 +49,8 @@ namespace Izrune.iOS
                 this.NavigationController.PopViewController(true);
 
             };
+
+            InitDropDowns();
         }
 
         public async override void ViewWillAppear(bool animated)
@@ -63,6 +69,9 @@ namespace Izrune.iOS
         {
             HideHeader(true);
             ShowLoading();
+
+            var service = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
+            diplomeYears = (await service.GetDiplomaStatisticAsync())?.ToList();
 
             await UpdateData();
 
@@ -152,5 +161,62 @@ namespace Izrune.iOS
         {
             return new CoreGraphics.CGSize(collectionView.Frame.Width * 0.45, 50);
         }
+
+        #region DropDown
+        private void InitDropDowns()
+        {
+            SetupDropDown(YearDropDown, viewForDropDown, diplomeLbl);
+            SetupDropDownGesture(YearDropDown, viewForDropDown);
+
+            var studentsArray = diplomeYears?.Select(x => x.DiplomaDate)?.ToArray();
+            YearDropDown.DataSource = studentsArray;
+
+            YearDropDown.SelectionAction = async (nint index, string name) =>
+            {
+                try
+                {
+                    diplomeLbl.Text = name + "სასწავლო წელი";
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+            };
+
+        }
+
+        private void SetupDropDown(DropDown dropDown, UIView viewForDpD, UILabel dropDownLbl)
+        {
+            dropDown.AnchorView = new WeakReference<UIView>(viewForDpD);
+            dropDown.BottomOffset = new CoreGraphics.CGPoint(0, viewForDpD.Bounds.Height);
+            dropDown.Width = View.Frame.Width;
+            dropDown.Direction = Direction.Bottom;
+        }
+
+        private void InitDropDownUI(DropDown dropDown)
+        {
+            dropDown.BackgroundColor = UIColor.FromRGB(243, 243, 243);
+            dropDown.SelectionBackgroundColor = AppColors.TitleColor;
+            DPDConstants.UI.TextColor = AppColors.TitleColor;
+            DPDConstants.UI.SelectedTextColor = UIColor.White;
+
+            dropDown.TextFont = UIFont.FromName("BPG Mrgvlovani Caps 2010", 15);
+            dropDown.ClipsToBounds = true;
+            dropDown.Layer.CornerRadius = 20;
+        }
+
+        private void SetupDropDownGesture(DropDown dropDown, UIView viewforDpD)
+        {
+            if (viewforDpD.GestureRecognizers == null || viewforDpD.GestureRecognizers?.Length == 0)
+            {
+                viewforDpD.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
+                    dropDown.Show();
+                    InitDropDownUI(dropDown);
+                }));
+            }
+
+        }
+        #endregion
     }
 }
