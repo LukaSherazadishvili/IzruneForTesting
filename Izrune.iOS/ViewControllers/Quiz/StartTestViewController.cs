@@ -60,15 +60,13 @@ namespace Izrune.iOS
 
             SelectedStudent = Students[0];
 
-            UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
-
             InitGestures();
 
             InitDroDown();
 
             View.LayoutIfNeeded();
 
-
+            UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
 
             UserNameDropDown.SelectRow(0);
         }
