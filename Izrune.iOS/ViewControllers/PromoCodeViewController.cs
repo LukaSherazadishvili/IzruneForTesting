@@ -85,7 +85,9 @@ namespace Izrune.iOS
             promoCodeTf.TextColor = UIColor.White;
             promoCodeTf.Layer.BorderColor = isRight ? AppColors.Succesful.CGColor : AppColors.ErrorTitle.CGColor;
             promoCodeTf.BackgroundColor = isRight ? AppColors.GreenBg : AppColors.RedBg;
-            promoCodeErorLbl.Hidden = false;
+            promoCodeErorLbl.Hidden = isRight;
+            promoCodeErorLbl.Text = isRight ? "კოდი სწორია" : "კოდი არასწორია";
+
             promoCodeErorLbl.TextColor = isRight ? AppColors.Succesful : AppColors.ErrorTitle;
         }
 
