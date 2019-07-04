@@ -172,7 +172,7 @@ namespace IZrune.PCL.Implementation.Services
                     var FromDate = new DateTime(Years.ElementAt(i).ExamDate.Year - 1, 9, 1);
 
 
-                    temp.ElementAt(i).DiplomaStatistic = Result.Where(x => x.ExamDate <= After && x.ExamDate >= FromDate);
+                   // temp.ElementAt(i).DiplomaStatistic = Result.Where(x => x.ExamDate <= After && x.ExamDate >= FromDate);
 
 
 
