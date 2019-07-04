@@ -23,6 +23,7 @@ namespace Izrune.iOS
 
         public IStudent Student;
 
+        public bool ShowShare;
 
         public override void ViewDidLoad()
         {
@@ -31,6 +32,21 @@ namespace Izrune.iOS
             InitUI();
 
             InitResult();
+
+            if(ShowShare)
+            {
+                var barButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, null);
+
+                barButton.Clicked += delegate {
+                    var url = QuisInfo.DiplomaURl;
+
+                    if (!string.IsNullOrEmpty(url) && !string.IsNullOrWhiteSpace(url))
+                    {
+                        this.ShareUrl(url);
+                    }
+                };
+                this.NavigationItem.RightBarButtonItem = barButton;
+            }
         }
 
         private void InitUI()

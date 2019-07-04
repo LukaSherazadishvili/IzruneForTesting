@@ -115,6 +115,7 @@ namespace Izrune.iOS
 
                 diplomeDetailVc = Storyboard.InstantiateViewController(ExamResultViewController.StoryboardId) as ExamResultViewController;
                 diplomeDetailVc.Student = Student;
+                diplomeDetailVc.ShowShare = true;
 
                 try
                 {
