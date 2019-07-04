@@ -164,8 +164,15 @@ namespace Izrune.iOS
                     currentStudentIndex = (int)index;
                     CurrentStudent = Students?[(int)index];
                     InitForm(CurrentStudent);
-                    UserControl.Instance.SeTSelectedStudent(CurrentStudent.id);
-                    await UpdateData();
+                    try
+                    {
+                        UserControl.Instance.SeTSelectedStudent(CurrentStudent.id);
+                        await UpdateData();
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine(ex.Message);
+                    }
                 }
             };
 

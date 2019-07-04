@@ -57,6 +57,12 @@ namespace Izrune.iOS
 
         }
 
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+
+            resultCollectionView?.ReloadData();
+        }
         private void InitUI()
         {
             headerView.Layer.CornerRadius = 15;
@@ -116,8 +122,6 @@ namespace Izrune.iOS
             {
                 OriginalList.Add(item);
             }
-
-            resultCollectionView.ReloadData();
         }
 
         private void UpdateCollectionViewHeight()
@@ -184,7 +188,7 @@ namespace Izrune.iOS
 
             YearDropDown.SelectionAction = (nint index, string name) =>
             {
-                ShowLoading();
+                //ShowLoading();
                 yearLbl.Text = name;
 
                 if(index == 0)
@@ -200,7 +204,7 @@ namespace Izrune.iOS
                 UpdateCollectionViewHeight();
                 InitHeader();
                 resultCollectionView.ReloadData();
-                EndLoading();
+                //EndLoading();
 
                 if (StudentsStatistics == null || StudentsStatistics?.Count == 0)
                 {
@@ -220,7 +224,7 @@ namespace Izrune.iOS
             {
                 monthLbl.Text = name;
 
-                ShowLoading();
+                //ShowLoading();
                 if(index == 0)
                 {
                     StudentsStatistics = OriginalList;
@@ -233,7 +237,7 @@ namespace Izrune.iOS
                 InitHeader();
                 resultCollectionView.ReloadData();
 
-                EndLoading();
+                //EndLoading();
                 if(StudentsStatistics == null || StudentsStatistics?.Count == 0)
                 {
                     ShowAlert();
@@ -331,14 +335,16 @@ namespace Izrune.iOS
 
             var maxTests = testCounts?.OrderBy(x => x.Count());
 
-            System.Diagnostics.Debug.WriteLine(testCounts);
+            //System.Diagnostics.Debug.WriteLine(testCounts);
 
 
-            pointLbl.Text = maxPoint.Point.ToString() + " ქულა";
-            timeDate.Text = $"{minTime.TestTimeInSecconds / 60} წთ {minTime.TestTimeInSecconds % 60} წმ";
-            testDate.Text = "asdasd";
-            testLbl.Text = "";
-            timeLbl.Text = "dro";
+            pointLbl.Text = maxPoint?.Point.ToString() + " ქულა";
+            pointDate.Text = maxPoint?.ExamDate.ToString("MM.dd.yyyy");
+
+            timeLbl.Text = $"{minTime?.TestTimeInSecconds / 60} წთ {minTime?.TestTimeInSecconds % 60} წმ";
+            testDate.Text = minTime?.ExamDate.ToShortDateString();
+
+            testLbl.Text = "asd";
 
             var GroupdExams = StudentsStatistics.GroupBy(c =>
                                     c.ExamDate.Day

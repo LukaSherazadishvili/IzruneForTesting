@@ -39,14 +39,12 @@ namespace Izrune.iOS
         private PaymentMethodViewController paymentViewController;
 
         private bool AddMoreStudentClicked;
-
         private int CurrentIndex = 0;
-
 
         bool NextClicked = true;
         private List<IRegion> CityList;
         private IPrice SelectedPrice;
-        private int AddStudentIndex;
+        //private int AddStudentIndex;
         private const int HeaderAndFooterHeight = 275;
 
         private IStudent MoreStudent;
@@ -111,26 +109,28 @@ namespace Izrune.iOS
             AddMoreStudentVc = Storyboard.InstantiateViewController(AddStudentViewController.StoryboardId) as AddStudentViewController;
             AddMoreStudentVc.AddMoreStudentClicked = () =>
             {
-                //////////////////////////////
-                //////Add More Student ///////
-                //////////////////////////////
+                //Add More Student
 
-
-                AddMoreStudentClicked = true;
-                prewBtn.Enabled = false;
-                ReseteViewControllers();
-                CurrentIndex = 2;
-                SelectedPrice = null;
-                AddStudentIndex = 0;
-                AddViewController(studentRegVc1, AddMoreStudentVc);
-                ChangeHeader(false);
-                HideHeader(false);
+                AddMoreStident();
             };
 
             paymentViewController = Storyboard.InstantiateViewController(PaymentMethodViewController.StoryboardId) as PaymentMethodViewController;
             paymentViewController.GoToLogin = () => { 
                 this.NavigationController.PopViewController(true); 
                 };
+        }
+
+        private void AddMoreStident()
+        {
+            AddMoreStudentClicked = true;
+            prewBtn.Enabled = false;
+            ReseteViewControllers();
+            CurrentIndex = 2;
+            SelectedPrice = null;
+            //AddStudentIndex = 0;
+            AddViewController(studentRegVc1, AddMoreStudentVc);
+            ChangeHeader(false);
+            HideHeader(false);
         }
 
         private void InitGestures()
@@ -326,7 +326,6 @@ namespace Izrune.iOS
 
                                 else
                                 {
-
                                     AddViewController(AddMoreStudentVc, studentRegVc2);
                                     CurrentIndex++;
                                 }
@@ -351,15 +350,9 @@ namespace Izrune.iOS
                         if (NextClicked)
                         {
                             HideHeader(true);
-                            //AddViewController(AddMoreStudentVc, studentRegVc2);
-                            //choosePacketVc.SendClicked?.Invoke();
-
                             AddMoreStudentVc?.SendClicked?.Invoke();
-
-                            //AddViewController(AddMoreStudentVc, studentRegVc2);
                             AddMoreStudentVc.DataSent = (ipay) => {
                                 paymentViewController.PayInfo = ipay;
-                                //AddViewController(paymentViewController, AddMoreStudentVc);
                                 this.NavigationController.PushViewController(paymentViewController, true);
                             };
                         }
@@ -373,28 +366,7 @@ namespace Izrune.iOS
 
                         break;
                     }
-                //case 5:
-                    //{
-                    //    if (NextClicked)
-                    //    {
-                    //        AddMoreStudentVc?.SendClicked?.Invoke();
-
-                    //        AddMoreStudentVc.DataSent = (ipay) => {
-                    //            paymentViewController.PayInfo = ipay;
-                    //            AddViewController(paymentViewController, AddMoreStudentVc);
-                    //        };
-
-                    //    }
-                    //    else
-                    //    {
-                    //        AddViewController(studentRegVc2, AddMoreStudentVc);
-                    //        ChangeHeader(false);
-                    //        HideHeader(false);
-                    //        //this.NavigationController.PushViewController(choosePacketVc, false);
-                    //    }
-
-                    //    break;
-                    //}
+                
                 default:
                     break;
             }
@@ -520,6 +492,11 @@ namespace Izrune.iOS
             };
 
             AddMoreStudentVc = Storyboard.InstantiateViewController(AddStudentViewController.StoryboardId) as AddStudentViewController;
+
+            AddMoreStudentVc.AddMoreStudentClicked = () =>
+            {
+                AddMoreStident();
+            };
         }
 
         private void ChangeHeader(bool isParent)

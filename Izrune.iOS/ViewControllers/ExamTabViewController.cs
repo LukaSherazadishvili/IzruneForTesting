@@ -56,17 +56,17 @@ namespace Izrune.iOS
             
             EdgesForExtendedLayout = UIRectEdge.None;
             View.LayoutIfNeeded();
-            var barButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, null);
+            //var barButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, null);
 
-            barButton.Clicked += delegate {
-                var url = "";
+            //barButton.Clicked += delegate {
+            //    var url = "";
 
-                if (!string.IsNullOrEmpty(url) && !string.IsNullOrWhiteSpace(url))
-                {
-                    this.ShareUrl(url);
-                }
-            };
-            this.NavigationItem.RightBarButtonItem = barButton;
+            //    if (!string.IsNullOrEmpty(url) && !string.IsNullOrWhiteSpace(url))
+            //    {
+            //        this.ShareUrl(url);
+            //    }
+            //};
+            //this.NavigationItem.RightBarButtonItem = barButton;
         }
 
         public override void ViewDidDisappear(bool animated)

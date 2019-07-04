@@ -8,6 +8,7 @@ using Foundation;
 using Izrune.iOS.CollectionViewCells;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
 using MPDCiOSPages.ViewControllers;
 using UIKit;
 
@@ -66,9 +67,14 @@ namespace Izrune.iOS
             ShowLoading();
             //TODO ProceList = ?
 
+            var students = await UserControl.Instance.GetCurrentUserStudents();
+
+            SelectedStudent = students?.ElementAt(0);
+            if (SelectedStudent != null)
+                SchoolId = SelectedStudent.id;
             var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-            var data = (await service.GetPromoCodeAsync(SelectedStudent.SchoolId));
+            var data = (await service.GetPromoCodeAsync(SchoolId));
 
             PriceList = data?.Prices?.ToList();
 
@@ -76,12 +82,12 @@ namespace Izrune.iOS
 
             EndLoading();
 
-            var firstCell = packetCollectionView.DequeueReusableCell(PacketCollectionViewCell.Identifier, NSIndexPath.FromRowSection(0, 0)) as PacketCollectionViewCell;
-            var lastCell = packetCollectionView.DequeueReusableCell(PacketCollectionViewCell.Identifier, NSIndexPath.FromRowSection((System.nint)(PriceList?.Count - 1), 0)) as PacketCollectionViewCell;
+            if(PriceList?.Count > 0)
+            {
+                var contentHeight = (PriceList?.Count - 1) * 70;
+                packetCollectionHeightConstraint.Constant = (System.nfloat)contentHeight;
+            }
 
-            var contentHeight = lastCell.Frame.Y + lastCell.Frame.Height - firstCell.Frame.Y;
-
-            packetCollectionHeightConstraint.Constant = contentHeight;
 
             DataLoaded?.Invoke();
 

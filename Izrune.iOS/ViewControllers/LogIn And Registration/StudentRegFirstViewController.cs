@@ -47,15 +47,25 @@ namespace Izrune.iOS
 
             StudentSelected = () =>
             {
-                Student = new Student()
+
+                try
                 {
-                    Name = firstNameTf.Text,
-                    LastName = lastNameLTf.Text,
-                    Bdate = new DateTime(int.Parse(yearTextField.Text), int.Parse(monthTextField.Text), int.Parse(dayTextField.Text)),
-                    PersonalNumber = privateNumberTf.Text,
-                    Phone = phoneTf.Text,
-                    Email = emailTf.Text
-                };
+                    //var asd = new DateTime(int.Parse(yearTextField.Text), int.Parse(date.Month), int.Parse(dayTextField.Text));
+
+                    Student = new Student()
+                    {
+                        Name = firstNameTf.Text,
+                        LastName = lastNameLTf.Text,
+                        Bdate = date,
+                        PersonalNumber = privateNumberTf.Text,
+                        Phone = phoneTf.Text,
+                        Email = emailTf.Text
+                    };
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             };
         }
 

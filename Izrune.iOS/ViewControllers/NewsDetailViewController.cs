@@ -41,7 +41,14 @@ namespace Izrune.iOS
             newstitleLbl.Text = News?.Title;
             newsDateLbl.Text = News?.date.ToString("dd MMMM yyyy", cultureInfo);
 
-            newsWebView.LoadHtmlString(News?.Content, NSUrl.FromString("https://www.google.com/"));
+            string bpgNpStyle = "@font-face {font-family: MyFont;src: url(\"bpg_mrgvlovani_2010.ttf\")}"; 
+            var fontPath = bpgNpStyle;
+            var content = News?.Content.Replace("font-size", "width");
+            content = content.Replace("max-height", "width");
+            content = content.Replace("h1", "p");
+
+            string htmlContent = $@"<html><head><style> *{"{ margin-left: 0px!important;background-color:rgba(0, 0, 0, 0)!important;background:rgba(0, 0, 0, 0)!important;max-height:none!important; margin-right: 0px!important; padding-left : 0px!important; padding-right : 0px!important; width: 100%!important;height:auto!important;}"} iframe{{ margin-left : 0px!important; margin-right : 0px!important; margin-top : 0px!important; margin-bottom : 0px!important;}} {"td{width: 50%!important; text-align:left!important; height: auto!important; }"} div{"{text-align: left!important;}"} span,p,a,div {$"{"{"}text-align: left!important;background-color:rgba(0, 0, 0, 0)!important;background:rgba(0, 0, 0, 0)!important;font-family:MyFont!important;)!important;{"}"}"} </style></head><body style={"\""}padding:0px;margin:0px{"\""}><div id='mainDiv'>{"<p>" + News?.Content + "</p>"}</div></body></html>";
+            newsWebView.LoadHtmlString(htmlContent, NSUrl.FromString("https://www.google.com/"));
         }
 
         [Export("webViewDidFinishLoad:")]
