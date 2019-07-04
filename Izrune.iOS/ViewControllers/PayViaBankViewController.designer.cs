@@ -16,13 +16,27 @@ namespace Izrune.iOS
 		UIKit.UILabel billLbl { get; set; }
 
 		[Outlet]
+		UIKit.UILabel dateLbl { get; set; }
+
+		[Outlet]
+		UIKit.UIButton numberCopyBttn { get; set; }
+
+		[Outlet]
 		UIKit.UILabel profileNumberLbl { get; set; }
 
 		[Outlet]
 		UIKit.UILabel userNameLbl { get; set; }
+
+		[Outlet]
+		UIKit.UIStackView userStackView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (billLbl != null) {
+				billLbl.Dispose ();
+				billLbl = null;
+			}
+
 			if (profileNumberLbl != null) {
 				profileNumberLbl.Dispose ();
 				profileNumberLbl = null;
@@ -33,9 +47,19 @@ namespace Izrune.iOS
 				userNameLbl = null;
 			}
 
-			if (billLbl != null) {
-				billLbl.Dispose ();
-				billLbl = null;
+			if (numberCopyBttn != null) {
+				numberCopyBttn.Dispose ();
+				numberCopyBttn = null;
+			}
+
+			if (dateLbl != null) {
+				dateLbl.Dispose ();
+				dateLbl = null;
+			}
+
+			if (userStackView != null) {
+				userStackView.Dispose ();
+				userStackView = null;
 			}
 		}
 	}

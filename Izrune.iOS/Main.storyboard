@@ -3645,7 +3645,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2fi-YQ-Nx1">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="769.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="898.66666666666663"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="საბანკო გადმორიცხვის მონაცემები" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wc7-XM-1A5">
                                                 <rect key="frame" x="25" y="10" width="325" height="42"/>
@@ -3660,7 +3660,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="67F-Qm-csh">
-                                                <rect key="frame" x="25" y="126.66666666666666" width="325" height="199.99999999999997"/>
+                                                <rect key="frame" x="25" y="126.66666666666663" width="325" height="268"/>
                                                 <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -3668,64 +3668,64 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NMe-gk-5g3">
-                                                <rect key="frame" x="40" y="139.66666666666666" width="295" height="173.99999999999997"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="NMe-gk-5g3">
+                                                <rect key="frame" x="40" y="139.66666666666663" width="295" height="242"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="მიმღები: შპს &quot;ეტალონი-განათლება&quot;" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00Q-oB-QAA">
-                                                        <rect key="frame" x="0.0" y="0.0" width="295" height="16.333333333333332"/>
-                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="მიმღები: შპს &quot;ეტალონი-განათლება&quot;" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00Q-oB-QAA">
+                                                        <rect key="frame" x="0.0" y="0.0" width="224" height="37.333333333333336"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="16"/>
                                                         <color key="textColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="მიმღების საიდენტიფიკაციო კოდი: 404561979" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQi-YP-qKX">
-                                                        <rect key="frame" x="0.0" y="26.333333333333343" width="289" height="13"/>
-                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="11"/>
-                                                        <color key="textColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="სს ბანკი &quot;თიბისი ბანკი&quot; TBCBGE22" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhe-DS-Ky8">
-                                                        <rect key="frame" x="0.0" y="49.333333333333343" width="211.66666666666666" height="13"/>
-                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="11"/>
-                                                        <color key="textColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ანგარიშის ნომერი: GE82TB7994 6360 8010 0007" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EhQ-1I-g3V">
-                                                        <rect key="frame" x="0.0" y="72.333333333333343" width="275.33333333333331" height="30.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="50.33333333333335" width="217" height="30.333333333333336"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="13"/>
                                                         <color key="textColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="სს ბანკი &quot;თიბისი ბანკი&quot; TBCBGE22" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhe-DS-Ky8">
+                                                        <rect key="frame" x="0.0" y="93.666666666666657" width="250" height="15.333333333333329"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="13"/>
+                                                        <color key="textColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ანგარიშის ნომერი: GE82TB7994636080100007" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EhQ-1I-g3V">
+                                                        <rect key="frame" x="0.0" y="122.00000000000003" width="212.66666666666666" height="35"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="15"/>
+                                                        <color key="textColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="სს ბანკი &quot;თიბისი ბანკი&quot; TBCBGE22" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8S-0V-qlq">
-                                                        <rect key="frame" x="0.0" y="112.66666666666666" width="211.66666666666666" height="13"/>
-                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="11"/>
+                                                        <rect key="frame" x="0.0" y="170.00000000000003" width="250" height="15.333333333333343"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="13"/>
                                                         <color key="textColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.izrune.ge" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ka-CL-tST">
-                                                        <rect key="frame" x="0.0" y="135.66666666666666" width="81" height="13"/>
-                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="11"/>
+                                                        <rect key="frame" x="0.0" y="198.33333333333334" width="95.666666666666671" height="15.333333333333343"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="13"/>
                                                         <color key="textColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="თარიღი: 24.04.2019" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Izb-Cf-fzf">
-                                                        <rect key="frame" x="0.0" y="158.66666666666666" width="145.33333333333334" height="15.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="226.66666666666666" width="145.33333333333334" height="15.333333333333343"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="13"/>
                                                         <color key="textColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="გადახდის დანიშნულებაში მიუთითეთ:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xoo-XD-1lQ">
-                                                <rect key="frame" x="25" y="356.66666666666669" width="325" height="14"/>
-                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
-                                                <color key="textColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="4WK-ZM-cr6">
-                                                <rect key="frame" x="25" y="382.66666666666669" width="325" height="172.00000000000006"/>
+                                                <rect key="frame" x="25" y="421.66666666666674" width="325" height="197"/>
                                                 <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="გადახდის დანიშნულებაში მიუთითეთ:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xoo-XD-1lQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="263.66666666666669" height="14"/>
+                                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
+                                                        <color key="textColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dll-sx-oN9">
-                                                        <rect key="frame" x="0.0" y="0.0" width="325" height="50"/>
+                                                        <rect key="frame" x="0.0" y="25" width="325" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. პროფილის ნომერი - 686342" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AhA-r6-r1v">
                                                                 <rect key="frame" x="15" y="18.666666666666629" width="295" height="13"/>
@@ -3748,10 +3748,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="izV-eI-MFy">
-                                                        <rect key="frame" x="0.0" y="61" width="325" height="50"/>
+                                                        <rect key="frame" x="0.0" y="85.999999999999943" width="325" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. მომხმარებლის სახელი-გვარი - მაია კიკნაძე" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2w-Cu-ZL8">
-                                                                <rect key="frame" x="15" y="18.666666666666629" width="295" height="13"/>
+                                                                <rect key="frame" x="15" y="18.666666666666742" width="295" height="13"/>
                                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="11"/>
                                                                 <color key="textColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -3771,7 +3771,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZb-2o-aDW">
-                                                        <rect key="frame" x="0.0" y="121.99999999999994" width="325" height="50"/>
+                                                        <rect key="frame" x="0.0" y="146.99999999999994" width="325" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. გადასახდელი თანხა - 9 GEL" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Gm-XT-Zwd">
                                                                 <rect key="frame" x="15" y="18.666666666666742" width="295" height="13"/>
@@ -3803,14 +3803,31 @@
                                                     <constraint firstItem="Dll-sx-oN9" firstAttribute="leading" secondItem="4WK-ZM-cr6" secondAttribute="leading" id="xnt-2A-Psf"/>
                                                 </constraints>
                                             </stackView>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sqG-Sr-m77">
+                                                <rect key="frame" x="25" y="648.66666666666663" width="325" height="40"/>
+                                                <color key="backgroundColor" red="0.79607843140000001" green="0.52941176469999995" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="EW0-Ve-02K"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="13"/>
+                                                <inset key="contentEdgeInsets" minX="40" minY="0.0" maxX="40" maxY="0.0"/>
+                                                <state key="normal" title="ანგარიშის ნომრის კოპირება">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="WCB-kd-5WX">
-                                                <rect key="frame" x="0.0" y="589.66666666666663" width="375" height="180"/>
+                                                <rect key="frame" x="0.0" y="718.66666666666663" width="375" height="180"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="180" id="RQ7-9U-5WM"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="მადლობა" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5l-sh-47p">
-                                                <rect key="frame" x="136.33333333333334" y="669.33333333333337" width="102.33333333333334" height="21"/>
+                                                <rect key="frame" x="136.33333333333334" y="798.33333333333337" width="102.33333333333334" height="21"/>
                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -3824,22 +3841,22 @@
                                             <constraint firstAttribute="trailing" secondItem="wc7-XM-1A5" secondAttribute="trailing" constant="25" id="6kz-cb-HcA"/>
                                             <constraint firstAttribute="trailing" secondItem="NMe-gk-5g3" secondAttribute="trailing" constant="40" id="7HT-pm-MEr"/>
                                             <constraint firstItem="67F-Qm-csh" firstAttribute="bottom" secondItem="NMe-gk-5g3" secondAttribute="bottom" constant="13" id="7S6-eo-NwO"/>
+                                            <constraint firstItem="WCB-kd-5WX" firstAttribute="top" secondItem="sqG-Sr-m77" secondAttribute="bottom" constant="30" id="9yW-5F-fa4"/>
+                                            <constraint firstAttribute="trailing" secondItem="sqG-Sr-m77" secondAttribute="trailing" constant="25" id="ANt-h1-lO4"/>
                                             <constraint firstItem="4WK-ZM-cr6" firstAttribute="leading" secondItem="2fi-YQ-Nx1" secondAttribute="leading" constant="25" id="Bem-AK-Mtb"/>
                                             <constraint firstAttribute="trailing" secondItem="4WK-ZM-cr6" secondAttribute="trailing" constant="25" id="G3M-iR-Qfq"/>
-                                            <constraint firstItem="WCB-kd-5WX" firstAttribute="top" secondItem="4WK-ZM-cr6" secondAttribute="bottom" constant="35" id="G9V-fG-Y5f"/>
                                             <constraint firstItem="WCB-kd-5WX" firstAttribute="leading" secondItem="2fi-YQ-Nx1" secondAttribute="leading" id="Jma-ra-fP6"/>
                                             <constraint firstItem="67F-Qm-csh" firstAttribute="trailing" secondItem="NMe-gk-5g3" secondAttribute="trailing" constant="15" id="NMg-kf-nmc"/>
                                             <constraint firstItem="n8v-24-hQ3" firstAttribute="trailing" secondItem="wc7-XM-1A5" secondAttribute="trailing" id="SgQ-tC-X7c"/>
                                             <constraint firstItem="67F-Qm-csh" firstAttribute="top" secondItem="NMe-gk-5g3" secondAttribute="top" constant="-13" id="ULO-eL-tpw"/>
                                             <constraint firstItem="n8v-24-hQ3" firstAttribute="top" secondItem="wc7-XM-1A5" secondAttribute="bottom" constant="15" id="Wn2-jh-qJA"/>
-                                            <constraint firstItem="xoo-XD-1lQ" firstAttribute="trailing" secondItem="67F-Qm-csh" secondAttribute="trailing" id="YIG-Zo-DVO"/>
                                             <constraint firstAttribute="bottom" secondItem="WCB-kd-5WX" secondAttribute="bottom" id="alB-xW-4Bs"/>
-                                            <constraint firstItem="xoo-XD-1lQ" firstAttribute="top" secondItem="67F-Qm-csh" secondAttribute="bottom" constant="30" id="bTp-jv-2P7"/>
-                                            <constraint firstItem="xoo-XD-1lQ" firstAttribute="leading" secondItem="67F-Qm-csh" secondAttribute="leading" id="h3p-13-6tZ"/>
+                                            <constraint firstItem="sqG-Sr-m77" firstAttribute="top" secondItem="4WK-ZM-cr6" secondAttribute="bottom" constant="30" id="cOA-3f-8Pr"/>
+                                            <constraint firstItem="sqG-Sr-m77" firstAttribute="leading" secondItem="2fi-YQ-Nx1" secondAttribute="leading" constant="25" id="cah-7P-bQF"/>
                                             <constraint firstItem="NMe-gk-5g3" firstAttribute="leading" secondItem="2fi-YQ-Nx1" secondAttribute="leading" constant="40" id="k7O-uJ-ZDI"/>
                                             <constraint firstItem="wc7-XM-1A5" firstAttribute="leading" secondItem="2fi-YQ-Nx1" secondAttribute="leading" constant="25" id="nex-xb-pmE"/>
-                                            <constraint firstItem="4WK-ZM-cr6" firstAttribute="top" secondItem="xoo-XD-1lQ" secondAttribute="bottom" constant="12" id="p5e-uP-z37"/>
                                             <constraint firstItem="n8v-24-hQ3" firstAttribute="leading" secondItem="wc7-XM-1A5" secondAttribute="leading" id="qfE-mm-hKQ"/>
+                                            <constraint firstItem="4WK-ZM-cr6" firstAttribute="top" secondItem="NMe-gk-5g3" secondAttribute="bottom" constant="40" id="vrV-Hy-YSy"/>
                                             <constraint firstAttribute="trailing" secondItem="WCB-kd-5WX" secondAttribute="trailing" id="wH1-IV-3g6"/>
                                             <constraint firstItem="NMe-gk-5g3" firstAttribute="top" secondItem="n8v-24-hQ3" secondAttribute="bottom" constant="40" id="wTK-6b-rKd"/>
                                             <constraint firstItem="wc7-XM-1A5" firstAttribute="top" secondItem="2fi-YQ-Nx1" secondAttribute="top" constant="10" id="zmA-ak-DZg"/>
@@ -3867,8 +3884,11 @@
                     </view>
                     <connections>
                         <outlet property="billLbl" destination="1Gm-XT-Zwd" id="r4i-un-wHM"/>
+                        <outlet property="dateLbl" destination="Izb-Cf-fzf" id="uLj-1W-fqK"/>
+                        <outlet property="numberCopyBttn" destination="sqG-Sr-m77" id="zIw-aF-wMM"/>
                         <outlet property="profileNumberLbl" destination="AhA-r6-r1v" id="Ltw-IO-81h"/>
                         <outlet property="userNameLbl" destination="C2w-Cu-ZL8" id="AVd-ee-ZuK"/>
+                        <outlet property="userStackView" destination="4WK-ZM-cr6" id="0Ef-SF-21R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xHE-wI-9qF" userLabel="First Responder" sceneMemberID="firstResponder"/>

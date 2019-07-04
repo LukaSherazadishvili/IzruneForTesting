@@ -98,7 +98,7 @@ namespace Izrune.iOS
             MonthDropDown.Width = this.View.Frame.Width;
             MonthDropDown.Direction = Direction.Bottom;
 
-            var array = PromoInfo?.Prices?.Select(x => x.StartDate.ToShortDateString() +" - " + x.EndDate.ToShortDateString())?.ToArray();
+            var array = PromoInfo?.Prices?.Select(x => x.StartDate.ToString("dd/MM/yyyy") +" - " + x.EndDate.ToString("dd/MM/yyyy"))?.ToArray();
 
             MonthDropDown.DataSource = array;
 
