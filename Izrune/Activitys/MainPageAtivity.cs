@@ -42,7 +42,7 @@ namespace Izrune.Activitys
         //[MapControl(Resource.Id.LeftSideBar)]
         //LinearLayout sideBar;
 
-        protected async override void OnCreate(Bundle savedInstanceState)
+        protected  override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             
@@ -50,7 +50,7 @@ namespace Izrune.Activitys
 
             RegistrationServices test = new RegistrationServices();
 
-            var result = await test.GetRegionsAsync();
+         //   var result = await test.GetRegionsAsync();
 
             ChangeFragmentPage(new MainPageTestFragment(), MainContainer.Id);
             navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;

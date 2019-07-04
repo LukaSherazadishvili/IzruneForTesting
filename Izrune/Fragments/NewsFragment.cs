@@ -40,7 +40,12 @@ namespace Izrune.Fragments
             base.OnViewCreated(view, savedInstanceState);
 
 
+
+
             Startloading();
+
+          
+
             var Result = await MpdcContainer.Instance.Get<INewsService>().GetNewsAsync();
 
             var manager = new LinearLayoutManager(this);

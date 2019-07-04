@@ -20,6 +20,10 @@ namespace IZrune.TransferModels
         public string school_id { get; set; }
         public string school { get; set; }
 
-       
+        [JsonProperty("class")]
+        public string Class { get; set; }
+
+        [JsonProperty("expiration_date")]
+        public string PackageEndDate { get; set; }
     }
 }

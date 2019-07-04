@@ -213,16 +213,16 @@ namespace Izrune.Fragments
             (Activity as QuezActivity).OpenDialog(question.images.ElementAt(Index));
         }
 
-        private  void AnswerView_Click(object sender, EventArgs e)
+        private async  void AnswerView_Click(object sender, EventArgs e)
         {
-            (Activity as QuezActivity).RunOnUiThread(async() =>
-            {
+           
 
                 var Index = MyViews.IndexOf((sender as View));
 
+            (Activity as QuezActivity).RunOnUiThread( () =>
+            {
 
-
-                await QuezControll.Instance.AddQuestion(question.Answers.ToList().ElementAt(Index).id);
+             
 
                 if (question.Answers.ElementAt(Index).IsRight)
                 {
@@ -237,11 +237,14 @@ namespace Izrune.Fragments
                     (sender as View).FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesInCorectButtonBackground);
                 }
 
-                foreach (var items in MyViews)
+            });
+            await QuezControll.Instance.AddQuestion(question.Answers.ToList().ElementAt(Index).id);
+            await Task.Delay(500);
+            foreach (var items in MyViews)
                 {
                     items.Click -= AnswerView_Click;
                 }
-                await Task.Delay(500);
+               
 
 
 
@@ -308,7 +311,7 @@ namespace Izrune.Fragments
                     }
                 }
               
-            });
+           
 
         }
     }
