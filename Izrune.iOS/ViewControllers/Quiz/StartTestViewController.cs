@@ -171,7 +171,7 @@ namespace Izrune.iOS
                     if (IsExTestActive)
                     {
                         IsSummSelected = false;
-                        var chooseTimeVc = Storyboard.InstantiateViewController(SmsVerificationViewController.StoryboardId) as ChooseTimeViewController;
+                        var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
                         chooseTimeVc.IsSumtTest = IsSummSelected;
                         chooseTimeVc.SelectedStudent = SelectedStudent;
                         chooseTimeVc.SelectedCategory = QuezCategory.QuezExam;
