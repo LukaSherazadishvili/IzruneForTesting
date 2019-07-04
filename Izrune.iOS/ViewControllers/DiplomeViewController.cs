@@ -97,7 +97,7 @@ namespace Izrune.iOS
 
             var service = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
             diplomeYears = (await service.GetDiplomaStatisticAsync())?.ToList();
-            diplomeLbl.Text = diplomeYears?[0]?.DiplomaDate + "სასწავლო წელი";
+            diplomeLbl.Text = diplomeYears?[0]?.DiplomaDate + " სასწავლო წელი";
 
         }
 

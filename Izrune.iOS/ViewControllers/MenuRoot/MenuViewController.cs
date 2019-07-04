@@ -32,26 +32,26 @@ namespace Izrune.iOS
             {
                 Title = "შესვლა",
                 Type = MenuType.LogIn,
-                Image = UIImage.FromBundle("1 – 5.png"),
+                Image = UIImage.FromBundle("12 – 3.png"),
                 IsSelected = true
             },
             new MenuItem()
             {
                 Title = "სიახლეები",
                 Type = MenuType.News,
-                Image = UIImage.FromBundle("1 – 7.png")
+                Image = UIImage.FromBundle("12 – 4.png")
             },
             new MenuItem()
             {
                 Title = "გაიგეთ მეტი",
                 Type = MenuType.MoreInfo,
-                Image = UIImage.FromBundle("1 – 8.png")
+                Image = UIImage.FromBundle("12 – 5.png")
             },
             new MenuItem()
             {
                 Title = "კონტაქტი",
                 Type = MenuType.Contact,
-                Image = UIImage.FromBundle("1 – 9.png")
+                Image = UIImage.FromBundle("12 – 6.png")
             },
         };
 
@@ -61,44 +61,44 @@ namespace Izrune.iOS
             {
                 Title = "მთავარი",
                 Type = MenuType.Main,
-                Image = UIImage.FromBundle("1 – 13.png"),
+                Image = UIImage.FromBundle("12 – 22.png"),
                 IsSelected = true
             },
             new MenuItem()
             {
                 Title = "სტატისტიკა/ისტორია",
                 Type = MenuType.Statistic,
-                Image = UIImage.FromBundle("1 – 15.png")
+                Image = UIImage.FromBundle("12 – 23.png")
             },
             new MenuItem()
             {
                 Title = "პაკეტის განახლება",
                 Type = MenuType.UpdatePacket,
-                Image = UIImage.FromBundle("1 – 14.png")
+                Image = UIImage.FromBundle("12 – 24.png")
             },
             new MenuItem()
             {
                 Title = "პროფილის რედაქტირება",
                 Type = MenuType.EditProfile,
-                Image = UIImage.FromBundle("1 – 16.png")
+                Image = UIImage.FromBundle("12 – 25.png")
             },
             new MenuItem()
             {
                 Title = "სიახლეები",
                 Type = MenuType.News,
-                Image = UIImage.FromBundle("1 – 7.png")
+                Image = UIImage.FromBundle("12 – 4.png")
             },
             new MenuItem()
             {
                 Title = "კონტაქტი",
                 Type = MenuType.Contact,
-                Image = UIImage.FromBundle("1 – 9.png")
+                Image = UIImage.FromBundle("12 – 6.png")
             },
             new MenuItem()
             {
                 Title = "გასვლა",
                 Type = MenuType.LogOut,
-                Image = UIImage.FromBundle("1 – 17.png")
+                Image = UIImage.FromBundle("12 – 26.png")
             }
         };
 
