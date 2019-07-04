@@ -8,6 +8,6 @@ namespace IZrune.PCL.Implementation.Models
     class DiplomaStatisticc : IDiplomStatistic
     {
         public string DiplomaDate { get; set; }
-       public IEnumerable<IStudentsStatistic> DiplomaStatistic { get; set; }
+       public IEnumerable<IQuisInfo> DiplomaStatistic { get; set; }
     }
 }

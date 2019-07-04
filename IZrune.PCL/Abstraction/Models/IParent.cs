@@ -8,6 +8,7 @@ namespace IZrune.PCL.Abstraction.Models
     {
         int id { get; set; }
         string UserName { get; set; }
+        int ProfileNumber { get; set; }
         string Password { get; set; }
         string Name { get; set; }
         string LastName { get; set; }

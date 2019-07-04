@@ -31,14 +31,36 @@
 					/>
 				</LinearLayout>	
 	<TextView
+		android:id="@+id/UserNameLastNametxt"
 		android:layout_marginLeft="20dp"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="მაია კიკნაძე"
-		android:textSize="15dp"
+		android:textSize="14dp"
 		android:fontFamily="@font/bpg_mrgvlovani"
 		android:textColor="#AE71B7"/>
 
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+	<TextView
+		android:textSize="14dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginLeft="20dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="პროფილის ნომერი:"
+		android:fontFamily="@font/bpg_mrgvlovani"/>
 
-
+		<TextView
+		android:id="@+id/ProfileNumber"
+		android:textSize="14dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginLeft="5dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text=" 686342"
+		android:fontFamily="@font/bpg_mrgvlovani"/>
+		</LinearLayout>
 </LinearLayout>

@@ -7,7 +7,7 @@ namespace IZrune.PCL.Abstraction.Models
    public interface IDiplomStatistic
     {
         string DiplomaDate { get; set; }
-        IEnumerable<IStudentsStatistic> DiplomaStatistic { get; set; }
+        IEnumerable<IQuisInfo> DiplomaStatistic { get; set; }
 
     }
 }
