@@ -171,7 +171,7 @@ namespace Izrune.iOS
             var studentsArray = diplomeYears?.Select(x => x.DiplomaDate)?.ToArray();
             YearDropDown.DataSource = studentsArray;
 
-            YearDropDown.SelectionAction = async (nint index, string name) =>
+            YearDropDown.SelectionAction = (nint index, string name) =>
             {
                 try
                 {
