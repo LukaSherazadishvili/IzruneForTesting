@@ -59,7 +59,12 @@ namespace Izrune.Activitys
 
             var Result = await UserControl.Instance.GetCurrentUser();
 
-            //FullNametxt.Text = $"{Result.Name} {Result.LastName}";
+            var header = navigationView.GetHeaderView(0);
+
+            header.FindViewById<TextView>(Resource.Id.UserNameLastNametxt).Text = $"{Result.Name} {Result.LastName}";
+            header.FindViewById<TextView>(Resource.Id.ProfileNumber).Text = $"{Result.ProfileNumber}";
+
+            //FullNametxt.Text = ;
             //ProfNumber.Text = $"{Result.ProfileNumber}";
 
         }
