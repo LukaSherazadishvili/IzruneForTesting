@@ -18,5 +18,6 @@ namespace IZrune.PCL.Implementation.Models
         public string Vilage { get; set; }
         public DateTime? bDate { get; set; }
         public IEnumerable<IStudent> Students { get; set; }
+        public int ProfileNumber { get; set; }
     }
 }

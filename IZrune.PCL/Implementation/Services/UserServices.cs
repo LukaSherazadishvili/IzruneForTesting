@@ -195,6 +195,7 @@ namespace IZrune.PCL.Implementation.Services
                     parent.Name = DTO?.name;
                     parent.Vilage = DTO.village;
                     parent.Phone = DTO.phone;
+                    parent.ProfileNumber =int.Parse( DTO.profile_number);
                     parent.Email = DTO.email;
                     parent.bDate = DateTime.ParseExact(DTO.birth_date,"dd.MM.yyyy",CultureInfo.InvariantCulture);
                     parent.LastName = DTO?.lastname;

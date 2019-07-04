@@ -39,10 +39,11 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.HeaderText)]
         TextView HeaderText;
 
+       
         //[MapControl(Resource.Id.LeftSideBar)]
         //LinearLayout sideBar;
 
-        protected  override void OnCreate(Bundle savedInstanceState)
+        protected  override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             
@@ -56,6 +57,10 @@ namespace Izrune.Activitys
             navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
             Hamburger.Click += Hamburger_Click;
 
+            var Result = await UserControl.Instance.GetCurrentUser();
+
+            //FullNametxt.Text = $"{Result.Name} {Result.LastName}";
+            //ProfNumber.Text = $"{Result.ProfileNumber}";
 
         }
 

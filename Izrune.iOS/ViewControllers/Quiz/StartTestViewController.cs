@@ -134,8 +134,9 @@ namespace Izrune.iOS
             {
                 currentIndex = index;
                 userNameLbl.Text = name;
-
                 SelectedStudent = Students[(int)index];
+
+                UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
             };
         }
 
