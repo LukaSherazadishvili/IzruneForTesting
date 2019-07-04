@@ -27,6 +27,7 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("EditStudentStoryboardId");
 
+        //telefoni, elfosta, qalaqi, sofeli, skola,
 
         DropDown CurentStudentDP = new DropDown();
         DropDown CityDP = new DropDown();
@@ -77,7 +78,6 @@ namespace Izrune.iOS
             Regions = (await registerService.GetRegionsAsync())?.ToList();
 
             GetSchools();
-            InitGestures();
 
             InitForm(CurrentStudent);
             EndLoading();
@@ -91,6 +91,8 @@ namespace Izrune.iOS
                UpdateStudenProfile(nameLbl.Text, lastNameLbl.Text, new DateTime(), phoneTf.Text, emailTf.Text, RegionId, villageTf.Text);
 
                await UserControl.Instance.EditStudentprofile(emailTf.Text, phoneTf.Text, RegionId, villageTf.Text, SchoolId);
+
+               this.NavigationController.PopViewController(true);
            };
 
             backBtn.TouchUpInside += delegate {
@@ -204,7 +206,6 @@ namespace Izrune.iOS
 
                     InitForm(CurrentStudent);
 
-                    Schools = Regions?[(int)index].Schools?.ToList();
                 }
             };
 
@@ -215,6 +216,9 @@ namespace Izrune.iOS
                     currentRegionIndex = (int)index;
 
                     cityLbl.Text = Regions?[(int)index].title;
+
+                    Schools = Regions?[(int)index].Schools?.ToList();
+                    SchoolVc.SchoolList = Schools;
                 }
             };
         }

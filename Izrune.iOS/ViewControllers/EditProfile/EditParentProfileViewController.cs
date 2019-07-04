@@ -62,11 +62,9 @@ namespace Izrune.iOS
             contentView.Hidden = false;
         }
 
-        private void UpdateStudenProfile(string firstName, string lastName, DateTime birthDate, string phoneNumber, string email, string city, string village)
+        //qalqi, sofeli, telefoni, elfosta, 
+        private void UpdateStudenProfile(string phoneNumber, string email, string city, string village)
         {
-            Parent.Name = firstName;
-            Parent.LastName = lastName;
-            Parent.bDate = birthDate;
             Parent.Phone = phoneNumber;
             Parent.Email = email;
             Parent.City = city;
@@ -76,19 +74,16 @@ namespace Izrune.iOS
         {
             saveBtn.TouchUpInside += async delegate
             {
-                //UpdateStudenProfile(nameLbl.Text, lastNameLbl.Text, new DateTime(), phoneTf.Text, emailTf.Text, RegionId, villageTf.Text);
+                UpdateStudenProfile(phoneTf.Text, emailTf.Text, cityLbl.Text, villageTf.Text);
 
                 await UserControl.Instance.EditParrentProfile(emailTf.Text, phoneTf.Text, cityLbl.Text, villageTf.Text);
+
+                this.NavigationController.PopViewController(true);
             };
 
             backBtn.TouchUpInside += delegate {
                 this.NavigationController.PopViewController(true);
             };
-
-            //dateTransparentTf.EditingDidBegin += (sender, e) =>
-            //{
-            //    ShowDatePicker();
-            //};
 
         }
 
