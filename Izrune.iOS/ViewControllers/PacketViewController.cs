@@ -76,6 +76,7 @@ namespace Izrune.iOS
 
             SelectPacketVc.DataLoaded = () =>
             {
+                View.LayoutIfNeeded();
                 UpdateViewSize(SelectPacketVc.ContentHeight);
             };
 
