@@ -114,6 +114,7 @@ namespace IZrune.PCL.Implementation.Services
                 }
                 else
                 {
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("შეფერხება", "თქვენ არ გაქვთ ინტერნეტთან კავშირი");
                     return null;
                 }
             }

@@ -21,6 +21,6 @@ namespace IZrune.PCL.Abstraction.Models
         int PackageMonthCount { get; set; }
         int Amount { get; set; }
         string Promocode { get; set; }
-        DateTime PakEndDate { get; set; }
+        DateTime? PakEndDate { get; set; }
     }
 }

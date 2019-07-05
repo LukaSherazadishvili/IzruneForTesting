@@ -200,21 +200,29 @@ namespace IZrune.PCL.Implementation.Services
                     parent.bDate = DateTime.ParseExact(DTO.birth_date,"dd.MM.yyyy",CultureInfo.InvariantCulture);
                     parent.LastName = DTO?.lastname;
                     parent.City = DTO.city;
-                    parent.Students = DTO?.students?.                      
-                        Select(i => new Student() {
-                            Name = i?.name,
-                            LastName=i?.lastname,
-                            id=Convert.ToInt32(i?.id),
-                            Bdate=DateTime.ParseExact(i.birth_date, "dd.MM.yyyy", CultureInfo.InvariantCulture),
-                            Email =i.email,
-                            Phone=i.phone,
-                            Village=i.village,
-                            PersonalNumber=i.personal_number,
-                            RegionId= Convert.ToInt32( i.region_id),
-                            SchoolId=Convert.ToInt32(i.school_id),                            
-                           Class=int.Parse(i.Class),
-                          // PakEndDate= DateTime.ParseExact(i?.PackageEndDate, "yyyy-MM-dd", CultureInfo.InvariantCulture)
+                    parent.Students = DTO?.students?.
+                        Select(i => {
 
+                            var student = new Student()
+                            {
+                                Name = i?.name,
+                                LastName = i?.lastname,
+                                id = Convert.ToInt32(i?.id),
+                                Bdate = DateTime.ParseExact(i.birth_date, "dd.MM.yyyy", CultureInfo.InvariantCulture),
+                                Email = i.email,
+                                Phone = i.phone,
+                                Village = i.village,
+                                PersonalNumber = i.personal_number,
+                                RegionId = Convert.ToInt32(i.region_id),
+                                SchoolId = Convert.ToInt32(i.school_id),
+                                Class = int.Parse(i.Class),
+                                
+                            };
+
+                            if (!string.IsNullOrEmpty(i?.PackageEndDate))
+                                student.PakEndDate = DateTime.ParseExact(i?.PackageEndDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+                            return student;
                         });
                     return parent;
                 }

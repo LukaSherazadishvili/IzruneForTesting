@@ -51,7 +51,7 @@ namespace Izrune.Fragments
             StudentSpiner.ItemSelected += (s, e) =>
             {
                 CurrentStudent = Result.Students.ElementAt(e.Position);
-                EndPackTxt.Text = CurrentStudent.PackageStartDate.ToShortDateString();
+                EndPackTxt.Text = CurrentStudent.PakEndDate?.ToShortDateString();
                 UserControl.Instance.SeTSelectedStudent(CurrentStudent.id);
 
 

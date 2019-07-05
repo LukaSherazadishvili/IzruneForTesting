@@ -16,8 +16,11 @@ namespace IZrune.PCL
 
         public bool IsOnline { get { return CrossConnectivity.Current.IsConnected; } }
 
+        public IAlertService Alertdialog { get; set; }
+
         public void InitServices()
         {
+           // Alertdialog = dialog;
             MpdcContainer.Instance.Register<ILoginServices, LoginServices>(new LoginServices());
             MpdcContainer.Instance.Register<IQuezServices, QuezServices>(new QuezServices());
             MpdcContainer.Instance.Register<IStatisticServices, StatisticServices>(new StatisticServices());

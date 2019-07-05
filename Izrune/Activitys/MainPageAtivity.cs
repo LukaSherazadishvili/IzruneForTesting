@@ -64,6 +64,7 @@ namespace Izrune.Activitys
             header.FindViewById<TextView>(Resource.Id.UserNameLastNametxt).Text = $"{Result.Name} {Result.LastName}";
             header.FindViewById<TextView>(Resource.Id.ProfileNumber).Text = $"{Result.ProfileNumber}";
 
+
             //FullNametxt.Text = ;
             //ProfNumber.Text = $"{Result.ProfileNumber}";
 

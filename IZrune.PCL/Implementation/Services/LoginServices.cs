@@ -17,28 +17,37 @@ namespace IZrune.PCL.Implementation.Services
 
         public async Task<bool> LoginUser(string username, string password)
         {
-            var FormContent = new FormUrlEncodedContent(new[]
+            try
             {
+                var FormContent = new FormUrlEncodedContent(new[]
+                {
                 new KeyValuePair<string,string>("username",username),
                 new KeyValuePair<string, string>("password",password)
 
             });
-            var Data =await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=login&hashcode=b1188c7b5e9abe809bd538c48aa08222", FormContent);
-            var jsn = await Data.Content.ReadAsStringAsync();
-            var Result = JsonConvert.DeserializeObject<StatusCodeDTO>(jsn);
+                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=login&hashcode=b1188c7b5e9abe809bd538c48aa08222", FormContent);
+                var jsn = await Data.Content.ReadAsStringAsync();
+                var Result = JsonConvert.DeserializeObject<StatusCodeDTO>(jsn);
 
-           
-            if (Result.Message == "OK" && Result.Code == 0)
-            {
-                AppCore.Instance.CurrentUserToken = Result.Token;
-                return true;
+
+                if (Result.Message == "OK" && Result.Code == 0)
+                {
+                    AppCore.Instance.CurrentUserToken = Result.Token;
+                    return true;
+                }
+                else
+                {
+                    AppCore.Instance.CurrentUserToken = "";
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "თქვენს მიერშეყვანილი სახელი ან პაროლი არ არის რეგისტრირებული");
+                
+                return false;
+                }
             }
-            else
+            catch(Exception ex)
             {
-                AppCore.Instance.CurrentUserToken = "";
+                AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "თქვენს მიერშეყვანილი სახელი ან პაროლი არ არის რეგისტრირებული");
                 return false;
             }
-           
         }
     }
 }

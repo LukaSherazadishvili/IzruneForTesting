@@ -35,7 +35,7 @@
 		android:layout_marginLeft="20dp"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="მაია კიკნაძე"
+		android:text=""
 		android:textSize="14dp"
 		android:fontFamily="@font/bpg_mrgvlovani"
 		android:textColor="#AE71B7"/>
@@ -60,7 +60,7 @@
 		android:layout_marginLeft="5dp"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text=" 686342"
+		android:text=" "
 		android:fontFamily="@font/bpg_mrgvlovani"/>
 		</LinearLayout>
 </LinearLayout>

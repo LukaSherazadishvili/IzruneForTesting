@@ -15,6 +15,7 @@ using Android.Widget;
 using Izrune.Adapters.RecyclerviewAdapters;
 using Izrune.Attributes;
 using Izrune.Fragments;
+using Izrune.Fragments.DialogFrag;
 using Izrune.Helpers;
 using IZrune.PCL;
 
@@ -54,55 +55,28 @@ namespace Izrune.Activitys
             new MenuItemClass(){Image=Resource.Drawable.homeicon ,MenuTitle="კონტაქტი"},
         };
 
-        protected async override void OnCreate(Bundle savedInstanceState)
+        protected  override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            AlertService serv = new AlertService()
+            {
+                AlertEVent = (title, text) =>
+                {
+                    var transcation = FragmentManager.BeginTransaction();
+                    warningDialogFragment dialog = new warningDialogFragment(title,text);
+                    dialog.Show(transcation, "Image Dialog");
+                }
+            };
+
+
             AppCore.Instance.InitServices();
+            AppCore.Instance.Alertdialog = serv;
 
 
             ChangeFragmentPage(new LogInFragment(), MainContainer.Id);
-            // navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
+            navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
             Hamburger.Click += Hamburger_Click;
-            #region oldManeu
-            //MenuRecyclerAdapter adapter = new MenuRecyclerAdapter(MenuItems);
-            //adapter.OnItemClick += (s) =>
-            //{
-            //    switch (s)
-            //    {
-            //        case 0:
-            //            {
-            //                HeaderText.Text = "";
-            //                ChangeFragmentPage(new LogInFragment(), MainContainer.Id);
-            //                drawer.CloseDrawers();
-            //                break;
-            //            }
-            //        case 1:
-            //            {
-            //                HeaderText.Text = "საგანმანათლებლო სიახლეები";
-            //                ChangeFragmentPage(new NewsFragment(), MainContainer.Id);
-            //                drawer.CloseDrawers();
-            //                break;
-            //            }
-            //        case 2:
-            //            {
-            //                HeaderText.Text = "გაიგეთ მეტი";
-            //                ChangeFragmentPage(new GetMoreInfoFragment(), MainContainer.Id);
-            //                drawer.CloseDrawers();
-            //                break;
-            //            }
-            //        case 3:
-            //            {
-            //                HeaderText.Text = "კონტაქტი";
-            //                ChangeFragmentPage(new ContactFragment(), MainContainer.Id);
-            //                drawer.CloseDrawers();
-            //                break;
-            //            }
-            //    };
-            //};
-            //MenuRecycler.SetLayoutManager(new LinearLayoutManager(this));
-            //MenuRecycler.SetAdapter(adapter);
-
-            #endregion
+          
         }
         private void Hamburger_Click(object sender, EventArgs e)
         {

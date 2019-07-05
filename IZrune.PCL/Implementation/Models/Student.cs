@@ -22,6 +22,6 @@ namespace IZrune.PCL.Implementation.Models
         public int PackageMonthCount { get; set; }
         public int Amount { get; set; }
         public string Promocode { get; set; } = "0";
-        public DateTime PakEndDate { get; set; }
+        public DateTime? PakEndDate { get; set; }
     }
 }
