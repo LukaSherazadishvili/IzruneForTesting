@@ -17,9 +17,17 @@ namespace Izrune.Helpers
     {
         public Action<string, string> AlertEVent { get; set; }
 
+        public Action<string, string> SacssesAler { get; set; }
+
+
         public void ShowAlerDialog(string Title, string Message)
         {
             AlertEVent?.Invoke(Title, Message);
+        }
+
+        public void ShowSaccessDialog(string Title, string Message)
+        {
+            SacssesAler?.Invoke(Title, Message);
         }
     }
 }

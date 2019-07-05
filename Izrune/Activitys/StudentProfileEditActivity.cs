@@ -23,6 +23,10 @@ namespace Izrune.Activitys
 
         protected override int LayoutResource { get; } = Resource.Layout.layoutStudentProfile;
 
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get ; set; }
+
+
         [MapControl(Resource.Id.BackButton)]
         FrameLayout BackButton;
 
@@ -76,6 +80,7 @@ namespace Izrune.Activitys
         {
             base.OnCreate(savedInstanceState);
 
+            Startloading();
 
             BackButton.Click += BackButton_Click;
             BotBackButton.Click += BotBackButton_Click;
@@ -209,13 +214,14 @@ namespace Izrune.Activitys
                 &&string.IsNullOrEmpty(StudentMail.Text)
                 ))
                 {
+                    Startloading(true);
                   await UserControl.Instance.EditStudentprofile(StudentMail.Text, MobilePhone.Text, student.RegionId, StudentVillage.Text, student.SchoolId);
-
-                    Toast.MakeText(this, "წარმატებით მოხდა პროფილის განახლება  ", ToastLength.Long).Show();
+                    StopLoading();
+                  
                 }
             };
 
-
+            StopLoading();
         }
 
         private void BotBackButton_Click(object sender, EventArgs e)
@@ -231,6 +237,7 @@ namespace Izrune.Activitys
         public override void OnBackPressed()
         {
             base.OnBackPressed();
+            this.Finish();
         }
     }
 }

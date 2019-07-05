@@ -16,11 +16,13 @@ namespace Izrune.Fragments.DialogFrag
     {
         private string Title { get; set; }
         private string Text { get; set; }
+        private bool Iswarming;
 
-        public warningDialogFragment(string title,string text)
+        public warningDialogFragment(string title,string text,bool iswarm)
         {
             Title = title;
             Text = text;
+            Iswarming = iswarm;
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -36,9 +38,25 @@ namespace Izrune.Fragments.DialogFrag
         {
             base.OnViewCreated(view, savedInstanceState);
 
-            view.FindViewById<TextView>(Resource.Id.DialogTitle).Text = Title;
-            view.FindViewById<TextView>(Resource.Id.DialogText).Text = Text;
-
+            try
+            {
+                if (Iswarming)
+                {
+                    view.FindViewById<ImageView>(Resource.Id.DialogImage).SetImageResource(Resource.Drawable.Warning);
+                    view.FindViewById<TextView>(Resource.Id.DialogTitle).Text = Title;
+                    view.FindViewById<TextView>(Resource.Id.DialogText).Text = Text;
+                }
+                else
+                {
+                    view.FindViewById<ImageView>(Resource.Id.DialogImage).SetImageResource(Resource.Drawable.Saccess);
+                    view.FindViewById<TextView>(Resource.Id.DialogTitle).Text = Title;
+                    view.FindViewById<TextView>(Resource.Id.DialogText).Text = Text;
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine();
+            }
         }
     }
 }

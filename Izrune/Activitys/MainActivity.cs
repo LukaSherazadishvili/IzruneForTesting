@@ -58,19 +58,11 @@ namespace Izrune.Activitys
         protected  override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            AlertService serv = new AlertService()
-            {
-                AlertEVent = (title, text) =>
-                {
-                    var transcation = FragmentManager.BeginTransaction();
-                    warningDialogFragment dialog = new warningDialogFragment(title,text);
-                    dialog.Show(transcation, "Image Dialog");
-                }
-            };
+           
 
 
             AppCore.Instance.InitServices();
-            AppCore.Instance.Alertdialog = serv;
+          
 
 
             ChangeFragmentPage(new LogInFragment(), MainContainer.Id);

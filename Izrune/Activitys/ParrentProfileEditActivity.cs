@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Izrune.Attributes;
+using IZrune.PCL;
 using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
 using MpdcContainer = ServiceContainer.ServiceContainer;
@@ -20,6 +21,9 @@ namespace Izrune.Activitys
     class ParrentProfileEditActivity : MPDCBaseActivity
     {
         protected override int LayoutResource { get; } = Resource.Layout.LayoutParrentProfile;
+
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get ; set; }
 
         [MapControl(Resource.Id.BackButton)]
         FrameLayout BackButton;
@@ -62,8 +66,8 @@ namespace Izrune.Activitys
         {
             base.OnCreate(savedInstanceState);
 
-            BackButton.Click += BackButton_Click;
-            SaveButton.Click += SaveButton_Click;
+            Startloading();
+            
 
 
             var Result = UserControl.Instance.GetCurrentUser();
@@ -99,21 +103,32 @@ namespace Izrune.Activitys
             ParrentBadayMonth.Text = Result.Result.bDate.Value.Month.ToString();
             ParrentBdayYear.Text = Result.Result.bDate.Value.Year.ToString();
 
+            StopLoading();
+
+            BackButton.Click += BackButton_Click;
+            SaveButton.Click += SaveButton_Click;
 
 
             BtBack.Click += (s, e) =>
             {
                 OnBackPressed();
             };
-
+           
 
         }
 
         private async void SaveButton_Click(object sender, EventArgs e)
         {
-         await  UserControl.Instance.EditParrentProfile(ParrentMail.Text, Phone.Text, ParrentRegion.SelectedItem.ToString(), ParrentVillage.Text);
-
-            Toast.MakeText(this, "წარმატებით მოხდა პროფილის განახლება  ", ToastLength.Long).Show();
+            try
+            {
+              await UserControl.Instance.EditParrentProfile(ParrentMail.Text, Phone.Text, ParrentRegion.SelectedItem.ToString(), ParrentVillage.Text);
+              
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine();
+            }
+           
 
         }
 
@@ -124,6 +139,7 @@ namespace Izrune.Activitys
         public override void OnBackPressed()
         {
             base.OnBackPressed();
+            this.Finish();
         }
     }
 }

@@ -7,5 +7,7 @@ namespace IZrune.PCL.Abstraction.Services
     public interface IAlertService
     {
         void ShowAlerDialog(string Title,string Message);
+        void ShowSaccessDialog(string Title, string Message);
+
     }
 }

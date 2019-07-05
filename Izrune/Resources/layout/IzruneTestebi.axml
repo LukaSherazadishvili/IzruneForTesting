@@ -113,9 +113,25 @@
                     android:layout_marginRight="50dp"
                     android:layout_marginBottom="20dp"
                     android:elevation="15px"
+					android:gravity="center"
                     android:background="@drawable/xmlfile4">
 
-                    <TextView
+					<TextView
+						android:visibility="gone"
+						android:id="@+id/ActiveExamTxt"
+                        android:fontFamily="@font/bpg_mrgvlovani"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#49B541"                     
+						android:textSize="10dp"
+                        android:text="ტესტი აქტიურია"/>
+
+					<LinearLayout
+						android:id="@+id/ExamMainTextContainer"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal">
+					 <TextView
                         android:id="@+id/textView21"
                         android:fontFamily="@font/bpg_mrgvlovani"
                         android:layout_width="wrap_content"
@@ -133,7 +149,7 @@
                         android:layout_marginHorizontal="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
-                        android:text="2"/>
+                        android:text=""/>
 
                     <TextView
                         android:id="@+id/textView3"
@@ -153,7 +169,7 @@
                         android:layout_marginHorizontal="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
-                        android:text="22"/>
+                        android:text=""/>
 
                     <TextView
                         android:id="@+id/textView23"
@@ -173,7 +189,7 @@
                         android:layout_marginHorizontal="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
-                        android:text="44"/>
+                        android:text=""/>
 
                     <TextView
                         android:id="@+id/textView25"
@@ -184,6 +200,7 @@
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
                         android:text="წუთი"/>
+                   </LinearLayout>
                 </LinearLayout>
             </FrameLayout>
 
@@ -232,7 +249,24 @@
                     android:layout_marginRight="50dp"
                     android:layout_marginBottom="20dp"
                     android:elevation="15px"
+					android:gravity="center"
                     android:background="@drawable/xmlfile4">
+
+					<TextView
+						android:visibility="gone"
+						android:id="@+id/ActiveTestTxt"
+                        android:fontFamily="@font/bpg_mrgvlovani"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#49B541"                     
+						android:textSize="10dp"
+                        android:text="ტესტი აქტიურია"/>
+
+					<LinearLayout
+						android:id="@+id/TestMainTextContainer"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView21"
@@ -252,7 +286,7 @@
                         android:layout_marginHorizontal="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
-                        android:text="2"/>
+                        android:text=""/>
 
                     <TextView
                         android:id="@+id/textView3"
@@ -272,7 +306,7 @@
                         android:layout_marginHorizontal="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
-                        android:text="22"/>
+                        android:text=""/>
 
                     <TextView
 						android:fontFamily="@font/bpg_mrgvlovani"
@@ -291,7 +325,7 @@
                         android:layout_marginHorizontal="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
-                        android:text="44"/>
+                        android:text=""/>
 
                     <TextView
 						android:fontFamily="@font/bpg_mrgvlovani"
@@ -301,6 +335,7 @@
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
                         android:text="წუთი"/>
+						</LinearLayout>
                 </LinearLayout>
     </FrameLayout>
 

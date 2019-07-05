@@ -50,6 +50,21 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.TestMinitCount)]
         TextView TestMinit;
 
+        [MapControl(Resource.Id.ActiveTestTxt)]
+        TextView ActiveTestTxt;
+
+        [MapControl(Resource.Id.ActiveExamTxt)]
+        TextView ActiveExamTxt;
+
+        [MapControl(Resource.Id.TestMainTextContainer)]
+        LinearLayout TestTimeContainer;
+
+        [MapControl(Resource.Id.ExamMainTextContainer)]
+        LinearLayout ExamTimeContainer;
+
+
+
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -82,6 +97,8 @@ namespace Izrune.Fragments
 
                 if (TimeResult.Days <= 0 && TimeResult.Hours <= 0 && TimeResult.Minutes <= 0)
                 {
+                    ExamTimeContainer.Visibility = ViewStates.Gone;
+                    ActiveExamTxt.Visibility = ViewStates.Visible;
 
                 }
                 else
@@ -92,22 +109,25 @@ namespace Izrune.Fragments
 
                 }
 
-
-               var  TestTimeRes = await QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezTest);
+               
+                var  TestTimeRes = await QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezTest);
 
                 if (TestTimeRes.Days <= 0 && TestTimeRes.Hours <= 0 && TestTimeRes.Minutes <= 0)
                 {
-
+                    TestTimeContainer.Visibility = ViewStates.Gone;
+                    ActiveTestTxt.Visibility = ViewStates.Visible;
                 }
                 else
                 {
-                    TestDayCount.Text = TimeResult.Days.ToString();
-                    TestHours.Text = TimeResult.Hours.ToString();
-                    TestMinit.Text = TimeResult.Minutes.ToString();
+                    TestDayCount.Text = TestTimeRes.Days.ToString();
+                    TestHours.Text = TestTimeRes.Hours.ToString();
+                    TestMinit.Text = TestTimeRes.Minutes.ToString();
 
                 }
 
             };
+
+            
         }
 
         
