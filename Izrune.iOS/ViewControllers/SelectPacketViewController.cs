@@ -74,7 +74,7 @@ namespace Izrune.iOS
                 SchoolId = SelectedStudent.id;
             var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-            var data = (await service.GetPromoCodeAsync(SchoolId));
+            var data = (await service.GetPromoCodeAsync(SelectedStudent.SchoolId));
 
             PriceList = data?.Prices?.ToList();
 
