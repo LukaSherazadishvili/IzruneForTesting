@@ -75,6 +75,11 @@ namespace Izrune.iOS
                         {
                             this.ShareUrl(url);
                         }
+                        else
+                        {
+                            barButton.Image = UIImage.FromBundle("");
+                            return;
+                        }
                     };
                     this.NavigationItem.RightBarButtonItem = barButton;
                 }

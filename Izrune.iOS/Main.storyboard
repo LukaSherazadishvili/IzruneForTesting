@@ -1882,7 +1882,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="57.333333333333336"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 250.png" translatesAutoresizingMaskIntoConstraints="NO" id="mVt-Pu-u4q">
-                                                                        <rect key="frame" x="159.66666666666666" y="0.0" width="16" height="30"/>
+                                                                        <rect key="frame" x="82" y="0.0" width="171" height="30"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="30" id="t0f-ui-mvE"/>
                                                                         </constraints>
@@ -3378,8 +3378,10 @@
                                             <constraint firstItem="9v5-7U-TFc" firstAttribute="top" secondItem="Lap-3Q-S1w" secondAttribute="bottom" constant="65" id="2Yb-Rz-Br0"/>
                                             <constraint firstAttribute="bottom" secondItem="btQ-l4-ZiC" secondAttribute="bottom" constant="50" id="6OR-bR-rKx"/>
                                             <constraint firstItem="btQ-l4-ZiC" firstAttribute="centerX" secondItem="5jK-0E-eKB" secondAttribute="centerX" id="9NG-DK-QwC"/>
+                                            <constraint firstItem="9v5-7U-TFc" firstAttribute="leading" secondItem="5jK-0E-eKB" secondAttribute="leading" constant="27" id="AfW-98-Mh2"/>
                                             <constraint firstItem="Lap-3Q-S1w" firstAttribute="top" secondItem="5jK-0E-eKB" secondAttribute="top" constant="30" id="Fnu-WB-HvX"/>
                                             <constraint firstItem="XMn-5l-Kq4" firstAttribute="centerX" secondItem="uEV-NR-R8n" secondAttribute="centerX" id="PY7-gv-c52"/>
+                                            <constraint firstAttribute="trailing" secondItem="9v5-7U-TFc" secondAttribute="trailing" constant="27" id="Q0V-9r-VgT"/>
                                             <constraint firstItem="Lap-3Q-S1w" firstAttribute="leading" secondItem="5jK-0E-eKB" secondAttribute="leading" constant="25" id="aTO-E5-tfN"/>
                                             <constraint firstItem="btQ-l4-ZiC" firstAttribute="top" secondItem="9v5-7U-TFc" secondAttribute="bottom" constant="30" id="kaJ-o7-FJi"/>
                                             <constraint firstAttribute="trailing" secondItem="Lap-3Q-S1w" secondAttribute="trailing" constant="25" id="lCc-Nd-Xhs"/>
