@@ -52,7 +52,7 @@ namespace Izrune.iOS
                 await LoadDataAsync(); 
 
                 };
-
+            View.LayoutIfNeeded();
             //SelectedPrice = PriceList?[0];
         }
 
@@ -74,7 +74,7 @@ namespace Izrune.iOS
                 SchoolId = SelectedStudent.id;
             var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-            var data = (await service.GetPromoCodeAsync(SchoolId));
+            var data = (await service.GetPromoCodeAsync(SelectedStudent.SchoolId));
 
             PriceList = data?.Prices?.ToList();
 
@@ -84,7 +84,7 @@ namespace Izrune.iOS
 
             if(PriceList?.Count > 0)
             {
-                var contentHeight = (PriceList?.Count - 1) * 70;
+                var contentHeight = (PriceList?.Count) * 70 + 50;
                 packetCollectionHeightConstraint.Constant = (System.nfloat)contentHeight;
             }
 

@@ -92,7 +92,7 @@
         <Version>2.0.0</Version>
       </PackageReference>
       <PackageReference Include="Com.Airbnb.iOS.Lottie">
-        <Version>2.5.7</Version>
+        <Version>2.5.8</Version>
       </PackageReference>
       <PackageReference Include="Xamarin.IQKeyboardManager">
         <Version>1.4.1</Version>
@@ -213,10 +213,6 @@
         <Compile Include="ViewControllers\MenuViewControllers\NewsViewController.cs" />
         <Compile Include="ViewControllers\MenuViewControllers\NewsViewController.designer.cs">
           <DependentUpon>NewsViewController.cs</DependentUpon>
-        </Compile>
-        <Compile Include="ViewControllers\MenuViewControllers\StatisticViewController.cs" />
-        <Compile Include="ViewControllers\MenuViewControllers\StatisticViewController.designer.cs">
-          <DependentUpon>StatisticViewController.cs</DependentUpon>
         </Compile>
         <Compile Include="ViewControllers\MenuViewControllers\UpdatePacketViewController.cs" />
         <Compile Include="ViewControllers\MenuViewControllers\UpdatePacketViewController.designer.cs">
@@ -361,10 +357,6 @@
         <Compile Include="ViewControllers\PaymentMethodViewController.designer.cs">
           <DependentUpon>PaymentMethodViewController.cs</DependentUpon>
         </Compile>
-        <Compile Include="ViewControllers\StudentStatisticViewController.cs" />
-        <Compile Include="ViewControllers\StudentStatisticViewController.designer.cs">
-          <DependentUpon>StudentStatisticViewController.cs</DependentUpon>
-        </Compile>
         <Compile Include="ViewControllers\EditProfile\EditParentProfileViewController.cs" />
         <Compile Include="ViewControllers\EditProfile\EditParentProfileViewController.designer.cs">
           <DependentUpon>EditParentProfileViewController.cs</DependentUpon>
@@ -396,6 +388,15 @@
         <Compile Include="ViewControllers\PayViaBankViewController.cs" />
         <Compile Include="ViewControllers\PayViaBankViewController.designer.cs">
           <DependentUpon>PayViaBankViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\MenuViewControllers\StudentStatisticViewController.cs" />
+        <Compile Include="ViewControllers\MenuViewControllers\StudentStatisticViewController.designer.cs">
+          <DependentUpon>StudentStatisticViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Utils\AlertDialogService.cs" />
+        <Compile Include="StatisticViewController.cs" />
+        <Compile Include="StatisticViewController.designer.cs">
+          <DependentUpon>StatisticViewController.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup>
@@ -496,6 +497,16 @@
       <BundleResource Include="Resources\12 – 55.png" />
       <BundleResource Include="Resources\12 – 56.png" />
       <BundleResource Include="Resources\12 – 28 rose.png" />
+      <BundleResource Include="Resources\სავარჯიშო 2 ვარსკვლავი.mp3" />
+      <BundleResource Include="Resources\სავარჯიშო 3 ვარსკვლავი.mp3" />
+      <BundleResource Include="Resources\სავარჯიშო 4 ვარსკვლავი.mp3" />
+      <BundleResource Include="Resources\სავარჯიშო 5 ვარსკვლავი.mp3" />
+      <BundleResource Include="Resources\შემაჯამებელი 1 ვარსკვლავი.mp3" />
+      <BundleResource Include="Resources\შემაჯამებელი 2 ვარსკვლავი.mp3" />
+      <BundleResource Include="Resources\შემაჯამებელი 3 ვარსკვლავი.mp3" />
+      <BundleResource Include="Resources\შემაჯამებელი 4 ვარსკვლავი.mp3" />
+      <BundleResource Include="Resources\შემაჯამებელი 5 ვარსკვლავი.mp3" />
+      <BundleResource Include="fireWorksAnimation.json" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\IZrune.PCL\IZrune.PCL.csproj">

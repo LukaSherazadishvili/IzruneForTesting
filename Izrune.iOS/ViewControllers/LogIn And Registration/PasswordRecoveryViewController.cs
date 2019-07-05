@@ -59,8 +59,7 @@ namespace Izrune.iOS
                 }
                 else
                     ShowError(true);
-
-
+                    
             };
 
             backBtn.TouchUpInside += delegate {
