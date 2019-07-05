@@ -234,7 +234,9 @@ namespace Izrune.iOS
                 var navVc = this.NavigationController;
                 this.NavigationController.PopToRootViewController(false);
                 var resultTab = Storyboard.InstantiateViewController(ResultTabbedViewController.StoryboardId) as ResultTabbedViewController;
-                resultTab.IsExamResult = true;
+
+                resultTab.AfterExam = true;
+                resultTab.IsexamType = quezCategory == QuezCategory.QuezTest;
 
                 resultTab.Questions = questionList;
 

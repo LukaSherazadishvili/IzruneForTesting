@@ -119,6 +119,11 @@ namespace IZrune.PCL.Implementation.Services
 
             var Result = JsonConvert.DeserializeObject<PaymentRootDTO>(jsn);
 
+            if (Result.Message.ToLower() != "ok")
+            {
+                AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", Result.Message);
+                return null;
+            }
             Pay pay = new Pay();
             pay.CurrentUserPayURl = $"https://e-commerce.cartubank.ge/servlet/Process3DSServlet/3dsproxy_init.jsp?PurchaseDesc={Result.payment.PurchaseDesc}&PurchaseAmt={Result.payment.PurchaseAmt}&CountryCode={Result.payment.CountryCode}&CurrencyCode={Result.payment.CurrencyCode}&MerchantName={Result.payment.MerchantName}&MerchantURL={Result.payment.MerchantURL}&MerchantCity={Result.payment.MerchantCity}&MerchantID={Result.payment.MerchantID}&xDDDSProxy.Language={Result.payment.Language}";
 

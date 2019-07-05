@@ -24,7 +24,9 @@ namespace Izrune.iOS
         public List<IQuestion> Questions;
 
         public IQuisInfo QuisInfo;
-        public bool IsExamResult;
+        public bool AfterExam;
+        public bool IsexamType;
+
 
         ExamResultViewController ExRes;
         QuestionResultViewController QuestionRes;
@@ -53,7 +55,8 @@ namespace Izrune.iOS
             this.NavigationController.NavigationBar.Translucent = false;
             ExRes = Storyboard.InstantiateViewController(ExamResultViewController.StoryboardId) as ExamResultViewController;
             ExRes.QuisInfo = QuisInfo;
-            ExRes.AfterExam = IsExamResult;
+            ExRes.AfterExam = AfterExam;
+            ExRes.IsExam = IsexamType;
 
             QuestionRes = Storyboard.InstantiateViewController(QuestionResultViewController.StoryboardId) as QuestionResultViewController;
             QuestionRes.Questions = Questions;

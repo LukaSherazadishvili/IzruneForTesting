@@ -167,7 +167,7 @@ namespace Izrune.iOS
                 exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
 
-                    if (IsExTestActive)
+                    if (!IsExTestActive)
                     {
                         IsSummSelected = false;
                         var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;

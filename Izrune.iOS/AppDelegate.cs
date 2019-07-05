@@ -32,6 +32,8 @@ namespace Izrune.iOS
 
             IZrune.PCL.AppCore.Instance.InitServices();
 
+            IZrune.PCL.AppCore.Instance.Alertdialog = new AlertDialogService();
+
             this.Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
             //rootvc = UIStoryboard.FromName("Main", null).InstantiateViewController(LogInViewController.StoryboardId);

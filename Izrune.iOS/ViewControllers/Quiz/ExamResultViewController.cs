@@ -9,6 +9,8 @@ using UIKit;
 using System.Linq;
 using XLPagerTabStrip;
 using System.Collections.Generic;
+using Airbnb.Lottie;
+using Plugin.SimpleAudioPlayer;
 
 namespace Izrune.iOS
 {
@@ -26,17 +28,31 @@ namespace Izrune.iOS
 
         public bool ShowShare;
 
-        public bool AfterExam = false;
+        public bool AfterExam;
 
-        Dictionary<int, string> ResultVoices = new Dictionary<int, string>()
+        public bool IsExam;
+
+        LOTAnimationView fireworksAnimation = new LOTAnimationView();
+
+        Dictionary<int, string> ExamResultVoices = new Dictionary<int, string>()
         {
-            {0, ""},
-            {1, ""},
-            {2, ""},
-            {3, ""},
-            {4, ""},
-            {5, ""}
+            {1, "სავარჯიშო 1 ვარსკვლავი.mp3"},
+            {2, "სავარჯიშო 2 ვარსკვლავი.mp3"},
+            {3, "სავარჯიშო 3 ვარსკვლავი.mp3"},
+            {4, "სავარჯიშო 4 ვარსკვლავი.mp3"},
+            {5, "სავარჯიშო 5 ვარსკვლავი.mp3"}
         };
+
+        Dictionary<int, string> SummResultVoices = new Dictionary<int, string>()
+        {
+            {1, "შემაჯამებელი 1 ვარსკვლავი.mp3"},
+            {2, "შემაჯამებელი 2 ვარსკვლავი.mp3"},
+            {3, "შემაჯამებელი 3 ვარსკვლავი.mp3"},
+            {4, "შემაჯამებელი 4 ვარსკვლავი.mp3"},
+            {5, "შემაჯამებელი 5 ვარსკვლავი.mp3"}
+        };
+
+        ISimpleAudioPlayer player;
 
         public override void ViewDidLoad()
         {
@@ -61,12 +77,42 @@ namespace Izrune.iOS
                 this.NavigationItem.RightBarButtonItem = barButton;
             }
 
-            if (!AfterExam)
+            if (AfterExam)
             {
-                var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-                player.Load("სავარჯიშო 1 ვარსკვლავი.mp3");
-                player.Play();
+                var voiceUrl = string.Empty;
+                var starCount = 5;
+
+                if(starCount > 0)
+                {
+                    if (!IsExam)
+                    {
+                        ExamResultVoices.TryGetValue(starCount, out voiceUrl);
+                    }
+                    else
+                        SummResultVoices.TryGetValue(starCount, out voiceUrl);
+
+                    player = CrossSimpleAudioPlayer.Current;
+                    player.Load(voiceUrl);
+                    player.Play();
+
+                }
+
+                if(starCount == 5)
+                {
+                    InitLottie();
+                    fireworksAnimation.ContentMode = UIViewContentMode.ScaleToFill;
+                    fireworksAnimation.AnimationSpeed = 0.5f;
+
+                    fireworksAnimation.Play();
+                }
             }
+        }
+
+        public override void ViewWillDisappear(bool animated)
+        {
+            base.ViewWillDisappear(animated);
+
+            player.Stop();
         }
 
         private void InitUI()
@@ -108,6 +154,15 @@ namespace Izrune.iOS
         private string FormatTimeSpan(TimeSpan time)
         {
             return ((time < TimeSpan.Zero) ? "-" : "") + time.ToString(@"mm\:ss");
+        }
+
+        private void InitLottie()
+        {
+            fireworksAnimation = LOTAnimationView.AnimationWithFilePath("fireWorksAnimation.json");
+            fireworksAnimation.ContentMode = UIViewContentMode.ScaleAspectFill;
+            fireworksAnimation.Frame = new CoreGraphics.CGRect(0, 0, viewForLottie.Frame.Width, viewForLottie.Frame.Height);
+            fireworksAnimation.UserInteractionEnabled = true;
+            viewForLottie.AddSubview(fireworksAnimation);
         }
     }
 }
