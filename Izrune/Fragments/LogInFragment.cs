@@ -80,10 +80,7 @@ namespace Izrune.Fragments
                     var intentt = new Intent(this, typeof(MainPageAtivity));
                     StartActivity(intentt);
                 }
-                else
-                {
-                    Toast.MakeText(this, "გთხოვთ სწორად შეიყვანოთ ინფორმაცია", ToastLength.Long).Show();
-                }
+              
 
             };
         }

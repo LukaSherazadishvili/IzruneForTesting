@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ModernHttpClient;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -39,7 +40,9 @@ namespace IZrune.PCL.WebUtils
             httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             httpClient.DefaultRequestHeaders.TryAddWithoutValidation("ContentType", "application/json");
-            var response = await httpClient.PostAsync(url, content);
+          
+                var response = await httpClient.PostAsync(url, content);
+           
             return response;
         }
 

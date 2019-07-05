@@ -14,7 +14,9 @@ using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
 using Izrune.Attributes;
+using Izrune.Fragments.DialogFrag;
 using Izrune.Helpers;
+using IZrune.PCL;
 
 namespace Izrune.Activitys
 {
@@ -40,6 +42,24 @@ namespace Izrune.Activitys
             SetContentView(LayoutResource);
             MapControls();
             AppInfo.Instance.CurrentContext = this;
+
+            AlertService serv = new AlertService()
+            {
+                AlertEVent = (title, text) =>
+                {
+                    var transcation = FragmentManager.BeginTransaction();
+                    warningDialogFragment dialog = new warningDialogFragment(title, text, true);
+                    dialog.Show(transcation, "Image Dialog");
+                },
+                SacssesAler = (title, text) =>
+                {
+                    var transcation = FragmentManager.BeginTransaction();
+                    warningDialogFragment dialog = new warningDialogFragment(title, text, false);
+                    dialog.Show(transcation, "Image Dialog");
+                }
+
+            };
+            AppCore.Instance.Alertdialog = serv;
             var currentView = FindViewById(Android.Resource.Id.Content);
             currentView.Focusable = true;
             currentView.FocusableInTouchMode = true;

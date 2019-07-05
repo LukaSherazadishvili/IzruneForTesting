@@ -67,18 +67,25 @@ namespace IZrune.PCL.Implementation.Services
 
         public async Task EditParentProfileAsync( string ParrentMail, string ParrentPhone, string City, string Village)
         {
-
-            var FormContent = new FormUrlEncodedContent(new[]
-                {
+            try
+            {
+                var FormContent = new FormUrlEncodedContent(new[]
+                    {
                 new KeyValuePair<string,string>("parent_id",UserControl.Instance.GetCurrentUser().Result.id.ToString()),
                  new KeyValuePair<string,string>("email",ParrentMail),
                   new KeyValuePair<string,string>("phone",ParrentPhone),
                   new KeyValuePair<string,string>("city",City),
                   new KeyValuePair<string,string>("village",Village)
                 });
-            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=editParentProfile&hashcode=0a3110bbe8a96c91eb33bf6072598368", FormContent);
-            var jsn = await Data.Content.ReadAsStringAsync();
-         
+                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=editParentProfile&hashcode=0a3110bbe8a96c91eb33bf6072598368", FormContent);
+                var jsn = await Data.Content.ReadAsStringAsync();
+
+                AppCore.Instance.Alertdialog.ShowSaccessDialog("გილოცავთ", "წარმათებით მოხდა თქვენი პროფილის შეცვლა");
+            }
+            catch (Exception ex)
+            {
+                AppCore.Instance.Alertdialog.ShowAlerDialog("შეფერხება", "მოხდა შეცდომა პროფილის რედაქტირების დროს გთხოვთ სცადოთ ხელახლა");
+            }
         }
 
         public async Task EditStudentProfile(string Email, string Phone, int regionId, string village, int SchoolId)

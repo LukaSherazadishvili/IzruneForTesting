@@ -5,10 +5,11 @@
     android:layout_height="wrap_content">
 			
 	<ImageView
+		android:id="@+id/DialogImage"
 		android:layout_marginTop="10dp"
 		android:layout_width="50dp"
 		android:layout_height="50dp"
-		android:src="@drawable/warning"
+		
 		android:layout_gravity="center"/>
 
 		<TextView

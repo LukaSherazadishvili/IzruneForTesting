@@ -38,14 +38,14 @@ namespace IZrune.PCL.Implementation.Services
                 else
                 {
                     AppCore.Instance.CurrentUserToken = "";
-                    AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "თქვენს მიერშეყვანილი სახელი ან პაროლი არ არის რეგისტრირებული");
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "თქვენს მიერ შეყვანილი სახელი ან პაროლი არ არის რეგისტრირებული");
                 
                 return false;
                 }
             }
             catch(Exception ex)
             {
-                AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "თქვენს მიერშეყვანილი სახელი ან პაროლი არ არის რეგისტრირებული");
+              AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "თქვენს მიერ შეყვანილი სახელი ან პაროლი არ არის რეგისტრირებული ან არ ხართ დაკავშირებული ინტერნეტთან");
                 return false;
             }
         }

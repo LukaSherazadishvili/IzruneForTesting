@@ -20,29 +20,37 @@ namespace IZrune.PCL.Implementation.Services
     {
         public async Task<IQuisResultInfo> GetCurrentTestDiplomaInfo(int TestId)
         {
-            var FormContent = new FormUrlEncodedContent(new[]
-                    {
+            try
+            {
+                var FormContent = new FormUrlEncodedContent(new[]
+                        {
                 new KeyValuePair<string,string>("test_id",TestId.ToString()),
 
             });
-            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getTestInfo&hashcode=1218b084b72f42914d4c868a2eec191b", FormContent);
-            var jsn = await Data.Content.ReadAsStringAsync();
-            var Result = JsonConvert.DeserializeObject<QuisResultInfoRootDTO>(jsn);
-            var info = Result.info;
-            QuisResultInfo QuesResult = new QuisResultInfo();
+                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getTestInfo&hashcode=1218b084b72f42914d4c868a2eec191b", FormContent);
+                var jsn = await Data.Content.ReadAsStringAsync();
+                var Result = JsonConvert.DeserializeObject<QuisResultInfoRootDTO>(jsn);
+                var info = Result.info;
+                QuisResultInfo QuesResult = new QuisResultInfo();
 
-            DateTime.TryParse(info.date, out DateTime date);
-            int.TryParse(info.duration, out int Time);
-            QuesResult.Date = date;
-            QuesResult.Duration = Time;
-            QuesResult.Egmu = info.egmu;
-            QuesResult.Score = info.score;
-            QuesResult.Stars = info.stars;
-            QuesResult.test_type = info.test_type == "1" ? QuezCategory.QuezExam : QuezCategory.QuezTest;
-            QuesResult.text_description = info.text_description;
-            QuesResult.text_title = info.text_title;
+                DateTime.TryParse(info.date, out DateTime date);
+                int.TryParse(info.duration, out int Time);
+                QuesResult.Date = date;
+                QuesResult.Duration = Time;
+                QuesResult.Egmu = info.egmu;
+                QuesResult.Score = info.score;
+                QuesResult.Stars = info.stars;
+                QuesResult.test_type = info.test_type == "1" ? QuezCategory.QuezExam : QuezCategory.QuezTest;
+                QuesResult.text_description = info.text_description;
+                QuesResult.text_title = info.text_title;
 
-            return QuesResult;
+                return QuesResult;
+            }
+            catch(Exception ex)
+            {
+                AppCore.Instance.Alertdialog.ShowAlerDialog("შეფერხება", "ინფორმაცია ვერ მოიძებნა არ არ ხართ დაკავშირებული ინტერნეტთან");
+                return null;
+            }
         }
 
         public async Task<IEnumerable<IQuestion>> GetFinalQuestionResult()
@@ -77,6 +85,7 @@ namespace IZrune.PCL.Implementation.Services
             }
             catch(Exception ex)
             {
+                AppCore.Instance.Alertdialog.ShowAlerDialog("შეფერხება", "ინფორმაცია ვერ მოიძებნა არ არ ხართ დაკავშირებული ინტერნეტთან");
                 return null;
             }
         }
@@ -131,11 +140,13 @@ namespace IZrune.PCL.Implementation.Services
                 }
                 else
                 {
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("შეფერხება", "ინფორმაცია ვერ მოიძებნა არ არ ხართ დაკავშირებული ინტერნეტთან");
                     return null;
                 }
             }
             catch(Exception ex)
             {
+                AppCore.Instance.Alertdialog.ShowAlerDialog("შეფერხება", "ინფორმაცია ვერ მოიძებნა არ არ ხართ დაკავშირებული ინტერნეტთან");
                 return null; ;
             }
         }
@@ -187,6 +198,7 @@ namespace IZrune.PCL.Implementation.Services
             }
             catch(Exception ex)
             {
+                AppCore.Instance.Alertdialog.ShowAlerDialog("შეფერხება", "ინფორმაცია ვერ მოიძებნა არ არ ხართ დაკავშირებული ინტერნეტთან");
                 return null;
             }
         }

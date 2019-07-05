@@ -197,6 +197,7 @@ namespace IZrune.PCL.Helpers
         public async void AddStudent()
         {
             await MpdcContainer.Instance.Get<IUserServices>().AddStudent(RegistrationStudent);
+            Parent = await MpdcContainer.Instance.Get<IUserServices>().GetUserAsync();
         }
 
 
@@ -244,11 +245,13 @@ namespace IZrune.PCL.Helpers
             {
                 await MpdcContainer.Instance.Get<IUserServices>().EditParentProfileAsync(ParrentMail, ParrentPhone, City, Village);
                 Parent = await MpdcContainer.Instance.Get<IUserServices>().GetUserAsync();
+               
                 
             }
             catch(Exception ex)
             {
-
+               
+             
             }
         }
 
@@ -258,11 +261,11 @@ namespace IZrune.PCL.Helpers
             {
                 await MpdcContainer.Instance.Get<IUserServices>().EditStudentProfile(Email, Phone, regionId, village, SchoolId);
                 Parent = await MpdcContainer.Instance.Get<IUserServices>().GetUserAsync();
-               
+                AppCore.Instance.Alertdialog.ShowSaccessDialog("გილოცავთ", "წარმათებით მოხდა თქვენი პროფილის შეცვლა");
             }
             catch(Exception ex)
             {
-
+                AppCore.Instance.Alertdialog.ShowAlerDialog("შეფერხება", "მოხდა შეცდომა პროფილის რედაქტირების დროს გთხოვთ სცადოთ ხელახლა");
             }
         }
 

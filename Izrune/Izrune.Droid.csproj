@@ -180,6 +180,9 @@
     <PackageReference Include="Microcharts">
       <Version>0.8.5-pre</Version>
     </PackageReference>
+    <PackageReference Include="modernhttpclient-updated">
+      <Version>3.3.3</Version>
+    </PackageReference>
     <PackageReference Include="MPAndroidChart">
       <Version>3.0.3</Version>
     </PackageReference>
@@ -719,6 +722,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Saccess.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

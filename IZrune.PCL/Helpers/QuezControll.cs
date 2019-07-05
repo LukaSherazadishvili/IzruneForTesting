@@ -30,7 +30,7 @@ namespace IZrune.PCL.Helpers
                     {
                         if (instance == null)
                         {
-                            AppCore.Instance.InitServices();
+                          //  AppCore.Instance.InitServices();
                             instance = new QuezControll();
                         }
                     }
@@ -107,6 +107,7 @@ namespace IZrune.PCL.Helpers
                     Sheduler.ElementAt(Position).IsCurrent = true;
 
                 }
+               
                 return Result;
             }
             catch(Exception x)
