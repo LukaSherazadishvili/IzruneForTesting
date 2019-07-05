@@ -33,7 +33,7 @@ namespace Izrune.iOS
         public int SchoolId;
         public bool HideFooter { get; set; }
 
-        float HederHeight = 97;
+        float HederHeight = 190;
         float FooterHeight = 140;
 
         DropDown StudentDp = new DropDown();
@@ -73,6 +73,12 @@ namespace Izrune.iOS
             InitGesture();
 
             SelectPacketVc = Storyboard.InstantiateViewController(SelectPacketViewController.StoryboardId) as SelectPacketViewController;
+
+            SelectPacketVc.DataLoaded = () =>
+            {
+                UpdateViewSize(SelectPacketVc.ContentHeight);
+            };
+
             PromoVc = Storyboard.InstantiateViewController(PromoCodeViewController.StoryboardId) as PromoCodeViewController;
 
             SelectPacketVc.IsFromMenu = IsFromMenu;
@@ -200,7 +206,6 @@ namespace Izrune.iOS
                 };
             }
 
-            UpdateViewSize(SelectPacketVc.ContentHeight);
         }
 
         private async Task GetPromoDataAsync(int schoolId)
@@ -386,10 +391,14 @@ namespace Izrune.iOS
 
         private void UpdateViewSize(nfloat packetHeight)
         {
+            UIEdgeInsets safeAreaSize = new UIEdgeInsets();
 
-            var visibleHeight = this.View.Frame.Height - (HederHeight + FooterHeight);
+            if (UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
+            {
+                safeAreaSize = UIApplication.SharedApplication.KeyWindow.SafeAreaInsets;
+            }
 
-            packetHeight = 100;
+            var visibleHeight = this.View.Frame.Height - (HederHeight + FooterHeight + safeAreaSize.Top + safeAreaSize.Bottom);
 
             nfloat delta = visibleHeight - packetHeight;
 

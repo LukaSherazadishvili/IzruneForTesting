@@ -57,7 +57,7 @@ namespace Izrune.iOS
 
                 };
             View.LayoutIfNeeded();
-            //SelectedPrice = PriceList?[0];
+
         }
 
         private void SendData()
@@ -89,12 +89,10 @@ namespace Izrune.iOS
             {
                 var contentHeight = (PriceList?.Count) * 70 + 50;
                 packetCollectionHeightConstraint.Constant = (System.nfloat)contentHeight;
-                ContentHeight = (System.nfloat)(contentHeight + 100);
+                ContentHeight = (System.nfloat)(contentHeight);
             }
 
-
             DataLoaded?.Invoke();
-
         }
 
         private void CollectionViewSettings()
