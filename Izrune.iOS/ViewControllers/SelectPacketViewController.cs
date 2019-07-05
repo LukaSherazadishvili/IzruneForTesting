@@ -38,6 +38,8 @@ namespace Izrune.iOS
         public IStudent SelectedStudent;
 
         public bool IsFromMenu;
+
+        public nfloat ContentHeight { get; set; }
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -57,7 +59,6 @@ namespace Izrune.iOS
             View.LayoutIfNeeded();
             //SelectedPrice = PriceList?[0];
         }
-
 
         private void SendData()
         {
@@ -88,6 +89,7 @@ namespace Izrune.iOS
             {
                 var contentHeight = (PriceList?.Count) * 70 + 50;
                 packetCollectionHeightConstraint.Constant = (System.nfloat)contentHeight;
+                ContentHeight = (System.nfloat)(contentHeight + 100);
             }
 
 

@@ -190,14 +190,17 @@ namespace Izrune.iOS
 
                 SelectPacketVc.DataLoaded = () =>
                 {
-                    var scrollView = SelectPacketVc.View.OfType<UIScrollView>().FirstOrDefault();
-                    SelectPacketVc.View.LayoutIfNeeded();
-                    scrollView.LayoutIfNeeded();
+                    //var scrollView = SelectPacketVc.View.OfType<UIScrollView>().FirstOrDefault();
+                    //SelectPacketVc.View.LayoutIfNeeded();
+                    //scrollView.LayoutIfNeeded();
 
-                    SetContentHeight(scrollView.ContentSize.Height);
+                    //SetContentHeight(scrollView.ContentSize.Height);
+
+                    UpdateViewSize(SelectPacketVc.ContentHeight);
                 };
             }
 
+            UpdateViewSize(SelectPacketVc.ContentHeight);
         }
 
         private async Task GetPromoDataAsync(int schoolId)
@@ -379,6 +382,22 @@ namespace Izrune.iOS
                 if(IsPromoSelected)
                     PromoVc.CheckPromo();
             };
+        }
+
+        private void UpdateViewSize(nfloat packetHeight)
+        {
+
+            var visibleHeight = this.View.Frame.Height - (HederHeight + FooterHeight);
+
+            packetHeight = 100;
+
+            nfloat delta = visibleHeight - packetHeight;
+
+            if (delta > 0)
+                contentHeightConstraint.Constant = packetHeight;
+            else
+                contentHeightConstraint.Constant = visibleHeight;
+                
         }
     }
 }
