@@ -80,7 +80,7 @@ namespace Izrune.iOS
             if (AfterExam)
             {
                 var voiceUrl = string.Empty;
-                var starCount = 5;
+                var starCount = QuisInfo.QueisResult.Stars;
 
                 if(starCount > 0)
                 {
