@@ -247,8 +247,6 @@ namespace Izrune.iOS
             });
         }
 
-
-
         [Export("collectionView:viewForSupplementaryElementOfKind:atIndexPath:")]
         public UICollectionReusableView GetViewForSupplementaryElement(UICollectionView collectionView, NSString elementKind, NSIndexPath indexPath)
         {

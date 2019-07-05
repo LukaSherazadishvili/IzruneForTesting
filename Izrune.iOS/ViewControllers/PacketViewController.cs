@@ -75,6 +75,8 @@ namespace Izrune.iOS
             SelectPacketVc = Storyboard.InstantiateViewController(SelectPacketViewController.StoryboardId) as SelectPacketViewController;
             PromoVc = Storyboard.InstantiateViewController(PromoCodeViewController.StoryboardId) as PromoCodeViewController;
 
+            SelectPacketVc.IsFromMenu = IsFromMenu;
+
             this.AddVcInView(viewForPeager, SelectPacketVc);
 
             PromoVc.PromoInfo = PromoCode;
@@ -124,6 +126,12 @@ namespace Izrune.iOS
                         System.Diagnostics.Debug.WriteLine(ex.Message);
                     }
                 }; ;
+
+                var scrollView = SelectPacketVc.View.OfType<UIScrollView>().FirstOrDefault();
+                SelectPacketVc.View.LayoutIfNeeded();
+                scrollView.LayoutIfNeeded();
+
+                SetContentHeight(scrollView.ContentSize.Height);
             }
 
             else

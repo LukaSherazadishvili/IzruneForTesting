@@ -36,6 +36,8 @@ namespace Izrune.iOS
         public IPrice SelectedPrice;
 
         public IStudent SelectedStudent;
+
+        public bool IsFromMenu;
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -74,7 +76,7 @@ namespace Izrune.iOS
                 SchoolId = SelectedStudent.id;
             var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-            var data = (await service.GetPromoCodeAsync(SelectedStudent.SchoolId));
+            var data = (await service.GetPromoCodeAsync(IsFromMenu? 0 : SchoolId));
 
             PriceList = data?.Prices?.ToList();
 
