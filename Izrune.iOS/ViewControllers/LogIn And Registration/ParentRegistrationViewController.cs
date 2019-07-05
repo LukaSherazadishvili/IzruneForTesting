@@ -138,6 +138,7 @@ namespace Izrune.iOS
             nextBtn.TouchUpInside += delegate
             {
                 NextClicked = true;
+                mainScrollView.SetContentOffset(CoreGraphics.CGPoint.Empty, true);
                 GetCurrentPage(CurrentIndex);
                 //CurrentIndex++;
                 CheckIndex();

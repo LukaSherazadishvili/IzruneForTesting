@@ -52,7 +52,7 @@ namespace Izrune.iOS
                 await LoadDataAsync(); 
 
                 };
-
+            View.LayoutIfNeeded();
             //SelectedPrice = PriceList?[0];
         }
 
@@ -84,7 +84,7 @@ namespace Izrune.iOS
 
             if(PriceList?.Count > 0)
             {
-                var contentHeight = (PriceList?.Count - 1) * 70;
+                var contentHeight = (PriceList?.Count) * 70 + 50;
                 packetCollectionHeightConstraint.Constant = (System.nfloat)contentHeight;
             }
 
