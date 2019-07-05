@@ -24,7 +24,6 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("StudentStatisticStoryboardId");
 
-
         DropDown CurentStudentDP = new DropDown();
         private IEnumerable<IDiplomStatistic> diplomeStatistics;
         IStudent CurrentStudent;
@@ -63,6 +62,7 @@ namespace Izrune.iOS
             resultVc = Storyboard.InstantiateViewController(TestResultsViewController.StoryboardId) as TestResultsViewController;
             examTabVc = Storyboard.InstantiateViewController(ExamTabViewController.StoryboardId) as ExamTabViewController;
         }
+
         private async Task LoadDataAsync()
         {
             contentView.Hidden = true;

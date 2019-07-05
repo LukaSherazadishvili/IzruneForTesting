@@ -61,6 +61,8 @@ namespace Izrune.iOS
 
             await UpdateData();
             diplomeCollectionView.ReloadData();
+
+            diplomeLbl.Text = diplomeYears?[0]?.DiplomaDate + " სასწავლო წელი";
         }
         private void InitUI()
         {
@@ -97,7 +99,6 @@ namespace Izrune.iOS
 
             var service = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
             diplomeYears = (await service.GetDiplomaStatisticAsync())?.ToList();
-            diplomeLbl.Text = diplomeYears?[0]?.DiplomaDate + " სასწავლო წელი";
 
         }
 

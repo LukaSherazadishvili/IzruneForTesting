@@ -214,10 +214,6 @@
         <Compile Include="ViewControllers\MenuViewControllers\NewsViewController.designer.cs">
           <DependentUpon>NewsViewController.cs</DependentUpon>
         </Compile>
-        <Compile Include="ViewControllers\MenuViewControllers\StatisticViewController.cs" />
-        <Compile Include="ViewControllers\MenuViewControllers\StatisticViewController.designer.cs">
-          <DependentUpon>StatisticViewController.cs</DependentUpon>
-        </Compile>
         <Compile Include="ViewControllers\MenuViewControllers\UpdatePacketViewController.cs" />
         <Compile Include="ViewControllers\MenuViewControllers\UpdatePacketViewController.designer.cs">
           <DependentUpon>UpdatePacketViewController.cs</DependentUpon>
@@ -361,10 +357,6 @@
         <Compile Include="ViewControllers\PaymentMethodViewController.designer.cs">
           <DependentUpon>PaymentMethodViewController.cs</DependentUpon>
         </Compile>
-        <Compile Include="ViewControllers\StudentStatisticViewController.cs" />
-        <Compile Include="ViewControllers\StudentStatisticViewController.designer.cs">
-          <DependentUpon>StudentStatisticViewController.cs</DependentUpon>
-        </Compile>
         <Compile Include="ViewControllers\EditProfile\EditParentProfileViewController.cs" />
         <Compile Include="ViewControllers\EditProfile\EditParentProfileViewController.designer.cs">
           <DependentUpon>EditParentProfileViewController.cs</DependentUpon>
@@ -396,6 +388,10 @@
         <Compile Include="ViewControllers\PayViaBankViewController.cs" />
         <Compile Include="ViewControllers\PayViaBankViewController.designer.cs">
           <DependentUpon>PayViaBankViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\MenuViewControllers\StudentStatisticViewController.cs" />
+        <Compile Include="ViewControllers\MenuViewControllers\StudentStatisticViewController.designer.cs">
+          <DependentUpon>StudentStatisticViewController.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup>
