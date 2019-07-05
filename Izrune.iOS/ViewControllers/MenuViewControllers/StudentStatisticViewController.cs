@@ -82,10 +82,11 @@ namespace Izrune.iOS
         {
             currentStudentLbl.Text = student.Name + " " + student.LastName;
 
-            packetDateLbl.Hidden = student?.PakEndDate == null;
+            bool hide = student?.PakEndDate == null;
+            packetDateLbl.Hidden = hide;
+            titleLbl.Hidden = hide;
+
             packetDateLbl.Text = student?.PakEndDate?.ToString("dd/MM/yyyy");
-
-
         }
 
         private void InitUI()
