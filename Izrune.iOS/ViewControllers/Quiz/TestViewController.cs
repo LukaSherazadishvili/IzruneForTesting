@@ -74,8 +74,6 @@ namespace Izrune.iOS
 
                 var userService = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-                //var user = await userService.GetUserAsync();
-
                 var data = (await QuezControll.Instance.GetAllQuestion(quezCategory))?.ToList();
 
                 if (data == null || data?.Count == 0)
