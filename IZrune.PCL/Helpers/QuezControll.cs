@@ -90,22 +90,29 @@ namespace IZrune.PCL.Helpers
 
         public async Task<IEnumerable<IQuestion>> GetAllQuestion(QuezCategory TestType)
         {
-            var Result =await MpdcContainer.Instance.Get<IQuezServices>().GetQuestionsAsync(TestType);
-            Questions = Result.ToList();
-            Position = 0;
-            Sheduler = new List<QuisSheduler>();
-            if (Questions.Count > 0&&Sheduler.Count==0)
+            try
             {
-                Sheduler.Clear();
-                for(int i = 0; i < Questions?.Count(); i++)
+                var Result = await MpdcContainer.Instance.Get<IQuezServices>().GetQuestionsAsync(TestType);
+                Questions = Result.ToList();
+                Position = 0;
+                Sheduler = new List<QuisSheduler>();
+                if (Questions.Count > 0 && Sheduler.Count == 0)
                 {
-                    QuisSheduler sheduler = new QuisSheduler() { IsCurrent = false, AlreadeBe = false, Position = i };
-                    Sheduler.Add(sheduler);
-                }
-                Sheduler.ElementAt(Position).IsCurrent = true;
+                    Sheduler.Clear();
+                    for (int i = 0; i < Questions?.Count(); i++)
+                    {
+                        QuisSheduler sheduler = new QuisSheduler() { IsCurrent = false, AlreadeBe = false, Position = i };
+                        Sheduler.Add(sheduler);
+                    }
+                    Sheduler.ElementAt(Position).IsCurrent = true;
 
+                }
+                return Result;
             }
-            return Result;
+            catch(Exception x)
+            {
+                return null;
+            }
         }
 
         public async Task<int> GetSmsCode()

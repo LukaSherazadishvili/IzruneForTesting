@@ -76,9 +76,14 @@ namespace Izrune.iOS
 
                 //var user = await userService.GetUserAsync();
 
-                var data = (await QuezControll.Instance.GetAllQuestion(quezCategory));
+                var data = (await QuezControll.Instance.GetAllQuestion(quezCategory))?.ToList();
 
-                AllQuestions = data?.ToList();
+                if (data == null || data?.Count == 0)
+                {
+                    this.NavigationController.PopToRootViewController(true);
+                }
+
+                AllQuestions = data;
 
                 CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
 
@@ -229,6 +234,8 @@ namespace Izrune.iOS
                 var navVc = this.NavigationController;
                 this.NavigationController.PopToRootViewController(false);
                 var resultTab = Storyboard.InstantiateViewController(ResultTabbedViewController.StoryboardId) as ResultTabbedViewController;
+                resultTab.IsExamResult = true;
+
                 resultTab.Questions = questionList;
 
                 resultTab.QuisInfo = info;

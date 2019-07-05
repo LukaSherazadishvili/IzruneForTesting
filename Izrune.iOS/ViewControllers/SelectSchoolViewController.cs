@@ -27,6 +27,8 @@ namespace Izrune.iOS
             base.ViewDidLoad();
 
             InitCollectionView();
+
+
         }
 
         public override void ViewWillAppear(bool animated)

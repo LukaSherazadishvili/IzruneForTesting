@@ -38,42 +38,42 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="evV-df-gea">
                                 <rect key="frame" x="15" y="18" width="20" height="170"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1 – 31.png" translatesAutoresizingMaskIntoConstraints="NO" id="f6e-xw-uDx">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12 – 30.png" translatesAutoresizingMaskIntoConstraints="NO" id="f6e-xw-uDx">
                                         <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="PiV-6R-dbT"/>
                                             <constraint firstAttribute="height" constant="20" id="ng1-Go-U78"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1 – 32.png" translatesAutoresizingMaskIntoConstraints="NO" id="ap4-Jb-sRe">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12 – 31.png" translatesAutoresizingMaskIntoConstraints="NO" id="ap4-Jb-sRe">
                                         <rect key="frame" x="0.0" y="30" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="ltd-fy-IT8"/>
                                             <constraint firstAttribute="width" constant="20" id="xu2-XR-eBT"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1 – 33.png" translatesAutoresizingMaskIntoConstraints="NO" id="T4d-xW-Lya">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12 – 32.png" translatesAutoresizingMaskIntoConstraints="NO" id="T4d-xW-Lya">
                                         <rect key="frame" x="0.0" y="60" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="iKA-It-Veg"/>
                                             <constraint firstAttribute="width" constant="20" id="kAx-9D-QK9"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1 – 34.png" translatesAutoresizingMaskIntoConstraints="NO" id="23l-BR-DoM">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12 – 33.png" translatesAutoresizingMaskIntoConstraints="NO" id="23l-BR-DoM">
                                         <rect key="frame" x="0.0" y="90" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="8BG-hE-EtT"/>
                                             <constraint firstAttribute="width" constant="20" id="nVm-eQ-XBd"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1 – 35.png" translatesAutoresizingMaskIntoConstraints="NO" id="BFa-hd-1Ud">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12 – 34.png" translatesAutoresizingMaskIntoConstraints="NO" id="BFa-hd-1Ud">
                                         <rect key="frame" x="0.0" y="120" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="MXh-9N-WS6"/>
                                             <constraint firstAttribute="height" constant="20" id="qRy-UB-qtP"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1 – 37.png" translatesAutoresizingMaskIntoConstraints="NO" id="76N-mZ-fYP">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12 – 35.png" translatesAutoresizingMaskIntoConstraints="NO" id="76N-mZ-fYP">
                                         <rect key="frame" x="0.0" y="150" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="VqV-yz-6jh"/>
@@ -291,11 +291,11 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="1 – 31.png" width="25" height="25"/>
-        <image name="1 – 32.png" width="25" height="25"/>
-        <image name="1 – 33.png" width="25" height="25"/>
-        <image name="1 – 34.png" width="25" height="25"/>
-        <image name="1 – 35.png" width="25" height="25"/>
-        <image name="1 – 37.png" width="25" height="25"/>
+        <image name="12 – 30.png" width="150" height="150"/>
+        <image name="12 – 31.png" width="150" height="150"/>
+        <image name="12 – 32.png" width="150" height="150"/>
+        <image name="12 – 33.png" width="150" height="150"/>
+        <image name="12 – 34.png" width="150" height="150"/>
+        <image name="12 – 35.png" width="150" height="150"/>
     </resources>
 </document>

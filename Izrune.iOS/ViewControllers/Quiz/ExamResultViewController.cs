@@ -8,6 +8,7 @@ using MpdcViewExtentions;
 using UIKit;
 using System.Linq;
 using XLPagerTabStrip;
+using System.Collections.Generic;
 
 namespace Izrune.iOS
 {
@@ -24,6 +25,18 @@ namespace Izrune.iOS
         public IStudent Student;
 
         public bool ShowShare;
+
+        public bool AfterExam = false;
+
+        Dictionary<int, string> ResultVoices = new Dictionary<int, string>()
+        {
+            {0, ""},
+            {1, ""},
+            {2, ""},
+            {3, ""},
+            {4, ""},
+            {5, ""}
+        };
 
         public override void ViewDidLoad()
         {
@@ -46,6 +59,13 @@ namespace Izrune.iOS
                     }
                 };
                 this.NavigationItem.RightBarButtonItem = barButton;
+            }
+
+            if (!AfterExam)
+            {
+                var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                player.Load("სავარჯიშო 1 ვარსკვლავი.mp3");
+                player.Play();
             }
         }
 

@@ -25,7 +25,7 @@ namespace Izrune.iOS.ViewControllers
 
         private MenuViewController menuVc;
         private IParent CurrentUser;
-
+        UIImage barImage = UIImage.FromBundle("icmenuizrune.png");
         #region ViewControllerStoryboardIds
 
         const string MenuViewControllerStoryboardId = "MenuViewControllerStoryboardId";
@@ -49,7 +49,7 @@ namespace Izrune.iOS.ViewControllers
                 {MenuType.LogIn, () => CreateViewControllerByStoryboard(LogInStoryboardId)},
                 {MenuType.News, () => CreateViewControllerByStoryboard(NewsStoryboardId)},
                 {MenuType.MoreInfo, () => CreateViewControllerByStoryboard(MoreInfoStoryboardId)},
-                {MenuType.Contact, () => CreateViewControllerByStoryboard(PayViaBankViewController.StoryboardId)},
+                {MenuType.Contact, () => CreateViewControllerByStoryboard(ContactStoryboardId)},
                 {MenuType.Main, () => CreateViewControllerByStoryboard(StartTestStoryboardId)},
                 {MenuType.Statistic, () => CreateViewControllerByStoryboard(StatisticStoryboardId)},
                 {MenuType.UpdatePacket, () => CreateViewControllerByStoryboard(UpdatePacketStoryboardId)},
@@ -145,11 +145,11 @@ namespace Izrune.iOS.ViewControllers
         {
             //var mainVc = _storyBoard.InstantiateViewController(TestChooseViewController.StoryboardId) as TestChooseViewController;
 
-            var MainPageVc = _storyBoard.InstantiateViewController(LogInViewController.StoryboardId).CreateWithNavigationControllerWithMenu(ToggleMenu,UIImage.FromBundle("ichamburger.png"),  AppColors.Tint, false);
+            var MainPageVc = _storyBoard.InstantiateViewController(LogInViewController.StoryboardId).CreateWithNavigationControllerWithMenu(ToggleMenu,barImage,  AppColors.Tint, false);
 
             MainPageVc.NavigationBar.TintColor = AppColors.Tint;
 
-            var barImage = UIImage.FromBundle("ichamburger.png");
+            
             var barButton = new UIBarButtonItem();
             barButton.Image = barImage;
             barButton.Clicked += (sender, e) => ToggleMenu();
@@ -191,7 +191,7 @@ namespace Izrune.iOS.ViewControllers
         UIViewController PutVcInNav(UIViewController vc)
         {
 
-            var navVc = vc.CreateWithNavigationControllerWithMenu(ToggleMenu, UIImage.FromBundle("icMenu.png"), AppColors.Tint, false);
+            var navVc = vc.CreateWithNavigationControllerWithMenu(ToggleMenu, barImage, AppColors.Tint, false);
                       
             vc.NavigationController.NavigationBar.TintColor = UIColor.White;
 
@@ -204,7 +204,7 @@ namespace Izrune.iOS.ViewControllers
         {
             //var navVc = _storyBoard.InstantiateViewController(storyboardId).CreateWithNavigationControllerWithMenu(ToggleMenu);
 
-            var navVc = _storyBoard.InstantiateViewController(storyboardId).CreateWithNavigationControllerWithMenu(ToggleMenu, UIImage.FromBundle("ichamburger.png"), AppColors.Tint, false);
+            var navVc = _storyBoard.InstantiateViewController(storyboardId).CreateWithNavigationControllerWithMenu(ToggleMenu, barImage, AppColors.Tint, false);
 
             navVc.NavigationBar.InitNavigationBarColorWithNoShadow(UIColor.White);
 

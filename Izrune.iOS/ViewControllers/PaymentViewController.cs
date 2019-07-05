@@ -42,18 +42,19 @@ namespace Izrune.iOS
             if(request.Url.AbsoluteString == PayInfo.SuccesUrl)
             {
                 //TODO
-                GoToLogin?.Invoke();
+                //GoToLogin?.Invoke();
+                this.NavigationController.PopToRootViewController(true);
             }
 
             else if(request.Url.AbsoluteString == PayInfo.FailUrl)
             {
                 //TODO
-                GoToLogin?.Invoke();
+                this.NavigationController.PopToRootViewController(true);
             }
 
             else if(request.Url.AbsoluteString == "http://www.izrune.ge/")
             {
-                GoToLogin?.Invoke();
+                this.NavigationController.PopToRootViewController(true);
             }
             return true;
         }

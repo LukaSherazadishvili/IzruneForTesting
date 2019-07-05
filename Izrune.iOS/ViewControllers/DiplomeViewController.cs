@@ -28,6 +28,8 @@ namespace Izrune.iOS
         public IStudent Student;
         private IStatisticServices diplomeService;
         private List<IStudentsStatistic> StudentsStatistics;
+        private List<IStudentsStatistic> AllStatistic = new List<IStudentsStatistic>();
+
         DropDown YearDropDown = new DropDown();
 
         private ExamResultViewController diplomeDetailVc;
@@ -70,9 +72,6 @@ namespace Izrune.iOS
             HideHeader(true);
             ShowLoading();
 
-            var service = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
-            diplomeYears = (await service.GetDiplomaStatisticAsync())?.ToList();
-
             await UpdateData();
 
             if (StudentsStatistics == null || StudentsStatistics?.Count == 0)
@@ -89,8 +88,17 @@ namespace Izrune.iOS
         public async Task UpdateData()
         {
             diplomeService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
-
             StudentsStatistics = (await diplomeService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam))?.Where(x => x.DiplomaUrl != null)?.ToList();
+
+            foreach (var item in StudentsStatistics)
+            {
+                AllStatistic?.Add(item);
+            }
+
+            var service = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
+            diplomeYears = (await service.GetDiplomaStatisticAsync())?.ToList();
+            diplomeLbl.Text = diplomeYears?[0]?.DiplomaDate + " სასწავლო წელი";
+
         }
 
         private void HideHeader(bool hide)
@@ -176,6 +184,11 @@ namespace Izrune.iOS
                 try
                 {
                     diplomeLbl.Text = name + "სასწავლო წელი";
+
+                    var years = diplomeYears?[(int)index];
+
+                    //TODO Filter Logic
+                    //StudentsStatistics = AllStatistic?.Where(x => x)
                 }
                 catch (Exception ex)
                 {

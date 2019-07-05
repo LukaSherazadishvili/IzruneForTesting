@@ -28,12 +28,19 @@ namespace Izrune.iOS
             var barButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, null);
 
             barButton.Clicked += delegate {
-                var url = "";
+                var url = $"მიმღები: შპს \"ეტალონი-განათლება\" მიმღების საიდენტიფიკაციო კოდი: 404561979 სს ბანკი \"თიბისი ბანკი\" TBCBGE22 ანგარიშის ნომერი: GE82TB7994 6360 8010 0007 www.izrune.ge თარიღი: {DateTime.Now.ToString("dd/MM/yyyy")}";
 
                 if (!string.IsNullOrEmpty(url) && !string.IsNullOrWhiteSpace(url))
                 {
                     this.ShareUrl(url);
                 }
+            };
+
+            this.NavigationItem.RightBarButtonItem = barButton;
+
+            numberCopyBttn.TouchUpInside += delegate {
+                UIPasteboard.General.String = "GE82TB7994636080100007";
+                numberCopyBttn.SetTitle("ნომერი დაკოპირებულია", UIControlState.Normal);
             };
         }
 
@@ -43,6 +50,9 @@ namespace Izrune.iOS
             profileNumberLbl.Text = $"1. პროფილის ნომერი - {CurrentUser?.id}";
             userNameLbl.Text = $"2. მომხმარებლის სახელი-გვარი - {CurrentUser?.Name + " " + CurrentUser?.LastName}";
             billLbl.Text = $"3. გადასახდელი თანხა - {SelectedPrice?.price}";
+            dateLbl.Text = DateTime.Now.ToString("dd/MM/yyyy");
+
+            userStackView.Hidden = CurrentUser == null;
         }
     }
 }

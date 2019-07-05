@@ -85,7 +85,9 @@ namespace Izrune.iOS
             promoCodeTf.TextColor = UIColor.White;
             promoCodeTf.Layer.BorderColor = isRight ? AppColors.Succesful.CGColor : AppColors.ErrorTitle.CGColor;
             promoCodeTf.BackgroundColor = isRight ? AppColors.GreenBg : AppColors.RedBg;
-            promoCodeErorLbl.Hidden = false;
+            promoCodeErorLbl.Hidden = isRight;
+            promoCodeErorLbl.Text = isRight ? "კოდი სწორია" : "კოდი არასწორია";
+
             promoCodeErorLbl.TextColor = isRight ? AppColors.Succesful : AppColors.ErrorTitle;
         }
 
@@ -96,7 +98,7 @@ namespace Izrune.iOS
             MonthDropDown.Width = this.View.Frame.Width;
             MonthDropDown.Direction = Direction.Bottom;
 
-            var array = PromoInfo?.Prices?.Select(x => x.StartDate.ToShortDateString() +" - " + x.EndDate.ToShortDateString())?.ToArray();
+            var array = PromoInfo?.Prices?.Select(x => x.StartDate.ToString("dd/MM/yyyy") +" - " + x.EndDate.ToString("dd/MM/yyyy"))?.ToArray();
 
             MonthDropDown.DataSource = array;
 
