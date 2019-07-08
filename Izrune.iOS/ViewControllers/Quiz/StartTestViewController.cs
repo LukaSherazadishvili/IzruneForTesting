@@ -166,7 +166,7 @@ namespace Izrune.iOS
             {
                 exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-
+                    //Sesacvleliiiiii !!!!!!
                     if (!IsExTestActive)
                     {
                         IsSummSelected = false;
