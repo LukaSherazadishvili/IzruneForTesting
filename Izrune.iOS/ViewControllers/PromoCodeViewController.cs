@@ -98,14 +98,14 @@ namespace Izrune.iOS
             MonthDropDown.Width = this.View.Frame.Width;
             MonthDropDown.Direction = Direction.Bottom;
 
-            var array = PromoInfo?.Prices?.Select(x => x.StartDate.ToString("dd/MM/yyyy") +" - " + x.EndDate.ToString("dd/MM/yyyy"))?.ToArray();
+            var array = PromoInfo?.Prices?.Select(x => x.StartDate.Value.ToString("dd/MM/yyyy") +" - " + x.EndDate.Value.ToString("dd/MM/yyyy"))?.ToArray();
 
             MonthDropDown.DataSource = array;
 
             MonthDropDown.SelectionAction = (nint index, string name) =>
             {
                 monthLbl.Text = name;
-                SelectedMont = (PromoInfo.Prices.ElementAt((int)index).MonthCount);
+                SelectedMont = (PromoInfo.Prices.ElementAt((int)index).MonthCount.Value);
                 PromoCodeSelected?.Invoke(PromoInfo.PrommoCode, SelectedMont);
             };
         }

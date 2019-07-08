@@ -26,8 +26,8 @@ namespace Izrune.iOS.CollectionViewCells
         public void InitData(IPaymentHistory paymentHistory)
         {
             userNameLbl.Text = paymentHistory?.StudentName;
-            dateLbl.Text = paymentHistory?.Date?.ToString("MMMM", new CultureInfo("ka-GE"));
-            priceLbl.Text = $"{paymentHistory?.Amount} + ₾";
+            dateLbl.Text = paymentHistory?.Date?.ToString("dd MMMM yyyy", new CultureInfo("ka-GE"));
+            priceLbl.Text = $"{paymentHistory?.Amount} ₾";
         }
     }
 }
