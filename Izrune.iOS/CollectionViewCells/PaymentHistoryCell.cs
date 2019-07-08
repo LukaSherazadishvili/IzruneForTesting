@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Globalization;
 using Foundation;
 using IZrune.PCL.Abstraction.Models;
 using UIKit;
@@ -23,11 +23,10 @@ namespace Izrune.iOS.CollectionViewCells
             // Note: this .ctor should not contain any initialization logic.
         }
 
-
         public void InitData(IPaymentHistory paymentHistory)
         {
             userNameLbl.Text = paymentHistory?.StudentName;
-            dateLbl.Text = paymentHistory?.Date.ToString("MMMM", new System.Globalization.CultureInfo("ka-GE"));
+            dateLbl.Text = paymentHistory?.Date?.ToString("MMMM", new CultureInfo("ka-GE"));
             priceLbl.Text = $"{paymentHistory?.Amount} + ₾";
         }
     }
