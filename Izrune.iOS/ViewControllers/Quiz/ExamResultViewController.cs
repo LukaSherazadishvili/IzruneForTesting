@@ -64,17 +64,25 @@ namespace Izrune.iOS
 
             if(ShowShare)
             {
-                var barButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, null);
+                if(!string.IsNullOrEmpty(QuisInfo.DiplomaURl))
+                {
+                    var barButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, null);
 
-                barButton.Clicked += delegate {
-                    var url = QuisInfo.DiplomaURl;
+                    barButton.Clicked += delegate {
+                        var url = QuisInfo.DiplomaURl;
 
-                    if (!string.IsNullOrEmpty(url) && !string.IsNullOrWhiteSpace(url))
-                    {
-                        this.ShareUrl(url);
-                    }
-                };
-                this.NavigationItem.RightBarButtonItem = barButton;
+                        if (!string.IsNullOrEmpty(url) && !string.IsNullOrWhiteSpace(url))
+                        {
+                            this.ShareUrl(url);
+                        }
+                        else
+                        {
+                            barButton.Image = UIImage.FromBundle("");
+                            return;
+                        }
+                    };
+                    this.NavigationItem.RightBarButtonItem = barButton;
+                }
             }
 
             if (AfterExam)
@@ -112,13 +120,14 @@ namespace Izrune.iOS
         {
             base.ViewWillDisappear(animated);
 
-            player.Stop();
+            if(AfterExam)
+                player.Stop();
         }
 
         private void InitUI()
         {
-            pointView.AddShadowToView(4, 48, 0.8f, UIColor.FromRGBA(0, 0, 0, 0.35f));
-            timeShadowView.AddShadowToView(4, 48f, 0.8f, UIColor.FromRGBA(0, 0, 0, 0.35f));
+            pointView.AddShadowToView(4, 46, 0.8f, UIColor.FromRGBA(0, 0, 0, 0.35f));
+            timeShadowView.AddShadowToView(4, 46f, 0.8f, UIColor.FromRGBA(0, 0, 0, 0.35f));
         }
 
         private void InitResult()

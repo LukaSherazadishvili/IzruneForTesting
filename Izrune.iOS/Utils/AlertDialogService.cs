@@ -18,5 +18,10 @@ namespace Izrune.iOS.Utils
             var rootVc = UIApplication.SharedApplication.KeyWindow.RootViewController;
             rootVc.PresentViewController(alertVc, true, null);
         }
+
+        public void ShowSaccessDialog(string Title, string Message)
+        {
+            ShowAlerDialog(Title, Message);
+        }
     }
 }

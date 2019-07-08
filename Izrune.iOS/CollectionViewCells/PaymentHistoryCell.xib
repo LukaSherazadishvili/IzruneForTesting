@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="bpg_mrgvlovani_2010.ttf">
+            <string>BPGMrgvlovani2010</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PaymentHistoryIdentifier" id="cZE-iV-UFb" customClass="PaymentHistoryCell">
+            <rect key="frame" x="0.0" y="0.0" width="337" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="337" height="80"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPS-M1-T9C">
+                        <rect key="frame" x="0.0" y="0.0" width="337" height="80"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="LLO-LB-jcL">
+                                <rect key="frame" x="10" y="17" width="257" height="46.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beka Baramia" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCT-Af-cFC">
+                                        <rect key="frame" x="0.0" y="0.0" width="257" height="19"/>
+                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="16"/>
+                                        <color key="textColor" red="0.20392156862745098" green="0.20392156862745098" blue="0.20392156862745098" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="26 ივლისი 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YyG-wY-efd">
+                                        <rect key="frame" x="0.0" y="31" width="257" height="15.5"/>
+                                        <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="13"/>
+                                        <color key="textColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="0.5" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 1 ₾" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2J-6E-Xhj">
+                                <rect key="frame" x="277" y="31.5" width="40" height="17.5"/>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="15"/>
+                                <color key="textColor" red="0.1058823529" green="0.1058823529" blue="0.1058823529" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ovn-TJ-W1e">
+                                <rect key="frame" x="10" y="79" width="307" height="1"/>
+                                <color key="backgroundColor" red="0.20392156862745098" green="0.20392156862745098" blue="0.20392156862745098" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Wfk-s9-gIr"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ovn-TJ-W1e" firstAttribute="leading" secondItem="LLO-LB-jcL" secondAttribute="leading" id="7TK-Wk-dfQ"/>
+                            <constraint firstItem="Ovn-TJ-W1e" firstAttribute="trailing" secondItem="b2J-6E-Xhj" secondAttribute="trailing" id="Lqc-cp-9XS"/>
+                            <constraint firstItem="LLO-LB-jcL" firstAttribute="centerY" secondItem="lPS-M1-T9C" secondAttribute="centerY" id="Qln-DY-bna"/>
+                            <constraint firstItem="b2J-6E-Xhj" firstAttribute="leading" secondItem="LLO-LB-jcL" secondAttribute="trailing" constant="10" id="b23-Ea-KUq"/>
+                            <constraint firstAttribute="trailing" secondItem="b2J-6E-Xhj" secondAttribute="trailing" constant="20" id="btR-Uy-CcJ"/>
+                            <constraint firstAttribute="trailing" secondItem="LLO-LB-jcL" secondAttribute="trailing" constant="70" id="kVU-13-L1B"/>
+                            <constraint firstItem="b2J-6E-Xhj" firstAttribute="centerY" secondItem="LLO-LB-jcL" secondAttribute="centerY" id="npM-Zr-D87"/>
+                            <constraint firstItem="LLO-LB-jcL" firstAttribute="leading" secondItem="lPS-M1-T9C" secondAttribute="leading" constant="10" id="vIi-KM-I5T"/>
+                            <constraint firstAttribute="bottom" secondItem="Ovn-TJ-W1e" secondAttribute="bottom" id="wtF-ag-md8"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="lPS-M1-T9C" secondAttribute="bottom" id="Izx-5Y-OG1"/>
+                <constraint firstItem="lPS-M1-T9C" firstAttribute="top" secondItem="cZE-iV-UFb" secondAttribute="top" id="L04-lg-Wc0"/>
+                <constraint firstAttribute="trailing" secondItem="lPS-M1-T9C" secondAttribute="trailing" id="RS3-KB-as5"/>
+                <constraint firstItem="lPS-M1-T9C" firstAttribute="leading" secondItem="cZE-iV-UFb" secondAttribute="leading" id="kXo-se-szU"/>
+            </constraints>
+            <size key="customSize" width="337" height="115"/>
+            <connections>
+                <outlet property="dateLbl" destination="YyG-wY-efd" id="wlK-sq-lTO"/>
+                <outlet property="priceLbl" destination="b2J-6E-Xhj" id="s0c-Ax-U06"/>
+                <outlet property="userNameLbl" destination="TCT-Af-cFC" id="Kbe-Ry-deh"/>
+            </connections>
+            <point key="canvasLocation" x="241.30434782608697" y="75.334821428571431"/>
+        </collectionViewCell>
+    </objects>
+</document>

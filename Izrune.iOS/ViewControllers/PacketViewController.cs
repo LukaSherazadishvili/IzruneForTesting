@@ -33,7 +33,7 @@ namespace Izrune.iOS
         public int SchoolId;
         public bool HideFooter { get; set; }
 
-        float HederHeight = 97;
+        float HederHeight = 190;
         float FooterHeight = 140;
 
         DropDown StudentDp = new DropDown();
@@ -73,7 +73,16 @@ namespace Izrune.iOS
             InitGesture();
 
             SelectPacketVc = Storyboard.InstantiateViewController(SelectPacketViewController.StoryboardId) as SelectPacketViewController;
+
+            SelectPacketVc.DataLoaded = () =>
+            {
+                View.LayoutIfNeeded();
+                UpdateViewSize(SelectPacketVc.ContentHeight);
+            };
+
             PromoVc = Storyboard.InstantiateViewController(PromoCodeViewController.StoryboardId) as PromoCodeViewController;
+
+            SelectPacketVc.IsFromMenu = IsFromMenu;
 
             this.AddVcInView(viewForPeager, SelectPacketVc);
 
@@ -124,6 +133,12 @@ namespace Izrune.iOS
                         System.Diagnostics.Debug.WriteLine(ex.Message);
                     }
                 }; ;
+
+                var scrollView = SelectPacketVc.View.OfType<UIScrollView>().FirstOrDefault();
+                SelectPacketVc.View.LayoutIfNeeded();
+                scrollView.LayoutIfNeeded();
+
+                SetContentHeight(scrollView.ContentSize.Height);
             }
 
             else
@@ -182,11 +197,13 @@ namespace Izrune.iOS
 
                 SelectPacketVc.DataLoaded = () =>
                 {
-                    var scrollView = SelectPacketVc.View.OfType<UIScrollView>().FirstOrDefault();
-                    SelectPacketVc.View.LayoutIfNeeded();
-                    scrollView.LayoutIfNeeded();
+                    //var scrollView = SelectPacketVc.View.OfType<UIScrollView>().FirstOrDefault();
+                    //SelectPacketVc.View.LayoutIfNeeded();
+                    //scrollView.LayoutIfNeeded();
 
-                    SetContentHeight(scrollView.ContentSize.Height);
+                    //SetContentHeight(scrollView.ContentSize.Height);
+
+                    UpdateViewSize(SelectPacketVc.ContentHeight);
                 };
             }
 
@@ -371,6 +388,26 @@ namespace Izrune.iOS
                 if(IsPromoSelected)
                     PromoVc.CheckPromo();
             };
+        }
+
+        private void UpdateViewSize(nfloat packetHeight)
+        {
+            UIEdgeInsets safeAreaSize = new UIEdgeInsets();
+
+            if (UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
+            {
+                safeAreaSize = UIApplication.SharedApplication.KeyWindow.SafeAreaInsets;
+            }
+
+            var visibleHeight = this.View.Frame.Height - (HederHeight + FooterHeight + safeAreaSize.Top + safeAreaSize.Bottom);
+
+            nfloat delta = visibleHeight - packetHeight;
+
+            if (delta > 0)
+                contentHeightConstraint.Constant = packetHeight;
+            else
+                contentHeightConstraint.Constant = visibleHeight;
+                
         }
     }
 }

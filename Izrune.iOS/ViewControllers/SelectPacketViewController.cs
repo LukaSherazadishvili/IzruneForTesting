@@ -36,6 +36,10 @@ namespace Izrune.iOS
         public IPrice SelectedPrice;
 
         public IStudent SelectedStudent;
+
+        public bool IsFromMenu;
+
+        public nfloat ContentHeight { get; set; }
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -53,9 +57,8 @@ namespace Izrune.iOS
 
                 };
             View.LayoutIfNeeded();
-            //SelectedPrice = PriceList?[0];
-        }
 
+        }
 
         private void SendData()
         {
@@ -74,7 +77,7 @@ namespace Izrune.iOS
                 SchoolId = SelectedStudent.id;
             var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-            var data = (await service.GetPromoCodeAsync(SelectedStudent.SchoolId));
+            var data = (await service.GetPromoCodeAsync(IsFromMenu? 0 : SchoolId));
 
             PriceList = data?.Prices?.ToList();
 
@@ -86,11 +89,10 @@ namespace Izrune.iOS
             {
                 var contentHeight = (PriceList?.Count) * 70 + 50;
                 packetCollectionHeightConstraint.Constant = (System.nfloat)contentHeight;
+                ContentHeight = (System.nfloat)(contentHeight);
             }
 
-
             DataLoaded?.Invoke();
-
         }
 
         private void CollectionViewSettings()

@@ -74,8 +74,6 @@ namespace Izrune.iOS
 
                 var userService = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-                //var user = await userService.GetUserAsync();
-
                 var data = (await QuezControll.Instance.GetAllQuestion(quezCategory))?.ToList();
 
                 if (data == null || data?.Count == 0)
@@ -246,8 +244,6 @@ namespace Izrune.iOS
                 navVc.PushViewController(resultTab, true);
             });
         }
-
-
 
         [Export("collectionView:viewForSupplementaryElementOfKind:atIndexPath:")]
         public UICollectionReusableView GetViewForSupplementaryElement(UICollectionView collectionView, NSString elementKind, NSIndexPath indexPath)

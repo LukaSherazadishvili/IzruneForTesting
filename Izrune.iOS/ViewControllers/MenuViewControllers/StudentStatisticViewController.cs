@@ -82,6 +82,10 @@ namespace Izrune.iOS
         {
             currentStudentLbl.Text = student.Name + " " + student.LastName;
 
+            bool hide = student?.PakEndDate == null;
+            packetDateLbl.Hidden = hide;
+            titleLbl.Hidden = hide;
+
             packetDateLbl.Text = student?.PakEndDate?.ToString("dd/MM/yyyy");
         }
 
@@ -140,8 +144,9 @@ namespace Izrune.iOS
 
             paymentHostoryBtn.TouchUpInside += delegate {
 
-                //TODO
+                var paymentHistoryVc = Storyboard.InstantiateViewController(PaymentHistoryViewController.StoryboardId) as PaymentHistoryViewController;
 
+                this.NavigationController.PushViewController(paymentHistoryVc, true);
             };
 
         }
