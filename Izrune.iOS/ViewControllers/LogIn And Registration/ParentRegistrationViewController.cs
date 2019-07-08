@@ -101,6 +101,7 @@ namespace Izrune.iOS
             choosePacketVc.PriceSelected = (price) => {
 
                 SelectedPrice = price;
+
                 CurrentIndex = 4;
                 HideHeader(true);
                 AddViewController(AddMoreStudentVc, studentRegVc2);
@@ -267,6 +268,7 @@ namespace Izrune.iOS
                                 {
                                     studentRegVc1.StudentSelected?.Invoke();
                                     MoreStudent = studentRegVc1.Student;
+                                    studentRegVc1.SendClicked?.Invoke();
                                 }
                                 else
                                     studentRegVc1.SendClicked?.Invoke();
@@ -357,6 +359,7 @@ namespace Izrune.iOS
                                 this.NavigationController.PushViewController(paymentViewController, true);
                             };
                         }
+
                         else
                         {
                             ChangeHeader(false);
@@ -484,9 +487,16 @@ namespace Izrune.iOS
             choosePacketVc.IsFromMenu = false;
 
             choosePacketVc.PriceSelected = (price) => {
-
-                MoreStudent.PackageMonthCount = price.MonthCount;
                 SelectedPrice = price;
+
+                if (AddMoreStudentClicked)
+                {
+                    MoreStudent.PakEndDate = price.EndDate;
+                    MoreStudent.PackageMonthCount = price.MonthCount;
+                    MoreStudent.Amount = price.price;
+                    MoreStudent.PackageStartDate = price.StartDate;
+                }
+
                 CurrentIndex = 4;
                 HideHeader(true);
                 AddViewController(AddMoreStudentVc, studentRegVc2);
