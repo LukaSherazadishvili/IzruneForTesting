@@ -20,6 +20,9 @@ namespace Izrune.Fragments
 
         protected override int LayoutResource { get; } = Resource.Layout.layoutLogIn;
 
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get ; set; }
+
         [MapControl(Resource.Id.ForgotPassword)]
         TextView Forgotpas;
 
@@ -73,14 +76,16 @@ namespace Izrune.Fragments
 
             LoginButton.Click += async (s, e) =>
             {
+                Startloading();
                 var result = await UserControl.Instance.LogInUser(UserName.Text, Password.Text);
 
                 if (result)
                 {
+                    var Result = await UserControl.Instance.GetCurrentUser();
                     var intentt = new Intent(this, typeof(MainPageAtivity));
                     StartActivity(intentt);
                 }
-              
+                StopLoading();
 
             };
         }

@@ -77,6 +77,23 @@ namespace Izrune.Adapters.RecyclerviewAdapters
                 }
                 else
                 {
+                    var CorrectIndex = ResQuestions.ElementAt(position).Answers.ToList().IndexOf(ResQuestions.ElementAt(position).Answers.FirstOrDefault(i => i.IsRight));
+
+                    int index = 0;
+                    foreach(var items in ResQuestions.ElementAt(position).Answers)
+                    {
+                        index++;
+                        if (items.IsRight)
+                        {
+                            Answers.ElementAt(index-1).FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesCorrectButtonBackground);
+                            Answers.ElementAt(index-1).FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesCorrectAnswerLine);
+                            index = 0;
+                            break;
+                        }
+                    }
+                   
+                   
+
                     Answers.ElementAt(Index).FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesInCorectButtonBackground);
                     Answers.ElementAt(Index).FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesIncorrectAnswerLine);
 

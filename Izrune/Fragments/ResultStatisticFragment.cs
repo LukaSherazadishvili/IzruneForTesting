@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Media;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -62,7 +63,7 @@ namespace Izrune.Fragments
         {
             base.OnCreate(savedInstanceState);
         }
-
+        MediaPlayer player = null;
         public override  void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
@@ -91,7 +92,92 @@ namespace Izrune.Fragments
 
                 }
 
+                if (QuisInfo.test_type == IZrune.PCL.Enum.QuezCategory.QuezTest) {
+                    switch (QuisInfo.Stars)
+                    {
+                        case 1:
+                            {
 
+                                player = MediaPlayer.Create(this, Resource.Drawable.testOnestar);
+
+                                break;
+                            }
+                        case 2:
+                            {
+
+                                player = MediaPlayer.Create(this, Resource.Drawable.testTwoStar);
+
+                                break;
+                            }
+                        case 3:
+                            {
+
+                                player = MediaPlayer.Create(this, Resource.Drawable.testThreeStar);
+
+                                break;
+                            }
+                        case 4:
+                            {
+
+                                player = MediaPlayer.Create(this, Resource.Drawable.testFourStar);
+
+                                break;
+                            }
+                        case 5:
+                            {
+
+                                player = MediaPlayer.Create(this, Resource.Drawable.testFiveStar);
+
+                                break;
+                            }
+                    }
+
+                }
+                else
+                {
+                    switch (QuisInfo.Stars)
+                    {
+                        case 1:
+                            {
+
+                                player = MediaPlayer.Create(this, Resource.Drawable.examOneStar);
+
+                                break;
+                            }
+                        case 2:
+                            {
+
+                                player = MediaPlayer.Create(this, Resource.Drawable.ExamTwoStar);
+
+                                break;
+                            }
+                        case 3:
+                            {
+
+                                player = MediaPlayer.Create(this, Resource.Drawable.ExamThreeStar);
+
+                                break;
+                            }
+                        case 4:
+                            {
+
+                                player = MediaPlayer.Create(this, Resource.Drawable.examFourStar);
+
+                                break;
+                            }
+                        case 5:
+                            {
+
+                                player = MediaPlayer.Create(this, Resource.Drawable.ExamFiveStar);
+
+                                break;
+                            }
+                    }
+
+                }
+            
+                    player?.Start();
+             
                 for (int i = 0; i < 5; i++)
                 {
 
@@ -111,6 +197,12 @@ namespace Izrune.Fragments
           
         }
 
-
+        public override void OnPause()
+        {
+            base.OnPause();
+         
+                player?.Stop();
+            
+        }
     }
 }

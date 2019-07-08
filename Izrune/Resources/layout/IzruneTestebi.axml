@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+	android:id="@+id/Container"
     android:layout_weight="4">
 
 
@@ -146,7 +147,8 @@
                         android:fontFamily="@font/bpg_mrgvlovani"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="2dp"
+                        android:layout_marginLeft="2dp"
+							android:layout_marginRight="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
                         android:text=""/>
@@ -156,7 +158,8 @@
 						android:fontFamily="@font/bpg_mrgvlovani"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="2dp"
+                       android:layout_marginLeft="2dp"
+							android:layout_marginRight="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
                         android:text="დღე"/>
@@ -166,7 +169,8 @@
 						android:fontFamily="@font/bpg_mrgvlovani"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="2dp"
+                         android:layout_marginLeft="2dp"
+							android:layout_marginRight="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
                         android:text=""/>
@@ -176,7 +180,8 @@
 						android:fontFamily="@font/bpg_mrgvlovani"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="2dp"
+                        android:layout_marginLeft="2dp"
+							android:layout_marginRight="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
                         android:text="საათი"/>
@@ -186,7 +191,8 @@
 						android:fontFamily="@font/bpg_mrgvlovani"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="2dp"
+                       android:layout_marginLeft="2dp"
+							android:layout_marginRight="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
                         android:text=""/>
@@ -196,7 +202,8 @@
 						android:fontFamily="@font/bpg_mrgvlovani"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="2dp"
+                        android:layout_marginLeft="2dp"
+							android:layout_marginRight="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
                         android:text="წუთი"/>
@@ -283,7 +290,8 @@
                         android:fontFamily="@font/bpg_mrgvlovani"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="2dp"
+                       android:layout_marginLeft="2dp"
+							android:layout_marginRight="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
                         android:text=""/>
@@ -293,7 +301,8 @@
 						android:fontFamily="@font/bpg_mrgvlovani"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="2dp"
+                        android:layout_marginLeft="2dp"
+							android:layout_marginRight="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
                         android:text="დღე"/>
@@ -303,7 +312,8 @@
 						android:fontFamily="@font/bpg_mrgvlovani"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="2dp"
+                        android:layout_marginLeft="2dp"
+							android:layout_marginRight="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
                         android:text=""/>
@@ -312,7 +322,8 @@
 						android:fontFamily="@font/bpg_mrgvlovani"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="2dp"
+                         android:layout_marginLeft="2dp"
+							android:layout_marginRight="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
                         android:text="საათი"/>
@@ -322,7 +333,8 @@
 						android:fontFamily="@font/bpg_mrgvlovani"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="2dp"
+                         android:layout_marginLeft="2dp"
+							android:layout_marginRight="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
                         android:text=""/>
@@ -331,7 +343,8 @@
 						android:fontFamily="@font/bpg_mrgvlovani"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="2dp"
+                        android:layout_marginLeft="2dp"
+							android:layout_marginRight="2dp"
                         android:textColor="#E74C3C"
 						android:textSize="10dp"
                         android:text="წუთი"/>

@@ -71,7 +71,9 @@ namespace Izrune.Activitys
         public override void OnBackPressed()
         {
             Intent intent = new Intent(this, typeof(MainPageAtivity));
+            intent.SetFlags(ActivityFlags.NewTask);
             StartActivity(intent);
+            this.Finish();
         }
 
     }

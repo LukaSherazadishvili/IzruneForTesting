@@ -7,7 +7,7 @@ namespace IZrune.PCL.Abstraction.Models
    public interface IPaymentHistory
     {
         string StudentName { get; set; }
-        DateTime Date { get; set; }
+        DateTime? Date { get; set; }
         int Amount { get; set; }
     }
 }

@@ -121,8 +121,9 @@ namespace Izrune.Activitys
         {
             try
             {
+                Startloading(true);
               await UserControl.Instance.EditParrentProfile(ParrentMail.Text, Phone.Text, ParrentRegion.SelectedItem.ToString(), ParrentVillage.Text);
-              
+                StopLoading();
             }
             catch(Exception ex)
             {

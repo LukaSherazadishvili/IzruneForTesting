@@ -9,6 +9,7 @@
 	android:id="@+id/MainFuckingContainer"
 	>
 	
+	 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,12 +26,13 @@
 				android:paddingRight="20dp"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:background="#ffffff"
+				android:background="#F2F2F2"
 				android:orientation="horizontal">
 			
 				<FrameLayout
 				android:layout_width="120dp"
-				android:layout_height="120dp">
+				android:layout_height="120dp"
+				>
 					<ProgressBar
 					android:id="@+id/QuestionProgressbar"
 							android:layout_width="match_parent"
@@ -119,6 +121,14 @@
 		
 		
 		</LinearLayout>
-
+	<com.airbnb.lottie.LottieAnimationView	
+							android:id="@+id/LikeLottie"
+			android:visibility="gone"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:lottie_fileName="like.json"
+                                app:lottie_loop="false"
+                                app:lottie_autoPlay="false"
+                                android:layout_gravity="center" />
 	
 </FrameLayout>

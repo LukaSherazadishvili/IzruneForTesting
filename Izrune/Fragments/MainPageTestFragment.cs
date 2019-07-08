@@ -22,6 +22,9 @@ namespace Izrune.Fragments
     {
         protected override int LayoutResource { get; } = Resource.Layout.IzruneTestebi;
 
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get ; set ; }
+
         [MapControl(Resource.Id.MainTestButton)]
         FrameLayout ExamtestButton;
 
@@ -72,6 +75,8 @@ namespace Izrune.Fragments
         public async override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
+
+            Startloading();
 
             ExamtestButton.Click += ExamtestButton_Click;
             TrainigTestButton.Click += TrainigTestButton_Click;
@@ -126,7 +131,7 @@ namespace Izrune.Fragments
                 }
 
             };
-
+            StopLoading();
             
         }
 

@@ -50,7 +50,7 @@ android:id="@+id/Container">
 					<FFImageLoading.Views.ImageViewAsync
 						android:layout_width="300dp"
 						android:layout_height="200dp"
-						android:scaleType="centerCrop"
+						android:scaleType="fitXY"
 						android:id="@+id/MainImage"
 						/>
 			</android.support.v7.widget.CardView>

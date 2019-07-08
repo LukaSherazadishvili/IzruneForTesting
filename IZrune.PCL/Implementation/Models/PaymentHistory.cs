@@ -8,7 +8,7 @@ namespace IZrune.PCL.Implementation.Models
     class PaymentHistory : IPaymentHistory
     {
         public string StudentName { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
         public int Amount { get; set; }
     }
 }

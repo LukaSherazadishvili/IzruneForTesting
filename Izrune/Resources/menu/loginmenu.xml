@@ -13,14 +13,14 @@
     android:id="@+id/LoginNews"
     android:checkableBehavior="single">
     <item android:id="@+id/SalesMenu"
-          android:icon="@drawable/diagram"
+          android:icon="@drawable/news"
           android:title="სიახლეები"/>
   </group>
-  <group
+  <group  
     android:id="@+id/LoginGetInfo"
     android:checkableBehavior="single">
     <item android:id="@+id/NewsMenu"
-          android:icon="@drawable/reload"
+          android:icon="@drawable/more"
           android:title="გაიგე მეტი"/>
   </group>
  
@@ -28,7 +28,7 @@
     android:id="@+id/LoginContact"
     android:checkableBehavior="single">
     <item android:id="@+id/BranchesMenu"
-          android:icon="@drawable/news"
+          android:icon="@drawable/contact"
           android:title="კონტაქტი"/>
   </group>
  

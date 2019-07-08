@@ -20,6 +20,9 @@ namespace Izrune.Fragments
     {
         protected override int LayoutResource { get; }= Resource.Layout.layoutIndividual;
 
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get ; set ; }
+
         [MapControl(Resource.Id.BodyContent)]
         LinearLayout Body;
 
@@ -31,6 +34,8 @@ namespace Izrune.Fragments
         LinearLayout BotbackButto;
 
         private int StudentId;
+        IPrice prices;
+
 
         public InnerIndividualFragment(List<IPrice> prices,int studentId)
         {
@@ -86,9 +91,11 @@ namespace Izrune.Fragments
             //await UserControl.Instance.FinishRegistration();
             if (IsChec)
             {
-
+                Startloading();
+                await UserControl.Instance.ReNewPack(UserControl.Instance.CurrentStudent.id, prices.MonthCount, prices.price);
                 Intent intent = new Intent(this, typeof(ActivityPaymentCategory));
                 StartActivity(intent);
+                StopLoading();
             }
             else
             {
@@ -107,9 +114,9 @@ namespace Izrune.Fragments
 
             var Index = ServiceViews.IndexOf((sender as View));
 
-            var Result = PriceList.ElementAt(Index);
+             prices = PriceList.ElementAt(Index);
 
-            await UserControl.Instance.ReNewPack(StudentId, Result.MonthCount, Result.price);
+           
 
 
 

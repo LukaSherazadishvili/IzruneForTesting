@@ -78,7 +78,7 @@ namespace Izrune.Fragments
                 StudentId = CurrentUser.Students.ElementAt(e.Position).id;
                 CurrentId = CurrentUser.Students.ElementAt(e.Position).SchoolId;
 
-
+                UserControl.Instance.SeTSelectedStudent(StudentId);
 
                
                     Startloading();

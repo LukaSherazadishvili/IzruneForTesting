@@ -47,6 +47,7 @@ namespace Izrune.Fragments
 
         public Action SkipQuestion { get; set; }
 
+        private static int CorrectAnswerIndex = 0;
 
         IQuestion question;
         public Func<IQuestion> AnswerClick { get; set; }
@@ -120,11 +121,7 @@ namespace Izrune.Fragments
                 ContainerForAnswer.AddView(AnswerView);
             }
 
-            SkipButton.Click += (s, e) =>
-            {
-
-            };
-
+           
             SkipButton.Click += SkipButton_Click;
         }
 
@@ -222,7 +219,8 @@ namespace Izrune.Fragments
             (Activity as QuezActivity).RunOnUiThread( () =>
             {
 
-             
+               // (Activity as QuezActivity).StopAnimation();
+
 
                 if (question.Answers.ElementAt(Index).IsRight)
                 {
@@ -230,20 +228,32 @@ namespace Izrune.Fragments
                     (sender as View).FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesCorrectAnswerLine);
 
                     (sender as View).FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesCorrectButtonBackground);
+                    CorrectAnswerIndex++;
+
+                    if (CorrectAnswerIndex == 3)
+                    {
+                        CorrectAnswerIndex = 0;
+                        (Activity as QuezActivity).PlayAnimation();
+                        
+
+                    }
+                   
                 }
                 else
                 {
+                    CorrectAnswerIndex = 0;
                     (sender as View).FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesIncorrectAnswerLine);
                     (sender as View).FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesInCorectButtonBackground);
                 }
 
             });
+            foreach (var items in MyViews)
+            {
+                items.Click -= AnswerView_Click;
+            }
             await QuezControll.Instance.AddQuestion(question.Answers.ToList().ElementAt(Index).id);
             await Task.Delay(500);
-            foreach (var items in MyViews)
-                {
-                    items.Click -= AnswerView_Click;
-                }
+            
                
 
 
@@ -254,8 +264,10 @@ namespace Izrune.Fragments
                 {
                     // (Activity as QuezActivity).OnBackPressed();
                     Intent intent = new Intent(this, typeof(MainDiplomaActivity));
-                    StartActivity(intent);
-                }
+                intent.SetFlags(ActivityFlags.NewTask);
+                StartActivity(intent);
+                (Activity as QuezActivity).Finish();
+            }
                 else if (question == null)
                 {
 
@@ -309,7 +321,9 @@ namespace Izrune.Fragments
                         MyViews.Add(AnswerView);
                         ContainerForAnswer.AddView(AnswerView);
                     }
-                }
+                    //await Task.Delay(4000);
+                    // (Activity as QuezActivity).StopAnimation();
+            }
               
            
 

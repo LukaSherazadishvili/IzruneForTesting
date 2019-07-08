@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Com.Airbnb.Lottie;
 using Izrune.Adapters.RecyclerviewAdapters;
 using Izrune.Attributes;
 using Izrune.Fragments;
@@ -35,15 +36,17 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.TimerText)]
         TextView TimerTxt;
 
-       
-
         [MapControl(Resource.Id.QuestionCountRecycler)]
         RecyclerView ShedulRecycler;
 
         [MapControl(Resource.Id.StudenQuesName)]
         TextView StudentName;
 
-        
+        [MapControl(Resource.Id.BackButton)]
+        FrameLayout BackButton;
+
+        [MapControl(Resource.Id.LikeLottie)]
+        LottieAnimationView likesLottie;
 
        
 
@@ -285,9 +288,14 @@ namespace Izrune.Activitys
                     
                 }
             });
+
+            BackButton.Click += BackButton_Click;
         }
 
-
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            OnBackPressed();
+        }
 
         public override void OnBackPressed()
         {
@@ -300,6 +308,18 @@ namespace Izrune.Activitys
             var transcation = FragmentManager.BeginTransaction();
             ImageDialogFragment dialog = new ImageDialogFragment(ImageUrl);
             dialog.Show(transcation, "Image Dialog");
+        }
+
+        public void PlayAnimation()
+        {
+            likesLottie.Visibility = ViewStates.Visible;
+            likesLottie.PlayAnimation();
+        }
+
+        public void StopAnimation()
+        {
+            likesLottie.Visibility = ViewStates.Gone;
+            
         }
 
     }

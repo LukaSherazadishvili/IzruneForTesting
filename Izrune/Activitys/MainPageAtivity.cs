@@ -24,6 +24,9 @@ namespace Izrune.Activitys
     {
         protected override int LayoutResource { get; } = Resource.Layout.LayoutMainPage;
 
+        [MapControl(Resource.Id.MainPageContainer)]
+        protected override FrameLayout MainFrame { get ; set ; }
+
         [MapControl(Resource.Id.nav_view)]
         NavigationView navigationView;
 
@@ -46,8 +49,8 @@ namespace Izrune.Activitys
         protected  override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            
 
+            Startloading();
 
             RegistrationServices test = new RegistrationServices();
 
@@ -64,6 +67,7 @@ namespace Izrune.Activitys
             header.FindViewById<TextView>(Resource.Id.UserNameLastNametxt).Text = $"{Result.Name} {Result.LastName}";
             header.FindViewById<TextView>(Resource.Id.ProfileNumber).Text = $"{Result.ProfileNumber}";
 
+            StopLoading();
 
             //FullNametxt.Text = ;
             //ProfNumber.Text = $"{Result.ProfileNumber}";
@@ -117,9 +121,7 @@ namespace Izrune.Activitys
                     }
                 case Resource.Id.Exit:
                     {
-                        UserControl.Instance.Parent = null;
-                        //Intent intent = new Intent(this,typeof(LogInActivity));
-                        //StartActivity(intent);
+                       
                         OnBackPressed();
                         break;
                     }
@@ -129,9 +131,12 @@ namespace Izrune.Activitys
 
         public override void OnBackPressed()
         {
-            base.OnBackPressed();
             UserControl.Instance.LogOut();
-           
+            //Intent intent = new Intent(this, typeof(LogInActivity));
+            //intent.SetFlags(ActivityFlags.NewTask);
+            //StartActivity(intent);
+
+
             this.Finish();
         }
     }

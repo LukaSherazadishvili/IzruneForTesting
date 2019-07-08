@@ -98,7 +98,7 @@ namespace Izrune.Fragments
                 }
                 else
                 {
-                    promoEdit.SetBackgroundResource(Resource.Drawable.RebButtonBackground);
+                    promoEdit.SetBackgroundResource(Resource.Drawable.RedPromoCodebutton);
                 }
             };
 
