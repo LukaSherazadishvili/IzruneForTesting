@@ -144,8 +144,9 @@ namespace Izrune.iOS
 
             paymentHostoryBtn.TouchUpInside += delegate {
 
-                //TODO
+                var paymentHistoryVc = Storyboard.InstantiateViewController(PaymentHistoryViewController.StoryboardId) as PaymentHistoryViewController;
 
+                this.NavigationController.PushViewController(paymentHistoryVc, true);
             };
 
         }

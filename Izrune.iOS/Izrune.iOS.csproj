@@ -158,6 +158,7 @@
         <InterfaceDefinition Include="CollectionViewCells\NewsMinCell.xib" />
         <InterfaceDefinition Include="CollectionViewCells\DiplomeCollectionViewCell.xib" />
         <InterfaceDefinition Include="CollectionViewCells\SelectSchoolCollectionViewCell.xib" />
+        <InterfaceDefinition Include="CollectionViewCells\PaymentHistoryCell.xib" />
     </ItemGroup>
     <ItemGroup>
         <None Include="Info.plist" />
@@ -397,6 +398,14 @@
         <Compile Include="StatisticViewController.cs" />
         <Compile Include="StatisticViewController.designer.cs">
           <DependentUpon>StatisticViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ViewControllers\MenuViewControllers\PaymentHistoryViewController.cs" />
+        <Compile Include="ViewControllers\MenuViewControllers\PaymentHistoryViewController.designer.cs">
+          <DependentUpon>PaymentHistoryViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CollectionViewCells\PaymentHistoryCell.cs" />
+        <Compile Include="CollectionViewCells\PaymentHistoryCell.designer.cs">
+          <DependentUpon>PaymentHistoryCell.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup>
