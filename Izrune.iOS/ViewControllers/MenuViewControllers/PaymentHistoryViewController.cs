@@ -24,13 +24,13 @@ namespace Izrune.iOS
         List<IPaymentHistory> PaymentHistory;
 
 
-        public async override void ViewDidLoad()
+        public override async void ViewDidLoad()
         {
             base.ViewDidLoad();
 
             InitCollectionViewSettings();
 
-            //await LoadDataAsync();
+            await LoadDataAsync();
 
         }
 
@@ -44,7 +44,7 @@ namespace Izrune.iOS
 
         public nint GetItemsCount(UICollectionView collectionView, nint section)
         {
-            return 20;
+            return PaymentHistory?.Count??0;
         }
 
         public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
@@ -53,7 +53,7 @@ namespace Izrune.iOS
 
             var data = PaymentHistory?[indexPath.Row];
 
-            //cell.InitData(data);
+            cell.InitData(data);
 
             return cell;
         }

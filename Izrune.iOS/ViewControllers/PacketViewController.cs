@@ -76,8 +76,9 @@ namespace Izrune.iOS
 
             SelectPacketVc.DataLoaded = () =>
             {
-                View.LayoutIfNeeded();
+                SelectPacketVc.DisableScroll = true;
                 UpdateViewSize(SelectPacketVc.ContentHeight);
+                View.LayoutIfNeeded();
             };
 
             PromoVc = Storyboard.InstantiateViewController(PromoCodeViewController.StoryboardId) as PromoCodeViewController;
@@ -211,10 +212,10 @@ namespace Izrune.iOS
 
         private async Task GetPromoDataAsync(int schoolId)
         {
-            ShowLoading();
+            //ShowLoading();
             var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
             PromoCode = (await service.GetPromoCodeAsync(schoolId));
-            EndLoading();
+            //EndLoading();
 
         }
 
@@ -404,9 +405,9 @@ namespace Izrune.iOS
             nfloat delta = visibleHeight - packetHeight;
 
             if (delta > 0)
-                contentHeightConstraint.Constant = packetHeight;
-            else
                 contentHeightConstraint.Constant = visibleHeight;
+            else
+                contentHeightConstraint.Constant = packetHeight;
                 
         }
     }

@@ -3231,10 +3231,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aTS-0X-STa" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="555"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="365"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="6vz-RF-tgq">
-                                                <rect key="frame" x="25" y="30" width="364" height="485"/>
+                                                <rect key="frame" x="25" y="30" width="364" height="295"/>
                                                 <subviews>
                                                     <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="მომსახურების ინდივიდუალური პაკეტის გააქტიურება" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sd5-QQ-Iw2">
                                                         <rect key="frame" x="0.0" y="0.0" width="364" height="35"/>
@@ -3243,10 +3243,10 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Cj-NG-KKM">
-                                                        <rect key="frame" x="0.0" y="85" width="364" height="400"/>
+                                                        <rect key="frame" x="0.0" y="85" width="364" height="210"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="400" id="Ud9-Ps-nCR"/>
+                                                            <constraint firstAttribute="height" constant="210" id="Ud9-Ps-nCR"/>
                                                         </constraints>
                                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Tiw-v2-EZ2">
                                                             <size key="itemSize" width="50" height="50"/>

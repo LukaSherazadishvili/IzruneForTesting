@@ -40,6 +40,8 @@ namespace Izrune.iOS
         public bool IsFromMenu;
 
         public nfloat ContentHeight { get; set; }
+
+        public bool DisableScroll = false;
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -87,7 +89,7 @@ namespace Izrune.iOS
 
             if(PriceList?.Count > 0)
             {
-                var contentHeight = (PriceList?.Count) * 70 + 50;
+                var contentHeight = ((PriceList?.Count) * 70) + 135;
                 packetCollectionHeightConstraint.Constant = (System.nfloat)contentHeight;
                 ContentHeight = (System.nfloat)(contentHeight);
             }
@@ -99,6 +101,8 @@ namespace Izrune.iOS
         {
             packetCollectionView.Delegate = this;
             packetCollectionView.DataSource = this;
+
+            packetCollectionView.ScrollEnabled = !DisableScroll;
 
             packetCollectionView.RegisterNibForCell(PacketCollectionViewCell.Nib, PacketCollectionViewCell.Identifier);
         }
