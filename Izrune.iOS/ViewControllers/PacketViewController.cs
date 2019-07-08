@@ -212,10 +212,10 @@ namespace Izrune.iOS
 
         private async Task GetPromoDataAsync(int schoolId)
         {
-            ShowLoading();
+            //ShowLoading();
             var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
             PromoCode = (await service.GetPromoCodeAsync(schoolId));
-            EndLoading();
+            //EndLoading();
 
         }
 

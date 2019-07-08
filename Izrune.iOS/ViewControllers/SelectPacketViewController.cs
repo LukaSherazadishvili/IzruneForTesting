@@ -89,7 +89,7 @@ namespace Izrune.iOS
 
             if(PriceList?.Count > 0)
             {
-                var contentHeight = ((PriceList?.Count) * 70) + 150;
+                var contentHeight = ((PriceList?.Count) * 70) + 135;
                 packetCollectionHeightConstraint.Constant = (System.nfloat)contentHeight;
                 ContentHeight = (System.nfloat)(contentHeight);
             }
