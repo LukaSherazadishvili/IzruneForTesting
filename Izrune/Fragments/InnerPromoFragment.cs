@@ -107,9 +107,9 @@ namespace Izrune.Fragments
 
         private void MonthSpiner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            var Result = PromoCod.Prices.ElementAt(e.Position).EndDate.Subtract(PromoCod.Prices.ElementAt(e.Position).StartDate);
+            var Result = PromoCod.Prices.ElementAt(e.Position).EndDate?.Subtract(PromoCod.Prices.ElementAt(e.Position).StartDate.Value);
 
-            MonthCount = MonthDifference(PromoCod.Prices.ElementAt(e.Position).EndDate, PromoCod.Prices.ElementAt(e.Position).StartDate);
+            MonthCount = MonthDifference(PromoCod.Prices.ElementAt(e.Position).EndDate.Value, PromoCod.Prices.ElementAt(e.Position).StartDate.Value);
         }
 
         private int MonthDifference(DateTime lValue, DateTime rValue)

@@ -97,9 +97,9 @@ namespace Izrune.Fragments
 
           var Result=PriceList.ElementAt(Index);
 
-            var MonthCount = MonthDifference(Result.EndDate, Result.StartDate);
+            //var MonthCount = MonthDifference(Result.EndDate.Value, Result.StartDate.Value);
 
-            UserControl.Instance.SetPromoPack(MonthCount,Result.price);
+            UserControl.Instance.SetPromoPack(Result.MonthCount.Value,Result.price.Value);
             IsChec = true;
             
         }

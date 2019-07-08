@@ -92,7 +92,7 @@ namespace Izrune.Fragments
             if (IsChec)
             {
                 Startloading();
-                await UserControl.Instance.ReNewPack(UserControl.Instance.CurrentStudent.id, prices.MonthCount, prices.price);
+                await UserControl.Instance.ReNewPack(UserControl.Instance.CurrentStudent.id, prices.MonthCount.Value, prices.price.Value);
                 Intent intent = new Intent(this, typeof(ActivityPaymentCategory));
                 StartActivity(intent);
                 StopLoading();

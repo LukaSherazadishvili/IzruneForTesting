@@ -45,8 +45,12 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.BodyContent)]
         LinearLayout Body;
 
+        [MapControl(Resource.Id.BackButton)]
+        FrameLayout backButton;
+
         public int CurrentId { get; set; }
 
+        public Action Backclick { get; set; }
 
         private List<MPDCBaseFragment> FragmentList = new List<MPDCBaseFragment>();
        
@@ -82,6 +86,12 @@ namespace Izrune.Fragments
             var adapter = new ServiceViewPagerAdapter(ChildFragmentManager, FragmentList);
             pager.Adapter = adapter;
             pager.PageSelected += Pager_PageSelected;
+
+            backButton.Click += (s, e) =>
+            {
+                Backclick?.Invoke();
+                
+            };
 
 
         }
@@ -131,5 +141,7 @@ namespace Izrune.Fragments
             PromoText.SetTextColor(Android.Graphics.Color.Rgb(255, 255, 255));
             CurrentFragmnet = false;
         }
+
+       
     }
 }

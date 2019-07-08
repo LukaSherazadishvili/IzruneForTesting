@@ -15,7 +15,10 @@ android:id="@+id/Container">
     android:background="#ffffff"
 	android:gravity="center"
     android:orientation="vertical">
-  
+  <include
+				layout="@layout/mainarowbacktoolbar"
+				android:layout_width="match_parent"
+				android:layout_height="50dp"/>
 
 			<FrameLayout
 				android:layout_marginTop="10dp"
