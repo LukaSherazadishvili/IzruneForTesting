@@ -507,6 +507,8 @@
       <BundleResource Include="Resources\შემაჯამებელი 4 ვარსკვლავი.mp3" />
       <BundleResource Include="Resources\შემაჯამებელი 5 ვარსკვლავი.mp3" />
       <BundleResource Include="fireWorksAnimation.json" />
+      <BundleResource Include="Resources\document-1.png" />
+      <BundleResource Include="Resources\Group 251.png" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\IZrune.PCL\IZrune.PCL.csproj">

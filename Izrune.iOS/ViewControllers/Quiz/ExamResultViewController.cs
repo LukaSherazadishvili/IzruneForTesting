@@ -120,13 +120,14 @@ namespace Izrune.iOS
         {
             base.ViewWillDisappear(animated);
 
-            player.Stop();
+            if(AfterExam)
+                player.Stop();
         }
 
         private void InitUI()
         {
-            pointView.AddShadowToView(4, 48, 0.8f, UIColor.FromRGBA(0, 0, 0, 0.35f));
-            timeShadowView.AddShadowToView(4, 48f, 0.8f, UIColor.FromRGBA(0, 0, 0, 0.35f));
+            pointView.AddShadowToView(4, 46, 0.8f, UIColor.FromRGBA(0, 0, 0, 0.35f));
+            timeShadowView.AddShadowToView(4, 46f, 0.8f, UIColor.FromRGBA(0, 0, 0, 0.35f));
         }
 
         private void InitResult()
