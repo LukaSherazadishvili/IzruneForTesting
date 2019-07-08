@@ -21,10 +21,10 @@ namespace IZrune.PCL.Implementation.Services
         {
             var FormContent = new FormUrlEncodedContent(new[]
                   {
-                        new KeyValuePair<string,string>("parent_id",UserControl.Instance.GetCurrentUser().Id.ToString()),
+                        new KeyValuePair<string,string>("parent_id",UserControl.Instance.Parent.id.ToString()),
                          
                      });
-
+           
             var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getPaymentHistory&hashcode=e733269189a8065cc61d5d43b2f39c9d", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
 
@@ -36,14 +36,16 @@ namespace IZrune.PCL.Implementation.Services
             {
 
 
-                return Result.payment_history.Select(i => new PaymentHistory() {
+                var Res = Result.payment_history.Select(i => new PaymentHistory()
+                {
 
                     Amount = int.Parse(i.amount),
                     Date = DateTime.ParseExact(i.date, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture),
                     StudentName = students.FirstOrDefault(o => o.id == Convert.ToInt32(i.student_id)).Name
-                    
-
                 });
+
+                    return Res;
+          
                 
 
             }

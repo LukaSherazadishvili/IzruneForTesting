@@ -76,6 +76,7 @@
     <Compile Include="Activitys\NextRegistrationStudentActivity.cs" />
     <Compile Include="Activitys\OnlinePayActivity.cs" />
     <Compile Include="Activitys\ParrentProfileEditActivity.cs" />
+    <Compile Include="Activitys\PaymentCategoryTwoActivity.cs" />
     <Compile Include="Activitys\QuezActivity.cs" />
     <Compile Include="Activitys\RegistrationActivity.cs" />
     <Compile Include="Activitys\RegistrationStudentActivity.cs" />
@@ -671,11 +672,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\ItemMenu.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\test.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

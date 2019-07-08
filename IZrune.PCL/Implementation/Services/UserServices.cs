@@ -19,8 +19,10 @@ namespace IZrune.PCL.Implementation.Services
     {
         public async Task AddStudent(IStudent student)
         {
-            var FormContent = new FormUrlEncodedContent(new[]
-               {
+            try
+            {
+                var FormContent = new FormUrlEncodedContent(new[]
+                   {
                 new KeyValuePair<string,string>("parent_id",UserControl.Instance.GetCurrentUser().Result.id.ToString()),
                  new KeyValuePair<string,string>("name",student.Name),
                   new KeyValuePair<string,string>("lastname",student.LastName),
@@ -36,10 +38,15 @@ namespace IZrune.PCL.Implementation.Services
                    new KeyValuePair<string,string>("months",student.PackageMonthCount.ToString())
                 });
 
-            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=addStudent&hashcode=d529edb90d98f79c0c0e2e799933c1c4", FormContent);
-            var jsn = await Data.Content.ReadAsStringAsync();
+                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=addStudent&hashcode=d529edb90d98f79c0c0e2e799933c1c4", FormContent);
+                var jsn = await Data.Content.ReadAsStringAsync();
 
-
+                AppCore.Instance.Alertdialog.ShowSaccessDialog("გილოცავთ", "სტუდენტი წარმატებით დაემატა");
+            }
+            catch(Exception ex)
+            {
+                AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა","ვერ მოხერხდა სტუდენტის დამატება");
+            }
         }
 
         public async Task<bool> EditePassword( string oldPassword, string NewPassword)
@@ -57,10 +64,15 @@ namespace IZrune.PCL.Implementation.Services
             var result = JsonConvert.DeserializeObject<RecoverStatusDTO>(jsn);
 
             if (result.Code == 0)
+            {
+                AppCore.Instance.Alertdialog.ShowSaccessDialog("", "პაროლი წარმატებით შეიცვალა");
                 return true;
+            }
             else
+            {
+                AppCore.Instance.Alertdialog.ShowAlerDialog("", "პაროლის შეცვლა ვერ მოხერხდა გთხოვთ გადაამოწმოთ ინფორმაცია");
                 return false;
-
+            }
 
 
         }

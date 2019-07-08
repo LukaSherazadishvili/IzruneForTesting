@@ -38,6 +38,20 @@ namespace Izrune.Activitys
                 StartActivity(intent);
 
             };
+            BankButton.Click += (s, e) =>
+            {
+                Intent intent = new Intent(this,typeof(PaymentCategoryTwoActivity));
+                StartActivity(intent);
+
+            };
+
+            PayBocButton.Click += (s, e) =>
+            {
+                var uri = Android.Net.Uri.Parse("http://www.izrune.ge/images/tbcpay_image2.png");
+                var intent = new Intent(Intent.ActionView, uri);
+                StartActivity(intent);
+
+            };
 
 
         }

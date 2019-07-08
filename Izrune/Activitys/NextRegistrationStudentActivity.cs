@@ -110,7 +110,9 @@ namespace Izrune.Activitys
 
 
 
-            ChangeFragmentPage(new ServiceFragment() {CurrentId=UserControl.Instance.RegistrationStudent.SchoolId }, container.Id);
+            ChangeFragmentPage(new ServiceFragment() {CurrentId=UserControl.Instance.RegistrationStudent.SchoolId,Backclick=()=> {
+                OnBackPressed();
+            } }, container.Id);
         }
 
         private void City_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)

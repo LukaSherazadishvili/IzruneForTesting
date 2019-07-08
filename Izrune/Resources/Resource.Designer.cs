@@ -5244,9 +5244,6 @@ namespace Izrune
 			// aapt resource value: 0x7f050071
 			public const int support_simple_spinner_dropdown_item = 2131034225;
 			
-			// aapt resource value: 0x7f050072
-			public const int test = 2131034226;
-			
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
