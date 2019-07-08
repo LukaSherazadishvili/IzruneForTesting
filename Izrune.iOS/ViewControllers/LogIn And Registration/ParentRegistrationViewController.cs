@@ -503,7 +503,7 @@ namespace Izrune.iOS
         private void ChangeHeader(bool isParent)
         {
             headerTitleLbl.Text = isParent ? "მშობლის (ან სხვა მზრუნველის) რეგისტრაცია" : "დაარეგისტრირეთ მოსწავლე";
-            headerImageView.Image = isParent ? UIImage.FromBundle("1 – 6.png") : UIImage.FromBundle("Group 248.png");
+            headerImageView.Image = isParent ? UIImage.FromBundle("12 – 13.png") : UIImage.FromBundle("12 – 14.png");
         }
 
         private void HideHeader(bool hide)

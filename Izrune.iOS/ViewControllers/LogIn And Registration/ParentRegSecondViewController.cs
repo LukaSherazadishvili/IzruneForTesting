@@ -33,6 +33,9 @@ namespace Izrune.iOS
         public bool IsFormFilled()
         {
             var res = (phoneTextField.Text.IsEmtyOrNull() && userNameTextField.Text.IsEmtyOrNull() && passwordTextField.Text.IsEmtyOrNull() && repeatPasswordTextField.Text.IsEmtyOrNull());
+
+            if (res)
+                return CheckPassword();
             return res;
         }
 
@@ -54,6 +57,19 @@ namespace Izrune.iOS
                 userNameTextField.Text,
                 passwordTextField.Text
                 );
+        }
+
+        public bool CheckPassword()
+        {
+            if(passwordTextField.Text != repeatPasswordTextField.Text)
+            {
+                var alertVc = UIAlertController.Create("ყურადღება!", "პაროლები არ ემთხვევა ერთმანეთს", UIAlertControllerStyle.Alert);
+                alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+                this.PresentViewController(alertVc, true, null);
+                return false;
+            }
+
+            return true;
         }
     }
 }
