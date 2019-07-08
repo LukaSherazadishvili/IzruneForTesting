@@ -192,7 +192,12 @@ namespace IZrune.PCL.Helpers
 
         }
 
-
+        public void Resetregistration()
+        {
+            MyRegistrationStudent.Clear();
+            RegistrationStudent = null;
+            RegistrationUser = null;
+        }
 
         public async void AddStudent()
         {
