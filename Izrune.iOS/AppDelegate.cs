@@ -62,14 +62,7 @@ namespace Izrune.iOS
             return true;
         }
 
-        public override void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
-        {
-       
-            if (UIApplication.SharedApplication.ApplicationState == UIApplicationState.Inactive)
-            {
-                System.Diagnostics.Debug.WriteLine("asd");
-            }
-        }
+
 
         public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
         {
