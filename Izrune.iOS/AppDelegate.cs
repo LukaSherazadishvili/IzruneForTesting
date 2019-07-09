@@ -1,15 +1,20 @@
-﻿using Foundation;
+﻿using Firebase.CloudMessaging;
+using Foundation;
 using Izrune.iOS.Utils;
 using Izrune.iOS.ViewControllers;
 using UIKit;
+using UserNotifications;
 using Xamarin;
+using Firebase.Core;
+using Firebase.Analytics;
+using Firebase.InstanceID;
 
 namespace Izrune.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the
     // User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
     [Register("AppDelegate")]
-    public class AppDelegate : UIApplicationDelegate
+    public class AppDelegate : UIApplicationDelegate, IUNUserNotificationCenterDelegate, IMessagingDelegate
     {
         // class-level declarations
 
@@ -38,11 +43,17 @@ namespace Izrune.iOS
 
             //rootvc = UIStoryboard.FromName("Main", null).InstantiateViewController(LogInViewController.StoryboardId);
 
+            UNUserNotificationCenter.Current.Delegate = this;
+            UIApplication.SharedApplication.RegisterForRemoteNotifications();
+            Messaging.SharedInstance.Delegate = this;
+
             rootvc = new MenuRootViewController();
 
             Window.RootViewController = rootvc;
 
             Window.MakeKeyAndVisible();
+
+
             return true;
         }
 
