@@ -178,7 +178,6 @@
     <ItemGroup>
         <None Include="Info.plist" />
         <None Include="Entitlements.plist" />
-        <None Include="GoogleService-Info.plist" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Main.cs" />
@@ -535,6 +534,7 @@
       <BundleResource Include="Resources\document-1.png" />
       <BundleResource Include="Resources\Group 251.png" />
       <BundleResource Include="Resources\changepassword.png" />
+      <BundleResource Include="GoogleService-Info.plist" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\IZrune.PCL\IZrune.PCL.csproj">
