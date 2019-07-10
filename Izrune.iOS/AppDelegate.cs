@@ -1,15 +1,19 @@
-﻿using Foundation;
+﻿using Firebase.CloudMessaging;
+using Foundation;
 using Izrune.iOS.Utils;
 using Izrune.iOS.ViewControllers;
 using UIKit;
 using Xamarin;
+using Firebase.Core;
+using UserNotifications;
+using System;
 
 namespace Izrune.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the
     // User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
     [Register("AppDelegate")]
-    public class AppDelegate : UIApplicationDelegate
+    public class AppDelegate : UIApplicationDelegate, IUNUserNotificationCenterDelegate, IMessagingDelegate
     {
         // class-level declarations
 
@@ -30,6 +34,15 @@ namespace Izrune.iOS
 
             UIViewController rootvc = null;
 
+            App.Configure();
+
+            UNUserNotificationCenter.Current.Delegate = this;
+            UIApplication.SharedApplication.RegisterForRemoteNotifications();
+            Messaging.SharedInstance.Delegate = this;
+
+
+
+
             IZrune.PCL.AppCore.Instance.InitServices();
 
             IZrune.PCL.AppCore.Instance.Alertdialog = new AlertDialogService();
@@ -38,12 +51,41 @@ namespace Izrune.iOS
 
             //rootvc = UIStoryboard.FromName("Main", null).InstantiateViewController(LogInViewController.StoryboardId);
 
+
             rootvc = new MenuRootViewController();
 
             Window.RootViewController = rootvc;
 
             Window.MakeKeyAndVisible();
+
+
             return true;
+        }
+
+
+
+        public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
+        {
+            //base.RegisteredForRemoteNotifications(application, deviceToken);
+#if DEBUG
+            Messaging.SharedInstance.SetApnsToken(deviceToken, Firebase.CloudMessaging.ApnsTokenType.Sandbox);
+#else
+            Messaging.SharedInstance.SetApnsToken(deviceToken, ApnsTokenType.Production);
+#endif
+
+
+            var token = Messaging.SharedInstance.FcmToken ?? ""; ;
+
+
+        }
+
+        [Export("messaging:didReceiveRegistrationToken:")]
+        public void DidReceiveRegistrationToken(Messaging messaging, string fcmToken)
+        {
+            System.Console.WriteLine($"Firebase registration token: {fcmToken}");
+
+            // TODO: If necessary send token to application server.
+            // Note: This callback is fired at each app startup and whenever a new token is generated.
         }
 
         public override void OnResignActivation(UIApplication application)
