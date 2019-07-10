@@ -72,10 +72,7 @@ namespace Izrune.iOS
 #else
             Messaging.SharedInstance.SetApnsToken(deviceToken, ApnsTokenType.Production);
 #endif
-
-
             var token = Messaging.SharedInstance.FcmToken ?? ""; ;
-
 
         }
 
