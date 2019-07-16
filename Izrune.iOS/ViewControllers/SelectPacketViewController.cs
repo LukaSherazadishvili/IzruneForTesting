@@ -72,28 +72,35 @@ namespace Izrune.iOS
             ShowLoading();
             //TODO ProceList = ?
 
-            var students = await UserControl.Instance.GetCurrentUserStudents();
-
-            SelectedStudent = students?.ElementAt(0);
-            if (SelectedStudent != null)
-                SchoolId = SelectedStudent.id;
-            var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
-
-            var data = (await service.GetPromoCodeAsync(IsFromMenu? 0 : SchoolId));
-
-            PriceList = data?.Prices?.ToList();
-
-            packetCollectionView.ReloadData();
-
-            EndLoading();
-
-            if(PriceList?.Count > 0)
+            try
             {
-                var contentHeight = ((PriceList?.Count) * 70) + 135;
-                packetCollectionHeightConstraint.Constant = (System.nfloat)contentHeight;
-                ContentHeight = (System.nfloat)(contentHeight);
-            }
+                var students = await UserControl.Instance.GetCurrentUserStudents();
 
+                SelectedStudent = students?.ElementAt(0);
+                if (SelectedStudent != null)
+                    SchoolId = SelectedStudent.id;
+                var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
+
+                var data = (await service.GetPromoCodeAsync(IsFromMenu ? 0 : SchoolId));
+
+                PriceList = data?.Prices?.ToList();
+
+                packetCollectionView.ReloadData();
+
+                EndLoading();
+
+                if (PriceList?.Count > 0)
+                {
+                    var contentHeight = ((PriceList?.Count) * 70) + 135;
+                    packetCollectionHeightConstraint.Constant = (System.nfloat)contentHeight;
+                    ContentHeight = (System.nfloat)(contentHeight);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             DataLoaded?.Invoke();
         }
 
