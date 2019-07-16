@@ -66,7 +66,7 @@ namespace Izrune.iOS
             else
                 InitTotalTimer(1, 30);
 
-            InitCircular(IsTotalTime? 29 * 60 + 59 : 90);
+            InitCircular(IsTotalTime? 1800 : 90);
 
             lastVisibleIndex = 7;
         }
@@ -263,7 +263,6 @@ namespace Izrune.iOS
 
             //var button = headerView.Subviews.OfType<UIButton>().FirstOrDefault();
 
-
             EventHandler currEventHandler = async(o,e) => {
 
                 //TODO
@@ -278,7 +277,7 @@ namespace Izrune.iOS
                     else
                     {
                         if (!IsTotalTime)
-                            timeLbl.Text = ($"01:00");
+                            timeLbl.Text = ($"01:30");
                         await SkipQuestion();
                         ScrollAnswerProgressCell();
                     }
@@ -314,12 +313,12 @@ namespace Izrune.iOS
             if (!IsTotalTime)
             {
                 timer.Dispose();
-                InitTotalTimer(1,29);
+                InitTotalTimer(1,30);
             }
 
             if (!IsTotalTime)
             {
-                InitCircular(59);
+                InitCircular(90);
             }
         }
 
