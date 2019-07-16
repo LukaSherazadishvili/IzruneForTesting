@@ -114,7 +114,7 @@ namespace Izrune.iOS
                                 await UserControl.Instance.ReNewPack(SelectedStudent.id, PromoVc.SelectedMont, PromoVc.SelectedMont, PromoVc.PromoCode);
 
                             else
-                                await UserControl.Instance.ReNewPack(SelectedStudent.id, SelectPacketVc.SelectedPrice.MonthCount, SelectPacketVc.SelectedPrice.price);
+                                await UserControl.Instance.ReNewPack(SelectedStudent.id, SelectPacketVc.SelectedPrice.MonthCount.Value, SelectPacketVc.SelectedPrice.price.Value);
 
                             var price = (IsPromoSelected ? new Price() { price = PromoVc.SelectedMont, MonthCount = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
 
@@ -166,18 +166,22 @@ namespace Izrune.iOS
 
                     else
                     {
+                        var price = (IsPromoSelected ? new Price() { price = PromoVc.SelectedMont, MonthCount = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
+                        PriceSelected?.Invoke(price);
                         if (IsPromoSelected)
                         {
+                            //PriceSelected?.Invoke(price);
                             UserControl.Instance.SetPromoPack(PromoVc.SelectedMont, PromoVc.SelectedMont, PromoVc.PromoCode);
 
                         }
 
                         else
                         {
-                            UserControl.Instance.SetPromoPack(SelectPacketVc.SelectedPrice.MonthCount, SelectPacketVc.SelectedPrice.price);
+
+                            UserControl.Instance.SetPromoPack(SelectPacketVc.SelectedPrice.MonthCount.Value, SelectPacketVc.SelectedPrice.price.Value);
                         }
 
-                        var price = (IsPromoSelected ? new Price() { price = PromoVc.SelectedMont, MonthCount = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
+                        //var price = (IsPromoSelected ? new Price() { price = PromoVc.SelectedMont, MonthCount = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
 
                         PriceSelected?.Invoke(price);
                         NextClicked?.Invoke();

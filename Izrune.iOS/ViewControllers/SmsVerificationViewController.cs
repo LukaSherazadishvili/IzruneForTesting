@@ -88,7 +88,7 @@ namespace Izrune.iOS
             var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
             chooseTimeVc.IsSumtTest = true;
             chooseTimeVc.SelectedStudent = SelectedStudent;
-            chooseTimeVc.SelectedCategory = QuezCategory.QuezTest;
+            chooseTimeVc.SelectedCategory = QuezCategory.QuezExam;
 
             this.NavigationController.PushViewController(chooseTimeVc, true);
         }

@@ -21,6 +21,8 @@ namespace Izrune.iOS
 
         public Action SendClicked { get; set; }
 
+        string Alphabet = "აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ";
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -34,8 +36,29 @@ namespace Izrune.iOS
         {
             var res = (phoneTextField.Text.IsEmtyOrNull() && userNameTextField.Text.IsEmtyOrNull() && passwordTextField.Text.IsEmtyOrNull() && repeatPasswordTextField.Text.IsEmtyOrNull());
 
-            if (res)
-                return CheckPassword();
+            if(res)
+            {
+                if (phoneTextField.Text.Length != 9)
+                {
+                    var alertVc = UIAlertController.Create("ყურადღება!", "ტელეფონის ნომერი უნდა შედგებოდეს 9 ციფრისგან", UIAlertControllerStyle.Alert);
+                    alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+                    this.PresentViewController(alertVc, true, null);
+                    return false;
+                }
+
+                foreach (var item in passwordTextField.Text)
+                {
+                    if(Alphabet.Contains(item))
+                    {
+                        var alertVc = UIAlertController.Create("ყურადღება!", "პაროლი უნდა შედგებოდეს ლათინური სიმბოლოებისგან", UIAlertControllerStyle.Alert);
+                        alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+                        this.PresentViewController(alertVc, true, null);
+                        return false;
+                    }
+
+                    return CheckPassword();
+                }
+            }
             return res;
         }
 

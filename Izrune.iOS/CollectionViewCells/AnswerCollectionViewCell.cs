@@ -33,7 +33,7 @@ namespace Izrune.iOS.CollectionViewCells
         public void InitData(IAnswer answer, string number, bool checkAnswer = false)
         {
             Answer = answer;
-            answerLbl.Text = answer.title;
+            answerLbl.Text = GetStringFromHtml(answer.title);
             numberLbl.Text = number;
             InitAnswer(AppColors.Tint);
 
@@ -47,7 +47,6 @@ namespace Izrune.iOS.CollectionViewCells
         {
 
         }
-
 
         public override void AwakeFromNib()
         {
@@ -81,6 +80,21 @@ namespace Izrune.iOS.CollectionViewCells
         public void CheckAnswer(bool IsRight)
         {
             InitAnswer(IsRight ? AppColors.Succesful : AppColors.ErrorTitle);
+        }
+
+        private string GetStringFromHtml(string htmlString)
+        {
+            var attr = new NSAttributedStringDocumentAttributes();
+
+            var nsError = new NSError();
+
+            attr.DocumentType = NSDocumentType.HTML;
+
+            var myHtmlData = NSData.FromString(htmlString, NSStringEncoding.Unicode);
+
+            var data = new NSAttributedString(myHtmlData, attr, ref nsError); //new NSAttributedString($"<span>{htmlString}</span>", attr, ref nsError);
+
+            return data.Value;
         }
     }
 }

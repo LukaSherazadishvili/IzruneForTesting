@@ -15,5 +15,7 @@ namespace Izrune.iOS
         public FooterTestView (IntPtr handle) : base (handle)
 		{
 		}
-	}
+
+       
+    }
 }

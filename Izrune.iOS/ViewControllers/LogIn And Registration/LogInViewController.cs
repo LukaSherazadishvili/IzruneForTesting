@@ -12,6 +12,7 @@ using IZrune.PCL.Helpers;
 using MPDCiOSPages.ViewControllers;
 using MpdcViewExtentions;
 using UIKit;
+using UserNotifications;
 
 namespace Izrune.iOS
 {
@@ -30,8 +31,10 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
-            userNameTextField.Text = "Cmbes";
-            passwordTextField.Text = "Cmbes123";
+            InitNotifications();
+
+            userNameTextField.Text = "tikitiki";
+            passwordTextField.Text = "samisami";
 
             this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
 
@@ -135,5 +138,33 @@ namespace Izrune.iOS
             this.PresentViewController(alert, true, null);
         }
 
+        const string NotificationPageShowedKey = "notificationPageShowedKey";
+
+        private void InitNotifications()
+        {
+            var isShown = NSUserDefaults.StandardUserDefaults.BoolForKey(NotificationPageShowedKey);
+
+            if(!isShown)
+            {
+                if(UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
+                {
+                    var authOptions = UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound;
+
+                    UNUserNotificationCenter.Current.RequestAuthorization(authOptions, (arg1, arg2) =>
+                     {
+                         if(arg1)
+                         {
+
+                         }
+                     });
+                }
+                else
+                {
+                    var allNotificationTypes = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound;
+                    var settings = UIUserNotificationSettings.GetSettingsForTypes(allNotificationTypes, null);
+                    UIApplication.SharedApplication.RegisterUserNotificationSettings(settings);
+                }
+            }
+        }
     }
 }

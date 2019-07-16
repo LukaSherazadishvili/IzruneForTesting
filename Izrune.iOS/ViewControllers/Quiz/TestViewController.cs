@@ -30,6 +30,7 @@ namespace Izrune.iOS
 
         public static readonly NSString StoryboardId = new NSString("TestViewControllerStoryboardId");
 
+        #region Fields
         List<IQuestion> AllQuestions;
 
         //private List<IQuestion> Questions = new List<IQuestion>();
@@ -48,6 +49,7 @@ namespace Izrune.iOS
         private CAShapeLayer progressLayer;
 
         public bool IsTotalTime { get; set; } = false;
+        #endregion
 
         public async override void ViewDidLoad()
         {
@@ -57,9 +59,14 @@ namespace Izrune.iOS
 
             await LoadDataAsync();
 
-            InitTotalTimer(IsTotalTime? 29 : 0);
+            //InitTotalTimer(IsTotalTime? 29 : 0);
 
-            InitCircular(IsTotalTime? 29 * 60 + 59 : 59);
+            if (IsTotalTime)
+                InitTotalTimer(29, 60);
+            else
+                InitTotalTimer(1, 30);
+
+            InitCircular(IsTotalTime? 1800 : 90);
 
             lastVisibleIndex = 7;
         }
@@ -117,6 +124,7 @@ namespace Izrune.iOS
             answerProgressCollectionView.DataSource = this;
         }
 
+        #region CollcetionView
         public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {
             if(collectionView == answerProgressCollectionView)
@@ -138,9 +146,9 @@ namespace Izrune.iOS
             {
 
                 if (!IsTotalTime)
-                    timeLbl.Text = ($"01:00");
+                    timeLbl.Text = ($"01:30");
 
-                await Task.Delay(200);
+                await Task.Delay(2000);
 
                 try
                 {
@@ -255,7 +263,7 @@ namespace Izrune.iOS
 
             //var button = headerView.Subviews.OfType<UIButton>().FirstOrDefault();
 
-            headerView.SkipBtn.TouchUpInside+=async delegate {
+            EventHandler currEventHandler = async(o,e) => {
 
                 //TODO
                 try
@@ -269,7 +277,7 @@ namespace Izrune.iOS
                     else
                     {
                         if (!IsTotalTime)
-                            timeLbl.Text = ($"01:00");
+                            timeLbl.Text = ($"01:30");
                         await SkipQuestion();
                         ScrollAnswerProgressCell();
                     }
@@ -280,6 +288,9 @@ namespace Izrune.iOS
                     Console.WriteLine(ex.Message);
                 }
             };
+            headerView.SkipBtn.TouchUpInside -= currEventHandler;
+            headerView.SkipBtn.TouchUpInside += currEventHandler;
+
             return headerView;
         }
 
@@ -295,18 +306,19 @@ namespace Izrune.iOS
             return new CGSize(0, 160 );
 
         }
+        #endregion
 
         private void ResetTimer()
         {
             if (!IsTotalTime)
             {
                 timer.Dispose();
-                InitTotalTimer(0);
+                InitTotalTimer(1,30);
             }
 
             if (!IsTotalTime)
             {
-                InitCircular(59);
+                InitCircular(90);
             }
         }
 
@@ -377,14 +389,14 @@ namespace Izrune.iOS
             //return totalHeight;
         }
 
-        private void InitTotalTimer(int _minutes)
+        private void InitTotalTimer(int _minutes, int _secondes)
         {
             timer = new Timer();
             timer.Interval = 1000;
             timer.Enabled = true;
 
             var minutes = _minutes;
-            var secondes = 60;
+            var secondes = _secondes;
 
             string Stringminutes;
             string Stringsecondes;

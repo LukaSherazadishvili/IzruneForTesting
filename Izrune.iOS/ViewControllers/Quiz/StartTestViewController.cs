@@ -166,14 +166,14 @@ namespace Izrune.iOS
             {
                 exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-
+                    //Sesacvleliiiiii !!!!!!
                     if (!IsExTestActive)
                     {
                         IsSummSelected = false;
                         var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
                         chooseTimeVc.IsSumtTest = IsSummSelected;
                         chooseTimeVc.SelectedStudent = SelectedStudent;
-                        chooseTimeVc.SelectedCategory = QuezCategory.QuezExam;
+                        chooseTimeVc.SelectedCategory = QuezCategory.QuezTest;
 
                         this.NavigationController.PushViewController(chooseTimeVc, true);
                     }

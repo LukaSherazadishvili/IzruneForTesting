@@ -86,6 +86,7 @@ namespace Izrune.iOS.ViewControllers
 
                     if (menu.Type == MenuType.LogOut)
                     {
+
                         UserControl.Instance.LogOut();
                         menuVc.IsLogedIn = false;
                         menuVc.ShowUserInfo(false);

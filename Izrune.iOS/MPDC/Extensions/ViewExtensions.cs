@@ -541,7 +541,7 @@ namespace MpdcViewExtentions
             if (shouldFillOnlyContent)
                 imageView.ContentMode = UIViewContentMode.ScaleAspectFit;
 
-            string placeholder = "4.png";
+            string placeholder = "";
             ImageService
                   .Instance
 

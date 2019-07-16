@@ -57,7 +57,7 @@ namespace Izrune.iOS.CollectionViewCells
             //InitCollectionViews();
 
             SetCellHeight(question);
-            questionLbl.Text = $"{index}{question.title}";
+            questionLbl.Text = $"{index}{ GetStringFromHtml(question.title)}";
 
             //CalculateImagesCollectionViewHeight(question);
 
@@ -79,7 +79,8 @@ namespace Izrune.iOS.CollectionViewCells
         {
             SetCellHeight(finalQuestion);
 
-            questionLbl.Text = $"{index}{finalQuestion.title}";
+            questionLbl.Text = $"{index}{ GetStringFromHtml(finalQuestion.title)}";
+            //questionLbl.Text = $"{index}{finalQuestion.title}";
 
             imagesCollectionViewHeight.Constant = imagesCollectioHeight;
 
@@ -171,7 +172,17 @@ namespace Izrune.iOS.CollectionViewCells
             cell.AnswerClicked = (answer) =>
             {
                 AnswerClicked?.Invoke(answer);
+
+                var answers = Question?.Answers?.ToList();
+                var correctAnswer = answers?.IndexOf(answers?.FirstOrDefault(x => x.IsRight == true));
+
+                var answerCell = answerCollectionView.CellForItem(NSIndexPath.FromRowSection((System.nint)correctAnswer, 0)) as AnswerCollectionViewCell;
+
+
+
+                answerCell.CheckAnswer(true);
             };
+
             return cell;
         }
 
@@ -296,6 +307,23 @@ namespace Izrune.iOS.CollectionViewCells
         {
             topLine.Hidden = true;
             bottomLine.Hidden = false;
+        }
+
+        private string GetStringFromHtml(string htmlString)
+        {
+            var attr = new NSAttributedStringDocumentAttributes();
+
+            var nsError = new NSError();
+
+            attr.DocumentType = NSDocumentType.HTML;
+
+            var myHtmlData = NSData.FromString(htmlString, NSStringEncoding.Unicode);
+
+            var data = new NSAttributedString(myHtmlData, attr, ref nsError);
+
+            //var data = new NSAttributedString($"<span>{htmlString}</span>", attr, ref nsError);
+
+            return data.Value;
         }
     }
 }
