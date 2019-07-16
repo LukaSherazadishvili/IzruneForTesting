@@ -72,6 +72,18 @@ namespace Izrune.iOS
         public bool IsFormFilled()
         {
             var res = (firstNameTf.Text.IsEmtyOrNull() && lastNameLTf.Text.IsEmtyOrNull() && date.Year > 0001 && privateNumberTf.Text.IsEmtyOrNull());
+
+            if(res)
+            {
+                if(privateNumberTf.Text.Length != 11)
+                {
+                    var alertVc = UIAlertController.Create("ყურადღება!", "პირადი ნომერი უნდა შედგებოდეს 11 ციფრისგან", UIAlertControllerStyle.Alert);
+                    alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+                    this.PresentViewController(alertVc, true, null);
+                    return false;
+                }
+            }
+
             return res;
         }
 

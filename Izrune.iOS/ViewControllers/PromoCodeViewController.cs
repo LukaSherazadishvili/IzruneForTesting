@@ -42,7 +42,7 @@ namespace Izrune.iOS
                 CheckCode(promoCodeTf.Text == PromoInfo.PrommoCode);
 
                 var result = string.Equals(promoCodeTf.Text, PromoInfo.PrommoCode);
-                //16295166
+                //1629516
                 //17756347
                 if (result)
                 {
@@ -54,19 +54,18 @@ namespace Izrune.iOS
 
             InitUI();
             InitGestures();
-
-
         }
 
         private void InitUI()
         {
             //monthTf.MakeRoundedTextField(25, AppColors.TextFieldBackground);
             promoCodeErorLbl.Hidden = true;
+
             promoCodeTf.Layer.BorderWidth = 2;
             promoCodeTf.Layer.BorderColor = UIColor.FromRGB(243, 243, 243).CGColor;
             promoCodeTf.MakeRoundedTextField(25, UIColor.White, 0);
 
-            CheckPromo();
+            //CheckPromo();
         }
 
         public override void ViewWillAppear(bool animated)
@@ -85,7 +84,7 @@ namespace Izrune.iOS
             promoCodeTf.TextColor = UIColor.White;
             promoCodeTf.Layer.BorderColor = isRight ? AppColors.Succesful.CGColor : AppColors.ErrorTitle.CGColor;
             promoCodeTf.BackgroundColor = isRight ? AppColors.GreenBg : AppColors.RedBg;
-            promoCodeErorLbl.Hidden = isRight;
+            promoCodeErorLbl.Hidden = false;
             promoCodeErorLbl.Text = isRight ? "კოდი სწორია" : "კოდი არასწორია";
 
             promoCodeErorLbl.TextColor = isRight ? AppColors.Succesful : AppColors.ErrorTitle;
@@ -139,7 +138,7 @@ namespace Izrune.iOS
             specialPacketLbl.Hidden = !Hide;
 
             promoStackView.Hidden = Hide;
-            promoCodeErorLbl.Hidden = Hide;
+            //promoCodeErorLbl.Hidden = Hide;
             confirmBtn.Hidden = Hide;
         }
     }
