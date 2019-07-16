@@ -3047,7 +3047,7 @@
                                                                     <constraint firstAttribute="height" constant="25" id="Lq3-h3-edk"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" clipsSubviews="YES" contentMode="left" verticalHuggingPriority="251" text="მშობლის (მზრუნველის) მონაცემების რედაქტიურება" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0CK-id-G3m">
+                                                            <label opaque="NO" clipsSubviews="YES" contentMode="left" verticalHuggingPriority="251" text="მშობლის (მზრუნველის) მონაცემების რედაქტირება" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0CK-id-G3m">
                                                                 <rect key="frame" x="20" y="53" width="324" height="33"/>
                                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
