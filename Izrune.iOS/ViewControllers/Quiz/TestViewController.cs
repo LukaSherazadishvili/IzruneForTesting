@@ -148,7 +148,7 @@ namespace Izrune.iOS
                 if (!IsTotalTime)
                     timeLbl.Text = ($"01:30");
 
-                await Task.Delay(200);
+                await Task.Delay(2000);
 
                 try
                 {

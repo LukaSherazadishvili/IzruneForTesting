@@ -171,7 +171,17 @@ namespace Izrune.iOS.CollectionViewCells
             cell.AnswerClicked = (answer) =>
             {
                 AnswerClicked?.Invoke(answer);
+
+                var answers = Question?.Answers?.ToList();
+                var correctAnswer = answers?.IndexOf(answers?.FirstOrDefault(x => x.IsRight == true));
+
+                var answerCell = answerCollectionView.CellForItem(NSIndexPath.FromRowSection((System.nint)correctAnswer, 0)) as AnswerCollectionViewCell;
+
+
+
+                answerCell.CheckAnswer(true);
             };
+
             return cell;
         }
 

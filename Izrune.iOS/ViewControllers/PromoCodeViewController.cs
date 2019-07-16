@@ -42,7 +42,7 @@ namespace Izrune.iOS
                 CheckCode(promoCodeTf.Text == PromoInfo.PrommoCode);
 
                 var result = string.Equals(promoCodeTf.Text, PromoInfo.PrommoCode);
-                //1629516
+                //16295166
                 //17756347
                 if (result)
                 {
