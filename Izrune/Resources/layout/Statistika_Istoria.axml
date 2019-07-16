@@ -200,14 +200,15 @@
 			</View>
 
 			<LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="260dp"
         android:orientation="vertical"
-        android:layout_weight="1"
 		android:gravity="center"
         android:background="@drawable/background">
+
+
 			<LinearLayout
-				android:id="@+id/AddStudentButton"
+				android:id="@+id/HistoryButton"
 				android:elevation="5dp"
 				android:paddingTop="12dp"
 				android:paddingBottom="12dp"

@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Izrune.Activitys;
 using Izrune.Attributes;
 
 namespace Izrune.Fragments
@@ -17,6 +18,8 @@ namespace Izrune.Fragments
     {
         protected override int LayoutResource { get; } = Resource.Layout.LayoutSucces;
 
+        [MapControl(Resource.Id.DoneButton)]
+        LinearLayout DoneButton;
        
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -26,8 +29,16 @@ namespace Izrune.Fragments
 
         }
 
+        public override void OnViewCreated(View view, Bundle savedInstanceState)
+        {
+            base.OnViewCreated(view, savedInstanceState);
 
-        
-        
+            DoneButton.Click += (s, e) =>
+            {
+                (Activity as ForgotPasswordOrUserNameActivity).OnBackPressed();
+            };
+        }
+
+
     }
 }

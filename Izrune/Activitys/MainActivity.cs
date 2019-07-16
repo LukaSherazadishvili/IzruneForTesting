@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
@@ -12,6 +13,7 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Firebase.Analytics;
 using Izrune.Adapters.RecyclerviewAdapters;
 using Izrune.Attributes;
 using Izrune.Fragments;
@@ -21,7 +23,7 @@ using IZrune.PCL;
 
 namespace Izrune.Activitys
 {
-    [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "izrune", Theme = "@style/AppTheme", ScreenOrientation = ScreenOrientation.Portrait, Icon ="@drawable/logo",MainLauncher = true)]
     class MainActivity : MPDCBaseActivity
     {
         protected override int LayoutResource { get; } = Resource.Layout.LayoutMainIncomePage;
@@ -47,28 +49,33 @@ namespace Izrune.Activitys
         //[MapControl(Resource.Id.MenuRecyclerView)]
         //RecyclerView MenuRecycler;
 
-        private List<MenuItemClass> MenuItems = new List<MenuItemClass>()
-        {
-            new MenuItemClass(){Image=Resource.Drawable.homeicon ,MenuTitle="შესვლა"},
-            new MenuItemClass(){Image=Resource.Drawable.homeicon ,MenuTitle="სიახლე"},
-            new MenuItemClass(){Image=Resource.Drawable.homeicon ,MenuTitle="გაიგეთ მეტი"},
-            new MenuItemClass(){Image=Resource.Drawable.homeicon ,MenuTitle="კონტაქტი"},
-        };
+        //private List<MenuItemClass> MenuItems = new List<MenuItemClass>()
+        //{
+        //    new MenuItemClass(){Image=Resource.Drawable.homeicon ,MenuTitle="შესვლა"},
+        //    new MenuItemClass(){Image=Resource.Drawable.homeicon ,MenuTitle="სიახლე"},
+        //    new MenuItemClass(){Image=Resource.Drawable.homeicon ,MenuTitle="გაიგეთ მეტი"},
+        //    new MenuItemClass(){Image=Resource.Drawable.homeicon ,MenuTitle="კონტაქტი"},
+        //};
 
         protected  override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
            
 
-
             AppCore.Instance.InitServices();
-          
+            var frbase = FirebaseAnalytics.GetInstance(this);
 
 
             ChangeFragmentPage(new LogInFragment(), MainContainer.Id);
             navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
             Hamburger.Click += Hamburger_Click;
-          
+
+            var header = navigationView.GetHeaderView(0);
+            header.FindViewById<ImageView>(Resource.Id.MenuBackButton).Click += (s, e) =>
+            {
+                drawer.CloseDrawer(navigationView);
+            };
         }
         private void Hamburger_Click(object sender, EventArgs e)
         {

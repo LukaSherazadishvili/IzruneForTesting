@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.Widget;
@@ -45,7 +46,7 @@ namespace Izrune.Activitys
 
     }
 
-    [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
+    [Activity(Label = "IZrune", Theme = "@style/AppTheme", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = false)]
     class NewsDetailActivity : MPDCBaseActivity
     {
         protected override int LayoutResource { get; } = Resource.Layout.NewsDetailLayout;
@@ -88,9 +89,16 @@ namespace Izrune.Activitys
             {
               
             });
-            MainContent.LoadData(Result.Content, "text/html; charset=UTF-8", null);
-            backButton.Click += BackButton_Click;
 
+            if (!string.IsNullOrEmpty(Result.Content))
+            {
+                var fontPath = "@font-face {font-family: MyFont;src: url(\"file:///android_asset/BPG_ARIAL_0.ttf\")}";
+
+                var htmlContent = $@"<html><head><style> {fontPath} *{"{ margin-left: 0px!important; margin-right: 0px!important; padding-left : 0px!important; padding-right : 0px!important; width: 100%!important;}"} iframe{{ margin-left : 0px!important; margin-right : 0px!important; margin-top : 0px!important; margin-bottom : 0px!important;}} {"td{width: 50%!important; text-align:left!important; height: auto!important; }"} div{"{text-align: left!important;background-color: transparent;}"} p{"{text-align: left!important;font-family:MyFont!important; hyphens: auto!important;-webkit-hyphens: auto!important;-moz-hyphens: auto!important;-ms-hyphens: auto!important;}"} span {"{text-align: left!important;font-family:MyFont!important;color:rgb(112,112,112)}"}   body{"{background-color: #ffffff; color:#272727;}"} </style></head><body><div>{Result.Content}</div></body></html>";
+
+                MainContent.LoadData(htmlContent, "text/html; charset=UTF-8", null);
+                backButton.Click += BackButton_Click;
+            }
             StopLoading();
         }
 

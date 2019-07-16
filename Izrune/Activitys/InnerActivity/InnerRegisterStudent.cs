@@ -66,6 +66,8 @@ namespace Izrune.Activitys.InnerActivity
             base.OnCreate(savedInstanceState);
 
             NextButton.Click += NextButton_Click;
+            BackButton.Click += BackButton_Click;
+            BotBackButton.Click += BotBackButton_Click;
 
             BDayDay.Click += BDayDay_Click;
             StudentBdaymonth.Click += BDayDay_Click;
@@ -80,14 +82,37 @@ namespace Izrune.Activitys.InnerActivity
         private void NextButton_Click(object sender, EventArgs e)
         {
 
+            if (string.IsNullOrEmpty(StudName.Text) || string.IsNullOrEmpty(StudLastName.Text) || string.IsNullOrEmpty(StudentBdayYear.Text) ||
+                string.IsNullOrEmpty(StudentPersonalId.Text) || string.IsNullOrEmpty(StudentPhone.Text))
+            {
+                if (string.IsNullOrEmpty(StudName.Text))
+                {
+                    StudName.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                }
+                if (string.IsNullOrEmpty(StudLastName.Text))
+                {
+                    StudLastName.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                }
+                if (string.IsNullOrEmpty(StudentBdayYear.Text))
+                {
+                    StudentBdayYear.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                    StudentBdaymonth.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                    BDayDay.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                }
+                if (string.IsNullOrEmpty(StudentPersonalId.Text))
+                {
+                    StudentPersonalId.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                }
+            }
+            else
+            {
 
-            UserControl.Instance.RegistrationStudentPartOne(StudName.Text, StudLastName.Text, new DateTime(Year, Month, Day), StudentPersonalId.Text, StudentPhone.Text, StudentEmail.Text);
+                UserControl.Instance.RegistrationStudentPartOne(StudName.Text, StudLastName.Text, new DateTime(Year, Month, Day), StudentPersonalId.Text, StudentPhone.Text, StudentEmail.Text);
 
-            Intent intent = new Intent(this, typeof(InnerRegisterStudentPartTwo));
-            StartActivity(intent);
-
-            BackButton.Click += BackButton_Click;
-            BotBackButton.Click += BotBackButton_Click;
+                Intent intent = new Intent(this, typeof(InnerRegisterStudentPartTwo));
+                StartActivity(intent);
+            }
+         
 
         }
 

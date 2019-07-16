@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
@@ -19,7 +20,7 @@ using IZrune.PCL.Implementation.Services;
 
 namespace Izrune.Activitys
 {
-    [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
+    [Activity(Label = "IZrune", Theme = "@style/AppTheme", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = false)]
     class MainPageAtivity:MPDCBaseActivity
     {
         protected override int LayoutResource { get; } = Resource.Layout.LayoutMainPage;
@@ -66,7 +67,10 @@ namespace Izrune.Activitys
 
             header.FindViewById<TextView>(Resource.Id.UserNameLastNametxt).Text = $"{Result.Name} {Result.LastName}";
             header.FindViewById<TextView>(Resource.Id.ProfileNumber).Text = $"{Result.ProfileNumber}";
-
+            header.FindViewById<ImageView>(Resource.Id.NavBackButton).Click += (s, e) =>
+            {
+                drawer.CloseDrawer(navigationView);
+            };
             StopLoading();
 
             //FullNametxt.Text = ;
@@ -77,6 +81,7 @@ namespace Izrune.Activitys
         private void Hamburger_Click(object sender, EventArgs e)
         {
             drawer.OpenDrawer(navigationView);
+            CloseKeyboard();
         }
 
         private void NavigationView_NavigationItemSelected(object sender, NavigationView.NavigationItemSelectedEventArgs e)

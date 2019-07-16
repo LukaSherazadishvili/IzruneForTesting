@@ -19,5 +19,6 @@ namespace IZrune.PCL.Implementation.Models
         public DateTime? bDate { get; set; }
         public IEnumerable<IStudent> Students { get; set; }
         public int ProfileNumber { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

@@ -63,6 +63,7 @@ android:id="@+id/Container">
 
 					
 			<FrameLayout
+						android:id="@+id/MonthConteiner"
 					android:background="@drawable/izrune_editext_back"
 					android:layout_width="0dp"
 					android:layout_marginRight="5dp"
@@ -77,6 +78,7 @@ android:id="@+id/Container">
 						/>
 				</FrameLayout>
 				<FrameLayout
+					android:id="@+id/PromoConteiner"
 					android:layout_marginLeft="5dp"					
 					android:layout_width="0dp"
 					android:layout_height="50dp"

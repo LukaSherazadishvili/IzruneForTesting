@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -14,7 +15,7 @@ using IZrune.PCL.Helpers;
 
 namespace Izrune.Activitys
 {
-    [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
+    [Activity(Label = "IZrune", Theme = "@style/AppTheme", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = false)]
     class SmsCodeActivity : MPDCBaseActivity
     {
         protected override int LayoutResource { get; } = Resource.Layout.LayoutSmsCode;
@@ -30,9 +31,15 @@ namespace Izrune.Activitys
 
 
         string SmsCode;
+        private string ExamType;
+        private string TimeType;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+
+            ExamType = Intent.GetStringExtra("ExamType");
+            TimeType = Intent.GetStringExtra("TimeType");
 
             AgreeButton.Click += AgreeButton_Click;
 
@@ -55,6 +62,8 @@ namespace Izrune.Activitys
             if (SmsCode == SmsEditext.Text)
             {
                 Intent intent = new Intent(this,typeof(QuezActivity));
+                intent.PutExtra("TimeType", TimeType);
+                intent.PutExtra("ExamType", ExamType);
                 StartActivity(intent);
             }
             else

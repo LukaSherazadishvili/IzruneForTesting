@@ -78,8 +78,8 @@ namespace Izrune.Fragments
 
             Startloading();
 
-            ExamtestButton.Click += ExamtestButton_Click;
-            TrainigTestButton.Click += TrainigTestButton_Click;
+           
+            
 
             var Result =await UserControl.Instance.GetCurrentUser();
 
@@ -105,6 +105,7 @@ namespace Izrune.Fragments
                 {
                     ExamTimeContainer.Visibility = ViewStates.Gone;
                     ActiveExamTxt.Visibility = ViewStates.Visible;
+                    ExamtestButton.Click += ExamtestButton_Click;
 
                 }
                 else
@@ -122,13 +123,14 @@ namespace Izrune.Fragments
                 {
                     TestTimeContainer.Visibility = ViewStates.Gone;
                     ActiveTestTxt.Visibility = ViewStates.Visible;
+                    
                 }
                 else
                 {
                     TestDayCount.Text = TestTimeRes.Days.ToString();
                     TestHours.Text = TestTimeRes.Hours.ToString();
                     TestMinit.Text = TestTimeRes.Minutes.ToString();
-
+                    TrainigTestButton.Click += TrainigTestButton_Click;
                 }
 
             };

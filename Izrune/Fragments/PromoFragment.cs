@@ -35,8 +35,12 @@ namespace Izrune.Fragments
 
         [MapControl(Resource.Id.NextButton)]
         LinearLayout NextButton;
-        
 
+        [MapControl(Resource.Id.PromoConteiner)]
+        FrameLayout PromoContainer;
+
+        [MapControl(Resource.Id.MonthConteiner)]
+        FrameLayout MonthContainer;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -59,8 +63,17 @@ namespace Izrune.Fragments
             {
                 Infotxt.Text = "პრომო კოდის მისაღებად მიმართეთ სკოლის ადმინისტრაციას";
                 Infotxt.SetTextColor(Color.LightGreen);
+                PromoContainer.Visibility = ViewStates.Visible;
+                MonthContainer.Visibility = ViewStates.Visible;
             }
+            else
+            {
 
+                PromoContainer.Visibility = ViewStates.Invisible;
+                MonthContainer.Visibility = ViewStates.Invisible;
+
+
+            }
 
             NextButton.Click += (s, e) =>
             {
@@ -84,7 +97,7 @@ namespace Izrune.Fragments
 
                     var DataAdapter = new ArrayAdapter<string>(this,
                   Android.Resource.Layout.SimpleSpinnerDropDownItem,
-                 PromoCod.Prices.Select(i =>$"{ i.EndDate} თვე").ToList());
+                 PromoCod.Prices.Select(i =>$"{ i.EndDate.Value.ToShortDateString()}").ToList());
 
                     monthSpiner.Adapter = DataAdapter;
                     monthSpiner.ItemSelected += MonthSpiner_ItemSelected;

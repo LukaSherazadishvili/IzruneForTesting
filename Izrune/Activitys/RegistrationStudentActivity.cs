@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
@@ -18,7 +19,7 @@ using static Android.App.DatePickerDialog;
 namespace Izrune.Activitys
 {
 
-    [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
+    [Activity(Label = "IZrune", Theme = "@style/AppTheme", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = false)]
     class RegistrationStudentActivity : MPDCBaseActivity, IOnDateSetListener
     {
         protected override int LayoutResource { get; } = Resource.Layout.layoutRegistrationStudentFirst;
@@ -67,28 +68,60 @@ namespace Izrune.Activitys
             base.OnCreate(savedInstanceState);
 
             NextButton.Click += NextButton_Click;
-
+            BackButton.Click += BackButton_Click;
+            BotBackButton.Click += BotBackButton_Click;
             BDayDay.Click += BDayDay_Click;
             StudentBdaymonth.Click += BDayDay_Click;
             StudentBdayYear.Click += BDayDay_Click;
+
         }
 
         private void BDayDay_Click(object sender, EventArgs e)
         {
+
+            StudentBdayYear.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
+            StudentBdaymonth.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
+            BDayDay.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
             ShowDialog(1);
+
+
         }
 
         private void NextButton_Click(object sender, EventArgs e)
         {
 
 
-            UserControl.Instance.RegistrationStudentPartOne(StudName.Text, StudLastName.Text, new DateTime(Year, Month, Day), StudentPersonalId.Text, StudentPhone.Text, StudentEmail.Text);
+            if (string.IsNullOrEmpty(StudName.Text) || string.IsNullOrEmpty(StudLastName.Text) || string.IsNullOrEmpty(StudentBdayYear.Text) ||
+                string.IsNullOrEmpty(StudentPersonalId.Text) )
+            {
+                if (string.IsNullOrEmpty(StudName.Text))
+                {
+                    StudName.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                }
+                if (string.IsNullOrEmpty(StudLastName.Text))
+                {
+                    StudLastName.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                }
+                if (string.IsNullOrEmpty(StudentBdayYear.Text))
+                {
+                    StudentBdayYear.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                    StudentBdaymonth.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                    BDayDay.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                }
+                if (string.IsNullOrEmpty(StudentPersonalId.Text))
+                {
+                    StudentPersonalId.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                }
+            }
+            else
+            {
 
-            Intent intent = new Intent(this,typeof(NextRegistrationStudentActivity));
-            StartActivity(intent);
+                UserControl.Instance.RegistrationStudentPartOne(StudName.Text, StudLastName.Text, new DateTime(Year, Month, Day), StudentPersonalId.Text, StudentPhone.Text, StudentEmail.Text);
 
-            BackButton.Click += BackButton_Click;
-            BotBackButton.Click += BotBackButton_Click;
+                Intent intent = new Intent(this, typeof(NextRegistrationStudentActivity));
+                StartActivity(intent);
+            }
+          
 
         }
 
@@ -115,7 +148,7 @@ namespace Izrune.Activitys
             Year = year;
 
             BDayDay.Text = dayOfMonth.ToString();
-           StudentBdaymonth.Text = month.ToString();
+           StudentBdaymonth.Text = (month+1).ToString();
             StudentBdayYear.Text = year.ToString();
         }
 
@@ -129,7 +162,7 @@ namespace Izrune.Activitys
                 Day = cal.Get(Calendar.DayOfYear);
 
                 DatePickerDialog dialog = new DatePickerDialog(this,
-                    Android.Resource.Style.ThemeHoloDialogNoActionBarMinWidth,
+                    Android.Resource.Style.ThemeHoloLightDialogNoActionBar,
                     this,
                     Year, Month, Day);
                 dialog.Window.SetBackgroundDrawable(new Android.Graphics.Drawables.ColorDrawable(Color.Transparent));

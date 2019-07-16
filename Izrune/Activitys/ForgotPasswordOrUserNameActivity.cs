@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -17,10 +18,15 @@ using MpdcContainer = ServiceContainer.ServiceContainer;
 
 namespace Izrune.Activitys
 {
-    [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
+    [Activity(Label = "IZrune", Theme = "@style/AppTheme", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = false)]
     class ForgotPasswordOrUserNameActivity : MPDCBaseActivity
     {
         protected override int LayoutResource { get; } = Resource.Layout.ForgotPassword;
+
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get ; set ; }
+
+
 
         [MapControl(Resource.Id.PassText)]
         TextView Pastxt;
@@ -55,15 +61,21 @@ namespace Izrune.Activitys
             SendButton.Click += async(s, e) =>
             {
 
+                CloseKeyboard();
+
                 bool Result;
 
                 if (!result)
                 {
-                   Result=  await MpdcContainer.Instance.Get<IUserServices>().RecoverPasswordAsync(ForgotPassword.Text);                   
+                    Startloading();
+                    Result = await MpdcContainer.Instance.Get<IUserServices>().RecoverUserNamedAsync(ForgotPassword.Text);
+                    StopLoading();
                 }
                 else
                 {
-                    Result = await MpdcContainer.Instance.Get<IUserServices>().RecoverUserNamedAsync(ForgotPassword.Text);
+                    Startloading();
+                    Result = await MpdcContainer.Instance.Get<IUserServices>().RecoverPasswordAsync(ForgotPassword.Text);
+                    StopLoading();
                 }
 
 

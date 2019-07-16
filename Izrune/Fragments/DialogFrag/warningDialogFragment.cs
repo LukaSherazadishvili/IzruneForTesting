@@ -18,12 +18,16 @@ namespace Izrune.Fragments.DialogFrag
         private string Text { get; set; }
         private bool Iswarming;
 
+
+
         public warningDialogFragment(string title,string text,bool iswarm)
         {
             Title = title;
             Text = text;
             Iswarming = iswarm;
         }
+
+
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {

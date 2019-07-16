@@ -57,6 +57,7 @@ namespace Izrune.Fragments
             }
         
 
+
             List<BarEntry> entries = new List<BarEntry>();
             List<BarEntry> entriesTwo = new List<BarEntry>();
            

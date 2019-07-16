@@ -174,7 +174,16 @@ namespace Izrune.Activitys
             });
         }
 
-        
+        protected void CloseKeyboard()
+        {
+            View view = this.CurrentFocus;
+            if (view != null)
+            {
+                InputMethodManager imm = (InputMethodManager)this.GetSystemService(Context.InputMethodService);
+                imm.HideSoftInputFromWindow(view.WindowToken, 0);
+                view.ClearFocus();
+            }
+        }
 
         public void ChangeFragmentPage(Fragments.MPDCBaseFragment fragment, int layoutId)
         {

@@ -80,7 +80,7 @@ android:id="@+id/Container">
 				<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="დაბადების თარიღი"
+					android:text="*დაბადების თარიღი"
 					android:fontFamily="@font/bpg_mrgvlovani"
 					android:layout_gravity="left"
 					android:textColor="#B8B8B8"
@@ -142,7 +142,6 @@ android:id="@+id/Container">
 				<FrameLayout
 					android:background="@drawable/izrune_editext_back"
 					android:layout_width="match_parent"
-					android:layout_marginRight="5dp"
 					android:layout_height="38dp">
 					<Spinner
 						android:id="@+id/ParrentCity"

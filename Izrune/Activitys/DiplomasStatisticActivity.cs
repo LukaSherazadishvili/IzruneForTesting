@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.Widget;
@@ -18,11 +19,13 @@ using MpdcContainer = ServiceContainer.ServiceContainer;
 
 namespace Izrune.Activitys
 {
-    [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
+    [Activity(Label = "IZrune", Theme = "@style/AppTheme", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = false)]
     class DiplomasStatisticActivity : MPDCBaseActivity
     {
         protected override int LayoutResource { get; } = Resource.Layout.Shemajamebeli_Testi_diplomi;
 
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get ; set ; }
 
         [MapControl(Resource.Id.DiplomaRecycler)]
         RecyclerView DiplomaRecycler;
@@ -45,6 +48,8 @@ namespace Izrune.Activitys
             //var rrrrr = await MpdcContainer.Instance.Get<IStatisticServices>().GetDiplomaStatisticAsync();
 
             //var kk = rrrrr.ToList();
+
+            Startloading();
             var Statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam);
 
             var Result = Statistic.Select(i => i.ExamDate).ToList();
@@ -78,7 +83,7 @@ namespace Izrune.Activitys
                     StartActivity(intent);
                 });
             };
-
+            StopLoading();
         }
 
         private void BackButton_Click(object sender, EventArgs e)

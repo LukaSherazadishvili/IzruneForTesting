@@ -18,5 +18,6 @@ namespace IZrune.PCL.Abstraction.Models
         string Vilage { get; set; }
         DateTime? bDate { get; set; }
         IEnumerable<IStudent> Students { get; set; }
+        bool IsAdmin { get; set; }
     }
 }

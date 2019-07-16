@@ -16,10 +16,11 @@ using MpdcContainer = ServiceContainer.ServiceContainer;
 using IZrune.PCL.Helpers;
 using IZrune.PCL.Abstraction.Models;
 using Izrune.Fragments;
+using Android.Content.PM;
 
 namespace Izrune.Activitys
 {
-    [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
+    [Activity(Label = "IZrune", Theme = "@style/AppTheme", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = false)]
     class NextRegistrationStudentActivity : MPDCBaseActivity
     {
         protected override int LayoutResource { get; } = Resource.Layout.layoutRegistrationStudent;
@@ -48,6 +49,18 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.StudentClass)]
         Spinner StudentClass;
 
+        [MapControl(Resource.Id.SchoolContainer)]
+        FrameLayout SchoolContainer;
+
+        [MapControl(Resource.Id.CityContainer)]
+        FrameLayout CityContainer;
+
+        [MapControl(Resource.Id.ClassContainer)]
+        FrameLayout ClassContainer;
+
+
+
+
         private IEnumerable<IZrune.PCL.Abstraction.Models.IRegion> Regions;
         private IRegion CurrentRegion;
         private ISchool CurrentSchool;
@@ -62,18 +75,26 @@ namespace Izrune.Activitys
 
              Regions = await MpdcContainer.Instance.Get<IZrune.PCL.Abstraction.Services.IRegistrationServices>().GetRegionsAsync();
 
+            var Regionss = Regions.Select(i => i.title).ToList();
+            Regionss.Insert(0, "*ქალაქი/მუნიციპალიტეტი");
+
             var DataAdapter = new ArrayAdapter<string>(this,
             Android.Resource.Layout.SimpleSpinnerDropDownItem,
-           Regions.Select(i => i.title).ToList());
+           Regionss);
 
             List<int> Classes = new List<int>()
             {
                 1,2,3,4,5,6,7,8,9,10,11,12
             };
 
+            var Classess = Classes.Select(i => $" {i} კლასი").ToList();
+            Classess.Insert(0, "კლასი");
+
             var ClassDataAdapter = new ArrayAdapter<string>(this,
            Android.Resource.Layout.SimpleSpinnerDropDownItem,
-          Classes.Select(i=>$" {i} კლასი").ToList());
+          Classess);
+
+
 
 
 
@@ -81,7 +102,13 @@ namespace Izrune.Activitys
 
             StudentClass.ItemSelected += (s, e) =>
             {
-                CurrentClass = Classes.ElementAt(e.Position);
+                if (e.Position != 0)
+                {
+                    ClassContainer.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
+                    CurrentClass = Classes.ElementAt(e.Position-1);
+                }
+                else
+                    CurrentClass = 0;
             };
 
             
@@ -97,7 +124,13 @@ namespace Izrune.Activitys
 
         private void School_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            CurrentSchool = CurrentRegion.Schools.ElementAt(e.Position);
+            if (e.Position != 0)
+            {
+                SchoolContainer.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
+                CurrentSchool = CurrentRegion.Schools.ElementAt(e.Position);
+            }
+            else
+                CurrentSchool = null;
         }
 
         int SelectedClass;
@@ -105,23 +138,78 @@ namespace Izrune.Activitys
         private void NextButton_Click(object sender, EventArgs e)
         {
 
+            if (CurrentSchool == null)
+            {
+                SchoolContainer.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+            }
+            if (CurrentRegion == null)
+            {
+                CityContainer.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+            }
+            if (!(CurrentClass > 0))
+            {
+                ClassContainer.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
 
-            UserControl.Instance.RegistrationStudentPartTwo(CurrentRegion.id, CurrentSchool.id, CurrentClass, Village.Text);
+
+            }
 
 
+            if (CurrentSchool != null && CurrentRegion != null&&CurrentClass>0)
+            {
 
-            ChangeFragmentPage(new ServiceFragment() {CurrentId=UserControl.Instance.RegistrationStudent.SchoolId,Backclick=()=> {
-                OnBackPressed();
-            } }, container.Id);
+                UserControl.Instance.RegistrationStudentPartTwo(CurrentRegion.id, CurrentSchool.id, CurrentClass, Village.Text);
+
+                ChangeFragmentPage(new ServiceFragment()
+                {
+                    CurrentId = UserControl.Instance.RegistrationStudent.SchoolId,
+                    Backclick = () => {
+                        OnBackPressed();
+                    }
+                }, container.Id);
+            }
+
+
         }
 
         private void City_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            CurrentRegion = Regions.ElementAt(e.Position);
-            var DataAdapter = new ArrayAdapter<string>(this,
-            Android.Resource.Layout.SimpleSpinnerDropDownItem,
-           CurrentRegion.Schools.Select(i => i.title).ToList());
-            School.Adapter = DataAdapter;
+           
+
+
+            if (e.Position != 0)
+            {
+                CurrentRegion = Regions.ElementAt(e.Position-1);
+                CityContainer.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
+
+                var Resukt = CurrentRegion.Schools.Select(i => i.title)?.ToList();
+                Resukt = CurrentRegion.Schools.Select(i => i.title).ToList();
+                Resukt.Insert(0, "*სკოლა");
+
+
+
+                var DataAdapter = new ArrayAdapter<string>(this,
+                Android.Resource.Layout.SimpleSpinnerDropDownItem,
+                Resukt
+              );
+
+
+                School.Adapter = DataAdapter;
+            }
+            else
+            {
+                CurrentRegion = null;
+                List<string> Resukt = new List<string>();
+                Resukt.Insert(0, "*სკოლა");
+
+
+                var DataAdapter = new ArrayAdapter<string>(this,
+                Android.Resource.Layout.SimpleSpinnerDropDownItem,
+                Resukt
+              );
+
+
+                School.Adapter = DataAdapter;
+            }
         }
 
 

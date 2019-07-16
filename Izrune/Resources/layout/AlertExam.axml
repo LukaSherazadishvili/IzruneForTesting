@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+	 android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"	
+	android:background="#00ffffff"
+	android:gravity="center">
+
+<LinearLayout 
+    android:orientation="vertical"
+    android:layout_width="300dp"
     android:layout_height="wrap_content"
-	android:layout_margin="20dp"
-	
+	android:padding="10dp"
 	android:background="@drawable/quezbuttondefaultbackground">
 
 	 <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 		android:orientation="horizontal"
-		android:padding="15dp">
+		>
 		<LinearLayout
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -47,7 +54,7 @@
             android:src="@drawable/alert"
 			android:layout_weight="1"/>
         <ImageView
-            android:id="@+id/imageButton"
+            android:id="@+id/CloseButton"
             android:layout_width="20dp"
             android:layout_height="20dp"
 			android:elevation="1px"
@@ -67,3 +74,5 @@
     
 
 </LinearLayout>
+
+	</LinearLayout>

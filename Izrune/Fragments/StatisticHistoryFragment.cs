@@ -35,6 +35,10 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.EndPackDateTxt)]
         TextView EndPackTxt;
 
+        [MapControl(Resource.Id.HistoryButton)]
+        LinearLayout HistoryButton;
+
+
 
         public IStudent CurrentStudent;
         public override async void OnViewCreated(View view, Bundle savedInstanceState)
@@ -74,6 +78,12 @@ namespace Izrune.Fragments
             DiplomasButton.Click += (s, e) =>
             {
                 Intent intent = new Intent(this,typeof(DiplomasStatisticActivity));
+                StartActivity(intent);
+            };
+
+            HistoryButton.Click += (s, e) =>
+            {
+                Intent intent = new Intent(this, typeof(PaymentHistoryActivity));
                 StartActivity(intent);
             };
 

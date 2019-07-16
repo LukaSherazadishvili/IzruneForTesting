@@ -256,6 +256,34 @@ namespace IZrune.PCL.Implementation.Services
             }
         }
 
+        public async Task<bool> IsAdmin()
+        {
+            try
+            {
+                var FormContent = new FormUrlEncodedContent(new[]
+                         {
+                new KeyValuePair<string,string>("parent_id",UserControl.Instance.GetCurrentUser().Result.id.ToString()),
+
+                });
+                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=isAdmin&hashcode=a4fa29df9923e514100d8d71cb58cedd", FormContent);
+                var jsn = await Data.Content.ReadAsStringAsync();
+                var Result = JsonConvert.DeserializeObject<IsAdminDto>(jsn);
+
+
+
+                return Convert.ToBoolean(Result.is_admin);
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
+
+
+
+
+
+
         public async Task<bool> RecoverPasswordAsync(string PhoneNumber)
         {
             var FormContent = new FormUrlEncodedContent(new[]
@@ -271,7 +299,10 @@ namespace IZrune.PCL.Implementation.Services
             if (Result.Code == 0)
                 return true;
             else
+            {
+                AppCore.Instance.Alertdialog.ShowAlerDialog("", "ტელეფონის ნომერი არ არის რეგისტრირებული");
                 return false;
+            }
 
         }
 
@@ -289,7 +320,11 @@ namespace IZrune.PCL.Implementation.Services
             if (Result.Code == 0)
                 return true;
             else
+            {
+
+                AppCore.Instance.Alertdialog.ShowAlerDialog("", "ტელეფონის ნომერი არ არის რეგისტრირებული");
                 return false;
+            }
         }
 
         private int MonthDifference(DateTime lValue, DateTime rValue)

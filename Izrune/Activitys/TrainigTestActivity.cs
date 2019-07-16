@@ -5,16 +5,18 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Izrune.Attributes;
+using Izrune.Fragments.DialogFrag;
 using IZrune.PCL.Abstraction.Services;
 using MpdcContainer = ServiceContainer.ServiceContainer;
 namespace Izrune.Activitys
 {
-    [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
+    [Activity(Label = "IZrune", Theme = "@style/AppTheme", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = false)]
     class TrainigTestActivity : MPDCBaseActivity
     {
         protected override int LayoutResource { get; } = Resource.Layout.LayoutTrainingTest;
@@ -37,6 +39,10 @@ namespace Izrune.Activitys
 
             ExamPartTimeButton.Click += ExamPartTimeButton_Click;
            BackButton.Click += BackButton_Click;
+
+            var transcation = FragmentManager.BeginTransaction();
+            ExamDialogFragment dialog = new ExamDialogFragment();
+            dialog.Show(transcation, "Image Dialog");
         }
 
         private void BackButton_Click(object sender, EventArgs e)

@@ -66,6 +66,7 @@ namespace Izrune.Fragments
             {
                 Infotxt.Text = "პრომო კოდის მისაღებად მიმართეთ სკოლის ადმინისტრაციას";
                 Infotxt.SetTextColor(Color.LightGreen);
+                promoEdit.Text = PromoCod.PrommoCode;
             }
 
 

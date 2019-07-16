@@ -64,6 +64,7 @@ android:id="@+id/Container">
             android:hint="*ტელეფონი"
 			android:inputType="number"
 			android:textSize="13dp"
+					android:maxLength="9"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:background="@drawable/izrune_editext_back"

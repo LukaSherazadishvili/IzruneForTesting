@@ -34,6 +34,10 @@
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <BundleAssemblies>false</BundleAssemblies>
+    <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -47,6 +51,10 @@
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <BundleAssemblies>false</BundleAssemblies>
+    <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -77,6 +85,7 @@
     <Compile Include="Activitys\OnlinePayActivity.cs" />
     <Compile Include="Activitys\ParrentProfileEditActivity.cs" />
     <Compile Include="Activitys\PaymentCategoryTwoActivity.cs" />
+    <Compile Include="Activitys\PaymentHistoryActivity.cs" />
     <Compile Include="Activitys\QuezActivity.cs" />
     <Compile Include="Activitys\RegistrationActivity.cs" />
     <Compile Include="Activitys\RegistrationStudentActivity.cs" />
@@ -88,6 +97,7 @@
     <Compile Include="Adapters\RecyclerviewAdapters\ExamStatisticRecyclerAdapter.cs" />
     <Compile Include="Adapters\RecyclerviewAdapters\MenuRecyclerAdapter.cs" />
     <Compile Include="Adapters\RecyclerviewAdapters\NewsRecyclerAdapter.cs" />
+    <Compile Include="Adapters\RecyclerviewAdapters\PaymentRecyclerAdapter.cs" />
     <Compile Include="Adapters\RecyclerviewAdapters\QuestionStatisticAdapter.cs" />
     <Compile Include="Adapters\RecyclerviewAdapters\ShedulerRecyclerAdapter.cs" />
     <Compile Include="Adapters\SpinerAdapter\MySpinnerAdapter.cs" />
@@ -97,11 +107,15 @@
     <Compile Include="Adapters\ViewPagerAdapter\TabAdapter.cs" />
     <Compile Include="AppInfo.cs" />
     <Compile Include="Attributes\MapControlAttribute.cs" />
+    <Compile Include="FireBaseMessagingService.cs" />
+    <Compile Include="FireBaseService.cs" />
     <Compile Include="Fragments\ContactFragment.cs" />
     <Compile Include="Fragments\ContinueRegistrationParrent.cs" />
     <Compile Include="Fragments\ContinueRegistrationParrentFragment.cs" />
     <Compile Include="Fragments\DiagramFragment.cs" />
+    <Compile Include="Fragments\DialogFrag\ExamDialogFragment.cs" />
     <Compile Include="Fragments\DialogFrag\ImageDialogFragment.cs" />
+    <Compile Include="Fragments\DialogFrag\RullesDialogFragment.cs" />
     <Compile Include="Fragments\DialogFrag\warningDialogFragment.cs" />
     <Compile Include="Fragments\DiplomaFragment.cs" />
     <Compile Include="Fragments\ExamStatisticFragment.cs" />
@@ -135,6 +149,7 @@
     <Compile Include="testModels\TestNews.cs" />
     <Compile Include="ViewHolders\BigNewsViewHolder.cs" />
     <Compile Include="ViewHolders\DiplomaViewHolder.cs" />
+    <Compile Include="ViewHolders\PaymentHistoryVieHolder.cs" />
     <Compile Include="ViewHolders\ShedulerViewHolder.cs" />
     <Compile Include="ViewHolders\SmallNewsViewHolder.cs" />
     <Compile Include="ViewHolders\StatisticQuestionViewHolder.cs" />
@@ -144,6 +159,7 @@
     <AndroidAsset Include="Assets\CheckBox.json" />
     <AndroidAsset Include="Assets\LikeLottie.json" />
     <AndroidAsset Include="Assets\like.json" />
+    <None Include="google-services.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
@@ -192,11 +208,20 @@
       <Version>1.0.0</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.1" />
+    <PackageReference Include="Xamarin.Android.Support.Media.Compat">
+      <Version>28.0.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v7.CardView">
       <Version>28.0.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading">
       <Version>2.4.4.859</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Analytics">
+      <Version>60.1142.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Messaging">
+      <Version>60.1142.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +243,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <GoogleServicesJson Include="google-services.json" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\ForgotPassword.axml">
@@ -764,6 +792,24 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\RedPromoCodebutton.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\AlertBackground.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\LayoutPaymentHistory.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ItemPaymentHistory.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\LayoutRullesDialog.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

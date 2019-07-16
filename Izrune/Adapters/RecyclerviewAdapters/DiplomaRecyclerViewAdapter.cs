@@ -38,19 +38,26 @@ namespace Izrune.Adapters.RecyclerviewAdapters
             var Result = (holder as DiplomaViewHolder);
             Result.DateText.Text = StatisticList.ElementAt(position).ExamDate.ToShortDateString();
 
-            Result.DateText.Click += (s, e) =>
-            {
-                IzruneHellper.Instance.CurrentStatistic = StatisticList.ElementAt(position);
-                OnDiplomaClikc?.Invoke();
+            //Result.DateText.Click += (s, e) =>
+            //{
+            //    IzruneHellper.Instance.CurrentStatistic = StatisticList.ElementAt(position);
+            //    OnDiplomaClikc?.Invoke();
 
 
-            };
+            //};
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             var Layout = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ItemDiploma, parent, false);
             DiplomaViewHolder holder = new DiplomaViewHolder(Layout);
+
+
+            holder.DateText.Click += (s, e) =>
+            {
+                IzruneHellper.Instance.CurrentStatistic = StatisticList.ElementAt(holder.AdapterPosition);
+                OnDiplomaClikc?.Invoke();
+            };
             return holder;
         }
     }

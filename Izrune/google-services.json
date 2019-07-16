@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "374566852878",
+    "firebase_url": "https://izrune.firebaseio.com",
+    "project_id": "izrune",
+    "storage_bucket": "izrune.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374566852878:android:1777dbdc2c4f8885",
+        "android_client_info": {
+          "package_name": "Izrune.Izrune"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374566852878-o1vdh8kqn4c4h01qkc5ras4k3eotq3e7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "Izrune.Izrune",
+            "certificate_hash": "af1ee4d11176f15fff7c39f98579d97afb9e42d6"
+          }
+        },
+        {
+          "client_id": "374566852878-eq2p6doo3tnnllb63kjh5fjsdrlkenet.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh_Czsx3QNx13zSdJshkK6bqqoKjtuias"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "374566852878-eq2p6doo3tnnllb63kjh5fjsdrlkenet.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "374566852878-r27tgq02ra6a9hcc24ftpnbl0qpg3dfb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mpdc.izrune"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

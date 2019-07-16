@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
@@ -20,7 +21,7 @@ using MpdcContainer = ServiceContainer.ServiceContainer;
 
 namespace Izrune.Activitys
 {
-    [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
+    [Activity(Label = "IZrune", Theme = "@style/AppTheme", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = false)]
     class RegistrationActivity : MPDCBaseActivity,IOnDateSetListener
     {
         protected override int LayoutResource { get; } = Resource.Layout.layoutParentRegistration;
@@ -69,16 +70,21 @@ namespace Izrune.Activitys
             BotBackButton.Click += BotBackButton_Click;
             var Result = await MpdcContainer.Instance.Get<IRegistrationServices>().GetRegionsAsync();
 
+            var Regions = Result.Select(i => i.title).ToList();
+            Regions.Insert(0, "*ქალაქი/მუნიციპალიტეტი");
+
             var DataAdapter = new ArrayAdapter<string>(this,
               Android.Resource.Layout.SimpleSpinnerDropDownItem,
-             Result.Select(i=>i.title).ToList());
+            Regions);
 
             ParrentCity.Adapter = DataAdapter;
             ParrentCity.ItemSelected += (s, e) =>
             {
-               // UserControl.Instance.RegistrationParrentPartOne(UserName.Text,LastName.Text,)
-
-                city = Result.ElementAt(e.Position).title;
+                // UserControl.Instance.RegistrationParrentPartOne(UserName.Text,LastName.Text,)
+                if (e.Position == 0) 
+                city = "";
+                else
+                    city = Result.ElementAt(e.Position-1).title;
             };
 
         }
@@ -96,7 +102,7 @@ namespace Izrune.Activitys
                 Day = cal.Get(Calendar.DayOfYear);
 
                 DatePickerDialog dialog = new DatePickerDialog(this,
-                    Android.Resource.Style.ThemeHoloDialogNoActionBarMinWidth,
+                    Android.Resource.Style.ThemeHoloLightDialogNoActionBar,
                     this,
                     Year, Month, Day);
                 dialog.Window.SetBackgroundDrawable(new Android.Graphics.Drawables.ColorDrawable(Color.Transparent));
@@ -218,7 +224,7 @@ namespace Izrune.Activitys
 
 
             BdayDay.Text = Day.ToString();
-            BDayMonth.Text = month.ToString();
+            BDayMonth.Text =(month+1).ToString();
             BdayYear.Text = year.ToString();
         }
     }

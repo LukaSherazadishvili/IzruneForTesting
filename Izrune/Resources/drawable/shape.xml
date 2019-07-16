@@ -3,9 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle"   >
 
-  <solid
-      android:color="#AE71B7" >
-  </solid>
+  <gradient
+        android:startColor="#9926AD" android:endColor="#AE71B7"></gradient>
 
   <stroke
       android:width="2dp"

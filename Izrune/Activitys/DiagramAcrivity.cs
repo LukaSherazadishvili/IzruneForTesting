@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -15,7 +16,7 @@ using SkiaSharp;
 
 namespace Izrune.Activitys
 {
-    [Activity(Label = "DiagramAcrivity", Theme = "@style/AppTheme", MainLauncher = false)]
+    [Activity(Label = "DiagramAcrivity", Theme = "@style/AppTheme", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = false)]
      class DiagramAcrivity : MPDCBaseActivity
     {
 

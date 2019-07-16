@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
 	>
 	<ImageView
+		android:id="@+id/MenuBackButton"
 		android:layout_marginTop="10dp"
 		android:layout_marginLeft="10dp"
 					android:layout_width="50dp"
@@ -18,6 +19,7 @@
 					android:layout_weight="1"/>
 
 				<ImageView
+		
 					android:layout_marginTop="10dp"
 			        android:layout_marginRight="15dp"
 					android:layout_width="50dp"

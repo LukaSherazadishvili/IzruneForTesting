@@ -5,17 +5,20 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Com.Airbnb.Lottie;
 using Izrune.Attributes;
+using Izrune.Fragments.DialogFrag;
+using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
-
+using MpdcContainer = ServiceContainer.ServiceContainer;
 namespace Izrune.Activitys
 {
-    [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
+    [Activity(Label = "IZrune", Theme = "@style/AppTheme", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = false)]
     class RullesActivity : MPDCBaseActivity
     {
         protected override int LayoutResource { get; } = Resource.Layout.LayoutEndRegistration;
@@ -32,6 +35,11 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.AddStudentButton)]
         LinearLayout AddStudentButton;
 
+        [MapControl(Resource.Id.RullesText)]
+        TextView RullesText;
+
+
+
 
         bool isChecked = false;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -41,6 +49,23 @@ namespace Izrune.Activitys
             checker.Click += Checker_Click;
             EndRegistrationButton.Click += EndRegistrationButton_Click;
             AddStudentButton.Click += AddStudentButton_Click;
+
+
+
+            RullesText.Click += RullesText_Click;
+
+        }
+
+        private async void RullesText_Click(object sender, EventArgs e)
+        {
+            
+
+            var Result = await MpdcContainer.Instance.Get<IRegistrationServices>().GetAgreement();
+
+            FragmentTransaction transcation = FragmentManager.BeginTransaction();
+            RullesDialogFragment RullesDialog = new RullesDialogFragment(Result);
+            RullesDialog.Show(transcation, "Dialog Fragment");
+
         }
 
         private void AddStudentButton_Click(object sender, EventArgs e)

@@ -29,22 +29,25 @@ namespace Izrune.Adapters.RecyclerviewAdapters
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
 
-            
+            (holder as ShedulerViewHolder).ShedulerText.Text = ShedulerList.ElementAt(position).Position.ToString();
 
             if (!ShedulerList.ElementAt(position).IsCurrent)
             {
-                (holder as ShedulerViewHolder).ShedulerImage.Visibility = ViewStates.Invisible;
-                (holder as ShedulerViewHolder).ShedulerContainer.SetBackgroundResource(Resource.Drawable.UnselectedSheduleBack);
+                //  (holder as ShedulerViewHolder).ShedulerImage.Visibility = ViewStates.Invisible;
+                (holder as ShedulerViewHolder).ShedulerText.SetTextColor(Android.Graphics.Color.Black);
+                  (holder as ShedulerViewHolder).ShedulerContainer.SetBackgroundResource(Resource.Drawable.UnselectedSheduleBack);
             }          
             else
             {
-                (holder as ShedulerViewHolder).ShedulerImage.Visibility = ViewStates.Visible;
+                // (holder as ShedulerViewHolder).ShedulerImage.Visibility = ViewStates.Visible;
+                (holder as ShedulerViewHolder).ShedulerText.SetTextColor(Android.Graphics.Color.White);
                 (holder as ShedulerViewHolder).ShedulerContainer.SetBackgroundResource(Resource.Drawable.SheduleBackground);
             }
 
             if (ShedulerList.ElementAt(position).AlreadeBe == true&& ShedulerList.ElementAt(position).IsCurrent == false)
             {
-                (holder as ShedulerViewHolder).ShedulerImage.Visibility = ViewStates.Invisible;
+                // (holder as ShedulerViewHolder).ShedulerImage.Visibility = ViewStates.Invisible;
+                (holder as ShedulerViewHolder).ShedulerText.SetTextColor(Android.Graphics.Color.White);
                 (holder as ShedulerViewHolder).ShedulerContainer.SetBackgroundResource(Resource.Drawable.SheduleBackground);
             }
 

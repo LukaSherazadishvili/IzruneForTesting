@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
@@ -18,7 +19,7 @@ using IZrune.PCL;
 
 namespace Izrune.Activitys
 {
-    [Activity(Label = "IZrune", Theme = "@style/AppTheme", MainLauncher = false)]
+    [Activity(Label = "IZrune", Theme = "@style/AppTheme", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = false)]
     class MainExamStatisticActivity : MPDCBaseActivity
     {
         protected override int LayoutResource { get; } = Resource.Layout.LayoutMainExamStatistic;
@@ -28,6 +29,9 @@ namespace Izrune.Activitys
 
         [MapControl(Resource.Id.StatisticPager)]
         ViewPager pager;
+
+        [MapControl(Resource.Id.BackButton)]
+        FrameLayout backButton;
 
         private List<MPDCBaseFragment> FrmList = new List<MPDCBaseFragment>() {
           new ExamStatisticFragment() , new DiagramFragment()
@@ -51,6 +55,17 @@ namespace Izrune.Activitys
             Tabs.SetupWithViewPager(pager);
             pager.Adapter = PagerAdapter;
 
+            backButton.Click += (s, e) =>
+            {
+                OnBackPressed();
+            };
+
+        }
+
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
+            this.Finish();
         }
 
     }

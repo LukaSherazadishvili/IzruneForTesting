@@ -52,12 +52,12 @@ namespace Izrune.Adapters.RecyclerviewAdapters
                 (holder as BigNewsViewHolder).Title.Text = MyNewsList.ElementAt(position).Title;
                 (holder as BigNewsViewHolder).Date.Text = MyNewsList.ElementAt(position).date.ToShortDateString();
 
-                (holder as BigNewsViewHolder).MainContainer.Click += (s, e) =>
-                {
-                    IzruneHellper.Instance.CurrentNews = MyNewsList.ElementAt(position);
+                //(holder as BigNewsViewHolder).MainContainer.Click += (s, e) =>
+                //{
+                //    IzruneHellper.Instance.CurrentNews = MyNewsList.ElementAt(position);
 
-                    OnItemClick?.Invoke();
-                };
+                //    OnItemClick?.Invoke();
+                //};
             }
             else if(holder is SmallNewsViewHolder)
             {
@@ -65,13 +65,13 @@ namespace Izrune.Adapters.RecyclerviewAdapters
                 (holder as SmallNewsViewHolder).SmallTitle.Text = MyNewsList.ElementAt(position).Title;
                 (holder as SmallNewsViewHolder).SmallDate.Text = MyNewsList.ElementAt(position).date.ToShortDateString();
 
-                (holder as SmallNewsViewHolder).Container.Click += (s, e) =>
-                {
+                //(holder as SmallNewsViewHolder).Container.Click += (s, e) =>
+                //{
 
-                    IzruneHellper.Instance.CurrentNews = MyNewsList.ElementAt(position);
+                //    IzruneHellper.Instance.CurrentNews = MyNewsList.ElementAt(position);
 
-                    OnItemClick?.Invoke();
-                };
+                //    OnItemClick?.Invoke();
+                //};
             }
         }
 
@@ -81,12 +81,24 @@ namespace Izrune.Adapters.RecyclerviewAdapters
             {
                 var View = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ItemBigNews, parent, false);
                 var Result = new BigNewsViewHolder(View);
+                Result.MainContainer.Click += (s, e) =>
+                {
+                    IzruneHellper.Instance.CurrentNews = MyNewsList.ElementAt(Result.AdapterPosition);
+
+                    OnItemClick?.Invoke();
+                };
                 return Result;
             }
             else
             {
                 var View = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ItemSmallNewsImageRight, parent, false);
                 var Result = new SmallNewsViewHolder(View);
+                Result.Container.Click += (s, e) =>
+                {
+                    IzruneHellper.Instance.CurrentNews = MyNewsList.ElementAt(Result.AdapterPosition);
+
+                    OnItemClick?.Invoke();
+                };
                 return Result;
             }
         }

@@ -30,6 +30,8 @@ android:id="@+id/Container">
             android:gravity="center"
 			android:orientation="vertical"
             android:layout_height="wrap_content">
+
+
            <ImageView
             android:layout_width="130dp"
             android:layout_height="130dp"
@@ -93,6 +95,7 @@ android:id="@+id/Container">
                                 android:layout_gravity="center" />
                         </FrameLayout>
 					<TextView
+						android:id="@+id/RullesText"
 						android:textSize="13dp"
 						android:layout_marginLeft="15dp"
 						android:layout_width="wrap_content"

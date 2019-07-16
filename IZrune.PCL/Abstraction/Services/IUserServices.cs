@@ -26,5 +26,8 @@ namespace IZrune.PCL.Abstraction.Services
 
         Task<bool> EditePassword( string oldPassword, string NewPassword);
 
+        Task<bool> IsAdmin();
+      
+
     }
 }

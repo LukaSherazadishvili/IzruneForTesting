@@ -16,12 +16,13 @@ namespace Izrune.ViewHolders
     class ShedulerViewHolder:RecyclerView.ViewHolder
     {
         public FrameLayout ShedulerContainer { get; set; }
-        public ImageView ShedulerImage { get; set; }
-
+        //  public ImageView ShedulerImage { get; set; }
+        public TextView ShedulerText { get; set; }
         public ShedulerViewHolder(View view) : base(view)
         {
             ShedulerContainer = view.FindViewById<FrameLayout>(Resource.Id.ShedulerContainer);
-            ShedulerImage = view.FindViewById<ImageView>(Resource.Id.ShedulerImage);
+            //  ShedulerImage = view.FindViewById<ImageView>(Resource.Id.ShedulerImage);
+            ShedulerText = view.FindViewById<TextView>(Resource.Id.ShedulerPosition);
         }
     }
 }

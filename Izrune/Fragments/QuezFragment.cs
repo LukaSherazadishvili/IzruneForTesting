@@ -86,9 +86,11 @@ namespace Izrune.Fragments
             QuestionTitle.Text = question.title;
             if (question.images.ToList().Count > 1)
             {
+                ImagesGrid.Visibility = ViewStates.Visible;
                 ImageViews.Clear();
                 foreach(var items in question.images)
                 {
+                  
                     var Images = LayoutInflater.Inflate(Resource.Layout.ItemQuestionImage, null);
                     Images.FindViewById<ImageViewAsync>(Resource.Id.CardImage).LoadImage(items);
                     ImageViews.Add(Images);
@@ -125,17 +127,39 @@ namespace Izrune.Fragments
             SkipButton.Click += SkipButton_Click;
         }
 
-        private  void SkipButton_Click(object sender, EventArgs e)
+        private async  void SkipButton_Click(object sender, EventArgs e)
         {
-
-            (Activity as QuezActivity).RunOnUiThread(async() =>
+            try
             {
 
+                (Activity as QuezActivity).RunOnUiThread(() =>
+                {
+
+
+
+                    CorrectAnswerIndex = 0;
+
+                    foreach (var items in question.Answers)
+                    {
+                        CorrectAnswerIndex++;
+
+                        if (items.IsRight)
+                        {
+                            var CorrectAnswerView = MyViews[CorrectAnswerIndex - 1];
+
+                            CorrectAnswerView.FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesCorrectAnswerLine);
+                            CorrectAnswerView.FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesCorrectButtonBackground);
+
+                            CorrectAnswerIndex = 0;
+                            break;
+                        }
+
+                    }
+
+
+
+                });
                 await QuezControll.Instance.AddQuestion();
-
-
-
-
 
 
                 question = AnswerClick?.Invoke();
@@ -199,7 +223,11 @@ namespace Izrune.Fragments
                         ContainerForAnswer.AddView(AnswerView);
                     }
                 }
-            });
+            }
+            catch(Exception ex)
+            {
+                Toast.MakeText(this, ex.Message.ToString(), ToastLength.Long).Show();
+            }
         }
 
         private void Images_Click(object sender, EventArgs e)
@@ -212,49 +240,72 @@ namespace Izrune.Fragments
 
         private async  void AnswerView_Click(object sender, EventArgs e)
         {
-           
+            try
+            {
 
                 var Index = MyViews.IndexOf((sender as View));
 
-            (Activity as QuezActivity).RunOnUiThread( () =>
-            {
+                (Activity as QuezActivity).RunOnUiThread(() =>
+               {
 
-               // (Activity as QuezActivity).StopAnimation();
+                // (Activity as QuezActivity).StopAnimation();
 
 
                 if (question.Answers.ElementAt(Index).IsRight)
+                   {
+
+                       (sender as View).FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesCorrectAnswerLine);
+
+                       (sender as View).FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesCorrectButtonBackground);
+                       CorrectAnswerIndex++;
+
+                       if (CorrectAnswerIndex == 5)
+                       {
+                           CorrectAnswerIndex = 0;
+                           (Activity as QuezActivity).PlayAnimation();
+
+
+                       }
+
+                   }
+                   else
+                   {
+                       CorrectAnswerIndex = 0;
+
+                       foreach (var items in question.Answers)
+                       {
+                           CorrectAnswerIndex++;
+
+                           if (items.IsRight)
+                           {
+                               var CorrectAnswerView = MyViews[CorrectAnswerIndex - 1];
+
+                               CorrectAnswerView.FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesCorrectAnswerLine);
+                               CorrectAnswerView.FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesCorrectButtonBackground);
+
+                               CorrectAnswerIndex = 0;
+                               break;
+                           }
+
+                       }
+
+
+
+
+
+                       (sender as View).FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesIncorrectAnswerLine);
+                       (sender as View).FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesInCorectButtonBackground);
+                   }
+
+               });
+                foreach (var items in MyViews)
                 {
-
-                    (sender as View).FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesCorrectAnswerLine);
-
-                    (sender as View).FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesCorrectButtonBackground);
-                    CorrectAnswerIndex++;
-
-                    if (CorrectAnswerIndex == 3)
-                    {
-                        CorrectAnswerIndex = 0;
-                        (Activity as QuezActivity).PlayAnimation();
-                        
-
-                    }
-                   
+                    items.Click -= AnswerView_Click;
                 }
-                else
-                {
-                    CorrectAnswerIndex = 0;
-                    (sender as View).FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesIncorrectAnswerLine);
-                    (sender as View).FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesInCorectButtonBackground);
-                }
+                await QuezControll.Instance.AddQuestion(question.Answers.ToList().ElementAt(Index).id);
+                await Task.Delay(500);
 
-            });
-            foreach (var items in MyViews)
-            {
-                items.Click -= AnswerView_Click;
-            }
-            await QuezControll.Instance.AddQuestion(question.Answers.ToList().ElementAt(Index).id);
-            await Task.Delay(500);
-            
-               
+
 
 
 
@@ -264,17 +315,18 @@ namespace Izrune.Fragments
                 {
                     // (Activity as QuezActivity).OnBackPressed();
                     Intent intent = new Intent(this, typeof(MainDiplomaActivity));
-                intent.SetFlags(ActivityFlags.NewTask);
-                StartActivity(intent);
-                (Activity as QuezActivity).Finish();
-            }
+                    intent.SetFlags(ActivityFlags.NewTask);
+                    StartActivity(intent);
+                    (Activity as QuezActivity).Finish();
+                }
                 else if (question == null)
                 {
 
                     // ChangeResultPage?.Invoke();
                     Intent intent = new Intent(this, typeof(MainDiplomaActivity));
+                    intent.SetFlags(ActivityFlags.NewTask);
                     StartActivity(intent);
-
+                    (Activity as QuezActivity).Finish();
                 }
                 else
                 {
@@ -323,8 +375,12 @@ namespace Izrune.Fragments
                     }
                     //await Task.Delay(4000);
                     // (Activity as QuezActivity).StopAnimation();
+                }
             }
-              
+            catch(Exception ex)
+            {
+                Toast.MakeText(this, ex.Message.ToString(), ToastLength.Long).Show();
+            }
            
 
         }

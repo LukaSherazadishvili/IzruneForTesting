@@ -65,6 +65,8 @@ namespace IZrune.PCL.Helpers
                 
                 var Result = await MpdcContainer.Instance.Get<ILoginServices>().LoginUser(UserName, Password);
 
+
+
                 return Result;
             }
             catch (Exception ex)
@@ -77,11 +79,12 @@ namespace IZrune.PCL.Helpers
         {
             try {
                 if (Parent == null)
-            Parent = await MpdcContainer.Instance.Get<IUserServices>().GetUserAsync();
+                {
+                    Parent = await MpdcContainer.Instance.Get<IUserServices>().GetUserAsync();
+                    Parent.IsAdmin = await MpdcContainer.Instance.Get<IUserServices>().IsAdmin();
+                }
 
-
-
-            return Parent;
+                return Parent;
 
             }
             catch(Exception ex)

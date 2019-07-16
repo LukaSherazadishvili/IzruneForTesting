@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"	
+	android:paddingTop="3dp"
+	android:paddingBottom="3dp"
+	android:background="#00ffffff"
+	android:gravity="center">
+
+	<LinearLayout
+		android:background="@drawable/alertbackground"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		android:orientation="vertical"
+		android:layout_width="270dp"
+		android:paddingLeft="5dp"
+		android:paddingRight="5dp"
+		android:paddingTop="10dp"
+		android:layout_height="450dp">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+				android:layout_weight="1"
+			android:text="მომსახურების წესები და პირობები"
+			android:fontFamily="@font/bpg_mrgvlovani"
+			android:textColor="#AE71B7"
+			android:textSize="13dp"/>
+			
+			<ImageView
+				android:id="@+id/CloseButton"
+				android:layout_marginLeft="10dp"
+				android:layout_gravity="center"
+				android:layout_width="15dp"
+				android:layout_height="15dp"
+				android:src="@drawable/alertclose"/>
+			</LinearLayout>
+
+			<android.webkit.WebView
+			android:id="@+id/RullesWebView"
+			android:layout_marginTop="10dp"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"/>
+		</LinearLayout>
+
+
+
+</LinearLayout>
