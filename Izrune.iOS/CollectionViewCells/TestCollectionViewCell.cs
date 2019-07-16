@@ -57,7 +57,7 @@ namespace Izrune.iOS.CollectionViewCells
             //InitCollectionViews();
 
             SetCellHeight(question);
-            questionLbl.Text = $"{index}{question.title}";
+            questionLbl.Text = $"{index}{ GetStringFromHtml(question.title)}";
 
             //CalculateImagesCollectionViewHeight(question);
 
@@ -79,7 +79,8 @@ namespace Izrune.iOS.CollectionViewCells
         {
             SetCellHeight(finalQuestion);
 
-            questionLbl.Text = $"{index}{finalQuestion.title}";
+            questionLbl.Text = $"{index}{ GetStringFromHtml(finalQuestion.title)}";
+            //questionLbl.Text = $"{index}{finalQuestion.title}";
 
             imagesCollectionViewHeight.Constant = imagesCollectioHeight;
 
@@ -306,6 +307,23 @@ namespace Izrune.iOS.CollectionViewCells
         {
             topLine.Hidden = true;
             bottomLine.Hidden = false;
+        }
+
+        private string GetStringFromHtml(string htmlString)
+        {
+            var attr = new NSAttributedStringDocumentAttributes();
+
+            var nsError = new NSError();
+
+            attr.DocumentType = NSDocumentType.HTML;
+
+            var myHtmlData = NSData.FromString(htmlString, NSStringEncoding.Unicode);
+
+            var data = new NSAttributedString(myHtmlData, attr, ref nsError);
+
+            //var data = new NSAttributedString($"<span>{htmlString}</span>", attr, ref nsError);
+
+            return data.Value;
         }
     }
 }
