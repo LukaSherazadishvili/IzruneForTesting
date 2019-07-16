@@ -118,7 +118,7 @@ namespace Izrune.iOS
             if(CurrentUser != null)
             {
                 userNameLbl.Text = CurrentUser?.Name + " " + CurrentUser?.LastName;
-                profileNumberLbl.Text = CurrentUser?.id.ToString();
+                profileNumberLbl.Text = CurrentUser?.ProfileNumber.ToString();
             }
         }
 
