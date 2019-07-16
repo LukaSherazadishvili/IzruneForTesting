@@ -144,8 +144,7 @@ namespace Izrune.iOS
             {
                 summQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-                
-                    if (IsSummTestActive)
+                    if(Parent.IsAdmin)
                     {
                         IsSummSelected = true;
                         var smsVc = Storyboard.InstantiateViewController(SmsVerificationViewController.StoryboardId) as SmsVerificationViewController;
@@ -158,7 +157,22 @@ namespace Izrune.iOS
                         this.NavigationController.PushViewController(smsVc, true);
                     }
                     else
-                        ShowAlert();
+                    {
+                        if (IsSummTestActive)
+                        {
+                            IsSummSelected = true;
+                            var smsVc = Storyboard.InstantiateViewController(SmsVerificationViewController.StoryboardId) as SmsVerificationViewController;
+                            smsVc.SelectedStudent = SelectedStudent;
+
+                            //chooseTimeVc.IsSumtTest = IsSummSelected;
+                            //chooseTimeVc.SelectedStudent = SelectedStudent;
+                            //chooseTimeVc.SelectedCategory = QuezCategory.QuezTest;
+
+                            this.NavigationController.PushViewController(smsVc, true);
+                        }
+                        else
+                            ShowAlert();
+                    }
                 }));
             }
 
