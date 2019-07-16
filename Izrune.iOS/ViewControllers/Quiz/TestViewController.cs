@@ -263,7 +263,8 @@ namespace Izrune.iOS
 
             //var button = headerView.Subviews.OfType<UIButton>().FirstOrDefault();
 
-            headerView.SkipBtn.TouchUpInside+=async delegate {
+
+            EventHandler currEventHandler = async(o,e) => {
 
                 //TODO
                 try
@@ -288,6 +289,9 @@ namespace Izrune.iOS
                     Console.WriteLine(ex.Message);
                 }
             };
+            headerView.SkipBtn.TouchUpInside -= currEventHandler;
+            headerView.SkipBtn.TouchUpInside += currEventHandler;
+
             return headerView;
         }
 
