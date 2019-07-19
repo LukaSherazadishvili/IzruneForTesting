@@ -376,6 +376,7 @@ namespace Izrune.iOS
             var data = question;
             var text = data?.title;
             var titleHeight = text.GetStringHeight((float)questionCollectionView.Frame.Width, 50, 17);
+            var commentHeight = data.Description.GetStringHeight((float)questionCollectionView.Frame.Width, 50, 14);
             var ImagesCount = data?.images?.Count();
 
             //foreach (var item in data?.images)
@@ -386,15 +387,15 @@ namespace Izrune.iOS
             if (ImagesCount == 0)
             {
                 imagesHeight = 0;
-                Debug.WriteLine($"ImagesCount : {ImagesCount}");
+                //Debug.WriteLine($"ImagesCount : {ImagesCount}");
             }
             else
             {
                 imagesHeight = 180;
-                Debug.WriteLine($"ImagesCount : {ImagesCount}");
+                //Debug.WriteLine($"ImagesCount : {ImagesCount}");
             }
 
-            float spaceSumBetweenAnswers = 80;
+            //float spaceSumBetweenAnswers = 80;
 
             foreach (var item in data?.Answers)
             {
@@ -402,9 +403,7 @@ namespace Izrune.iOS
                 answersHeight += height + 40;
             }
 
-            totalHeight = titleHeight + imagesHeight + answersHeight +40 ;
-
-            //return totalHeight;
+            totalHeight = titleHeight + commentHeight + imagesHeight + answersHeight +40 ;
         }
 
         private void InitTotalTimer(int _minutes, int _secondes)
