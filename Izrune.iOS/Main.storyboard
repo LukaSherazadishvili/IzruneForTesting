@@ -1598,7 +1598,7 @@
                                                         <color key="textColor" red="0.24705882352941178" green="0.31764705882352939" blue="0.70980392156862748" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="0D0-Hb-yTL">
+                                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="0D0-Hb-yTL">
                                                         <rect key="frame" x="139.5" y="831" width="135" height="51"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="51" id="2Lt-OY-WU9"/>
@@ -1792,6 +1792,7 @@
                     </view>
                     <connections>
                         <outlet property="diplomeImageView" destination="yXR-VS-dcK" id="JrO-SU-4dT"/>
+                        <outlet property="egmuImageView" destination="0D0-Hb-yTL" id="Vow-JE-0bD"/>
                         <outlet property="examTimeLbl" destination="jPv-w9-GKm" id="bCS-jU-XEv"/>
                         <outlet property="finalResultLbl" destination="DKo-2N-nEN" id="ExJ-22-oFu"/>
                         <outlet property="pointView" destination="3jR-xi-iiK" id="Ncg-38-6if"/>
