@@ -150,10 +150,6 @@ namespace Izrune.iOS
                         var smsVc = Storyboard.InstantiateViewController(SmsVerificationViewController.StoryboardId) as SmsVerificationViewController;
                         smsVc.SelectedStudent = SelectedStudent;
 
-                        //chooseTimeVc.IsSumtTest = IsSummSelected;
-                        //chooseTimeVc.SelectedStudent = SelectedStudent;
-                        //chooseTimeVc.SelectedCategory = QuezCategory.QuezTest;
-
                         this.NavigationController.PushViewController(smsVc, true);
                     }
                     else
@@ -180,8 +176,7 @@ namespace Izrune.iOS
             {
                 exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-                    //Sesacvleliiiiii !!!!!!
-                    if (!IsExTestActive)
+                    if(Parent.IsAdmin)
                     {
                         IsSummSelected = false;
                         var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
@@ -192,7 +187,21 @@ namespace Izrune.iOS
                         this.NavigationController.PushViewController(chooseTimeVc, true);
                     }
                     else
-                        ShowAlert();
+                    {
+                        if (IsExTestActive)
+                        {
+                            IsSummSelected = false;
+                            var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
+                            chooseTimeVc.IsSumtTest = IsSummSelected;
+                            chooseTimeVc.SelectedStudent = SelectedStudent;
+                            chooseTimeVc.SelectedCategory = QuezCategory.QuezTest;
+
+                            this.NavigationController.PushViewController(chooseTimeVc, true);
+                        }
+                        else
+                            ShowAlert();
+                    }
+
                 }));
             }
 
