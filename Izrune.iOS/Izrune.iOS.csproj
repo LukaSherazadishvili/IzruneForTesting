@@ -536,6 +536,7 @@
       <BundleResource Include="Resources\changepassword.png" />
       <BundleResource Include="GoogleService-Info.plist" />
       <BundleResource Include="like_animation.json" />
+      <BundleResource Include="exploding-ribbon.json" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\IZrune.PCL\IZrune.PCL.csproj">

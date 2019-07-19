@@ -54,6 +54,10 @@ namespace Izrune.iOS
         LOTAnimationView likeAnimation = new LOTAnimationView();
 
         int correctAnswers;
+
+        bool isRibbonAnimation = false;
+        string AnimationFilePath = "like_animation.json";
+
         #endregion
 
         public async override void ViewDidLoad()
@@ -75,7 +79,7 @@ namespace Izrune.iOS
 
             lastVisibleIndex = 7;
 
-            InitLottie();
+            InitLottie(AnimationFilePath);
         }
 
         private async Task LoadDataAsync()
@@ -162,6 +166,7 @@ namespace Izrune.iOS
                 {
                     correctAnswers = 0;
                     PlayAnimation();
+                    isRibbonAnimation = !isRibbonAnimation;
                 }
                 if (!IsTotalTime)
                     timeLbl.Text = ($"01:30");
@@ -376,26 +381,14 @@ namespace Izrune.iOS
             var data = question;
             var text = data?.title;
             var titleHeight = text.GetStringHeight((float)questionCollectionView.Frame.Width, 50, 17);
-            var commentHeight = data.Description.GetStringHeight((float)questionCollectionView.Frame.Width, 50, 14);
+            var commentHeight = data?.Description?.GetStringHeight((float)questionCollectionView.Frame.Width, 50, 14);
             var ImagesCount = data?.images?.Count();
 
-            //foreach (var item in data?.images)
-            //{
-            //    Debug.WriteLine($"Image URL : {item}");
-            //}
-
             if (ImagesCount == 0)
-            {
                 imagesHeight = 0;
                 //Debug.WriteLine($"ImagesCount : {ImagesCount}");
-            }
             else
-            {
                 imagesHeight = 180;
-                //Debug.WriteLine($"ImagesCount : {ImagesCount}");
-            }
-
-            //float spaceSumBetweenAnswers = 80;
 
             foreach (var item in data?.Answers)
             {
@@ -403,7 +396,7 @@ namespace Izrune.iOS
                 answersHeight += height + 40;
             }
 
-            totalHeight = titleHeight + commentHeight + imagesHeight + answersHeight +40 ;
+            totalHeight = titleHeight + commentHeight.Value + imagesHeight + answersHeight +40 ;
         }
 
         private void InitTotalTimer(int _minutes, int _secondes)
@@ -533,9 +526,10 @@ namespace Izrune.iOS
             #endregion
         }
 
-        private void InitLottie()
+
+        private void InitLottie(string filePath)
         {
-            likeAnimation = LOTAnimationView.AnimationWithFilePath("like_animation.json");
+            likeAnimation = LOTAnimationView.AnimationWithFilePath(filePath);
             likeAnimation.ContentMode = UIViewContentMode.ScaleAspectFit;
             viewForAnimation.Frame = new CGRect(questionCollectionView.Frame.X, questionCollectionView.Frame.Y, 0, 0);
             likeAnimation.UserInteractionEnabled = false;
@@ -545,12 +539,23 @@ namespace Izrune.iOS
 
         private void PlayAnimation()
         {
+            AnimationFilePath = isRibbonAnimation ? "exploding-ribbon.json" : "like_animation.json";
+
+            likeAnimation.Hidden = false;
+            likeAnimation.RemoveFromSuperview();
+
+            InitLottie(AnimationFilePath);
+
             viewForAnimation.Frame = new CGRect(questionCollectionView.Frame.X, questionCollectionView.Frame.Y, 
                 questionCollectionView.Bounds.Width, questionCollectionView.Bounds.Height);
 
             likeAnimation.Frame = new CoreGraphics.CGRect(0, 0, viewForAnimation.Frame.Width, viewForAnimation.Frame.Height);
 
-            likeAnimation.PlayWithCompletion((animationFinished) => viewForAnimation.Frame = new CGRect(questionCollectionView.Frame.X, questionCollectionView.Frame.Y, 0, 0));
+            likeAnimation.PlayWithCompletion((animationFinished) =>
+            {
+                viewForAnimation.Frame = new CGRect(questionCollectionView.Frame.X, questionCollectionView.Frame.Y, 0, 0);
+                likeAnimation.Hidden = true;
+            });
         }
     }
 }
