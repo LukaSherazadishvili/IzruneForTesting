@@ -80,7 +80,7 @@ namespace Izrune.iOS
                 if (SelectedStudent != null)
                     SchoolId = SelectedStudent.id;
                 var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
-
+                 
                 var data = (await service.GetPromoCodeAsync(IsFromMenu ? 0 : SchoolId));
 
                 PriceList = data?.Prices?.ToList();

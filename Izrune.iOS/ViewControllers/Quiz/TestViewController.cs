@@ -19,6 +19,7 @@ using MPDC.iOS.Utils;
 using MPDCiOSPages.ViewControllers;
 using MpdcViewExtentions;
 using UIKit;
+using Airbnb.Lottie;
 
 namespace Izrune.iOS
 {
@@ -49,6 +50,10 @@ namespace Izrune.iOS
         private CAShapeLayer progressLayer;
 
         public bool IsTotalTime { get; set; } = false;
+
+        LOTAnimationView likeAnimation = new LOTAnimationView();
+
+        int correctAnswers;
         #endregion
 
         public async override void ViewDidLoad()
@@ -69,6 +74,8 @@ namespace Izrune.iOS
             InitCircular(IsTotalTime? 1800 : 90);
 
             lastVisibleIndex = 7;
+
+            InitLottie();
         }
 
         private async Task LoadDataAsync()
@@ -144,7 +151,18 @@ namespace Izrune.iOS
 
             cell.AnswerClicked = async (answer) =>
             {
+                //likeAnimation.Play();
 
+                if (answer.IsRight)
+                    correctAnswers++;
+                else
+                    correctAnswers = 0;
+                    
+                if(correctAnswers == 5)
+                {
+                    correctAnswers = 0;
+                    PlayAnimation();
+                }
                 if (!IsTotalTime)
                     timeLbl.Text = ($"01:30");
 
@@ -293,8 +311,6 @@ namespace Izrune.iOS
 
             return headerView;
         }
-
-
 
         [Export("collectionView:layout:referenceSizeForFooterInSection:")]
         public CGSize GetReferenceSizeForFooter(UICollectionView collectionView, UICollectionViewLayout layout, nint section)
@@ -514,6 +530,26 @@ namespace Izrune.iOS
 
 
             #endregion
+        }
+
+        private void InitLottie()
+        {
+            likeAnimation = LOTAnimationView.AnimationWithFilePath("like_animation.json");
+            likeAnimation.ContentMode = UIViewContentMode.ScaleAspectFit;
+            viewForAnimation.Frame = new CGRect(questionCollectionView.Frame.X, questionCollectionView.Frame.Y, 0, 0);
+            likeAnimation.UserInteractionEnabled = false;
+            likeAnimation.Frame = new CoreGraphics.CGRect(0, 0, viewForAnimation.Frame.Width, viewForAnimation.Frame.Height);
+            viewForAnimation.AddSubview(likeAnimation);
+        }
+
+        private void PlayAnimation()
+        {
+            viewForAnimation.Frame = new CGRect(questionCollectionView.Frame.X, questionCollectionView.Frame.Y, 
+                questionCollectionView.Bounds.Width, questionCollectionView.Bounds.Height);
+
+            likeAnimation.Frame = new CoreGraphics.CGRect(0, 0, viewForAnimation.Frame.Width, viewForAnimation.Frame.Height);
+
+            likeAnimation.PlayWithCompletion((animationFinished) => viewForAnimation.Frame = new CGRect(questionCollectionView.Frame.X, questionCollectionView.Frame.Y, 0, 0));
         }
     }
 }
