@@ -52,6 +52,7 @@ android:id="@+id/Container">
 						android:layout_height="200dp"
 						android:scaleType="fitXY"
 						android:id="@+id/MainImage"
+						android:src="@drawable/logo"
 						/>
 			</android.support.v7.widget.CardView>
 				<GridLayout 

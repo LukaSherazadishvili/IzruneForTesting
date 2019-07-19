@@ -33,6 +33,9 @@ namespace Izrune.Helpers
 
         public static void LoadImage(this ImageViewAsync imageView,string url ,bool smallPlaceholder = true)
         {
+
+            imageView.SetImageResource(Android.Resource.Color.Transparent);
+
             ImageService.Instance
                 .LoadUrl(url)
                 .LoadingPlaceholder((!smallPlaceholder) ? "placeholderLarge" : "placeholderMinix", FFImageLoading.Work.ImageSource.CompiledResource)

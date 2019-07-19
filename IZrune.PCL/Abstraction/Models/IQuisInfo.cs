@@ -9,5 +9,6 @@ namespace IZrune.PCL.Abstraction.Models
          string DiplomaURl { get; set; }
         IQuisResultInfo QueisResult { set; get; }
         IEnumerable<IQuestion> QuestionResult { get; set; }
+        string EgmuUrl { get; set; }
     }
 }

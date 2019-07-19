@@ -149,6 +149,7 @@
     <Compile Include="testModels\TestNews.cs" />
     <Compile Include="ViewHolders\BigNewsViewHolder.cs" />
     <Compile Include="ViewHolders\DiplomaViewHolder.cs" />
+    <Compile Include="ViewHolders\EmptyViewHolder.cs" />
     <Compile Include="ViewHolders\PaymentHistoryVieHolder.cs" />
     <Compile Include="ViewHolders\ShedulerViewHolder.cs" />
     <Compile Include="ViewHolders\SmallNewsViewHolder.cs" />
@@ -808,6 +809,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\LayoutRullesDialog.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\LayoutNoResult.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

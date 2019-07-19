@@ -79,7 +79,7 @@
 				android:layout_gravity="center_horizontal"
 				android:id="@+id/StarsContainer"
 				android:layout_width="wrap_content"
-				android:layout_height="33dp"
+				android:layout_height="wrap_content"
 				android:orientation="horizontal"
 				android:layout_marginTop="15dp"
 				android:layout_marginBottom="15dp"
@@ -278,7 +278,7 @@
 			</LinearLayout>
 			<ImageView
 				android:src="@drawable/egm"
-				android:id="@+id/imageView16"
+				android:id="@+id/EGmuImage"
 				android:layout_marginTop="10dp"
 				android:layout_marginBottom="15dp"
 				android:layout_width="80dp"

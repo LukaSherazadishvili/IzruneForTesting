@@ -170,10 +170,10 @@ namespace Izrune.Fragments
                     {
                         if (FirstIncome)
                         {
-                            Month = e.Position + 1;
-                            var Res = Statistic.Where(i => i.ExamDate.Month == Month && i.ExamDate.Year == Year);
+                            Month = e.Position;
+                            var Res = Statistic?.Where(i => i.ExamDate.Month == Month && i.ExamDate.Year == Year);
 
-                            adapter = new ExamStatisticRecyclerAdapter(Res.ToList());
+                            adapter = new ExamStatisticRecyclerAdapter(Res?.ToList());
                             statisticRecycler.SetAdapter(adapter);
 
                             if (Res.ToList().Count==0)

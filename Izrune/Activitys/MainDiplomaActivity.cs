@@ -6,6 +6,7 @@ using System.Text;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
@@ -76,6 +77,19 @@ namespace Izrune.Activitys
             StartActivity(intent);
             this.Finish();
         }
+
+
+        public void Share(string title,string content)
+        {
+            if (string.IsNullOrEmpty(title) || string.IsNullOrWhiteSpace(content))
+                return;
+
+
+           
+
+
+        }
+
 
     }
 }

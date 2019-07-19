@@ -46,25 +46,48 @@ namespace IZrune.PCL.Implementation.Services
             }
         }
 
+        public async Task<string> GetEgmuAsync(int TestId)
+        {
+            try
+            {
+                var FormContent = new FormUrlEncodedContent(new[]
+                      {
+                new KeyValuePair<string,string>("test_id",TestId.ToString()),
 
+            });
 
+                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getEgmuUrl&hashcode=2d56f16f329559e972c51f1b6ed5401c", FormContent);
+                var jsn = await Data.Content.ReadAsStringAsync();
 
+                var Result = JsonConvert.DeserializeObject<EgmuDTO>(jsn);
+
+                return Result.egmu_url;
+
+            }
+            catch(Exception ex)
+            {
+                return "";
+            }
+        }
 
         public async Task<TimeSpan> GetExamDate(QuezCategory TestType)
         {
-            var FormContent = new FormUrlEncodedContent(new[]
-                   {
+           
+                var FormContent = new FormUrlEncodedContent(new[]
+                       {
                 new KeyValuePair<string,string>("student_id",1.ToString()),
                 new KeyValuePair<string, string>("test_type",TestType.ConverEnumToInt())
 
             });
-            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getNextTestDate&hashcode=7a16e984f8df40c478a47cb356092b92", FormContent);
-            var jsn = await Data.Content.ReadAsStringAsync();
-            var Result = JsonConvert.DeserializeObject<TransferModels.NextTestDateDTO>(jsn);
-            DateTime.TryParse(Result.date, out DateTime date);
-            var CurResult = date.Subtract(DateTime.Now);
+                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getNextTestDate&hashcode=7a16e984f8df40c478a47cb356092b92", FormContent);
+                var jsn = await Data.Content.ReadAsStringAsync();
+                var Result = JsonConvert.DeserializeObject<TransferModels.NextTestDateDTO>(jsn);
+                DateTime.TryParse(Result.date, out DateTime date);
+                var CurResult = date.Subtract(DateTime.Now);
 
-            return CurResult;
+                return CurResult;
+            
+           
         }
 
 
@@ -98,6 +121,7 @@ namespace IZrune.PCL.Implementation.Services
                         images = i?.images.Select(x=>x.url),
                         image_url = i?.image_url,
                         title = i?.title,
+                        Description=i.description,
                         Answers = i?.answers?
                         .Select
                         (o => new Answer()

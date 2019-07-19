@@ -28,9 +28,23 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.PayBoxButton)]
         LinearLayout PayBocButton;
 
+
+        [MapControl(Resource.Id.Gradueition)]
+        TextView grad;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+
+            var res = Intent.GetStringExtra("notreg");
+
+            if (string.IsNullOrEmpty(res))
+            {
+                grad.Visibility = ViewStates.Invisible;
+            }
+
+
 
             CardButton.Click += (s, e) =>
             {

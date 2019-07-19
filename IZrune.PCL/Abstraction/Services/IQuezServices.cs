@@ -22,5 +22,7 @@ namespace IZrune.PCL.Abstraction.Services
 
         Task<int> GetSmsCodeAsync(int ParrentId);
 
+        Task<string> GetEgmuAsync(int TestId);
+
     }
 }

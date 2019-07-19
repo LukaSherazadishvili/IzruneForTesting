@@ -42,6 +42,9 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.MonthConteiner)]
         FrameLayout MonthContainer;
 
+        [MapControl(Resource.Id.BotBackButton)]
+        LinearLayout BotBackButton;
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -108,6 +111,10 @@ namespace Izrune.Fragments
                 }
             };
 
+            BotBackButton.Click += (s, e) =>
+            {
+                (Activity as NextRegistrationStudentActivity).OnBackPressed();
+            };
             
         }
 

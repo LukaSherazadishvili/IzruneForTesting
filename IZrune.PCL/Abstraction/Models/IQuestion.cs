@@ -11,5 +11,6 @@ namespace IZrune.PCL.Abstraction.Models
          string image_url { get; set; }
          IEnumerable<string> images { get; set; }
          IEnumerable<IAnswer> Answers { get; set; }
+         string Description { get; set; }
     }
 }

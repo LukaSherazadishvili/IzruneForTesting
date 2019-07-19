@@ -62,6 +62,11 @@ namespace Izrune.Activitys
             Android.Resource.Layout.SimpleSpinnerDropDownItem,
             DateResult.Select(i => $"{i.ExamDate.Year} წელი").ToList());
 
+
+            
+
+
+
             var MonthAdapter = new ArrayAdapter<string>(this,
           Android.Resource.Layout.SimpleSpinnerDropDownItem,
          IzruneHellper.Instance.Monthes);
@@ -78,34 +83,47 @@ namespace Izrune.Activitys
 
 
 
-                var Res = Statistic.Where(i => i.ExamDate.Year == Year && i.ExamDate.Month == IzruneHellper.Instance.Monthes.IndexOf(IzruneHellper.Instance.Monthes.ElementAt(MonthSpinner.SelectedItemPosition)) + 1);
-
-
-                if (Res.Count() > 0)
+                if (MonthSpinner.SelectedItemPosition != 0)
                 {
-
-                    var adapterr = new ExamStatisticRecyclerAdapter(Res?.ToList());
-
-                    recycler.SetAdapter(adapterr);
-                    recycler.SetLayoutManager(new LinearLayoutManager(this));
+                    var Res = Statistic.Where(i => i.ExamDate.Year == Year && i.ExamDate.Month == IzruneHellper.Instance.Monthes.IndexOf(IzruneHellper.Instance.Monthes.ElementAt(MonthSpinner.SelectedItemPosition)));
 
 
+                  
+
+                        var adapterr = new ExamStatisticRecyclerAdapter(Res?.ToList());
+
+                        recycler.SetAdapter(adapterr);
+                        recycler.SetLayoutManager(new LinearLayoutManager(this));
+
+
+
+                    
 
                 }
+
+                
+
+               
 
             };
 
             MonthSpinner.ItemSelected += (s, e) =>
             {
-                Month = e.Position + 1;
-                var Res = Statistic.Where(i => i.ExamDate.Month == Month && i.ExamDate.Year == Year);
-              
+                Month = e.Position;
+
+
+
+                //if (e.Position != 0)
+                //{
+                    var Res = Statistic?.Where(i => i.ExamDate.Month == Month && i.ExamDate.Year == Year);
+
 
                     var adapterr = new ExamStatisticRecyclerAdapter(Res?.ToList());
 
                     recycler.SetAdapter(adapterr);
                     recycler.SetLayoutManager(new LinearLayoutManager(this));
-
+                    
+              //  }
 
 
              
@@ -113,14 +131,16 @@ namespace Izrune.Activitys
             };
 
 
-            var adapter = new ExamStatisticRecyclerAdapter(Statistic?.ToList());
+           
+                var adapter = new ExamStatisticRecyclerAdapter(Statistic?.ToList());
 
-            recycler.SetAdapter(adapter);
-            recycler.SetLayoutManager(new LinearLayoutManager(this));
+                recycler.SetAdapter(adapter);
+                recycler.SetLayoutManager(new LinearLayoutManager(this));
+                
 
 
-            BackButton.Click += BackButton_Click;
-
+                BackButton.Click += BackButton_Click;
+            
             StopLoading();
 
          

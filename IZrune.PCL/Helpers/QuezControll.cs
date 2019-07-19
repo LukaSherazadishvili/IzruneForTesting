@@ -173,6 +173,10 @@ namespace IZrune.PCL.Helpers
             var statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(InfoResult.Result.test_type);
             var AnswerResult = statistic.FirstOrDefault();
 
+          quisInfo.EgmuUrl=await MpdcContainer.Instance.Get<IQuezServices>().GetEgmuAsync(AnswerResult.Id);
+
+
+
             
             quisInfo.QueisResult = InfoResult.Result;
             quisInfo.DiplomaURl = Diploma.Result;
