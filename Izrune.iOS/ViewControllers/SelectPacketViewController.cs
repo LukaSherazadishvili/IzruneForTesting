@@ -74,9 +74,13 @@ namespace Izrune.iOS
 
             try
             {
-                var students = await UserControl.Instance.GetCurrentUserStudents();
+                if(IsFromMenu)
+                {
+                    var students = await UserControl.Instance.GetCurrentUserStudents();
 
-                SelectedStudent = students?.ElementAt(0);
+                    SelectedStudent = students?.ElementAt(0);
+                }
+
                 if (SelectedStudent != null)
                     SchoolId = SelectedStudent.id;
                 var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
