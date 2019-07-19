@@ -377,10 +377,12 @@ namespace Izrune.iOS
             var text = data?.title;
             var titleHeight = text.GetStringHeight((float)questionCollectionView.Frame.Width, 50, 17);
             var ImagesCount = data?.images?.Count();
-            foreach (var item in data?.images)
-            {
-                Debug.WriteLine($"Image URL : {item}");
-            }
+
+            //foreach (var item in data?.images)
+            //{
+            //    Debug.WriteLine($"Image URL : {item}");
+            //}
+
             if (ImagesCount == 0)
             {
                 imagesHeight = 0;

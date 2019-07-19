@@ -41,16 +41,11 @@ namespace Izrune.iOS
             UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
             Messaging.SharedInstance.Delegate = this;
 
-
-
-
             IZrune.PCL.AppCore.Instance.InitServices();
 
             IZrune.PCL.AppCore.Instance.Alertdialog = new AlertDialogService();
 
             this.Window = new UIWindow(UIScreen.MainScreen.Bounds);
-
-            //rootvc = UIStoryboard.FromName("Main", null).InstantiateViewController(LogInViewController.StoryboardId);
 
 
             rootvc = new MenuRootViewController();

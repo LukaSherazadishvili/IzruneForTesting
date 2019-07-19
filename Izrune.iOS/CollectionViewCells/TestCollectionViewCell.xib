@@ -65,8 +65,14 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="რა ცხოველია სურათზე გამოსახული?" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLF-b8-hgA">
+                                <rect key="frame" x="25" y="436" width="307" height="16.5"/>
+                                <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m44-S5-9kt">
-                                <rect key="frame" x="25" y="446" width="307" height="1"/>
+                                <rect key="frame" x="25" y="472.5" width="307" height="1"/>
                                 <color key="backgroundColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="d4W-xD-R5k"/>
@@ -75,8 +81,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="m44-S5-9kt" firstAttribute="top" secondItem="l8Y-ZF-Vuj" secondAttribute="bottom" constant="25" id="9P1-bJ-Dgg"/>
+                            <constraint firstItem="HLF-b8-hgA" firstAttribute="trailing" secondItem="PX8-cb-ry0" secondAttribute="trailing" id="7Ae-tV-xIG"/>
                             <constraint firstItem="l8Y-ZF-Vuj" firstAttribute="leading" secondItem="zII-C1-8PB" secondAttribute="leading" id="HiH-GA-f6d"/>
+                            <constraint firstItem="m44-S5-9kt" firstAttribute="top" secondItem="HLF-b8-hgA" secondAttribute="bottom" constant="20" id="Oek-TL-bTH"/>
                             <constraint firstItem="m44-S5-9kt" firstAttribute="leading" secondItem="l8Y-ZF-Vuj" secondAttribute="leading" id="Qen-fp-ogO"/>
                             <constraint firstItem="DLw-wL-oJL" firstAttribute="trailing" secondItem="zII-C1-8PB" secondAttribute="trailing" id="Vg2-TZ-C6b"/>
                             <constraint firstAttribute="trailing" secondItem="PX8-cb-ry0" secondAttribute="trailing" constant="25" id="Z79-Co-Dxm"/>
@@ -85,8 +92,10 @@
                             <constraint firstItem="DLw-wL-oJL" firstAttribute="leading" secondItem="zII-C1-8PB" secondAttribute="leading" id="dwH-fT-TyB"/>
                             <constraint firstItem="zII-C1-8PB" firstAttribute="trailing" secondItem="PX8-cb-ry0" secondAttribute="trailing" id="fwy-Fa-68o"/>
                             <constraint firstItem="PX8-cb-ry0" firstAttribute="leading" secondItem="Jbv-Mz-LbY" secondAttribute="leading" constant="25" id="giF-gM-fcx"/>
+                            <constraint firstItem="HLF-b8-hgA" firstAttribute="top" secondItem="l8Y-ZF-Vuj" secondAttribute="bottom" constant="15" id="jpq-oa-WLW"/>
                             <constraint firstItem="m44-S5-9kt" firstAttribute="trailing" secondItem="l8Y-ZF-Vuj" secondAttribute="trailing" id="ky1-rP-mE3"/>
                             <constraint firstItem="l8Y-ZF-Vuj" firstAttribute="top" secondItem="DLw-wL-oJL" secondAttribute="bottom" constant="12" id="mBY-Tu-fcw"/>
+                            <constraint firstItem="HLF-b8-hgA" firstAttribute="leading" secondItem="PX8-cb-ry0" secondAttribute="leading" id="mPJ-16-3Cf"/>
                             <constraint firstItem="l8Y-ZF-Vuj" firstAttribute="trailing" secondItem="zII-C1-8PB" secondAttribute="trailing" id="muq-co-Nab"/>
                             <constraint firstItem="zII-C1-8PB" firstAttribute="leading" secondItem="PX8-cb-ry0" secondAttribute="leading" id="qTU-l9-5IJ"/>
                             <constraint firstItem="PX8-cb-ry0" firstAttribute="top" secondItem="Jbv-Mz-LbY" secondAttribute="top" constant="10" id="wjF-XZ-Fgc"/>
@@ -105,6 +114,7 @@
                 <outlet property="answerCollectionView" destination="l8Y-ZF-Vuj" id="TCD-XC-RMG"/>
                 <outlet property="answerCollectionViewHeight" destination="CvV-iW-Nc8" id="v0m-XH-tLB"/>
                 <outlet property="bottomLine" destination="m44-S5-9kt" id="5qA-Mo-hMJ"/>
+                <outlet property="commentLbl" destination="HLF-b8-hgA" id="NRb-82-wpg"/>
                 <outlet property="imagesCollectionViewHeight" destination="zzh-h2-bgH" id="FbP-AT-f2a"/>
                 <outlet property="mainView" destination="Jbv-Mz-LbY" id="hne-iT-E4o"/>
                 <outlet property="questionImagesCollectionView" destination="DLw-wL-oJL" id="0Y3-KK-kCz"/>
