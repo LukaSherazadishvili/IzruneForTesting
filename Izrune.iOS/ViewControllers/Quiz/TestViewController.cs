@@ -295,6 +295,7 @@ namespace Izrune.iOS
                     if (currentIndex >= AllQuestions?.Count - 1)
                     {
                         currentIndex++;
+                        await SkipQuestion();
                         await GoToResultPage();
                     }
                     else
@@ -304,6 +305,19 @@ namespace Izrune.iOS
                         await SkipQuestion();
                         ScrollAnswerProgressCell();
                     }
+
+                    var answers = CurrentQuestion?.Answers?.ToList();
+                    var correctAnswer = answers?.IndexOf(answers?.FirstOrDefault(x => x.IsRight == true));
+
+                    var answerCell = questionCollectionView.CellForItem(NSIndexPath.FromRowSection((System.nint)correctAnswer, 0)) as AnswerCollectionViewCell;
+
+                    var visibleItems = questionCollectionView.IndexPathsForVisibleItems;
+                    var currCell = questionCollectionView.CellForItem(visibleItems[0]) as TestCollectionViewCell;
+                    var answerCollection = currCell.AnswerCollection;
+
+                    //TODO
+                    answerCell.CheckAnswer(true);
+
                 }
 
                 catch (Exception ex)
@@ -452,6 +466,7 @@ namespace Izrune.iOS
 
         private async Task SkipQuestion()
         {
+            correctAnswers = 0;
             InvokeOnMainThread(() => questionCollectionView.Hidden = true);
 
             await QuezControll.Instance.AddQuestion();
