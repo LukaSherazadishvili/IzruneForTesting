@@ -202,12 +202,6 @@ namespace Izrune.iOS
 
                 SelectPacketVc.DataLoaded = () =>
                 {
-                    //var scrollView = SelectPacketVc.View.OfType<UIScrollView>().FirstOrDefault();
-                    //SelectPacketVc.View.LayoutIfNeeded();
-                    //scrollView.LayoutIfNeeded();
-
-                    //SetContentHeight(scrollView.ContentSize.Height);
-
                     UpdateViewSize(SelectPacketVc.ContentHeight);
                 };
             }

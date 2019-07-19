@@ -38,6 +38,7 @@ namespace Izrune.iOS
 
             UNUserNotificationCenter.Current.Delegate = this;
             UIApplication.SharedApplication.RegisterForRemoteNotifications();
+            UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
             Messaging.SharedInstance.Delegate = this;
 
 
