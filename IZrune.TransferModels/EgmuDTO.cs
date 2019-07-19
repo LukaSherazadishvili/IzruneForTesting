@@ -4,12 +4,10 @@ using System.Text;
 
 namespace IZrune.TransferModels
 {
-   public class QuestionRootDTO
+    public class EgmuDTO
     {
         public int Code { get; set; }
         public string Message { get; set; }
-        public string test_id { get; set; }
-        public List<QuestionDTO> questions { get; set; }
-       
+        public string egmu_url { get; set; }
     }
 }

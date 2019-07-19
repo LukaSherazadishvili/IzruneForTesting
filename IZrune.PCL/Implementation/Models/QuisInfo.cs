@@ -10,5 +10,6 @@ namespace IZrune.PCL.Implementation.Models
         public IQuisResultInfo QueisResult { get; set; }
         public string DiplomaURl { get; set; }
         public  IEnumerable<IQuestion> QuestionResult { get; set; }
+        public string EgmuUrl { get; set; }
     }
 }

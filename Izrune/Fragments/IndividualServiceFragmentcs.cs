@@ -28,6 +28,10 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.NextButton)]
         LinearLayout NextButton;
 
+        [MapControl(Resource.Id.BotBackButton)]
+        LinearLayout Botbackbut;
+
+
         public IndividualServiceFragmentcs(List<IPrice> prices)
         {
             PriceList = prices;
@@ -51,7 +55,8 @@ namespace Izrune.Fragments
         {
             base.OnViewCreated(view, savedInstanceState);
             ServiceViews.Clear();
-           
+
+            Botbackbut.Click += Botbackbut_Click;
 
             foreach (var items in PriceList)
             {
@@ -68,6 +73,11 @@ namespace Izrune.Fragments
 
             }
             NextButton.Click += NextButton_Click;
+        }
+
+        private void Botbackbut_Click(object sender, EventArgs e)
+        {
+            (Activity as NextRegistrationStudentActivity).OnBackPressed();
         }
 
         private async void NextButton_Click(object sender, EventArgs e)

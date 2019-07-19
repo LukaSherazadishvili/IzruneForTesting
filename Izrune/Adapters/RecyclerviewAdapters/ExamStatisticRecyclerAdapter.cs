@@ -29,6 +29,12 @@ namespace Izrune.Adapters.RecyclerviewAdapters
 
         public override int ItemCount => StudentsStatisticlist.Count;
 
+
+        public override int GetItemViewType(int position)
+        {
+            return StudentsStatisticlist!=null ? 1 : 2;
+        }
+
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             if(holder is StatisticViewHolder)
@@ -44,9 +50,18 @@ namespace Izrune.Adapters.RecyclerviewAdapters
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ItemExamStatistic, parent, false);
-            var Result =new StatisticViewHolder(view);
-            return Result;
+            if (viewType == 1)
+            {
+                var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ItemExamStatistic, parent, false);
+                var Result = new StatisticViewHolder(view);
+                return Result;
+            }
+            else
+            {
+                var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.LayoutNoResult, parent, false);
+                return new EmptyViewHolder(view);
+
+            }
         }
     }
 }

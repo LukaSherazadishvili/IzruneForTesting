@@ -94,7 +94,7 @@
 					android:textSize="14dp"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="577 68 32 32"
+					android:text="info@izrune.ge"
 					android:layout_gravity="center_vertical"
 					android:layout_marginRight="15dp"
 					/>
@@ -126,7 +126,7 @@
 					android:textSize="14dp"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="577 68 32 32"
+					android:text="facebook.com/izrune.ge"
 					android:layout_gravity="center_vertical"
 					android:layout_marginRight="15dp"
 					/>

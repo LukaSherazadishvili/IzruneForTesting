@@ -58,7 +58,7 @@ namespace Izrune.Activitys
 
         private async void RullesText_Click(object sender, EventArgs e)
         {
-            
+           
 
             var Result = await MpdcContainer.Instance.Get<IRegistrationServices>().GetAgreement();
 
@@ -83,6 +83,7 @@ namespace Izrune.Activitys
                 {
                    
                     Intent intent = new Intent(this, typeof(ActivityPaymentCategory));
+                    intent.PutExtra("notreg", "sdds");
                     StartActivity(intent);
                 }
                 else

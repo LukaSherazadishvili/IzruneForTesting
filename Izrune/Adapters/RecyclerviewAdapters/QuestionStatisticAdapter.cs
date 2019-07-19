@@ -51,6 +51,16 @@ namespace Izrune.Adapters.RecyclerviewAdapters
 
             hld.PositionTxt.Text = (position+1).ToString()+") ";
 
+            if (!string.IsNullOrEmpty(ResQuestions.ElementAt(position).Description))
+            {
+                hld.Description.Visibility = ViewStates.Visible;
+                hld.Description.Text = ResQuestions.ElementAt(position).Description;
+
+            }
+            else
+                hld.Description.Visibility = ViewStates.Gone;
+
+
 
 
             Answers.Clear();
@@ -72,6 +82,7 @@ namespace Izrune.Adapters.RecyclerviewAdapters
             {
                 if (ResQuestions.ElementAt(position).Answers.ElementAt(Index).IsRight)
                 {
+
                     Answers.ElementAt(Index).FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesCorrectButtonBackground);
                     Answers.ElementAt(Index).FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesCorrectAnswerLine);
                 }

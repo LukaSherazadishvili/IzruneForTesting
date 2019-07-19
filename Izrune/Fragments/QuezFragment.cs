@@ -357,6 +357,7 @@ namespace Izrune.Fragments
                     if (question.images.ToList().Count == 1)
                     {
                         ImageCard.Visibility = ViewStates.Visible;
+
                         MainImage.LoadImage(question.images.ElementAt(0));
                     }
                     else

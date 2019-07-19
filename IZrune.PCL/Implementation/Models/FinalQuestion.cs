@@ -13,5 +13,6 @@ namespace IZrune.PCL.Implementation.Models
         public string image_url { get; set; }
         public IEnumerable<string> images { get; set; }
         public IEnumerable<IAnswer> Answers { get; set; }
+        public string Description { get; set; }
     }
 }

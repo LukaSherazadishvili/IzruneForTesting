@@ -55,6 +55,10 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.MarkTXt)]
         TextView Mark;
 
+        [MapControl(Resource.Id.EGmuImage)]
+        ImageView EgmuImage;
+
+
         [MapControl(Resource.Id.Container)]
         protected override FrameLayout MainFrame { get; set; }
 
@@ -85,6 +89,22 @@ namespace Izrune.Fragments
                 SkippedAnswer.Text = QuisInfo.SkipedAnswers.ToString();
                 PointTxt.Text = QuisInfo.text_title;
                 Mark.Text = QuisInfo.text_description;
+
+                if (!string.IsNullOrEmpty(Result.EgmuUrl))
+                {
+                    EgmuImage.Visibility = ViewStates.Visible;
+                    EgmuImage.Click += (s, e) =>
+                    {
+                        var uri = Android.Net.Uri.Parse(Result.EgmuUrl);
+                        var intent = new Intent(Intent.ActionView, uri);
+                        StartActivity(intent);
+                    };
+                }
+                else
+                {
+                    EgmuImage.Visibility = ViewStates.Invisible;
+                }
+
                 if (!string.IsNullOrEmpty(Result.DiplomaURl))
                 {
                     DiplomaImage.Visibility = ViewStates.Visible;

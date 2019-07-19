@@ -26,7 +26,7 @@
 		android:id="@+id/QuestionTitle"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text=" რა ცხოველია სურათზე გამოსახული?"
+		android:text=" "
 		android:padding="1dp"
 		android:fontFamily="@font/bpg_mrgvlovani"/>
 	</LinearLayout>
@@ -52,5 +52,18 @@
 					android:orientation="vertical"
 					>
 					</LinearLayout>
+
+	<TextView 
+		android:visibility="gone"
+		android:id="@+id/DescriptionTxt"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:gravity="left"
+		android:layout_gravity="center"
+		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp"
+		android:fontFamily="@font/bpg_mrgvlovani"
+		android:padding="1dp"
+		/>
 			
 </LinearLayout>

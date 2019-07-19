@@ -138,7 +138,24 @@ namespace Izrune.Activitys
               Android.Resource.Layout.SimpleSpinnerDropDownItem,
              Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Select(x => x.title).ToList());
 
+                var aasd = student.SchoolId;
 
+                //if (student.SchoolId != 2112)
+                //{
+                //    var Ress = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Where(i => i.id == student.SchoolId).FirstOrDefault();
+                //    StudentSchool.Adapter = SchoolAdapterr;
+
+                //    var ScholdPoss = SchoolAdapterr.GetPosition(Ress.title);
+                //    StudentSchool.SetSelection(ScholdPoss);
+                //}
+                //else
+                //{
+                //    var Ress = Regions.Where(i => i.id == student.RegionId).FirstOrDefault();
+                //    StudentSchool.Adapter = SchoolAdapterr;
+
+                //    var ScholdPoss = SchoolAdapterr.GetPosition(Ress.title);
+                //    StudentSchool.SetSelection(ScholdPoss);
+                //}
 
                 var Ress = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Where(i => i.id == student.SchoolId).FirstOrDefault();
                 StudentSchool.Adapter = SchoolAdapterr;
@@ -185,10 +202,37 @@ namespace Izrune.Activitys
             StudentCity.SetSelection(pos);
 
 
-            
-           
 
-           
+
+            var asd = student.SchoolId;
+            //if(student.SchoolId != 2112)
+            // {
+            //     StudentSchool.Adapter = SchoolAdapter;
+            //     var Res = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Where(i => i.id == student.SchoolId).FirstOrDefault();
+
+            //     StudentSchool.ItemSelected += (s, e) =>
+            //     {
+            //         student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.FirstOrDefault().id;
+
+            //     };
+
+            //     var ScholdPos = SchoolAdapter.GetPosition(Res.title);
+            //     StudentSchool.SetSelection(ScholdPos);
+            // }
+            // else
+            // {
+            //     StudentSchool.Adapter = SchoolAdapter;
+            //     var Res = Regions.Where(i => i.id == student.RegionId).FirstOrDefault();
+
+            //     StudentSchool.ItemSelected += (s, e) =>
+            //     {
+            //         student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.FirstOrDefault().id;
+
+            //     };
+
+            //     var ScholdPos = SchoolAdapter.GetPosition(Res.title);
+            //     StudentSchool.SetSelection(ScholdPos);
+            // }
             StudentSchool.Adapter = SchoolAdapter;
             var Res = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Where(i => i.id == student.SchoolId).FirstOrDefault();
 

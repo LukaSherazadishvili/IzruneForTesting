@@ -72,7 +72,7 @@ namespace IZrune.PCL.Implementation.Services
                     title = i.title,
                     images = i.images.Select(o => o.url),
                     StudentAnswerIndex = i.answers.IndexOf(i.answers.Where(x => x.student_answer == 1).FirstOrDefault()),
-
+                    Description=i.description,
                     Answers = i.answers.Select(o => new Answer()
                     {                        
                         IsRight = o.right == "1" ? true : false,                                       

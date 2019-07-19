@@ -41,6 +41,7 @@ namespace Izrune.Helpers
 
        public List<string> Monthes = new List<string>
             {
+           "თვე",
                 "იანვარი",
                 "თებერვალი",
                 "მარტი",
