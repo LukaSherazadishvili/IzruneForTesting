@@ -114,6 +114,20 @@ namespace Izrune.iOS
                     fireworksAnimation.Play();
                 }
             }
+
+            if (!string.IsNullOrEmpty(QuisInfo?.EgmuUrl) && !string.IsNullOrWhiteSpace(QuisInfo?.EgmuUrl))
+            {
+                if (egmuImageView?.GestureRecognizers == null || egmuImageView?.GestureRecognizers?.Length == 0)
+                {
+                    egmuImageView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                    {
+                        if (UIApplication.SharedApplication.CanOpenUrl(NSUrl.FromString(QuisInfo?.EgmuUrl)))
+                            UIApplication.SharedApplication.OpenUrl(NSUrl.FromString(QuisInfo?.EgmuUrl));
+                    }));
+                }
+            }
+            else
+                egmuImageView.Hidden = true;
         }
 
         public override void ViewWillDisappear(bool animated)

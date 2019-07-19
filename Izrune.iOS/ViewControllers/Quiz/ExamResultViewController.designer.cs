@@ -16,6 +16,9 @@ namespace Izrune.iOS
 		UIKit.UIImageView diplomeImageView { get; set; }
 
 		[Outlet]
+		UIKit.UIImageView egmuImageView { get; set; }
+
+		[Outlet]
 		UIKit.UILabel examTimeLbl { get; set; }
 
 		[Outlet]
@@ -100,6 +103,11 @@ namespace Izrune.iOS
 			if (viewForLottie != null) {
 				viewForLottie.Dispose ();
 				viewForLottie = null;
+			}
+
+			if (egmuImageView != null) {
+				egmuImageView.Dispose ();
+				egmuImageView = null;
 			}
 		}
 	}
