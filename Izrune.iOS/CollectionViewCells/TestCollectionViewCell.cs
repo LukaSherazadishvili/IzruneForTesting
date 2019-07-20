@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using CoreGraphics;
 using Foundation;
 using IZrune.PCL.Abstraction.Models;
@@ -27,6 +28,8 @@ namespace Izrune.iOS.CollectionViewCells
         public Action<IAnswer> AnswerClicked { get; set; }
 
         public Action<string> ImageClicked { get; set; }
+
+        public Action QuestionSkipped { get; set; }
 
         private List<string> NumberList = new List<string>()
         {
@@ -72,6 +75,15 @@ namespace Izrune.iOS.CollectionViewCells
 
             if (IsResultCell)
                 ShowBottomLine();
+
+            QuestionSkipped = () =>
+            {
+
+                var answers = Question?.Answers?.ToList();
+                var correctAnswer = answers?.IndexOf(answers?.FirstOrDefault(x => x.IsRight == true));
+                var answerCell = answerCollectionView.CellForItem(NSIndexPath.FromRowSection((System.nint)correctAnswer, 0)) as AnswerCollectionViewCell;
+                answerCell.CheckAnswer(true);
+            };
         }
 
         public void InitDataForResult(IFinalQuestion finalQuestion, string index = "")
