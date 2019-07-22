@@ -181,6 +181,7 @@ namespace Izrune.iOS
                         IsSummSelected = false;
                         var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
                         chooseTimeVc.IsSumtTest = IsSummSelected;
+                        chooseTimeVc.HeaderTitle = "სავარჯიშო ტესტი";
                         chooseTimeVc.SelectedStudent = SelectedStudent;
                         chooseTimeVc.SelectedCategory = QuezCategory.QuezTest;
 
@@ -193,6 +194,7 @@ namespace Izrune.iOS
                             IsSummSelected = false;
                             var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
                             chooseTimeVc.IsSumtTest = IsSummSelected;
+                            chooseTimeVc.HeaderTitle = "სავარჯიშო ტესტი";
                             chooseTimeVc.SelectedStudent = SelectedStudent;
                             chooseTimeVc.SelectedCategory = QuezCategory.QuezTest;
 

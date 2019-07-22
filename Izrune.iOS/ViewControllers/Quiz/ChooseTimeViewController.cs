@@ -26,6 +26,7 @@ namespace Izrune.iOS
         public IStudent SelectedStudent;
         public QuezCategory SelectedCategory;
         public bool IsSumtTest { get; set; } = true;
+        public string HeaderTitle { get; set; }
 
         public override void ViewDidLoad()
         {
@@ -39,6 +40,7 @@ namespace Izrune.iOS
             View.LayoutIfNeeded();
 
             InitUI();
+
         }
 
         public override void ViewDidLayoutSubviews()
@@ -51,6 +53,9 @@ namespace Izrune.iOS
 
         private void InitUI()
         {
+
+            headerTitleLbl.Text = HeaderTitle;
+
             totalTimeView.Layer.BorderColor = UIColor.White.CGColor;
             totalTimeView.Layer.BorderWidth = 3;
 
