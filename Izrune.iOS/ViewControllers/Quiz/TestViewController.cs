@@ -286,15 +286,23 @@ namespace Izrune.iOS
 
             //var button = headerView.Subviews.OfType<UIButton>().FirstOrDefault();
 
-            EventHandler currEventHandler = async(o,e) => {
-
+            EventHandler currEventHandler = async (o, e) =>
+            {
                 //TODO
                 try
                 {
                     var asd = currentIndex;
+
+                    var testCell = questionCollectionView.CellForItem(indexPath) as TestCollectionViewCell;
+
+                    testCell.QuestionSkipped?.Invoke();
+
+                    await Task.Delay(500);
+
                     if (currentIndex >= AllQuestions?.Count - 1)
                     {
                         currentIndex++;
+                        await SkipQuestion();
                         await GoToResultPage();
                     }
                     else
@@ -304,6 +312,19 @@ namespace Izrune.iOS
                         await SkipQuestion();
                         ScrollAnswerProgressCell();
                     }
+
+                    //var answers = CurrentQuestion?.Answers?.ToList();
+                    //var correctAnswer = answers?.IndexOf(answers?.FirstOrDefault(x => x.IsRight == true));
+
+                    //var answerCell = questionCollectionView.CellForItem(NSIndexPath.FromRowSection((System.nint)correctAnswer, 0)) as AnswerCollectionViewCell;
+
+                    //var visibleItems = questionCollectionView.IndexPathsForVisibleItems;
+                    //var currCell = questionCollectionView.CellForItem(visibleItems[0]) as TestCollectionViewCell;
+                    //var answerCollection = currCell.AnswerCollection;
+
+                    ////TODO
+                    //answerCell.CheckAnswer(true);
+
                 }
 
                 catch (Exception ex)
@@ -311,6 +332,7 @@ namespace Izrune.iOS
                     Console.WriteLine(ex.Message);
                 }
             };
+
             headerView.SkipBtn.TouchUpInside -= currEventHandler;
             headerView.SkipBtn.TouchUpInside += currEventHandler;
 
@@ -452,6 +474,7 @@ namespace Izrune.iOS
 
         private async Task SkipQuestion()
         {
+            correctAnswers = 0;
             InvokeOnMainThread(() => questionCollectionView.Hidden = true);
 
             await QuezControll.Instance.AddQuestion();
