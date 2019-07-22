@@ -81,7 +81,12 @@ namespace Izrune.iOS
         {
             var alert = UIAlertController.Create("ყურადღევა", "ტესტის გასავლლეად განაახლეთ პაკეტი", UIAlertControllerStyle.Alert);
             alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, (o) => { this.NavigationController.PopViewController(true); }));
-            alert.AddAction(UIAlertAction.Create("გადახდა", UIAlertActionStyle.Default, null));
+            alert.AddAction(UIAlertAction.Create("გადახდა", UIAlertActionStyle.Default, (o) => {
+
+                var navVc = this.ParentViewController as UINavigationController;
+
+
+            }));
             this.PresentViewController(alert, true, null);
         }
 
