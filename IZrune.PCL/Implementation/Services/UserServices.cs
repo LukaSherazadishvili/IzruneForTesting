@@ -127,7 +127,7 @@ namespace IZrune.PCL.Implementation.Services
 
                 });
 
-                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=isAdmin&hashcode=a4fa29df9923e514100d8d71cb58cedd", FormContent);
+                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getBadges&hashcode=706e22fc8ead8176ef5ed2d51c130349", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
                 var Result = JsonConvert.DeserializeObject<BadgesRootDTO>(jsn);
 
