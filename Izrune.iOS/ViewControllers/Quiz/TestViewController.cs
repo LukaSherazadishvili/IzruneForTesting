@@ -408,7 +408,7 @@ namespace Izrune.iOS
                 return new CoreGraphics.CGSize(25, 25);
 
             if (collectionView == badgeCollectionView)
-                return new CGSize(40, 40);
+                return new CGSize(30, 40);
 
             if(currentIndex < AllQuestions?.Count && CurrentQuestion != null)
                 SetCellHeight(CurrentQuestion);
