@@ -238,6 +238,7 @@ namespace Izrune.Fragments
             (Activity as QuezActivity).OpenDialog(question.images.ElementAt(Index));
         }
 
+        bool IsLike = true;
         private async  void AnswerView_Click(object sender, EventArgs e)
         {
             try
@@ -262,8 +263,17 @@ namespace Izrune.Fragments
                        if (CorrectAnswerIndex == 5)
                        {
                            CorrectAnswerIndex = 0;
-                           (Activity as QuezActivity).PlayAnimation();
+                           if (IsLike)
+                           {
+                               (Activity as QuezActivity).PlayAnimation();
+                             //  IsLike = false;
+                           }
+                           //else
+                           //{
+                           //    (Activity as QuezActivity).PlayAnimationTwo();
+                           //    IsLike = true;
 
+                           //}
 
                        }
 
@@ -271,7 +281,7 @@ namespace Izrune.Fragments
                    else
                    {
                        CorrectAnswerIndex = 0;
-
+                     
                        foreach (var items in question.Answers)
                        {
                            CorrectAnswerIndex++;

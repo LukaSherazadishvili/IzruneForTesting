@@ -133,36 +133,31 @@ namespace Izrune.Activitys
                 StudentCity.SetSelection(poss);
 
 
+                var SchoolRes = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Select(x => x.title).ToList();
+
+                SchoolRes.Insert(0, "სკოლა");
+
 
                 var SchoolAdapterr = new ArrayAdapter<string>(this,
               Android.Resource.Layout.SimpleSpinnerDropDownItem,
-             Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Select(x => x.title).ToList());
+              SchoolRes
+            );
 
                 var aasd = student.SchoolId;
 
-                //if (student.SchoolId != 2112)
-                //{
-                //    var Ress = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Where(i => i.id == student.SchoolId).FirstOrDefault();
-                //    StudentSchool.Adapter = SchoolAdapterr;
-
-                //    var ScholdPoss = SchoolAdapterr.GetPosition(Ress.title);
-                //    StudentSchool.SetSelection(ScholdPoss);
-                //}
-                //else
-                //{
-                //    var Ress = Regions.Where(i => i.id == student.RegionId).FirstOrDefault();
-                //    StudentSchool.Adapter = SchoolAdapterr;
-
-                //    var ScholdPoss = SchoolAdapterr.GetPosition(Ress.title);
-                //    StudentSchool.SetSelection(ScholdPoss);
-                //}
-
-                var Ress = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Where(i => i.id == student.SchoolId).FirstOrDefault();
+              
+                var Ress = Regions?.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Where(i => i.id == student.SchoolId).FirstOrDefault();
                 StudentSchool.Adapter = SchoolAdapterr;
 
-                var ScholdPoss = SchoolAdapterr.GetPosition(Ress.title);
-                StudentSchool.SetSelection(ScholdPoss);
-
+                if (Ress != null)
+                {
+                    var ScholdPoss = SchoolAdapterr.GetPosition(Ress.title);
+                    StudentSchool.SetSelection(ScholdPoss);
+                }
+                else
+                {
+                    StudentSchool.SetSelection(0);
+                }
             };
 
 
@@ -170,10 +165,12 @@ namespace Izrune.Activitys
 
 
             //  StudentCity.Adapter = RegionAdapter;
-
+            var SchoolRess = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Select(x => x.title).ToList();
+              SchoolRess.Insert(0, "სკოლა");
+         
             var SchoolAdapter = new ArrayAdapter<string>(this,
          Android.Resource.Layout.SimpleSpinnerDropDownItem,
-        Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Select(x => x.title).ToList());
+        SchoolRess);
 
 
          //   bool isCheck = false;
@@ -182,14 +179,18 @@ namespace Izrune.Activitys
                
                     student.RegionId = Regions.ElementAt(e.Position).id;
 
+                var SchooldResource = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Select(x => x.title).ToList();
+                SchooldResource.Insert(0, "სკოლა");
+
+
                 var schladapter = new ArrayAdapter<string>(this,
-          Android.Resource.Layout.SimpleSpinnerDropDownItem,
-         Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Select(x => x.title).ToList());
+          Android.Resource.Layout.SimpleSpinnerDropDownItem, SchooldResource
+         );
                 StudentSchool.Adapter = schladapter;
 
                 StudentSchool.ItemSelected += (sender, eargs) =>
                 {
-                    student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.ElementAt(eargs.Position).id;
+                   // student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.ElementAt(eargs.Position).id;
 
                 };
                 // isCheck = true;
@@ -205,45 +206,31 @@ namespace Izrune.Activitys
 
 
             var asd = student.SchoolId;
-            //if(student.SchoolId != 2112)
-            // {
-            //     StudentSchool.Adapter = SchoolAdapter;
-            //     var Res = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Where(i => i.id == student.SchoolId).FirstOrDefault();
-
-            //     StudentSchool.ItemSelected += (s, e) =>
-            //     {
-            //         student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.FirstOrDefault().id;
-
-            //     };
-
-            //     var ScholdPos = SchoolAdapter.GetPosition(Res.title);
-            //     StudentSchool.SetSelection(ScholdPos);
-            // }
-            // else
-            // {
-            //     StudentSchool.Adapter = SchoolAdapter;
-            //     var Res = Regions.Where(i => i.id == student.RegionId).FirstOrDefault();
-
-            //     StudentSchool.ItemSelected += (s, e) =>
-            //     {
-            //         student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.FirstOrDefault().id;
-
-            //     };
-
-            //     var ScholdPos = SchoolAdapter.GetPosition(Res.title);
-            //     StudentSchool.SetSelection(ScholdPos);
-            // }
-            StudentSchool.Adapter = SchoolAdapter;
-            var Res = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Where(i => i.id == student.SchoolId).FirstOrDefault();
+        
+          StudentSchool.Adapter = SchoolAdapter;
+            var Res = Regions?.Where(i => i.id == student.RegionId).FirstOrDefault()?.Schools?.Where(i => i.id == student.SchoolId)?.FirstOrDefault();
 
             StudentSchool.ItemSelected += (s, e) =>
             {
-                student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.FirstOrDefault().id;
+                if (Res == null)
+                {
+                    student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.FirstOrDefault().id;
+                }
 
+                if (Res != null)
+                {
+                    var ScholdPos = SchoolAdapter.GetPosition(Res.title);
+                    StudentSchool.SetSelection(ScholdPos);
+                }
+                else
+                {
+
+                    StudentSchool.SetSelection(0);
+                }
             };
 
-            var ScholdPos = SchoolAdapter.GetPosition(Res.title);
-            StudentSchool.SetSelection(ScholdPos);
+
+          
 
 
 

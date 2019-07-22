@@ -28,6 +28,9 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.PayBoxButton)]
         LinearLayout PayBocButton;
 
+        [MapControl(Resource.Id.BackButton)]
+        FrameLayout BackButton;
+
 
         [MapControl(Resource.Id.Gradueition)]
         TextView grad;
@@ -68,8 +71,18 @@ namespace Izrune.Activitys
 
             };
 
-
+            BackButton.Click += BackButton_Click;
         }
 
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            OnBackPressed();
+        }
+
+
+        public override void OnBackPressed()
+        {
+            this.Finish();
+        }
     }
 }
