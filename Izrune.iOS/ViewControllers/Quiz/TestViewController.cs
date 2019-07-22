@@ -284,18 +284,16 @@ namespace Izrune.iOS
 
             var headerView = collectionView.DequeueReusableSupplementaryView(elementKind, new NSString("FooterReusableView"), indexPath) as FooterTestView;
 
-            //var button = headerView.Subviews.OfType<UIButton>().FirstOrDefault();
 
-            EventHandler currEventHandler = async (o, e) =>
-            {
-                //TODO
+            headerView.SkipClicked = async () => {
+
                 try
                 {
                     var asd = currentIndex;
 
                     var testCell = questionCollectionView.CellForItem(indexPath) as TestCollectionViewCell;
 
-                    testCell.QuestionSkipped?.Invoke();
+                    testCell.SkipQuestion();
 
                     await Task.Delay(500);
 
@@ -331,10 +329,8 @@ namespace Izrune.iOS
                 {
                     Console.WriteLine(ex.Message);
                 }
-            };
 
-            headerView.SkipBtn.TouchUpInside -= currEventHandler;
-            headerView.SkipBtn.TouchUpInside += currEventHandler;
+            };
 
             return headerView;
         }
