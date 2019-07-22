@@ -16,6 +16,7 @@ using IZrune.PCL.Abstraction.Services;
 using System.Threading.Tasks;
 using IZrune.PCL.Enum;
 using System.Diagnostics;
+using Izrune.iOS.ViewControllers;
 
 namespace Izrune.iOS
 {
@@ -81,11 +82,11 @@ namespace Izrune.iOS
         {
             var alert = UIAlertController.Create("ყურადღევა", "ტესტის გასავლლეად განაახლეთ პაკეტი", UIAlertControllerStyle.Alert);
             alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, (o) => { this.NavigationController.PopViewController(true); }));
-            alert.AddAction(UIAlertAction.Create("გადახდა", UIAlertActionStyle.Default, (o) => {
+            alert.AddAction(UIAlertAction.Create("განახლება", UIAlertActionStyle.Default, (o) => {
 
-                var navVc = this.ParentViewController as UINavigationController;
+                var navVc = this.NavigationController.ParentViewController.ParentViewController as MenuRootViewController;
 
-
+                navVc.GoToPacketVC();
             }));
             this.PresentViewController(alert, true, null);
         }
