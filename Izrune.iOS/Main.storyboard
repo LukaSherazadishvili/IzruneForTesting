@@ -1548,23 +1548,26 @@
                                                                     <constraint firstAttribute="height" constant="30" id="He1-XZ-qj2"/>
                                                                 </constraints>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Odl-Fy-GlZ">
-                                                                    <size key="itemSize" width="50" height="50"/>
+                                                                    <size key="itemSize" width="52" height="27"/>
                                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                 </collectionViewFlowLayout>
                                                                 <cells>
                                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" id="MIg-th-qfH">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="52" height="27"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="52" height="27"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                         </view>
                                                                     </collectionViewCell>
                                                                 </cells>
                                                             </collectionView>
                                                         </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="cpl-oJ-Qqi" firstAttribute="leading" secondItem="Hfw-uM-Kzs" secondAttribute="leading" id="x45-AA-keG"/>
+                                                        </constraints>
                                                     </stackView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalCompressionResistancePriority="749" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="yXR-VS-dcK">
                                                         <rect key="frame" x="0.0" y="75.5" width="414" height="269.5"/>
@@ -1838,7 +1841,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wGw-g8-HSY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2185" y="2679"/>
+            <point key="canvasLocation" x="-2185.507246376812" y="2678.5714285714284"/>
         </scene>
         <!--Question Result View Controller-->
         <scene sceneID="cP3-uU-4rB">

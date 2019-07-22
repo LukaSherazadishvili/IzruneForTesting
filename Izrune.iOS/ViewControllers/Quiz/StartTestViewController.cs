@@ -87,10 +87,12 @@ namespace Izrune.iOS
                 var navVc = this.NavigationController.ParentViewController.ParentViewController as MenuRootViewController;
 
                 navVc.GoToPacketVC();
+
+                UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
             }));
             this.PresentViewController(alert, true, null);
         }
-
+         
         private async Task LoadDataAsync()
         {
             contentView.Hidden = true;

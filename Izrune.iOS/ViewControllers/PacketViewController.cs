@@ -64,6 +64,8 @@ namespace Izrune.iOS
 
             this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
 
+            SelectedStudent = UserControl.Instance.CurrentStudent;
+
             if (!IsFromMenu)
                 await GetPromoDataAsync(SchoolId);
 
@@ -207,7 +209,6 @@ namespace Izrune.iOS
                     UpdateViewSize(SelectPacketVc.ContentHeight);
                 };
             }
-
         }
 
         private async Task GetPromoDataAsync(int schoolId)
@@ -368,6 +369,8 @@ namespace Izrune.iOS
             SetupDropDown();
 
             SetupDropDownGesture(StudentDp, selectStudentDP);
+
+            SelectedStudent = UserControl.Instance.CurrentStudent;
 
             selectedStudentLbl.Text = SelectedStudent.Name + " " + SelectedStudent.LastName;
 
