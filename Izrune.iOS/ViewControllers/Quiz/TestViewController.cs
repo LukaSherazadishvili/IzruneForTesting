@@ -44,6 +44,8 @@ namespace Izrune.iOS
 
         public QuezCategory quezCategory;
 
+        public IStudent SelectedStudent;
+
         IQuestion CurrentQuestion;
         private int lastVisibleIndex;
         private CABasicAnimation strokeAnimation;
@@ -80,6 +82,8 @@ namespace Izrune.iOS
             lastVisibleIndex = 7;
 
             InitLottie(AnimationFilePath);
+
+            userNameLbl.Text = SelectedStudent?.Name + " " + SelectedStudent?.LastName;
         }
 
         private async Task LoadDataAsync()
@@ -284,20 +288,20 @@ namespace Izrune.iOS
 
             var headerView = collectionView.DequeueReusableSupplementaryView(elementKind, new NSString("FooterReusableView"), indexPath) as FooterTestView;
 
-            //var button = headerView.Subviews.OfType<UIButton>().FirstOrDefault();
 
-            EventHandler currEventHandler = async (o, e) =>
-            {
-                //TODO
+            headerView.SkipClicked = async () => {
+
                 try
                 {
                     //var asd = currentIndex;
 
-                    //var testCell = questionCollectionView.CellForItem(indexPath) as TestCollectionViewCell;
+                    var testCell = questionCollectionView.CellForItem(indexPath) as TestCollectionViewCell;
 
                     //testCell.QuestionSkipped?.Invoke();
 
-                    //await Task.Delay(500);
+                    testCell.SkipQuestion();
+
+                    await Task.Delay(500);
 
                     if (currentIndex >= AllQuestions?.Count - 1)
                     {
@@ -331,10 +335,8 @@ namespace Izrune.iOS
                 {
                     Console.WriteLine(ex.Message);
                 }
-            };
 
-            headerView.SkipBtn.TouchUpInside -= currEventHandler;
-            headerView.SkipBtn.TouchUpInside += currEventHandler;
+            };
 
             return headerView;
         }
