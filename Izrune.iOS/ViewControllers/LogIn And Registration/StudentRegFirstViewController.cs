@@ -83,7 +83,7 @@ namespace Izrune.iOS
                     return false;
                 }
 
-                if(phoneTf.Text.Length != 9)
+                if(phoneTf.Text.Length > 0 && phoneTf.Text.Length != 9)
                 {
                     var alertVc = UIAlertController.Create("ყურადღება!", "ტელეფონის ნომერი უნდა შედგებოდეს 9 ციფრისგან", UIAlertControllerStyle.Alert);
                     alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));

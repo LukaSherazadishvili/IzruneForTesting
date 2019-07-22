@@ -35,6 +35,8 @@ namespace Izrune.iOS
         private TestResultsViewController resultVc;
         private ExamTabViewController examTabVc;
 
+        private bool IsPacketActive { get; set; }
+
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -52,9 +54,19 @@ namespace Izrune.iOS
 
             InitDropDowns();
 
+            var result = DateTime.Now - CurrentStudent?.PakEndDate;
+
+            IsPacketActive = result?.Days > 0;
+
             InitGestures();
         }
 
+        private void ShowAlert()
+        {
+            var alert = UIAlertController.Create("ყურადღევა", "სტატისტიკის სანახავად განაახლეთ პაკეტი", UIAlertControllerStyle.Alert);
+            alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            this.PresentViewController(alert, true, null);
+        }
 
         private void InitViewCOntrollers()
         {
@@ -113,8 +125,8 @@ namespace Izrune.iOS
         {
             if (diplomeView.GestureRecognizers == null || diplomeView.GestureRecognizers?.Length == 0)
             {
-                diplomeView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
-
+                diplomeView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+                {
                     diplomeVc.Student = CurrentStudent;
                     this.NavigationController.PushViewController(diplomeVc, true);
                 }));
@@ -123,9 +135,7 @@ namespace Izrune.iOS
             if (sumTestsView.GestureRecognizers == null || sumTestsView.GestureRecognizers?.Length == 0)
             {
                 sumTestsView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
-
-                    //TODO
-
+                
                     this.NavigationController.PushViewController(resultVc, true);
                 }));
             }
@@ -134,11 +144,14 @@ namespace Izrune.iOS
             {
                 exTestView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
 
-                    //TODO
+                    if (IsPacketActive)
+                    {
+                        examTabVc.HideHeader = false;
 
-                    examTabVc.HideHeader = false;
-
-                    this.NavigationController.PushViewController(examTabVc, true);
+                        this.NavigationController.PushViewController(examTabVc, true);
+                    }
+                    else
+                        ShowAlert();
                 }));
             }
 

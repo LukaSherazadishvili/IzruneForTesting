@@ -104,6 +104,13 @@ namespace Izrune.iOS
 
         public Action<MenuItem> MainMenuClicked { get; set; }
 
+        public void SetSelectionBudget(MenuType menuType)
+        {
+
+            LogedInList.ForEach(o => o.IsSelected = o.Type == menuType);
+
+            menuCollectionView.ReloadData();
+        }
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
