@@ -2551,6 +2551,26 @@
                                         <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="68f-0F-OeO">
+                                        <rect key="frame" x="158" y="44" width="238" height="32"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lca-eW-RHz">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="sUJ-2i-Xvd">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BH1-yu-loG">
                                         <rect key="frame" x="158" y="80" width="238" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2578,8 +2598,12 @@
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="20c-Qw-hV8" firstAttribute="leading" secondItem="R2x-QI-Chq" secondAttribute="trailing" constant="15" id="3aT-3Q-TPE"/>
+                                    <constraint firstItem="68f-0F-OeO" firstAttribute="top" secondItem="20c-Qw-hV8" secondAttribute="bottom" constant="10" id="60o-Ed-Hsd"/>
                                     <constraint firstAttribute="height" constant="130" id="9WT-Ru-TlR"/>
+                                    <constraint firstItem="BH1-yu-loG" firstAttribute="top" secondItem="68f-0F-OeO" secondAttribute="bottom" constant="4" id="GhB-p4-ocX"/>
                                     <constraint firstItem="20c-Qw-hV8" firstAttribute="top" secondItem="R2x-QI-Chq" secondAttribute="top" id="LlG-LB-t1O"/>
+                                    <constraint firstItem="68f-0F-OeO" firstAttribute="leading" secondItem="BH1-yu-loG" secondAttribute="leading" id="S1u-us-hUt"/>
+                                    <constraint firstItem="68f-0F-OeO" firstAttribute="trailing" secondItem="20c-Qw-hV8" secondAttribute="trailing" id="UpM-7x-gZ5"/>
                                     <constraint firstAttribute="bottom" secondItem="BH1-yu-loG" secondAttribute="bottom" constant="20" id="X1k-H1-A6o"/>
                                     <constraint firstAttribute="trailing" secondItem="20c-Qw-hV8" secondAttribute="trailing" constant="18" id="c3c-RY-i8v"/>
                                     <constraint firstItem="R2x-QI-Chq" firstAttribute="centerY" secondItem="qny-id-Vxd" secondAttribute="centerY" id="f0n-eH-1US"/>
@@ -2683,6 +2707,7 @@
                     </view>
                     <connections>
                         <outlet property="answerProgressCollectionView" destination="BH1-yu-loG" id="4C9-99-fnD"/>
+                        <outlet property="badgeCollectionView" destination="68f-0F-OeO" id="1vx-oV-6gb"/>
                         <outlet property="questionCollectionView" destination="sY2-ss-6Oj" id="GDe-ra-1vp"/>
                         <outlet property="timeLbl" destination="0JT-gx-cam" id="ha7-Yl-xEE"/>
                         <outlet property="userNameLbl" destination="20c-Qw-hV8" id="q6I-Jx-kK3"/>
