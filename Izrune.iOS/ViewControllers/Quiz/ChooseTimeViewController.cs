@@ -79,13 +79,10 @@ namespace Izrune.iOS
             {
                 totalTimeView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-                    //TODO
-                    //var data = (await GetQuiz(SelectedStudent.id, SelectedCategory)).ToList();
 
                     var testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
                     testVc.SelectedStudent = SelectedStudent;
                     testVc.quezCategory = SelectedCategory;
-                    //testVc.AllQuestions = data;
                     testVc.IsTotalTime = true;
 
                     this.NavigationController.PushViewController(testVc, true);
@@ -96,13 +93,11 @@ namespace Izrune.iOS
             {
                 derivedTimeView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-                    //TODO
-                    //var data = (await GetQuiz(SelectedStudent.id, SelectedCategory)).ToList();
-
+                
                     var testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
                     testVc.SelectedStudent = SelectedStudent;
                     testVc.quezCategory = SelectedCategory;
-                    //testVc.AllQuestions = data;
+                
                     testVc.IsTotalTime = false;
 
                     this.NavigationController.PushViewController(testVc, true);
