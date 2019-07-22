@@ -15,10 +15,11 @@ using Izrune.iOS.CollectionViewCells;
 using System.Threading.Tasks;
 using IZrune.PCL.Abstraction.Services;
 using MPDCiOSPages.ViewControllers;
+using IZrune.PCL.Helpers;
 
 namespace Izrune.iOS
 {
-	public partial class ExamResultViewController : BaseViewController, IIndicatorInfoProvider, IUICollectionViewDelegate, IUICollectionViewDataSource, IUICollectionViewDelegateFlowLayout
+	public partial class ExamResultViewController : UIViewController, IIndicatorInfoProvider, IUICollectionViewDelegate, IUICollectionViewDataSource, IUICollectionViewDelegateFlowLayout
 
     {
 		public ExamResultViewController (IntPtr handle) : base (handle)
@@ -149,7 +150,7 @@ namespace Izrune.iOS
 
         private async Task LoadDataAsync()
         {
-            ShowLoading();
+            //ShowLoading();
 
             var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
@@ -157,7 +158,8 @@ namespace Izrune.iOS
 
             badgesCollectionView.ReloadData();
 
-            EndLoading();
+            Student = UserControl.Instance.CurrentStudent;
+            //EndLoading();
         }
 
         public override void ViewWillDisappear(bool animated)

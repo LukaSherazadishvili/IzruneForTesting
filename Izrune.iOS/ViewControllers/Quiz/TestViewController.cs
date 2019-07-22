@@ -263,7 +263,8 @@ namespace Izrune.iOS
 
         private async Task GoToResultPage()
         {
-
+            timer.Stop();
+            timer.Dispose();
             var pausedTime = progressLayer.ConvertTimeToLayer(CAAnimation.CurrentMediaTime(), null);
             progressLayer.Speed = 0f;
             progressLayer.TimeOffset = pausedTime;

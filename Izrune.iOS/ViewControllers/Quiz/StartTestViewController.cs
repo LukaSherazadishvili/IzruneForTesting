@@ -80,7 +80,7 @@ namespace Izrune.iOS
 
         private void ShowPacketAlert()
         {
-            var alert = UIAlertController.Create("ყურადღევა", "ტესტის გასავლლეად განაახლეთ პაკეტი", UIAlertControllerStyle.Alert);
+            var alert = UIAlertController.Create("ყურადღება", "ტესტის გასავლლეად განაახლეთ პაკეტი", UIAlertControllerStyle.Alert);
             alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, (o) => { this.NavigationController.PopViewController(true); }));
             alert.AddAction(UIAlertAction.Create("განახლება", UIAlertActionStyle.Default, (o) => {
 
