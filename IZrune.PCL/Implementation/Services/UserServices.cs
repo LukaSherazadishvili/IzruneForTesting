@@ -116,6 +116,42 @@ namespace IZrune.PCL.Implementation.Services
             var jsn = await Data.Content.ReadAsStringAsync();
         }
 
+        public async Task<IEnumerable<IBadges>> GetBadgesAsync()
+        {
+            try
+            {
+
+                var FormContent = new FormUrlEncodedContent(new[]
+                         {
+                new KeyValuePair<string,string>("student_id",UserControl.Instance.CurrentStudent.id.ToString()),
+
+                });
+
+                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getBadges&hashcode=706e22fc8ead8176ef5ed2d51c130349", FormContent);
+                var jsn = await Data.Content.ReadAsStringAsync();
+                var Result = JsonConvert.DeserializeObject<BadgesRootDTO>(jsn);
+
+                if (Result.Code == 0)
+                {
+                    var Dat = Result.badges.Select(i => new Badges()
+                    {
+                        ImageURl=i.url
+                    });
+                    return Dat;
+                }
+                else
+                {
+                    return null;
+                }
+
+
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+        }
+
         public async Task<IPromoCode> GetPromoCodeAsync(int SchoolId=0)
         {
 

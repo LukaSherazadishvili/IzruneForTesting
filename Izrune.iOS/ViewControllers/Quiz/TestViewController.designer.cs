@@ -16,6 +16,9 @@ namespace Izrune.iOS
 		UIKit.UICollectionView answerProgressCollectionView { get; set; }
 
 		[Outlet]
+		UIKit.UICollectionView badgeCollectionView { get; set; }
+
+		[Outlet]
 		UIKit.UICollectionView questionCollectionView { get; set; }
 
 		[Outlet]
@@ -60,14 +63,19 @@ namespace Izrune.iOS
 				userNameLbl = null;
 			}
 
+			if (viewForAnimation != null) {
+				viewForAnimation.Dispose ();
+				viewForAnimation = null;
+			}
+
 			if (viewForCircular != null) {
 				viewForCircular.Dispose ();
 				viewForCircular = null;
 			}
 
-			if (viewForAnimation != null) {
-				viewForAnimation.Dispose ();
-				viewForAnimation = null;
+			if (badgeCollectionView != null) {
+				badgeCollectionView.Dispose ();
+				badgeCollectionView = null;
 			}
 		}
 	}

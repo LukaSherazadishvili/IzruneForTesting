@@ -33,6 +33,7 @@ namespace Izrune.iOS
 
         #region Fields
         List<IQuestion> AllQuestions;
+        List<IBadges> Badges;
 
         //private List<IQuestion> Questions = new List<IQuestion>();
         private float imagesHeight;
@@ -103,6 +104,11 @@ namespace Izrune.iOS
                     this.NavigationController.PopToRootViewController(true);
                 }
 
+                var badgeService = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
+                Badges = (await badgeService.GetBadgesAsync())?.ToList();
+
+                badgeCollectionView.ReloadData();
+
                 AllQuestions = data;
 
                 CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
@@ -127,14 +133,14 @@ namespace Izrune.iOS
         private void InitCollectionView()
         {
             questionCollectionView.RegisterNibForCell(TestCollectionViewCell.Nib, TestCollectionViewCell.Identifier);
-
             questionCollectionView.Delegate = this;
             questionCollectionView.DataSource = this;
 
-
+            badgeCollectionView.RegisterNibForCell(BadgeCell.Nib, BadgeCell.Identifier);
+            badgeCollectionView.Delegate = this;
+            badgeCollectionView.DataSource = this;
 
             answerProgressCollectionView.RegisterNibForCell(AnswerProgressCollectionViewCell.Nib, AnswerProgressCollectionViewCell.Identifier);
-
             answerProgressCollectionView.Delegate = this;
             answerProgressCollectionView.DataSource = this;
         }
@@ -153,6 +159,17 @@ namespace Izrune.iOS
 
                 answerCell.InitData(sheduler, hideLeft: indexPath.Row == 0, hideRight: indexPath.Row == shedulerList?.Count()-1);
                 return answerCell;
+            }
+
+            if(collectionView == badgeCollectionView)
+            {
+                var badgeCell = badgeCollectionView.DequeueReusableCell(BadgeCell.Identifier, indexPath) as BadgeCell;
+
+                var badge = Badges?[indexPath.Row];
+
+                badgeCell.InitData(badge);
+
+                return badgeCell;
             }
 
             var cell = questionCollectionView.DequeueReusableCell(TestCollectionViewCell.Identifier, indexPath) as TestCollectionViewCell;
@@ -371,6 +388,9 @@ namespace Izrune.iOS
         {
             if(collectionView == answerProgressCollectionView)
                 return AllQuestions?.Count?? 0;
+
+            if (collectionView == badgeCollectionView)
+                return Badges?.Count ?? 0;
             return CurrentQuestion == null ? 0 : 1;
         }
 
@@ -386,6 +406,9 @@ namespace Izrune.iOS
 
             if (collectionView == answerProgressCollectionView)
                 return new CoreGraphics.CGSize(25, 25);
+
+            if (collectionView == badgeCollectionView)
+                return new CGSize(30, 40);
 
             if(currentIndex < AllQuestions?.Count && CurrentQuestion != null)
                 SetCellHeight(CurrentQuestion);

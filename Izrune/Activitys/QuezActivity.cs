@@ -322,11 +322,19 @@ namespace Izrune.Activitys
             }
         }
 
-        public void PlayAnimation()
+        public void PlayAnimation( )
         {
+            likesLottie.SetAnimation("like.json");
             likesLottie.Visibility = ViewStates.Visible;
             likesLottie.PlayAnimation();
         }
+
+        //public void PlayAnimationTwo()
+        //{
+        //    likesLottie.SetAnimation("ribbon.json");
+        //    likesLottie.Visibility = ViewStates.Visible;
+        //    likesLottie.PlayAnimation();
+        //}
 
         public void StopAnimation()
         {
