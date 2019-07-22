@@ -123,7 +123,7 @@ namespace IZrune.PCL.Implementation.Services
 
                 var FormContent = new FormUrlEncodedContent(new[]
                          {
-                new KeyValuePair<string,string>("student_id",UserControl.Instance.CurrentStudent.ToString()),
+                new KeyValuePair<string,string>("student_id",UserControl.Instance.CurrentStudent.id.ToString()),
 
                 });
 
