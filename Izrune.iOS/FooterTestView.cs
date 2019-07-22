@@ -10,12 +10,24 @@ namespace Izrune.iOS
 	public partial class FooterTestView : UICollectionReusableView
 	{
 
+        public Action SkipClicked { get; set; }
         public UIButton SkipBtn { get => skipBtn; }
 
         public FooterTestView (IntPtr handle) : base (handle)
 		{
 		}
 
-       
+        public override void AwakeFromNib()
+        {
+            base.AwakeFromNib();
+
+            skipBtn.TouchUpInside -= SkipBtn_TouchUpOutside;
+            skipBtn.TouchUpInside += SkipBtn_TouchUpOutside;
+        }
+
+        private void SkipBtn_TouchUpOutside(object sender, EventArgs e)
+        {
+            SkipClicked?.Invoke();
+        }
     }
 }

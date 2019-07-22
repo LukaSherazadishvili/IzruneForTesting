@@ -44,6 +44,8 @@ namespace Izrune.iOS
 
         public QuezCategory quezCategory;
 
+        public IStudent SelectedStudent;
+
         IQuestion CurrentQuestion;
         private int lastVisibleIndex;
         private CABasicAnimation strokeAnimation;
@@ -54,6 +56,10 @@ namespace Izrune.iOS
         LOTAnimationView likeAnimation = new LOTAnimationView();
 
         int correctAnswers;
+
+        bool isRibbonAnimation = false;
+        string AnimationFilePath = "like_animation.json";
+
         #endregion
 
         public async override void ViewDidLoad()
@@ -75,7 +81,9 @@ namespace Izrune.iOS
 
             lastVisibleIndex = 7;
 
-            InitLottie();
+            InitLottie(AnimationFilePath);
+
+            userNameLbl.Text = SelectedStudent?.Name + " " + SelectedStudent?.LastName;
         }
 
         private async Task LoadDataAsync()
@@ -162,6 +170,7 @@ namespace Izrune.iOS
                 {
                     correctAnswers = 0;
                     PlayAnimation();
+                    isRibbonAnimation = !isRibbonAnimation;
                 }
                 if (!IsTotalTime)
                     timeLbl.Text = ($"01:30");
@@ -279,17 +288,25 @@ namespace Izrune.iOS
 
             var headerView = collectionView.DequeueReusableSupplementaryView(elementKind, new NSString("FooterReusableView"), indexPath) as FooterTestView;
 
-            //var button = headerView.Subviews.OfType<UIButton>().FirstOrDefault();
 
-            EventHandler currEventHandler = async(o,e) => {
+            headerView.SkipClicked = async () => {
 
-                //TODO
                 try
                 {
-                    var asd = currentIndex;
+                    //var asd = currentIndex;
+
+                    var testCell = questionCollectionView.CellForItem(indexPath) as TestCollectionViewCell;
+
+                    //testCell.QuestionSkipped?.Invoke();
+
+                    testCell.SkipQuestion();
+
+                    await Task.Delay(500);
+
                     if (currentIndex >= AllQuestions?.Count - 1)
                     {
                         currentIndex++;
+                        await SkipQuestion();
                         await GoToResultPage();
                     }
                     else
@@ -299,15 +316,27 @@ namespace Izrune.iOS
                         await SkipQuestion();
                         ScrollAnswerProgressCell();
                     }
+
+                    //var answers = CurrentQuestion?.Answers?.ToList();
+                    //var correctAnswer = answers?.IndexOf(answers?.FirstOrDefault(x => x.IsRight == true));
+
+                    //var answerCell = questionCollectionView.CellForItem(NSIndexPath.FromRowSection((System.nint)correctAnswer, 0)) as AnswerCollectionViewCell;
+
+                    //var visibleItems = questionCollectionView.IndexPathsForVisibleItems;
+                    //var currCell = questionCollectionView.CellForItem(visibleItems[0]) as TestCollectionViewCell;
+                    //var answerCollection = currCell.AnswerCollection;
+
+                    ////TODO
+                    //answerCell.CheckAnswer(true);
+
                 }
 
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
+
             };
-            headerView.SkipBtn.TouchUpInside -= currEventHandler;
-            headerView.SkipBtn.TouchUpInside += currEventHandler;
 
             return headerView;
         }
@@ -376,23 +405,14 @@ namespace Izrune.iOS
             var data = question;
             var text = data?.title;
             var titleHeight = text.GetStringHeight((float)questionCollectionView.Frame.Width, 50, 17);
+            var commentHeight = data?.Description?.GetStringHeight((float)questionCollectionView.Frame.Width, 50, 14);
             var ImagesCount = data?.images?.Count();
-            foreach (var item in data?.images)
-            {
-                Debug.WriteLine($"Image URL : {item}");
-            }
-            if (ImagesCount == 0)
-            {
-                imagesHeight = 0;
-                Debug.WriteLine($"ImagesCount : {ImagesCount}");
-            }
-            else
-            {
-                imagesHeight = 180;
-                Debug.WriteLine($"ImagesCount : {ImagesCount}");
-            }
 
-            float spaceSumBetweenAnswers = 80;
+            if (ImagesCount == 0)
+                imagesHeight = 0;
+                //Debug.WriteLine($"ImagesCount : {ImagesCount}");
+            else
+                imagesHeight = 180;
 
             foreach (var item in data?.Answers)
             {
@@ -400,9 +420,7 @@ namespace Izrune.iOS
                 answersHeight += height + 40;
             }
 
-            totalHeight = titleHeight + imagesHeight + answersHeight +40 ;
-
-            //return totalHeight;
+            totalHeight = titleHeight + commentHeight.Value + imagesHeight + answersHeight +40 ;
         }
 
         private void InitTotalTimer(int _minutes, int _secondes)
@@ -458,6 +476,7 @@ namespace Izrune.iOS
 
         private async Task SkipQuestion()
         {
+            correctAnswers = 0;
             InvokeOnMainThread(() => questionCollectionView.Hidden = true);
 
             await QuezControll.Instance.AddQuestion();
@@ -532,9 +551,10 @@ namespace Izrune.iOS
             #endregion
         }
 
-        private void InitLottie()
+
+        private void InitLottie(string filePath)
         {
-            likeAnimation = LOTAnimationView.AnimationWithFilePath("like_animation.json");
+            likeAnimation = LOTAnimationView.AnimationWithFilePath(filePath);
             likeAnimation.ContentMode = UIViewContentMode.ScaleAspectFit;
             viewForAnimation.Frame = new CGRect(questionCollectionView.Frame.X, questionCollectionView.Frame.Y, 0, 0);
             likeAnimation.UserInteractionEnabled = false;
@@ -544,12 +564,23 @@ namespace Izrune.iOS
 
         private void PlayAnimation()
         {
+            AnimationFilePath = isRibbonAnimation ? "exploding-ribbon.json" : "like_animation.json";
+
+            likeAnimation.Hidden = false;
+            likeAnimation.RemoveFromSuperview();
+
+            InitLottie(AnimationFilePath);
+
             viewForAnimation.Frame = new CGRect(questionCollectionView.Frame.X, questionCollectionView.Frame.Y, 
                 questionCollectionView.Bounds.Width, questionCollectionView.Bounds.Height);
 
             likeAnimation.Frame = new CoreGraphics.CGRect(0, 0, viewForAnimation.Frame.Width, viewForAnimation.Frame.Height);
 
-            likeAnimation.PlayWithCompletion((animationFinished) => viewForAnimation.Frame = new CGRect(questionCollectionView.Frame.X, questionCollectionView.Frame.Y, 0, 0));
+            likeAnimation.PlayWithCompletion((animationFinished) =>
+            {
+                viewForAnimation.Frame = new CGRect(questionCollectionView.Frame.X, questionCollectionView.Frame.Y, 0, 0);
+                likeAnimation.Hidden = true;
+            });
         }
     }
 }

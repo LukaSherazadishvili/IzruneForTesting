@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using CoreGraphics;
 using Foundation;
 using IZrune.PCL.Abstraction.Models;
@@ -27,6 +28,8 @@ namespace Izrune.iOS.CollectionViewCells
         public Action<IAnswer> AnswerClicked { get; set; }
 
         public Action<string> ImageClicked { get; set; }
+
+        //public Action QuestionSkipped { get; set; }
 
         private List<string> NumberList = new List<string>()
         {
@@ -58,8 +61,7 @@ namespace Izrune.iOS.CollectionViewCells
 
             SetCellHeight(question);
             questionLbl.Text = $"{index}{ GetStringFromHtml(question.title)}";
-
-            //CalculateImagesCollectionViewHeight(question);
+            commentLbl.Text = $"{ GetStringFromHtml(question.Description)}";
 
             imagesCollectionViewHeight.Constant = imagesCollectioHeight;
 
@@ -73,6 +75,18 @@ namespace Izrune.iOS.CollectionViewCells
 
             if (IsResultCell)
                 ShowBottomLine();
+
+           
+        }
+
+        public void SkipQuestion()
+        {
+
+
+            var answers = Question?.Answers?.ToList();
+            var correctAnswer = answers?.IndexOf(answers?.FirstOrDefault(x => x.IsRight == true));
+            var answerCell = answerCollectionView.CellForItem(NSIndexPath.FromRowSection((System.nint)correctAnswer, 0)) as AnswerCollectionViewCell;
+            answerCell.CheckAnswer(true);
         }
 
         public void InitDataForResult(IFinalQuestion finalQuestion, string index = "")
@@ -80,6 +94,7 @@ namespace Izrune.iOS.CollectionViewCells
             SetCellHeight(finalQuestion);
 
             questionLbl.Text = $"{index}{ GetStringFromHtml(finalQuestion.title)}";
+            commentLbl.Text = $"{ GetStringFromHtml(finalQuestion.Description)}";
             //questionLbl.Text = $"{index}{finalQuestion.title}";
 
             imagesCollectionViewHeight.Constant = imagesCollectioHeight;

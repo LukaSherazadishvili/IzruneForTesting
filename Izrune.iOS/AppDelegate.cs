@@ -10,6 +10,7 @@ using System;
 
 namespace Izrune.iOS
 {
+
     // The UIApplicationDelegate for the application. This class is responsible for launching the
     // User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
     [Register("AppDelegate")]
@@ -36,21 +37,18 @@ namespace Izrune.iOS
 
             App.Configure();
 
+            Firebase.CloudMessaging.Messaging.SharedInstance.Subscribe("all");
+
             UNUserNotificationCenter.Current.Delegate = this;
             UIApplication.SharedApplication.RegisterForRemoteNotifications();
             UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
             Messaging.SharedInstance.Delegate = this;
-
-
-
 
             IZrune.PCL.AppCore.Instance.InitServices();
 
             IZrune.PCL.AppCore.Instance.Alertdialog = new AlertDialogService();
 
             this.Window = new UIWindow(UIScreen.MainScreen.Bounds);
-
-            //rootvc = UIStoryboard.FromName("Main", null).InstantiateViewController(LogInViewController.StoryboardId);
 
 
             rootvc = new MenuRootViewController();

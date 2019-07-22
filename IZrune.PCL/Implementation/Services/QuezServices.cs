@@ -178,7 +178,7 @@ namespace IZrune.PCL.Implementation.Services
             var Result = JsonConvert.DeserializeObject<QuisResultInfoRootDTO>(jsn);
             var info = Result.info;
             QuisResultInfo QuesResult = new QuisResultInfo();
-            
+
             DateTime.TryParse(info.date, out DateTime date);
             int.TryParse(info.duration, out int Time);
             QuesResult.Date = date;

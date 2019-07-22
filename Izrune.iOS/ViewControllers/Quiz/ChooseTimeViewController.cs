@@ -78,6 +78,7 @@ namespace Izrune.iOS
                     //var data = (await GetQuiz(SelectedStudent.id, SelectedCategory)).ToList();
 
                     var testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
+                    testVc.SelectedStudent = SelectedStudent;
                     testVc.quezCategory = SelectedCategory;
                     //testVc.AllQuestions = data;
                     testVc.IsTotalTime = true;
@@ -94,6 +95,7 @@ namespace Izrune.iOS
                     //var data = (await GetQuiz(SelectedStudent.id, SelectedCategory)).ToList();
 
                     var testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
+                    testVc.SelectedStudent = SelectedStudent;
                     testVc.quezCategory = SelectedCategory;
                     //testVc.AllQuestions = data;
                     testVc.IsTotalTime = false;
