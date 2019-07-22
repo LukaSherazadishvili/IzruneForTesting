@@ -291,13 +291,13 @@ namespace Izrune.iOS
                 //TODO
                 try
                 {
-                    var asd = currentIndex;
+                    //var asd = currentIndex;
 
-                    var testCell = questionCollectionView.CellForItem(indexPath) as TestCollectionViewCell;
+                    //var testCell = questionCollectionView.CellForItem(indexPath) as TestCollectionViewCell;
 
-                    testCell.QuestionSkipped?.Invoke();
+                    //testCell.QuestionSkipped?.Invoke();
 
-                    await Task.Delay(500);
+                    //await Task.Delay(500);
 
                     if (currentIndex >= AllQuestions?.Count - 1)
                     {
