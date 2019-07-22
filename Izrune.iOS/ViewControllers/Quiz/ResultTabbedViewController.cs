@@ -27,6 +27,7 @@ namespace Izrune.iOS
         public bool AfterExam;
         public bool IsexamType;
 
+        public IStudent Student;
 
         ExamResultViewController ExRes;
         QuestionResultViewController QuestionRes;

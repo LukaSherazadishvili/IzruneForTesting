@@ -80,17 +80,19 @@ namespace Izrune.iOS
 
         private void ShowPacketAlert()
         {
-            var alert = UIAlertController.Create("ყურადღევა", "ტესტის გასავლლეად განაახლეთ პაკეტი", UIAlertControllerStyle.Alert);
+            var alert = UIAlertController.Create("ყურადღება", "ტესტის გასავლლეად განაახლეთ პაკეტი", UIAlertControllerStyle.Alert);
             alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, (o) => { this.NavigationController.PopViewController(true); }));
             alert.AddAction(UIAlertAction.Create("განახლება", UIAlertActionStyle.Default, (o) => {
 
                 var navVc = this.NavigationController.ParentViewController.ParentViewController as MenuRootViewController;
 
                 navVc.GoToPacketVC();
+
+                UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
             }));
             this.PresentViewController(alert, true, null);
         }
-
+         
         private async Task LoadDataAsync()
         {
             contentView.Hidden = true;
