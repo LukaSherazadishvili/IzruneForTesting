@@ -19,7 +19,7 @@ namespace Izrune.iOS
         public string PaymentUrl { get; set; }
 
         public IPay PayInfo { get; set; }
-
+        public IPrice SelectedPrice;
         public Action GoToLogin { get; set; }
 
         public bool HideTitle { get; set; }
@@ -47,6 +47,7 @@ namespace Izrune.iOS
         {
             payViaBankBtn.TouchUpInside += delegate {
                 var payBankVc = Storyboard.InstantiateViewController(PayViaBankViewController.StoryboardId) as PayViaBankViewController;
+                payBankVc.SelectedPrice = SelectedPrice;
                 this.NavigationController.PushViewController(payBankVc, true);
             };
 
