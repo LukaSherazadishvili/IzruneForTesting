@@ -110,7 +110,25 @@ namespace Izrune.Adapters.RecyclerviewAdapters
 
                 }
             }
+            else
+            {
+                int index = 0;
+                foreach (var items in ResQuestions.ElementAt(position).Answers)
+                {
+                  
+                    if (items.IsRight)
+                    {
+                        Answers.ElementAt(index).FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesCorrectButtonBackground);
+                        Answers.ElementAt(index).FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesCorrectAnswerLine);
+                        index = 0;
+                        break;
+                    }
+                    index++;
+                }
 
+
+
+            }
 
 
         }
