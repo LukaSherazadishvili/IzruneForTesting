@@ -44,6 +44,8 @@ namespace Izrune.iOS
 
         public QuezCategory quezCategory;
 
+        public IStudent SelectedStudent;
+
         IQuestion CurrentQuestion;
         private int lastVisibleIndex;
         private CABasicAnimation strokeAnimation;
@@ -80,6 +82,8 @@ namespace Izrune.iOS
             lastVisibleIndex = 7;
 
             InitLottie(AnimationFilePath);
+
+            userNameLbl.Text = SelectedStudent?.Name + " " + SelectedStudent?.LastName;
         }
 
         private async Task LoadDataAsync()
@@ -289,9 +293,11 @@ namespace Izrune.iOS
 
                 try
                 {
-                    var asd = currentIndex;
+                    //var asd = currentIndex;
 
                     var testCell = questionCollectionView.CellForItem(indexPath) as TestCollectionViewCell;
+
+                    //testCell.QuestionSkipped?.Invoke();
 
                     testCell.SkipQuestion();
 
