@@ -56,5 +56,16 @@ namespace Izrune.Helpers
                 "დეკემბერი",
             };
 
+
+        public void SaveUserNamePassword(string UserName,string Password)
+        {
+            ISharedPreferences pref = Application.Context.GetSharedPreferences("UserInfo", FileCreationMode.Private);
+            ISharedPreferencesEditor edit = pref.Edit();
+            edit.PutString("UserName", UserName);
+            edit.PutString("Password", Password);
+            edit.Apply();
+        }
+
+
     }
 }

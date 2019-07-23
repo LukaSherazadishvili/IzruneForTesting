@@ -70,12 +70,14 @@ namespace Izrune.Activitys
                     Startloading();
                     Result = await MpdcContainer.Instance.Get<IUserServices>().RecoverUserNamedAsync(ForgotPassword.Text);
                     StopLoading();
+                    ChangeFragmentPage(new SaccesFragment() {IsPasword=false }, Container.Id);
                 }
                 else
                 {
                     Startloading();
                     Result = await MpdcContainer.Instance.Get<IUserServices>().RecoverPasswordAsync(ForgotPassword.Text);
                     StopLoading();
+                    ChangeFragmentPage(new SaccesFragment() {IsPasword=true }, Container.Id);
                 }
 
 
@@ -83,11 +85,7 @@ namespace Izrune.Activitys
                 {
                     ForgotPassword.SetBackgroundResource(Resource.Drawable.RedEditTextBorder);
                 }
-                else
-                {
-                    ChangeFragmentPage(new SaccesFragment(), Container.Id);
-
-                }
+             
             };
 
             BotBackButton.Click += BotBackButton_Click;

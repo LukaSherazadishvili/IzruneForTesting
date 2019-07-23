@@ -9,6 +9,7 @@ namespace IZrune.TransferModels
         public string start_date { get; set; }
         public string end_date { get; set; }
         public int? price { get; set; }
+        public string title { get; set; }
     }
 
    public class PromoCodeDTO

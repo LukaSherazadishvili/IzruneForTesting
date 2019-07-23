@@ -20,7 +20,12 @@ namespace Izrune.Fragments
 
         [MapControl(Resource.Id.DoneButton)]
         LinearLayout DoneButton;
-       
+
+        [MapControl(Resource.Id.DoneTExt)]
+        TextView DoneText;
+        
+
+        public bool IsPasword { get; set; }
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -32,6 +37,13 @@ namespace Izrune.Fragments
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
+
+            if (IsPasword)
+            {
+                DoneText.Text = "მომხმარებლის პაროლი გაგზავნილია რეგისტრაციის დროს მითითებულ ტელეფონის ნომერზე";
+            }
+            
+
 
             DoneButton.Click += (s, e) =>
             {

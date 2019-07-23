@@ -83,6 +83,9 @@
 					android:layout_height="match_parent"
 					android:orientation="vertical">
 				
+
+
+
 					<TextView
 						android:id="@+id/StudenQuesName"
 						android:layout_marginTop="5dp"
@@ -94,6 +97,20 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="დავით პირველი"/>
+
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_marginTop="15dp"
+					android:layout_width="140dp"
+					android:layout_height="25dp"
+					android:layout_gravity="right">
+					<android.support.v7.widget.RecyclerView
+						android:overScrollMode="never"
+						android:id="@+id/BadgesRecyclerView"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"/>
+				</LinearLayout>
 
 					<LinearLayout
 					android:orientation="horizontal"

@@ -43,7 +43,10 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.StudenQuesName)]
         TextView StudentName;
 
-        
+        [MapControl(Resource.Id.BadgesRecyclerView)]
+        RecyclerView BadgesRecycler;
+
+
 
         [MapControl(Resource.Id.LikeLottie)]
         LottieAnimationView likesLottie;
@@ -74,6 +77,24 @@ namespace Izrune.Activitys
 
             try
             {
+                Startloading();
+
+                var Res = await MpdcContainer.Instance.Get<IUserServices>().GetBadgesAsync();
+
+                
+                if (Res.Count() > 0)
+                {
+                    LinearLayoutManager bManager = new LinearLayoutManager(this, LinearLayoutManager.Horizontal, false);
+                    var badapter = new BadgesRecyclerViewAdapter(Res?.ToList());
+                    BadgesRecycler.SetLayoutManager(bManager);
+                    BadgesRecycler.SetAdapter(badapter);
+                }
+                else
+                    BadgesRecycler.Visibility = ViewStates.Gone;
+
+                StopLoading();
+
+
 
                 ExamType = Intent.GetStringExtra("ExamType");
                 TimeType = Intent.GetStringExtra("TimeType");
@@ -87,6 +108,9 @@ namespace Izrune.Activitys
                 {
                     CurrentTime = 90;
                 }
+
+
+
 
 
                 int CircProgress = 0;

@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Izrune.Activitys;
 using Izrune.Attributes;
+using IZrune.PCL;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Helpers;
 
@@ -63,28 +64,58 @@ namespace Izrune.Fragments
 
             QuesExamButton.Click += (s, e) =>
             {
-                Intent intent = new Intent(this, typeof(MainExamStatisticActivity));
-                StartActivity(intent);
+                if (!string.IsNullOrEmpty(CurrentStudent.PakEndDate?.ToShortDateString()))
+                {
+                    Intent intent = new Intent(this, typeof(MainExamStatisticActivity));
+                    StartActivity(intent);
+                }
+                else
+                {
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("", "სტატისტიკის სანახავად განაახლეთ პაკეტი");
+
+                }
             };
 
             ExamTestButton.Click += (s, e) =>
             {
-                Intent intent = new Intent(this, typeof(ExamStatisticActivity));
-                StartActivity(intent);
-
+                if (!string.IsNullOrEmpty(CurrentStudent.PakEndDate?.ToShortDateString()))
+                {
+                    Intent intent = new Intent(this, typeof(ExamStatisticActivity));
+                    StartActivity(intent);
+                }
+                else
+                {
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("", "სტატისტიკის სანახავად განაახლეთ პაკეტი");
+                }
               
             };
 
             DiplomasButton.Click += (s, e) =>
             {
-                Intent intent = new Intent(this,typeof(DiplomasStatisticActivity));
-                StartActivity(intent);
+                if (!string.IsNullOrEmpty(CurrentStudent.PakEndDate?.ToShortDateString()))
+                {
+
+                    Intent intent = new Intent(this, typeof(DiplomasStatisticActivity));
+                    StartActivity(intent);
+                }
+                else
+                {
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("", "სტატისტიკის სანახავად განაახლეთ პაკეტი");
+                }
             };
 
             HistoryButton.Click += (s, e) =>
             {
-                Intent intent = new Intent(this, typeof(PaymentHistoryActivity));
-                StartActivity(intent);
+                if (!string.IsNullOrEmpty(CurrentStudent.PakEndDate?.ToShortDateString()))
+                {
+
+                    Intent intent = new Intent(this, typeof(PaymentHistoryActivity));
+                    StartActivity(intent);
+                }
+                else
+                {
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("", "სტატისტიკის სანახავად განაახლეთ პაკეტი");
+                }
             };
 
         }
