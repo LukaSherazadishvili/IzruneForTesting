@@ -53,7 +53,7 @@ namespace Izrune.iOS
 
             InitDropDowns();
 
-            var result = DateTime.Now - CurrentStudent?.PakEndDate;
+            var result = CurrentStudent?.PakEndDate - DateTime.Now;
 
             IsPacketActive = result?.Days > 0;
 
@@ -193,6 +193,10 @@ namespace Izrune.iOS
 
                         UserControl.Instance.SeTSelectedStudent(CurrentStudent.id);
                         CurrentStudent = Students?[(int)index];
+
+                        var result = CurrentStudent?.PakEndDate - DateTime.Now;
+                        IsPacketActive = result?.Days > 0;
+
                         await UpdateData();
                     }
                     catch (Exception ex)
