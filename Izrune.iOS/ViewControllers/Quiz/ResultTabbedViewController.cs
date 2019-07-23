@@ -71,17 +71,24 @@ namespace Izrune.iOS
             this.Delegate = this;
             base.ViewDidLoad();
 
-            var barButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, null);
+            if(IsexamType)
+            {
 
-            barButton.Clicked += delegate {
-                var url = QuisInfo.DiplomaURl;
+            }
+            else
+            {
+                var barButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, null);
 
-                if(!string.IsNullOrEmpty(url) && !string.IsNullOrWhiteSpace(url))
-                {
-                    this.ShareUrl(url);
-                }
-            };
-            this.NavigationItem.RightBarButtonItem = barButton;
+                barButton.Clicked += delegate {
+                    var url = QuisInfo.DiplomaURl;
+
+                    if (!string.IsNullOrEmpty(url) && !string.IsNullOrWhiteSpace(url))
+                    {
+                        this.ShareUrl(url);
+                    }
+                };
+                this.NavigationItem.RightBarButtonItem = barButton;
+            }
 
         }
 
