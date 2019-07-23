@@ -35,6 +35,8 @@ namespace Izrune.iOS
         public string PromoCode = "";
         public int month;
 
+        public IPrice SelectedPrice;
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -108,6 +110,8 @@ namespace Izrune.iOS
             {
                 monthLbl.Text = name;
                 SelectedMont = (PromoInfo.Prices.ElementAt((int)index).MonthCount.Value);
+                SelectedPrice = PromoInfo?.Prices?.ElementAt((int)index);
+
                 PromoCodeSelected?.Invoke(PromoInfo.PrommoCode, SelectedMont);
                 priceTitleLbl.Text = $"ფასი - {PromoInfo?.Prices?.ElementAt((int)index)?.price} ლარი";
             };

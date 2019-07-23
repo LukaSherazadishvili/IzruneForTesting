@@ -119,7 +119,7 @@ namespace Izrune.iOS
                             else
                                 await UserControl.Instance.ReNewPack(SelectedStudent.id, SelectPacketVc.SelectedPrice.MonthCount.Value, SelectPacketVc.SelectedPrice.price.Value);
 
-                            var price = (IsPromoSelected ? new Price() { price = PromoVc.SelectedMont, MonthCount = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
+                            var price = (IsPromoSelected ? PromoVc.SelectedPrice : SelectPacketVc.SelectedPrice);
 
                             SelectedPrice = price;
                             var payInfo = UserControl.Instance.GetPaymentInformation();
