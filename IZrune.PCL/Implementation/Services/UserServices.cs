@@ -92,7 +92,7 @@ namespace IZrune.PCL.Implementation.Services
                 var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=editParentProfile&hashcode=0a3110bbe8a96c91eb33bf6072598368", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
 
-                AppCore.Instance.Alertdialog.ShowSaccessDialog("გილოცავთ", "წარმათებით მოხდა თქვენი პროფილის შეცვლა");
+                AppCore.Instance.Alertdialog.ShowSaccessDialog("გილოცავთ", "წარმატებით მოხდა თქვენი პროფილის შეცვლა");
             }
             catch (Exception ex)
             {

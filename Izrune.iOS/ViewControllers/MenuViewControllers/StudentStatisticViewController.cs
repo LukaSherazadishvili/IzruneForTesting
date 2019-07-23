@@ -127,16 +127,25 @@ namespace Izrune.iOS
             {
                 diplomeView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-                    diplomeVc.Student = CurrentStudent;
-                    this.NavigationController.PushViewController(diplomeVc, true);
+                    if (IsPacketActive)
+                    {
+                        diplomeVc.Student = CurrentStudent;
+                        this.NavigationController.PushViewController(diplomeVc, true);
+                    }
+                    else
+                        ShowAlert();
+
                 }));
             }
 
             if (sumTestsView.GestureRecognizers == null || sumTestsView.GestureRecognizers?.Length == 0)
             {
                 sumTestsView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
-                
-                    this.NavigationController.PushViewController(resultVc, true);
+
+                    if (IsPacketActive)
+                        this.NavigationController.PushViewController(resultVc, true);
+                    else
+                        ShowAlert();
                 }));
             }
 
