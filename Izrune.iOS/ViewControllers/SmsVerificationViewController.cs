@@ -35,7 +35,7 @@ namespace Izrune.iOS
 
             parent = await UserControl.Instance.GetCurrentUser();
             
-            code = await ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>().GetSmsCodeAsync(parent.id);
+            //code = await ServiceContainer.ServiceContainer.Instance.Get<IQuezServices>().GetSmsCodeAsync(parent.id);
             smsTf.EditingDidEnd += (s,e) => {
                 //TODO
 
@@ -43,7 +43,6 @@ namespace Izrune.iOS
 
             confirmBtn.TouchUpInside += async delegate {
 
-                //TODO
                 if(Convert.ToInt32(smsTf.Text) == code)
                 {
                     CheckSms(true);
