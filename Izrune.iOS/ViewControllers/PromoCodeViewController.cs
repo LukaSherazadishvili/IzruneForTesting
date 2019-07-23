@@ -102,7 +102,7 @@ namespace Izrune.iOS
             MonthDropDown.Width = this.View.Frame.Width;
             MonthDropDown.Direction = Direction.Bottom;
 
-            var array = PromoInfo?.Prices?.Select(x => x.StartDate.Value.ToString("MMMM", cultureInfo) +" - " + x.EndDate.Value.ToString("MMMM", cultureInfo))?.ToArray();
+            var array = PromoInfo?.Prices?.Select(x => x.Period)?.ToArray();
 
             MonthDropDown.DataSource = array;
 
@@ -113,7 +113,7 @@ namespace Izrune.iOS
                 SelectedPrice = PromoInfo?.Prices?.ElementAt((int)index);
 
                 PromoCodeSelected?.Invoke(PromoInfo.PrommoCode, SelectedMont);
-                priceTitleLbl.Text = $"ფასი - {PromoInfo?.Prices?.ElementAt((int)index)?.price} ლარი";
+                priceTitleLbl.Text = $"{PromoInfo?.Prices?.ElementAt((int)index).Period} - {PromoInfo?.Prices?.ElementAt((int)index)?.price} ლარი";
             };
         }
 
