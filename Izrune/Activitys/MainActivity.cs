@@ -20,6 +20,7 @@ using Izrune.Fragments;
 using Izrune.Fragments.DialogFrag;
 using Izrune.Helpers;
 using IZrune.PCL;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Izrune.Activitys
 {

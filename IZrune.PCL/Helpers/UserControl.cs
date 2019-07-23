@@ -269,7 +269,7 @@ namespace IZrune.PCL.Helpers
             {
                 await MpdcContainer.Instance.Get<IUserServices>().EditStudentProfile(Email, Phone, regionId, village, SchoolId);
                 Parent = await MpdcContainer.Instance.Get<IUserServices>().GetUserAsync();
-                AppCore.Instance.Alertdialog.ShowSaccessDialog("გილოცავთ", "წარმატებით მოხდა თქვენი პროფილის შეცვლა");
+                AppCore.Instance.Alertdialog.ShowSaccessDialog("", "წარმათებით მოხდა თქვენი პროფილის შეცვლა");
             }
             catch(Exception ex)
             {

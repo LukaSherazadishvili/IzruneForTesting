@@ -10,5 +10,6 @@ namespace IZrune.PCL.Abstraction.Models
          DateTime ?EndDate { get; set; }
         int? price { get; set; }
         int? MonthCount { get; set; }
+        string Period { get; set; }
     }
 }

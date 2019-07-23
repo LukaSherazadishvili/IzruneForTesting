@@ -41,37 +41,25 @@
 					android:layout_weight="1"
 					android:text="დავით პირველი"
 					android:textColor="#AE71B7"/>
-				<ImageView
-					android:id="@+id/imageView7"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"/>
-				<ImageView
-					android:id="@+id/imageView10"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"/>
-				<ImageView
-					android:id="@+id/imageView11"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"/>
-				<ImageView
-					android:id="@+id/imageView12"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content" />
-				<ImageView
-					android:id="@+id/imageView13"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"/>
-				<ImageView
-					android:id="@+id/imageView14"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"/>
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_marginTop="15dp"
+					android:layout_width="140dp"
+					android:layout_height="25dp"
+					android:layout_gravity="right">
+					<android.support.v7.widget.RecyclerView
+						android:overScrollMode="never"
+						android:id="@+id/BadgesRecyclerView"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"/>
+				</LinearLayout>
 			</LinearLayout>
 			<FFImageLoading.Views.ImageViewAsync				
 				android:id="@+id/Diplom"
 				android:layout_width="match_parent"
 				android:layout_height="180dp"
 				android:visibility="gone"
-				android:scaleType="fitXY"
+				android:scaleType="centerCrop"
 				/>
 			
 			<LinearLayout

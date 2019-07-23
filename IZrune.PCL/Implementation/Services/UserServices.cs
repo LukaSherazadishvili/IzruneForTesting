@@ -102,6 +102,7 @@ namespace IZrune.PCL.Implementation.Services
 
         public async Task EditStudentProfile(string Email, string Phone, int regionId, string village, int SchoolId)
         {
+           
             var FormContent = new FormUrlEncodedContent(new[]
                {
                 new KeyValuePair<string,string>("student_id",UserControl.Instance.CurrentStudent.id.ToString()),
@@ -177,6 +178,7 @@ namespace IZrune.PCL.Implementation.Services
                         new Price()
                         {
                             price = i.price,
+                            Period=i.title,
                             StartDate = DateTime.ParseExact(i.start_date, "yyyy-MM-dd", CultureInfo.InvariantCulture),
                             EndDate = DateTime.ParseExact(i.end_date, "yyyy-MM-dd", CultureInfo.InvariantCulture),
                            MonthCount = MonthDifference(DateTime.ParseExact(i.end_date, "yyyy-MM-dd", CultureInfo.InvariantCulture), DateTime.ParseExact(i.start_date, "yyyy-MM-dd", CultureInfo.InvariantCulture))

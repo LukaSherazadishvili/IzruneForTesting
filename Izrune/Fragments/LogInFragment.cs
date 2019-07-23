@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Izrune.Activitys;
 using Izrune.Attributes;
+using Izrune.Helpers;
 using IZrune.PCL.Helpers;
 
 namespace Izrune.Fragments
@@ -54,6 +55,16 @@ namespace Izrune.Fragments
 
             base.OnCreate(savedInstanceState);
 
+            ISharedPreferences pref = Application.Context.GetSharedPreferences("UserInfo", FileCreationMode.Private);
+            var username = pref.GetString("UserName", string.Empty);
+            var password = pref.GetString("Password", string.Empty);
+
+
+            if (!(string.IsNullOrEmpty(username) && string.IsNullOrEmpty(password))){
+
+                UserName.Text = username;
+                Password.Text = password;
+            }
 
             Intent intent = new Intent(this, typeof(ForgotPasswordOrUserNameActivity));
             Forgotpas.Click += (s, e) =>
@@ -79,9 +90,13 @@ namespace Izrune.Fragments
                 Startloading();
                 var result = await UserControl.Instance.LogInUser(UserName.Text, Password.Text);
 
+
+
                 if (result)
                 {
-                    var Result = await UserControl.Instance.GetCurrentUser();
+                    //var Result = await UserControl.Instance.GetCurrentUser();
+                    IzruneHellper.Instance.SaveUserNamePassword(UserName.Text, Password.Text);
+
                     var intentt = new Intent(this, typeof(MainPageAtivity));
                     StartActivity(intentt);
                 }

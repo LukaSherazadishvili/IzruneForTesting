@@ -207,11 +207,24 @@ namespace IZrune.PCL.Implementation.Services
                 var jsn = await Data.Content.ReadAsStringAsync();
                 var Result = JsonConvert.DeserializeObject<SmsCodeDTO>(jsn);
 
-                return Result.sms_code;
+                if (Result.Code == 0)
+                {
+                    AppCore.Instance.Alertdialog.ShowSaccessDialog("", "კოდი გამოგზავნილია თქვენსმიერ რეგისტრაციის დროს მითითებულ ნომერზე");
+                    return Result.sms_code;
+                }
+                else
+                {
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "ვერ მოხერხდა კოდის გამოგზავნა");
+
+                    return 0;
+                }
             }
             catch(Exception ex)
             {
+
+                AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "ვერ მოხერხდა კოდის გამოგზავნა");
                 return 0;
+               
             }
         }
     }
