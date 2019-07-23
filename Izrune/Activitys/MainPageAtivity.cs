@@ -14,6 +14,7 @@ using Android.Views;
 using Android.Widget;
 using Izrune.Attributes;
 using Izrune.Fragments;
+using Izrune.Fragments.DialogFrag;
 using IZrune.PCL;
 using IZrune.PCL.Helpers;
 using IZrune.PCL.Implementation.Services;
@@ -133,6 +134,23 @@ namespace Izrune.Activitys
             }
         }
 
+
+        public void ChangePage()
+        {
+           
+
+            var transcation = FragmentManager.BeginTransaction();
+            MainPageAlertDialog dialog = new MainPageAlertDialog() {ChangeFragment=()=> {
+
+                HeaderText.Text = "";
+                ChangeFragmentPage(new InnerChangePackFragment(), MainContainer.Id);
+                drawer.CloseDrawers();
+
+            } };
+            dialog.Show(transcation, "Image Dialog");
+        }
+
+      
 
         public override void OnBackPressed()
         {

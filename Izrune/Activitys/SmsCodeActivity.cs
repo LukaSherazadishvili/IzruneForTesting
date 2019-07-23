@@ -20,6 +20,9 @@ namespace Izrune.Activitys
     {
         protected override int LayoutResource { get; } = Resource.Layout.LayoutSmsCode;
 
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get; set; }
+
         [MapControl(Resource.Id.GetSmsCodeButton)]
         LinearLayout GetSmsCode;
 
@@ -28,6 +31,13 @@ namespace Izrune.Activitys
 
         [MapControl(Resource.Id.SmsCodeEdiTxt)]
         EditText SmsEditext;
+
+
+        [MapControl(Resource.Id.BackButton)]
+        FrameLayout BackButto;
+
+
+
 
 
         string SmsCode;
@@ -51,10 +61,26 @@ namespace Izrune.Activitys
             GetSmsCode.Click +=async (s, e) =>
             {
 
+                Startloading(true);
+
              var  Result =await  QuezControll.Instance.GetSmsCode();
                 SmsCode = Result.ToString();
+
+                StopLoading();
             };
 
+            BackButto.Click += BackButto_Click;
+
+        }
+
+        private void BackButto_Click(object sender, EventArgs e)
+        {
+            OnBackPressed();
+        }
+
+        public override void OnBackPressed()
+        {
+            this.Finish();
         }
 
         private void AgreeButton_Click(object sender, EventArgs e)
@@ -62,6 +88,7 @@ namespace Izrune.Activitys
             if (SmsCode == SmsEditext.Text)
             {
                 Intent intent = new Intent(this,typeof(QuezActivity));
+                intent.SetFlags(ActivityFlags.NewTask);
                 intent.PutExtra("TimeType", TimeType);
                 intent.PutExtra("ExamType", ExamType);
                 StartActivity(intent);

@@ -8,12 +8,16 @@ using Android.Content;
 using Android.Media;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using FFImageLoading.Views;
+using Izrune.Adapters.RecyclerviewAdapters;
 using Izrune.Attributes;
 using Izrune.Helpers;
+using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
+using MpdcContainer = ServiceContainer.ServiceContainer;
 
 namespace Izrune.Fragments
 {
@@ -58,6 +62,8 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.EGmuImage)]
         ImageView EgmuImage;
 
+        [MapControl(Resource.Id.BadgesRecyclerView)]
+        RecyclerView BadgesRecycler;
 
         [MapControl(Resource.Id.Container)]
         protected override FrameLayout MainFrame { get; set; }
@@ -75,6 +81,21 @@ namespace Izrune.Fragments
             Activity.RunOnUiThread(async() => {
 
                 Startloading();
+
+
+                var Res = await MpdcContainer.Instance.Get<IUserServices>().GetBadgesAsync();
+
+
+                if (Res.Count() > 0)
+                {
+                    LinearLayoutManager bManager = new LinearLayoutManager(this, LinearLayoutManager.Horizontal, false);
+                    var badapter = new BadgesRecyclerViewAdapter(Res?.ToList());
+                    BadgesRecycler.SetLayoutManager(bManager);
+                    BadgesRecycler.SetAdapter(badapter);
+                }
+                else
+                    BadgesRecycler.Visibility = ViewStates.Gone;
+
 
                 var Result = await QuezControll.Instance.GetExamInfoAsync();
 

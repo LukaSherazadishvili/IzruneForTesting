@@ -92,7 +92,7 @@ namespace Izrune.Fragments
 
                     var DataAdapter = new ArrayAdapter<string>(this,
                   Android.Resource.Layout.SimpleSpinnerDropDownItem,
-                 PromoCod.Prices.Select(i => $"{ i.StartDate}  {i.EndDate}").ToList());
+                 PromoCod.Prices.Select(i => $"{ i.StartDate.Value.ToShortDateString()}  {i.EndDate.Value.ToShortDateString()}").ToList());
 
                     monthSpiner.Adapter = DataAdapter;
                     monthSpiner.ItemSelected += MonthSpiner_ItemSelected;

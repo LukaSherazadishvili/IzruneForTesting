@@ -14,6 +14,7 @@
     android:layout_width="300dp"
     android:layout_height="wrap_content"
 	android:padding="10dp"
+		android:paddingBottom="15dp"
 	android:background="@drawable/quezbuttondefaultbackground">
 
 	 <LinearLayout
@@ -22,12 +23,14 @@
 		android:orientation="horizontal"
 		>
 		<LinearLayout
+				android:visibility="invisible"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:orientation="horizontal"
 			android:padding="5dp"
 			android:background="@drawable/xmlfile2">
 			<TextView
+
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,9 +73,28 @@
 		android:padding="1dp"
 		android:fontFamily="@font/bpg_mrgvlovani"
         android:textAlignment="center"
-        android:text="დროის არჩევის შემდეგ ტესტი დაიწყება ავტომატურ რეჟიმში. ტესტის გვერდიდან გასვლის ან გვერდის გადატვირთვის შემთხვევაში ტესტი ჩაითვლება გავლილად და მას ხელახლა ვერ გაივლით." />
+        android:text="“ყურადღება“, “ტესტის გასავლლეად განაახლეთ პაკეტი”" />
 
-    
+		<FrameLayout
+			android:id="@+id/ChangePaymentButton"
+			android:background="@drawable/izrune_editext_back"
+			android:paddingTop="5dp"
+			android:paddingBottom="6dp"
+			android:paddingLeft="10dp"
+			android:paddingRight="10dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="განახლება"
+				android:fontFamily="@font/bpg_mrgvlovani"
+				/>
+
+			</FrameLayout>
+   
 
 </LinearLayout>
 

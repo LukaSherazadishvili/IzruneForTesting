@@ -12,6 +12,7 @@ using Android.Widget;
 using Izrune.Activitys;
 using Izrune.Adapters.SpinerAdapter;
 using Izrune.Attributes;
+using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
 using MpdcContainer = ServiceContainer.ServiceContainer;
@@ -66,7 +67,7 @@ namespace Izrune.Fragments
         LinearLayout ExamTimeContainer;
 
 
-
+        IParent Result;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -81,7 +82,7 @@ namespace Izrune.Fragments
            
             
 
-            var Result =await UserControl.Instance.GetCurrentUser();
+             Result =await UserControl.Instance.GetCurrentUser();
 
             var date = QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezTest);
             var k = await MpdcContainer.Instance.Get<IPaymentService>().GetPaymentHistory();
@@ -105,7 +106,7 @@ namespace Izrune.Fragments
                 {
                     ExamTimeContainer.Visibility = ViewStates.Gone;
                     ActiveExamTxt.Visibility = ViewStates.Visible;
-                    ExamtestButton.Click += ExamtestButton_Click;
+                   
 
                 }
                 else
@@ -123,17 +124,20 @@ namespace Izrune.Fragments
                 {
                     TestTimeContainer.Visibility = ViewStates.Gone;
                     ActiveTestTxt.Visibility = ViewStates.Visible;
-                    
+                  
                 }
                 else
                 {
                     TestDayCount.Text = TestTimeRes.Days.ToString();
                     TestHours.Text = TestTimeRes.Hours.ToString();
                     TestMinit.Text = TestTimeRes.Minutes.ToString();
-                    TrainigTestButton.Click += TrainigTestButton_Click;
+                  
                 }
 
             };
+
+            TrainigTestButton.Click += TrainigTestButton_Click;
+            ExamtestButton.Click += ExamtestButton_Click;
             StopLoading();
             
         }
@@ -142,15 +146,29 @@ namespace Izrune.Fragments
 
         private void TrainigTestButton_Click(object sender, EventArgs e)
         {
-            Intent intent = new Intent(this,typeof(TrainigTestActivity));
-            StartActivity(intent);
+            if (!string.IsNullOrEmpty(UserControl.Instance.CurrentStudent?.PakEndDate?.ToString()) || Result.IsAdmin)
+            {
+                Intent intent = new Intent(this, typeof(TrainigTestActivity));
+                StartActivity(intent);
+            }
+            else
+            {
+                (Activity as MainPageAtivity).ChangePage();
+            }
 
         }
 
         private void ExamtestButton_Click(object sender, EventArgs e)
         {
-            Intent intent = new Intent(this,typeof(ExamTestActivity));
-            StartActivity(intent);
+            if (!string.IsNullOrEmpty(UserControl.Instance.CurrentStudent?.PakEndDate?.ToString()) || Result.IsAdmin)
+            {
+                Intent intent = new Intent(this, typeof(ExamTestActivity));
+                StartActivity(intent);
+            }
+            else
+            {
+                (Activity as MainPageAtivity).ChangePage();
+            }
         }
 
        

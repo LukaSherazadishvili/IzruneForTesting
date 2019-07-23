@@ -85,7 +85,7 @@ namespace IZrune.PCL.Implementation.Services
             }
             catch(Exception ex)
             {
-                AppCore.Instance.Alertdialog.ShowAlerDialog("შეფერხება", "ინფორმაცია ვერ მოიძებნა არ არ ხართ დაკავშირებული ინტერნეტთან");
+                AppCore.Instance.Alertdialog.ShowAlerDialog("შეფერხება", "ინფორმაცია ვერ მოიძებნა ან არ ხართ დაკავშირებული ინტერნეტთან");
                 return null;
             }
         }
@@ -140,13 +140,13 @@ namespace IZrune.PCL.Implementation.Services
                 }
                 else
                 {
-                    AppCore.Instance.Alertdialog.ShowAlerDialog("შეფერხება", "ინფორმაცია ვერ მოიძებნა არ არ ხართ დაკავშირებული ინტერნეტთან");
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("შეფერხება", "ინფორმაცია ვერ მოიძებნა ან არ ხართ დაკავშირებული ინტერნეტთან");
                     return null;
                 }
             }
             catch(Exception ex)
             {
-                AppCore.Instance.Alertdialog.ShowAlerDialog("შეფერხება", "ინფორმაცია ვერ მოიძებნა არ არ ხართ დაკავშირებული ინტერნეტთან");
+                AppCore.Instance.Alertdialog.ShowAlerDialog("შეფერხება", "ინფორმაცია ვერ მოიძებნა ან არ ხართ დაკავშირებული ინტერნეტთან");
                 return null; ;
             }
         }
@@ -198,7 +198,7 @@ namespace IZrune.PCL.Implementation.Services
             }
             catch(Exception ex)
             {
-                AppCore.Instance.Alertdialog.ShowAlerDialog("შეფერხება", "ინფორმაცია ვერ მოიძებნა არ არ ხართ დაკავშირებული ინტერნეტთან");
+                AppCore.Instance.Alertdialog.ShowAlerDialog("შეფერხება", "ინფორმაცია ვერ მოიძებნა ან არ ხართ დაკავშირებული ინტერნეტთან");
                 return null;
             }
         }

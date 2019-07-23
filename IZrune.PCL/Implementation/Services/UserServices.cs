@@ -92,7 +92,7 @@ namespace IZrune.PCL.Implementation.Services
                 var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=editParentProfile&hashcode=0a3110bbe8a96c91eb33bf6072598368", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
 
-                AppCore.Instance.Alertdialog.ShowSaccessDialog("გილოცავთ", "წარმათებით მოხდა თქვენი პროფილის შეცვლა");
+                AppCore.Instance.Alertdialog.ShowSaccessDialog("გილოცავთ", "წარმატებით მოხდა თქვენი პროფილის შეცვლა");
             }
             catch (Exception ex)
             {
@@ -102,6 +102,7 @@ namespace IZrune.PCL.Implementation.Services
 
         public async Task EditStudentProfile(string Email, string Phone, int regionId, string village, int SchoolId)
         {
+           
             var FormContent = new FormUrlEncodedContent(new[]
                {
                 new KeyValuePair<string,string>("student_id",UserControl.Instance.CurrentStudent.id.ToString()),
@@ -177,6 +178,7 @@ namespace IZrune.PCL.Implementation.Services
                         new Price()
                         {
                             price = i.price,
+                            Period=i.title,
                             StartDate = DateTime.ParseExact(i.start_date, "yyyy-MM-dd", CultureInfo.InvariantCulture),
                             EndDate = DateTime.ParseExact(i.end_date, "yyyy-MM-dd", CultureInfo.InvariantCulture),
                            MonthCount = MonthDifference(DateTime.ParseExact(i.end_date, "yyyy-MM-dd", CultureInfo.InvariantCulture), DateTime.ParseExact(i.start_date, "yyyy-MM-dd", CultureInfo.InvariantCulture))

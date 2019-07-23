@@ -10,6 +10,7 @@ using IZrune.PCL.Abstraction.Models;
 using System.Linq;
 using MpdcViewExtentions;
 using IZrune.PCL.Helpers;
+using System.Globalization;
 
 namespace Izrune.iOS
 {
@@ -27,10 +28,14 @@ namespace Izrune.iOS
 
         public Action<string, int> PromoCodeSelected { get; set; }
 
+        CultureInfo cultureInfo = new CultureInfo("ka-GE");
+
         public int SelectedMont;
 
         public string PromoCode = "";
         public int month;
+
+        public IPrice SelectedPrice;
 
         public override void ViewDidLoad()
         {
@@ -97,7 +102,7 @@ namespace Izrune.iOS
             MonthDropDown.Width = this.View.Frame.Width;
             MonthDropDown.Direction = Direction.Bottom;
 
-            var array = PromoInfo?.Prices?.Select(x => x.StartDate.Value.ToString("dd/MM/yyyy") +" - " + x.EndDate.Value.ToString("dd/MM/yyyy"))?.ToArray();
+            var array = PromoInfo?.Prices?.Select(x => x.Period)?.ToArray();
 
             MonthDropDown.DataSource = array;
 
@@ -105,7 +110,10 @@ namespace Izrune.iOS
             {
                 monthLbl.Text = name;
                 SelectedMont = (PromoInfo.Prices.ElementAt((int)index).MonthCount.Value);
+                SelectedPrice = PromoInfo?.Prices?.ElementAt((int)index);
+
                 PromoCodeSelected?.Invoke(PromoInfo.PrommoCode, SelectedMont);
+                priceTitleLbl.Text = $"{PromoInfo?.Prices?.ElementAt((int)index).Period} - {PromoInfo?.Prices?.ElementAt((int)index)?.price} ლარი";
             };
         }
 
