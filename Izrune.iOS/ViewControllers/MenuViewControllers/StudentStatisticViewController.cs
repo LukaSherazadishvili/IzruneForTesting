@@ -23,7 +23,6 @@ namespace Izrune.iOS
 		}
 
         public static readonly NSString StoryboardId = new NSString("StudentStatisticStoryboardId");
-
         DropDown CurentStudentDP = new DropDown();
         private IEnumerable<IDiplomStatistic> diplomeStatistics;
         IStudent CurrentStudent;
@@ -191,7 +190,9 @@ namespace Izrune.iOS
                     InitForm(CurrentStudent);
                     try
                     {
+
                         UserControl.Instance.SeTSelectedStudent(CurrentStudent.id);
+                        CurrentStudent = Students?[(int)index];
                         await UpdateData();
                     }
                     catch (Exception ex)
