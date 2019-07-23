@@ -6810,7 +6810,8 @@
                                             <constraint firstAttribute="height" constant="50" id="0Nz-gy-jfH"/>
                                             <constraint firstAttribute="width" constant="50" id="Kux-Qc-97i"/>
                                         </constraints>
-                                        <state key="normal" image="1 – 4.png"/>
+                                        <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" image="12 – 10.png"/>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="უკან დაბრუნება" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uos-lq-Jwg">
                                         <rect key="frame" x="0.0" y="70" width="110" height="14"/>
@@ -6947,7 +6948,8 @@
                                                                     <constraint firstAttribute="width" constant="50" id="DX0-V4-svn"/>
                                                                     <constraint firstAttribute="height" constant="50" id="lnD-Nb-x57"/>
                                                                 </constraints>
-                                                                <state key="normal" image="1 – 4.png"/>
+                                                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                                <state key="normal" image="12 – 10.png"/>
                                                             </button>
                                                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="უკან დაბრუნება" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYd-6B-nwS">
                                                                 <rect key="frame" x="0.0" y="70" width="110" height="14"/>
@@ -7043,7 +7045,6 @@
         <image name="1 – 20.png" width="25" height="25"/>
         <image name="1 – 21.png" width="25" height="25"/>
         <image name="1 – 25.png" width="25" height="25"/>
-        <image name="1 – 4.png" width="25" height="25"/>
         <image name="12 – 10.png" width="150" height="150"/>
         <image name="12 – 12.png" width="150" height="150"/>
         <image name="12 – 13.png" width="150" height="150"/>
