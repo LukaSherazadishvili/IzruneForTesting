@@ -13,6 +13,9 @@ namespace Izrune.iOS
 	partial class ExamResultViewController
 	{
 		[Outlet]
+		UIKit.UICollectionView badgesCollectionView { get; set; }
+
+		[Outlet]
 		UIKit.UIImageView diplomeImageView { get; set; }
 
 		[Outlet]
@@ -53,6 +56,11 @@ namespace Izrune.iOS
 			if (diplomeImageView != null) {
 				diplomeImageView.Dispose ();
 				diplomeImageView = null;
+			}
+
+			if (egmuImageView != null) {
+				egmuImageView.Dispose ();
+				egmuImageView = null;
 			}
 
 			if (examTimeLbl != null) {
@@ -105,9 +113,9 @@ namespace Izrune.iOS
 				viewForLottie = null;
 			}
 
-			if (egmuImageView != null) {
-				egmuImageView.Dispose ();
-				egmuImageView = null;
+			if (badgesCollectionView != null) {
+				badgesCollectionView.Dispose ();
+				badgesCollectionView = null;
 			}
 		}
 	}

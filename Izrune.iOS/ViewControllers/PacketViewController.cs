@@ -54,6 +54,7 @@ namespace Izrune.iOS
         List<IStudent> Students;
 
         public bool IsFromMenu = true;
+        IPrice SelectedPrice;
 
         #endregion
 
@@ -62,6 +63,8 @@ namespace Izrune.iOS
             base.ViewDidLoad();
 
             this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+
+            SelectedStudent = UserControl.Instance.CurrentStudent;
 
             if (!IsFromMenu)
                 await GetPromoDataAsync(SchoolId);
@@ -118,10 +121,11 @@ namespace Izrune.iOS
 
                             var price = (IsPromoSelected ? new Price() { price = PromoVc.SelectedMont, MonthCount = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
 
+                            SelectedPrice = price;
                             var payInfo = UserControl.Instance.GetPaymentInformation();
 
                             var payVc = Storyboard.InstantiateViewController(PaymentMethodViewController.StoryboardId) as PaymentMethodViewController;
-
+                            payVc.SelectedPrice = SelectedPrice;
                             payVc.PayInfo = payInfo;
                             payVc.HideTitle = true;
 
@@ -205,7 +209,6 @@ namespace Izrune.iOS
                     UpdateViewSize(SelectPacketVc.ContentHeight);
                 };
             }
-
         }
 
         private async Task GetPromoDataAsync(int schoolId)
@@ -366,6 +369,8 @@ namespace Izrune.iOS
             SetupDropDown();
 
             SetupDropDownGesture(StudentDp, selectStudentDP);
+
+            SelectedStudent = UserControl.Instance.CurrentStudent;
 
             selectedStudentLbl.Text = SelectedStudent.Name + " " + SelectedStudent.LastName;
 

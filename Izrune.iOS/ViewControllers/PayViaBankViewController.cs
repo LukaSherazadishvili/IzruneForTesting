@@ -47,9 +47,9 @@ namespace Izrune.iOS
         private async Task InitDataAsync()
         {
             CurrentUser = await IZrune.PCL.Helpers.UserControl.Instance.GetCurrentUser();
-            profileNumberLbl.Text = $"1. პროფილის ნომერი - {CurrentUser?.id}";
-            userNameLbl.Text = $"2. მომხმარებლის სახელი-გვარი - {CurrentUser?.Name + " " + CurrentUser?.LastName}";
-            billLbl.Text = $"3. გადასახდელი თანხა - {SelectedPrice?.price}";
+            profileNumberLbl.Text = $"1. პროფილის ნომერი - {CurrentUser?.ProfileNumber}";
+            userNameLbl.Text = $"2. მომხმარებელი: {CurrentUser?.Name + " " + CurrentUser?.LastName}";
+            billLbl.Text = $"3. გადასახდელი თანხა - {SelectedPrice?.price} ლარი";
             dateLbl.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
             userStackView.Hidden = CurrentUser == null;

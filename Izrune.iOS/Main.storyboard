@@ -1530,19 +1530,42 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="897"/>
                                         <subviews>
                                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="j5g-c1-bkv">
-                                                <rect key="frame" x="0.0" y="15" width="414" height="882"/>
+                                                <rect key="frame" x="0.0" y="20" width="414" height="837"/>
                                                 <subviews>
-                                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="დავით პირველი" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpl-oJ-Qqi">
-                                                        <rect key="frame" x="131" y="0.0" width="152" height="19"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Zk-FV-bj4">
+                                                        <rect key="frame" x="20" y="0.0" width="374" height="50"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="16"/>
-                                                        <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" red="0.68235294117647061" green="0.44313725490196076" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalCompressionResistancePriority="749" image="izruneBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="yXR-VS-dcK">
-                                                        <rect key="frame" x="0.0" y="66" width="414" height="270"/>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dsO-Zv-RyR">
+                                                        <rect key="frame" x="20" y="78" width="374" height="30"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="He1-XZ-qj2"/>
+                                                        </constraints>
+                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Odl-Fy-GlZ">
+                                                            <size key="itemSize" width="52" height="27"/>
+                                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        </collectionViewFlowLayout>
+                                                        <cells>
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" id="MIg-th-qfH">
+                                                                <rect key="frame" x="0.0" y="1.5" width="52" height="27"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="52" height="27"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                </view>
+                                                            </collectionViewCell>
+                                                        </cells>
+                                                    </collectionView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="yXR-VS-dcK">
+                                                        <rect key="frame" x="0.0" y="135.5" width="414" height="270"/>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bqT-py-Rnb" userLabel="RatingStackView">
-                                                        <rect key="frame" x="104.5" y="382.5" width="205" height="25"/>
+                                                        <rect key="frame" x="104.5" y="433.5" width="205" height="25"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1 – 25.png" translatesAutoresizingMaskIntoConstraints="NO" id="5Wc-BN-fQk">
                                                                 <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -1561,20 +1584,20 @@
                                                             </imageView>
                                                         </subviews>
                                                     </stackView>
-                                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="ძალიან კარგი" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLO-4D-gLg">
-                                                        <rect key="frame" x="104.5" y="454.5" width="205.5" height="29.5"/>
+                                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ძალიან კარგი" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLO-4D-gLg">
+                                                        <rect key="frame" x="104.5" y="486" width="205.5" height="29.5"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="25"/>
                                                         <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="გილოცავ, შენ წარმატებული ხარ!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DX-xw-9GY">
-                                                        <rect key="frame" x="52.5" y="531" width="309" height="19"/>
+                                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="გილოცავ, შენ წარმატებული ხარ!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DX-xw-9GY">
+                                                        <rect key="frame" x="52.5" y="543.5" width="309" height="19"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="16"/>
                                                         <color key="textColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="o3r-eH-MTd" userLabel="ResultStackView">
-                                                        <rect key="frame" x="56" y="597" width="302" height="112"/>
+                                                        <rect key="frame" x="56" y="590.5" width="302" height="112"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 136.png" translatesAutoresizingMaskIntoConstraints="NO" id="5Hz-o2-aCs">
                                                                 <rect key="frame" x="0.0" y="0.0" width="136" height="112"/>
@@ -1592,14 +1615,14 @@
                                                             </imageView>
                                                         </subviews>
                                                     </stackView>
-                                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="სწორი პასუხი 17, არასწორი პასუხი 3 გამოტოვებული კითხვა 0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKo-2N-nEN">
-                                                        <rect key="frame" x="15" y="756" width="384" height="28"/>
+                                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="სწორი პასუხი 17, არასწორი პასუხი 3 გამოტოვებული კითხვა 0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKo-2N-nEN">
+                                                        <rect key="frame" x="15" y="730" width="384" height="28"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
                                                         <color key="textColor" red="0.24705882352941178" green="0.31764705882352939" blue="0.70980392156862748" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="0D0-Hb-yTL">
-                                                        <rect key="frame" x="139.5" y="831" width="135" height="51"/>
+                                                        <rect key="frame" x="139.5" y="786" width="135" height="51"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="51" id="2Lt-OY-WU9"/>
                                                             <constraint firstAttribute="width" constant="135" id="ryy-sk-mkh"/>
@@ -1609,14 +1632,18 @@
                                                 <constraints>
                                                     <constraint firstItem="yXR-VS-dcK" firstAttribute="leading" secondItem="j5g-c1-bkv" secondAttribute="leading" id="DXd-ND-g5m"/>
                                                     <constraint firstItem="DKo-2N-nEN" firstAttribute="leading" secondItem="j5g-c1-bkv" secondAttribute="leading" constant="15" id="JFY-0n-qPI"/>
+                                                    <constraint firstAttribute="trailing" secondItem="dsO-Zv-RyR" secondAttribute="trailing" constant="20" id="Q64-VI-3WX"/>
                                                     <constraint firstItem="yXR-VS-dcK" firstAttribute="leading" secondItem="j5g-c1-bkv" secondAttribute="leading" id="VOj-gb-wCX"/>
                                                     <constraint firstAttribute="trailing" secondItem="yXR-VS-dcK" secondAttribute="trailing" id="XCC-tF-K34"/>
                                                     <constraint firstAttribute="trailing" secondItem="yXR-VS-dcK" secondAttribute="trailing" id="czr-cf-utF"/>
                                                     <constraint firstAttribute="trailing" secondItem="DKo-2N-nEN" secondAttribute="trailing" constant="15" id="dfH-TN-Lqr"/>
+                                                    <constraint firstItem="dsO-Zv-RyR" firstAttribute="leading" secondItem="j5g-c1-bkv" secondAttribute="leading" constant="20" id="ebs-qP-miT"/>
+                                                    <constraint firstItem="6Zk-FV-bj4" firstAttribute="leading" secondItem="j5g-c1-bkv" secondAttribute="leading" constant="20" id="iE1-bX-uwI"/>
+                                                    <constraint firstAttribute="trailing" secondItem="6Zk-FV-bj4" secondAttribute="trailing" constant="20" id="kn5-i8-AYZ"/>
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xOm-RO-Hwp">
-                                                <rect key="frame" x="0.0" y="260" width="414" height="300"/>
+                                                <rect key="frame" x="0.0" y="316" width="414" height="300"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="300" id="rf5-vp-yXf"/>
@@ -1629,9 +1656,9 @@
                                             <constraint firstItem="xOm-RO-Hwp" firstAttribute="centerX" secondItem="wHA-fv-XbM" secondAttribute="centerX" id="Kgr-1C-i2N"/>
                                             <constraint firstAttribute="trailing" secondItem="j5g-c1-bkv" secondAttribute="trailing" id="QZg-sL-GfO"/>
                                             <constraint firstItem="j5g-c1-bkv" firstAttribute="leading" secondItem="wHA-fv-XbM" secondAttribute="leading" id="bke-Ri-6CC"/>
-                                            <constraint firstAttribute="bottom" secondItem="j5g-c1-bkv" secondAttribute="bottom" id="d8Y-h8-mQy"/>
+                                            <constraint firstAttribute="bottom" secondItem="j5g-c1-bkv" secondAttribute="bottom" constant="40" id="d8Y-h8-mQy"/>
                                             <constraint firstItem="xOm-RO-Hwp" firstAttribute="width" secondItem="wHA-fv-XbM" secondAttribute="width" id="jyR-cY-rUY"/>
-                                            <constraint firstItem="j5g-c1-bkv" firstAttribute="top" secondItem="wHA-fv-XbM" secondAttribute="top" constant="15" id="ywM-f3-WU7"/>
+                                            <constraint firstItem="j5g-c1-bkv" firstAttribute="top" secondItem="wHA-fv-XbM" secondAttribute="top" constant="20" id="ywM-f3-WU7"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1644,7 +1671,7 @@
                                 <viewLayoutGuide key="safeArea" id="7IZ-Bg-aGQ"/>
                             </scrollView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="65" translatesAutoresizingMaskIntoConstraints="NO" id="frr-4Y-PSB">
-                                <rect key="frame" x="74.5" y="661" width="265" height="102"/>
+                                <rect key="frame" x="74.5" y="659.5" width="265" height="102"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bme-8Z-WFP">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="102"/>
@@ -1661,13 +1688,13 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="95" height="95"/>
                                                 <subviews>
                                                     <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="85" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1N-Px-psr">
-                                                        <rect key="frame" x="30.5" y="22" width="34.5" height="31.5"/>
+                                                        <rect key="frame" x="30.5" y="21.5" width="34.5" height="31.5"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="27"/>
                                                         <color key="textColor" red="0.24705882352941178" green="0.31764705882352939" blue="0.70980392156862748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ქულა" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2D-5r-oi8">
-                                                        <rect key="frame" x="22.5" y="61.5" width="50.5" height="19"/>
+                                                        <rect key="frame" x="22.5" y="61" width="50.5" height="19"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="16"/>
                                                         <color key="textColor" red="0.24705882352941178" green="0.31764705882352939" blue="0.70980392156862748" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1791,6 +1818,7 @@
                         <viewLayoutGuide key="safeArea" id="K39-mP-yqc"/>
                     </view>
                     <connections>
+                        <outlet property="badgesCollectionView" destination="dsO-Zv-RyR" id="heT-Uz-C7L"/>
                         <outlet property="diplomeImageView" destination="yXR-VS-dcK" id="JrO-SU-4dT"/>
                         <outlet property="egmuImageView" destination="0D0-Hb-yTL" id="Vow-JE-0bD"/>
                         <outlet property="examTimeLbl" destination="jPv-w9-GKm" id="bCS-jU-XEv"/>
@@ -1801,13 +1829,13 @@
                         <outlet property="resultTextLbl" destination="8DX-xw-9GY" id="54Y-9q-FXZ"/>
                         <outlet property="timeShadowView" destination="Z0i-tU-ADN" id="Cdl-Oe-gE1"/>
                         <outlet property="totalPointLbl" destination="N1N-Px-psr" id="z69-eh-B7m"/>
-                        <outlet property="userNameLbl" destination="cpl-oJ-Qqi" id="g0o-oX-ZBM"/>
+                        <outlet property="userNameLbl" destination="6Zk-FV-bj4" id="tm7-75-YhE"/>
                         <outlet property="viewForLottie" destination="xOm-RO-Hwp" id="4Of-Bi-qUH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wGw-g8-HSY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2185" y="2679"/>
+            <point key="canvasLocation" x="-2185.507246376812" y="2678.5714285714284"/>
         </scene>
         <!--Question Result View Controller-->
         <scene sceneID="cP3-uU-4rB">
@@ -2551,6 +2579,26 @@
                                         <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="68f-0F-OeO">
+                                        <rect key="frame" x="158" y="44" width="238" height="32"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="4" minimumInteritemSpacing="0.0" id="Lca-eW-RHz">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="sUJ-2i-Xvd">
+                                                <rect key="frame" x="0.0" y="-9" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BH1-yu-loG">
                                         <rect key="frame" x="158" y="80" width="238" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2578,8 +2626,12 @@
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="20c-Qw-hV8" firstAttribute="leading" secondItem="R2x-QI-Chq" secondAttribute="trailing" constant="15" id="3aT-3Q-TPE"/>
+                                    <constraint firstItem="68f-0F-OeO" firstAttribute="top" secondItem="20c-Qw-hV8" secondAttribute="bottom" constant="10" id="60o-Ed-Hsd"/>
                                     <constraint firstAttribute="height" constant="130" id="9WT-Ru-TlR"/>
+                                    <constraint firstItem="BH1-yu-loG" firstAttribute="top" secondItem="68f-0F-OeO" secondAttribute="bottom" constant="4" id="GhB-p4-ocX"/>
                                     <constraint firstItem="20c-Qw-hV8" firstAttribute="top" secondItem="R2x-QI-Chq" secondAttribute="top" id="LlG-LB-t1O"/>
+                                    <constraint firstItem="68f-0F-OeO" firstAttribute="leading" secondItem="BH1-yu-loG" secondAttribute="leading" id="S1u-us-hUt"/>
+                                    <constraint firstItem="68f-0F-OeO" firstAttribute="trailing" secondItem="20c-Qw-hV8" secondAttribute="trailing" id="UpM-7x-gZ5"/>
                                     <constraint firstAttribute="bottom" secondItem="BH1-yu-loG" secondAttribute="bottom" constant="20" id="X1k-H1-A6o"/>
                                     <constraint firstAttribute="trailing" secondItem="20c-Qw-hV8" secondAttribute="trailing" constant="18" id="c3c-RY-i8v"/>
                                     <constraint firstItem="R2x-QI-Chq" firstAttribute="centerY" secondItem="qny-id-Vxd" secondAttribute="centerY" id="f0n-eH-1US"/>
@@ -2683,6 +2735,7 @@
                     </view>
                     <connections>
                         <outlet property="answerProgressCollectionView" destination="BH1-yu-loG" id="4C9-99-fnD"/>
+                        <outlet property="badgeCollectionView" destination="68f-0F-OeO" id="1vx-oV-6gb"/>
                         <outlet property="questionCollectionView" destination="sY2-ss-6Oj" id="GDe-ra-1vp"/>
                         <outlet property="timeLbl" destination="0JT-gx-cam" id="ha7-Yl-xEE"/>
                         <outlet property="userNameLbl" destination="20c-Qw-hV8" id="q6I-Jx-kK3"/>
@@ -3071,7 +3124,7 @@
                                                                     <constraint firstAttribute="width" constant="25" id="UCW-u8-bVS"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" clipsSubviews="YES" contentMode="left" verticalHuggingPriority="251" text="მოსწავლის მონაცემების რედაქტიურება" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWN-ee-wrm">
+                                                            <label opaque="NO" clipsSubviews="YES" contentMode="left" verticalHuggingPriority="251" text="მოსწავლის მონაცემების რედაქტირება" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWN-ee-wrm">
                                                                 <rect key="frame" x="15" y="53" width="334" height="16.5"/>
                                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3454,6 +3507,7 @@
                         <outlet property="confirmBtn" destination="I82-Dj-lhd" id="GQU-6x-Cg8"/>
                         <outlet property="monthLbl" destination="tMD-5d-R88" id="4O2-Se-6t0"/>
                         <outlet property="monthView" destination="juf-kZ-5xD" id="Bx6-mf-6wH"/>
+                        <outlet property="priceTitleLbl" destination="GtF-Th-qkt" id="zLf-NO-m2A"/>
                         <outlet property="promoCodeErorLbl" destination="XMn-5l-Kq4" id="Fm7-nV-WdA"/>
                         <outlet property="promoCodeTf" destination="uEV-NR-R8n" id="jgi-qw-FvE"/>
                         <outlet property="promoStackView" destination="9v5-7U-TFc" id="72O-Ur-dpg"/>
@@ -4658,6 +4712,7 @@
                         <outlet property="closePopUpView" destination="MsY-Iu-e7q" id="q2z-We-grC"/>
                         <outlet property="derivedTimeShadowView" destination="ROr-oR-HOd" id="e6D-Vq-pht"/>
                         <outlet property="derivedTimeView" destination="7SN-1X-TVI" id="juF-y5-Ofv"/>
+                        <outlet property="headerTitleLbl" destination="dkE-VG-BXy" id="T0x-1f-txc"/>
                         <outlet property="popUpView" destination="WWg-0e-ZB7" id="9vt-6Y-il2"/>
                         <outlet property="totalTimeShadowView" destination="RBl-V4-VtX" id="JIL-Z6-ADK"/>
                         <outlet property="totalTimeView" destination="nNG-HD-fzi" id="0bl-hy-2xN"/>

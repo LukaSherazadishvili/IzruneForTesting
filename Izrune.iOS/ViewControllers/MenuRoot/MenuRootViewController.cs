@@ -57,7 +57,15 @@ namespace Izrune.iOS.ViewControllers
                 {MenuType.LogOut, () => CreateViewControllerByStoryboard(LogInStoryboardId)},
             };
         }
+        public void GoToPacketVC()
+        {
+            CurrentMenu = MenuType.UpdatePacket;
 
+            var currentVc = menuViewControllerCreations[CurrentMenu]?.Invoke();
+            menuVc.SetSelectionBudget(CurrentMenu);
+
+            SideBarController.ChangeContentView(currentVc);
+        }
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();

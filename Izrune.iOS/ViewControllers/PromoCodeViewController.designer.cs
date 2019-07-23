@@ -25,6 +25,9 @@ namespace Izrune.iOS
 		UIKit.UIView monthView { get; set; }
 
 		[Outlet]
+		UIKit.UILabel priceTitleLbl { get; set; }
+
+		[Outlet]
 		UIKit.UILabel promoCodeErorLbl { get; set; }
 
 		[Outlet]
@@ -76,6 +79,11 @@ namespace Izrune.iOS
 			if (specialPacketLbl != null) {
 				specialPacketLbl.Dispose ();
 				specialPacketLbl = null;
+			}
+
+			if (priceTitleLbl != null) {
+				priceTitleLbl.Dispose ();
+				priceTitleLbl = null;
 			}
 		}
 	}

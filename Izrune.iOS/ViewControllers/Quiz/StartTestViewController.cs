@@ -16,6 +16,7 @@ using IZrune.PCL.Abstraction.Services;
 using System.Threading.Tasks;
 using IZrune.PCL.Enum;
 using System.Diagnostics;
+using Izrune.iOS.ViewControllers;
 
 namespace Izrune.iOS
 {
@@ -45,6 +46,8 @@ namespace Izrune.iOS
         private Timer timer;
         private const double timerInterval = 1000;
 
+        private bool IsPacketActive { get; set; }
+
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -69,8 +72,27 @@ namespace Izrune.iOS
             UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
 
             UserNameDropDown.SelectRow(0);
+
+            var result = DateTime.Now - SelectedStudent?.PakEndDate;
+
+            IsPacketActive = !(result?.Days > 0);
         }
 
+        private void ShowPacketAlert()
+        {
+            var alert = UIAlertController.Create("ყურადღება", "ტესტის გასავლლეად განაახლეთ პაკეტი", UIAlertControllerStyle.Alert);
+            alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, (o) => { this.NavigationController.PopViewController(true); }));
+            alert.AddAction(UIAlertAction.Create("განახლება", UIAlertActionStyle.Default, (o) => {
+
+                var navVc = this.NavigationController.ParentViewController.ParentViewController as MenuRootViewController;
+
+                navVc.GoToPacketVC();
+
+                UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
+            }));
+            this.PresentViewController(alert, true, null);
+        }
+         
         private async Task LoadDataAsync()
         {
             contentView.Hidden = true;
@@ -135,6 +157,10 @@ namespace Izrune.iOS
                 SelectedStudent = Students[(int)index];
 
                 UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
+
+                var result = DateTime.Now - SelectedStudent?.PakEndDate;
+
+                IsPacketActive = !(result?.Days > 0);
             };
         }
 
@@ -144,31 +170,36 @@ namespace Izrune.iOS
             {
                 summQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-                    if(Parent.IsAdmin)
+                    if (IsPacketActive)
                     {
-                        IsSummSelected = true;
-                        var smsVc = Storyboard.InstantiateViewController(SmsVerificationViewController.StoryboardId) as SmsVerificationViewController;
-                        smsVc.SelectedStudent = SelectedStudent;
-
-                        this.NavigationController.PushViewController(smsVc, true);
-                    }
-                    else
-                    {
-                        if (IsSummTestActive)
+                        if (Parent.IsAdmin)
                         {
                             IsSummSelected = true;
                             var smsVc = Storyboard.InstantiateViewController(SmsVerificationViewController.StoryboardId) as SmsVerificationViewController;
                             smsVc.SelectedStudent = SelectedStudent;
 
-                            //chooseTimeVc.IsSumtTest = IsSummSelected;
-                            //chooseTimeVc.SelectedStudent = SelectedStudent;
-                            //chooseTimeVc.SelectedCategory = QuezCategory.QuezTest;
-
                             this.NavigationController.PushViewController(smsVc, true);
                         }
                         else
-                            ShowAlert();
+                        {
+                            if (IsSummTestActive)
+                            {
+                                IsSummSelected = true;
+                                var smsVc = Storyboard.InstantiateViewController(SmsVerificationViewController.StoryboardId) as SmsVerificationViewController;
+                                smsVc.SelectedStudent = SelectedStudent;
+
+                                //chooseTimeVc.IsSumtTest = IsSummSelected;
+                                //chooseTimeVc.SelectedStudent = SelectedStudent;
+                                //chooseTimeVc.SelectedCategory = QuezCategory.QuezTest;
+
+                                this.NavigationController.PushViewController(smsVc, true);
+                            }
+                            else
+                                ShowAlert();
+                        }
                     }
+                    else
+                        ShowPacketAlert();
                 }));
             }
 
@@ -176,32 +207,38 @@ namespace Izrune.iOS
             {
                 exQuizTransparentView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-                    if(Parent.IsAdmin)
+                    if (IsPacketActive)
                     {
-                        IsSummSelected = false;
-                        var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
-                        chooseTimeVc.IsSumtTest = IsSummSelected;
-                        chooseTimeVc.SelectedStudent = SelectedStudent;
-                        chooseTimeVc.SelectedCategory = QuezCategory.QuezTest;
-
-                        this.NavigationController.PushViewController(chooseTimeVc, true);
-                    }
-                    else
-                    {
-                        if (IsExTestActive)
+                        if (Parent.IsAdmin)
                         {
                             IsSummSelected = false;
                             var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
                             chooseTimeVc.IsSumtTest = IsSummSelected;
+                            chooseTimeVc.HeaderTitle = "სავარჯიშო ტესტი";
                             chooseTimeVc.SelectedStudent = SelectedStudent;
                             chooseTimeVc.SelectedCategory = QuezCategory.QuezTest;
 
                             this.NavigationController.PushViewController(chooseTimeVc, true);
                         }
                         else
-                            ShowAlert();
-                    }
+                        {
+                            if (IsExTestActive)
+                            {
+                                IsSummSelected = false;
+                                var chooseTimeVc = Storyboard.InstantiateViewController(ChooseTimeViewController.StoryboardId) as ChooseTimeViewController;
+                                chooseTimeVc.IsSumtTest = IsSummSelected;
+                                chooseTimeVc.HeaderTitle = "სავარჯიშო ტესტი";
+                                chooseTimeVc.SelectedStudent = SelectedStudent;
+                                chooseTimeVc.SelectedCategory = QuezCategory.QuezTest;
 
+                                this.NavigationController.PushViewController(chooseTimeVc, true);
+                            }
+                            else
+                                ShowAlert();
+                        }
+                    }
+                    else
+                        ShowPacketAlert();
                 }));
             }
 

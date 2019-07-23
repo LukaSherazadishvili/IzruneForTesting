@@ -11,10 +11,16 @@ using XLPagerTabStrip;
 using System.Collections.Generic;
 using Airbnb.Lottie;
 using Plugin.SimpleAudioPlayer;
+using Izrune.iOS.CollectionViewCells;
+using System.Threading.Tasks;
+using IZrune.PCL.Abstraction.Services;
+using MPDCiOSPages.ViewControllers;
+using IZrune.PCL.Helpers;
 
 namespace Izrune.iOS
 {
-	public partial class ExamResultViewController : UIViewController, IIndicatorInfoProvider
+	public partial class ExamResultViewController : UIViewController, IIndicatorInfoProvider, IUICollectionViewDelegate, IUICollectionViewDataSource, IUICollectionViewDelegateFlowLayout
+
     {
 		public ExamResultViewController (IntPtr handle) : base (handle)
 		{
@@ -52,14 +58,19 @@ namespace Izrune.iOS
             {5, "შემაჯამებელი 5 ვარსკვლავი.mp3"}
         };
 
+        List<IBadges> Badges;
+
         ISimpleAudioPlayer player;
 
-        public override void ViewDidLoad()
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
             InitUI();
 
+            InitCollectionView();
+
+            await LoadDataAsync();
             InitResult();
 
             if(ShowShare)
@@ -130,6 +141,27 @@ namespace Izrune.iOS
                 egmuImageView.Hidden = true;
         }
 
+        private void InitCollectionView()
+        {
+            badgesCollectionView.RegisterNibForCell(BadgeCell.Nib, BadgeCell.Identifier);
+            badgesCollectionView.Delegate = this;
+            badgesCollectionView.DataSource = this;
+        }
+
+        private async Task LoadDataAsync()
+        {
+            //ShowLoading();
+
+            var service = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
+
+            Badges = (await service.GetBadgesAsync())?.ToList();
+
+            badgesCollectionView.ReloadData();
+
+            Student = UserControl.Instance.CurrentStudent;
+            //EndLoading();
+        }
+
         public override void ViewWillDisappear(bool animated)
         {
             base.ViewWillDisappear(animated);
@@ -186,6 +218,28 @@ namespace Izrune.iOS
             fireworksAnimation.Frame = new CoreGraphics.CGRect(0, 0, viewForLottie.Frame.Width, viewForLottie.Frame.Height);
             fireworksAnimation.UserInteractionEnabled = true;
             viewForLottie.AddSubview(fireworksAnimation);
+        }
+
+        public nint GetItemsCount(UICollectionView collectionView, nint section)
+        {
+            return Badges?.Count ?? 0;
+        }
+
+        public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
+        {
+            var cell = badgesCollectionView.DequeueReusableCell(BadgeCell.Identifier, indexPath) as BadgeCell;
+
+            var data = Badges?[indexPath.Row];
+
+            cell.InitData(data);
+
+            return cell;
+        }
+
+        [Export("collectionView:layout:sizeForItemAtIndexPath:")]
+        public CoreGraphics.CGSize GetSizeForItem(UICollectionView collectionView, UICollectionViewLayout layout, NSIndexPath indexPath)
+        {
+            return new CoreGraphics.CGSize(30, 40);
         }
     }
 }
