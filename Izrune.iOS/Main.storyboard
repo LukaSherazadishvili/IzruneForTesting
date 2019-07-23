@@ -3507,6 +3507,7 @@
                         <outlet property="confirmBtn" destination="I82-Dj-lhd" id="GQU-6x-Cg8"/>
                         <outlet property="monthLbl" destination="tMD-5d-R88" id="4O2-Se-6t0"/>
                         <outlet property="monthView" destination="juf-kZ-5xD" id="Bx6-mf-6wH"/>
+                        <outlet property="priceTitleLbl" destination="GtF-Th-qkt" id="zLf-NO-m2A"/>
                         <outlet property="promoCodeErorLbl" destination="XMn-5l-Kq4" id="Fm7-nV-WdA"/>
                         <outlet property="promoCodeTf" destination="uEV-NR-R8n" id="jgi-qw-FvE"/>
                         <outlet property="promoStackView" destination="9v5-7U-TFc" id="72O-Ur-dpg"/>
