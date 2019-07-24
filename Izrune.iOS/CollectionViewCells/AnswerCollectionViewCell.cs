@@ -16,6 +16,8 @@ namespace Izrune.iOS.CollectionViewCells
 
         public Action<IAnswer> AnswerClicked { get; set; }
 
+
+        public UICollectionView Parent { get; set; }
         IAnswer Answer;
 
         public bool IsResult;
@@ -79,6 +81,9 @@ namespace Izrune.iOS.CollectionViewCells
 
         public void CheckAnswer(bool IsRight)
         {
+            if (!Parent.UserInteractionEnabled)
+                return;
+
             InitAnswer(IsRight ? AppColors.Succesful : AppColors.ErrorTitle);
         }
 
