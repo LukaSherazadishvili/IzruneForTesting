@@ -121,6 +121,18 @@ namespace IZrune.PCL.Implementation.Services
 
             if (Result.Message.ToLower() != "ok")
             {
+                if(Result.Message.ToLower() == "personal number already exists")
+                {
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "მომხმარებელი ასეთი პირადი ნომრით უკვე არსებობს");
+                    return null;
+                }
+
+                if(Result.Message.ToLower() == "username already exists")
+                {
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "მომხმარებელი ასეთი სახელით უკვე არსებობს");
+                    return null;
+                }
+
                 AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", Result.Message);
                 return null;
             }
