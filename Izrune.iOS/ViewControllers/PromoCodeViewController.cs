@@ -41,7 +41,8 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
-            monthView.UserInteractionEnabled = false;
+            //monthView.UserInteractionEnabled = false;
+            InitDropDown();
             confirmBtn.TouchUpInside += delegate {
 
                 CheckCode(promoCodeTf.Text == PromoInfo.PrommoCode);
@@ -51,8 +52,8 @@ namespace Izrune.iOS
                 //17756347
                 if (result)
                 {
-                    monthView.UserInteractionEnabled = true;
-                    InitDropDown();
+                    //monthView.UserInteractionEnabled = true;
+                    //InitDropDown();
                     PromoCode = PromoInfo.PrommoCode;
                 }
             };
