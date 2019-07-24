@@ -39,6 +39,9 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.BotBackButton)]
         LinearLayout BotbackButton;
 
+        [MapControl(Resource.Id.PromoSection)]
+        TextView PromoResult;
+
         private int StudentId;
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -92,7 +95,8 @@ namespace Izrune.Fragments
 
                     var DataAdapter = new ArrayAdapter<string>(this,
                   Android.Resource.Layout.SimpleSpinnerDropDownItem,
-                 PromoCod.Prices.Select(i => $"{ i.StartDate.Value.ToShortDateString()}  {i.EndDate.Value.ToShortDateString()}").ToList());
+                 PromoCod.Prices.Select(i => $"{i.Period}").ToList());
+
 
                     monthSpiner.Adapter = DataAdapter;
                     monthSpiner.ItemSelected += MonthSpiner_ItemSelected;
@@ -109,6 +113,8 @@ namespace Izrune.Fragments
         private void MonthSpiner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             var Result = PromoCod.Prices.ElementAt(e.Position).EndDate?.Subtract(PromoCod.Prices.ElementAt(e.Position).StartDate.Value);
+
+            PromoResult.Text = $"{PromoCod.Prices.ElementAt(e.Position).Period}-{PromoCod.Prices.ElementAt(e.Position).price}₾";
 
             MonthCount = MonthDifference(PromoCod.Prices.ElementAt(e.Position).EndDate.Value, PromoCod.Prices.ElementAt(e.Position).StartDate.Value);
         }

@@ -62,7 +62,7 @@ namespace Izrune.iOS
 
         private void ShowAlert()
         {
-            var alert = UIAlertController.Create("ყურადღევა", "სტატისტიკის სანახავად განაახლეთ პაკეტი", UIAlertControllerStyle.Alert);
+            var alert = UIAlertController.Create("ყურადღება", "სტატისტიკის სანახავად განაახლეთ პაკეტი", UIAlertControllerStyle.Alert);
             alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
             this.PresentViewController(alert, true, null);
         }

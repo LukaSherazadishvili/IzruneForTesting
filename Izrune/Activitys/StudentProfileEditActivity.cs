@@ -208,23 +208,26 @@ namespace Izrune.Activitys
             var asd = student.SchoolId;
         
           StudentSchool.Adapter = SchoolAdapter;
-            var Res = Regions?.Where(i => i.id == student.RegionId).FirstOrDefault()?.Schools?.Where(i => i.id == student.SchoolId)?.FirstOrDefault();
+           
 
             StudentSchool.ItemSelected += (s, e) =>
             {
-                if (Res == null)
-                {
-                    student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.FirstOrDefault().id;
-                }
+                var Res = Regions?.Where(i => i.id == student.RegionId).FirstOrDefault()?.Schools?.Where(i => i.id == student.SchoolId)?.FirstOrDefault();
 
                 if (Res != null)
                 {
+
+
+
+
+
                     var ScholdPos = SchoolAdapter.GetPosition(Res.title);
                     StudentSchool.SetSelection(ScholdPos);
+                    student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.ToList().ElementAt(e.Position).id;
                 }
                 else
                 {
-
+                    student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.FirstOrDefault().id;
                     StudentSchool.SetSelection(0);
                 }
             };

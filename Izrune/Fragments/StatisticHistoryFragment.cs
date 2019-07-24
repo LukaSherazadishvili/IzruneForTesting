@@ -53,46 +53,64 @@ namespace Izrune.Fragments
 
             StudentSpiner.Adapter = DataAdapter;
 
+            bool IsEndDate=false;
+
             StudentSpiner.ItemSelected += (s, e) =>
             {
+
+              
+
                 CurrentStudent = Result.Students.ElementAt(e.Position);
-                EndPackTxt.Text = CurrentStudent.PakEndDate?.ToShortDateString();
                 UserControl.Instance.SeTSelectedStudent(CurrentStudent.id);
+
+                if (CurrentStudent.PakEndDate.Value >= DateTime.Now)
+                {
+                    EndPackTxt.Text = CurrentStudent.PakEndDate?.ToShortDateString();
+                    IsEndDate = true;
+
+                }
+                else
+                {
+                    EndPackTxt.Text = "";
+                    IsEndDate = false;
+                }   
+              
 
 
             };
 
             QuesExamButton.Click += (s, e) =>
             {
-                if (!string.IsNullOrEmpty(CurrentStudent.PakEndDate?.ToShortDateString()))
+                if (IsEndDate)
                 {
                     Intent intent = new Intent(this, typeof(MainExamStatisticActivity));
                     StartActivity(intent);
                 }
                 else
                 {
-                    AppCore.Instance.Alertdialog.ShowAlerDialog("", "სტატისტიკის სანახავად განაახლეთ პაკეტი");
-
+                    (Activity as MainPageAtivity).ShowMyDialog("", "სტატისტიკის სანახავად განაახლეთ პაკეტი");
+                  //  AppCore.Instance.Alertdialog.ShowAlerDialog("", "სტატისტიკის სანახავად განაახლეთ პაკეტი");
+                  
                 }
             };
 
             ExamTestButton.Click += (s, e) =>
             {
-                if (!string.IsNullOrEmpty(CurrentStudent.PakEndDate?.ToShortDateString()))
+                if (IsEndDate)
                 {
                     Intent intent = new Intent(this, typeof(ExamStatisticActivity));
                     StartActivity(intent);
                 }
                 else
                 {
-                    AppCore.Instance.Alertdialog.ShowAlerDialog("", "სტატისტიკის სანახავად განაახლეთ პაკეტი");
+                    (Activity as MainPageAtivity).ShowMyDialog("", "სტატისტიკის სანახავად განაახლეთ პაკეტი");
                 }
               
             };
 
             DiplomasButton.Click += (s, e) =>
             {
-                if (!string.IsNullOrEmpty(CurrentStudent.PakEndDate?.ToShortDateString()))
+                if (IsEndDate)
                 {
 
                     Intent intent = new Intent(this, typeof(DiplomasStatisticActivity));
@@ -100,7 +118,7 @@ namespace Izrune.Fragments
                 }
                 else
                 {
-                    AppCore.Instance.Alertdialog.ShowAlerDialog("", "სტატისტიკის სანახავად განაახლეთ პაკეტი");
+                    (Activity as MainPageAtivity).ShowMyDialog("", "სტატისტიკის სანახავად განაახლეთ პაკეტი");
                 }
             };
 
@@ -114,7 +132,7 @@ namespace Izrune.Fragments
                 }
                 else
                 {
-                    AppCore.Instance.Alertdialog.ShowAlerDialog("", "სტატისტიკის სანახავად განაახლეთ პაკეტი");
+                    (Activity as MainPageAtivity).ShowMyDialog("", "სტატისტიკის სანახავად განაახლეთ პაკეტი");
                 }
             };
 

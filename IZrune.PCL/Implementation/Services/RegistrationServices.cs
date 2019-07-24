@@ -15,6 +15,79 @@ namespace IZrune.PCL.Implementation.Services
 {
    public class RegistrationServices : IRegistrationServices
     {
+        public async Task<bool> ExistPersonalId(string PersonlaId)
+        {
+            try
+            {
+                var FormContent = new FormUrlEncodedContent(new[]
+                    {
+                        new KeyValuePair<string,string>("personal_number",PersonlaId),
+
+                     });
+
+
+                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=existPersonalNumber&hashcode=47210b0fc9c6854d3dc4e33099bbdd14", FormContent);
+                var jsn = await Data.Content.ReadAsStringAsync();
+
+                var Result = JsonConvert.DeserializeObject<UserNamePersonIdDTO>(jsn);
+
+                if (Result.Code == 1)
+                {
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "მომხმარებელი ესეთი პირადი ნომრით უკვე არსებობს");
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception ex)
+            {
+                AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "");
+                return true;
+            }
+        }
+
+
+
+
+        public async Task<bool> ExistUserName(string UserName)
+        {
+            try
+            {
+                var FormContent = new FormUrlEncodedContent(new[]
+                     {
+                        new KeyValuePair<string,string>("username",UserName),
+
+                     });
+
+                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=existUsername&hashcode=faea275c3ef6bf91106129af2c6122a4", FormContent);
+                var jsn = await Data.Content.ReadAsStringAsync();
+
+                var Result = JsonConvert.DeserializeObject<UserNamePersonIdDTO>(jsn);
+
+                if (Result.Code == 1)
+                {
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "მომხმარებელი ესეთი სახელით უკვე არსებობს");
+
+                    return true;
+
+                }
+                else
+                {
+                   
+                    return false;
+                }
+            }
+            catch(Exception ex)
+            {
+                AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "");
+                return true;
+            }
+
+        }
+
         public async Task<string> GetAgreement()
         {
             try
@@ -119,6 +192,8 @@ namespace IZrune.PCL.Implementation.Services
 
             var Result = JsonConvert.DeserializeObject<PaymentRootDTO>(jsn);
 
+            
+
             if (Result.Message.ToLower() != "ok")
             {
                 if(Result.Message.ToLower() == "personal number already exists")
@@ -147,5 +222,8 @@ namespace IZrune.PCL.Implementation.Services
 
             return pay;
         }
+
+        
+
     }
 }

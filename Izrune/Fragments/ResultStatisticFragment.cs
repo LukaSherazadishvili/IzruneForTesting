@@ -68,6 +68,8 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.Container)]
         protected override FrameLayout MainFrame { get; set; }
 
+        public Action<string> ShareAction { get; set; }
+
 
         public override void OnCreate(Bundle savedInstanceState)
         {

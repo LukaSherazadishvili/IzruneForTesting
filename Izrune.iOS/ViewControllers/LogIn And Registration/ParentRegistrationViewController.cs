@@ -200,7 +200,7 @@ namespace Izrune.iOS
             prewBtn.Enabled = CurrentIndex > 0;
         }
 
-        private void GetCurrentPage(int pageIndex)
+        private async void GetCurrentPage(int pageIndex)
         {
         
             switch (pageIndex)
@@ -230,7 +230,7 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            var res = parent2RegVc.IsFormFilled();
+                            var res = await parent2RegVc.IsFormFilled();
 
                             if(res)
                             {
@@ -259,7 +259,7 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            var res = studentRegVc1.IsFormFilled();
+                            var res = await studentRegVc1.IsFormFilled();
 
                             if(res)
                             {

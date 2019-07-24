@@ -14,6 +14,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using Firebase.Analytics;
+using Firebase.Messaging;
 using Izrune.Adapters.RecyclerviewAdapters;
 using Izrune.Attributes;
 using Izrune.Fragments;
@@ -67,6 +68,7 @@ namespace Izrune.Activitys
             AppCore.Instance.InitServices();
             var frbase = FirebaseAnalytics.GetInstance(this);
 
+            FirebaseMessaging.Instance.SubscribeToTopic("all");
 
             ChangeFragmentPage(new LogInFragment(), MainContainer.Id);
             navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;

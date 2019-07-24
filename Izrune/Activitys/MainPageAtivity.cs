@@ -85,6 +85,14 @@ namespace Izrune.Activitys
             CloseKeyboard();
         }
 
+
+        public void ShowMyDialog(string title,string text)
+        {
+            var transcation = FragmentManager.BeginTransaction();
+            warningDialogFragment dialog = new warningDialogFragment(title, text, true);
+            dialog.Show(transcation, "Image Dialog");
+        }
+
         private void NavigationView_NavigationItemSelected(object sender, NavigationView.NavigationItemSelectedEventArgs e)
         {
             switch (e.MenuItem.GroupId)

@@ -183,19 +183,28 @@ namespace Izrune.iOS.CollectionViewCells
             }
 
             cell.InitData(data, NumberList?[indexPath.Row]);
+            cell.Parent = answerCollectionView;
+
+            answerCollectionView.UserInteractionEnabled = true;
 
             cell.AnswerClicked = (answer) =>
             {
-                AnswerClicked?.Invoke(answer);
-
+              
                 var answers = Question?.Answers?.ToList();
                 var correctAnswer = answers?.IndexOf(answers?.FirstOrDefault(x => x.IsRight == true));
 
                 var answerCell = answerCollectionView.CellForItem(NSIndexPath.FromRowSection((System.nint)correctAnswer, 0)) as AnswerCollectionViewCell;
 
-
-
                 answerCell.CheckAnswer(true);
+
+                if (answerCollectionView.UserInteractionEnabled == false)
+                    return;
+
+                answerCollectionView.UserInteractionEnabled = false;
+
+               
+
+                AnswerClicked?.Invoke(answer);
             };
 
             return cell;

@@ -17,6 +17,7 @@ using IZrune.PCL.Helpers;
 using IZrune.PCL.Abstraction.Models;
 using Izrune.Fragments;
 using Android.Content.PM;
+using Izrune.Fragments.DialogFrag;
 
 namespace Izrune.Activitys
 {
@@ -24,6 +25,9 @@ namespace Izrune.Activitys
     class NextRegistrationStudentActivity : MPDCBaseActivity
     {
         protected override int LayoutResource { get; } = Resource.Layout.layoutRegistrationStudent;
+
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get ; set; }
 
         [MapControl(Resource.Id.Container)]
         FrameLayout container;
@@ -106,6 +110,8 @@ namespace Izrune.Activitys
                 {
                     ClassContainer.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
                     CurrentClass = Classes.ElementAt(e.Position-1);
+                   
+
                 }
                 else
                     CurrentClass = 0;
@@ -122,12 +128,23 @@ namespace Izrune.Activitys
 
        
 
-        private void School_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        private async void School_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             if (e.Position != 0)
             {
                 SchoolContainer.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
                 CurrentSchool = CurrentRegion.Schools.ElementAt(e.Position);
+
+                Startloading(true);
+                var Result = await MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(CurrentSchool.id);
+                if (!string.IsNullOrEmpty(Result.PrommoCode))
+                {
+                    var transcation = FragmentManager.BeginTransaction();
+                    SchoolAlert dialog = new SchoolAlert();
+                    dialog.Show(transcation, "Image Dialog");
+
+                }
+                StopLoading();
             }
             else
                 CurrentSchool = null;

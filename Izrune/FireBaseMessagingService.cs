@@ -24,43 +24,36 @@ namespace Izrune
         public override void OnMessageReceived(RemoteMessage message)
         {
             if (!message.Data.GetEnumerator().MoveNext())
-                SendNotification(message.GetNotification().Title, message.GetNotification().Body);
-            else
-                SendNotification(message.Data);
+                SendNotification( message.GetNotification().Body);
+            //else
+            //    SendNotification(message.Data);
         }
 
-        private void SendNotification(IDictionary<string, string> data)
-        {
-            data.TryGetValue("title", out string title);
-            data.TryGetValue("body", out string body);
-            SendNotification(title, body);
-        }
+        //private void SendNotification(IDictionary<string, string> data)
+        //{
+        //    data.TryGetValue("title", out string title);
+        //    data.TryGetValue("body", out string body);
+        //   // SendNotification(title, body);
+        //}
 
-        private void SendNotification(string title, string body)
+        private void SendNotification( string body)
         {
-            NotificationManager NotManager = (NotificationManager)GetSystemService(Context.NotificationService);
-            if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
-            {
-                NotificationChannel NotChanel = new NotificationChannel(NOTIFICATION_CHANEL_ID, "Notification Chanel", Android.App.NotificationImportance.Default);
-                NotChanel.Description = "Izrune";
-                NotChanel.EnableLights(true);
-                NotChanel.LightColor = Color.Red;
-                NotChanel.SetVibrationPattern(new long[] { 0, 1000, 500, 1000 });
-                
-                NotManager.CreateNotificationChannel(NotChanel);
-            }
-            NotificationCompat.Builder notiBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANEL_ID);
-            notiBuilder.SetAutoCancel(true)
-                .SetDefaults(-1)
-                .SetWhen(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds())
-                .SetContentTitle(title)
-                .SetContentText(body)
-                .SetVibrate(new long[] {0,1000,500,1000})
+            var intent = new Intent(this, typeof(MainActivity));
+            intent.AddFlags(ActivityFlags.ClearTop);
+            var pendingintent = PendingIntent.GetActivity(this, 0, intent, PendingIntentFlags.OneShot);
+
+            var defaultsoundUri = RingtoneManager.GetDefaultUri(RingtoneType.Notification);
+            var notificationBuilder = new NotificationCompat.Builder(this)
                 .SetSmallIcon(Resource.Drawable.logo)
-                .SetContentInfo("info");
+                .SetContentTitle("izrune")
+                .SetContentText(body)
+                .SetAutoCancel(true)
+                .SetSound(defaultsoundUri)
+                .SetContentIntent(pendingintent);
 
-            NotManager.Notify(new Random().Next(), notiBuilder.Build());
-                
+            var notificationManager = NotificationManager.FromContext(this);
+            notificationManager.Notify(0, notificationBuilder.Build());
+
         }
 
        

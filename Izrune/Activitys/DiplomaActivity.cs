@@ -21,7 +21,7 @@ namespace Izrune.Activitys
     [Activity(Label = "IZrune", Theme = "@style/AppTheme", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = false)]
     class DiplomaActivity : MPDCBaseActivity
     {
-        protected override int LayoutResource { get; } = Resource.Layout.LayoutDiplomi;
+        protected override int LayoutResource { get; } = Resource.Layout.LayoutInnerDiploma;
 
         [MapControl(Resource.Id.Diplom)]
         ImageViewAsync DiplomaImage;
@@ -56,6 +56,13 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.MarkTXt)]
         TextView Mark;
 
+        [MapControl(Resource.Id.BackButton)]
+        FrameLayout BackButton;
+
+
+        [MapControl(Resource.Id.ShareButton)]
+        LinearLayout ShareButton;
+
         [MapControl(Resource.Id.Container)]
         protected override FrameLayout MainFrame { get; set; }
 
@@ -64,6 +71,8 @@ namespace Izrune.Activitys
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            Startloading();
 
             var Result = await MpdcContainer.Instance.Get<IStatisticServices>().GetCurrentTestDiplomaInfo(IzruneHellper.Instance.CurrentStatistic.Id);
 
@@ -86,7 +95,18 @@ namespace Izrune.Activitys
             {
                 DiplomaImage.Visibility = ViewStates.Visible;
                 DiplomaImage.LoadImage(IzruneHellper.Instance.CurrentStatistic.DiplomaUrl);
+                ShareButton.Visibility = ViewStates.Visible;
+                ShareButton.Click += (s, e) =>
+                {
 
+                    var SharingIntent = new Intent();
+                    SharingIntent.SetAction(Intent.ActionSend);
+                    SharingIntent.SetType("text/plain");
+                  //  SharingIntent.PutExtra(Intent.ExtraSubject, "Subject");
+                    SharingIntent.PutExtra(Intent.ExtraText, IzruneHellper.Instance.CurrentStatistic.DiplomaUrl);
+                   // SharingIntent.PutExtra(Intent.ExtraTitle, "Subject");
+                    StartActivity(Intent.CreateChooser(SharingIntent, "sharing option"));
+                };
             }
 
 
@@ -104,7 +124,23 @@ namespace Izrune.Activitys
 
             }
 
+            BackButton.Click += BackButton_Click;
+          
+
+            StopLoading();
+
         }
 
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            OnBackPressed();
+        }
+
+
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
+            this.Finish();
+        }
     }
 }
