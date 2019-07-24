@@ -53,7 +53,7 @@ namespace Izrune.iOS
 
                 var result = await registerService.ExistUserName(userName);
 
-                if (!result)
+                if (result)
                     return false;
 
                 foreach (var item in passwordTextField.Text)

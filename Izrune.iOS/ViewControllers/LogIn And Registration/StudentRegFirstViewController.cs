@@ -96,7 +96,7 @@ namespace Izrune.iOS
                 var pnNumber = privateNumberTf.Text;
                 var registerService = ServiceContainer.ServiceContainer.Instance.Get<IRegistrationServices>();
                 var result = await registerService.ExistPersonalId(pnNumber);
-                if (!result)
+                if (result)
                     return false;
                 
             }

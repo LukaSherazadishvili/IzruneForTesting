@@ -33,19 +33,19 @@ namespace IZrune.PCL.Implementation.Services
 
                 if (Result.Code == 1)
                 {
-                    AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "მომხმარებელი ესეთი პირადინომრით უკვე არსებობს");
-                    return false;
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "მომხმარებელი ესეთი პირადი ნომრით უკვე არსებობს");
 
+                    return true;
                 }
                 else
                 {
-                    return true;
+                    return false;
                 }
             }
             catch(Exception ex)
             {
                 AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "");
-                return false;
+                return true;
             }
         }
 
@@ -70,18 +70,20 @@ namespace IZrune.PCL.Implementation.Services
                 if (Result.Code == 1)
                 {
                     AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "მომხმარებელი ესეთი სახელით უკვე არსებობს");
-                    return false;
+
+                    return true;
 
                 }
                 else
                 {
-                    return true;
+                   
+                    return false;
                 }
             }
             catch(Exception ex)
             {
                 AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "");
-                return false;
+                return true;
             }
 
         }
