@@ -2919,7 +2919,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="SzV-f9-WjW">
                                                 <rect key="frame" x="25" y="191" width="364" height="42"/>
                                                 <subviews>
-                                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="გააქტიურე შემაჯამებელი ტესტი SMS კოდით, რომელიც მიიღეთ მითითებულ ტელეფონის ნომერზე" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cot-as-dOn">
+                                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="გაააქტიურე შემაჯამებელი ტესტი SMS კოდით, რომელიც მიიღეთ მითითებულ ტელეფონის ნომერზე" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cot-as-dOn">
                                                         <rect key="frame" x="0.0" y="0.0" width="364" height="42"/>
                                                         <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="12"/>
                                                         <color key="textColor" red="0.68235294120000001" green="0.4431372549" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
