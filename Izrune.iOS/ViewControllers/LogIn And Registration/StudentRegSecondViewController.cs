@@ -14,6 +14,7 @@ using System.Linq;
 using IZrune.PCL.Helpers;
 using System.Diagnostics;
 using IZrune.PCL.Implementation.Models;
+using IZrune.PCL.Abstraction.Services;
 
 namespace Izrune.iOS
 {
@@ -59,11 +60,19 @@ namespace Izrune.iOS
 
             ScholVc = Storyboard.InstantiateViewController(SelectSchoolViewController.StoryboardId) as SelectSchoolViewController;
 
-            ScholVc.SchoolSelected = (school) =>
+            ScholVc.SchoolSelected = async(school) =>
             {
                 _school = school;
                 SchoolSelected?.Invoke(school);
                 schoolLbl.Text = school.title;
+                var userService = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
+                var Promo = await userService.GetPromoCodeAsync(school.id);
+                if(Promo != null)
+                {
+                    var promoSchoolVc = Storyboard.InstantiateViewController(PromoSchoolViewController.StoryboardId) as PromoSchoolViewController;
+                    promoSchoolVc.ModalPresentationStyle = UIModalPresentationStyle.OverCurrentContext;
+                    this.NavigationController.PresentViewController(promoSchoolVc, true, null);
+                }
             };
 
             villageTextField.MakeRoundedTextField(20.0f, AppColors.TextFieldBackground, 20);

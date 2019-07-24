@@ -23,7 +23,6 @@ namespace Izrune.iOS
 		}
 
         public static readonly NSString StoryboardId = new NSString("StudentStatisticStoryboardId");
-
         DropDown CurentStudentDP = new DropDown();
         private IEnumerable<IDiplomStatistic> diplomeStatistics;
         IStudent CurrentStudent;
@@ -54,9 +53,9 @@ namespace Izrune.iOS
 
             InitDropDowns();
 
-            var result = DateTime.Now - CurrentStudent?.PakEndDate;
+            var result = CurrentStudent?.PakEndDate - DateTime.Now;
 
-            IsPacketActive = result?.Days > 0;
+            IsPacketActive = result?.TotalDays > 0;
 
             InitGestures();
         }
@@ -191,7 +190,13 @@ namespace Izrune.iOS
                     InitForm(CurrentStudent);
                     try
                     {
+
                         UserControl.Instance.SeTSelectedStudent(CurrentStudent.id);
+                        CurrentStudent = Students?[(int)index];
+
+                        var result = CurrentStudent?.PakEndDate - DateTime.Now;
+                        IsPacketActive = result?.Days > 0;
+
                         await UpdateData();
                     }
                     catch (Exception ex)

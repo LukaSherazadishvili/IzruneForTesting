@@ -35,11 +35,14 @@ namespace Izrune.iOS
         public string PromoCode = "";
         public int month;
 
+        public IPrice SelectedPrice;
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
-            monthView.UserInteractionEnabled = false;
+            //monthView.UserInteractionEnabled = false;
+            InitDropDown();
             confirmBtn.TouchUpInside += delegate {
 
                 CheckCode(promoCodeTf.Text == PromoInfo.PrommoCode);
@@ -49,8 +52,8 @@ namespace Izrune.iOS
                 //17756347
                 if (result)
                 {
-                    monthView.UserInteractionEnabled = true;
-                    InitDropDown();
+                    //monthView.UserInteractionEnabled = true;
+                    //InitDropDown();
                     PromoCode = PromoInfo.PrommoCode;
                 }
             };
@@ -100,7 +103,7 @@ namespace Izrune.iOS
             MonthDropDown.Width = this.View.Frame.Width;
             MonthDropDown.Direction = Direction.Bottom;
 
-            var array = PromoInfo?.Prices?.Select(x => x.StartDate.Value.ToString("MMMM", cultureInfo) +" - " + x.EndDate.Value.ToString("MMMM", cultureInfo))?.ToArray();
+            var array = PromoInfo?.Prices?.Select(x => x.Period)?.ToArray();
 
             MonthDropDown.DataSource = array;
 
@@ -108,8 +111,10 @@ namespace Izrune.iOS
             {
                 monthLbl.Text = name;
                 SelectedMont = (PromoInfo.Prices.ElementAt((int)index).MonthCount.Value);
+                SelectedPrice = PromoInfo?.Prices?.ElementAt((int)index);
+
                 PromoCodeSelected?.Invoke(PromoInfo.PrommoCode, SelectedMont);
-                priceTitleLbl.Text = $"ფასი - {PromoInfo?.Prices?.ElementAt((int)index)?.price} ლარი";
+                priceTitleLbl.Text = $"{PromoInfo?.Prices?.ElementAt((int)index).Period} - {PromoInfo?.Prices?.ElementAt((int)index)?.price} ლარი";
             };
         }
 

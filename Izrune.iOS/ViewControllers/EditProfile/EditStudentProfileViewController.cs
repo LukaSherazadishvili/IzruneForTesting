@@ -161,6 +161,8 @@ namespace Izrune.iOS
             classLbl.Text = student?.Class.ToString();
 
             Schools = Regions?.FirstOrDefault(x => x.id == student.RegionId)?.Schools?.ToList();
+
+            schoolLbl.Text = Schools?.FirstOrDefault(x => x.id == student.SchoolId)?.title;
         }
 
         private void UpdateStudenProfile(string firstName, string lastName, DateTime birthDate, string phoneNumber, string email, int regionId, string village)

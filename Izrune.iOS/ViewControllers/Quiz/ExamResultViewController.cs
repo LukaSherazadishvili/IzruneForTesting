@@ -73,28 +73,28 @@ namespace Izrune.iOS
             await LoadDataAsync();
             InitResult();
 
-            if(ShowShare)
-            {
-                if(!string.IsNullOrEmpty(QuisInfo.DiplomaURl))
-                {
-                    var barButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, null);
+            //if(ShowShare)
+            //{
+            //    if(!string.IsNullOrEmpty(QuisInfo.DiplomaURl))
+            //    {
+            //        var barButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, null);
 
-                    barButton.Clicked += delegate {
-                        var url = QuisInfo.DiplomaURl;
+            //        barButton.Clicked += delegate {
+            //            var url = QuisInfo.DiplomaURl;
 
-                        if (!string.IsNullOrEmpty(url) && !string.IsNullOrWhiteSpace(url))
-                        {
-                            this.ShareUrl(url);
-                        }
-                        else
-                        {
-                            barButton.Image = UIImage.FromBundle("");
-                            return;
-                        }
-                    };
-                    this.NavigationItem.RightBarButtonItem = barButton;
-                }
-            }
+            //            if (!string.IsNullOrEmpty(url) && !string.IsNullOrWhiteSpace(url))
+            //            {
+            //                this.ShareUrl(url);
+            //            }
+            //            else
+            //            {
+            //                barButton.Image = null;
+            //                return;
+            //            }
+            //        };
+            //        this.NavigationItem.RightBarButtonItem = barButton;
+            //    }
+            //}
 
             if (AfterExam)
             {

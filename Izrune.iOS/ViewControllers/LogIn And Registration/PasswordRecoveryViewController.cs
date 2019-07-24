@@ -39,26 +39,33 @@ namespace Izrune.iOS
 
             sendBtn.TouchUpInside += async delegate {
 
-                this.View.EndEditing(true);
-
-                var phone = phoneTextField.Text.Replace(" ", string.Empty);
-
-                ShowLoading();
-
-                var result = IsPassworPage ? await userService.RecoverPasswordAsync(phone) : await userService.RecoverUserNamedAsync(phone);
-
-                EndLoading();
-
-
-                if (result)
+                if(phoneTextField.Text.Length != 9)
                 {
-                    var succsessVc = Storyboard.InstantiateViewController(SuccesViewController.StoryboardId) as SuccesViewController;
-                    succsessVc.TitleText = IsPassworPage ? "პაროლი გაგზავნილია მითითებულ ნომერზე" : "მომხმარებლის სახელი გაგზავნილია მითითებულ ტელეფონის ნომერზე";
-
-                    this.AddVcInView(this.View, succsessVc);
+                    ShowAlert();
                 }
                 else
-                    ShowError(true);
+                {
+                    this.View.EndEditing(true);
+
+                    var phone = phoneTextField.Text.Replace(" ", string.Empty);
+
+                    ShowLoading();
+
+                    var result = IsPassworPage ? await userService.RecoverPasswordAsync(phone) : await userService.RecoverUserNamedAsync(phone);
+
+                    EndLoading();
+
+
+                    if (result)
+                    {
+                        var succsessVc = Storyboard.InstantiateViewController(SuccesViewController.StoryboardId) as SuccesViewController;
+                        succsessVc.TitleText = IsPassworPage ? "პაროლი გაგზავნილია მითითებულ ნომერზე" : "მომხმარებლის სახელი გაგზავნილია მითითებულ ტელეფონის ნომერზე";
+
+                        this.AddVcInView(this.View, succsessVc);
+                    }
+                    else
+                        ShowError(true);
+                }
                     
             };
 
@@ -87,6 +94,13 @@ namespace Izrune.iOS
             phoneTextField.AddBorderToTextField(isError? AppColors.ErrorTitle : UIColor.Clear);
 
             phoneTextField.TextColor = isError ? AppColors.ErrorTitle : UIColor.Black;
+        }
+
+        private void ShowAlert()
+        {
+            var alertVc = UIAlertController.Create("ყურადღება!", "ტელეფონის ნომერი უნდა შედგებოდეს 9 ციფრისგან", UIAlertControllerStyle.Alert);
+            alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            this.PresentViewController(alertVc, true, null);
         }
     }
 }

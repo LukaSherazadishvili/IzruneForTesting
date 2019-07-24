@@ -427,6 +427,10 @@
         <Compile Include="CollectionViewCells\BadgeCell.designer.cs">
           <DependentUpon>BadgeCell.cs</DependentUpon>
         </Compile>
+        <Compile Include="ViewControllers\PromoSchoolViewController.cs" />
+        <Compile Include="ViewControllers\PromoSchoolViewController.designer.cs">
+          <DependentUpon>PromoSchoolViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\1 – 7.png" />
@@ -542,6 +546,8 @@
       <BundleResource Include="GoogleService-Info.plist" />
       <BundleResource Include="like_animation.json" />
       <BundleResource Include="exploding-ribbon.json" />
+      <BundleResource Include="Resources\სკოლის დამსახურება.jpg" />
+      <BundleResource Include="Resources\multiply.png" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\IZrune.PCL\IZrune.PCL.csproj">
