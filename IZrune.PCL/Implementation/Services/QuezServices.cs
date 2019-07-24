@@ -209,7 +209,7 @@ namespace IZrune.PCL.Implementation.Services
 
                 if (Result.Code == 0)
                 {
-                    AppCore.Instance.Alertdialog.ShowSaccessDialog("", "კოდი გამოგზავნილია თქვენსმიერ რეგისტრაციის დროს მითითებულ ნომერზე");
+                    AppCore.Instance.Alertdialog.ShowSaccessDialog("", "კოდი გამოგზავნილია თქვენს მიერ რეგისტრაციის დროს მითითებულ ნომერზე");
                     return Result.sms_code;
                 }
                 else
