@@ -39,6 +39,9 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.BottmomBack)]
         LinearLayout BotBacButton;
 
+
+
+
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

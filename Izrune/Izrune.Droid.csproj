@@ -119,6 +119,7 @@
     <Compile Include="Fragments\DialogFrag\ImageDialogFragment.cs" />
     <Compile Include="Fragments\DialogFrag\MainPageAlertDialog.cs" />
     <Compile Include="Fragments\DialogFrag\RullesDialogFragment.cs" />
+    <Compile Include="Fragments\DialogFrag\SchoolAlert.cs" />
     <Compile Include="Fragments\DialogFrag\warningDialogFragment.cs" />
     <Compile Include="Fragments\DiplomaFragment.cs" />
     <Compile Include="Fragments\ExamStatisticFragment.cs" />
@@ -167,7 +168,9 @@
     <AndroidAsset Include="Assets\ribbon.json" />
     <None Include="google-services.json" />
     <None Include="Resources\AboutResources.txt" />
-    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="Properties\AndroidManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\font\bpg_mrgvlovani.ttf" />
   </ItemGroup>
@@ -829,6 +832,19 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\AlertMainPage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\scholImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\SchoolAlert.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\LayoutInnerDiploma.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

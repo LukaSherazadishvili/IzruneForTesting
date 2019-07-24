@@ -98,13 +98,14 @@ android:id="@+id/Container">
 
 
 				<TextView
+					android:id="@+id/PromoSection"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="1 თვე - 1 ₾"
 					android:textColor="#49B541"
 					android:fontFamily="@font/bpg_mrgvlovani"
 					android:gravity="center"
-					android:textSize="20dp"
+					android:textSize="16dp"
 					android:layout_marginTop="20dp"/>
 
 				</LinearLayout>

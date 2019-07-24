@@ -130,7 +130,7 @@ namespace Izrune.Activitys
             catch (Exception) { }
         }
 
-        private int HoroscopeIndex = 0;
+      //  private int HoroscopeIndex = 0;
 
         public void StopLoading(bool ClearChildren = false)
         {

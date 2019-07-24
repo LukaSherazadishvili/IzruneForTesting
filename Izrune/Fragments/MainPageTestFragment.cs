@@ -79,35 +79,46 @@ namespace Izrune.Fragments
 
             Startloading();
 
-           
-            
 
-             Result =await UserControl.Instance.GetCurrentUser();
+
+
+            Result = await UserControl.Instance.GetCurrentUser();
 
             var date = QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezTest);
             var k = await MpdcContainer.Instance.Get<IPaymentService>().GetPaymentHistory();
-           
-           var DataAdapter = new ArrayAdapter<string>(this, 
-               Android.Resource.Layout.SimpleSpinnerDropDownItem, 
-               Result.Students.Select(i=> ($"{i.Name}   {i.LastName}")).ToList());
 
-          
+            var DataAdapter = new ArrayAdapter<string>(this,
+                Android.Resource.Layout.SimpleSpinnerDropDownItem,
+                Result.Students.Select(i => ($"{i.Name}   {i.LastName}")).ToList());
 
-           // var adapter = new CategorySpinnerAdapter(this, Resource.Layout.itemSpinnerText, Result.Students.Select(i => ($"{i.Name}   {i.LastName}")).ToList(), StudSpiner);
-           // var add = new MySpinnerAdapter(this, Result.Students.Select(i => ($"{i.Name}   {i.LastName}")).ToList());
+
+
+            // var adapter = new CategorySpinnerAdapter(this, Resource.Layout.itemSpinnerText, Result.Students.Select(i => ($"{i.Name}   {i.LastName}")).ToList(), StudSpiner);
+            // var add = new MySpinnerAdapter(this, Result.Students.Select(i => ($"{i.Name}   {i.LastName}")).ToList());
             StudSpiner.Adapter = DataAdapter;
-            StudSpiner.ItemSelected += async(s, e) =>
+         
+            StudSpiner.ItemSelected += async (s, e) =>
             {
                 UserControl.Instance.SeTSelectedStudent(Result.Students.ElementAt(e.Position).id);
 
-                var TimeResult =await QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezExam);
+                var TimeResult = await QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezExam);
 
-                if (TimeResult.Days <= 0 && TimeResult.Hours <= 0 && TimeResult.Minutes <= 0)
+                if (TimeResult.Days <= 0 && TimeResult.Hours <= 0 && TimeResult.Minutes <= 0 || Result.IsAdmin)
                 {
-                    ExamTimeContainer.Visibility = ViewStates.Gone;
-                    ActiveExamTxt.Visibility = ViewStates.Visible;
-                   
+                    if (TimeResult.Days <= 0 && TimeResult.Hours <= 0 && TimeResult.Minutes <= 0)
+                    {
+                        ExamTimeContainer.Visibility = ViewStates.Gone;
+                        ActiveExamTxt.Visibility = ViewStates.Visible;
+                    }
+                    else
+                    {
+                        ExamDay.Text = TimeResult.Days.ToString();
+                        ExamHours.Text = TimeResult.Hours.ToString();
+                        ExamMinit.Text = TimeResult.Minutes.ToString();
+                    }
 
+                    ExamtestButton.Click -= ExamtestButton_Click;
+                    ExamtestButton.Click += ExamtestButton_Click;
                 }
                 else
                 {
@@ -117,14 +128,25 @@ namespace Izrune.Fragments
 
                 }
 
-               
-                var  TestTimeRes = await QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezTest);
 
-                if (TestTimeRes.Days <= 0 && TestTimeRes.Hours <= 0 && TestTimeRes.Minutes <= 0)
+                var TestTimeRes = await QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezTest);
+
+                if (TestTimeRes.Days <= 0 && TestTimeRes.Hours <= 0 && TestTimeRes.Minutes <= 0||Result.IsAdmin)
                 {
-                    TestTimeContainer.Visibility = ViewStates.Gone;
-                    ActiveTestTxt.Visibility = ViewStates.Visible;
-                  
+                    if (TestTimeRes.Days <= 0 && TestTimeRes.Hours <= 0 && TestTimeRes.Minutes <= 0)
+                    {
+                        TestTimeContainer.Visibility = ViewStates.Gone;
+                        ActiveTestTxt.Visibility = ViewStates.Visible;
+                    }
+                    else
+                    {
+                        TestDayCount.Text = TestTimeRes.Days.ToString();
+                        TestHours.Text = TestTimeRes.Hours.ToString();
+                        TestMinit.Text = TestTimeRes.Minutes.ToString();
+                    }
+
+                    TrainigTestButton.Click -= TrainigTestButton_Click;
+                    TrainigTestButton.Click += TrainigTestButton_Click;
                 }
                 else
                 {
@@ -136,8 +158,8 @@ namespace Izrune.Fragments
 
             };
 
-            TrainigTestButton.Click += TrainigTestButton_Click;
-            ExamtestButton.Click += ExamtestButton_Click;
+           
+            
             StopLoading();
             
         }
@@ -146,7 +168,7 @@ namespace Izrune.Fragments
 
         private void TrainigTestButton_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(UserControl.Instance.CurrentStudent?.PakEndDate?.ToString()) || Result.IsAdmin)
+            if (UserControl.Instance.CurrentStudent?.PakEndDate.Value > DateTime.Now )
             {
                 Intent intent = new Intent(this, typeof(TrainigTestActivity));
                 StartActivity(intent);
@@ -160,7 +182,7 @@ namespace Izrune.Fragments
 
         private void ExamtestButton_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(UserControl.Instance.CurrentStudent?.PakEndDate?.ToString()) || Result.IsAdmin)
+            if (UserControl.Instance.CurrentStudent?.PakEndDate.Value >DateTime.Now )
             {
                 Intent intent = new Intent(this, typeof(ExamTestActivity));
                 StartActivity(intent);

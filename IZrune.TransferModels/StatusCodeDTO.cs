@@ -10,4 +10,10 @@ namespace IZrune.TransferModels
         public string Message { get; set; }
         public string Token { get; set; }
     }
+
+    public class UserNamePersonIdDTO
+    {
+        public int  Code { get; set; }
+        public string Message { get; set; }
+    }
 }

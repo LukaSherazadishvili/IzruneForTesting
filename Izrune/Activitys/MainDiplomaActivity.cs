@@ -16,6 +16,7 @@ using Android.Widget;
 using Izrune.Adapters.ViewPagerAdapter;
 using Izrune.Attributes;
 using Izrune.Fragments;
+using IZrune.PCL.Helpers;
 
 namespace Izrune.Activitys
 {
@@ -23,6 +24,9 @@ namespace Izrune.Activitys
     class MainDiplomaActivity : MPDCBaseActivity
     {
         protected override int LayoutResource { get; } = Resource.Layout.MainDiplomaLayout;
+
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get ; set ; }
 
         [MapControl(Resource.Id.HeaderTab)]
         TabLayout Tabs;
@@ -38,7 +42,7 @@ namespace Izrune.Activitys
 
 
         private List<MPDCBaseFragment> FrmList = new List<MPDCBaseFragment>() {
-          new ResultStatisticFragment() , new ResultQuestionStatisticFragment()
+          new ResultStatisticFragment(), new ResultQuestionStatisticFragment()
         };
 
         private List<string> Headers = new List<string>()
@@ -48,11 +52,11 @@ namespace Izrune.Activitys
 
        
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            ShareButton.Visibility = ViewStates.Visible;
+          
 
             var adapter = new TabAdapter(SupportFragmentManager, FrmList, Headers);
             ResultPagePagerAdapter PagerAdapter = new ResultPagePagerAdapter(SupportFragmentManager, FrmList, Headers);
@@ -62,8 +66,28 @@ namespace Izrune.Activitys
 
             BackButton.Click += BackButton_Click;
 
+            var Result = await QuezControll.Instance.GetExamInfoAsync();
+
+            if(!string.IsNullOrEmpty(Result.DiplomaURl))
+            {
+                ShareButton.Visibility = ViewStates.Visible;
+                ShareButton.Click += (s, e) =>
+                {
+                    var SharingIntent = new Intent();
+                    SharingIntent.SetAction(Intent.ActionSend);
+                    SharingIntent.SetType("text/plain");
+                    //  SharingIntent.PutExtra(Intent.ExtraSubject, "Subject");
+                    SharingIntent.PutExtra(Intent.ExtraText, Result.DiplomaURl);
+                    // SharingIntent.PutExtra(Intent.ExtraTitle, "Subject");
+                    StartActivity(Intent.CreateChooser(SharingIntent, "sharing option"));
+                };
+            }
+
+          
 
         }
+
+       
 
         private void BackButton_Click(object sender, EventArgs e)
         {
@@ -79,16 +103,7 @@ namespace Izrune.Activitys
         }
 
 
-        public void Share(string title,string content)
-        {
-            if (string.IsNullOrEmpty(title) || string.IsNullOrWhiteSpace(content))
-                return;
-
-
-           
-
-
-        }
+       
 
 
     }
