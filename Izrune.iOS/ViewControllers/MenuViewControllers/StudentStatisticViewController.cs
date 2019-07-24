@@ -55,7 +55,7 @@ namespace Izrune.iOS
 
             var result = CurrentStudent?.PakEndDate - DateTime.Now;
 
-            IsPacketActive = result?.Days > 0;
+            IsPacketActive = result?.TotalDays > 0;
 
             InitGestures();
         }
