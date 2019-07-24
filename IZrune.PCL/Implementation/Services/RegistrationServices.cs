@@ -121,9 +121,24 @@ namespace IZrune.PCL.Implementation.Services
 
             if (Result.Message.ToLower() != "ok")
             {
+                if(Result.Message.ToLower() == "personal number already exists")
+                {
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "მომხმარებელი ასეთი პირადი ნომრით უკვე არსებობს");
+                    return null;
+                }
+
+                if(Result.Message.ToLower() == "username already exists")
+                {
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "მომხმარებელი ასეთი სახელით უკვე არსებობს");
+                    return null;
+                }
+
                 AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", Result.Message);
                 return null;
             }
+
+
+
             Pay pay = new Pay();
             pay.CurrentUserPayURl = $"https://e-commerce.cartubank.ge/servlet/Process3DSServlet/3dsproxy_init.jsp?PurchaseDesc={Result.payment.PurchaseDesc}&PurchaseAmt={Result.payment.PurchaseAmt}&CountryCode={Result.payment.CountryCode}&CurrencyCode={Result.payment.CurrencyCode}&MerchantName={Result.payment.MerchantName}&MerchantURL={Result.payment.MerchantURL}&MerchantCity={Result.payment.MerchantCity}&MerchantID={Result.payment.MerchantID}&xDDDSProxy.Language={Result.payment.Language}";
 
