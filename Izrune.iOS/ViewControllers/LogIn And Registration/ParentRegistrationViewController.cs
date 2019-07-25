@@ -356,6 +356,7 @@ namespace Izrune.iOS
                             AddMoreStudentVc?.SendClicked?.Invoke();
                             AddMoreStudentVc.DataSent = (ipay) => {
                                 paymentViewController.PayInfo = ipay;
+                                paymentViewController.SelectedPrice = SelectedPrice;
                                 this.NavigationController.PushViewController(paymentViewController, true);
                             };
                         }
