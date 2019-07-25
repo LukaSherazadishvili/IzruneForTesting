@@ -35,6 +35,8 @@ namespace Izrune.iOS
         private ExamResultViewController diplomeDetailVc;
         private List<IDiplomStatistic> diplomeYears;
 
+        public bool DataLoaded { get; set; }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -57,12 +59,17 @@ namespace Izrune.iOS
         {
             base.ViewWillAppear(animated);
 
-            await LoadDataAsync();
+            if(!DataLoaded)
+            {
+                await LoadDataAsync();
 
-            InitDropDowns();
+                InitDropDowns();
 
-            diplomeCollectionView.Hidden = false;
-            diplomeLbl.Text = diplomeYears?[0]?.DiplomaDate + " სასწავლო წელი";
+                diplomeCollectionView.Hidden = false;
+                diplomeLbl.Text = diplomeYears?[0]?.DiplomaDate + " სასწავლო წელი";
+
+                DataLoaded = true;
+            }
         }
         private void InitUI()
         {
