@@ -129,6 +129,7 @@ namespace Izrune.iOS
                     if (IsPacketActive)
                     {
                         diplomeVc.Student = CurrentStudent;
+                        diplomeVc.ShouldLoadData = true;
                         this.NavigationController.PushViewController(diplomeVc, true);
                     }
                     else

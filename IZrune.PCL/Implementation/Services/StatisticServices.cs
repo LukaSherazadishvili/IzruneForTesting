@@ -192,7 +192,7 @@ namespace IZrune.PCL.Implementation.Services
                         DiplomaURl=o.DiplomaUrl,
                         QueisResult = levanaYleProgramistiaTasks.ElementAt(filtered.IndexOf(o)).Result
 
-                    });
+                    }).ToList();
 
 
 
