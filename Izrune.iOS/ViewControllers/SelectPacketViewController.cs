@@ -60,6 +60,7 @@ namespace Izrune.iOS
                 };
             View.LayoutIfNeeded();
 
+            SelectedPrice = PriceList?[0];
         }
 
         private void SendData()
