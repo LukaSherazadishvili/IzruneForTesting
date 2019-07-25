@@ -190,11 +190,20 @@ namespace IZrune.PCL.Implementation.Services
             var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=register&hashcode=4e5e0ccbab0da8c25637b0aa14e6cbbd", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
 
-            var Result = JsonConvert.DeserializeObject<PaymentRootDTO>(jsn);
+            PaymentRootDTO Result = null;
+
+            try
+            {
+                Result = JsonConvert.DeserializeObject<PaymentRootDTO>(jsn);
+            }
+            catch(Exception ex)
+            {
+                AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "რეგისტრაციისას მოხდა შეცდომა , სცადეთ მოგვიანებით");
+            }
 
             
 
-            if (Result.Message.ToLower() != "ok")
+            if (Result!=null && Result.Message.ToLower() != "ok")
             {
                 //if(Result.Message.ToLower() == "personal number already exists")
                 //{
@@ -211,7 +220,8 @@ namespace IZrune.PCL.Implementation.Services
                 AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", Result.Message);
                 return null;
             }
-
+            else
+                AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "რეგისტრაციისას მოხდა შეცდომა , სცადეთ მოგვიანებით");
 
 
             Pay pay = new Pay();
