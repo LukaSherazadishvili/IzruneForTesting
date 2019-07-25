@@ -81,8 +81,11 @@ namespace Izrune.iOS.CollectionViewCells
 
         public void CheckAnswer(bool IsRight)
         {
-            if (!Parent.UserInteractionEnabled)
-                return;
+            if(Parent != null)
+            {
+                if (!Parent.UserInteractionEnabled)
+                    return;
+            }
 
             InitAnswer(IsRight ? AppColors.Succesful : AppColors.ErrorTitle);
         }

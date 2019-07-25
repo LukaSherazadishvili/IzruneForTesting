@@ -548,6 +548,7 @@
       <BundleResource Include="exploding-ribbon.json" />
       <BundleResource Include="Resources\სკოლის დამსახურება.jpg" />
       <BundleResource Include="Resources\multiply.png" />
+      <BundleResource Include="Resources\საღოლ ყლეო.mp3" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\IZrune.PCL\IZrune.PCL.csproj">
