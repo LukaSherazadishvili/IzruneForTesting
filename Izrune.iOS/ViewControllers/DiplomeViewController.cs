@@ -27,15 +27,17 @@ namespace Izrune.iOS
 
         public IStudent Student;
         private IStatisticServices diplomeService;
-        private List<IStudentsStatistic> StudentsStatistics;
-        private List<IStudentsStatistic> AllStatistic = new List<IStudentsStatistic>();
+        private List<IQuisInfo> StudentsStatistics;
+        private List<IDiplomStatistic> AllStatistic = new List<IDiplomStatistic>();
 
         DropDown YearDropDown = new DropDown();
 
         private ExamResultViewController diplomeDetailVc;
         private List<IDiplomStatistic> diplomeYears;
 
-        public async override void ViewDidLoad()
+        public bool DataLoaded { get; set; }
+
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
@@ -43,7 +45,7 @@ namespace Izrune.iOS
 
             InitUI();
 
-            await LoadDataAsync();
+            //await LoadDataAsync();
 
             InitCollectionViewSettings();
 
@@ -51,18 +53,23 @@ namespace Izrune.iOS
                 this.NavigationController.PopViewController(true);
 
             };
-
-            InitDropDowns();
         }
 
         public async override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
 
-            await UpdateData();
-            diplomeCollectionView.ReloadData();
+            if(!DataLoaded)
+            {
+                await LoadDataAsync();
 
-            diplomeLbl.Text = diplomeYears?[0]?.DiplomaDate + " სასწავლო წელი";
+                InitDropDowns();
+
+                diplomeCollectionView.Hidden = false;
+                diplomeLbl.Text = diplomeYears?[0]?.DiplomaDate + " სასწავლო წელი";
+
+                DataLoaded = true;
+            }
         }
         private void InitUI()
         {
@@ -76,6 +83,10 @@ namespace Izrune.iOS
 
             await UpdateData();
 
+            var diplomes = diplomeYears?.FirstOrDefault();
+            StudentsStatistics = diplomes?.DiplomaStatistic?.ToList();
+
+            AllStatistic = diplomeYears;
             if (StudentsStatistics == null || StudentsStatistics?.Count == 0)
             {
                 HideHeader(true);
@@ -89,17 +100,15 @@ namespace Izrune.iOS
 
         public async Task UpdateData()
         {
+            HideHeader(true);
+            diplomeCollectionView.Hidden = true;
+
             diplomeService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
-            StudentsStatistics = (await diplomeService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam))?.Where(x => x.DiplomaUrl != null)?.ToList();
 
-            foreach (var item in StudentsStatistics)
-            {
-                AllStatistic?.Add(item);
-            }
+            diplomeYears = (await diplomeService.GetDiplomaStatisticAsync())?.ToList();
 
-            var service = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
-            diplomeYears = (await service.GetDiplomaStatisticAsync())?.ToList();
-
+            HideHeader(false);
+            diplomeCollectionView.Hidden = false;
         }
 
         private void HideHeader(bool hide)
@@ -127,7 +136,7 @@ namespace Izrune.iOS
 
             var data = StudentsStatistics?[indexPath.Row];
 
-            cell.CellClicked = async (studentStatistic) =>
+            cell.CellClicked = (studentStatistic) =>
             {
                 ShowLoading();
 
@@ -137,8 +146,8 @@ namespace Izrune.iOS
 
                 try
                 {
-                    var quisInfo = await UserControl.Instance.GetQuisInfo(studentStatistic.Id);
-                    diplomeDetailVc.QuisInfo = quisInfo;
+                    //var quisInfo = await UserControl.Instance.GetQuisInfo(studentStatistic.Id);
+                    diplomeDetailVc.QuisInfo = studentStatistic;
                 }
                 catch (Exception ex)
                 {
@@ -184,12 +193,13 @@ namespace Izrune.iOS
             {
                 try
                 {
-                    diplomeLbl.Text = name + "სასწავლო წელი";
+                    diplomeLbl.Text = name + " სასწავლო წელი";
 
                     var years = diplomeYears?[(int)index];
 
-                    //TODO Filter Logic
-                    //StudentsStatistics = AllStatistic?.Where(x => x)
+                    StudentsStatistics = diplomeYears?[(int)index].DiplomaStatistic?.ToList();
+
+                    diplomeCollectionView.ReloadData();
                 }
                 catch (Exception ex)
                 {

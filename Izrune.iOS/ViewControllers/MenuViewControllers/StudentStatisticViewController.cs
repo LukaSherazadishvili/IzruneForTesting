@@ -82,7 +82,7 @@ namespace Izrune.iOS
 
             var statisticService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
 
-            diplomeStatistics = await statisticService.GetDiplomaStatisticAsync();
+            //diplomeStatistics = await statisticService.GetDiplomaStatisticAsync();
 
             CurrentStudent = Students?[0];
             EndLoading();
