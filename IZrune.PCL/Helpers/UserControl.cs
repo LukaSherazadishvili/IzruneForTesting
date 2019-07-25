@@ -81,7 +81,9 @@ namespace IZrune.PCL.Helpers
                 if (Parent == null)
                 {
                     Parent = await MpdcContainer.Instance.Get<IUserServices>().GetUserAsync();
-                    Parent.IsAdmin = await MpdcContainer.Instance.Get<IUserServices>()?.IsAdmin();
+
+                    if(Parent != null)
+                        Parent.IsAdmin = await MpdcContainer.Instance.Get<IUserServices>()?.IsAdmin();
                 }
 
                 return Parent;

@@ -16,8 +16,14 @@ namespace Izrune.iOS
 		}
 
         public static readonly NSString StoryboardId = new NSString("PayViaBankStoryboardId");
-        private IParent CurrentUser;
+
+        public IParent CurrentUser;
+
         public IPrice SelectedPrice;
+
+        public string UserName { get; set; }
+
+
 
         public async override void ViewDidLoad()
         {
@@ -48,13 +54,23 @@ namespace Izrune.iOS
         {
             try
             {
-                CurrentUser = await IZrune.PCL.Helpers.UserControl.Instance.GetCurrentUser();
-                profileNumberLbl.Text = $"1. პროფილის ნომერი - {CurrentUser?.ProfileNumber}";
-                userNameLbl.Text = $"2. მომხმარებელი: {CurrentUser?.Name + " " + CurrentUser?.LastName}";
-                billLbl.Text = $"3. გადასახდელი თანხა - {SelectedPrice?.price} ლარი";
-                dateLbl.Text = DateTime.Now.ToString("dd/MM/yyyy");
+               
+                if(CurrentUser == null)
+                {
+                    profileNumberView.Hidden = true;
 
-                userStackView.Hidden = CurrentUser == null;
+                    userNameLbl.Text = $"1. მომხმარებელი: {UserName}";
+                    billLbl.Text = $"2. გადასახდელი თანხა - {SelectedPrice?.price} ლარი";
+                    dateLbl.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    profileNumberLbl.Text = $"1. პროფილის ნომერი - {CurrentUser?.ProfileNumber}";
+                    userNameLbl.Text = $"2. მომხმარებელი: {CurrentUser?.Name + " " + CurrentUser?.LastName}";
+                    billLbl.Text = $"3. გადასახდელი თანხა - {SelectedPrice?.price} ლარი";
+                    dateLbl.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                }
+                
             }
             catch (Exception ex)
             {

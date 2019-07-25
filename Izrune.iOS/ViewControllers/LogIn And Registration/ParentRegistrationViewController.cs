@@ -49,6 +49,8 @@ namespace Izrune.iOS
 
         private IStudent MoreStudent;
 
+        public string CurrentUserName { get; private set; }
+
         #endregion
 
         public async override void ViewDidLoad()
@@ -216,6 +218,7 @@ namespace Izrune.iOS
                                 AddViewController(parent2RegVc, parentRegVc);
                                 CurrentIndex++;
                                 parentRegVc.SendClicked?.Invoke();
+                                CurrentUserName = parentRegVc.UserName;
                             }
 
                             else
@@ -352,11 +355,15 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
+                            
                             HideHeader(true);
                             AddMoreStudentVc?.SendClicked?.Invoke();
                             AddMoreStudentVc.DataSent = (ipay) => {
+                                ShowLoading();
                                 paymentViewController.PayInfo = ipay;
                                 paymentViewController.SelectedPrice = SelectedPrice;
+                                paymentViewController.UserName = CurrentUserName;
+                                EndLoading();
                                 this.NavigationController.PushViewController(paymentViewController, true);
                             };
                         }

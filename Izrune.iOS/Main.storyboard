@@ -4086,6 +4086,7 @@
                         <outlet property="dateLbl" destination="Izb-Cf-fzf" id="uLj-1W-fqK"/>
                         <outlet property="numberCopyBttn" destination="sqG-Sr-m77" id="zIw-aF-wMM"/>
                         <outlet property="profileNumberLbl" destination="AhA-r6-r1v" id="Ltw-IO-81h"/>
+                        <outlet property="profileNumberView" destination="Dll-sx-oN9" id="ZSW-jv-DJy"/>
                         <outlet property="userNameLbl" destination="C2w-Cu-ZL8" id="AVd-ee-ZuK"/>
                         <outlet property="userStackView" destination="4WK-ZM-cr6" id="0Ef-SF-21R"/>
                     </connections>

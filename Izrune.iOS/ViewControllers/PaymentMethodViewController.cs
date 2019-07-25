@@ -24,6 +24,9 @@ namespace Izrune.iOS
 
         public bool HideTitle { get; set; }
 
+
+        public string UserName { get; set; }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -45,8 +48,12 @@ namespace Izrune.iOS
 
         private void InitGestures()
         {
-            payViaBankBtn.TouchUpInside += delegate {
+            payViaBankBtn.TouchUpInside += async delegate {
                 var payBankVc = Storyboard.InstantiateViewController(PayViaBankViewController.StoryboardId) as PayViaBankViewController;
+                var user = await IZrune.PCL.Helpers.UserControl.Instance.GetCurrentUser();
+                payBankVc.CurrentUser = user;
+                payBankVc.UserName = UserName;
+
                 payBankVc.SelectedPrice = SelectedPrice;
                 this.NavigationController.PushViewController(payBankVc, true);
             };
