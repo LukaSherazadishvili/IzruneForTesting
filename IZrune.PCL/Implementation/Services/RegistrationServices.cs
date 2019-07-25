@@ -201,9 +201,9 @@ namespace IZrune.PCL.Implementation.Services
                 AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "რეგისტრაციისას მოხდა შეცდომა , სცადეთ მოგვიანებით");
             }
 
-            
 
-            if (Result!=null && Result.Message.ToLower() != "ok")
+
+            if (Result != null && Result.Message.ToLower() != "ok")
             {
                 //if(Result.Message.ToLower() == "personal number already exists")
                 //{
@@ -220,8 +220,11 @@ namespace IZrune.PCL.Implementation.Services
                 AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", Result.Message);
                 return null;
             }
-            else
+            else if (Result == null)
+            {
                 AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "რეგისტრაციისას მოხდა შეცდომა , სცადეთ მოგვიანებით");
+                return null;
+            }
 
 
             Pay pay = new Pay();
