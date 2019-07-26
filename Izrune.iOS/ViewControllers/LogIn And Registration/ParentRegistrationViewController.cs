@@ -51,6 +51,8 @@ namespace Izrune.iOS
 
         public string CurrentUserName { get; private set; }
 
+        public bool IsFromMenu { get; set; }
+
         #endregion
 
         public async override void ViewDidLoad()
@@ -75,7 +77,6 @@ namespace Izrune.iOS
 
             ChangeHeader(true);
         }
-
 
         private void InitViewControllers()
         {
