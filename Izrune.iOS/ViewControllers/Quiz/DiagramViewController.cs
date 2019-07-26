@@ -33,7 +33,11 @@ namespace Izrune.iOS
 
         bool _isAllData = true;
         private List<IStudentsStatistic> statistisData;
+        private PlotView _timePlotView;
+        private PlotView _pointPlotView;
         private List<IDiagram> userMonthStatistics;
+        private PlotModel _pointPlotModel;
+        private PlotModel _timePlotModel;
 
         public override async void ViewDidLoad()
         {
@@ -68,7 +72,7 @@ namespace Izrune.iOS
 
           
             _plotView = new PlotView(new CoreGraphics.CGRect(0, 25, timeChartView.Frame.Width,
-                                                                                   timeChartView.Frame.Height))
+                                                                                   timeChartView.Frame.Height-25))
             {
 
             };
@@ -149,26 +153,29 @@ namespace Izrune.iOS
 
 
             statistisData = statistisData.DistinctBy(o => o.ExamDate.Date).ToList();
-            _plotView = new PlotView(new CoreGraphics.CGRect(0, 25, timeChartView.Frame.Width,
-                                                                                   timeChartView.Frame.Height))
+            _pointPlotView = new PlotView(new CoreGraphics.CGRect(0, 25, timeChartView.Frame.Width,
+                                                                                   timeChartView.Frame.Height-25))
             {
 
             };
-            _plotView.BackgroundColor = UIColor.Clear;
 
-            pointChartView.AddSubview(_plotView);
 
+            _pointPlotView.BackgroundColor = UIColor.Clear;
+
+            pointChartView.AddSubview(_pointPlotView);
+            _pointPlotView.LayoutIfNeeded();
+            timeChartView.LayoutIfNeeded();
             UIColor.FromRGB(231, 76, 60).GetRGBA(out nfloat red, out nfloat green, out nfloat blue, out nfloat alpha);
 
             var oxyColor = OxyColor.FromRgb((byte)(red * 255), (byte)(green * 255), (byte)(blue * 255));
-            _plotModel = new PlotModel()
+            _pointPlotModel = new PlotModel()
             {
                 TextColor = oxyColor
                  ,
                 PlotAreaBorderColor = OxyColors.Transparent
             };
 
-            _plotModel.Title = $"";
+            _pointPlotModel.Title = $"";
 
 
 
@@ -224,12 +231,12 @@ namespace Izrune.iOS
                 //s1.LabelFormatString = "dd/MM/yyyy";
             }
 
-            _plotModel.Series.Add(s1);
-            _plotModel.Axes.Add(xaxis);
-            _plotModel.Axes.Add(yaxis);
+            _pointPlotModel.Series.Add(s1);
+            _pointPlotModel.Axes.Add(xaxis);
+            _pointPlotModel.Axes.Add(yaxis);
 
 
-            _plotView.Model = _plotModel;
+            _pointPlotView.Model = _pointPlotModel;
         }
 
         void setUpTimeView()
@@ -237,27 +244,27 @@ namespace Izrune.iOS
 
             timeChartView.LayoutIfNeeded();
             statistisData = statistisData.DistinctBy(o=>o.ExamDate.Date).ToList();
-            _plotView = new PlotView(new CoreGraphics.CGRect(0, 25, timeChartView.Frame.Width,
-                                                                                   timeChartView.Frame.Height))
+            _timePlotView = new PlotView(new CoreGraphics.CGRect(0, 25, timeChartView.Frame.Width,
+                                                                                   timeChartView.Frame.Height-25))
             {
 
             };
-            _plotView.BackgroundColor = UIColor.Clear;
+            _timePlotView.BackgroundColor = UIColor.Clear;
 
             
-            timeChartView.AddSubview(_plotView);
+            timeChartView.AddSubview(_timePlotView);
            
             UIColor.FromRGB(63, 81, 181).GetRGBA(out nfloat red, out nfloat green, out nfloat blue, out nfloat alpha);
 
             var oxyColor = OxyColor.FromRgb((byte)(red * 255), (byte)(green * 255), (byte)(blue * 255));
-            _plotModel = new PlotModel()
+            _timePlotModel = new PlotModel()
             {
                 TextColor = oxyColor
                  ,
                 PlotAreaBorderColor = OxyColors.Transparent
             };
 
-            _plotModel.Title = $"";
+            _timePlotModel.Title = $"";
 
           
 
@@ -305,12 +312,12 @@ namespace Izrune.iOS
                 s1.Items.Add(new ColumnItem(item.TestTimeInSecconds, statistisData.IndexOf(item)));
             }
 
-            _plotModel.Series.Add(s1);
-            _plotModel.Axes.Add(xaxis);
-            _plotModel.Axes.Add(yaxis);
+            _timePlotModel.Series.Add(s1);
+            _timePlotModel.Axes.Add(xaxis);
+            _timePlotModel.Axes.Add(yaxis);
 
 
-            _plotView.Model = _plotModel;
+            _timePlotView.Model = _timePlotModel;
         }
 
        
