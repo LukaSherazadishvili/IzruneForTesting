@@ -41,6 +41,9 @@ namespace Izrune.iOS
             InitUI();
 
             InitGestures();
+
+            if (UIDevice.CurrentDevice.CheckSystemVersion(10, 3) && !System.Diagnostics.Debugger.IsAttached)
+                StoreKit.SKStoreReviewController.RequestReview();
         }
 
         private void InitGestures()
