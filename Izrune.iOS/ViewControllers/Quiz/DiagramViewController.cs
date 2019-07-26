@@ -16,10 +16,11 @@ using System.Linq;
 using MPDC.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Helpers;
+using MPDCiOSPages.ViewControllers;
 
 namespace Izrune.iOS
 {
-	public partial class DiagramViewController : UIViewController, IIndicatorInfoProvider
+	public partial class DiagramViewController : BaseViewController, IIndicatorInfoProvider
     {
 		public DiagramViewController (IntPtr handle) : base (handle)
 		{
@@ -42,9 +43,14 @@ namespace Izrune.iOS
 
             var statisticsService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
 
-             statistisData = (await statisticsService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam))?.ToList();
+
+            ShowLoading();
+             statistisData = (await statisticsService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam)).ToList();
+
 
              userMonthStatistics =(await UserControl.Instance.GetDiagramStatistic())?.ToList();
+
+            EndLoading();
 
             if (statistisData.Count > 0)
             {
@@ -295,6 +301,7 @@ namespace Izrune.iOS
             foreach (var item in statistisData.Take(10))
             {
                 xaxis.Labels.Add(item.ExamDate.ToString("dd/MM/yyyy"));
+                
                 s1.Items.Add(new ColumnItem(item.TestTimeInSecconds, statistisData.IndexOf(item)));
             }
 
