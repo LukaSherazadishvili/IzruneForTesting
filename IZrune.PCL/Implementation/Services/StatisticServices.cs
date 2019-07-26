@@ -130,7 +130,21 @@ namespace IZrune.PCL.Implementation.Services
                         DiplomaUrl=i.diploma_url,
                         ExamDate = Convert.ToDateTime(i.date),
                         Point = Convert.ToInt32(i.score),
-                        TestTimeInSecconds = Convert.ToInt32( i.duration)
+                        TestTimeInSecconds = Convert.ToInt32( i.duration),
+                        Questions=i.questions.Select(x=>new FinalQuestion() {
+
+                            title = x.title,
+                            images = x.images.Select(o => o.url),
+                            StudentAnswerIndex = x.answers.IndexOf(x.answers.Where(n => n.student_answer == 1).FirstOrDefault()),
+                            Description = x.description,
+                            Answers = x.answers.Select(o => new Answer()
+                            {
+                                IsRight = o.right == "1" ? true : false,
+                                title = o.title
+                            })
+
+                        })
+                        
                     });
 
 

@@ -14,5 +14,6 @@ namespace IZrune.PCL.Abstraction.Models
         int TestTimeInSecconds { get; set; }
         string DiplomaUrl { get; set; }
         int Point { get; set; }
+        IEnumerable<IFinalQuestion> Questions { get; set; }
     }
 }
