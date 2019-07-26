@@ -241,7 +241,9 @@ namespace Izrune.iOS
                         {
                             try
                             {
+                                InvokeOnMainThread(() => ShowLoading());
                                 IZrune.PCL.Helpers.UserControl.Instance.AddStudent();
+                                InvokeOnMainThread(() => EndLoading());
                                 ShowSuccsessAlert();
                             }
                             catch (Exception ex)
