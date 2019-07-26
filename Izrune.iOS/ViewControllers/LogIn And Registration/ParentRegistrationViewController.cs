@@ -360,13 +360,12 @@ namespace Izrune.iOS
                             HideHeader(true);
                             AddMoreStudentVc?.SendClicked?.Invoke();
                             AddMoreStudentVc.DataSent = (ipay) => {
-                                ShowLoading();
                                 paymentViewController.PayInfo = ipay;
                                 paymentViewController.SelectedPrice = SelectedPrice;
                                 paymentViewController.UserName = CurrentUserName;
-                                EndLoading();
                                 this.NavigationController.PushViewController(paymentViewController, true);
                             };
+                            nextBtn.Enabled = false;
                         }
 
                         else
@@ -375,6 +374,7 @@ namespace Izrune.iOS
                             HideHeader(false);
                             AddViewController(studentRegVc2, AddMoreStudentVc);
                             CurrentIndex--;
+                            nextBtn.Enabled = true;
                         }
 
                         break;
