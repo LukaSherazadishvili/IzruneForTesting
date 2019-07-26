@@ -200,13 +200,15 @@ namespace IZrune.PCL.Implementation.Services
 
 
                     var filtered = Result.Where(x => x.ExamDate <= After && x.ExamDate >= FromDate).ToList();
-                    var levanaYleProgramistiaTasks = filtered.Select(o => Task<IQuisResultInfo>.Run(async () => await GetCurrentTestDiplomaInfo(o.Id)));
+                    var levanaYleProgramistiaTasks = filtered.Select(o => Task<IStudentsStatistic>.Run(async () => await GetCurrentTestDiplomaInfo(o.Id)));
 
                     await Task.WhenAll(levanaYleProgramistiaTasks);
 
                     temp.ElementAt(i).DiplomaStatistic = filtered.Select(o=>new QuisInfo() {
                         DiplomaURl=o.DiplomaUrl,
-                        QueisResult = levanaYleProgramistiaTasks.ElementAt(filtered.IndexOf(o)).Result
+                        QueisResult = levanaYleProgramistiaTasks.ElementAt(filtered.IndexOf(o)).Result,
+                        QuestionResult=Result.Where(x => x.ExamDate <= After && x.ExamDate >= FromDate).ElementAt(filtered.IndexOf(o)).Questions
+                       
 
                     }).ToList();
 
