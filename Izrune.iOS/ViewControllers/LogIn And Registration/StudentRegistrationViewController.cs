@@ -182,7 +182,7 @@ namespace Izrune.iOS
             };
         }
 
-        private async void GetCurrentPage(int pageIndex)
+        private async Task GetCurrentPage(int pageIndex)
         {
 
             switch (pageIndex)
@@ -279,19 +279,21 @@ namespace Izrune.iOS
 
         private void InitGestures()
         {
-            nextBtn.TouchUpInside += delegate
+            nextBtn.TouchUpInside += async delegate
             {
+
                 NextClicked = true;
-                GetCurrentPage(CurrentIndex);
+                await GetCurrentPage(CurrentIndex);
                 //CurrentIndex++;
                 CheckIndex();
-
+                backBtn.Enabled = CurrentIndex > 0;
             };
 
-            backBtn.TouchUpInside += delegate {
+            backBtn.TouchUpInside += async delegate {
+
 
                 NextClicked = false;
-                GetCurrentPage(CurrentIndex);
+                await GetCurrentPage(CurrentIndex);
                 //CurrentIndex--;
                 CheckIndex();
 

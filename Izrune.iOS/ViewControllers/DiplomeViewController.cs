@@ -149,7 +149,7 @@ namespace Izrune.iOS
                 {
                     //var quisInfo = await UserControl.Instance.GetQuisInfo(studentStatistic.Id);
                     diplomeDetailVc.QuisInfo = studentStatistic;
-
+                    diplomeDetailVc.Questions = studentStatistic?.QuestionResult?.ToList();
                 }
                 catch (Exception ex)
                 {
