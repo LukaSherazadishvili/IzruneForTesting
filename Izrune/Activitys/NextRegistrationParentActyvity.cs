@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using MpdcContainer = ServiceContainer.ServiceContainer;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using Izrune.Attributes;
 using IZrune.PCL.Helpers;
+using IZrune.PCL.Abstraction.Services;
 
 namespace Izrune.Activitys
 {
@@ -81,7 +82,7 @@ namespace Izrune.Activitys
             base.OnBackPressed();
         }
 
-        private void NextButton_Click(object sender, EventArgs e)
+        private async void NextButton_Click(object sender, EventArgs e)
         {
 
             if (string.IsNullOrEmpty(Phone.Text))
@@ -101,7 +102,7 @@ namespace Izrune.Activitys
                 RepPassword.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
             }
 
-            if (!(string.IsNullOrEmpty(Phone.Text) || string.IsNullOrEmpty(Name.Text) || string.IsNullOrEmpty(Password.Text) || string.IsNullOrEmpty(RepPassword.Text)))
+            if (!(string.IsNullOrEmpty(Phone.Text) || string.IsNullOrEmpty(Name.Text) || string.IsNullOrEmpty(Password.Text) || string.IsNullOrEmpty(RepPassword.Text)||await MpdcContainer.Instance.Get<IRegistrationServices>().ExistUserName(Name.Text)))
             {
 
                 if (Password.Text == RepPassword.Text)

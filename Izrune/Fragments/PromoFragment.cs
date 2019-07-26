@@ -61,6 +61,8 @@ namespace Izrune.Fragments
 
         int MonthCount;
 
+        bool IsSucces = false;
+
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
@@ -81,9 +83,19 @@ namespace Izrune.Fragments
 
             }
 
+
+            var DataAdapter = new ArrayAdapter<string>(this,
+                Android.Resource.Layout.SimpleSpinnerDropDownItem,
+               PromoCod.Prices.Select(i => $"{ i.Period}").ToList());
+
+            monthSpiner.Adapter = DataAdapter;
+            monthSpiner.ItemSelected += MonthSpiner_ItemSelected;
+
+
+
             NextButton.Click += (s, e) =>
             {
-                if (MonthCount > 0)
+                if (IsSucces)
                 {
                     UserControl.Instance.SetPromoPack(MonthCount, MonthCount * 1, PromoCod.PrommoCode);
                     Intent intent = new Intent(this, typeof(RullesActivity));
@@ -101,16 +113,12 @@ namespace Izrune.Fragments
                 {
                     promoEdit.SetBackgroundResource(Resource.Drawable.izruneback);
 
-                    var DataAdapter = new ArrayAdapter<string>(this,
-                  Android.Resource.Layout.SimpleSpinnerDropDownItem,
-                 PromoCod.Prices.Select(i =>$"{ i.Period}").ToList());
-
-                    monthSpiner.Adapter = DataAdapter;
-                    monthSpiner.ItemSelected += MonthSpiner_ItemSelected;
+                    IsSucces = true;
                 }
                 else
                 {
                     promoEdit.SetBackgroundResource(Resource.Drawable.RedPromoCodebutton);
+                    IsSucces = false;
                 }
             };
 

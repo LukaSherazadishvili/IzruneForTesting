@@ -56,7 +56,7 @@ namespace Izrune.Activitys
         TextView StudentClass;
 
         [MapControl(Resource.Id.StudentCity)]
-        Spinner StudentCity;
+        TextView StudentCity;
 
         [MapControl(Resource.Id.SaveButton)]
         LinearLayout SaveButton;
@@ -96,9 +96,7 @@ namespace Izrune.Activitys
               Result.Students.Select(i => ($"{i.Name}   {i.LastName}")).ToList());
 
 
-            var RegionAdapter = new ArrayAdapter<string>(this,
-          Android.Resource.Layout.SimpleSpinnerDropDownItem,
-         Regions.Select(i => i.title).ToList());
+          
 
 
 
@@ -125,44 +123,53 @@ namespace Izrune.Activitys
                 StudentMail.Text = student.Email;
                 StudentVillage.Text = student.Village;
 
-                StudentCity.Adapter = RegionAdapter;
+                StudentCity.Text = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().title;
 
-                var regg = Regions.Where(i => i.id == student.RegionId).FirstOrDefault();
+               
 
-                var poss = RegionAdapter.GetPosition(regg.title);
-                StudentCity.SetSelection(poss);
-
-
-                var SchoolRes = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Select(x => x.title).ToList();
-
-                SchoolRes.Insert(0, "სკოლა");
-
-
-                var SchoolAdapterr = new ArrayAdapter<string>(this,
-              Android.Resource.Layout.SimpleSpinnerDropDownItem,
-              SchoolRes
-            );
-
-                var aasd = student.SchoolId;
 
               
-                var Ress = Regions?.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Where(i => i.id == student.SchoolId).FirstOrDefault();
+
+
+                var Raylexdeba = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.ToList();
+
+
+
+                var SchoolResource = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Select(x => x.title).ToList();
+                SchoolResource.Insert(0, "სკოლა");
+
+                var SchoolAdapterr = new ArrayAdapter<string>(this,
+             Android.Resource.Layout.SimpleSpinnerDropDownItem,
+            SchoolResource);
+
+
                 StudentSchool.Adapter = SchoolAdapterr;
 
-                if (Ress != null)
+
+                var Resss = Regions?.Where(i => i.id == student.RegionId).FirstOrDefault()?.Schools?.Where(i => i.id == student.SchoolId)?.FirstOrDefault();
+
+
+
+                if (Resss != null)
                 {
-                    var ScholdPoss = SchoolAdapterr.GetPosition(Ress.title);
-                    StudentSchool.SetSelection(ScholdPoss);
+
+                    var ScholdPos = SchoolAdapterr.GetPosition(Resss.title);
+                    StudentSchool.SetSelection(ScholdPos);
+
                 }
                 else
                 {
+                    student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.FirstOrDefault().id;
                     StudentSchool.SetSelection(0);
                 }
+
+
+
             };
 
 
 
-
+         
 
             //  StudentCity.Adapter = RegionAdapter;
             var SchoolRess = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Select(x => x.title).ToList();
@@ -173,63 +180,56 @@ namespace Izrune.Activitys
         SchoolRess);
 
 
-         //   bool isCheck = false;
-            StudentCity.ItemSelected += (s, e) =>
-            {
-               
-                    student.RegionId = Regions.ElementAt(e.Position).id;
-
-                var SchooldResource = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Select(x => x.title).ToList();
-                SchooldResource.Insert(0, "სკოლა");
-
-
-                var schladapter = new ArrayAdapter<string>(this,
-          Android.Resource.Layout.SimpleSpinnerDropDownItem, SchooldResource
-         );
-                StudentSchool.Adapter = schladapter;
-
-                StudentSchool.ItemSelected += (sender, eargs) =>
-                {
-                   // student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.ElementAt(eargs.Position).id;
-
-                };
-                // isCheck = true;
-
-            };
-
-            var reg = Regions.Where(i => i.id == student.RegionId).FirstOrDefault();
-
-           var pos= RegionAdapter.GetPosition(reg.title);
-            StudentCity.SetSelection(pos);
-
-
-
-
+  
             var asd = student.SchoolId;
         
           StudentSchool.Adapter = SchoolAdapter;
-           
+
+
+            int OopsCount = 0;
+
+
+
+            var Res = Regions?.Where(i => i.id == student.RegionId).FirstOrDefault()?.Schools?.Where(i => i.id == student.SchoolId)?.FirstOrDefault();
+
+
+
+            if (Res != null)
+            {
+
+                var ScholdPos = SchoolAdapter.GetPosition(Res.title);
+                StudentSchool.SetSelection(ScholdPos);
+
+
+
+            }
+            else
+            {
+                student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.FirstOrDefault().id;
+                StudentSchool.SetSelection(0);
+            }
+
 
             StudentSchool.ItemSelected += (s, e) =>
             {
-                var Res = Regions?.Where(i => i.id == student.RegionId).FirstOrDefault()?.Schools?.Where(i => i.id == student.SchoolId)?.FirstOrDefault();
 
-                if (Res != null)
+
+                if (OopsCount>2)
                 {
+                    if (e.Position > 0)
+                    {
+
+                        var CurrentSchold = Regions?.Where(i => i.id == student.RegionId).FirstOrDefault()?.Schools.ToList().ElementAt(e.Position - 1).id;
+                        student.SchoolId = CurrentSchold.Value;
 
 
+                    }
 
-
-
-                    var ScholdPos = SchoolAdapter.GetPosition(Res.title);
-                    StudentSchool.SetSelection(ScholdPos);
-                    student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.ToList().ElementAt(e.Position).id;
                 }
-                else
-                {
-                    student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.FirstOrDefault().id;
-                    StudentSchool.SetSelection(0);
-                }
+
+                OopsCount ++;
+
+              
             };
 
 

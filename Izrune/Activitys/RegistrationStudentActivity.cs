@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using MpdcContainer = ServiceContainer.ServiceContainer;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -15,6 +15,7 @@ using Izrune.Attributes;
 using IZrune.PCL.Helpers;
 using Java.Util;
 using static Android.App.DatePickerDialog;
+using IZrune.PCL.Abstraction.Services;
 
 namespace Izrune.Activitys
 {
@@ -87,12 +88,12 @@ namespace Izrune.Activitys
 
         }
 
-        private void NextButton_Click(object sender, EventArgs e)
+        private async void NextButton_Click(object sender, EventArgs e)
         {
 
 
             if (string.IsNullOrEmpty(StudName.Text) || string.IsNullOrEmpty(StudLastName.Text) || string.IsNullOrEmpty(StudentBdayYear.Text) ||
-                string.IsNullOrEmpty(StudentPersonalId.Text) )
+                string.IsNullOrEmpty(StudentPersonalId.Text)||(!await MpdcContainer.Instance.Get<IRegistrationServices>().ExistPersonalId(StudentPersonalId.Text)) )
             {
                 if (string.IsNullOrEmpty(StudName.Text))
                 {

@@ -353,12 +353,12 @@ namespace Izrune.Activitys
             likesLottie.PlayAnimation();
         }
 
-        //public void PlayAnimationTwo()
-        //{
-        //    likesLottie.SetAnimation("ribbon.json");
-        //    likesLottie.Visibility = ViewStates.Visible;
-        //    likesLottie.PlayAnimation();
-        //}
+        public void PlayAnimationTwo()
+        {
+            likesLottie.SetAnimation("sssss.json");
+            likesLottie.Visibility = ViewStates.Visible;
+            likesLottie.PlayAnimation();
+        }
 
         public void StopAnimation()
         {

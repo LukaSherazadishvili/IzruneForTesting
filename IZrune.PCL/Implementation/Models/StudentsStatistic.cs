@@ -15,5 +15,6 @@ namespace IZrune.PCL.Implementation.Models
         public int Point { get; set; }
         public string DiplomaUrl { get; set; }
         public int Id { get; set; }
+        public IEnumerable<IFinalQuestion> Questions { get; set; }
     }
 }

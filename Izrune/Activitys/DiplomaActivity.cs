@@ -85,7 +85,8 @@ namespace Izrune.Activitys
             var rrr = await UserControl.Instance.GetQuisInfo(IzruneHellper.Instance.CurrentStatistic.Id);
 
             Score.Text = Result.Score.ToString();
-            Time.Text = $"{Result.Duration / 60}:{Result.Duration % 60}";
+           
+            Time.Text = string.Format($"{(Result.Duration / 60).ToString().PadLeft(2, '0')}:{(Result.Duration % 60).ToString().PadLeft(2, '0')}");
             Correctanswers.Text = IzruneHellper.Instance.CurrentStatistic.CorrectAnswersCount.ToString();
             IncorectAnswers.Text = IzruneHellper.Instance.CurrentStatistic.IncorrectAnswersCount.ToString();
             SkippedAnswer.Text = IzruneHellper.Instance.CurrentStatistic.SkippedQuestionsCount.ToString();
