@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using Foundation;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Helpers;
+using MPDCiOSPages.ViewControllers;
 using UIKit;
 
 namespace Izrune.iOS
 {
-	public partial class AddStudentViewController : UIViewController
+	public partial class AddStudentViewController : BaseViewController
 	{
 		public AddStudentViewController (IntPtr handle) : base (handle)
 		{
@@ -51,7 +52,9 @@ namespace Izrune.iOS
             {
                 try
                 {
+                    ShowLoading();
                     var ipay = (await UserControl.Instance.FinishRegistration());
+                    EndLoading();
                     Pay = ipay;
                     DataSent?.Invoke(ipay);
                 }
