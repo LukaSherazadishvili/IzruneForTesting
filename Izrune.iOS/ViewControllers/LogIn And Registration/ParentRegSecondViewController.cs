@@ -50,8 +50,11 @@ namespace Izrune.iOS
 
             if(textField == passwordTextField)
             {
-                textField.Text = textField.Text.Substring(0, 14);
-                return false;
+                if(textField.Text.Length > 15)
+                {
+                    textField.Text = textField.Text.Substring(0, 14);
+                    return false;
+                }
             }
 
             return true;
