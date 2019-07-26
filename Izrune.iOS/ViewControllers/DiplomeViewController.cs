@@ -32,7 +32,7 @@ namespace Izrune.iOS
 
         DropDown YearDropDown = new DropDown();
 
-        private ExamResultViewController diplomeDetailVc;
+        private ResultTabbedViewController diplomeDetailVc;
         private List<IDiplomStatistic> diplomeYears;
 
         public bool ShouldLoadData { get; set; }
@@ -140,14 +140,16 @@ namespace Izrune.iOS
             {
                 ShowLoading();
 
-                diplomeDetailVc = Storyboard.InstantiateViewController(ExamResultViewController.StoryboardId) as ExamResultViewController;
+                diplomeDetailVc = Storyboard.InstantiateViewController(ResultTabbedViewController.StoryboardId) as ResultTabbedViewController;
                 diplomeDetailVc.Student = Student;
-                diplomeDetailVc.ShowShare = true;
+
+                //diplomeDetailVc.ShowShare = true;
 
                 try
                 {
                     //var quisInfo = await UserControl.Instance.GetQuisInfo(studentStatistic.Id);
                     diplomeDetailVc.QuisInfo = studentStatistic;
+
                 }
                 catch (Exception ex)
                 {
