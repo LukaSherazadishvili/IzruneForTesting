@@ -33,8 +33,8 @@ namespace IZrune.PCL.Implementation.Services
 
                 if (Result.Code == 1)
                 {
-                    AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "ესეთი პირადინომრით უკვე არსებობს მომხმარებელი");
-                  
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "მომხმარებელი ესეთი პირადი ნომრით უკვე არსებობს");
+
                     return true;
                 }
                 else
@@ -69,7 +69,8 @@ namespace IZrune.PCL.Implementation.Services
 
                 if (Result.Code == 1)
                 {
-                    AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "ესეთი სახელით უკვე არსებობს მომხმარებელი");
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "მომხმარებელი ესეთი სახელით უკვე არსებობს");
+
                     return true;
 
                 }
@@ -189,28 +190,41 @@ namespace IZrune.PCL.Implementation.Services
             var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=register&hashcode=4e5e0ccbab0da8c25637b0aa14e6cbbd", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
 
-            var Result = JsonConvert.DeserializeObject<PaymentRootDTO>(jsn);
+            PaymentRootDTO Result = null;
 
-            
-
-            if (Result.Message.ToLower() != "ok")
+            try
             {
-                if(Result.Message.ToLower() == "personal number already exists")
-                {
-                    AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "მომხმარებელი ასეთი პირადი ნომრით უკვე არსებობს");
-                    return null;
-                }
+                Result = JsonConvert.DeserializeObject<PaymentRootDTO>(jsn);
+            }
+            catch(Exception ex)
+            {
+                AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "რეგისტრაციისას მოხდა შეცდომა , სცადეთ მოგვიანებით");
+            }
 
-                if(Result.Message.ToLower() == "username already exists")
-                {
-                    AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "მომხმარებელი ასეთი სახელით უკვე არსებობს");
-                    return null;
-                }
+
+
+            if (Result != null && Result.Message.ToLower() != "ok")
+            {
+                //if(Result.Message.ToLower() == "personal number already exists")
+                //{
+                //    AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "მომხმარებელი ასეთი პირადი ნომრით უკვე არსებობს");
+                //    return null;
+                //}
+
+                //if(Result.Message.ToLower() == "username already exists")
+                //{
+                //    AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "მომხმარებელი ასეთი სახელით უკვე არსებობს");
+                //    return null;
+                //}
 
                 AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", Result.Message);
                 return null;
             }
-
+            else if (Result == null)
+            {
+                AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "რეგისტრაციისას მოხდა შეცდომა , სცადეთ მოგვიანებით");
+                return null;
+            }
 
 
             Pay pay = new Pay();

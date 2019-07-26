@@ -14,9 +14,9 @@ namespace Izrune.iOS.CollectionViewCells
 
         public static readonly NSString Identifier = new NSString("DiplomeCellIdentifier");
 
-        public Action<IStudentsStatistic> CellClicked { get; set; }
+        public Action<IQuisInfo> CellClicked { get; set; }
 
-        private IStudentsStatistic StudentsStatistic;
+        private IQuisInfo StudentsStatistic;
 
         DateTimeFormatInfo ge = new CultureInfo("ka-GE", false).DateTimeFormat;
 
@@ -30,13 +30,13 @@ namespace Izrune.iOS.CollectionViewCells
             // Note: this .ctor should not contain any initialization logic.
         }
 
-        public void InitData(IStudentsStatistic studentsStatistic)
+        public void InitData(IQuisInfo studentsStatistic)
         {
             //TODO
 
             StudentsStatistic = studentsStatistic;
 
-            dateLbl.Text = studentsStatistic.ExamDate.ToString(ge.ShortDatePattern);
+            dateLbl.Text = studentsStatistic?.QueisResult?.Date.ToString(ge.ShortDatePattern);
 
         }
 

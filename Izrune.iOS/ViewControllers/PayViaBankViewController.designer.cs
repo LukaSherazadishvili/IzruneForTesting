@@ -25,6 +25,9 @@ namespace Izrune.iOS
 		UIKit.UILabel profileNumberLbl { get; set; }
 
 		[Outlet]
+		UIKit.UIView profileNumberView { get; set; }
+
+		[Outlet]
 		UIKit.UILabel userNameLbl { get; set; }
 
 		[Outlet]
@@ -37,6 +40,16 @@ namespace Izrune.iOS
 				billLbl = null;
 			}
 
+			if (dateLbl != null) {
+				dateLbl.Dispose ();
+				dateLbl = null;
+			}
+
+			if (numberCopyBttn != null) {
+				numberCopyBttn.Dispose ();
+				numberCopyBttn = null;
+			}
+
 			if (profileNumberLbl != null) {
 				profileNumberLbl.Dispose ();
 				profileNumberLbl = null;
@@ -47,19 +60,14 @@ namespace Izrune.iOS
 				userNameLbl = null;
 			}
 
-			if (numberCopyBttn != null) {
-				numberCopyBttn.Dispose ();
-				numberCopyBttn = null;
-			}
-
-			if (dateLbl != null) {
-				dateLbl.Dispose ();
-				dateLbl = null;
-			}
-
 			if (userStackView != null) {
 				userStackView.Dispose ();
 				userStackView = null;
+			}
+
+			if (profileNumberView != null) {
+				profileNumberView.Dispose ();
+				profileNumberView = null;
 			}
 		}
 	}

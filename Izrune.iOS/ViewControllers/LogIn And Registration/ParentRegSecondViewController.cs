@@ -2,8 +2,10 @@
 
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Foundation;
 using Izrune.iOS.Utils;
+using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
 using MPDC.iOS.Utils;
 using MpdcViewExtentions;
@@ -32,7 +34,7 @@ namespace Izrune.iOS
             SendClicked = () => { SenData(); };
         }
 
-        public bool IsFormFilled()
+        public async Task<bool> IsFormFilled()
         {
             var res = (phoneTextField.Text.IsEmtyOrNull() && userNameTextField.Text.IsEmtyOrNull() && passwordTextField.Text.IsEmtyOrNull() && repeatPasswordTextField.Text.IsEmtyOrNull());
 
@@ -46,6 +48,14 @@ namespace Izrune.iOS
                     return false;
                 }
 
+                var userName = userNameTextField.Text;
+                var registerService = ServiceContainer.ServiceContainer.Instance.Get<IRegistrationServices>();
+
+                var result = await registerService.ExistUserName(userName);
+
+                if (result)
+                    return false;
+
                 foreach (var item in passwordTextField.Text)
                 {
                     if(Alphabet.Contains(item))
@@ -58,6 +68,7 @@ namespace Izrune.iOS
 
                     return CheckPassword();
                 }
+
             }
             return res;
         }

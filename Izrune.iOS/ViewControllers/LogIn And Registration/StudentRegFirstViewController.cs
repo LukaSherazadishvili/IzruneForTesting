@@ -3,9 +3,11 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using Foundation;
 using Izrune.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
 using IZrune.PCL.Implementation.Models;
 using MPDC.iOS.Utils;
@@ -69,7 +71,7 @@ namespace Izrune.iOS
             };
         }
 
-        public bool IsFormFilled()
+        public async Task<bool> IsFormFilled()
         {
             var res = (firstNameTf.Text.IsEmtyOrNull() && lastNameLTf.Text.IsEmtyOrNull() && date.Year > 0001 && privateNumberTf.Text.IsEmtyOrNull());
 
@@ -90,6 +92,13 @@ namespace Izrune.iOS
                     this.PresentViewController(alertVc, true, null);
                     return false;
                 }
+
+                var pnNumber = privateNumberTf.Text;
+                var registerService = ServiceContainer.ServiceContainer.Instance.Get<IRegistrationServices>();
+                var result = await registerService.ExistPersonalId(pnNumber);
+                if (result)
+                    return false;
+                
             }
 
             return res;

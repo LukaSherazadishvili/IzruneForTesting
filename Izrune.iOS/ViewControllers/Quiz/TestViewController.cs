@@ -174,9 +174,15 @@ namespace Izrune.iOS
 
             var cell = questionCollectionView.DequeueReusableCell(TestCollectionViewCell.Identifier, indexPath) as TestCollectionViewCell;
 
+            questionCollectionView.UserInteractionEnabled = true;
+
             cell.AnswerClicked = async (answer) =>
             {
                 //likeAnimation.Play();
+                if (questionCollectionView.UserInteractionEnabled == false)
+                    return;
+
+                questionCollectionView.UserInteractionEnabled = false;
 
                 if (answer.IsRight)
                     correctAnswers++;
@@ -192,7 +198,7 @@ namespace Izrune.iOS
                 if (!IsTotalTime)
                     timeLbl.Text = ($"01:30");
 
-                await Task.Delay(2000);
+                await Task.Delay(1500);
 
                 try
                 {
@@ -306,16 +312,17 @@ namespace Izrune.iOS
 
             var headerView = collectionView.DequeueReusableSupplementaryView(elementKind, new NSString("FooterReusableView"), indexPath) as FooterTestView;
 
+            headerView.UserInteractionEnabled = true;
 
             headerView.SkipClicked = async () => {
 
                 try
                 {
-                    //var asd = currentIndex;
+                    if (headerView.UserInteractionEnabled == false)
+                        return;
+                    headerView.UserInteractionEnabled = false;
 
                     var testCell = questionCollectionView.CellForItem(indexPath) as TestCollectionViewCell;
-
-                    //testCell.QuestionSkipped?.Invoke();
 
                     testCell.SkipQuestion();
 
@@ -334,18 +341,6 @@ namespace Izrune.iOS
                         await SkipQuestion();
                         ScrollAnswerProgressCell();
                     }
-
-                    //var answers = CurrentQuestion?.Answers?.ToList();
-                    //var correctAnswer = answers?.IndexOf(answers?.FirstOrDefault(x => x.IsRight == true));
-
-                    //var answerCell = questionCollectionView.CellForItem(NSIndexPath.FromRowSection((System.nint)correctAnswer, 0)) as AnswerCollectionViewCell;
-
-                    //var visibleItems = questionCollectionView.IndexPathsForVisibleItems;
-                    //var currCell = questionCollectionView.CellForItem(visibleItems[0]) as TestCollectionViewCell;
-                    //var answerCollection = currCell.AnswerCollection;
-
-                    ////TODO
-                    //answerCell.CheckAnswer(true);
 
                 }
 

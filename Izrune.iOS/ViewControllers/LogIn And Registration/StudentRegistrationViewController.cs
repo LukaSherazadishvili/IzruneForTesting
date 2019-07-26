@@ -182,7 +182,7 @@ namespace Izrune.iOS
             };
         }
 
-        private void GetCurrentPage(int pageIndex)
+        private async void GetCurrentPage(int pageIndex)
         {
 
             switch (pageIndex)
@@ -191,7 +191,7 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            var res = studentRegVc1.IsFormFilled();
+                            var res = await studentRegVc1.IsFormFilled();
 
                             if (res)
                             {

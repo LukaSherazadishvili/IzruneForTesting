@@ -34,6 +34,7 @@ namespace Izrune.iOS
 
         CultureInfo cultureInfo = new CultureInfo("ka-GE");
 
+        public string UserName { get; set; }
         public bool IsFormFilled()
         {
             var res = (firstNameTextfield.Text.IsEmtyOrNull() && lastNameTextField.Text.IsEmtyOrNull() && date.Year > 0001 && City.IsEmtyOrNull());
@@ -50,7 +51,10 @@ namespace Izrune.iOS
 
             InitDroDown();
 
-            SendClicked = () => SenData();
+            SendClicked = () => {
+                SenData();
+                UserName = firstNameTextfield.Text + " " + lastNameTextField.Text;
+            };
         }
 
         private void InitUI()

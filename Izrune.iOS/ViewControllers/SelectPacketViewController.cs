@@ -60,6 +60,9 @@ namespace Izrune.iOS
                 };
             View.LayoutIfNeeded();
 
+            SelectedPrice = PriceList?[0];
+
+            //PriceSelected?.Invoke(SelectedPrice);
         }
 
         private void SendData()
@@ -128,9 +131,9 @@ namespace Izrune.iOS
             {
                 SelectedPriceIndex = PriceList.IndexOf(PriceList?.FirstOrDefault(x => x.price == priice.price));
 
-                packetCollectionView.ReloadData();
-
                 SelectedPrice = priice;
+
+                packetCollectionView.ReloadData();
 
                 PriceSelected?.Invoke(priice);
             };

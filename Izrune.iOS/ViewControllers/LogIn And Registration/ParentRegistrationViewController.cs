@@ -49,6 +49,8 @@ namespace Izrune.iOS
 
         private IStudent MoreStudent;
 
+        public string CurrentUserName { get; private set; }
+
         #endregion
 
         public async override void ViewDidLoad()
@@ -200,7 +202,7 @@ namespace Izrune.iOS
             prewBtn.Enabled = CurrentIndex > 0;
         }
 
-        private void GetCurrentPage(int pageIndex)
+        private async void GetCurrentPage(int pageIndex)
         {
         
             switch (pageIndex)
@@ -216,6 +218,7 @@ namespace Izrune.iOS
                                 AddViewController(parent2RegVc, parentRegVc);
                                 CurrentIndex++;
                                 parentRegVc.SendClicked?.Invoke();
+                                CurrentUserName = parentRegVc.UserName;
                             }
 
                             else
@@ -230,7 +233,7 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            var res = parent2RegVc.IsFormFilled();
+                            var res = await parent2RegVc.IsFormFilled();
 
                             if(res)
                             {
@@ -259,7 +262,7 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
-                            var res = studentRegVc1.IsFormFilled();
+                            var res = await studentRegVc1.IsFormFilled();
 
                             if(res)
                             {
@@ -352,10 +355,15 @@ namespace Izrune.iOS
                     {
                         if (NextClicked)
                         {
+                            
                             HideHeader(true);
                             AddMoreStudentVc?.SendClicked?.Invoke();
                             AddMoreStudentVc.DataSent = (ipay) => {
+                                ShowLoading();
                                 paymentViewController.PayInfo = ipay;
+                                paymentViewController.SelectedPrice = SelectedPrice;
+                                paymentViewController.UserName = CurrentUserName;
+                                EndLoading();
                                 this.NavigationController.PushViewController(paymentViewController, true);
                             };
                         }

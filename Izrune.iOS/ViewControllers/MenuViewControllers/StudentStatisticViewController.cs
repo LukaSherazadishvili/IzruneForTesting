@@ -62,7 +62,7 @@ namespace Izrune.iOS
 
         private void ShowAlert()
         {
-            var alert = UIAlertController.Create("ყურადღევა", "სტატისტიკის სანახავად განაახლეთ პაკეტი", UIAlertControllerStyle.Alert);
+            var alert = UIAlertController.Create("ყურადღება", "სტატისტიკის სანახავად განაახლეთ პაკეტი", UIAlertControllerStyle.Alert);
             alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
             this.PresentViewController(alert, true, null);
         }
@@ -82,7 +82,7 @@ namespace Izrune.iOS
 
             var statisticService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
 
-            diplomeStatistics = await statisticService.GetDiplomaStatisticAsync();
+            //diplomeStatistics = await statisticService.GetDiplomaStatisticAsync();
 
             CurrentStudent = Students?[0];
             EndLoading();
@@ -129,6 +129,7 @@ namespace Izrune.iOS
                     if (IsPacketActive)
                     {
                         diplomeVc.Student = CurrentStudent;
+                        diplomeVc.ShouldLoadData = true;
                         this.NavigationController.PushViewController(diplomeVc, true);
                     }
                     else
