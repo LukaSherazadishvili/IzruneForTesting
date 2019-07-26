@@ -151,6 +151,7 @@ namespace Izrune.iOS
                     diplomeDetailVc.QuisInfo = studentStatistic;
                     diplomeDetailVc.Questions = studentStatistic?.QuestionResult?.ToList();
                 }
+
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);

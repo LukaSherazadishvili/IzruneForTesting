@@ -114,10 +114,18 @@ namespace Izrune.iOS
                         else
                         {
                             if (IsPromoSelected)
+                            {
+                                ShowLoading();
                                 await UserControl.Instance.ReNewPack(SelectedStudent.id, PromoVc.SelectedMont, PromoVc.SelectedMont, PromoVc.PromoCode);
+                                EndLoading();
+                            }
 
                             else
+                            {
+                                ShowLoading();
                                 await UserControl.Instance.ReNewPack(SelectedStudent.id, SelectPacketVc.SelectedPrice.MonthCount.Value, SelectPacketVc.SelectedPrice.price.Value);
+                                EndLoading();
+                            }
 
                             var price = (IsPromoSelected ? PromoVc.SelectedPrice : SelectPacketVc.SelectedPrice);
 
@@ -181,7 +189,6 @@ namespace Izrune.iOS
 
                         else
                         {
-
                             UserControl.Instance.SetPromoPack(SelectPacketVc.SelectedPrice.MonthCount.Value, SelectPacketVc.SelectedPrice.price.Value);
                         }
 
