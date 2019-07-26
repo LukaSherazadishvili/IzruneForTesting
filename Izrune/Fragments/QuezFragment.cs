@@ -238,6 +238,9 @@ namespace Izrune.Fragments
             (Activity as QuezActivity).OpenDialog(question.images.ElementAt(Index));
         }
 
+
+        string CurrentImageUrl="";
+
         bool IsLike = true;
         private async  void AnswerView_Click(object sender, EventArgs e)
         {
@@ -266,14 +269,14 @@ namespace Izrune.Fragments
                            if (IsLike)
                            {
                                (Activity as QuezActivity).PlayAnimation();
-                             //  IsLike = false;
+                               IsLike = false;
                            }
-                           //else
-                           //{
-                           //    (Activity as QuezActivity).PlayAnimationTwo();
-                           //    IsLike = true;
+                           else
+                           {
+                               (Activity as QuezActivity).PlayAnimationTwo();
+                               IsLike = true;
 
-                           //}
+                           }
 
                        }
 
@@ -349,7 +352,7 @@ namespace Izrune.Fragments
 
                     if (question.images.ToList().Count > 1)
                     {
-
+                        ImagesGrid.Visibility = ViewStates.Visible;
                         foreach (var items in question.images)
                         {
                             var Images = LayoutInflater.Inflate(Resource.Layout.ItemQuestionImage, null);
@@ -363,16 +366,21 @@ namespace Izrune.Fragments
 
 
                     }
+                    else
+                        ImagesGrid.Visibility = ViewStates.Gone;
 
                     if (question.images.ToList().Count == 1)
                     {
                         ImageCard.Visibility = ViewStates.Visible;
-
-                        MainImage.LoadImage(question.images.ElementAt(0));
+                        CurrentImageUrl = question.images.ElementAt(0);
+                        MainImage.LoadImage(CurrentImageUrl);
+                        MainImage.Click -= MainImage_Click;
+                        MainImage.Click += MainImage_Click;
                     }
                     else
                     {
                         ImageCard.Visibility = ViewStates.Gone;
+                        
                     }
                     for (int i = 0; i < question.Answers.Count(); i++)
                     {
@@ -394,6 +402,11 @@ namespace Izrune.Fragments
             }
            
 
+        }
+
+        private void MainImage_Click(object sender, EventArgs e)
+        {
+            (Activity as QuezActivity).OpenDialog(CurrentImageUrl);
         }
     }
 }

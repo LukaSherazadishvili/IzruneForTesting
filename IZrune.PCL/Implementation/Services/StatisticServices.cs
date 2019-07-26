@@ -170,7 +170,9 @@ namespace IZrune.PCL.Implementation.Services
                 {
                     var dploma = new DiplomaStatisticc()
                     {
-                        DiplomaDate = $"{Items.ExamDate.Year - 1}-{Items.ExamDate.Year}"
+                        DiplomaDate = $"{Items.ExamDate.Year - 1}-{Items.ExamDate.Year}",
+                        
+                        
                     };
 
                     temp.Add(dploma);
@@ -184,9 +186,10 @@ namespace IZrune.PCL.Implementation.Services
 
 
 
-                    temp.ElementAt(i).DiplomaStatistic = Result.Where(x => x.ExamDate <= After && x.ExamDate >= FromDate).Select(o=>new QuisInfo() {
-                        DiplomaURl=o.DiplomaUrl,
-                        QueisResult =  GetCurrentTestDiplomaInfo(o.Id).Result
+                    temp.ElementAt(i).DiplomaStatistic = Result.Where(x => x.ExamDate <= After && x.ExamDate >= FromDate).Select(o => new QuisInfo() {
+                        DiplomaURl = o.DiplomaUrl,
+                        QueisResult =  GetCurrentTestDiplomaInfo(o.Id).Result,
+                     
 
                     });
 

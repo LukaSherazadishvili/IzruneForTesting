@@ -44,6 +44,8 @@ namespace Izrune.Fragments
 
         private int StudentId;
 
+
+        bool IsSucces = false;
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -69,13 +71,13 @@ namespace Izrune.Fragments
             {
                 Infotxt.Text = "პრომო კოდის მისაღებად მიმართეთ სკოლის ადმინისტრაციას";
                 Infotxt.SetTextColor(Color.LightGreen);
-                promoEdit.Text = PromoCod.PrommoCode;
+               // promoEdit.Text = PromoCod.PrommoCode;
             }
 
 
             NextButton.Click += async(s, e) =>
             {
-                if (MonthCount > 0)
+                if (IsSucces)
                 {
                   await UserControl.Instance.ReNewPack(StudentId, MonthCount, MonthCount * 1, PromoCod.PrommoCode);
                     Intent intent = new Intent(this, typeof(ActivityPaymentCategory));
@@ -87,23 +89,26 @@ namespace Izrune.Fragments
                 }
             };
 
+            var DataAdapter = new ArrayAdapter<string>(this,
+                  Android.Resource.Layout.SimpleSpinnerDropDownItem,
+                 PromoCod.Prices.Select(i => $"{i.Period}").ToList());
+
+
+            monthSpiner.Adapter = DataAdapter;
+            monthSpiner.ItemSelected += MonthSpiner_ItemSelected;
+
+
             Submit.Click += (s, e) =>
             {
                 if (promoEdit.Text == PromoCod.PrommoCode && !string.IsNullOrEmpty(PromoCod.PrommoCode))
                 {
                     promoEdit.SetBackgroundResource(Resource.Drawable.izruneback);
-
-                    var DataAdapter = new ArrayAdapter<string>(this,
-                  Android.Resource.Layout.SimpleSpinnerDropDownItem,
-                 PromoCod.Prices.Select(i => $"{i.Period}").ToList());
-
-
-                    monthSpiner.Adapter = DataAdapter;
-                    monthSpiner.ItemSelected += MonthSpiner_ItemSelected;
+                    IsSucces = true;
                 }
                 else
                 {
                     promoEdit.SetBackgroundResource(Resource.Drawable.RedPromoCodebutton);
+                    IsSucces = false;
                 }
             };
 

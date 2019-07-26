@@ -106,7 +106,8 @@ namespace Izrune.Fragments
                 StudentNameLastName.Text = $"{UserControl.Instance.CurrentStudent.Name}  {UserControl.Instance.CurrentStudent.LastName}";
 
                 Score.Text = QuisInfo.Score.ToString();
-                Time.Text = $"{QuisInfo.Duration / 60}:{QuisInfo.Duration % 60}";
+               
+                Time.Text = string.Format($"{(QuisInfo.Duration / 60).ToString().PadLeft(2, '0')}:{(QuisInfo.Duration % 60).ToString().PadLeft(2, '0')}");
                 Correctanswers.Text = QuisInfo.RightAnswer.ToString();
                 IncorectAnswers.Text = QuisInfo.WronAnswers.ToString();
                 SkippedAnswer.Text = QuisInfo.SkipedAnswers.ToString();

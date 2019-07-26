@@ -166,6 +166,9 @@
     <AndroidAsset Include="Assets\LikeLottie.json" />
     <AndroidAsset Include="Assets\like.json" />
     <AndroidAsset Include="Assets\ribbon.json" />
+    <AndroidAsset Include="Assets\efecttwo.json" />
+    <AndroidAsset Include="Assets\exploding-ribbon.json" />
+    <AndroidAsset Include="Assets\sssss.json" />
     <None Include="google-services.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml">

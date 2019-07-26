@@ -63,18 +63,25 @@ namespace Izrune.Fragments
                 CurrentStudent = Result.Students.ElementAt(e.Position);
                 UserControl.Instance.SeTSelectedStudent(CurrentStudent.id);
 
-                if (CurrentStudent.PakEndDate.Value >= DateTime.Now)
+                try
                 {
-                    EndPackTxt.Text = CurrentStudent.PakEndDate?.ToShortDateString();
-                    IsEndDate = true;
+                    if (CurrentStudent?.PakEndDate.Value >= DateTime.Now)
+                    {
+                        EndPackTxt.Text = CurrentStudent.PakEndDate?.ToShortDateString();
+                        IsEndDate = true;
 
+                    }
+                    else
+                    {
+                        EndPackTxt.Text = "";
+                        IsEndDate = false;
+                    }
                 }
-                else
+                catch(Exception ex)
                 {
                     EndPackTxt.Text = "";
                     IsEndDate = false;
-                }   
-              
+                }
 
 
             };
