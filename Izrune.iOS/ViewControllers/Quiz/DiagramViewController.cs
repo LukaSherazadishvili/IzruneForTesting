@@ -42,9 +42,9 @@ namespace Izrune.iOS
 
             var statisticsService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
 
-             statistisData = (await statisticsService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam)).ToList();
+             statistisData = (await statisticsService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam))?.ToList();
 
-             userMonthStatistics =(await UserControl.Instance.GetDiagramStatistic()).ToList();
+             userMonthStatistics =(await UserControl.Instance.GetDiagramStatistic())?.ToList();
 
             if (statistisData.Count > 0)
             {
@@ -202,14 +202,20 @@ namespace Izrune.iOS
             xaxis.MinorGridlineStyle = LineStyle.None;
 
             ColumnSeries s1 = new ColumnSeries();
+            
             s1.FillColor = oxyColor;
             //s1.IsStacked = true;
 
 
             foreach (var item in statistisData)
             {
+                //xaxis.ActualLabels.Add(item.ExamDate.ToString("dd/MM/yyyy"));
+               
+                //xaxis.LabelField = item.ExamDate.ToString("dd/MM/yyyy");
                 xaxis.Labels.Add(item.ExamDate.ToString("dd/MM/yyyy"));
-                s1.Items.Add(new ColumnItem(item.Point, statistisData.IndexOf(item)));
+                s1.Items.Add(new ColumnItem(item.Point,statistisData.IndexOf(item)));
+                
+                //s1.LabelFormatString = "dd/MM/yyyy";
             }
 
             _plotModel.Series.Add(s1);
@@ -223,7 +229,7 @@ namespace Izrune.iOS
         void setUpTimeView()
         {
 
-           
+            timeChartView.LayoutIfNeeded();
             statistisData = statistisData.DistinctBy(o=>o.ExamDate.Date).ToList();
             _plotView = new PlotView(new CoreGraphics.CGRect(0, 25, timeChartView.Frame.Width,
                                                                                    timeChartView.Frame.Height))
@@ -232,6 +238,7 @@ namespace Izrune.iOS
             };
             _plotView.BackgroundColor = UIColor.Clear;
 
+            
             timeChartView.AddSubview(_plotView);
            
             UIColor.FromRGB(63, 81, 181).GetRGBA(out nfloat red, out nfloat green, out nfloat blue, out nfloat alpha);
@@ -250,10 +257,9 @@ namespace Izrune.iOS
 
             CategoryAxis xaxis = new CategoryAxis() {
                
-               
-
                 Position =AxisPosition.Bottom
             };
+            
             //xaxis.LabelFormatter = (d) =>
             //{
 
@@ -284,9 +290,9 @@ namespace Izrune.iOS
             ColumnSeries s1 = new ColumnSeries();
             s1.FillColor = oxyColor;
             //s1.IsStacked = true;
-            
 
-            foreach (var item in statistisData)
+            
+            foreach (var item in statistisData.Take(10))
             {
                 xaxis.Labels.Add(item.ExamDate.ToString("dd/MM/yyyy"));
                 s1.Items.Add(new ColumnItem(item.TestTimeInSecconds, statistisData.IndexOf(item)));
