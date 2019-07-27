@@ -42,7 +42,7 @@ namespace Izrune.iOS
             base.ViewDidLoad();
 
             //monthView.UserInteractionEnabled = false;
-            InitDropDown();
+            
             confirmBtn.TouchUpInside += delegate {
 
                 CheckCode(promoCodeTf.Text == PromoInfo.PrommoCode);
@@ -58,8 +58,9 @@ namespace Izrune.iOS
                 }
             };
 
-            InitUI();
-            InitGestures();
+            //InitDropDown();
+            //InitUI();
+            //InitGestures();
         }
 
         private void InitUI()
@@ -78,6 +79,9 @@ namespace Izrune.iOS
         {
             base.ViewWillAppear(animated);
 
+            InitDropDown();
+            InitUI();
+            InitGestures();
             CheckPromo();
         }
 
@@ -98,24 +102,31 @@ namespace Izrune.iOS
 
         private void InitDropDown()
         {
-            MonthDropDown.AnchorView = new WeakReference<UIView>(monthView);
-            MonthDropDown.BottomOffset = new CoreGraphics.CGPoint(0, monthView.Bounds.Height);
-            MonthDropDown.Width = this.View.Frame.Width;
-            MonthDropDown.Direction = Direction.Bottom;
-
-            var array = PromoInfo?.Prices?.Select(x => x.Period)?.ToArray();
-
-            MonthDropDown.DataSource = array;
-
-            MonthDropDown.SelectionAction = (nint index, string name) =>
+            try
             {
-                monthLbl.Text = name;
-                SelectedMont = (PromoInfo.Prices.ElementAt((int)index).MonthCount.Value);
-                SelectedPrice = PromoInfo?.Prices?.ElementAt((int)index);
+                MonthDropDown.AnchorView = new WeakReference<UIView>(monthView);
+                MonthDropDown.BottomOffset = new CoreGraphics.CGPoint(0, monthView.Bounds.Height);
+                MonthDropDown.Width = this.View.Frame.Width;
+                MonthDropDown.Direction = Direction.Bottom;
 
-                PromoCodeSelected?.Invoke(PromoInfo.PrommoCode, SelectedMont);
-                priceTitleLbl.Text = $"{PromoInfo?.Prices?.ElementAt((int)index).Period} - {PromoInfo?.Prices?.ElementAt((int)index)?.price} ლარი";
-            };
+                var array = PromoInfo?.Prices?.Select(x => x.Period)?.ToArray();
+
+                MonthDropDown.DataSource = array;
+
+                MonthDropDown.SelectionAction = (nint index, string name) =>
+                {
+                    monthLbl.Text = name;
+                    SelectedMont = (PromoInfo.Prices.ElementAt((int)index).MonthCount.Value);
+                    SelectedPrice = PromoInfo?.Prices?.ElementAt((int)index);
+
+                    PromoCodeSelected?.Invoke(PromoInfo.PrommoCode, SelectedMont);
+                    priceTitleLbl.Text = $"{PromoInfo?.Prices?.ElementAt((int)index).Period} - {PromoInfo?.Prices?.ElementAt((int)index)?.price} ლარი";
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private void InitGestures()

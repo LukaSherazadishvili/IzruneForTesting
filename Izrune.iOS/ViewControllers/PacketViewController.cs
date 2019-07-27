@@ -216,6 +216,9 @@ namespace Izrune.iOS
                     UpdateViewSize(SelectPacketVc.ContentHeight);
                 };
             }
+
+            if (PromoCode == null || !string.IsNullOrEmpty(PromoCode?.PrommoCode))
+                viewForPromoCode.Hidden = true;
         }
 
         private async Task GetPromoDataAsync(int schoolId)
