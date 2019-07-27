@@ -116,7 +116,7 @@ namespace Izrune.iOS
                             if (IsPromoSelected)
                             {
                                 ShowLoading();
-                                await UserControl.Instance.ReNewPack(SelectedStudent.id, PromoVc.SelectedMont, PromoVc.SelectedMont, PromoVc.PromoCode);
+                                await UserControl.Instance.ReNewPack(SelectedStudent.id, PromoVc.SelectedMont, PromoVc.SelectedPrice.price.Value, PromoVc.PromoCode);
                                 EndLoading();
                             }
 
