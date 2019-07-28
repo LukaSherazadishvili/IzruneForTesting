@@ -61,7 +61,8 @@ namespace Izrune.iOS
             View.LayoutIfNeeded();
 
             SelectedPrice = PriceList?[0];
-
+            SelectedPrice.StartDate = DateTime.Now;
+            SelectedPrice.EndDate = DateTime.Now.AddMonths(1);
             //PriceSelected?.Invoke(SelectedPrice);
         }
 

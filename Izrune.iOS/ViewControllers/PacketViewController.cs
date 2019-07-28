@@ -217,8 +217,6 @@ namespace Izrune.iOS
                 };
             }
 
-            if (PromoCode == null || !string.IsNullOrEmpty(PromoCode?.PrommoCode))
-                viewForPromoCode.Hidden = true;
         }
 
         private async Task GetPromoDataAsync(int schoolId)
