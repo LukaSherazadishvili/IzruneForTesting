@@ -18,7 +18,7 @@ namespace Izrune.iOS
 
         public List<ISchool> SchoolList;
 
-        public Action<ISchool> SchoolSelected { get; set; }
+        public Action<ISchool> SchoolSelected { get; set; }        
 
         public static readonly NSString StoryboardId = new NSString("SelectSchoolStoryboardId");
 
