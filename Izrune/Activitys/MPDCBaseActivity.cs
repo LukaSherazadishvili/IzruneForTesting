@@ -156,6 +156,24 @@ namespace Izrune.Activitys
         {
             base.OnResume();
             AppInfo.Instance.CurrentContext = this;
+
+            AlertService serv = new AlertService()
+            {
+                AlertEVent = (title, text) =>
+                {
+                    var transcation = FragmentManager.BeginTransaction();
+                    warningDialogFragment dialog = new warningDialogFragment(title, text, true);
+                    dialog.Show(transcation, "Image Dialog");
+                },
+                SacssesAler = (title, text) =>
+                {
+                    var transcation = FragmentManager.BeginTransaction();
+                    warningDialogFragment dialog = new warningDialogFragment(title, text, false);
+                    dialog.Show(transcation, "Image Dialog");
+                }
+
+            };
+            AppCore.Instance.Alertdialog = serv;
         }
 
         private void MapControls()

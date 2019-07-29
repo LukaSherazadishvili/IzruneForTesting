@@ -42,6 +42,13 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.PromoSection)]
         TextView PromoResult;
 
+        [MapControl(Resource.Id.PromoConteiner)]
+        FrameLayout PromoContainer;
+
+        [MapControl(Resource.Id.MonthConteiner)]
+        FrameLayout MonthContainer;
+
+
         private int StudentId;
 
 
@@ -71,9 +78,17 @@ namespace Izrune.Fragments
             {
                 Infotxt.Text = "პრომო კოდის მისაღებად მიმართეთ სკოლის ადმინისტრაციას";
                 Infotxt.SetTextColor(Color.LightGreen);
-               // promoEdit.Text = PromoCod.PrommoCode;
+                PromoContainer.Visibility = ViewStates.Visible;
+                MonthContainer.Visibility = ViewStates.Visible;
+                PromoResult.Visibility = ViewStates.Visible;
             }
+            else
+            {
+                PromoResult.Visibility = ViewStates.Invisible;
+                PromoContainer.Visibility = ViewStates.Invisible;
+                MonthContainer.Visibility = ViewStates.Invisible;
 
+            }
 
             NextButton.Click += async(s, e) =>
             {

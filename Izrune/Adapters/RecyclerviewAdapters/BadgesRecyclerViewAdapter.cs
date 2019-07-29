@@ -34,7 +34,13 @@ namespace Izrune.Adapters.RecyclerviewAdapters
 
          (holder as BadgesViewHolder).BadgesImage.LoadImage(BadagesList.ElementAt(position).ImageURl);
 
+            (holder as BadgesViewHolder).BadgesImage.Click += (s, e) =>
+            {
+                //var uri = Android.Net.Uri.Parse("https://www.facebook.com/izrune.ge/");
+                //var intent = new Intent(Intent.ActionView, uri);
+                //StartActivity(intent);
 
+            };
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)

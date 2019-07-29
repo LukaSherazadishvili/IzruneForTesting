@@ -36,6 +36,9 @@
     <AndroidLinkMode>None</AndroidLinkMode>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
     <EnableProguard>true</EnableProguard>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -68,6 +71,7 @@
     <Compile Include="Activitys\ForgotPasswordOrUserNameActivity.cs" />
     <Compile Include="Activitys\InnerActivity\InnerRegisterStudent.cs" />
     <Compile Include="Activitys\InnerActivity\InnerRegisterStudentPartTwo.cs" />
+    <Compile Include="Activitys\InnerDiplomaStatisticActivity.cs" />
     <Compile Include="Activitys\LogInActivity.cs" />
     <Compile Include="Activitys\MainActivity.cs" />
     <Compile Include="Activitys\MainDiplomaActivity.cs" />
@@ -122,6 +126,8 @@
     <Compile Include="Fragments\InnerChangePackFragment.cs" />
     <Compile Include="Fragments\InnerIndividualFragment.cs" />
     <Compile Include="Fragments\InnerPromoFragment.cs" />
+    <Compile Include="Fragments\InnerResultQuestionStatisticFragment.cs" />
+    <Compile Include="Fragments\InnerResultStatisticFragment.cs" />
     <Compile Include="Fragments\LogInFragment.cs" />
     <Compile Include="Fragments\MainPageTestFragment.cs" />
     <Compile Include="Fragments\MPDCBaseFragment.cs" />
@@ -844,6 +850,9 @@
     <AndroidResource Include="Resources\layout\LayoutInnerDiploma.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\mpdclogomini.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

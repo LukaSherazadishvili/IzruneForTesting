@@ -210,7 +210,15 @@ namespace IZrune.PCL.Helpers
             Parent = await MpdcContainer.Instance.Get<IUserServices>().GetUserAsync();
         }
 
-
+        public int GetAllPackagePrice()
+        {
+            int Amount = 0;
+            foreach(var item in MyRegistrationStudent)
+            {
+                Amount += item.Amount;
+            }
+            return Amount;
+        }
 
 
         public void SetPromoPack(int MonthCount,int Amount,string PromoCode="0")

@@ -81,10 +81,14 @@ namespace Izrune.Activitys
             ParrentCity.ItemSelected += (s, e) =>
             {
                 // UserControl.Instance.RegistrationParrentPartOne(UserName.Text,LastName.Text,)
-                if (e.Position == 0) 
-                city = "";
+                if (e.Position == 0)
+                    city = "";
                 else
-                    city = Result.ElementAt(e.Position-1).title;
+                {
+                    city = Result.ElementAt(e.Position - 1).title;
+                    ParrentCity.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
+                }
+
             };
 
         }
@@ -149,6 +153,15 @@ namespace Izrune.Activitys
             BDayMonth.Click += BdayDay_Click;
             BdayYear.Click += BdayDay_Click;
             ParrentVillage.TextChanged += UserName_Click;
+
+            BdayDay.TextChanged += BdayDay_TextChanged;
+        }
+
+        private void BdayDay_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            BdayDay.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
+            BDayMonth.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
+            BdayYear.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
         }
 
         private void BdayDay_Click(object sender, EventArgs e)

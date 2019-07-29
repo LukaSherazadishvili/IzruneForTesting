@@ -145,6 +145,7 @@ android:id="@+id/Container">
 
 				<EditText
 					android:id="@+id/StudentPersonalId"
+					android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:paddingLeft="15dp"

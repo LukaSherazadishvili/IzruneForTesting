@@ -13,6 +13,9 @@ using Android.Widget;
 using Izrune.Attributes;
 using IZrune.PCL.Helpers;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL;
+using Izrune.Helpers;
+using Izrune.Fragments.DialogFrag;
 
 namespace Izrune.Activitys
 {
@@ -102,10 +105,68 @@ namespace Izrune.Activitys
                 RepPassword.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
             }
 
-            if (!(string.IsNullOrEmpty(Phone.Text) || string.IsNullOrEmpty(Name.Text) || string.IsNullOrEmpty(Password.Text) || string.IsNullOrEmpty(RepPassword.Text)||await MpdcContainer.Instance.Get<IRegistrationServices>().ExistUserName(Name.Text)))
+            var isNameExist = await MpdcContainer.Instance.Get<IRegistrationServices>().ExistUserName(Name.Text);
+
+            bool IsGeorgianKey = false;
+
+            foreach(var items in IzruneHellper.Instance.letters)
             {
 
-                if (Password.Text == RepPassword.Text)
+                IsGeorgianKey = Name.Text.Contains(items) ? true : false;
+                if (IsGeorgianKey)
+                    break;
+                
+            };
+
+
+            if (isNameExist||Name.Text.Length<5||IsGeorgianKey)
+            {
+
+                if(IsGeorgianKey)
+                    ShowAlert("შეცდომა", "მომხმარებლის სახელი უნდა შეიცავდეს მხოლოდ ლათინურ ასოებს");
+
+                Name.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+            }
+
+            bool IsGeorgianPassword = false;
+
+
+            foreach (var items in IzruneHellper.Instance.letters)
+            {
+
+                IsGeorgianPassword = Password.Text.Contains(items) ? true : false;
+                if (IsGeorgianPassword)
+                    break;
+
+            };
+
+            if (Password.Text.Length < 7 || IsGeorgianPassword)
+            {
+                Password.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+
+                if (IsGeorgianPassword)
+                {
+                    ShowAlert("შეცდომა", "პაროლი უნდა შეიცავდეს მხოლოდ ლათინურ ასოებს");
+                }
+
+            }
+
+            if (Phone.Text.Length != 9)
+            {
+                Phone.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                ShowAlert("შეცდომა", "ტელეფონის ნომერი უნდა შედგებოდეს 9 ციფრისგან");
+            }
+
+
+
+            if (!(string.IsNullOrEmpty(Phone.Text) && string.IsNullOrEmpty(Name.Text) && string.IsNullOrEmpty(Password.Text)
+                && string.IsNullOrEmpty(RepPassword.Text)  && IsGeorgianPassword && IsGeorgianKey&&Phone.Text.Length!=9))
+            {
+
+
+
+
+                if (Password.Text == RepPassword.Text&&Password.Text.Length>7&& Name.Text.Length > 5&&Password.Text.Length<15&&Name.Text.Length<15&&!isNameExist&& Phone.Text.Length == 9)
                 {
 
                     UserControl.Instance.RegistrationParrentPartTwo(Phone.Text, Email.Text, Name.Text, Password.Text);
@@ -115,11 +176,34 @@ namespace Izrune.Activitys
                 }
                 else
                 {
-                    Password.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
-                    RepPassword.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                   
+
+                    if (Name.Text.Length < 5||Name.Text.Length>15)
+                        ShowAlert("შეცდომა", "მომხმარებლის სახელი უნდა შეიცავდეს მინიმუმ 5 სიმბოლოს და მაქსიმუმ 15 სიმბოლოს");
+
+
+                    if (Password.Text.Length < 7 || Password.Text.Length > 15)
+                    {
+                        ShowAlert("შეცდომა", "პაროლი უნდა შეიცავდეს მინიმუმ 7 სიმბოლოს და მაქსიმუმ 15 სიმბოლოს");
+                        Password.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                        RepPassword.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                    }
+                    if (Password.Text != RepPassword.Text)
+                    {
+                        ShowAlert("შეცდომა", "პაროლები არ ემთხვევა ერთმანეთს");
+                        Password.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                        RepPassword.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                    }
                 }
 
             }
+        }
+
+        private void ShowAlert(string title,string text)
+        {
+            var transcation = FragmentManager.BeginTransaction();
+            warningDialogFragment dialog = new warningDialogFragment(title, text, true);
+            dialog.Show(transcation, "Image Dialog");
         }
     }
 }

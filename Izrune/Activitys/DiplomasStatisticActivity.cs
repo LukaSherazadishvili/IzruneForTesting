@@ -82,7 +82,7 @@ namespace Izrune.Activitys
                 DiplomaRecycler.SetLayoutManager(manager);
                 adapter.OnDiplomaClikc = (() =>
                 {
-                    Intent intent = new Intent(this, typeof(DiplomaActivity));
+                    Intent intent = new Intent(this, typeof(InnerDiplomaStatisticActivity));
                     StartActivity(intent);
                 });
             };
