@@ -94,12 +94,12 @@ namespace Izrune.iOS
             if (ImagesCount == 0)
             {
                 imagesHeight = 0;
-                Debug.WriteLine($"ImagesCount : {ImagesCount}");
+                //Debug.WriteLine($"ImagesCount : {ImagesCount}");
             }
             else if (ImagesCount > 0 && ImagesCount <= 2)
             {
                 imagesHeight = 180;
-                Debug.WriteLine($"ImagesCount : {ImagesCount}");
+                //Debug.WriteLine($"ImagesCount : {ImagesCount}");
             }
 
             float spaceSumBetweenAnswers = 80;
