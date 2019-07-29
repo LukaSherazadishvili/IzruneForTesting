@@ -75,7 +75,11 @@ namespace Izrune.iOS.CollectionViewCells
             answerCollectionView.ReloadData();
 
             if (IsResultCell)
+            {
+                System.Diagnostics.Debug.WriteLine("dedistrakiii");
                 ShowBottomLine();
+            }
+                
 
            
         }
@@ -282,6 +286,9 @@ namespace Izrune.iOS.CollectionViewCells
             InitCollectionViewSettings();
 
             InitImagesCollectionViewLayout();
+
+            //if (IsResultCell)
+                //ShowBottomLine();
 
             //mainView.Layer.BorderWidth = 2;
             //mainView.Layer.BorderColor = UIColor.Red.CGColor;
