@@ -23,6 +23,9 @@ namespace Izrune.Activitys
     {
         protected override int LayoutResource { get; } = Resource.Layout.LayoutEndRegistration;
 
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get ; set ; }
+
         [MapControl(Resource.Id.BottomBackButton)]
         LinearLayout BotBackButton;
 
@@ -78,7 +81,10 @@ namespace Izrune.Activitys
         {
             if (isChecked)
             {
+                Startloading(true);
               var Result=await UserControl.Instance.FinishRegistration();
+
+                StopLoading();
                 if (Result!=null)
                 {
                    

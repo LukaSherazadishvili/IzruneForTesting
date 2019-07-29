@@ -140,6 +140,7 @@ android:id="@+id/Container">
 				</LinearLayout>
 
 				<FrameLayout
+					
 					android:background="@drawable/izrune_editext_back"
 					android:layout_width="match_parent"
 					android:layout_height="38dp">

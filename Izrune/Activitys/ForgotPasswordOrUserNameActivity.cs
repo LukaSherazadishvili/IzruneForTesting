@@ -70,6 +70,7 @@ namespace Izrune.Activitys
                     Startloading();
                     Result = await MpdcContainer.Instance.Get<IUserServices>().RecoverUserNamedAsync(ForgotPassword.Text);
                     StopLoading();
+                    if(Result)
                     ChangeFragmentPage(new SaccesFragment() {IsPasword=false }, Container.Id);
                 }
                 else
@@ -77,6 +78,7 @@ namespace Izrune.Activitys
                     Startloading();
                     Result = await MpdcContainer.Instance.Get<IUserServices>().RecoverPasswordAsync(ForgotPassword.Text);
                     StopLoading();
+                    if(Result)
                     ChangeFragmentPage(new SaccesFragment() {IsPasword=true }, Container.Id);
                 }
 

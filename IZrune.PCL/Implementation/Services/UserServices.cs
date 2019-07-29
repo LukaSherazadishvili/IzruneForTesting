@@ -170,28 +170,31 @@ namespace IZrune.PCL.Implementation.Services
                     var result = JsonConvert.DeserializeObject<PromoCodeDTO>(jsn);
                     PromoCode promCod = new PromoCode();
 
-
-                    if (result.Code == 0)
-                    {
-                        promCod.PrommoCode = result?.promocode;
+                   
+                        if (result.Code == 0)
+                        {
+                            promCod.PrommoCode = result?.promocode;
                         promCod.Prices = result?.prices?.Select(i =>
+
                         new Price()
                         {
                             price = i.price,
-                            Period=i.title,
-                            StartDate = DateTime.ParseExact(i.start_date, "yyyy-MM-dd", CultureInfo.InvariantCulture),
-                            EndDate = DateTime.ParseExact(i.end_date, "yyyy-MM-dd", CultureInfo.InvariantCulture),
-                           MonthCount = MonthDifference(DateTime.ParseExact(i.end_date, "yyyy-MM-dd", CultureInfo.InvariantCulture), DateTime.ParseExact(i.start_date, "yyyy-MM-dd", CultureInfo.InvariantCulture))
+                            Period = i.title,
+                            StartDate = i.start_date != "" ? DateTime.ParseExact(i.start_date, "yyyy-MM-dd", CultureInfo.InvariantCulture) : DateTime.Now,
+                            EndDate = i.end_date != "" ? DateTime.ParseExact(i.end_date, "yyyy-MM-dd", CultureInfo.InvariantCulture) : DateTime.Now,
+                            MonthCount = i.start_date != "" && i.end_date != "" ? MonthDifference(DateTime.ParseExact(i.end_date, "yyyy-MM-dd", CultureInfo.InvariantCulture), DateTime.ParseExact(i.start_date, "yyyy-MM-dd", CultureInfo.InvariantCulture)) : 0
 
-                        });
-                        return promCod;
-                    }
-                    else
-                    {
+                            });
+                            return promCod;
+                        }
+                        else
+                        {
 
-                        return null;
+                            return null;
 
-                    }
+                        }
+                  
+                   
                 }
                 else
                 {

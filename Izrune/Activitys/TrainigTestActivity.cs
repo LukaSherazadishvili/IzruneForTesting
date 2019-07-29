@@ -59,7 +59,7 @@ namespace Izrune.Activitys
         {
           
 
-            Intent intent = new Intent(this, typeof(SmsCodeActivity));
+            Intent intent = new Intent(this, typeof(QuezActivity));
             intent.PutExtra("TimeType", "0");
             intent.PutExtra("ExamType", "0");
             StartActivity(intent);
@@ -67,7 +67,7 @@ namespace Izrune.Activitys
 
         private async void ExamTestFullTimeButton_Click(object sender, EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(SmsCodeActivity));
+            Intent intent = new Intent(this, typeof(QuezActivity));
             intent.PutExtra("TimeType", "1");
             intent.PutExtra("ExamType", "0");
            

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MpdcContainer = ServiceContainer.ServiceContainer;
 
 using Android.App;
 using Android.Content;
@@ -11,6 +12,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Izrune.Attributes;
+using Izrune.Fragments.DialogFrag;
+using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
 using Java.Util;
 using static Android.App.DatePickerDialog;
@@ -68,22 +71,29 @@ namespace Izrune.Activitys.InnerActivity
             NextButton.Click += NextButton_Click;
             BackButton.Click += BackButton_Click;
             BotBackButton.Click += BotBackButton_Click;
-
             BDayDay.Click += BDayDay_Click;
             StudentBdaymonth.Click += BDayDay_Click;
             StudentBdayYear.Click += BDayDay_Click;
+
         }
 
         private void BDayDay_Click(object sender, EventArgs e)
         {
+
+            StudentBdayYear.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
+            StudentBdaymonth.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
+            BDayDay.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
             ShowDialog(1);
+
+
         }
 
-        private void NextButton_Click(object sender, EventArgs e)
+        private async void NextButton_Click(object sender, EventArgs e)
         {
 
+
             if (string.IsNullOrEmpty(StudName.Text) || string.IsNullOrEmpty(StudLastName.Text) || string.IsNullOrEmpty(StudentBdayYear.Text) ||
-                string.IsNullOrEmpty(StudentPersonalId.Text) || string.IsNullOrEmpty(StudentPhone.Text))
+                string.IsNullOrEmpty(StudentPersonalId.Text) || (await MpdcContainer.Instance.Get<IRegistrationServices>().ExistPersonalId(StudentPersonalId.Text) || StudentPhone.Text.Length != 9) || StudentPersonalId.Text.Length != 11)
             {
                 if (string.IsNullOrEmpty(StudName.Text))
                 {
@@ -99,9 +109,16 @@ namespace Izrune.Activitys.InnerActivity
                     StudentBdaymonth.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
                     BDayDay.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
                 }
-                if (string.IsNullOrEmpty(StudentPersonalId.Text))
+                if (string.IsNullOrEmpty(StudentPersonalId.Text) || StudentPersonalId.Text.Length != 11)
                 {
                     StudentPersonalId.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                    ShowAlert("შეცდომა", "პირადი ნომერი უნდა შედგებოდეს 11 ციფრისგან");
+                }
+                if (StudentPhone.Text.Length != 9)
+                {
+                    StudentPhone.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                    ShowAlert("შეცდომა", "ტელეფონის ნომერი უნდა შედგებოდეს 9 ციფრისგან");
+
                 }
             }
             else
@@ -109,10 +126,10 @@ namespace Izrune.Activitys.InnerActivity
 
                 UserControl.Instance.RegistrationStudentPartOne(StudName.Text, StudLastName.Text, new DateTime(Year, Month, Day), StudentPersonalId.Text, StudentPhone.Text, StudentEmail.Text);
 
-                Intent intent = new Intent(this, typeof(InnerRegisterStudentPartTwo));
+                Intent intent = new Intent(this, typeof(NextRegistrationStudentActivity));
                 StartActivity(intent);
             }
-         
+
 
         }
 
@@ -128,7 +145,6 @@ namespace Izrune.Activitys.InnerActivity
         public override void OnBackPressed()
         {
             base.OnBackPressed();
-            this.Finish();
         }
 
         public void OnDateSet(DatePicker view, int year, int month, int dayOfMonth)
@@ -140,7 +156,7 @@ namespace Izrune.Activitys.InnerActivity
             Year = year;
 
             BDayDay.Text = dayOfMonth.ToString();
-            StudentBdaymonth.Text = month.ToString();
+            StudentBdaymonth.Text = (month + 1).ToString();
             StudentBdayYear.Text = year.ToString();
         }
 
@@ -154,7 +170,7 @@ namespace Izrune.Activitys.InnerActivity
                 Day = cal.Get(Calendar.DayOfYear);
 
                 DatePickerDialog dialog = new DatePickerDialog(this,
-                    Android.Resource.Style.ThemeHoloDialogNoActionBarMinWidth,
+                    Android.Resource.Style.ThemeHoloLightDialogNoActionBar,
                     this,
                     Year, Month, Day);
                 dialog.Window.SetBackgroundDrawable(new Android.Graphics.Drawables.ColorDrawable(Color.Transparent));
@@ -165,7 +181,13 @@ namespace Izrune.Activitys.InnerActivity
             {
                 return null;
             }
+        }
 
+        private void ShowAlert(string title, string text)
+        {
+            var transcation = FragmentManager.BeginTransaction();
+            warningDialogFragment dialog = new warningDialogFragment(title, text, true);
+            dialog.Show(transcation, "Image Dialog");
         }
     }
 }
