@@ -67,7 +67,7 @@ namespace Izrune.iOS
                 schoolLbl.Text = school.title;
                 var userService = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
                 var Promo = await userService.GetPromoCodeAsync(school.id);
-                if(Promo != null)
+                if(Promo != null && !string.IsNullOrEmpty(Promo?.PrommoCode))
                 {
                     var promoSchoolVc = Storyboard.InstantiateViewController(PromoSchoolViewController.StoryboardId) as PromoSchoolViewController;
                     promoSchoolVc.ModalPresentationStyle = UIModalPresentationStyle.OverCurrentContext;

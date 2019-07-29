@@ -114,10 +114,18 @@ namespace Izrune.iOS
                         else
                         {
                             if (IsPromoSelected)
-                                await UserControl.Instance.ReNewPack(SelectedStudent.id, PromoVc.SelectedMont, PromoVc.SelectedMont, PromoVc.PromoCode);
+                            {
+                                ShowLoading();
+                                await UserControl.Instance.ReNewPack(SelectedStudent.id, PromoVc.SelectedMont, PromoVc.SelectedPrice.price.Value, PromoVc.PromoCode);
+                                EndLoading();
+                            }
 
                             else
+                            {
+                                ShowLoading();
                                 await UserControl.Instance.ReNewPack(SelectedStudent.id, SelectPacketVc.SelectedPrice.MonthCount.Value, SelectPacketVc.SelectedPrice.price.Value);
+                                EndLoading();
+                            }
 
                             var price = (IsPromoSelected ? PromoVc.SelectedPrice : SelectPacketVc.SelectedPrice);
 
@@ -181,7 +189,6 @@ namespace Izrune.iOS
 
                         else
                         {
-
                             UserControl.Instance.SetPromoPack(SelectPacketVc.SelectedPrice.MonthCount.Value, SelectPacketVc.SelectedPrice.price.Value);
                         }
 
@@ -209,6 +216,7 @@ namespace Izrune.iOS
                     UpdateViewSize(SelectPacketVc.ContentHeight);
                 };
             }
+
         }
 
         private async Task GetPromoDataAsync(int schoolId)

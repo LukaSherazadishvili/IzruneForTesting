@@ -13,7 +13,7 @@ using UIKit;
 
 namespace Izrune.iOS
 {
-	public partial class ParentRegSecondViewController : UIViewController
+	public partial class ParentRegSecondViewController : UIViewController, IUITextFieldDelegate
 	{
 		public ParentRegSecondViewController (IntPtr handle) : base (handle)
 		{
@@ -29,9 +29,35 @@ namespace Izrune.iOS
         {
             base.ViewDidLoad();
 
+            userNameTextField.Delegate = this;
+            passwordTextField.Delegate = this;
             InitUI();
 
             SendClicked = () => { SenData(); };
+        }
+
+        [Export("textField:shouldChangeCharactersInRange:replacementString:")]
+        public bool ShouldChangeCharacters(UITextField textField, NSRange range, string replacementString)
+        {
+            if(textField == userNameTextField)
+            {
+                if(textField.Text.Length > 15)
+                {
+                    textField.Text = textField.Text.Substring(0, 14);
+                    return false;
+                }
+            }
+
+            if(textField == passwordTextField)
+            {
+                if(textField.Text.Length > 15)
+                {
+                    textField.Text = textField.Text.Substring(0, 14);
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public async Task<bool> IsFormFilled()
@@ -75,6 +101,14 @@ namespace Izrune.iOS
                     }
 
                     return CheckPassword();
+                }
+
+                if(userNameTextField.Text.Length < 5)
+                {
+                    var alertVc = UIAlertController.Create("ყურადღება!", "მომხმარებლის სახელი უნდა შედგებოდეს მინიმუმ 4 სიმბოლოსგან", UIAlertControllerStyle.Alert);
+                    alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+                    this.PresentViewController(alertVc, true, null);
+                    return false;
                 }
 
                 foreach (var item in passwordTextField.Text)

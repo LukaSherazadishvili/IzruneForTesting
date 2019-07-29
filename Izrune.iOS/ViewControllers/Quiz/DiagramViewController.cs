@@ -16,10 +16,11 @@ using System.Linq;
 using MPDC.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Helpers;
+using MPDCiOSPages.ViewControllers;
 
 namespace Izrune.iOS
 {
-	public partial class DiagramViewController : UIViewController, IIndicatorInfoProvider
+	public partial class DiagramViewController : BaseViewController, IIndicatorInfoProvider
     {
 		public DiagramViewController (IntPtr handle) : base (handle)
 		{
@@ -32,7 +33,11 @@ namespace Izrune.iOS
 
         bool _isAllData = true;
         private List<IStudentsStatistic> statistisData;
+        private PlotView _timePlotView;
+        private PlotView _pointPlotView;
         private List<IDiagram> userMonthStatistics;
+        private PlotModel _pointPlotModel;
+        private PlotModel _timePlotModel;
 
         public override async void ViewDidLoad()
         {
@@ -42,9 +47,14 @@ namespace Izrune.iOS
 
             var statisticsService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
 
+
+            ShowLoading();
              statistisData = (await statisticsService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam)).ToList();
 
-             userMonthStatistics =(await UserControl.Instance.GetDiagramStatistic()).ToList();
+
+             userMonthStatistics =(await UserControl.Instance.GetDiagramStatistic())?.ToList();
+
+            EndLoading();
 
             if (statistisData.Count > 0)
             {
@@ -62,7 +72,7 @@ namespace Izrune.iOS
 
           
             _plotView = new PlotView(new CoreGraphics.CGRect(0, 25, timeChartView.Frame.Width,
-                                                                                   timeChartView.Frame.Height))
+                                                                                   timeChartView.Frame.Height-25))
             {
 
             };
@@ -143,26 +153,29 @@ namespace Izrune.iOS
 
 
             statistisData = statistisData.DistinctBy(o => o.ExamDate.Date).ToList();
-            _plotView = new PlotView(new CoreGraphics.CGRect(0, 25, timeChartView.Frame.Width,
-                                                                                   timeChartView.Frame.Height))
+            _pointPlotView = new PlotView(new CoreGraphics.CGRect(0, 25, timeChartView.Frame.Width,
+                                                                                   timeChartView.Frame.Height-25))
             {
 
             };
-            _plotView.BackgroundColor = UIColor.Clear;
 
-            pointChartView.AddSubview(_plotView);
 
+            _pointPlotView.BackgroundColor = UIColor.Clear;
+
+            pointChartView.AddSubview(_pointPlotView);
+            _pointPlotView.LayoutIfNeeded();
+            timeChartView.LayoutIfNeeded();
             UIColor.FromRGB(231, 76, 60).GetRGBA(out nfloat red, out nfloat green, out nfloat blue, out nfloat alpha);
 
             var oxyColor = OxyColor.FromRgb((byte)(red * 255), (byte)(green * 255), (byte)(blue * 255));
-            _plotModel = new PlotModel()
+            _pointPlotModel = new PlotModel()
             {
                 TextColor = oxyColor
                  ,
                 PlotAreaBorderColor = OxyColors.Transparent
             };
 
-            _plotModel.Title = $"";
+            _pointPlotModel.Title = $"";
 
 
 
@@ -202,58 +215,64 @@ namespace Izrune.iOS
             xaxis.MinorGridlineStyle = LineStyle.None;
 
             ColumnSeries s1 = new ColumnSeries();
+            
             s1.FillColor = oxyColor;
             //s1.IsStacked = true;
 
 
             foreach (var item in statistisData)
             {
+                //xaxis.ActualLabels.Add(item.ExamDate.ToString("dd/MM/yyyy"));
+               
+                //xaxis.LabelField = item.ExamDate.ToString("dd/MM/yyyy");
                 xaxis.Labels.Add(item.ExamDate.ToString("dd/MM/yyyy"));
-                s1.Items.Add(new ColumnItem(item.Point, statistisData.IndexOf(item)));
+                s1.Items.Add(new ColumnItem(item.Point,statistisData.IndexOf(item)));
+                
+                //s1.LabelFormatString = "dd/MM/yyyy";
             }
 
-            _plotModel.Series.Add(s1);
-            _plotModel.Axes.Add(xaxis);
-            _plotModel.Axes.Add(yaxis);
+            _pointPlotModel.Series.Add(s1);
+            _pointPlotModel.Axes.Add(xaxis);
+            _pointPlotModel.Axes.Add(yaxis);
 
 
-            _plotView.Model = _plotModel;
+            _pointPlotView.Model = _pointPlotModel;
         }
 
         void setUpTimeView()
         {
 
-           
+            timeChartView.LayoutIfNeeded();
             statistisData = statistisData.DistinctBy(o=>o.ExamDate.Date).ToList();
-            _plotView = new PlotView(new CoreGraphics.CGRect(0, 25, timeChartView.Frame.Width,
-                                                                                   timeChartView.Frame.Height))
+            _timePlotView = new PlotView(new CoreGraphics.CGRect(0, 25, timeChartView.Frame.Width,
+                                                                                   timeChartView.Frame.Height-25))
             {
 
             };
-            _plotView.BackgroundColor = UIColor.Clear;
+            _timePlotView.BackgroundColor = UIColor.Clear;
 
-            timeChartView.AddSubview(_plotView);
+            
+            timeChartView.AddSubview(_timePlotView);
            
             UIColor.FromRGB(63, 81, 181).GetRGBA(out nfloat red, out nfloat green, out nfloat blue, out nfloat alpha);
 
             var oxyColor = OxyColor.FromRgb((byte)(red * 255), (byte)(green * 255), (byte)(blue * 255));
-            _plotModel = new PlotModel()
+            _timePlotModel = new PlotModel()
             {
                 TextColor = oxyColor
                  ,
                 PlotAreaBorderColor = OxyColors.Transparent
             };
 
-            _plotModel.Title = $"";
+            _timePlotModel.Title = $"";
 
           
 
             CategoryAxis xaxis = new CategoryAxis() {
                
-               
-
                 Position =AxisPosition.Bottom
             };
+            
             //xaxis.LabelFormatter = (d) =>
             //{
 
@@ -284,20 +303,21 @@ namespace Izrune.iOS
             ColumnSeries s1 = new ColumnSeries();
             s1.FillColor = oxyColor;
             //s1.IsStacked = true;
-            
 
-            foreach (var item in statistisData)
+            
+            foreach (var item in statistisData.Take(10))
             {
                 xaxis.Labels.Add(item.ExamDate.ToString("dd/MM/yyyy"));
+                
                 s1.Items.Add(new ColumnItem(item.TestTimeInSecconds, statistisData.IndexOf(item)));
             }
 
-            _plotModel.Series.Add(s1);
-            _plotModel.Axes.Add(xaxis);
-            _plotModel.Axes.Add(yaxis);
+            _timePlotModel.Series.Add(s1);
+            _timePlotModel.Axes.Add(xaxis);
+            _timePlotModel.Axes.Add(yaxis);
 
 
-            _plotView.Model = _plotModel;
+            _timePlotView.Model = _timePlotModel;
         }
 
        
