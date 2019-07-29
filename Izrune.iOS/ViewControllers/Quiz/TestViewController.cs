@@ -505,7 +505,7 @@ namespace Izrune.iOS
             {
 
                 questionCollectionView.ReloadData();
-                questionCollectionView.ScrollToItem(NSIndexPath.FromRowSection(0, 0), UICollectionViewScrollPosition.Top, false);
+                //questionCollectionView.ScrollToItem(NSIndexPath.FromRowSection(0, 0), UICollectionViewScrollPosition.Top, false);
                 answerProgressCollectionView.ReloadData();
                     if(currentIndex<AllQuestions.Count)
                       ResetTimer();
@@ -571,7 +571,6 @@ namespace Izrune.iOS
 
             #endregion
         }
-
 
         private void InitLottie(string filePath)
         {
