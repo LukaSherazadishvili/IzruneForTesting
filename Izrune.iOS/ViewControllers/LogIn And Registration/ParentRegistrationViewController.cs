@@ -501,10 +501,11 @@ namespace Izrune.iOS
 
                 if (AddMoreStudentClicked)
                 {
-                    MoreStudent.PakEndDate = price.EndDate;
+
+                    //MoreStudent.PakEndDate = price.EndDate;
                     MoreStudent.PackageMonthCount = price.MonthCount.Value;
                     MoreStudent.Amount = price.price.Value;
-                    MoreStudent.PackageStartDate = price.StartDate.Value;
+                    //MoreStudent.PackageStartDate = price.StartDate.Value;
                 }
 
                 CurrentIndex = 4;
