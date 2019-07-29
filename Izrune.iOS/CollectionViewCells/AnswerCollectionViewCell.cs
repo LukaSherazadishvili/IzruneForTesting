@@ -69,6 +69,7 @@ namespace Izrune.iOS.CollectionViewCells
                     AnswerClicked?.Invoke(Answer);
                 }));
             }
+            
         }
 
         private void InitAnswer(UIColor color)

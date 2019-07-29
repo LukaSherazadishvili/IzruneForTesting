@@ -42,6 +42,7 @@ namespace Izrune.iOS.CollectionViewCells
         public bool IsResultCell { get; set; }
 
         IQuestion Question;
+        public bool IsStatisticCell { get; set; }
 
         static TestCollectionViewCell()
         {
@@ -74,7 +75,11 @@ namespace Izrune.iOS.CollectionViewCells
             answerCollectionView.ReloadData();
 
             if (IsResultCell)
+            {
+                System.Diagnostics.Debug.WriteLine("dedistrakiii");
                 ShowBottomLine();
+            }
+                
 
            
         }
@@ -103,6 +108,20 @@ namespace Izrune.iOS.CollectionViewCells
                 imagesCollectioHeight);
 
             answerCollectionViewHeight.Constant = answersCollectioHeight;
+
+
+            if(!IsResultCell)
+            {
+                var studentAnswerIndex = finalQuestion?.StudentAnswerIndex;
+                var answers = finalQuestion?.Answers?.ToList();
+                var rightAnswerIndex = answers?.IndexOf(answers.FirstOrDefault(x => x.IsRight == true));
+                var correctAnswerCell = answerCollectionView.CellForItem(NSIndexPath.FromRowSection((System.nint)rightAnswerIndex, 0)) as AnswerCollectionViewCell;
+                var userAnswerCell = answerCollectionView.CellForItem(NSIndexPath.FromRowSection((System.nint)studentAnswerIndex, 0)) as AnswerCollectionViewCell;
+
+                correctAnswerCell.CheckAnswer(true);
+                userAnswerCell.CheckAnswer(rightAnswerIndex == studentAnswerIndex);
+
+            }
 
             questionImagesCollectionView.ReloadData();
             answerCollectionView.ReloadData();
@@ -174,7 +193,8 @@ namespace Izrune.iOS.CollectionViewCells
 
                     return cell;
                 }
-                else if (data.IsRight)
+
+                if (data.IsRight)
                     cell.InitData(data, NumberList?[indexPath.Row], true);
                 else
                     cell.InitData(data, NumberList?[indexPath.Row], false);
@@ -266,6 +286,9 @@ namespace Izrune.iOS.CollectionViewCells
             InitCollectionViewSettings();
 
             InitImagesCollectionViewLayout();
+
+            //if (IsResultCell)
+                //ShowBottomLine();
 
             //mainView.Layer.BorderWidth = 2;
             //mainView.Layer.BorderColor = UIColor.Red.CGColor;

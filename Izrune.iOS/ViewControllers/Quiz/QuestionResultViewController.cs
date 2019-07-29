@@ -29,6 +29,8 @@ namespace Izrune.iOS
         private float answersHeight;
         private float imagesHeight;
 
+        public bool IsFromStatistic { get; set; } = true;
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
