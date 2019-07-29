@@ -12,11 +12,14 @@ namespace Izrune.iOS.Utils
 
         public void ShowAlerDialog(string Title, string Message)
         {
-            var alertVc = UIAlertController.Create(Title, Message, UIAlertControllerStyle.Alert);
-            alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            UIDevice.CurrentDevice.InvokeOnMainThread(() =>
+            {
+                var alertVc = UIAlertController.Create(Title, Message, UIAlertControllerStyle.Alert);
+                alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
 
-            var rootVc = UIApplication.SharedApplication.KeyWindow.RootViewController;
-            rootVc.PresentViewController(alertVc, true, null);
+                var rootVc = UIApplication.SharedApplication.KeyWindow.RootViewController;
+                rootVc.PresentViewController(alertVc, true, null);
+            });
         }
 
         public void ShowSaccessDialog(string Title, string Message)
