@@ -61,7 +61,7 @@ namespace Izrune.iOS.CollectionViewCells
 
             SetCellHeight(question);
             questionLbl.Text = $"{index}{ GetStringFromHtml(question.title)}";
-            commentLbl.Text = $"{ GetStringFromHtml(question.Description)}";
+            //commentLbl.Text = $"{ GetStringFromHtml(question.Description)}";
 
             imagesCollectionViewHeight.Constant = imagesCollectioHeight;
 

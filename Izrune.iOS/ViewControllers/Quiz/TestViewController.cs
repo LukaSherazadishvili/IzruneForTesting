@@ -424,7 +424,7 @@ namespace Izrune.iOS
             var data = question;
             var text = data?.title;
             var titleHeight = text.GetStringHeight((float)questionCollectionView.Frame.Width, 50, 17);
-            var commentHeight = data?.Description?.GetStringHeight((float)questionCollectionView.Frame.Width, 50, 14);
+            //var commentHeight = data?.Description?.GetStringHeight((float)questionCollectionView.Frame.Width, 50, 14);
             var ImagesCount = data?.images?.Count();
 
             if (ImagesCount == 0)
@@ -439,7 +439,7 @@ namespace Izrune.iOS
                 answersHeight += height + 40;
             }
 
-            totalHeight = titleHeight + commentHeight.Value + imagesHeight + answersHeight +40 ;
+            totalHeight = titleHeight /*commentHeight.Value */ + imagesHeight + answersHeight +40 ;
         }
 
         private void InitTotalTimer(int _minutes, int _secondes)
