@@ -79,9 +79,6 @@ namespace Izrune.iOS.CollectionViewCells
                 System.Diagnostics.Debug.WriteLine("dedistrakiii");
                 ShowBottomLine();
             }
-                
-
-           
         }
 
         public void SkipQuestion()
@@ -332,6 +329,7 @@ namespace Izrune.iOS.CollectionViewCells
         void SetCellHeight(IQuestion question)
         {
             imagesCollectioHeight = 0;
+            answersCollectioHeight = 0;
 
             var data = question;
 
