@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<FrameLayout
+	 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 	android:fillViewport="true"
@@ -209,13 +213,13 @@
                     android:text="პროპილის ნომერი -" />
 
                 <TextView
-                    android:id="@+id/textView48"
+                    android:id="@+id/ProfileNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/bpg_mrgvlovani"
-                    android:text="686342" />
+                    android:text="" />
 
             </LinearLayout>
 
@@ -255,11 +259,11 @@
                         android:text="მომხმარებლის სახელი-გვარი :" />
 
                     <TextView
-                        android:id="@+id/textView51"
+                        android:id="@+id/UserNameLasetName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bpg_mrgvlovani"
-                        android:text="მაია კიკნაძე" />
+                        android:text="" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -294,14 +298,14 @@
                     android:text=" გადასახდელი თანხა -" />
 
                 <TextView
-                    android:id="@+id/textView54"
+                    android:id="@+id/AmounTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/bpg_mrgvlovani"
-                    android:text="9" />
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/textView56"
@@ -341,3 +345,5 @@
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
+
+	</FrameLayout>

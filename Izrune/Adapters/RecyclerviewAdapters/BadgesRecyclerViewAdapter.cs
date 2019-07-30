@@ -21,6 +21,8 @@ namespace Izrune.Adapters.RecyclerviewAdapters
 
         private List<IBadges> BadagesList;
 
+        public Action OnBadgetClick { get; set; }
+
         public BadgesRecyclerViewAdapter(List<IBadges> lst)
         {
             BadagesList = lst;
@@ -40,6 +42,7 @@ namespace Izrune.Adapters.RecyclerviewAdapters
                 //var intent = new Intent(Intent.ActionView, uri);
                 //StartActivity(intent);
 
+                OnBadgetClick?.Invoke();
             };
         }
 

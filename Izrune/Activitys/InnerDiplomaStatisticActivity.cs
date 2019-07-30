@@ -97,6 +97,13 @@ namespace Izrune.Activitys
             OnBackPressed();
         }
 
+        public void OnBadgetClick()
+        {
+            var uri = Android.Net.Uri.Parse("http://www.izrune.ge/geo/175");
+            var intent = new Intent(Intent.ActionView, uri);
+            StartActivity(intent);
+        }
+
         public override void OnBackPressed()
         {
            
