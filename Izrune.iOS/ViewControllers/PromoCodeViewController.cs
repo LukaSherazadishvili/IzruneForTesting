@@ -52,9 +52,16 @@ namespace Izrune.iOS
                 //17756347
                 if (result)
                 {
-                    //monthView.UserInteractionEnabled = true;
+                    monthView.UserInteractionEnabled = true;
                     //InitDropDown();
+                    SelectPromoPack(0);
                     PromoCode = PromoInfo.PrommoCode;
+                }
+                else
+                {
+                    priceTitleLbl.Text = "";
+                    MonthDropDown.DeselectRow(0);
+                    monthLbl.Text = "თვე";
                 }
             };
 
@@ -126,17 +133,24 @@ namespace Izrune.iOS
                 MonthDropDown.SelectionAction = (nint index, string name) =>
                 {
                     monthLbl.Text = name;
-                    SelectedMont = (PromoInfo.Prices.ElementAt((int)index).MonthCount.Value);
-                    SelectedPrice = PromoInfo?.Prices?.ElementAt((int)index);
-
-                    PromoCodeSelected?.Invoke(PromoInfo.PrommoCode, SelectedMont);
-                    priceTitleLbl.Text = $"{PromoInfo?.Prices?.ElementAt((int)index).Period} - {PromoInfo?.Prices?.ElementAt((int)index)?.price} ლარი";
+                    SelectPromoPack(index);
                 };
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private void SelectPromoPack(nint index)
+        {
+            monthLbl.Text = PromoInfo?.Prices?.ElementAt((int)index).Period;
+            SelectedMont = (PromoInfo.Prices.ElementAt((int)index).MonthCount.Value);
+            SelectedPrice = PromoInfo?.Prices?.ElementAt((int)index);
+
+            PromoCodeSelected?.Invoke(PromoInfo.PrommoCode, SelectedMont);
+            priceTitleLbl.Text = $"{PromoInfo?.Prices?.ElementAt((int)index).Period} - {PromoInfo?.Prices?.ElementAt((int)index)?.price} ლარი";
+            MonthDropDown.SelectRow(index);
         }
 
         private void InitGestures()
