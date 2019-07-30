@@ -57,7 +57,7 @@ namespace IZrune.PCL.Implementation.Services
 
         }
 
-        public async Task<IPay> GetPaymentUrlsAsync(int StudentId, int MonthCount, int Amount, string promoCode = "0")
+        public async Task<IPay> GetPaymentUrlsAsync(int StudentId, int MonthCount, int Amount, string promoCode = "0",int PayBox=0)
         {
 
             var FormContent = new FormUrlEncodedContent(new[]
@@ -66,7 +66,8 @@ namespace IZrune.PCL.Implementation.Services
                          new KeyValuePair<string,string>("sdate1",DateTime.Now.ToShortDateString()),
                          new KeyValuePair<string,string>("months1",MonthCount.ToString()),
                           new KeyValuePair<string,string>("amount1",Amount.ToString()),
-                           new KeyValuePair<string,string>("promo1",promoCode)
+                           new KeyValuePair<string,string>("promo1",promoCode),
+                            new KeyValuePair<string,string>("paybox1",PayBox.ToString())
                      });
 
            

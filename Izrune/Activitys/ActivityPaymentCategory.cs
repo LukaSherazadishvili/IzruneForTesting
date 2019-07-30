@@ -76,12 +76,16 @@ namespace Izrune.Activitys
 
         private void BackButton_Click(object sender, EventArgs e)
         {
+           
             OnBackPressed();
         }
 
 
         public override void OnBackPressed()
         {
+            Intent intent = new Intent(this, typeof(MainActivity));
+            intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask | ActivityFlags.ClearTop);
+            StartActivity(intent);
             this.Finish();
         }
     }

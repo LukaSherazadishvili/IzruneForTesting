@@ -3420,6 +3420,9 @@ namespace Izrune
 			// aapt resource value: 0x7f0c0194
 			public const int AgreeButton = 2131493268;
 			
+			// aapt resource value: 0x7f0c01d6
+			public const int AmounTxt = 2131493334;
+			
 			// aapt resource value: 0x7f0c00f1
 			public const int AmountTxt = 2131493105;
 			
@@ -4100,6 +4103,9 @@ namespace Izrune
 			
 			// aapt resource value: 0x7f0c0154
 			public const int UserName = 2131493204;
+			
+			// aapt resource value: 0x7f0c01d3
+			public const int UserNameLasetName = 2131493331;
 			
 			// aapt resource value: 0x7f0c00b8
 			public const int UserNameLastNametxt = 2131493048;
@@ -4794,17 +4800,11 @@ namespace Izrune
 			// aapt resource value: 0x7f0c01d2
 			public const int textView50 = 2131493330;
 			
-			// aapt resource value: 0x7f0c01d3
-			public const int textView51 = 2131493331;
-			
 			// aapt resource value: 0x7f0c01d4
 			public const int textView52 = 2131493332;
 			
 			// aapt resource value: 0x7f0c01d5
 			public const int textView53 = 2131493333;
-			
-			// aapt resource value: 0x7f0c01d6
-			public const int textView54 = 2131493334;
 			
 			// aapt resource value: 0x7f0c01d8
 			public const int textView55 = 2131493336;

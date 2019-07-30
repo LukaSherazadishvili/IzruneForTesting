@@ -12,6 +12,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using FFImageLoading.Views;
+using Izrune.Activitys;
 using Izrune.Adapters.RecyclerviewAdapters;
 using Izrune.Attributes;
 using Izrune.Helpers;
@@ -64,8 +65,8 @@ namespace Izrune.Fragments
         FrameLayout BackButton;
 
 
-        [MapControl(Resource.Id.ShareButton)]
-        LinearLayout ShareButton;
+        [MapControl(Resource.Id.BadgesRecyclerView)]
+        RecyclerView BadgesRecycler;
 
         [MapControl(Resource.Id.Container)]
         protected override FrameLayout MainFrame { get; set; }
@@ -81,6 +82,23 @@ namespace Izrune.Fragments
 
              Result = await MpdcContainer.Instance.Get<IStatisticServices>().GetCurrentTestDiplomaInfo(IzruneHellper.Instance.CurrentStatistic.Id);
 
+            var Res = await MpdcContainer.Instance.Get<IUserServices>().GetBadgesAsync();
+
+            if (Res.Count() > 0)
+            {
+                LinearLayoutManager bManager = new LinearLayoutManager(this, LinearLayoutManager.Horizontal, false);
+                var badapter = new BadgesRecyclerViewAdapter(Res?.ToList())
+                {
+                    OnBadgetClick = () => {
+
+                        (Activity as InnerDiplomaStatisticActivity).OnBadgetClick();
+                    }
+                };
+                BadgesRecycler.SetLayoutManager(bManager);
+                BadgesRecycler.SetAdapter(badapter);
+            }
+            else
+                BadgesRecycler.Visibility = ViewStates.Gone;
 
 
             // var QuisInfo = Result.QueisResult;

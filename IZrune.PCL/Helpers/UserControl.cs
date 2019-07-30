@@ -232,7 +232,7 @@ namespace IZrune.PCL.Helpers
         }
 
 
-        IPay CUrrentPaimentInformation;
+      public  IPay CUrrentPaimentInformation;
         public async Task<IPay> FinishRegistration()
         {
            CUrrentPaimentInformation=await MpdcContainer.Instance.Get<IRegistrationServices>().RegistrationUser(RegistrationUser,MyRegistrationStudent);
@@ -241,9 +241,9 @@ namespace IZrune.PCL.Helpers
         }
 
 
-        public async Task ReNewPack(int studentId,int MonthCount, int Amount, string PromoCode = "0")
+        public async Task ReNewPack(int studentId,int MonthCount, int Amount, string PromoCode = "0",int paybox=0)
         {
-            CUrrentPaimentInformation = await MpdcContainer.Instance.Get<IPaymentService>().GetPaymentUrlsAsync(studentId, MonthCount, Amount, PromoCode);
+            CUrrentPaimentInformation = await MpdcContainer.Instance.Get<IPaymentService>().GetPaymentUrlsAsync(studentId, MonthCount, Amount, PromoCode,paybox);
 
            
 
