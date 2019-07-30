@@ -8,7 +8,7 @@ namespace IZrune.PCL.Abstraction.Services
 {
    public interface IPaymentService
     {
-        Task<IPay> GetPaymentUrlsAsync(int StudentId, int MonthCount, int Amount, string promoCode = "0");
+        Task<IPay> GetPaymentUrlsAsync(int StudentId, int MonthCount, int Amount, string promoCode = "0", int PayBox = 0);
 
         Task<IEnumerable<IPaymentHistory>> GetPaymentHistory();
         

@@ -12,6 +12,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using FFImageLoading.Views;
+using Izrune.Activitys;
 using Izrune.Adapters.RecyclerviewAdapters;
 using Izrune.Attributes;
 using Izrune.Helpers;
@@ -91,7 +92,10 @@ namespace Izrune.Fragments
                 if (Res.Count() > 0)
                 {
                     LinearLayoutManager bManager = new LinearLayoutManager(this, LinearLayoutManager.Horizontal, false);
-                    var badapter = new BadgesRecyclerViewAdapter(Res?.ToList());
+                    var badapter = new BadgesRecyclerViewAdapter(Res?.ToList()) {OnBadgetClick=()=> {
+
+                        (Activity as MainDiplomaActivity).OnBadgetClick();
+                    } };
                     BadgesRecycler.SetLayoutManager(bManager);
                     BadgesRecycler.SetAdapter(badapter);
                 }

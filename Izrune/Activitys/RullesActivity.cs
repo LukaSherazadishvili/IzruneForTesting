@@ -41,7 +41,8 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.RullesText)]
         TextView RullesText;
 
-
+        [MapControl(Resource.Id.BackButton)]
+        FrameLayout BackButton;
 
 
         bool isChecked = false;
@@ -56,7 +57,18 @@ namespace Izrune.Activitys
 
 
             RullesText.Click += RullesText_Click;
+            BotBackButton.Click += BotBackButton_Click;
+            BackButton.Click += BackButton_Click;
+        }
 
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            OnBackPressed();
+        }
+
+        private void BotBackButton_Click(object sender, EventArgs e)
+        {
+            OnBackPressed();
         }
 
         private async void RullesText_Click(object sender, EventArgs e)
@@ -119,5 +131,13 @@ namespace Izrune.Activitys
                 isChecked = false;
             }
         }
+
+        public override void OnBackPressed()
+        {
+            //Intent intent = new Intent(this,typeof(MainActivity));
+            //intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask  |ActivityFlags.ClearTop );
+            //StartActivity(intent);
+            Finish();
+    }
     }
 }
