@@ -83,17 +83,21 @@ namespace Izrune.iOS
                 }
 
                 else
-                {
                     ShowConnectionAlert();
-                }
+                
 
             };
 
             registrationBtn.TouchUpInside += delegate {
 
                 //TODO
-                var registerVc = Storyboard.InstantiateViewController(ParentRegistrationViewController.StoryboardId) as ParentRegistrationViewController;
-                this.NavigationController.PushViewController(registerVc, true);
+                if(Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
+                {
+                    var registerVc = Storyboard.InstantiateViewController(ParentRegistrationViewController.StoryboardId) as ParentRegistrationViewController;
+                    this.NavigationController.PushViewController(registerVc, true);
+                }
+                else
+                    ShowConnectionAlert();
             };
 
             forgotPasswordLbl.AddGestureRecognizer(new UITapGestureRecognizer(() => {
