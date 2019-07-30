@@ -38,7 +38,8 @@ namespace Izrune.iOS
 
         DropDown StudentDp = new DropDown();
 
-        IPromoCode PromoCode;
+        public IPromoCode PromoCode;
+
         public Action<IPrice> PriceSelected { get; set; }
 
         public Action SendClicked { get; set; }
@@ -396,7 +397,7 @@ namespace Izrune.iOS
 
 
                 PromoVc.PromoInfo = PromoCode;
-
+                PromoVc.UpdateDropdownDataSource();
                 if(IsPromoSelected)
                     PromoVc.CheckPromo();
             };

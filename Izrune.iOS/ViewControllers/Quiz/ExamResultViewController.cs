@@ -139,6 +139,12 @@ namespace Izrune.iOS
             }
             else
                 egmuImageView.Hidden = true;
+
+            badgesCollectionView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
+                var badgeUrl = "http://www.izrune.ge/geo/175";
+                if (UIApplication.SharedApplication.CanOpenUrl(NSUrl.FromString(badgeUrl)))
+                    UIApplication.SharedApplication.OpenUrl(NSUrl.FromString(badgeUrl));
+            }));
         }
 
         private void InitCollectionView()

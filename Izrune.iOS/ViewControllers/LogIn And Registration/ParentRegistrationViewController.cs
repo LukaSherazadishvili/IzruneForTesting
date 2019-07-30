@@ -88,7 +88,20 @@ namespace Izrune.iOS
 
             studentRegVc2 = Storyboard.InstantiateViewController(StudentRegSecondViewController.StoryboardId) as StudentRegSecondViewController;
             studentRegVc2.SchoolSelected = (school) => 
-            { 
+            {
+
+                choosePacketVc = Storyboard.InstantiateViewController(PacketViewController.StoryboardId) as PacketViewController;
+                choosePacketVc.IsFromMenu = false;
+
+                choosePacketVc.PriceSelected = (price) => {
+
+                    SelectedPrice = price;
+
+                    CurrentIndex = 4;
+                    HideHeader(true);
+                    AddViewController(AddMoreStudentVc, studentRegVc2);
+                };
+
                 choosePacketVc.SchoolId = school.id;
                 choosePacketVc.RefreshData?.Invoke();
                 SelectedPrice = null;

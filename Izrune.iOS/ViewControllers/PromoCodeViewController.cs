@@ -85,6 +85,16 @@ namespace Izrune.iOS
             CheckPromo();
         }
 
+        public void UpdateDropdownDataSource()
+        {
+            if(MonthDropDown != null)
+            {
+                var array = PromoInfo?.Prices?.Select(x => x.Period)?.ToArray();
+
+                MonthDropDown.DataSource = array;
+            }
+        }
+
         public void CheckPromo()
         {
             HidePromo(string.IsNullOrEmpty(PromoInfo?.PrommoCode) || string.IsNullOrWhiteSpace(PromoInfo?.PrommoCode));
