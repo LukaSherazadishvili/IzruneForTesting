@@ -29,7 +29,7 @@ namespace Izrune.iOS
         public Action<string, int> PromoCodeSelected { get; set; }
 
         CultureInfo cultureInfo = new CultureInfo("ka-GE");
-
+         
         public int SelectedMont;
 
         public string PromoCode = "";
