@@ -63,9 +63,9 @@ namespace Izrune.iOS
                 GoToPayment();
             };
 
-            payViaPayBoxBtn.TouchUpInside += async delegate {
+            payViaPayBoxBtn.TouchUpInside += delegate {
                 PaymentUrl = "http://www.izrune.ge/images/tbcpay_image2.png";
-                await UserControl.Instance.ReNewPack(SelectedStudent.id, PromoVc.SelectedMont, PromoVc.SelectedPrice.price.Value, PromoVc.PromoCode);
+                //await UserControl.Instance.ReNewPack(SelectedStudent.id, PromoVc.SelectedMont, PromoVc.SelectedPrice.price.Value, PromoVc.PromoCode);
                 if (UIApplication.SharedApplication.CanOpenUrl(NSUrl.FromString(PaymentUrl)))
                     UIApplication.SharedApplication.OpenUrl(NSUrl.FromString(PaymentUrl));
             };
