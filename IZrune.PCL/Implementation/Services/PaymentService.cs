@@ -83,9 +83,6 @@ namespace IZrune.PCL.Implementation.Services
             pay.FailUrl = Result.payment_fail_url;
 
             return pay;
-
         }
-
-
     }
 }
