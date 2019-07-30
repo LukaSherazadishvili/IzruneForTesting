@@ -376,7 +376,10 @@ namespace Izrune.iOS
                                 paymentViewController.PayInfo = ipay;
                                 paymentViewController.SelectedPrice = SelectedPrice;
                                 paymentViewController.UserName = CurrentUserName;
-                                this.NavigationController.PushViewController(paymentViewController, true);
+
+                                var currNavVc = this.NavigationController;
+                                this.NavigationController.PopToRootViewController(false);
+                                currNavVc.PushViewController(paymentViewController, true);
                             };
                             nextBtn.Enabled = false;
                         }
