@@ -27,5 +27,6 @@ namespace Izrune.iOS.CollectionViewCells
         {
             badgeImageView.InitImageFromWeb(badges?.ImageURl, false, false);
         }
+
     }
 }

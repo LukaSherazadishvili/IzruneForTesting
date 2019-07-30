@@ -82,14 +82,6 @@ namespace Izrune.iOS
                 if (result)
                     return false;
 
-                if (passwordTextField.Text.Length < 7)
-                {
-                    var alertVc = UIAlertController.Create("ყურადღება!", "პაროლი უნდა შედგებოდეს მინიმუმ 7 სიმბოლოსგან", UIAlertControllerStyle.Alert);
-                    alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
-                    this.PresentViewController(alertVc, true, null);
-                    return false;
-                }
-
                 foreach (var item in userNameTextField.Text)
                 {
                     if (Alphabet.Contains(item))
@@ -99,13 +91,19 @@ namespace Izrune.iOS
                         this.PresentViewController(alertVc, true, null);
                         return false;
                     }
-
-                    return CheckPassword();
                 }
 
                 if(userNameTextField.Text.Length < 5)
                 {
                     var alertVc = UIAlertController.Create("ყურადღება!", "მომხმარებლის სახელი უნდა შედგებოდეს მინიმუმ 4 სიმბოლოსგან", UIAlertControllerStyle.Alert);
+                    alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+                    this.PresentViewController(alertVc, true, null);
+                    return false;
+                }
+
+                if (passwordTextField.Text.Length < 7)
+                {
+                    var alertVc = UIAlertController.Create("ყურადღება!", "პაროლი უნდა შედგებოდეს მინიმუმ 7 სიმბოლოსგან", UIAlertControllerStyle.Alert);
                     alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
                     this.PresentViewController(alertVc, true, null);
                     return false;

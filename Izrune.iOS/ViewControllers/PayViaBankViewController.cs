@@ -22,14 +22,15 @@ namespace Izrune.iOS
         public IPrice SelectedPrice;
 
         public string UserName { get; set; }
+        public int allPrices { get; private set; }
 
-
-
-        public async override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
-            await InitDataAsync();
+            allPrices = IZrune.PCL.Helpers.UserControl.Instance.GetAllPackagePrice();
+
+            InitDataAsync();
 
             var barButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, null);
 
@@ -50,7 +51,7 @@ namespace Izrune.iOS
             };
         }
 
-        private async Task InitDataAsync()
+        private void InitDataAsync()
         {
             try
             {
@@ -60,7 +61,7 @@ namespace Izrune.iOS
                     profileNumberView.Hidden = true;
 
                     userNameLbl.Text = $"1. მომხმარებელი: {UserName}";
-                    billLbl.Text = $"2. გადასახდელი თანხა - {SelectedPrice?.price} ლარი";
+                    billLbl.Text = $"2. გადასახდელი თანხა - {allPrices} ლარი";
                     dateLbl.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 }
                 else

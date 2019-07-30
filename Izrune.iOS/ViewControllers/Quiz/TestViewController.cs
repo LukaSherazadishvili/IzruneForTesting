@@ -85,6 +85,12 @@ namespace Izrune.iOS
             InitLottie(AnimationFilePath);
 
             userNameLbl.Text = SelectedStudent?.Name + " " + SelectedStudent?.LastName;
+
+            badgeCollectionView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
+                var badgeUrl = "http://www.izrune.ge/geo/175";
+                if (UIApplication.SharedApplication.CanOpenUrl(NSUrl.FromString(badgeUrl)))
+                    UIApplication.SharedApplication.OpenUrl(NSUrl.FromString(badgeUrl));
+            }));
         }
 
         private async Task LoadDataAsync()
