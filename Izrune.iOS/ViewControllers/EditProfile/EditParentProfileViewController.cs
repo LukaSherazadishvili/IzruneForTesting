@@ -41,7 +41,15 @@ namespace Izrune.iOS
             base.ViewDidLoad();
 
             this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
-            await LoadDataAsync();
+
+            if (Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
+                await LoadDataAsync();
+            else
+            {
+                this.ShowConnectionAlert();
+                InitUI();
+                return;
+            }
 
             InitGestures();
             InitDropDowns();

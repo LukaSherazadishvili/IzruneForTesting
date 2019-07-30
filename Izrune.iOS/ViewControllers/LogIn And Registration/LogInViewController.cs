@@ -140,7 +140,7 @@ namespace Izrune.iOS
 
         private void ShowConnectionAlert()
         {
-            var alert = UIAlertController.Create("შეცდომა", "შეამოწმეთ კავშირი ინტერნეტთან", UIAlertControllerStyle.Alert);
+            var alert = UIAlertController.Create("შეცდომა", "შეამოწმეთ ინტერნეტთან კავშირი", UIAlertControllerStyle.Alert);
             alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
             this.PresentViewController(alert, true, null);
         }

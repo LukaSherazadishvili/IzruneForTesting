@@ -9,6 +9,7 @@ using IZrune.PCL.Helpers;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
 using MPDCiOSPages.ViewControllers;
+using MPDC.iOS.Utils;
 
 namespace Izrune.iOS
 {
@@ -24,8 +25,10 @@ namespace Izrune.iOS
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
-            user = await UserControl.Instance.GetCurrentUser();
+            if (Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
+                user = await UserControl.Instance.GetCurrentUser();
+            else
+                this.ShowConnectionAlert();
 
             InitUI();
 
@@ -36,24 +39,33 @@ namespace Izrune.iOS
         {
             saveBtn.TouchUpInside += async delegate
             {
-                var userService = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
+                if (Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
+                {
+                    var userService = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-                try
-                {
-                    if (CheckPassword())
+                    try
                     {
-                        ShowLoading();
-                        var result = await userService.EditePassword(oldPassTf.Text, passwordNewTf.Text);
-                        EndLoading();
-                        ShowAlert("პაროლი წარმატებით შეიცვალა");
+                        if (CheckPassword())
+                        {
+                            ShowLoading();
+                            var result = await userService.EditePassword(oldPassTf.Text, passwordNewTf.Text);
+                            EndLoading();
+                            ShowAlert("პაროლი წარმატებით შეიცვალა");
+                        }
+                        else
+                            ShowAlert("სცადეთ თავიდან");
                     }
-                    else
+                    catch (Exception ex)
+                    {
                         ShowAlert("სცადეთ თავიდან");
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    ShowAlert("სცადეთ თავიდან");
+                    this.ShowConnectionAlert();
+
                 }
+
             };
 
             backBtn.TouchUpInside += delegate {

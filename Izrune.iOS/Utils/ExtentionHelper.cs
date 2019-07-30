@@ -20,6 +20,13 @@ namespace MPDC.iOS.Utils
             return (float)size.Width;
         }
 
+        public static void ShowConnectionAlert(this UIViewController uIViewController)
+        {
+            var alert = UIAlertController.Create("შეცდომა", "შეამოწმეთ ინტერნეტთან კავშირი", UIAlertControllerStyle.Alert);
+            alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            uIViewController.PresentViewController(alert, true, null);
+        }
+
         public static IEnumerable<T> DistinctBy<T, TKey>(this IEnumerable<T> items, Func<T, TKey> property)
         {
             return items.GroupBy(property).Select(x => x.First());

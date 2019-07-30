@@ -56,7 +56,14 @@ namespace Izrune.iOS
 
             SchoolVc = Storyboard.InstantiateViewController(SelectSchoolViewController.StoryboardId) as SelectSchoolViewController;
 
-            await LoadDataAsync();
+            if (Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
+                await LoadDataAsync();
+            else
+            {
+                this.ShowConnectionAlert();
+                InitUI();
+                return;
+            }
 
             InitUI();
 

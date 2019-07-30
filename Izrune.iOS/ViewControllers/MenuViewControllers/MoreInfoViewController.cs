@@ -24,10 +24,26 @@ namespace Izrune.iOS
             base.ViewDidLoad();
 
             var newsService = ServiceContainer.ServiceContainer.Instance.Get<INewsService>();
+            try
+            {
+                if(Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
+                {
+                    var data = await newsService.GetMoreInfoAsync();
 
-            var data = await newsService.GetMoreInfoAsync();
+                    infoWebView.LoadHtmlString(data, NSUrl.FromString("https://www.google.com/"));
+                }
+                else
+                {
+                    var alertVc = UIAlertController.Create("ყურადღება!", "შეამოწმეთ ინტერნეტთან კავშირი", UIAlertControllerStyle.Alert);
+                    alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+                    this.PresentViewController(alertVc, true, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
-            infoWebView.LoadHtmlString(data, NSUrl.FromString("https://www.google.com/"));
         }
     }
 }
