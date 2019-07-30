@@ -298,16 +298,23 @@ namespace Izrune.iOS
 
             yaxis.Position = AxisPosition.Left;
             yaxis.MajorGridlineStyle = LineStyle.None;
+            yaxis.LabelFormatter = (d) => {
+
+                var minute = (int)TimeSpan.FromSeconds(d).TotalMinutes;
+
+                return minute.ToString("F");
+            };
             xaxis.MinorGridlineStyle = LineStyle.None;
 
             ColumnSeries s1 = new ColumnSeries();
-            s1.FillColor = oxyColor;
+            s1.FillColor = oxyColor; 
             //s1.IsStacked = true;
 
             
-            foreach (var item in statistisData.Take(10))
+            foreach (var item in statistisData)
             {
                 xaxis.Labels.Add(item.ExamDate.ToString("dd/MM/yyyy"));
+               
                 
                 s1.Items.Add(new ColumnItem(item.TestTimeInSecconds, statistisData.IndexOf(item)));
             }

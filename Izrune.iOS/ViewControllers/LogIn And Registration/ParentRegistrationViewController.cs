@@ -371,6 +371,7 @@ namespace Izrune.iOS
                         {
                             
                             HideHeader(true);
+                            nextBtn.UserInteractionEnabled = false;
                             AddMoreStudentVc?.SendClicked?.Invoke();
                             AddMoreStudentVc.DataSent = (ipay) => {
                                 paymentViewController.PayInfo = ipay;
@@ -381,7 +382,7 @@ namespace Izrune.iOS
                                 this.NavigationController.PopToRootViewController(false);
                                 currNavVc.PushViewController(paymentViewController, true);
                             };
-                            nextBtn.Enabled = false;
+                            
                         }
 
                         else
@@ -390,7 +391,7 @@ namespace Izrune.iOS
                             HideHeader(false);
                             AddViewController(studentRegVc2, AddMoreStudentVc);
                             CurrentIndex--;
-                            nextBtn.Enabled = true;
+                            nextBtn.UserInteractionEnabled = true;
                         }
 
                         break;
