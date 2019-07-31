@@ -150,12 +150,15 @@ namespace IZrune.PCL.Helpers
             }
         }
 
-        private List<Student> MyRegistrationStudent = new List<Student>();
+        public List<Student> MyRegistrationStudent = new List<Student>();
 
        public Parent RegistrationUser { get; set; }
         public  void RegistrationParrentPartOne(string Name,string LastName,DateTime date,string city,string Village="")
         {
+
+            if(RegistrationUser == null)
             RegistrationUser = new Parent();
+
             RegistrationUser.Name = Name;
             RegistrationUser.LastName = LastName;
             RegistrationUser.bDate = date;
@@ -175,7 +178,7 @@ namespace IZrune.PCL.Helpers
 
 
 
-        public  void RegistrationStudentPartOne(string Name,string LastName,DateTime date,string PersonalId,string Phone,string Mail="")
+        public  void RegistrationStudentPartOne(string Name,string LastName,DateTime date,string PersonalId,string Phone="0",string Mail="")
         {
             RegistrationStudent = new Student();
             RegistrationStudent.Name = Name;
@@ -241,9 +244,9 @@ namespace IZrune.PCL.Helpers
         }
 
 
-        public async Task ReNewPack(int studentId,int MonthCount, int Amount, string PromoCode = "0",int paybox=0)
+        public async Task ReNewPack(int studentId,int MonthCount, int Amount, string PromoCode = "0",int paybox=1)
         {
-            CUrrentPaimentInformation = await MpdcContainer.Instance.Get<IPaymentService>().GetPaymentUrlsAsync(studentId, MonthCount, Amount, PromoCode,paybox);
+           // CUrrentPaimentInformation = await MpdcContainer.Instance.Get<IPaymentService>().GetPaymentUrlsAsync(studentId, MonthCount, Amount, PromoCode,paybox);
 
            
 
@@ -312,7 +315,7 @@ namespace IZrune.PCL.Helpers
 
         public async Task<IEnumerable<IDiagram>>  GetDiagramStatistic()
         {
-
+           
             try
             {
 

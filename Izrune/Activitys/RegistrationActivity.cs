@@ -66,6 +66,11 @@ namespace Izrune.Activitys
             base.OnCreate(savedInstanceState);
             SetEvents();
 
+          
+
+
+           
+
             BackButton.Click += BackButton_Click;
             BotBackButton.Click += BotBackButton_Click;
             var Result = await MpdcContainer.Instance.Get<IRegistrationServices>().GetRegionsAsync();
@@ -87,9 +92,12 @@ namespace Izrune.Activitys
                 {
                     city = Result.ElementAt(e.Position - 1).title;
                     ParrentCity.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
+
+
                 }
 
             };
+
 
         }
 
@@ -133,6 +141,7 @@ namespace Izrune.Activitys
         }
         public override void OnBackPressed()
         {
+            UserControl.Instance.Resetregistration();
             base.OnBackPressed();
         }
 

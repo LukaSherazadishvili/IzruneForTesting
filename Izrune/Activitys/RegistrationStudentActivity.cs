@@ -65,9 +65,32 @@ namespace Izrune.Activitys
 
         int Day, Year, Month;
 
+
+
+
+        private void SetLastData()
+        {
+            var user = UserControl.Instance.RegistrationStudent;
+            if (user != null)
+            {
+                StudName.Text = user.Name;
+                StudLastName.Text = user.LastName;
+                BDayDay.Text = user.Bdate.Day.ToString();
+                StudentBdaymonth.Text = user.Bdate.Month.ToString();
+                StudentBdayYear.Text = user.Bdate.Year.ToString();
+                StudentPersonalId.Text = user.PersonalNumber.ToString();
+                StudentPhone.Text = user.Phone;
+                StudentEmail.Text = user.Email;
+                Year = user.Bdate.Year;
+                Month = user.Bdate.Month;
+                Day = user.Bdate.Day;
+            }
+        }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            SetLastData();
             StudName.TextChanged += StudName_TextChanged;
             StudLastName.TextChanged += StudLastName_TextChanged;
             NextButton.Click += NextButton_Click;
@@ -116,7 +139,7 @@ namespace Izrune.Activitys
 
 
             if (string.IsNullOrEmpty(StudName.Text) || string.IsNullOrEmpty(StudLastName.Text) || string.IsNullOrEmpty(StudentBdayYear.Text) ||
-                string.IsNullOrEmpty(StudentPersonalId.Text)||(await MpdcContainer.Instance.Get<IRegistrationServices>().ExistPersonalId(StudentPersonalId.Text)||StudentPhone.Text.Length!=9)||StudentPersonalId.Text.Length!=11 )
+                string.IsNullOrEmpty(StudentPersonalId.Text)||(await MpdcContainer.Instance.Get<IRegistrationServices>().ExistPersonalId(StudentPersonalId.Text))||StudentPersonalId.Text.Length!=11 )
             {
                 if (string.IsNullOrEmpty(StudName.Text))
                 {
@@ -137,12 +160,12 @@ namespace Izrune.Activitys
                     StudentPersonalId.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
                     ShowAlert("შეცდომა", "პირადი ნომერი უნდა შედგებოდეს 11 ციფრისგან");
                 }
-                if (StudentPhone.Text.Length != 9)
-                {
-                    StudentPhone.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
-                    ShowAlert("შეცდომა", "ტელეფონის ნომერი უნდა შედგებოდეს 9 ციფრისგან");
+                //if (StudentPhone.Text.Length != 9)
+                //{
+                //    StudentPhone.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                //    ShowAlert("შეცდომა", "ტელეფონის ნომერი უნდა შედგებოდეს 9 ციფრისგან");
 
-                }
+                //}
             }
             else
             {

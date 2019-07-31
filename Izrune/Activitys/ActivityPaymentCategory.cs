@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Izrune.Attributes;
+using IZrune.PCL.Helpers;
 
 namespace Izrune.Activitys
 {
@@ -85,6 +86,7 @@ namespace Izrune.Activitys
         {
             Intent intent = new Intent(this, typeof(MainActivity));
             intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask | ActivityFlags.ClearTop);
+            UserControl.Instance.Resetregistration();
             StartActivity(intent);
             this.Finish();
         }
