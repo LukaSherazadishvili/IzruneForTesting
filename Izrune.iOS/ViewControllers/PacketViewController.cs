@@ -181,7 +181,7 @@ namespace Izrune.iOS
 
                     else
                     {
-                        var price = (IsPromoSelected ? new Price() { price = PromoVc.SelectedMont, MonthCount = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
+                        var price = (IsPromoSelected ? new Price() { price = PromoVc.SelectedPrice?.price, MonthCount = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
                         PriceSelected?.Invoke(price);
                         if (IsPromoSelected)
                         {

@@ -3446,7 +3446,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="167.5" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="თვე" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMD-5d-R88">
-                                                                <rect key="frame" x="30" y="17" width="102.5" height="16.5"/>
+                                                                <rect key="frame" x="15" y="17" width="117.5" height="16.5"/>
                                                                 <fontDescription key="fontDescription" name="BPGMrgvlovani2010" family="BPG Mrgvlovani 2010" pointSize="14"/>
                                                                 <color key="textColor" red="0.72156862745098038" green="0.72156862745098038" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -3461,7 +3461,7 @@
                                                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="1VK-6z-31f"/>
-                                                            <constraint firstItem="tMD-5d-R88" firstAttribute="leading" secondItem="juf-kZ-5xD" secondAttribute="leading" constant="30" id="9cD-yI-DyF"/>
+                                                            <constraint firstItem="tMD-5d-R88" firstAttribute="leading" secondItem="juf-kZ-5xD" secondAttribute="leading" constant="15" id="9cD-yI-DyF"/>
                                                             <constraint firstAttribute="bottom" secondItem="OTR-gz-oUk" secondAttribute="bottom" constant="5" id="Cxg-9m-3qY"/>
                                                             <constraint firstItem="OTR-gz-oUk" firstAttribute="top" secondItem="juf-kZ-5xD" secondAttribute="top" constant="5" id="IWh-vz-Qlu"/>
                                                             <constraint firstAttribute="trailing" secondItem="OTR-gz-oUk" secondAttribute="trailing" constant="10" id="Ppq-O8-OI6"/>

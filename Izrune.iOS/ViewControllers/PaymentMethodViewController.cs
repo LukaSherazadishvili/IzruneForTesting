@@ -25,6 +25,7 @@ namespace Izrune.iOS
         public IStudent SelectedStudent;
         public bool HideTitle { get; set; }
 
+        public int allPrices { get; set; }
 
         public string UserName { get; set; }
 
@@ -51,6 +52,7 @@ namespace Izrune.iOS
         {
             payViaBankBtn.TouchUpInside += async delegate {
                 var payBankVc = Storyboard.InstantiateViewController(PayViaBankViewController.StoryboardId) as PayViaBankViewController;
+                payBankVc.allPrices = allPrices;
                 var user = await IZrune.PCL.Helpers.UserControl.Instance.GetCurrentUser();
                 payBankVc.CurrentUser = user;
                 payBankVc.UserName = UserName;
