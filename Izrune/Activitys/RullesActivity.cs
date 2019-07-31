@@ -85,6 +85,7 @@ namespace Izrune.Activitys
 
         private void AddStudentButton_Click(object sender, EventArgs e)
         {
+            UserControl.Instance.RegistrationStudent = null;
             Intent intent = new Intent(this, typeof(RegistrationStudentActivity));
             StartActivity(intent);
         }
@@ -137,6 +138,7 @@ namespace Izrune.Activitys
             //Intent intent = new Intent(this,typeof(MainActivity));
             //intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask  |ActivityFlags.ClearTop );
             //StartActivity(intent);
+            UserControl.Instance.CurrentStudent = UserControl.Instance.MyRegistrationStudent.LastOrDefault();
             Finish();
     }
     }

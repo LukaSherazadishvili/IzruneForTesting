@@ -80,12 +80,12 @@ namespace Izrune.Fragments
             Startloading();
 
 
-
+         
 
             Result = await UserControl.Instance.GetCurrentUser();
 
             var date = QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezTest);
-            var k = await MpdcContainer.Instance.Get<IPaymentService>().GetPaymentHistory();
+           // var k = await MpdcContainer.Instance.Get<IPaymentService>().GetPaymentHistory();
 
             var DataAdapter = new ArrayAdapter<string>(this,
                 Android.Resource.Layout.SimpleSpinnerDropDownItem,

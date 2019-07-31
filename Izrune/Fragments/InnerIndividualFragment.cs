@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Izrune.Activitys;
 using Izrune.Attributes;
+using Izrune.Helpers;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Helpers;
 
@@ -92,6 +93,7 @@ namespace Izrune.Fragments
             if (IsChec)
             {
                 Startloading();
+                IzruneHellper.Instance.CurrentStudentAmount = prices.price.Value;
                 await UserControl.Instance.ReNewPack(UserControl.Instance.CurrentStudent.id, prices.MonthCount.Value, prices.price.Value);
                 Intent intent = new Intent(this, typeof(ActivityPaymentCategory));
                 StartActivity(intent);

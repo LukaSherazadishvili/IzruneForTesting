@@ -54,13 +54,13 @@ namespace Izrune.Activitys
 
             Startloading();
 
-            RegistrationServices test = new RegistrationServices();
-
-         //   var result = await test.GetRegionsAsync();
+           
 
             ChangeFragmentPage(new MainPageTestFragment(), MainContainer.Id);
             navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
             Hamburger.Click += Hamburger_Click;
+
+            
 
             var Result = await UserControl.Instance.GetCurrentUser();
 

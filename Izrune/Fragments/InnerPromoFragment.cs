@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using Izrune.Activitys;
 using Izrune.Attributes;
+using Izrune.Helpers;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Helpers;
 
@@ -94,7 +95,9 @@ namespace Izrune.Fragments
             {
                 if (IsSucces)
                 {
-                  await UserControl.Instance.ReNewPack(StudentId, MonthCount, MonthCount * 1, PromoCod.PrommoCode);
+                    IzruneHellper.Instance.CurrentStudentAmount = MonthCount;
+
+                  await UserControl.Instance.ReNewPack(StudentId, MonthCount, MonthCount, PromoCod.PrommoCode);
                     Intent intent = new Intent(this, typeof(ActivityPaymentCategory));
                     StartActivity(intent);
                 }

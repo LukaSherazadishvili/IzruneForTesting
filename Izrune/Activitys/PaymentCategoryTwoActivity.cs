@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Izrune.Attributes;
+using Izrune.Helpers;
 using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
 using MpdcContainer = ServiceContainer.ServiceContainer;
@@ -47,15 +48,24 @@ namespace Izrune.Activitys
             Startloading();
 
             var user = UserControl.Instance.RegistrationUser;
+            if (user != null)
+            {
+                Name.Text = $"{user.Name} {user.LastName}";
 
-            Name.Text = $"{user.Name} {user.LastName}";
+                Amount.Text = UserControl.Instance.GetAllPackagePrice().ToString();
 
-            Amount.Text = UserControl.Instance.GetAllPackagePrice().ToString();
+                MpdcContainer.Instance.Get<ILoginServices>().LoginUser(user.UserName, user.Password);
 
-            MpdcContainer.Instance.Get<ILoginServices>().LoginUser(user.UserName, user.Password);
+                ProfileNumber.Text = UserControl.Instance.Parent.ProfileNumber.ToString();
+            }
+            else
+            {
+                var CurrentUSer = UserControl.Instance.Parent;
+                Amount.Text = IzruneHellper.Instance.CurrentStudentAmount.ToString();
+                Name.Text = $"{CurrentUSer.Name} {CurrentUSer.LastName}";
 
-            ProfileNumber.Text = UserControl.Instance.Parent.ProfileNumber.ToString();
-
+                ProfileNumber.Text = CurrentUSer.ProfileNumber.ToString();
+            }
             StopLoading();
 
         }

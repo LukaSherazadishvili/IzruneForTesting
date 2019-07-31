@@ -57,20 +57,59 @@ namespace IZrune.PCL.Implementation.Services
 
         }
 
-        public async Task<IPay> GetPaymentUrlsAsync(int StudentId, int MonthCount, int Amount, string promoCode = "0",int PayBox=0)
+        public async Task<IPay> GetPaymentUrlsAsync( IEnumerable<IStudent> Students ,int PayBox=1)
         {
+            var KeyValuePairsList = new List<KeyValuePair<string, string>>();
 
+            for (int i = 0; i < Students.Count(); i++)
+            {
+
+                var temp = new List<KeyValuePair<string, string>>()
+                       {
+                        new KeyValuePair<string,string>($"student_id{i+1}",Students.ElementAt(i).id.ToString()),
+                         new KeyValuePair<string,string>($"sdate{i+1}",$"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}"),
+                         new KeyValuePair<string,string>($"months{i+1}",Students.ElementAt(i).PackageMonthCount.ToString()),
+                          new KeyValuePair<string,string>($"amount{i+1}",Students.ElementAt(i).Amount.ToString()),
+                           new KeyValuePair<string,string>($"promo{i+1}",Students.ElementAt(i).Promocode.ToString()),
+                            new KeyValuePair<string,string>($"paybox{i+1}",PayBox.ToString())
+                };
+                KeyValuePairsList.AddRange(temp);
+
+            }
+
+        var FormContent = new FormUrlEncodedContent(KeyValuePairsList);
+
+
+        var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=renew&hashcode=6baf003058e14cc0c2031b07ff673871", FormContent);
+            var jsn = await Data.Content.ReadAsStringAsync();
+
+            var Result = JsonConvert.DeserializeObject<PaymentRootDTO>(jsn);
+
+            Pay pay = new Pay();
+            pay.CurrentUserPayURl = $"https://e-commerce.cartubank.ge/servlet/Process3DSServlet/3dsproxy_init.jsp?PurchaseDesc={Result.payment.PurchaseDesc}&PurchaseAmt={Result.payment.PurchaseAmt}&CountryCode={Result.payment.CountryCode}&CurrencyCode={Result.payment.CurrencyCode}&MerchantName={Result.payment.MerchantName}&MerchantURL={Result.payment.MerchantURL}&MerchantCity={Result.payment.MerchantCity}&MerchantID={Result.payment.MerchantID}&xDDDSProxy.Language={Result.payment.Language}";
+
+            pay.SuccesUrl = Result.payment_success_url;
+            pay.FailUrl = Result.payment_fail_url;
+
+            return pay;
+
+        }
+
+        public async Task<IPay> GetPaymentUrlsAsync(IStudent Student, int PayBox = 1)
+        {
             var FormContent = new FormUrlEncodedContent(new[]
-                   {
-                        new KeyValuePair<string,string>("student_id1",StudentId.ToString()),
-                         new KeyValuePair<string,string>("sdate1",DateTime.Now.ToShortDateString()),
-                         new KeyValuePair<string,string>("months1",MonthCount.ToString()),
-                          new KeyValuePair<string,string>("amount1",Amount.ToString()),
-                           new KeyValuePair<string,string>("promo1",promoCode),
-                            new KeyValuePair<string,string>("paybox1",PayBox.ToString())
+                    {
+                       new KeyValuePair<string,string>($"student_id1",Student.id.ToString()),
+                         new KeyValuePair<string,string>($"sdate1",$"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}"),
+                         new KeyValuePair<string,string>($"months1",Student.PackageMonthCount.ToString()),
+                          new KeyValuePair<string,string>($"amount1",Student.Amount.ToString()),
+                           new KeyValuePair<string,string>($"promo1",Student.Promocode.ToString()),
+                            new KeyValuePair<string,string>($"paybox1",PayBox.ToString())
+
                      });
 
-           
+
+
             var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=renew&hashcode=6baf003058e14cc0c2031b07ff673871", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
 

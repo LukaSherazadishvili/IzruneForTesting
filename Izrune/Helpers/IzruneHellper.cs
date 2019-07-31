@@ -66,6 +66,7 @@ namespace Izrune.Helpers
             edit.Apply();
         }
 
+        public int CurrentStudentAmount=0;
 
         public List<string> letters = new List<string>()
         {

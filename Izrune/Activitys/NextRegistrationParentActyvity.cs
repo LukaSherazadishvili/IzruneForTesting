@@ -55,6 +55,10 @@ namespace Izrune.Activitys
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            SetLastData();
+
+
             NextButton.Click += NextButton_Click;
 
             BackButton.Click += BackButton_Click;
@@ -65,6 +69,21 @@ namespace Izrune.Activitys
             RepPassword.TextChanged += Phone_TextChanged;
             Name.TextChanged += Phone_TextChanged;
         }
+
+
+        private void SetLastData()
+        {
+            var user = UserControl.Instance.RegistrationUser;
+            if (user != null)
+            {
+                Name.Text = user.UserName;
+                Phone.Text = user.Phone;
+                Password.Text = user.Password;
+                RepPassword.Text = user.Password;
+                Email.Text = user.Email;
+            }
+        }
+
 
         private void Phone_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
         {
@@ -82,7 +101,7 @@ namespace Izrune.Activitys
         }
         public override void OnBackPressed()
         {
-            base.OnBackPressed();
+         base.OnBackPressed();
         }
 
         private async void NextButton_Click(object sender, EventArgs e)
@@ -160,7 +179,7 @@ namespace Izrune.Activitys
 
 
             if (!(string.IsNullOrEmpty(Phone.Text) && string.IsNullOrEmpty(Name.Text) && string.IsNullOrEmpty(Password.Text)
-                && string.IsNullOrEmpty(RepPassword.Text)  && IsGeorgianPassword && IsGeorgianKey&&Phone.Text.Length!=9))
+                && string.IsNullOrEmpty(RepPassword.Text) )  && !IsGeorgianPassword && !IsGeorgianKey && Phone.Text.Length == 9)
             {
 
 
