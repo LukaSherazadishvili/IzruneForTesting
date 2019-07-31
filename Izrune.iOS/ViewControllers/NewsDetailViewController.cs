@@ -62,5 +62,31 @@ namespace Izrune.iOS
 
             contentViewHeight.Constant = (System.nfloat)headerHeight;
         }
+
+        [Export("webView:shouldStartLoadWithRequest:navigationType:")]
+        public bool ShouldStartLoad(UIWebView webView, NSUrlRequest request, UIWebViewNavigationType navigationType)
+        {
+            if(navigationType == UIWebViewNavigationType.LinkClicked)
+            {
+                bool isUri = Uri.IsWellFormedUriString(request.Url.ToString(), UriKind.RelativeOrAbsolute);
+
+                if (request.Url.ToString().Contains("http"))
+                {
+                    var url = request.Url;
+
+                    UIApplication.SharedApplication.OpenUrl(url);
+                }
+                else
+                {
+                    var url = request.Url;
+
+                    UIApplication.SharedApplication.OpenUrl(url);
+                }
+
+                return false;
+            }
+
+            return true;
+        }
     }
 }
