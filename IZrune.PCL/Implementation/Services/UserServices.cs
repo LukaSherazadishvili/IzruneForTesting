@@ -41,11 +41,11 @@ namespace IZrune.PCL.Implementation.Services
                 var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=addStudent&hashcode=d529edb90d98f79c0c0e2e799933c1c4", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
 
-                AppCore.Instance.Alertdialog.ShowSaccessDialog("გილოცავთ", "სტუდენტი წარმატებით დაემატა");
+                AppCore.Instance.Alertdialog.ShowSaccessDialog("გილოცავთ", "მოსწავლე წარმატებით დაემატა");
             }
             catch(Exception ex)
             {
-                AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა","ვერ მოხერხდა სტუდენტის დამატება");
+                AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "მოსწავლის დამატება ვერ მოხერხდა");
             }
         }
 

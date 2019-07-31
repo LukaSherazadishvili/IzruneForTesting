@@ -56,6 +56,7 @@ namespace Izrune.iOS
                     var ipay = (await UserControl.Instance.FinishRegistration());
                     EndLoading();
                     Pay = ipay;
+                    UserControl.Instance.Resetregistration();
                     DataSent?.Invoke(ipay);
                 }
                 catch (Exception ex)
