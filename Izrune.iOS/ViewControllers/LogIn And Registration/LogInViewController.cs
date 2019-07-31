@@ -46,6 +46,12 @@ namespace Izrune.iOS
                 StoreKit.SKStoreReviewController.RequestReview();
         }
 
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+
+            //UserControl.Instance.Resetregistration();
+        }
         private void InitGestures()
         {
         

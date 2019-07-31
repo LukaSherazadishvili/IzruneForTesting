@@ -43,12 +43,30 @@ namespace Izrune.iOS
 
             confirmBtn.TouchUpInside += async delegate {
 
-                if(Convert.ToInt32(smsTf.Text) == code)
+                try
                 {
-                    CheckSms(true);
-                    await Task.Delay(200);
+                    if(string.IsNullOrEmpty(smsTf.Text) || string.IsNullOrWhiteSpace(smsTf.Text))
+                    {
+                        var alert = UIAlertController.Create("ყურადღება", "გთხოვთ ჩაწეროთ SMS კოდი", UIAlertControllerStyle.Alert);
+                        alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+                        this.PresentViewController(alert, true, null);
+                    }
+                    else
+                    {
+                        if (Convert.ToInt32(smsTf.Text) == code)
+                        {
+                            CheckSms(true);
+                            await Task.Delay(200);
 
-                    GoToChooseTime();
+                            GoToChooseTime();
+                        }
+                        else
+                            CheckSms(false);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
                 }
             };
 

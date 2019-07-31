@@ -524,7 +524,7 @@ namespace Izrune.iOS
 
         private void ShowLoginAlert()
         {
-            var alert = UIAlertController.Create("ყურადღევა", "დრო ამოიწურა.", UIAlertControllerStyle.Alert);
+            var alert = UIAlertController.Create("ყურადღება", "დრო ამოიწურა.", UIAlertControllerStyle.Alert);
             alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
             this.PresentViewController(alert, true, null);
         }
