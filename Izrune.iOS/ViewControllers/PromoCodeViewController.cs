@@ -37,6 +37,8 @@ namespace Izrune.iOS
 
         public IPrice SelectedPrice;
 
+        public bool IsPacketSelected { get; set; }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -54,6 +56,7 @@ namespace Izrune.iOS
                 {
                     monthView.UserInteractionEnabled = true;
                     //InitDropDown();
+                    IsPacketSelected = true;
                     SelectPromoPack(0);
                     PromoCode = PromoInfo.PrommoCode;
                 }

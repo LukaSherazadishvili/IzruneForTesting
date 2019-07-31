@@ -431,6 +431,7 @@ namespace Izrune.iOS
             var text = data?.title;
             var titleHeight = text.GetStringHeight((float)questionCollectionView.Frame.Width, 50, 17);
             //var commentHeight = data?.Description?.GetStringHeight((float)questionCollectionView.Frame.Width, 50, 14);
+
             var ImagesCount = data?.images?.Count();
 
             if (ImagesCount == 0)

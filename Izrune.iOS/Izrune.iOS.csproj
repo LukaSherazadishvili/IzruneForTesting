@@ -567,6 +567,7 @@
     <BundleResource Include="Resources\სკოლის დამსახურება.jpg" />
     <BundleResource Include="Resources\multiply.png" />
     <BundleResource Include="Resources\საღოლ ყლეო.mp3" />
+    <BundleResource Include="Resources\1025gogona da wigni.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IZrune.PCL\IZrune.PCL.csproj">

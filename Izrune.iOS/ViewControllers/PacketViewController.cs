@@ -112,10 +112,12 @@ namespace Izrune.iOS
                     {
                         if (SelectPacketVc.SelectedPrice == null && PromoVc.SelectedMont == 0)
                             ShowAlert();
+
                         else
                         {
-                            if (IsPromoSelected)
+                            if (PromoVc.IsPacketSelected)
                             {
+
                                 ShowLoading();
                                 await UserControl.Instance.ReNewPack(SelectedStudent.id, PromoVc.SelectedMont, PromoVc.SelectedPrice.price.Value, PromoVc.PromoCode);
                                 EndLoading();
@@ -128,7 +130,7 @@ namespace Izrune.iOS
                                 EndLoading();
                             }
 
-                            var price = (IsPromoSelected ? PromoVc.SelectedPrice : SelectPacketVc.SelectedPrice);
+                            var price = (PromoVc.IsPacketSelected ? PromoVc.SelectedPrice : SelectPacketVc.SelectedPrice);
 
                             SelectedPrice = price;
                             var payInfo = UserControl.Instance.GetPaymentInformation();

@@ -232,7 +232,7 @@ namespace Izrune.iOS.CollectionViewCells
             if (collectionView == questionImagesCollectionView)
             {
                 var count = Question?.images?.Count() ?? 0;
-                Debug.WriteLine($"Question Images Count : {count}");
+                //Debug.WriteLine($"Question Images Count : {count}");
                 return count;
             }
             else
