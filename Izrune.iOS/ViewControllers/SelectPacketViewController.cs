@@ -9,6 +9,7 @@ using Izrune.iOS.CollectionViewCells;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
+using MPDC.iOS.Utils;
 using MPDCiOSPages.ViewControllers;
 using UIKit;
 
@@ -48,7 +49,13 @@ namespace Izrune.iOS
 
             CollectionViewSettings();
 
-            await LoadDataAsync();
+            if(Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
+                await LoadDataAsync();
+            else
+            {
+                this.ShowConnectionAlert();
+                return;
+            }
 
             SendClicked = () => SendData();
 

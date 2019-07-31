@@ -346,8 +346,12 @@ namespace Izrune.iOS
 
                                 else
                                 {
+                                    //var currNavVc = this.NavigationController;
+                                    //this.NavigationController.PopToRootViewController(false);
+                                    //currNavVc.PushViewController(AddMoreStudentVc, true);
+                                    HideHeader(true);
                                     AddViewController(AddMoreStudentVc, studentRegVc2);
-                                    CurrentIndex++;
+                                    CurrentIndex = 4;
                                 }
                             }
 
@@ -371,14 +375,18 @@ namespace Izrune.iOS
                         {
                             
                             HideHeader(true);
+                            //nextBtn.UserInteractionEnabled = false;
                             AddMoreStudentVc?.SendClicked?.Invoke();
                             AddMoreStudentVc.DataSent = (ipay) => {
                                 paymentViewController.PayInfo = ipay;
                                 paymentViewController.SelectedPrice = SelectedPrice;
                                 paymentViewController.UserName = CurrentUserName;
-                                this.NavigationController.PushViewController(paymentViewController, true);
+
+                                var currNavVc = this.NavigationController;
+                                this.NavigationController.PopToRootViewController(false);
+                                currNavVc.PushViewController(paymentViewController, true);
                             };
-                            nextBtn.Enabled = false;
+                            
                         }
 
                         else
@@ -387,7 +395,7 @@ namespace Izrune.iOS
                             HideHeader(false);
                             AddViewController(studentRegVc2, AddMoreStudentVc);
                             CurrentIndex--;
-                            nextBtn.Enabled = true;
+                            //nextBtn.UserInteractionEnabled = true;
                         }
 
                         break;

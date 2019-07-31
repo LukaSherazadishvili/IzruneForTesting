@@ -42,7 +42,7 @@ namespace Izrune.iOS
                     this.ShareUrl(url);
                 }
             };
-
+            //*135*2*5*1*1
             this.NavigationItem.RightBarButtonItem = barButton;
 
             numberCopyBttn.TouchUpInside += delegate {

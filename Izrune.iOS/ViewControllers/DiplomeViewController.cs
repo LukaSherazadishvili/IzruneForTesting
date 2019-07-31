@@ -12,6 +12,7 @@ using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
 using IZrune.PCL.Implementation.Models;
+using MPDC.iOS.Utils;
 using MPDCiOSPages.ViewControllers;
 using UIKit;
 
@@ -59,17 +60,22 @@ namespace Izrune.iOS
         {
             base.ViewWillAppear(animated);
 
-            if(ShouldLoadData)
+            if (Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
             {
-                await LoadDataAsync();
+                if (ShouldLoadData)
+                {
+                    await LoadDataAsync();
 
-                InitDropDowns();
+                    InitDropDowns();
 
-                diplomeCollectionView.Hidden = false;
-                diplomeLbl.Text = diplomeYears?[0]?.DiplomaDate + " სასწავლო წელი";
+                    diplomeCollectionView.Hidden = false;
+                    diplomeLbl.Text = diplomeYears?[0]?.DiplomaDate + " სასწავლო წელი";
 
-                ShouldLoadData = false;
+                    ShouldLoadData = false;
+                }
             }
+            else
+                this.ShowConnectionAlert();
         }
         private void InitUI()
         {
@@ -124,6 +130,8 @@ namespace Izrune.iOS
             alert.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, (s) => { this.NavigationController.PopViewController(true); }));
             this.PresentViewController(alert, true, null );
         }
+
+
 
         public nint GetItemsCount(UICollectionView collectionView, nint section)
         {

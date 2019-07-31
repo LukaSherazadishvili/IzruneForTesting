@@ -4,6 +4,7 @@ using System;
 
 using Foundation;
 using IZrune.PCL.Abstraction.Models;
+using IZrune.PCL.Helpers;
 using UIKit;
 
 namespace Izrune.iOS
@@ -21,7 +22,7 @@ namespace Izrune.iOS
         public IPay PayInfo { get; set; }
         public IPrice SelectedPrice;
         public Action GoToLogin { get; set; }
-
+        public IStudent SelectedStudent;
         public bool HideTitle { get; set; }
 
 
@@ -64,7 +65,8 @@ namespace Izrune.iOS
 
             payViaPayBoxBtn.TouchUpInside += delegate {
                 PaymentUrl = "http://www.izrune.ge/images/tbcpay_image2.png";
-                if(UIApplication.SharedApplication.CanOpenUrl(NSUrl.FromString(PaymentUrl)))
+                //await UserControl.Instance.ReNewPack(SelectedStudent.id, PromoVc.SelectedMont, PromoVc.SelectedPrice.price.Value, PromoVc.PromoCode);
+                if (UIApplication.SharedApplication.CanOpenUrl(NSUrl.FromString(PaymentUrl)))
                     UIApplication.SharedApplication.OpenUrl(NSUrl.FromString(PaymentUrl));
             };
         }

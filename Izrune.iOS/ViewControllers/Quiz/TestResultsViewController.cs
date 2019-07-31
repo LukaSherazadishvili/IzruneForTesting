@@ -16,6 +16,7 @@ using IZrune.PCL.Abstraction.Models;
 using MpdcViewExtentions;
 using XLPagerTabStrip;
 using System.Globalization;
+using MPDC.iOS.Utils;
 
 namespace Izrune.iOS
 {
@@ -43,8 +44,13 @@ namespace Izrune.iOS
 
             InitCollectionViewSettings();
 
-            await LoadDataAsync();
-
+            if(Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
+                await LoadDataAsync();
+            else
+            {
+                this.ShowConnectionAlert();
+                return;
+            }
             InitGestures();
 
             HideHeader(Hideheader);
@@ -114,14 +120,28 @@ namespace Izrune.iOS
 
         public async Task UpdateData()
         {
-            var diplomeService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
 
-            StudentsStatistics = (await diplomeService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest))?.ToList();
-
-            foreach (var item in StudentsStatistics)
+            try
             {
-                OriginalList.Add(item);
+                if (Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
+                {
+                    var diplomeService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
+
+                    StudentsStatistics = (await diplomeService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest))?.ToList();
+
+                    foreach (var item in StudentsStatistics)
+                    {
+                        OriginalList.Add(item);
+                    }
+                }
+                else
+                    this.ShowConnectionAlert();
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
 
         private void UpdateCollectionViewHeight()

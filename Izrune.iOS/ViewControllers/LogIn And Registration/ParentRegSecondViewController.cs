@@ -95,7 +95,7 @@ namespace Izrune.iOS
 
                 if(userNameTextField.Text.Length < 5)
                 {
-                    var alertVc = UIAlertController.Create("ყურადღება!", "მომხმარებლის სახელი უნდა შედგებოდეს მინიმუმ 4 სიმბოლოსგან", UIAlertControllerStyle.Alert);
+                    var alertVc = UIAlertController.Create("ყურადღება!", "მომხმარებლის სახელი უნდა შედგებოდეს მინიმუმ 5 სიმბოლოსგან", UIAlertControllerStyle.Alert);
                     alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
                     this.PresentViewController(alertVc, true, null);
                     return false;

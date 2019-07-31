@@ -408,10 +408,6 @@
     <Compile Include="ViewControllers\ExamTabViewController.designer.cs">
       <DependentUpon>ExamTabViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\ChangePasswordViewController.cs" />
-    <Compile Include="ViewControllers\ChangePasswordViewController.designer.cs">
-      <DependentUpon>ChangePasswordViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\SmsVerificationViewController.cs" />
     <Compile Include="ViewControllers\SmsVerificationViewController.designer.cs">
       <DependentUpon>SmsVerificationViewController.cs</DependentUpon>
@@ -448,6 +444,10 @@
     <Compile Include="ViewControllers\PromoSchoolViewController.cs" />
     <Compile Include="ViewControllers\PromoSchoolViewController.designer.cs">
       <DependentUpon>PromoSchoolViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\EditProfile\ChangePasswordViewController.cs" />
+    <Compile Include="ViewControllers\EditProfile\ChangePasswordViewController.designer.cs">
+      <DependentUpon>ChangePasswordViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
