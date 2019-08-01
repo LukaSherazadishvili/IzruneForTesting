@@ -119,14 +119,20 @@ namespace Izrune.iOS
                             {
 
                                 ShowLoading();
-                                await UserControl.Instance.ReNewPack(SelectedStudent.id, PromoVc.SelectedMont, PromoVc.SelectedPrice.price.Value, PromoVc.PromoCode);
+                                SelectedStudent.Promocode = PromoVc.PromoCode;
+                                //UserControl.Instance.SetPromoPack(PromoVc.SelectedMont, PromoVc.SelectedPrice.price.Value, PromoVc.PromoCode);
+                                await UserControl.Instance.ReNewPack(SelectedStudent);
+
+                                //await UserControl.Instance.ReNewPack(SelectedStudent.id, PromoVc.SelectedMont, PromoVc.SelectedPrice.price.Value, PromoVc.PromoCode);
                                 EndLoading();
                             }
 
                             else
                             {
                                 ShowLoading();
-                                await UserControl.Instance.ReNewPack(SelectedStudent.id, SelectPacketVc.SelectedPrice.MonthCount.Value, SelectPacketVc.SelectedPrice.price.Value);
+                                //UserControl.Instance.SetPromoPack(SelectPacketVc.SelectedPrice.MonthCount.Value, PromoVc.SelectedPrice.price.Value);
+                                await UserControl.Instance.ReNewPack(SelectedStudent);
+                                //await UserControl.Instance.ReNewPack(SelectedStudent.id, SelectPacketVc.SelectedPrice.MonthCount.Value, SelectPacketVc.SelectedPrice.price.Value);
                                 EndLoading();
                             }
 
