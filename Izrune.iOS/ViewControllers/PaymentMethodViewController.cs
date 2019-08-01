@@ -57,7 +57,7 @@ namespace Izrune.iOS
                 payBankVc.CurrentUser = user;
                 payBankVc.UserName = UserName;
 
-                payBankVc.SelectedPrice = SelectedPrice;
+                payBankVc.UserPricesSum = UserControl.Instance.GetAllPackagePrice();
                 this.NavigationController.PushViewController(payBankVc, true);
             };
 

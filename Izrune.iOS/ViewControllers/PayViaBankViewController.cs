@@ -25,6 +25,8 @@ namespace Izrune.iOS
 
         public int allPrices { get; set; }
 
+        public int UserPricesSum { get; set; }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();

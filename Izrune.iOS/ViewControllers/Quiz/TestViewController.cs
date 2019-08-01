@@ -446,7 +446,7 @@ namespace Izrune.iOS
                 answersHeight += height + 40;
             }
 
-            totalHeight = titleHeight /*commentHeight.Value */ + imagesHeight + answersHeight +40 ;
+            totalHeight = titleHeight + imagesHeight + answersHeight + 60 ;
         }
 
         private void InitTotalTimer(int _minutes, int _secondes)
