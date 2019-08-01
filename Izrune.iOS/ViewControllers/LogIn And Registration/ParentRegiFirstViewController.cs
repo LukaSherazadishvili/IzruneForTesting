@@ -130,7 +130,7 @@ namespace Izrune.iOS
             CityDropDown.AnchorView = new WeakReference<UIView>(cityView);
             CityDropDown.BottomOffset = new CoreGraphics.CGPoint(0, cityView.Bounds.Height);
             CityDropDown.Width = this.View.Frame.Width;
-            CityDropDown.Direction = Direction.Bottom;
+            CityDropDown.Direction = Direction.Top;
 
             var array = CityList?.Select(x => x.title)?.ToArray();
 

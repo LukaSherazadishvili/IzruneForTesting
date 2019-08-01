@@ -22,13 +22,14 @@ namespace Izrune.iOS
         public IPrice SelectedPrice;
 
         public string UserName { get; set; }
-        public int allPrices { get; private set; }
+
+        public int allPrices { get; set; }
+
+        public int UserPricesSum { get; set; }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
-            allPrices = IZrune.PCL.Helpers.UserControl.Instance.GetAllPackagePrice();
 
             InitDataAsync();
 

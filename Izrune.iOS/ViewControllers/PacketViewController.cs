@@ -112,10 +112,12 @@ namespace Izrune.iOS
                     {
                         if (SelectPacketVc.SelectedPrice == null && PromoVc.SelectedMont == 0)
                             ShowAlert();
+
                         else
                         {
-                            if (IsPromoSelected)
+                            if (PromoVc.IsPacketSelected)
                             {
+
                                 ShowLoading();
                                 await UserControl.Instance.ReNewPack(SelectedStudent.id, PromoVc.SelectedMont, PromoVc.SelectedPrice.price.Value, PromoVc.PromoCode);
                                 EndLoading();
@@ -128,7 +130,7 @@ namespace Izrune.iOS
                                 EndLoading();
                             }
 
-                            var price = (IsPromoSelected ? PromoVc.SelectedPrice : SelectPacketVc.SelectedPrice);
+                            var price = (PromoVc.IsPacketSelected ? PromoVc.SelectedPrice : SelectPacketVc.SelectedPrice);
 
                             SelectedPrice = price;
                             var payInfo = UserControl.Instance.GetPaymentInformation();
@@ -179,12 +181,12 @@ namespace Izrune.iOS
 
                     else
                     {
-                        var price = (IsPromoSelected ? new Price() { price = PromoVc.SelectedMont, MonthCount = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
+                        var price = (PromoVc.IsPacketSelected ? new Price() { price = PromoVc.SelectedPrice?.price, MonthCount = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
                         PriceSelected?.Invoke(price);
-                        if (IsPromoSelected)
+                        if (PromoVc.IsPacketSelected)
                         {
                             //PriceSelected?.Invoke(price);
-                            UserControl.Instance.SetPromoPack(PromoVc.SelectedMont, PromoVc.SelectedMont, PromoVc.PromoCode);
+                            UserControl.Instance.SetPromoPack(PromoVc.SelectedMont, (int)PromoVc.SelectedPrice?.price.Value, PromoVc.PromoCode);
 
                         }
 

@@ -220,10 +220,19 @@ namespace Izrune.iOS
                     return;
                 }
 
-                StudentsStatistics = OriginalList?.Where(x => x.ExamDate.Year == Convert.ToInt32(name))?.ToList();
-                UpdateCollectionViewHeight();
-                InitHeader();
-                resultCollectionView.ReloadData();
+                try
+                {
+                    ShowLoading();
+                    StudentsStatistics = OriginalList?.Where(x => x.ExamDate.Year == Convert.ToInt32(name))?.ToList();
+                    UpdateCollectionViewHeight();
+                    InitHeader();
+                    resultCollectionView.ReloadData();
+                    EndLoading();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
                 //EndLoading();
 
                 if (StudentsStatistics == null || StudentsStatistics?.Count == 0)
@@ -252,13 +261,22 @@ namespace Izrune.iOS
                     return;
                 }
 
-                StudentsStatistics = OriginalList?.Where(x => x.ExamDate.Month == index)?.ToList();
-                UpdateCollectionViewHeight();
-                InitHeader();
-                resultCollectionView.ReloadData();
+                try
+                {
+                    ShowLoading();
+                    StudentsStatistics = OriginalList?.Where(x => x.ExamDate.Month == index)?.ToList();
+                    UpdateCollectionViewHeight();
+                    InitHeader();
+                    resultCollectionView.ReloadData();
+                    EndLoading();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
 
                 //EndLoading();
-                if(StudentsStatistics == null || StudentsStatistics?.Count == 0)
+                if (StudentsStatistics == null || StudentsStatistics?.Count == 0)
                 {
                     ShowAlert();
                 }

@@ -10,6 +10,7 @@ using Foundation;
 using Izrune.iOS.Utils;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Abstraction.Services;
+using IZrune.PCL.Helpers;
 using MPDCiOSPages.ViewControllers;
 using MpdcViewExtentions;
 using UIKit;
@@ -381,6 +382,9 @@ namespace Izrune.iOS
                                 paymentViewController.PayInfo = ipay;
                                 paymentViewController.SelectedPrice = SelectedPrice;
                                 paymentViewController.UserName = CurrentUserName;
+
+                                paymentViewController.allPrices = UserControl.Instance.GetAllPackagePrice();
+                                UserControl.Instance.Resetregistration();
 
                                 var currNavVc = this.NavigationController;
                                 this.NavigationController.PopToRootViewController(false);

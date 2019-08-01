@@ -22,6 +22,8 @@ namespace Izrune.iOS
         public static readonly NSString StoryboardId = new NSString("ChangePasswordStoryboardId");
         private IParent user;
 
+        string Alphabet = "აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ";
+
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -43,21 +45,39 @@ namespace Izrune.iOS
                 {
                     var userService = ServiceContainer.ServiceContainer.Instance.Get<IUserServices>();
 
-                    try
+
+                    if (passwordNewTf.Text.Length < 7)
                     {
-                        if (CheckPassword())
-                        {
-                            ShowLoading();
-                            var result = await userService.EditePassword(oldPassTf.Text, passwordNewTf.Text);
-                            EndLoading();
-                            ShowAlert("პაროლი წარმატებით შეიცვალა");
-                        }
-                        else
-                            ShowAlert("სცადეთ თავიდან");
+                        ShowErrorAlert("პაროლი უნდა შედგებოდეს მინიმუმ 7 სიმბოლოსგან");
                     }
-                    catch (Exception ex)
+
+                    else
                     {
-                        ShowAlert("სცადეთ თავიდან");
+                        foreach (var item in passwordNewTf.Text)
+                        {
+                            if (Alphabet.Contains(item))
+                                ShowErrorAlert("პაროლი უნდა შედგებოდეს მხოლოდ ლათინური სიმბოლოებისგან");
+                            else
+                            {
+                                try
+                                {
+                                    if (CheckPassword())
+                                    {
+                                        ShowLoading();
+                                        var result = await userService.EditePassword(oldPassTf.Text, passwordNewTf.Text);
+                                        EndLoading();
+                                        ShowAlert("პაროლი წარმატებით შეიცვალა");
+                                    }
+                                    else
+                                        ShowErrorAlert("პაროლები ერთმანეთს არ ემთხვევა");
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine(ex.Message);
+                                    ShowAlert("სცადეთ თავიდან");
+                                }
+                            }
+                        }
                     }
                 }
                 else
@@ -72,6 +92,13 @@ namespace Izrune.iOS
 
                 this.NavigationController.PopViewController(true);
             };
+        }
+
+        private void ShowErrorAlert(string message)
+        {
+            var alertVc = UIAlertController.Create("ყურადღება!", message, UIAlertControllerStyle.Alert);
+            alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
+            this.PresentViewController(alertVc, true, null);
         }
 
         private void InitUI()

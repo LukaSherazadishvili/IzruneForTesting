@@ -37,6 +37,11 @@ namespace Izrune.iOS
 
         public IPrice SelectedPrice;
 
+        public bool IsPacketSelected { get; set; }
+
+        bool IsPromoValid;
+        bool IsPeriodSelected = true;
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -50,11 +55,19 @@ namespace Izrune.iOS
                 var result = string.Equals(promoCodeTf.Text, PromoInfo.PrommoCode);
                 //16295166
                 //17756347
+
+                IsPromoValid = result;
                 if (result)
                 {
                     monthView.UserInteractionEnabled = true;
                     //InitDropDown();
-                    SelectPromoPack(0);
+                    IsPacketSelected = true;
+
+                    if(IsPacketSelected && IsPromoValid)
+                    {
+                        SelectPromoPack(PacketIndex);
+                    }
+                    
                     PromoCode = PromoInfo.PrommoCode;
                 }
                 else
@@ -117,6 +130,8 @@ namespace Izrune.iOS
             promoCodeErorLbl.TextColor = isRight ? AppColors.Succesful : AppColors.ErrorTitle;
         }
 
+        int PacketIndex;
+
         private void InitDropDown()
         {
             try
@@ -132,8 +147,14 @@ namespace Izrune.iOS
 
                 MonthDropDown.SelectionAction = (nint index, string name) =>
                 {
+                    PacketIndex = (int)index;
+                    IsPeriodSelected = true;
                     monthLbl.Text = name;
-                    SelectPromoPack(index);
+
+                    if(IsPeriodSelected && IsPromoValid)
+                    {
+                        SelectPromoPack(index);
+                    }
                 };
             }
             catch (Exception ex)
