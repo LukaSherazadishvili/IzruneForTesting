@@ -94,7 +94,7 @@ namespace Izrune.Fragments
             {
                 Startloading();
                 IzruneHellper.Instance.CurrentStudentAmount = prices.price.Value;
-                await UserControl.Instance.ReNewPack(UserControl.Instance.CurrentStudent.id, prices.MonthCount.Value, prices.price.Value);
+                await UserControl.Instance.ReNewPack(UserControl.Instance.CurrentStudent);
                 Intent intent = new Intent(this, typeof(ActivityPaymentCategory));
                 StartActivity(intent);
                 StopLoading();

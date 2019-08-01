@@ -97,7 +97,7 @@ namespace Izrune.Fragments
                 {
                     IzruneHellper.Instance.CurrentStudentAmount = MonthCount;
 
-                  await UserControl.Instance.ReNewPack(StudentId, MonthCount, MonthCount, PromoCod.PrommoCode);
+                  await UserControl.Instance.ReNewPack(UserControl.Instance.CurrentStudent);
                     Intent intent = new Intent(this, typeof(ActivityPaymentCategory));
                     StartActivity(intent);
                 }

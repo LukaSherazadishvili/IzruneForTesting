@@ -157,7 +157,7 @@ namespace IZrune.PCL.Implementation.Services
                 new KeyValuePair<string, string>("phone",user.Phone),
                 new KeyValuePair<string,string>("city",user.City),
                 new KeyValuePair<string, string>("bdate",$"{user.bDate.Value.Year}-{user.bDate.Value.Month}-{user.bDate.Value.Day}" ),
-
+                new KeyValuePair<string,string>("paybox","1"),
             };
 
 
@@ -178,7 +178,8 @@ namespace IZrune.PCL.Implementation.Services
                 new KeyValuePair<string, string>($"sdate{i+1}", student.ElementAt(i).PackageStartDate.ToShortDateString()),
                 new KeyValuePair<string, string>($"months{i+1}", student.ElementAt(i).PackageMonthCount.ToString()),
                  new KeyValuePair<string, string>($"amount{i+1}", student.ElementAt(i).Amount.ToString()),
-                  new KeyValuePair<string, string>($"promo{i+1}", student.ElementAt(i).Promocode)
+                  new KeyValuePair<string, string>($"promo{i+1}", student.ElementAt(i).Promocode),
+                  new KeyValuePair<string,string>($"paybox{i+1}","1")
                   };
                 KeyValuePairsList.AddRange(Temps);
             }

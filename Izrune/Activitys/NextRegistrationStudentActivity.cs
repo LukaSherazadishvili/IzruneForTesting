@@ -18,6 +18,7 @@ using IZrune.PCL.Abstraction.Models;
 using Izrune.Fragments;
 using Android.Content.PM;
 using Izrune.Fragments.DialogFrag;
+using Izrune.Adapters.SpinerAdapter;
 
 namespace Izrune.Activitys
 {
@@ -62,7 +63,7 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.ClassContainer)]
         FrameLayout ClassContainer;
 
-
+        
 
 
         private IEnumerable<IZrune.PCL.Abstraction.Models.IRegion> Regions;
@@ -199,18 +200,25 @@ namespace Izrune.Activitys
                 CityContainer.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
 
                 var Resukt = CurrentRegion.Schools.Select(i => i.title)?.ToList();
-                Resukt = CurrentRegion.Schools.Select(i => i.title).ToList();
+               
                 Resukt.Insert(0, "*სკოლა");
 
 
 
-                var DataAdapter = new ArrayAdapter<string>(this,
-                Android.Resource.Layout.SimpleSpinnerDropDownItem,
-                Resukt
-              );
+                //  var DataAdapter = new ArrayAdapter<string>(this,
+                // Resource.Layout.ItemDropDownSpiner,
+                //  Resukt
+                //);
 
+                //  DataAdapter.SetDropDownViewResource(Resource.Layout.ItemDropDownSpiner);
 
+                MySpinnerAdapter DataAdapter = new MySpinnerAdapter(this, Resukt);
+                  
+                
                 School.Adapter = DataAdapter;
+               
+
+                School.ItemSelected += School_ItemSelected1;
             }
             else
             {
@@ -220,7 +228,7 @@ namespace Izrune.Activitys
 
 
                 var DataAdapter = new ArrayAdapter<string>(this,
-                Android.Resource.Layout.SimpleSpinnerDropDownItem,
+                Resource.Layout.ItemDropDownSpiner,
                 Resukt
               );
 
@@ -229,7 +237,14 @@ namespace Izrune.Activitys
             }
         }
 
+        private void School_ItemSelected1(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            if (e.Position > 0)
+            {
+                CurrentSchool = CurrentRegion.Schools.ElementAt(e.Position);
 
+            }
+        }
 
         private void BotBackButton_Click(object sender, EventArgs e)
         {

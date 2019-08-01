@@ -244,13 +244,17 @@ namespace IZrune.PCL.Helpers
         }
 
 
-        public async Task ReNewPack(int studentId,int MonthCount, int Amount, string PromoCode = "0",int paybox=1)
+        public async Task ReNewPack()
         {
-           // CUrrentPaimentInformation = await MpdcContainer.Instance.Get<IPaymentService>().GetPaymentUrlsAsync(studentId, MonthCount, Amount, PromoCode,paybox);
-
-           
+           CUrrentPaimentInformation = await MpdcContainer.Instance.Get<IPaymentService>().GetPaymentUrlsAsync(MyRegistrationStudent);
 
         }
+
+        public async Task ReNewPack(IStudent CurrentStudent)
+        {
+            CUrrentPaimentInformation = await MpdcContainer.Instance.Get<IPaymentService>().GetPaymentUrlsAsync(CurrentStudent);
+        }
+
 
 
         public IPay GetPaymentInformation()

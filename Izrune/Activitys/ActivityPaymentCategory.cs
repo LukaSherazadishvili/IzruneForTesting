@@ -48,7 +48,7 @@ namespace Izrune.Activitys
                 grad.Visibility = ViewStates.Invisible;
             }
 
-
+            
 
             CardButton.Click += (s, e) =>
             {
