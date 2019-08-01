@@ -98,14 +98,15 @@ android:id="@+id/Container">
 					android:gravity="center"
 					android:layout_gravity="center_horizontal"
 					android:layout_marginTop="10dp">
+					
 					<Spinner
 						android:id="@+id/StudentSchool"
 						android:layout_width="match_parent"
-						android:layout_height="38dp"
+						android:layout_height="wrap_content"
 						android:textColor="#6A6A6A"
 						android:fontFamily="@font/bpg_mrgvlovani"
-						android:hint="*სკოლა"
-						android:textSize="13dp"
+						android:hint="*სკოლა"					
+						android:textSize="14dp"								
 						android:layout_gravity="center_horizontal"/>
 				</FrameLayout>
 				

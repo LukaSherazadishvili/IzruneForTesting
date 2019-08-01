@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Java.Lang;
 
 namespace Izrune.Adapters.SpinerAdapter
 {
@@ -16,6 +17,8 @@ namespace Izrune.Adapters.SpinerAdapter
     {
         readonly LayoutInflater inflater;
         List<string> MyListString;
+
+        public Action<int> OnSpinerClick { get; set; }
 
         public MySpinnerAdapter(Context context, List<string> list)
         {
@@ -31,15 +34,23 @@ namespace Izrune.Adapters.SpinerAdapter
         {
             return position;
         }
+        public override Java.Lang.Object GetItem(int position)
+        {
+            return MyListString.ElementAt(position);
+        }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             View view = convertView ?? inflater.Inflate(Resource.Layout.itemSpinnerText, parent, false);
 
-
             view.FindViewById<TextView>(Resource.Id.spinnerText).Text = MyListString.ElementAt(position);
 
+            //view.FindViewById<FrameLayout>(Resource.Id.SpinderContainer).Click+= (s, e) =>
+            //{
+            //    OnSpinerClick?.Invoke(position);
+            //};
 
+          
 
             return view;
         }
