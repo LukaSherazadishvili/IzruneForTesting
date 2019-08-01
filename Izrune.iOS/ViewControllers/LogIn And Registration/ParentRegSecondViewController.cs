@@ -113,7 +113,7 @@ namespace Izrune.iOS
                 {
                     if(Alphabet.Contains(item))
                     {
-                        var alertVc = UIAlertController.Create("ყურადღება!", "პაროლი უნდა შედგებოდეს ლათინური სიმბოლოებისგან", UIAlertControllerStyle.Alert);
+                        var alertVc = UIAlertController.Create("ყურადღება!", "პაროლი უნდა შედგებოდეს მხოლოდ ლათინური სიმბოლოებისგან", UIAlertControllerStyle.Alert);
                         alertVc.AddAction(UIAlertAction.Create("დახურვა", UIAlertActionStyle.Default, null));
                         this.PresentViewController(alertVc, true, null);
                         return false;
@@ -121,8 +121,6 @@ namespace Izrune.iOS
 
                     return CheckPassword();
                 }
-
-
             }
             return res;
         }
