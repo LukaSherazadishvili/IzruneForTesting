@@ -137,6 +137,7 @@ namespace Izrune.iOS
 
                             var payVc = Storyboard.InstantiateViewController(PaymentMethodViewController.StoryboardId) as PaymentMethodViewController;
                             payVc.SelectedPrice = SelectedPrice;
+                            payVc.allPrices = (int)SelectedPrice?.price.Value;
                             payVc.PayInfo = payInfo;
                             payVc.HideTitle = true;
 
