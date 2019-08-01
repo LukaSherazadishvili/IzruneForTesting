@@ -121,19 +121,22 @@ namespace Izrune.iOS
             SetupDropDownGesture(CityDpD, cityView);
             SetupDropDownGesture(ClassDpD, classView);
 
-            SetupDropDown(CityDpD, cityView, cityLbl);
-            SetupDropDown(ClassDpD, classView, classLbl);
+            SetupDropDown(CityDpD, cityView, cityLbl, Direction.Bottom);
+            SetupDropDown(ClassDpD, classView, classLbl, Direction.Top);
+
+            //SetupDropDown(CityDpD, cityView, cityLbl);
+            //SetupDropDown(ClassDpD, classView, classLbl);
 
             InitDropDowns();
         }
 
         private void InitDropDowns()
         {
-            SetupDropDown(CityDpD, cityView, cityLbl);
-            SetupDropDown(ClassDpD, classView, classLbl);
+            //SetupDropDown(CityDpD, cityView, cityLbl, Direction.Bottom);
+            //SetupDropDown(ClassDpD, classView, classLbl, Direction.Bottom);
 
-            SetupDropDownGesture(CityDpD, cityView);
-            SetupDropDownGesture(ClassDpD, classView);
+            //SetupDropDownGesture(CityDpD, cityView);
+            //SetupDropDownGesture(ClassDpD, classView);
 
             cityArray = CityList?.Select(x => x.title)?.ToArray();
             CityDpD.DataSource = cityArray;
@@ -172,12 +175,12 @@ namespace Izrune.iOS
             };
         }
 
-        private void SetupDropDown(DropDown dropDown, UIView viewForDpD, UILabel dropDownLbl)
+        private void SetupDropDown(DropDown dropDown, UIView viewForDpD, UILabel dropDownLbl, Direction direction)
         {
             dropDown.AnchorView = new WeakReference<UIView>(viewForDpD);
             dropDown.BottomOffset = new CoreGraphics.CGPoint(0, viewForDpD.Bounds.Height);
             dropDown.Width = View.Frame.Width;
-            dropDown.Direction = Direction.Bottom;
+            dropDown.Direction = direction;
         }
 
         private void InitDropDownUI(DropDown dropDown)
