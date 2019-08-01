@@ -181,12 +181,12 @@ namespace Izrune.iOS
 
                     else
                     {
-                        var price = (IsPromoSelected ? new Price() { price = PromoVc.SelectedPrice?.price, MonthCount = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
+                        var price = (PromoVc.IsPacketSelected ? new Price() { price = PromoVc.SelectedPrice?.price, MonthCount = PromoVc.SelectedMont } : SelectPacketVc.SelectedPrice);
                         PriceSelected?.Invoke(price);
-                        if (IsPromoSelected)
+                        if (PromoVc.IsPacketSelected)
                         {
                             //PriceSelected?.Invoke(price);
-                            UserControl.Instance.SetPromoPack(PromoVc.SelectedMont, PromoVc.SelectedMont, PromoVc.PromoCode);
+                            UserControl.Instance.SetPromoPack(PromoVc.SelectedMont, (int)PromoVc.SelectedPrice?.price.Value, PromoVc.PromoCode);
 
                         }
 
