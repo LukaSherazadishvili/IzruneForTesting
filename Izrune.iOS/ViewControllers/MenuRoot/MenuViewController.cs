@@ -163,12 +163,28 @@ namespace Izrune.iOS
             cell.MenuClicked = (menu) =>
             {
                 SelectItem((IsLogedIn ? LogedInList : LogOutList), menu);
-                MainMenuClicked?.Invoke(menu);
-                if(menu.Type == MenuType.LogOut)
+                if (menu.Type == MenuType.LogOut)
                 {
-                    menu.IsSelected = false;
-                    LogedInList[0].IsSelected = true;
+
+                    var alertVc = UIAlertController.Create("ყურადღება!", "ნამდვილად გსურთ გასვლა?", UIAlertControllerStyle.Alert);
+                    alertVc.AddAction(UIAlertAction.Create("დიახ", UIAlertActionStyle.Default, (obj) => {
+
+                        menu.IsSelected = false;
+                        LogedInList[0].IsSelected = true;
+
+                        MainMenuClicked?.Invoke(menu);
+
+                        menuCollectionView.ReloadData();
+
+                        return;
+
+                    }));
+                    alertVc.AddAction(UIAlertAction.Create("არა", UIAlertActionStyle.Default, null));
+                    this.PresentViewController(alertVc, true, null);
+                    return;
                 }
+                MainMenuClicked?.Invoke(menu);
+
                 menuCollectionView.ReloadData();
                 //TODO Navigate To Page
             };
