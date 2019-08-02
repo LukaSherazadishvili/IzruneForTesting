@@ -53,6 +53,7 @@ namespace Izrune.iOS
             payViaBankBtn.TouchUpInside += async delegate {
                 var payBankVc = Storyboard.InstantiateViewController(PayViaBankViewController.StoryboardId) as PayViaBankViewController;
                 payBankVc.allPrices = allPrices;
+                payBankVc.SelectedPrice = SelectedPrice;
                 var user = await IZrune.PCL.Helpers.UserControl.Instance.GetCurrentUser();
                 payBankVc.CurrentUser = user;
                 payBankVc.UserName = UserName;
