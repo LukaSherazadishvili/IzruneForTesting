@@ -73,6 +73,7 @@ android:id="@+id/Container">
 			</FrameLayout>
 
 			<FrameLayout
+				android:background="@drawable/spinerback"
 				android:layout_marginTop="8dp"
 				android:layout_marginBottom="8dp"
 				android:layout_width="280dp"

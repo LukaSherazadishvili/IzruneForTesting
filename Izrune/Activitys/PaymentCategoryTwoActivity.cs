@@ -36,7 +36,7 @@ namespace Izrune.Activitys
         TextView Amount;
 
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
@@ -54,7 +54,8 @@ namespace Izrune.Activitys
 
                 Amount.Text = UserControl.Instance.GetAllPackagePrice().ToString();
 
-                MpdcContainer.Instance.Get<ILoginServices>().LoginUser(user.UserName, user.Password);
+               await MpdcContainer.Instance.Get<ILoginServices>().LoginUser(user.UserName, user.Password);
+               await UserControl.Instance.GetCurrentUser();
 
                 ProfileNumber.Text = UserControl.Instance.Parent.ProfileNumber.ToString();
             }

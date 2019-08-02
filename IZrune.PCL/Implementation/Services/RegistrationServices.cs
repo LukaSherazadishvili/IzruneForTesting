@@ -145,9 +145,10 @@ namespace IZrune.PCL.Implementation.Services
 
         public async Task<IPay> RegistrationUser(IParent user,IEnumerable<IStudent> student)
         {
-           
 
-            var KeyValuePairsList = new List<KeyValuePair<string, string>>() {
+            try
+            {
+                var KeyValuePairsList = new List<KeyValuePair<string, string>>() {
 
                   new KeyValuePair<string,string>("username",user.UserName),
                 new KeyValuePair<string, string>("password",user.Password),
@@ -160,11 +161,11 @@ namespace IZrune.PCL.Implementation.Services
                 new KeyValuePair<string,string>("paybox","1"),
             };
 
+               
+                    for (int i = 0; i < student.Count(); i++)
+                    {
 
-            for(int i = 0; i < student.Count(); i++)
-            {
-                
-               var Temps=new List<KeyValuePair<string,string>>() { 
+                        var Temps = new List<KeyValuePair<string, string>>() {
                 new KeyValuePair<string, string>($"name{i+1}", student.ElementAt(i).Name),
                 new KeyValuePair<string, string>($"lastname{i+1}", student.ElementAt(i).LastName),
                 new KeyValuePair<string, string>($"personal_number{i+1}", student.ElementAt(i).PersonalNumber),
@@ -178,63 +179,69 @@ namespace IZrune.PCL.Implementation.Services
                 new KeyValuePair<string, string>($"sdate{i+1}", student.ElementAt(i).PackageStartDate.ToShortDateString()),
                 new KeyValuePair<string, string>($"months{i+1}", student.ElementAt(i).PackageMonthCount.ToString()),
                  new KeyValuePair<string, string>($"amount{i+1}", student.ElementAt(i).Amount.ToString()),
-                  new KeyValuePair<string, string>($"promo{i+1}", student.ElementAt(i).Promocode),
-                  new KeyValuePair<string,string>($"paybox{i+1}","1")
+                  new KeyValuePair<string, string>($"promo{i+1}", student.ElementAt(i).Promocode)
+                  //new KeyValuePair<string,string>($"paybox{i+1}","1")
                   };
-                KeyValuePairsList.AddRange(Temps);
-            }
+                        KeyValuePairsList.AddRange(Temps);
+                    }
+
+                
+
+                var FormContent = new FormUrlEncodedContent(KeyValuePairsList);
+
+                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=register&hashcode=4e5e0ccbab0da8c25637b0aa14e6cbbd", FormContent);
+                var jsn = await Data.Content.ReadAsStringAsync();
+
+                PaymentRootDTO Result = null;
+
+                try
+                {
+                    Result = JsonConvert.DeserializeObject<PaymentRootDTO>(jsn);
+                }
+                catch (Exception ex)
+                {
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "რეგისტრაციისას მოხდა შეცდომა , სცადეთ მოგვიანებით");
+                }
 
 
 
-            var FormContent = new FormUrlEncodedContent(KeyValuePairsList);
+                if (Result != null && Result.Message.ToLower() != "ok")
+                {
+                    //if(Result.Message.ToLower() == "personal number already exists")
+                    //{
+                    //    AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "მომხმარებელი ასეთი პირადი ნომრით უკვე არსებობს");
+                    //    return null;
+                    //}
 
-            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=register&hashcode=4e5e0ccbab0da8c25637b0aa14e6cbbd", FormContent);
-            var jsn = await Data.Content.ReadAsStringAsync();
+                    //if(Result.Message.ToLower() == "username already exists")
+                    //{
+                    //    AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "მომხმარებელი ასეთი სახელით უკვე არსებობს");
+                    //    return null;
+                    //}
 
-            PaymentRootDTO Result = null;
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", Result.Message);
+                    return null;
+                }
+                else if (Result == null)
+                {
+                    AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "რეგისტრაციისას მოხდა შეცდომა , სცადეთ მოგვიანებით");
+                    return null;
+                }
 
-            try
-            {
-                Result = JsonConvert.DeserializeObject<PaymentRootDTO>(jsn);
+
+                Pay pay = new Pay();
+                pay.CurrentUserPayURl = $"https://e-commerce.cartubank.ge/servlet/Process3DSServlet/3dsproxy_init.jsp?PurchaseDesc={Result.payment.PurchaseDesc}&PurchaseAmt={Result.payment.PurchaseAmt}&CountryCode={Result.payment.CountryCode}&CurrencyCode={Result.payment.CurrencyCode}&MerchantName={Result.payment.MerchantName}&MerchantURL={Result.payment.MerchantURL}&MerchantCity={Result.payment.MerchantCity}&MerchantID={Result.payment.MerchantID}&xDDDSProxy.Language={Result.payment.Language}";
+
+                pay.SuccesUrl = Result.payment_success_url;
+                pay.FailUrl = Result.payment_fail_url;
+
+                return pay;
             }
             catch(Exception ex)
             {
-                AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "რეგისტრაციისას მოხდა შეცდომა , სცადეთ მოგვიანებით");
-            }
-
-
-
-            if (Result != null && Result.Message.ToLower() != "ok")
-            {
-                //if(Result.Message.ToLower() == "personal number already exists")
-                //{
-                //    AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "მომხმარებელი ასეთი პირადი ნომრით უკვე არსებობს");
-                //    return null;
-                //}
-
-                //if(Result.Message.ToLower() == "username already exists")
-                //{
-                //    AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "მომხმარებელი ასეთი სახელით უკვე არსებობს");
-                //    return null;
-                //}
-
-                AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", Result.Message);
+                AppCore.Instance.Alertdialog.ShowAlerDialog("", "მოხდა შეცდომა რეგისტრაციის დროს");
                 return null;
             }
-            else if (Result == null)
-            {
-                AppCore.Instance.Alertdialog.ShowAlerDialog("მოხდა შეცდომა", "რეგისტრაციისას მოხდა შეცდომა , სცადეთ მოგვიანებით");
-                return null;
-            }
-
-
-            Pay pay = new Pay();
-            pay.CurrentUserPayURl = $"https://e-commerce.cartubank.ge/servlet/Process3DSServlet/3dsproxy_init.jsp?PurchaseDesc={Result.payment.PurchaseDesc}&PurchaseAmt={Result.payment.PurchaseAmt}&CountryCode={Result.payment.CountryCode}&CurrencyCode={Result.payment.CurrencyCode}&MerchantName={Result.payment.MerchantName}&MerchantURL={Result.payment.MerchantURL}&MerchantCity={Result.payment.MerchantCity}&MerchantID={Result.payment.MerchantID}&xDDDSProxy.Language={Result.payment.Language}";
-
-            pay.SuccesUrl = Result.payment_success_url;
-            pay.FailUrl = Result.payment_fail_url;
-
-            return pay;
         }
 
         

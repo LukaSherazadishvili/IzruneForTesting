@@ -11,6 +11,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Izrune.Attributes;
+using Izrune.Fragments.DialogFrag;
+using Izrune.Helpers;
 using IZrune.PCL.Abstraction.Services;
 using MpdcContainer = ServiceContainer.ServiceContainer;
 
@@ -71,14 +73,34 @@ namespace Izrune.Activitys
 
         private async void SaveButton_Click(object sender, EventArgs e)
         {
-            if (NewsPassword.Text != RepNewsPassword.Text)
+            bool IsGeorgianKeyword = false;
+            foreach(var item in IzruneHellper.Instance.letters)
+            {
+                if (NewsPassword.Text.Contains(item))
+                {
+                    IsGeorgianKeyword = true;
+                    break;
+                }
+            }
+
+            if (NewsPassword.Text != RepNewsPassword.Text||!IsGeorgianKeyword)
             {
                 NewsPassword.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
                 RepNewsPassword.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+                if (IsGeorgianKeyword)
+                {
+                    ShowAlert("შეცდომა", "პაროლში უნდა იყოს მხოლოდ ლათინური სიმბოლოები");
+                }
+                if (NewsPassword.Text != RepNewsPassword.Text)
+                {
+                    ShowAlert("შეცდომა", "პაროლები არ ემთხვევა ერთმანეთს");
+                }
             }
             else
             {
                 var Result = await MpdcContainer.Instance.Get<IUserServices>().EditePassword(MainPassword.Text, NewsPassword.Text);
+
+
 
                 if (Result)
                 {
@@ -96,6 +118,13 @@ namespace Izrune.Activitys
         {
             base.OnBackPressed();
             this.Finish();
+        }
+
+        private void ShowAlert(string title, string text)
+        {
+            var transcation = FragmentManager.BeginTransaction();
+            warningDialogFragment dialog = new warningDialogFragment(title, text, true);
+            dialog.Show(transcation, "Image Dialog");
         }
     }
 }

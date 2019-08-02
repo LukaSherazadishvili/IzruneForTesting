@@ -64,6 +64,8 @@ namespace Izrune.Fragments
 
         int StudentId;
         
+
+
         public override async void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
@@ -86,7 +88,7 @@ namespace Izrune.Fragments
                     var Individualservv = MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(0);
 
                     await Task.WhenAll(Resultt, Individualservv);
-
+                    IndividualButton_Click(null, null);
 
 
                     FragmentList.Clear();

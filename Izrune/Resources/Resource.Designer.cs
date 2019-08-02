@@ -2995,26 +2995,26 @@ namespace Izrune
 			// aapt resource value: 0x7f020059
 			public const int avd_hide_password = 2130837593;
 			
-			// aapt resource value: 0x7f0200d3
-			public const int avd_hide_password_1 = 2130837715;
-			
-			// aapt resource value: 0x7f0200d4
-			public const int avd_hide_password_2 = 2130837716;
-			
 			// aapt resource value: 0x7f0200d5
-			public const int avd_hide_password_3 = 2130837717;
+			public const int avd_hide_password_1 = 2130837717;
+			
+			// aapt resource value: 0x7f0200d6
+			public const int avd_hide_password_2 = 2130837718;
+			
+			// aapt resource value: 0x7f0200d7
+			public const int avd_hide_password_3 = 2130837719;
 			
 			// aapt resource value: 0x7f02005a
 			public const int avd_show_password = 2130837594;
 			
-			// aapt resource value: 0x7f0200d6
-			public const int avd_show_password_1 = 2130837718;
-			
-			// aapt resource value: 0x7f0200d7
-			public const int avd_show_password_2 = 2130837719;
-			
 			// aapt resource value: 0x7f0200d8
-			public const int avd_show_password_3 = 2130837720;
+			public const int avd_show_password_1 = 2130837720;
+			
+			// aapt resource value: 0x7f0200d9
+			public const int avd_show_password_2 = 2130837721;
+			
+			// aapt resource value: 0x7f0200da
+			public const int avd_show_password_3 = 2130837722;
 			
 			// aapt resource value: 0x7f02005b
 			public const int axalcixeizrune = 2130837595;
@@ -3229,11 +3229,11 @@ namespace Izrune
 			// aapt resource value: 0x7f0200a1
 			public const int notification_icon_background = 2130837665;
 			
-			// aapt resource value: 0x7f0200d1
-			public const int notification_template_icon_bg = 2130837713;
+			// aapt resource value: 0x7f0200d3
+			public const int notification_template_icon_bg = 2130837715;
 			
-			// aapt resource value: 0x7f0200d2
-			public const int notification_template_icon_low_bg = 2130837714;
+			// aapt resource value: 0x7f0200d4
+			public const int notification_template_icon_low_bg = 2130837716;
 			
 			// aapt resource value: 0x7f0200a2
 			public const int notification_tile_bg = 2130837666;
@@ -3317,64 +3317,70 @@ namespace Izrune
 			public const int spiner = 2130837692;
 			
 			// aapt resource value: 0x7f0200bd
-			public const int spinnerBorromItemBackground = 2130837693;
+			public const int SpinerBack = 2130837693;
 			
 			// aapt resource value: 0x7f0200be
-			public const int spinnerTopItemBackground = 2130837694;
+			public const int SpinerShadow = 2130837694;
 			
 			// aapt resource value: 0x7f0200bf
-			public const int studentcap = 2130837695;
+			public const int spinnerBorromItemBackground = 2130837695;
 			
 			// aapt resource value: 0x7f0200c0
-			public const int Summary_Test_Diploma = 2130837696;
+			public const int spinnerTopItemBackground = 2130837696;
 			
 			// aapt resource value: 0x7f0200c1
-			public const int Summary_tests = 2130837697;
+			public const int studentcap = 2130837697;
 			
 			// aapt resource value: 0x7f0200c2
-			public const int testFiveStar = 2130837698;
+			public const int Summary_Test_Diploma = 2130837698;
 			
 			// aapt resource value: 0x7f0200c3
-			public const int testFourStar = 2130837699;
+			public const int Summary_tests = 2130837699;
 			
 			// aapt resource value: 0x7f0200c4
-			public const int testOnestar = 2130837700;
+			public const int testFiveStar = 2130837700;
 			
 			// aapt resource value: 0x7f0200c5
-			public const int testThreeStar = 2130837701;
+			public const int testFourStar = 2130837701;
 			
 			// aapt resource value: 0x7f0200c6
-			public const int testTwoStar = 2130837702;
+			public const int testOnestar = 2130837702;
 			
 			// aapt resource value: 0x7f0200c7
-			public const int tooltip_frame_dark = 2130837703;
+			public const int testThreeStar = 2130837703;
 			
 			// aapt resource value: 0x7f0200c8
-			public const int tooltip_frame_light = 2130837704;
+			public const int testTwoStar = 2130837704;
 			
 			// aapt resource value: 0x7f0200c9
-			public const int Transparent = 2130837705;
+			public const int tooltip_frame_dark = 2130837705;
 			
 			// aapt resource value: 0x7f0200ca
-			public const int UnselectedSheduleBack = 2130837706;
+			public const int tooltip_frame_light = 2130837706;
 			
 			// aapt resource value: 0x7f0200cb
-			public const int user = 2130837707;
+			public const int Transparent = 2130837707;
 			
 			// aapt resource value: 0x7f0200cc
-			public const int Warning = 2130837708;
+			public const int UnselectedSheduleBack = 2130837708;
 			
 			// aapt resource value: 0x7f0200cd
-			public const int XMLFile1 = 2130837709;
+			public const int user = 2130837709;
 			
 			// aapt resource value: 0x7f0200ce
-			public const int XMLFile2 = 2130837710;
+			public const int Warning = 2130837710;
 			
 			// aapt resource value: 0x7f0200cf
-			public const int XMLFile3 = 2130837711;
+			public const int XMLFile1 = 2130837711;
 			
 			// aapt resource value: 0x7f0200d0
-			public const int XMLFile4 = 2130837712;
+			public const int XMLFile2 = 2130837712;
+			
+			// aapt resource value: 0x7f0200d1
+			public const int XMLFile3 = 2130837713;
+			
+			// aapt resource value: 0x7f0200d2
+			public const int XMLFile4 = 2130837714;
 			
 			static Drawable()
 			{
