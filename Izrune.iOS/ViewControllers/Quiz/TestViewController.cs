@@ -623,26 +623,51 @@ namespace Izrune.iOS
             });
         }
 
-        private async Task UpdateSeparatedTimer(TimeSpan diff)
+        private async Task UpdateTimerAndCircular(TimeSpan diff)
         {
             var _restSecondes = 90 - (secondesAfterStartTest.TotalSeconds + diff.TotalSeconds);
 
-
-            if(_restSecondes > 0)
+            if(TimeSpan.FromSeconds(_restSecondes).TotalSeconds > TimeSpan.FromMinutes(30).TotalSeconds)
             {
-                UpdateTimerAndCircular(_restSecondes, false);
+                //TODO finish test
             }
             else
             {
-                var count = -(int)(_restSecondes / 90);
-                var seconds = -_restSecondes % 90;
-
-                for (int i = -1; i < count; i++)
+                if(IsTotalTime)
                 {
-                    await SkipQuestion();
-                }
+                    _restSecondes = 1800 - (secondesAfterStartTest.TotalSeconds + diff.TotalSeconds);
+                    var from = (float)((float)(TimeSpan.FromSeconds(_restSecondes).TotalSeconds)/ 1800);
 
-                UpdateTimerAndCircular(seconds, true);
+                    InitCircular(TimeSpan.FromSeconds(_restSecondes).TotalSeconds, 1-from);
+
+                    var minutes = (int)(_restSecondes) / 60;
+                    var seconde = (int)(_restSecondes) % 60;
+
+                    timer.Stop();
+                    timer.Dispose();
+
+                    InitTotalTimer(minutes, seconde);
+
+                }
+                else
+                {
+                    if (_restSecondes > 0)
+                    {
+                        UpdateTimerAndCircular(_restSecondes, false);
+                    }
+                    else
+                    {
+                        var count = -(int)(_restSecondes / 90);
+                        var seconds = -_restSecondes % 90;
+
+                        for (int i = -1; i < count; i++)
+                        {
+                            await SkipQuestion();
+                        }
+
+                        UpdateTimerAndCircular(seconds, true);
+                    }
+                }
             }
         }
 
@@ -679,7 +704,7 @@ namespace Izrune.iOS
             {
                 ResignActiveTime = DateTime.Now;
 
-                secondesAfterStartTest = TimeSpan.FromSeconds(90 - RestSecondes.TotalSeconds);
+                secondesAfterStartTest = IsTotalTime? TimeSpan.FromSeconds(1800 - RestSecondes.TotalSeconds) : TimeSpan.FromSeconds(90 - RestSecondes.TotalSeconds);
             });
 
             _didBecomeActiveNotificationObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.DidBecomeActiveNotification, async (obj) => 
@@ -688,7 +713,7 @@ namespace Izrune.iOS
 
                 var diff = (BecomeActiveTime - ResignActiveTime).TotalSeconds;
 
-                await UpdateSeparatedTimer(TimeSpan.FromSeconds(diff));
+                await UpdateTimerAndCircular(TimeSpan.FromSeconds(diff));
             });
         }
 
