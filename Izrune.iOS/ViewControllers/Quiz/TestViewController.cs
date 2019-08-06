@@ -186,7 +186,7 @@ namespace Izrune.iOS
             {
                 //likeAnimation.Play();
 
-                secondesAfterStartTest = new TimeSpan();
+                secondesAfterStartTest = 0;
                 if (questionCollectionView.UserInteractionEnabled == false)
                     return;
 
@@ -514,7 +514,7 @@ namespace Izrune.iOS
         private async Task SkipQuestion()
         {
 
-            secondesAfterStartTest = new TimeSpan();
+            secondesAfterStartTest = 0;
             correctAnswers = 0;
             InvokeOnMainThread(() => questionCollectionView.Hidden = true);
 
@@ -625,7 +625,7 @@ namespace Izrune.iOS
 
         private async Task UpdateTimerAndCircular(TimeSpan diff)
         {
-            var _restSecondes = 90 - (secondesAfterStartTest.TotalSeconds + diff.TotalSeconds);
+            var _restSecondes = 90 - (secondesAfterStartTest + diff.TotalSeconds);
 
             if(TimeSpan.FromSeconds(_restSecondes).TotalSeconds > TimeSpan.FromMinutes(30).TotalSeconds)
             {
@@ -635,7 +635,7 @@ namespace Izrune.iOS
             {
                 if(IsTotalTime)
                 {
-                    _restSecondes = 1800 - (secondesAfterStartTest.TotalSeconds + diff.TotalSeconds);
+                    _restSecondes = 1800 - (secondesAfterStartTest + diff.TotalSeconds);
                     var from = (float)((float)(TimeSpan.FromSeconds(_restSecondes).TotalSeconds)/ 1800);
 
                     InitCircular(TimeSpan.FromSeconds(_restSecondes).TotalSeconds, 1-from);
@@ -657,15 +657,15 @@ namespace Izrune.iOS
                     }
                     else
                     {
-                        var count = -(int)(_restSecondes / 90);
-                        var seconds = -_restSecondes % 90;
+                        var count = (int)(diff.TotalSeconds / 90);
+                        var seconds = diff.TotalSeconds % 90;
 
-                        for (int i = -1; i < count; i++)
+                        for (int i = 0; i < count; i++)
                         {
                             await SkipQuestion();
                         }
 
-                        UpdateTimerAndCircular(seconds, true);
+                        UpdateTimerAndCircular(90-seconds, false);
                     }
                 }
             }
@@ -694,7 +694,7 @@ namespace Izrune.iOS
         DateTime ResignActiveTime;
         DateTime BecomeActiveTime;
 
-        TimeSpan secondesAfterStartTest = new TimeSpan();
+        int secondesAfterStartTest = 0;
 
         public override void ViewWillAppear(bool animated)
         {
@@ -704,7 +704,7 @@ namespace Izrune.iOS
             {
                 ResignActiveTime = DateTime.Now;
 
-                secondesAfterStartTest = IsTotalTime? TimeSpan.FromSeconds(1800 - RestSecondes.TotalSeconds) : TimeSpan.FromSeconds(90 - RestSecondes.TotalSeconds);
+                secondesAfterStartTest = IsTotalTime? (int)(1800 - RestSecondes.TotalSeconds) : (int)(90 - (int)RestSecondes.TotalSeconds);
             });
 
             _didBecomeActiveNotificationObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.DidBecomeActiveNotification, async (obj) => 
