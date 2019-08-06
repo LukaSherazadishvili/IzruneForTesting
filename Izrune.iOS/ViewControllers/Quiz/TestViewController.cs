@@ -479,7 +479,6 @@ namespace Izrune.iOS
                         if (currentIndex >= AllQuestions?.Count)
                             await GoToResultPage();
                         return;
-
                     }
 
                     minutes--;
@@ -713,7 +712,18 @@ namespace Izrune.iOS
 
                 var diff = (BecomeActiveTime - ResignActiveTime).TotalSeconds;
 
-                await UpdateTimerAndCircular(TimeSpan.FromSeconds(diff));
+                if(currentIndex == AllQuestions?.Count-1)
+                {
+                    if (diff > RestSecondes.TotalSeconds)
+                    {
+                        this.NavigationController.PopViewController(true);
+                        return;
+                    }
+                    else
+                        await UpdateTimerAndCircular(TimeSpan.FromSeconds(diff));
+                }
+                else
+                    await UpdateTimerAndCircular(TimeSpan.FromSeconds(diff));
             });
         }
 
