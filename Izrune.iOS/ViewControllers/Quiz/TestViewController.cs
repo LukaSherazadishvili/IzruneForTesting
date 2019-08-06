@@ -78,7 +78,7 @@ namespace Izrune.iOS
             else
                 InitTotalTimer(1, 30);
 
-            InitCircular(IsTotalTime? 1800 : 90);
+            InitCircular(IsTotalTime? 1800 : 90, 0);
 
             lastVisibleIndex = 7;
 
@@ -185,6 +185,8 @@ namespace Izrune.iOS
             cell.AnswerClicked = async (answer) =>
             {
                 //likeAnimation.Play();
+
+                secondesAfterStartTest = new TimeSpan();
                 if (questionCollectionView.UserInteractionEnabled == false)
                     return;
 
@@ -382,7 +384,7 @@ namespace Izrune.iOS
 
             if (!IsTotalTime)
             {
-                InitCircular(90);
+                InitCircular(90, 0);
             }
         }
 
@@ -449,6 +451,9 @@ namespace Izrune.iOS
             totalHeight = titleHeight + imagesHeight + answersHeight + 60 ;
         }
 
+        private int totalMinutes;
+        private int totalSecondes;
+
         private void InitTotalTimer(int _minutes, int _secondes)
         {
             timer = new Timer();
@@ -495,13 +500,21 @@ namespace Izrune.iOS
 
                 InvokeOnMainThread(() => timeLbl.Text = $"{Stringminutes}:{Stringsecondes}");
 
+                totalMinutes = minutes;
+                totalSecondes = secondes;
+
+                RestSecondes = TimeSpan.FromSeconds((60 * minutes) + (secondes));
             };
 
             timer.Start();
         }
 
+        TimeSpan RestSecondes;
+
         private async Task SkipQuestion()
         {
+
+            secondesAfterStartTest = new TimeSpan();
             correctAnswers = 0;
             InvokeOnMainThread(() => questionCollectionView.Hidden = true);
 
@@ -529,7 +542,7 @@ namespace Izrune.iOS
             this.PresentViewController(alert, true, null);
         }
 
-        private void InitCircular(double duration)
+        private void InitCircular(double duration, float strokeAnimationFrom)
         {
             #region CircularAnimation
              progressLayer = new CAShapeLayer();
@@ -568,7 +581,7 @@ namespace Izrune.iOS
             strokeAnimation = CABasicAnimation.FromKeyPath("strokeEnd");
             strokeAnimation.Duration = duration;
 
-            strokeAnimation.From = NSObject.FromObject(0);
+            strokeAnimation.From = NSObject.FromObject(strokeAnimationFrom);
             strokeAnimation.To = NSObject.FromObject(1.0f);
 
             strokeAnimation.TimingFunction = CAMediaTimingFunction.FromName(new NSString(CAMediaTimingFunction.Linear.ToString()));
@@ -609,5 +622,75 @@ namespace Izrune.iOS
                 likeAnimation.Hidden = true;
             });
         }
+
+        private async Task UpdateSeparatedTimer(TimeSpan diff)
+        {
+            var _restSecondes = 90 - (secondesAfterStartTest.TotalSeconds + diff.TotalSeconds);
+
+
+            if(_restSecondes > 0)
+            {
+                UpdateTimerAndCircular(_restSecondes, false);
+            }
+            else
+            {
+                var count = -(int)(_restSecondes / 90);
+                var seconds = -_restSecondes % 90;
+
+                for (int i = -1; i < count; i++)
+                {
+                    await SkipQuestion();
+                }
+
+                UpdateTimerAndCircular(seconds, true);
+            }
+        }
+
+        private void UpdateTimerAndCircular(double _restSecondes, bool isSkipped)
+        {
+            var from = (float)(_restSecondes / 90.0f);
+
+            InitCircular(90, isSkipped ? from : 1.0f - from);
+
+            var minutes = (int)(_restSecondes) / 60;
+            var seconde = (int)(_restSecondes) % 60;
+
+            timer.Stop();
+            timer.Dispose();
+            if(isSkipped)
+                InitTotalTimer(1, seconde);
+            else
+                InitTotalTimer(minutes, seconde);
+        }
+
+        private NSObject _willResignActiveNotificationObserver;
+        private NSObject _didBecomeActiveNotificationObserver;
+
+        DateTime ResignActiveTime;
+        DateTime BecomeActiveTime;
+
+        TimeSpan secondesAfterStartTest = new TimeSpan();
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+
+            _willResignActiveNotificationObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.WillResignActiveNotification, (obj) =>
+            {
+                ResignActiveTime = DateTime.Now;
+
+                secondesAfterStartTest = TimeSpan.FromSeconds(90 - RestSecondes.TotalSeconds);
+            });
+
+            _didBecomeActiveNotificationObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.DidBecomeActiveNotification, async (obj) => 
+            {
+                BecomeActiveTime = DateTime.Now;
+
+                var diff = (BecomeActiveTime - ResignActiveTime).TotalSeconds;
+
+                await UpdateSeparatedTimer(TimeSpan.FromSeconds(diff));
+            });
+        }
+
     }
 }
