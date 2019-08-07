@@ -74,7 +74,7 @@ namespace Izrune.iOS
             //InitTotalTimer(IsTotalTime? 29 : 0);
 
             if (IsTotalTime)
-                InitTotalTimer(29, 60);
+                InitTotalTimer(1, 10);
             else
                 InitTotalTimer(1, 30);
 
@@ -475,9 +475,21 @@ namespace Izrune.iOS
                         timer.Enabled = false;
                         timer.Stop();
                         timer.Dispose();
-                        await SkipQuestion();
-                        if (currentIndex >= AllQuestions?.Count)
+                        if(IsTotalTime)
+                        {
+                            for (int i = currentIndex; i < AllQuestions?.Count -1; i++)
+                            {
+                                await SkipQuestion();
+                            }
                             await GoToResultPage();
+                        }
+                        else
+                        {
+                            await SkipQuestion();
+                            if (currentIndex >= AllQuestions?.Count)
+                                await GoToResultPage();
+                        }
+
                         return;
                     }
 
@@ -518,7 +530,8 @@ namespace Izrune.iOS
             InvokeOnMainThread(() => questionCollectionView.Hidden = true);
 
             await QuezControll.Instance.AddQuestion();
-            CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
+            if(currentIndex < AllQuestions?.Count - 1)
+                CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
             currentIndex++;
             InvokeOnMainThread(() =>
             {
