@@ -52,7 +52,7 @@ namespace Izrune.iOS
         private CABasicAnimation strokeAnimation;
         private CAShapeLayer progressLayer;
 
-        public bool IsTotalTime { get; set; } = false;
+        public bool IsTotalTime { get; set; }
 
         LOTAnimationView likeAnimation = new LOTAnimationView();
 
@@ -62,6 +62,11 @@ namespace Izrune.iOS
         string AnimationFilePath = "like_animation.json";
 
         #endregion
+        const int TotalMinutes = 29;
+        const int TotalSecondes = 60;
+
+        const int SeparatedMinutes = 1;
+        const int SeparatedSecondes = 30;
 
         public async override void ViewDidLoad()
         {
@@ -204,7 +209,7 @@ namespace Izrune.iOS
                     isRibbonAnimation = !isRibbonAnimation;
                 }
                 if (!IsTotalTime)
-                    timeLbl.Text = ($"01:30");
+                    timeLbl.Text = ($"0{SeparatedMinutes}:{SeparatedSecondes}");
 
                 await Task.Delay(1500);
 
@@ -379,7 +384,7 @@ namespace Izrune.iOS
             if (!IsTotalTime)
             {
                 timer.Dispose();
-                InitTotalTimer(1,30);
+                InitTotalTimer(SeparatedMinutes, SeparatedSecondes);
             }
 
             if (!IsTotalTime)
@@ -454,6 +459,8 @@ namespace Izrune.iOS
         private int totalMinutes;
         private int totalSecondes;
 
+        bool AlredyGoToResult = false;
+
         private void InitTotalTimer(int _minutes, int _secondes)
         {
             timer = new Timer();
@@ -477,17 +484,27 @@ namespace Izrune.iOS
                         timer.Dispose();
                         if(IsTotalTime)
                         {
-                            for (int i = currentIndex; i < AllQuestions?.Count -1; i++)
+                            for (int i = currentIndex; i < AllQuestions?.Count; i++)
                             {
                                 await SkipQuestion();
                             }
+
+                            if (AlredyGoToResult)
+                                return;
+                            AlredyGoToResult = true;
                             await GoToResultPage();
                         }
                         else
                         {
                             await SkipQuestion();
                             if (currentIndex >= AllQuestions?.Count)
+                            {
+                                if (AlredyGoToResult)
+                                    return;
+                                AlredyGoToResult = true;
                                 await GoToResultPage();
+                            }
+                                
                         }
 
                         return;
@@ -529,9 +546,14 @@ namespace Izrune.iOS
             correctAnswers = 0;
             InvokeOnMainThread(() => questionCollectionView.Hidden = true);
 
-            await QuezControll.Instance.AddQuestion();
-            if(currentIndex < AllQuestions?.Count - 1)
-                CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
+            if (currentIndex <= AllQuestions?.Count)
+            {
+                await QuezControll.Instance.AddQuestion();
+
+                if (currentIndex <= AllQuestions?.Count - 2)
+                    CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
+            }
+
             currentIndex++;
             InvokeOnMainThread(() =>
             {
@@ -725,18 +747,48 @@ namespace Izrune.iOS
 
                 var diff = (BecomeActiveTime - ResignActiveTime).TotalSeconds;
 
-                if(currentIndex == AllQuestions?.Count-1)
+                if(IsTotalTime)
                 {
                     if (diff > RestSecondes.TotalSeconds)
                     {
-                        this.NavigationController.PopViewController(true);
+                        timer.Enabled = false;
+                        timer.Stop();
+                        timer.Dispose();
+                        for (int i = currentIndex; i < AllQuestions?.Count; i++)
+                        {
+                            await SkipQuestion();
+                        }
+                        if (AlredyGoToResult)
+                            return;
+                        AlredyGoToResult = true;
+                        await GoToResultPage();
                         return;
+                    }
+                }
+                else
+                {
+                    if (currentIndex == AllQuestions?.Count - 1)
+                    {
+                        if (diff > RestSecondes.TotalSeconds)
+                        {
+                            timer.Enabled = false;
+                            timer.Stop();
+                            timer.Dispose();
+
+                            await SkipQuestion();
+
+                            if (AlredyGoToResult)
+                                return;
+                            AlredyGoToResult = true;
+                            await GoToResultPage();
+                            return;
+                        }
+                        else
+                            await UpdateTimerAndCircular(TimeSpan.FromSeconds(diff));
                     }
                     else
                         await UpdateTimerAndCircular(TimeSpan.FromSeconds(diff));
                 }
-                else
-                    await UpdateTimerAndCircular(TimeSpan.FromSeconds(diff));
             });
         }
 

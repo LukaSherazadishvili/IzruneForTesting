@@ -137,6 +137,7 @@ namespace IZrune.PCL.Helpers
         {
             EndTime = false;
             QuezQuestion quez = new QuezQuestion() { AnswerId = AnswerId, Duration = TimeInSecond, QuestionId = Questions.ElementAt(Position).id };
+            System.Diagnostics.Debug.WriteLine($"Position : {Position}");
             await MpdcContainer.Instance.Get<IQuezServices>().GetQuezResultAsync(quez);
             Position++;
             if (Position < 20)

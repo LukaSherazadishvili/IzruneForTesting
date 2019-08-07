@@ -75,33 +75,49 @@ namespace Izrune.iOS
 
         private void InitGestures()
         {
-            if(totalTimeView.GestureRecognizers == null || totalTimeView.GestureRecognizers?.Length == 0)
+            var testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
+            testVc.SelectedStudent = SelectedStudent;
+            testVc.quezCategory = SelectedCategory;
+            if (totalTimeView.GestureRecognizers == null || totalTimeView.GestureRecognizers?.Length == 0)
             {
                 totalTimeView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-
-                    var testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
-                    testVc.SelectedStudent = SelectedStudent;
-                    testVc.quezCategory = SelectedCategory;
                     testVc.IsTotalTime = true;
+                    var navVc = this.NavigationController;
+                    this.NavigationController.PopToRootViewController(false);
+                    navVc.PushViewController(testVc, true);
 
-                    this.NavigationController.PushViewController(testVc, true);
                 }));
+            }
+            else
+            {
+                testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
+                testVc.SelectedStudent = SelectedStudent;
+                testVc.quezCategory = SelectedCategory;
+                testVc.IsTotalTime = true;
             }
 
             if (derivedTimeView.GestureRecognizers == null || derivedTimeView.GestureRecognizers?.Length == 0)
             {
                 derivedTimeView.AddGestureRecognizer(new UITapGestureRecognizer(() =>
                 {
-                
-                    var testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
+                    testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
                     testVc.SelectedStudent = SelectedStudent;
                     testVc.quezCategory = SelectedCategory;
-                
-                    testVc.IsTotalTime = false;
 
-                    this.NavigationController.PushViewController(testVc, true);
+                    testVc.IsTotalTime = false;
+                    var navVc = this.NavigationController;
+                    this.NavigationController.PopToRootViewController(false);
+                    navVc.PushViewController(testVc, true);
                 }));
+            }
+
+            else
+            {
+                testVc = Storyboard.InstantiateViewController(TestViewController.StoryboardId) as TestViewController;
+                testVc.SelectedStudent = SelectedStudent;
+                testVc.quezCategory = SelectedCategory;
+                testVc.IsTotalTime = false;
             }
 
             if (closePopUpView.GestureRecognizers == null || closePopUpView.GestureRecognizers?.Length == 0)
