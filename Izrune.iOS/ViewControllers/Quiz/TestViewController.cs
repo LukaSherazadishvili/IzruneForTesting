@@ -74,7 +74,7 @@ namespace Izrune.iOS
             //InitTotalTimer(IsTotalTime? 29 : 0);
 
             if (IsTotalTime)
-                InitTotalTimer(1, 10);
+                InitTotalTimer(29, 60);
             else
                 InitTotalTimer(1, 30);
 
