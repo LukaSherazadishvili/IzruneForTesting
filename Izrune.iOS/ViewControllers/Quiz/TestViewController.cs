@@ -787,7 +787,15 @@ namespace Izrune.iOS
                             await UpdateTimerAndCircular(TimeSpan.FromSeconds(diff));
                     }
                     else
+                    {
+                        if(diff > RestSecondes.TotalSeconds)
+                        {
+                            await SkipQuestion();
+                            await UpdateTimerAndCircular(TimeSpan.FromSeconds(diff - RestSecondes.TotalSeconds));
+                            return;
+                        }
                         await UpdateTimerAndCircular(TimeSpan.FromSeconds(diff));
+                    }
                 }
             });
         }
