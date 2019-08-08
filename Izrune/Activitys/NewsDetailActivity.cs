@@ -46,6 +46,9 @@ namespace Izrune.Activitys
 
     }
 
+   
+
+
     [Activity(Label = "IZrune", Theme = "@style/AppTheme", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = false)]
     class NewsDetailActivity : MPDCBaseActivity
     {
@@ -85,10 +88,11 @@ namespace Izrune.Activitys
             DateText.Text = Result.date.ToShortDateString();
 
             MainContent.Settings.JavaScriptEnabled = true;
-            MainContent.SetWebViewClient(new MyWebViewClient()
-            {
+            MainContent.SetWebChromeClient(new WebChromeClient());
+            //MainContent.SetWebViewClient(new MyWebViewClient()
+            //{
               
-            });
+            //});
 
             if (!string.IsNullOrEmpty(Result.Content))
             {

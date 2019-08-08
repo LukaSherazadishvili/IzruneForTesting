@@ -64,6 +64,8 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.BackButton)]
         FrameLayout BackButton;
 
+        [MapControl(Resource.Id.EGmuImage)]
+        ImageView EgmuImage;
 
         [MapControl(Resource.Id.BadgesRecyclerView)]
         RecyclerView BadgesRecycler;
@@ -105,7 +107,8 @@ namespace Izrune.Fragments
 
             StudentNameLastName.Text = $"{UserControl.Instance.CurrentStudent.Name}  {UserControl.Instance.CurrentStudent.LastName}";
 
-           
+            var EgmuUrl = await MpdcContainer.Instance.Get<IQuezServices>().GetEgmuAsync(IzruneHellper.Instance.CurrentStatistic.Id);
+
             Score.Text = Result.Score.ToString();
 
             Time.Text = string.Format($"{(Result.Duration / 60).ToString().PadLeft(2, '0')}:{(Result.Duration % 60).ToString().PadLeft(2, '0')}");
@@ -136,7 +139,11 @@ namespace Izrune.Fragments
 
             }
 
-        
+            EgmuImage.Click +=async (s, e) =>
+            {
+               
+              (Activity as InnerDiplomaStatisticActivity).OnEgmuClick(EgmuUrl);
+            };
 
             StopLoading();
 

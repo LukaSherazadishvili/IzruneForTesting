@@ -44,7 +44,7 @@ android:id="@+id/Container">
                 android:gravity="center"
 				android:fontFamily="@font/bpg_mrgvlovani"
                 android:layout_marginBottom="20dp"
-                android:text="მშობლის (მზრუნველის) მონაცემების რედაქტიურება"/>
+                android:text="მშობლის (მზრუნველის) მონაცემების რედაქტირება"/>
 
 				<TextView
 					android:layout_width="wrap_content"

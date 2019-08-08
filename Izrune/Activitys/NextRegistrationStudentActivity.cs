@@ -134,7 +134,8 @@ namespace Izrune.Activitys
             if (e.Position != 0)
             {
                 SchoolContainer.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
-                CurrentSchool = CurrentRegion.Schools.ElementAt(e.Position);
+                var index = e.Position - 1;
+                CurrentSchool = CurrentRegion.Schools.ElementAt(index);
 
                 Startloading(true);
                 var Result = await MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(CurrentSchool.id);
@@ -155,7 +156,7 @@ namespace Izrune.Activitys
 
         private void NextButton_Click(object sender, EventArgs e)
         {
-
+            CloseKeyboard();
             if (CurrentSchool == null)
             {
                 SchoolContainer.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
@@ -216,9 +217,9 @@ namespace Izrune.Activitys
                   
                 
                 School.Adapter = DataAdapter;
-               
 
-                School.ItemSelected += School_ItemSelected1;
+                School.ItemSelected -= School_ItemSelected;
+                School.ItemSelected += School_ItemSelected;
             }
             else
             {
@@ -237,14 +238,7 @@ namespace Izrune.Activitys
             }
         }
 
-        private void School_ItemSelected1(object sender, AdapterView.ItemSelectedEventArgs e)
-        {
-            if (e.Position > 0)
-            {
-                CurrentSchool = CurrentRegion.Schools.ElementAt(e.Position);
-
-            }
-        }
+      
 
         private void BotBackButton_Click(object sender, EventArgs e)
         {
@@ -257,6 +251,7 @@ namespace Izrune.Activitys
         }
         public override void OnBackPressed()
         {
+         
             base.OnBackPressed();
         }
     }

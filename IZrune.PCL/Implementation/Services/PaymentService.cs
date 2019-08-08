@@ -104,7 +104,7 @@ namespace IZrune.PCL.Implementation.Services
                          new KeyValuePair<string,string>($"months1",Student.PackageMonthCount.ToString()),
                           new KeyValuePair<string,string>($"amount1",Student.Amount.ToString()),
                            new KeyValuePair<string,string>($"promo1",Student.Promocode.ToString()),
-                            new KeyValuePair<string,string>($"paybox1",PayBox.ToString())
+                            new KeyValuePair<string,string>($"paybox1","1")
 
                      });
 

@@ -38,14 +38,16 @@ namespace Izrune.Fragments
 
             SmsContainer.Click += (s, e) =>
             {
-              
-               
+
+                string mailto = "mailto:bob@example.org";
+       
 
                 var emailIntent = new Intent(Android.Content.Intent.ActionSend);
+              
                 emailIntent.PutExtra(Android.Content.Intent.ExtraEmail, new[] { "info@izrune.ge" });
                 emailIntent.PutExtra(Android.Content.Intent.ExtraCc, new[] { "info@izrune.ge" });
                 emailIntent.PutExtra(Android.Content.Intent.ExtraSubject, "title");
-                emailIntent.SetType("text/plain");
+                emailIntent.SetType("message/rfc822");
                 emailIntent.PutExtra(Android.Content.Intent.ExtraText, "e-mail body");
                 StartActivity(Intent.CreateChooser(emailIntent, "Send e-mail"));
             };

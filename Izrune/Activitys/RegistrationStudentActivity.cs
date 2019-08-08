@@ -136,7 +136,7 @@ namespace Izrune.Activitys
 
         private async void NextButton_Click(object sender, EventArgs e)
         {
-
+            CloseKeyboard();
 
             if (string.IsNullOrEmpty(StudName.Text) || string.IsNullOrEmpty(StudLastName.Text) || string.IsNullOrEmpty(StudentBdayYear.Text) ||
                 string.IsNullOrEmpty(StudentPersonalId.Text)||(await MpdcContainer.Instance.Get<IRegistrationServices>().ExistPersonalId(StudentPersonalId.Text))||StudentPersonalId.Text.Length!=11 )

@@ -334,8 +334,10 @@ android:id="@+id/Container">
 					android:layout_width="match_parent"
 					android:layout_height="38dp"
 					android:paddingLeft="15dp"
+					android:paddingTop="2dp"
+					android:paddingBottom="2dp"
 					android:background="@drawable/izrune_editext_back">
-				<Spinner
+				<TextView
 				android:id="@+id/StudentScholTxt"
             android:layout_width="match_parent"
             android:layout_height="38dp"

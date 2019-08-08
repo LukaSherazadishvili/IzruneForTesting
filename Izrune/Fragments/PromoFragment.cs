@@ -95,6 +95,7 @@ namespace Izrune.Fragments
 
             NextButton.Click += (s, e) =>
             {
+                CloseKeyboard();
                 if (IsSucces)
                 {
                     UserControl.Instance.SetPromoPack(MonthCount, MonthCount * 1, PromoCod.PrommoCode);
@@ -103,12 +104,13 @@ namespace Izrune.Fragments
                 }
                 else
                 {
-                    Toast.MakeText(this, "გთხოვთ შეიყვანეტ პრომოკოდი სწორად", ToastLength.Long).Show();
+                    Toast.MakeText(this, "გთხოვთ შეიყვანოთ პრომო კოდი სწორად", ToastLength.Long).Show();
                 }
             };
 
             Submit.Click += (s, e) =>
             {
+                CloseKeyboard();
                 if (promoEdit.Text == PromoCod.PrommoCode && !string.IsNullOrEmpty(PromoCod.PrommoCode))
                 {
                     promoEdit.SetBackgroundResource(Resource.Drawable.izruneback);
@@ -131,11 +133,14 @@ namespace Izrune.Fragments
 
         private void MonthSpiner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            var Result =  PromoCod.Prices.ElementAt(e.Position).EndDate?.Subtract(PromoCod.Prices.ElementAt(e.Position).StartDate.Value);
+            if (PromoCod.PrommoCode != "")
+            {
+                var Result = PromoCod.Prices.ElementAt(e.Position).EndDate?.Subtract(PromoCod.Prices.ElementAt(e.Position).StartDate.Value);
 
-            PromoResult.Text = $"{PromoCod.Prices.ElementAt(e.Position).Period}-{PromoCod.Prices.ElementAt(e.Position).price}₾";
+                PromoResult.Text = $"{PromoCod.Prices.ElementAt(e.Position).Period}-{PromoCod.Prices.ElementAt(e.Position).price}₾";
 
-            MonthCount = MonthDifference(PromoCod.Prices.ElementAt(e.Position).EndDate.Value, PromoCod.Prices.ElementAt(e.Position).StartDate.Value);
+                MonthCount = MonthDifference(PromoCod.Prices.ElementAt(e.Position).EndDate.Value, PromoCod.Prices.ElementAt(e.Position).StartDate.Value);
+            }
         }
 
 

@@ -31,7 +31,7 @@ namespace Izrune.Fragments
         };
 
         private ImageView image { get; set; }
-
+        
         protected virtual FrameLayout MainFrame { get; set; }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

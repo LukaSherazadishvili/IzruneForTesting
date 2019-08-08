@@ -180,7 +180,7 @@ namespace Izrune.Activitys
 
         private void ContinueButton_Click(object sender, EventArgs e)
         {
-
+            CloseKeyboard();
             if (!ValidateUser())
             {
                 CheckEditext();

@@ -8,6 +8,7 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.Widget;
+using Android.Text;
 using Android.Views;
 using Android.Widget;
 using FFImageLoading.Views;
@@ -83,7 +84,7 @@ namespace Izrune.Fragments
         {
             base.OnViewCreated(view, savedInstanceState);
 
-            QuestionTitle.Text = question.title;
+            QuestionTitle.Text = question.title.Replace("span style=\"color:", "font color='").Replace(";\"", "'").Replace("</span>", "</font>"); ;
             if (question.images.ToList().Count > 1)
             {
                 ImagesGrid.Visibility = ViewStates.Visible;
@@ -116,7 +117,8 @@ namespace Izrune.Fragments
            for(int i = 0; i < question.Answers.Count(); i ++)
             {
                 var AnswerView = LayoutInflater.Inflate(Resource.Layout.ItemQuezAnswer, null);
-                AnswerView.FindViewById<TextView>(Resource.Id.AnswerTxt).Text = question.Answers.ElementAt(i).title;
+
+                AnswerView.FindViewById<TextView>(Resource.Id.AnswerTxt).Text =question.Answers.ElementAt(i).title.Replace("span style=\"color:", "font color='").Replace(";\"", "'").Replace("</span>", "</font>");
                 AnswerView.FindViewById<TextView>(Resource.Id.AnswerVersionSimbol).Text = QuestionVersioSimbols.ElementAt(i);
                 AnswerView.Click += AnswerView_Click;
                 MyViews.Add(AnswerView);
@@ -131,7 +133,7 @@ namespace Izrune.Fragments
         {
             try
             {
-
+                
                 (Activity as QuezActivity).RunOnUiThread(() =>
                 {
 
@@ -161,7 +163,7 @@ namespace Izrune.Fragments
                 });
                 await QuezControll.Instance.AddQuestion();
 
-
+                await Task.Delay(2000);
                 question = AnswerClick?.Invoke();
                 if (question == null && testType != "1")
                 {

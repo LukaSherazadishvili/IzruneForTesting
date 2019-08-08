@@ -65,7 +65,7 @@ namespace Izrune.Fragments
             StudentId = studentId;
         }
 
-        private IPromoCode PromoCod;
+        private static IPromoCode PromoCod;
 
         int MonthCount;
 
@@ -88,7 +88,6 @@ namespace Izrune.Fragments
                 PromoResult.Visibility = ViewStates.Invisible;
                 PromoContainer.Visibility = ViewStates.Invisible;
                 MonthContainer.Visibility = ViewStates.Invisible;
-
             }
 
             NextButton.Click += async(s, e) =>
@@ -99,6 +98,7 @@ namespace Izrune.Fragments
 
                   await UserControl.Instance.ReNewPack(UserControl.Instance.CurrentStudent);
                     Intent intent = new Intent(this, typeof(ActivityPaymentCategory));
+                    intent.PutExtra("Inner", "sddsd");
                     StartActivity(intent);
                 }
                 else
