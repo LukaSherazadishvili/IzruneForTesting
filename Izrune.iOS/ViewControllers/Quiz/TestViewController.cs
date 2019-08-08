@@ -764,6 +764,7 @@ namespace Izrune.iOS
                         await GoToResultPage();
                         return;
                     }
+                    await UpdateTimerAndCircular(TimeSpan.FromSeconds(diff));
                 }
                 else
                 {
