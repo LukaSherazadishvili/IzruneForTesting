@@ -52,7 +52,7 @@ namespace Izrune.iOS
         private CABasicAnimation strokeAnimation;
         private CAShapeLayer progressLayer;
 
-        public bool IsTotalTime { get; set; } = false;
+        public bool IsTotalTime { get; set; }
 
         LOTAnimationView likeAnimation = new LOTAnimationView();
 
@@ -62,6 +62,11 @@ namespace Izrune.iOS
         string AnimationFilePath = "like_animation.json";
 
         #endregion
+        const int TotalMinutes = 29;
+        const int TotalSecondes = 60;
+
+        const int SeparatedMinutes = 1;
+        const int SeparatedSecondes = 30;
 
         public async override void ViewDidLoad()
         {
@@ -78,7 +83,7 @@ namespace Izrune.iOS
             else
                 InitTotalTimer(1, 30);
 
-            InitCircular(IsTotalTime? 1800 : 90);
+            InitCircular(IsTotalTime? 1800 : 90, 0);
 
             lastVisibleIndex = 7;
 
@@ -185,6 +190,8 @@ namespace Izrune.iOS
             cell.AnswerClicked = async (answer) =>
             {
                 //likeAnimation.Play();
+
+                secondesAfterStartTest = 0;
                 if (questionCollectionView.UserInteractionEnabled == false)
                     return;
 
@@ -202,7 +209,7 @@ namespace Izrune.iOS
                     isRibbonAnimation = !isRibbonAnimation;
                 }
                 if (!IsTotalTime)
-                    timeLbl.Text = ($"01:30");
+                    timeLbl.Text = ($"0{SeparatedMinutes}:{SeparatedSecondes}");
 
                 await Task.Delay(1500);
 
@@ -377,12 +384,12 @@ namespace Izrune.iOS
             if (!IsTotalTime)
             {
                 timer.Dispose();
-                InitTotalTimer(1,30);
+                InitTotalTimer(SeparatedMinutes, SeparatedSecondes);
             }
 
             if (!IsTotalTime)
             {
-                InitCircular(90);
+                InitCircular(90, 0);
             }
         }
 
@@ -449,6 +456,11 @@ namespace Izrune.iOS
             totalHeight = titleHeight + imagesHeight + answersHeight + 60 ;
         }
 
+        private int totalMinutes;
+        private int totalSecondes;
+
+        bool AlredyGoToResult = false;
+
         private void InitTotalTimer(int _minutes, int _secondes)
         {
             timer = new Timer();
@@ -470,11 +482,32 @@ namespace Izrune.iOS
                         timer.Enabled = false;
                         timer.Stop();
                         timer.Dispose();
-                        await SkipQuestion();
-                        if (currentIndex >= AllQuestions?.Count)
-                            await GoToResultPage();
-                        return;
+                        if(IsTotalTime)
+                        {
+                            for (int i = currentIndex; i < AllQuestions?.Count; i++)
+                            {
+                                await SkipQuestion();
+                            }
 
+                            if (AlredyGoToResult)
+                                return;
+                            AlredyGoToResult = true;
+                            await GoToResultPage();
+                        }
+                        else
+                        {
+                            await SkipQuestion();
+                            if (currentIndex >= AllQuestions?.Count)
+                            {
+                                if (AlredyGoToResult)
+                                    return;
+                                AlredyGoToResult = true;
+                                await GoToResultPage();
+                            }
+                                
+                        }
+
+                        return;
                     }
 
                     minutes--;
@@ -495,18 +528,32 @@ namespace Izrune.iOS
 
                 InvokeOnMainThread(() => timeLbl.Text = $"{Stringminutes}:{Stringsecondes}");
 
+                totalMinutes = minutes;
+                totalSecondes = secondes;
+
+                RestSecondes = TimeSpan.FromSeconds((60 * minutes) + (secondes));
             };
 
             timer.Start();
         }
 
+        TimeSpan RestSecondes;
+
         private async Task SkipQuestion()
         {
+
+            secondesAfterStartTest = 0;
             correctAnswers = 0;
             InvokeOnMainThread(() => questionCollectionView.Hidden = true);
 
-            await QuezControll.Instance.AddQuestion();
-            CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
+            if (currentIndex <= AllQuestions?.Count)
+            {
+                await QuezControll.Instance.AddQuestion();
+
+                if (currentIndex <= AllQuestions?.Count - 2)
+                    CurrentQuestion = QuezControll.Instance.GetCurrentQuestion();
+            }
+
             currentIndex++;
             InvokeOnMainThread(() =>
             {
@@ -529,7 +576,7 @@ namespace Izrune.iOS
             this.PresentViewController(alert, true, null);
         }
 
-        private void InitCircular(double duration)
+        private void InitCircular(double duration, float strokeAnimationFrom)
         {
             #region CircularAnimation
              progressLayer = new CAShapeLayer();
@@ -568,7 +615,7 @@ namespace Izrune.iOS
             strokeAnimation = CABasicAnimation.FromKeyPath("strokeEnd");
             strokeAnimation.Duration = duration;
 
-            strokeAnimation.From = NSObject.FromObject(0);
+            strokeAnimation.From = NSObject.FromObject(strokeAnimationFrom);
             strokeAnimation.To = NSObject.FromObject(1.0f);
 
             strokeAnimation.TimingFunction = CAMediaTimingFunction.FromName(new NSString(CAMediaTimingFunction.Linear.ToString()));
@@ -609,5 +656,150 @@ namespace Izrune.iOS
                 likeAnimation.Hidden = true;
             });
         }
+
+        private async Task UpdateTimerAndCircular(TimeSpan diff)
+        {
+            var _restSecondes = 90 - (secondesAfterStartTest + diff.TotalSeconds);
+
+            if(TimeSpan.FromSeconds(_restSecondes).TotalSeconds > TimeSpan.FromMinutes(30).TotalSeconds)
+            {
+                //TODO finish test
+            }
+            else
+            {
+                if(IsTotalTime)
+                {
+                    _restSecondes = 1800 - (secondesAfterStartTest + diff.TotalSeconds);
+                    var from = (float)((float)(TimeSpan.FromSeconds(_restSecondes).TotalSeconds)/ 1800);
+
+                    InitCircular(TimeSpan.FromSeconds(_restSecondes).TotalSeconds, 1-from);
+
+                    var minutes = (int)(_restSecondes) / 60;
+                    var seconde = (int)(_restSecondes) % 60;
+
+                    timer.Stop();
+                    timer.Dispose();
+
+                    InitTotalTimer(minutes, seconde);
+
+                }
+                else
+                {
+                    if (_restSecondes > 0)
+                    {
+                        UpdateTimerAndCircular(_restSecondes, false);
+                    }
+                    else
+                    {
+                        var count = (int)(diff.TotalSeconds / 90);
+                        var seconds = diff.TotalSeconds % 90;
+
+                        for (int i = 0; i < count; i++)
+                        {
+                            await SkipQuestion();
+                        }
+
+                        UpdateTimerAndCircular(90-seconds, false);
+                    }
+                }
+            }
+        }
+
+        private void UpdateTimerAndCircular(double _restSecondes, bool isSkipped)
+        {
+            var from = (float)(_restSecondes / 90.0f);
+
+            InitCircular(90, isSkipped ? from : 1.0f - from);
+
+            var minutes = (int)(_restSecondes) / 60;
+            var seconde = (int)(_restSecondes) % 60;
+
+            timer.Stop();
+            timer.Dispose();
+            if(isSkipped)
+                InitTotalTimer(1, seconde);
+            else
+                InitTotalTimer(minutes, seconde);
+        }
+
+        private NSObject _willResignActiveNotificationObserver;
+        private NSObject _didBecomeActiveNotificationObserver;
+
+        DateTime ResignActiveTime;
+        DateTime BecomeActiveTime;
+
+        int secondesAfterStartTest = 0;
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+
+            _willResignActiveNotificationObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.WillResignActiveNotification, (obj) =>
+            {
+                ResignActiveTime = DateTime.Now;
+
+                secondesAfterStartTest = IsTotalTime? (int)(1800 - RestSecondes.TotalSeconds) : (int)(90 - (int)RestSecondes.TotalSeconds);
+            });
+
+            _didBecomeActiveNotificationObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.DidBecomeActiveNotification, async (obj) => 
+            {
+                BecomeActiveTime = DateTime.Now;
+
+                var diff = (BecomeActiveTime - ResignActiveTime).TotalSeconds;
+
+                if(IsTotalTime)
+                {
+                    if (diff > RestSecondes.TotalSeconds)
+                    {
+                        timer.Enabled = false;
+                        timer.Stop();
+                        timer.Dispose();
+                        for (int i = currentIndex; i < AllQuestions?.Count; i++)
+                        {
+                            await SkipQuestion();
+                        }
+                        if (AlredyGoToResult)
+                            return;
+                        AlredyGoToResult = true;
+                        await GoToResultPage();
+                        return;
+                    }
+                    await UpdateTimerAndCircular(TimeSpan.FromSeconds(diff));
+                }
+                else
+                {
+                    if (currentIndex == AllQuestions?.Count - 1)
+                    {
+                        if (diff > RestSecondes.TotalSeconds)
+                        {
+                            timer.Enabled = false;
+                            timer.Stop();
+                            timer.Dispose();
+
+                            await SkipQuestion();
+
+                            if (AlredyGoToResult)
+                                return;
+                            AlredyGoToResult = true;
+                            await GoToResultPage();
+                            return;
+                        }
+                        else
+                            await UpdateTimerAndCircular(TimeSpan.FromSeconds(diff));
+                    }
+                    else
+                    {
+                        if(diff > RestSecondes.TotalSeconds)
+                        {
+                            await SkipQuestion();
+                            await UpdateTimerAndCircular(TimeSpan.FromSeconds(diff - RestSecondes.TotalSeconds));
+                            return;
+                        }
+                        await UpdateTimerAndCircular(TimeSpan.FromSeconds(diff));
+                    }
+                }
+            });
+        }
+
     }
 }

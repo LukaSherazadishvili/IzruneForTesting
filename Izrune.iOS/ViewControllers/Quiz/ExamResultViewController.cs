@@ -173,7 +173,9 @@ namespace Izrune.iOS
             base.ViewWillDisappear(animated);
 
             if(AfterExam)
-                player.Stop();
+            {
+                player?.Stop();
+            }
         }
 
         private void InitUI()
