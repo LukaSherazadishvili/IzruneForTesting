@@ -313,7 +313,7 @@ namespace Izrune.iOS
                 navVc.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
                 navVc.PushViewController(resultTab, true);
 
-                timer.Stop();
+                timer?.Stop();
 
             });
         }
