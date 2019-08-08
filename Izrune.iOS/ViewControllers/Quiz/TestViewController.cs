@@ -76,12 +76,10 @@ namespace Izrune.iOS
 
             await LoadDataAsync();
 
-            //InitTotalTimer(IsTotalTime? 29 : 0);
-
             if (IsTotalTime)
-                InitTotalTimer(29, 60);
+                InitTotalTimer(TotalMinutes, TotalSecondes);
             else
-                InitTotalTimer(1, 30);
+                InitTotalTimer(SeparatedMinutes, SeparatedSecondes);
 
             InitCircular(IsTotalTime? 1800 : 90, 0);
 
@@ -314,6 +312,9 @@ namespace Izrune.iOS
 
                 navVc.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
                 navVc.PushViewController(resultTab, true);
+
+                timer.Stop();
+
             });
         }
 
@@ -493,6 +494,7 @@ namespace Izrune.iOS
                                 return;
                             AlredyGoToResult = true;
                             await GoToResultPage();
+                            timer.Stop();
                         }
                         else
                         {
@@ -503,6 +505,7 @@ namespace Izrune.iOS
                                     return;
                                 AlredyGoToResult = true;
                                 await GoToResultPage();
+                                timer.Stop();
                             }
                                 
                         }
@@ -765,7 +768,7 @@ namespace Izrune.iOS
                         return;
                     }
                     await UpdateTimerAndCircular(TimeSpan.FromSeconds(diff));
-                }
+                }//24:13
                 else
                 {
                     if (currentIndex == AllQuestions?.Count - 1)

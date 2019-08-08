@@ -59,7 +59,7 @@ namespace Izrune.iOS.CollectionViewCells
             Question = question;
 
             //InitCollectionViews();
-
+            questionImagesCollectionView.ReloadData();
             SetCellHeight(question);
             questionLbl.Text = $"{index}{ GetStringFromHtml(question.title)}";
             //commentLbl.Text = $"{ GetStringFromHtml(question.Description)}";
@@ -94,7 +94,7 @@ namespace Izrune.iOS.CollectionViewCells
         public void InitDataForResult(IFinalQuestion finalQuestion, string index = "")
         {
             SetCellHeight(finalQuestion);
-
+            questionImagesCollectionView.ReloadData();
             questionLbl.Text = $"{index}{ GetStringFromHtml(finalQuestion.title)}";
             commentLbl.Text = $"{ GetStringFromHtml(finalQuestion.Description)}";
             //questionLbl.Text = $"{index}{finalQuestion.title}";
