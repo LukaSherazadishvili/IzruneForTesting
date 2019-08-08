@@ -58,7 +58,8 @@ namespace Izrune.iOS.CollectionViewCells
         {
             Question = question;
 
-            //InitCollectionViews();
+            InitCollectionViews();
+
             questionImagesCollectionView.ReloadData();
             SetCellHeight(question);
             questionLbl.Text = $"{index}{ GetStringFromHtml(question.title)}";
@@ -83,8 +84,6 @@ namespace Izrune.iOS.CollectionViewCells
 
         public void SkipQuestion()
         {
-
-
             var answers = Question?.Answers?.ToList();
             var correctAnswer = answers?.IndexOf(answers?.FirstOrDefault(x => x.IsRight == true));
             var answerCell = answerCollectionView.CellForItem(NSIndexPath.FromRowSection((System.nint)correctAnswer, 0)) as AnswerCollectionViewCell;
@@ -94,6 +93,9 @@ namespace Izrune.iOS.CollectionViewCells
         public void InitDataForResult(IFinalQuestion finalQuestion, string index = "")
         {
             SetCellHeight(finalQuestion);
+
+            InitCollectionViewSettings();
+
             questionImagesCollectionView.ReloadData();
             questionLbl.Text = $"{index}{ GetStringFromHtml(finalQuestion.title)}";
             commentLbl.Text = $"{ GetStringFromHtml(finalQuestion.Description)}";
