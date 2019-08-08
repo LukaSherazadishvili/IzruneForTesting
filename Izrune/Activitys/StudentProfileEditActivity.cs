@@ -50,7 +50,7 @@ namespace Izrune.Activitys
         EditText MobilePhone;
 
         [MapControl(Resource.Id.StudentScholTxt)]
-        Spinner StudentSchool;
+        TextView StudentSchool;
 
         [MapControl(Resource.Id.StudentClasses)]
         TextView StudentClass;
@@ -138,32 +138,16 @@ namespace Izrune.Activitys
                 var SchoolResource = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Select(x => x.title).ToList();
                 SchoolResource.Insert(0, "სკოლა");
 
-                var SchoolAdapterr = new ArrayAdapter<string>(this,
-             Android.Resource.Layout.SimpleSpinnerDropDownItem,
-            SchoolResource);
+            
 
-
-                StudentSchool.Adapter = SchoolAdapterr;
+              
 
 
                 var Resss = Regions?.Where(i => i.id == student.RegionId).FirstOrDefault()?.Schools?.Where(i => i.id == student.SchoolId)?.FirstOrDefault();
 
 
-
-                if (Resss != null)
-                {
-
-                    var ScholdPos = SchoolAdapterr.GetPosition(Resss.title);
-                    StudentSchool.SetSelection(ScholdPos);
-
-                }
-                else
-                {
-                    student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.FirstOrDefault().id;
-                    StudentSchool.SetSelection(0);
-                }
-
-
+                StudentSchool.Text = Resss.title;
+             
 
             };
 
@@ -171,66 +155,12 @@ namespace Izrune.Activitys
 
          
 
-            //  StudentCity.Adapter = RegionAdapter;
-            var SchoolRess = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.Select(x => x.title).ToList();
-              SchoolRess.Insert(0, "სკოლა");
-         
-            var SchoolAdapter = new ArrayAdapter<string>(this,
-         Android.Resource.Layout.SimpleSpinnerDropDownItem,
-        SchoolRess);
-
-
-  
-            var asd = student.SchoolId;
         
-          StudentSchool.Adapter = SchoolAdapter;
 
 
-            int OopsCount = 0;
+        
 
 
-
-            var Res = Regions?.Where(i => i.id == student.RegionId).FirstOrDefault()?.Schools?.Where(i => i.id == student.SchoolId)?.FirstOrDefault();
-
-
-
-            if (Res != null)
-            {
-
-                var ScholdPos = SchoolAdapter.GetPosition(Res.title);
-                StudentSchool.SetSelection(ScholdPos);
-
-
-
-            }
-            else
-            {
-                student.SchoolId = Regions.Where(i => i.id == student.RegionId).FirstOrDefault().Schools.FirstOrDefault().id;
-                StudentSchool.SetSelection(0);
-            }
-
-
-            StudentSchool.ItemSelected += (s, e) =>
-            {
-
-
-                if (OopsCount>2)
-                {
-                    if (e.Position > 0)
-                    {
-
-                        var CurrentSchold = Regions?.Where(i => i.id == student.RegionId).FirstOrDefault()?.Schools.ToList().ElementAt(e.Position - 1).id;
-                        student.SchoolId = CurrentSchold.Value;
-
-
-                    }
-
-                }
-
-                OopsCount ++;
-
-              
-            };
 
 
           

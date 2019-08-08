@@ -128,6 +128,7 @@ namespace IZrune.PCL.Implementation.Services
                         .All(o => o.student_answer == 0)).Count(),
 
                         DiplomaUrl=i.diploma_url,
+                        
                         ExamDate = Convert.ToDateTime(i.date),
                         Point = Convert.ToInt32(i.score),
                         TestTimeInSecconds = Convert.ToInt32( i.duration),

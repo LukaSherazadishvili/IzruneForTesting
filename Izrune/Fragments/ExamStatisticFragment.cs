@@ -123,7 +123,7 @@ namespace Izrune.Fragments
                             if (FirstIncome)
                             {
                                 Year = DateResult.ElementAt(e.Position).ExamDate.Year;
-                                var Res = Statistic.Where(i => i.ExamDate.Year == Year && i.ExamDate.Month == IzruneHellper.Instance.Monthes.IndexOf(IzruneHellper.Instance.Monthes.ElementAt(MonthSpinner.SelectedItemPosition)) + 1);
+                                var Res = Statistic.Where(i => i.ExamDate.Year == Year && i.ExamDate.Month == IzruneHellper.Instance.Monthes.IndexOf(IzruneHellper.Instance.Monthes.ElementAt(MonthSpinner.SelectedItemPosition)));
 
                                 if (Res.Count()<0)
                                     FavCont.Visibility = ViewStates.Gone;
@@ -168,7 +168,7 @@ namespace Izrune.Fragments
 
                     MonthSpinner.ItemSelected += (s, e) =>
                     {
-                        if (FirstIncome)
+                        if (e.Position!=0)
                         {
                             Month = e.Position;
                             var Res = Statistic?.Where(i => i.ExamDate.Month == Month && i.ExamDate.Year == Year);
@@ -220,9 +220,61 @@ namespace Izrune.Fragments
 
 
                         }
+                        else
+                        {
+                            Month = e.Position;
+
+
+                            adapter = new ExamStatisticRecyclerAdapter(Statistic?.ToList());
+                            statisticRecycler.SetAdapter(adapter);
+
+                            if (Statistic.ToList().Count == 0)
+                                FavCont.Visibility = ViewStates.Gone;
+                            else
+                                FavCont.Visibility = ViewStates.Visible;
+
+
+                            var CurrentStatistic = Statistic.OrderByDescending(i => i.Point).FirstOrDefault();
+                            if (CurrentStatistic != null)
+                            {
+                                date.Text = CurrentStatistic.ExamDate.ToShortDateString();
+                                Point.Text = CurrentStatistic.Point.ToString();
+
+                            }
+                            var bestStatisticByTime = Statistic.OrderByDescending(i => i.TestTimeInSecconds).LastOrDefault();
+
+                            if (bestStatisticByTime != null)
+                            {
+                                TimeDate.Text = bestStatisticByTime.ExamDate.ToShortDateString();
+                                Minute.Text = (bestStatisticByTime.TestTimeInSecconds / 60).ToString();
+                                Second.Text = (bestStatisticByTime.TestTimeInSecconds % 60).ToString();
+                            }
+
+                            var GroupdExams = Statistic.GroupBy(c =>
+                                    c.ExamDate.Day
+                                  ).Select(i => i.Select(o => o.ExamDate.ToShortDateString()).ToList()).ToList();
+
+                            if (GroupdExams.Count() > 0)
+                            {
+                                var GroupdResult = GroupdExams.OrderByDescending(i => i.Count).FirstOrDefault();
+
+
+                                //   var Groupdcount = GroupdExams.Select(i => i.Where(x => x == GroupdResult)).FirstOrDefault().Count();
+
+                                BetwenDate.Text = GroupdResult[0];
+                                TestCount.Text = GroupdResult.Count.ToString();
+
+                            }
+
+
+                            adapter = new ExamStatisticRecyclerAdapter(Statistic.ToList());
+                            statisticRecycler.SetAdapter(adapter);
+                          
+                        }
+
                     };
+
                 FirstIncome = true;
-               
             }
             else
             {

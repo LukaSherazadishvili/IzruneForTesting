@@ -93,7 +93,7 @@ namespace Izrune.Activitys.InnerActivity
 
 
             if (string.IsNullOrEmpty(StudName.Text) || string.IsNullOrEmpty(StudLastName.Text) || string.IsNullOrEmpty(StudentBdayYear.Text) ||
-                string.IsNullOrEmpty(StudentPersonalId.Text) || (await MpdcContainer.Instance.Get<IRegistrationServices>().ExistPersonalId(StudentPersonalId.Text) || StudentPhone.Text.Length != 9) || StudentPersonalId.Text.Length != 11)
+                string.IsNullOrEmpty(StudentPersonalId.Text) || (await MpdcContainer.Instance.Get<IRegistrationServices>().ExistPersonalId(StudentPersonalId.Text) || StudentPersonalId.Text.Length != 11))
             {
                 if (string.IsNullOrEmpty(StudName.Text))
                 {
@@ -114,19 +114,14 @@ namespace Izrune.Activitys.InnerActivity
                     StudentPersonalId.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
                     ShowAlert("შეცდომა", "პირადი ნომერი უნდა შედგებოდეს 11 ციფრისგან");
                 }
-                if (StudentPhone.Text.Length != 9)
-                {
-                    StudentPhone.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
-                    ShowAlert("შეცდომა", "ტელეფონის ნომერი უნდა შედგებოდეს 9 ციფრისგან");
-
-                }
+                
             }
             else
             {
 
                 UserControl.Instance.RegistrationStudentPartOne(StudName.Text, StudLastName.Text, new DateTime(Year, Month, Day), StudentPersonalId.Text, StudentPhone.Text, StudentEmail.Text);
 
-                Intent intent = new Intent(this, typeof(NextRegistrationStudentActivity));
+                Intent intent = new Intent(this, typeof(InnerRegisterStudentPartTwo));
                 StartActivity(intent);
             }
 

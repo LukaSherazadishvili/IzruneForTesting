@@ -103,6 +103,12 @@ namespace Izrune.Activitys
             var intent = new Intent(Intent.ActionView, uri);
             StartActivity(intent);
         }
+        public void OnEgmuClick(string Egmu)
+        {
+            var uri = Android.Net.Uri.Parse(Egmu);
+            var intent = new Intent(Intent.ActionView, uri);
+            StartActivity(intent);
+        }
 
         public override void OnBackPressed()
         {

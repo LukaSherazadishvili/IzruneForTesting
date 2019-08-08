@@ -107,12 +107,12 @@ namespace Izrune.Activitys
                 }
                 else
                 {
-                    Toast.MakeText(this, "მოხდა შეცდომა", ToastLength.Long).Show();
+                    //Toast.MakeText(this, "მოხდა შეცდომა", ToastLength.Long).Show();
                 }
             }
             else
             {
-                Toast.MakeText(this, "თქვენ არ დათანხმებულხართ პირობებს დაეტანხმოთ პირობეს", ToastLength.Long).Show();
+                Toast.MakeText(this, "მონიშნეთ „ვეთანხმები მომსახურების წესებს და პირობებს“", ToastLength.Long).Show();
             }
         }
 

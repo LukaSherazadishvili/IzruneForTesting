@@ -106,7 +106,7 @@ namespace Izrune.Activitys
 
         private async void NextButton_Click(object sender, EventArgs e)
         {
-
+            CloseKeyboard();
             if (string.IsNullOrEmpty(Phone.Text))
             {
                 Phone.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
@@ -185,7 +185,7 @@ namespace Izrune.Activitys
 
 
 
-                if (Password.Text == RepPassword.Text&&Password.Text.Length>7&& Name.Text.Length > 5&&Password.Text.Length<15&&Name.Text.Length<15&&!isNameExist&& Phone.Text.Length == 9)
+                if (Password.Text == RepPassword.Text&&Password.Text.Length>=7&& Name.Text.Length >= 5&&Password.Text.Length<=15&&Name.Text.Length<=15&&!isNameExist&& Phone.Text.Length == 9)
                 {
 
                     UserControl.Instance.RegistrationParrentPartTwo(Phone.Text, Email.Text, Name.Text, Password.Text);

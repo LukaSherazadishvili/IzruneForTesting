@@ -84,7 +84,7 @@ namespace Izrune.Fragments
 
                
                     Startloading();
-                    var Resultt = MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(CurrentId);
+                    var Resultt = MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync( CurrentUser.Students.ElementAt(e.Position).SchoolId);
                     var Individualservv = MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(0);
 
                     await Task.WhenAll(Resultt, Individualservv);

@@ -70,7 +70,7 @@ namespace Izrune.Fragments
             {
                 var Vw = LayoutInflater.Inflate(Resource.Layout.ItemIndividualList, null);
 
-                Vw.FindViewById<TextView>(Resource.Id.TimeTxt).Text = items.MonthCount.ToString()+"თვე";
+                Vw.FindViewById<TextView>(Resource.Id.TimeTxt).Text = items.MonthCount.ToString()+" თვე";
                 Vw.FindViewById<TextView>(Resource.Id.SaleTXt).Visibility = ViewStates.Gone;
                 Vw.FindViewById<TextView>(Resource.Id.PriceText).Text = items.price.ToString() + " ₾";
                 ServiceViews.Add(Vw);
@@ -94,8 +94,12 @@ namespace Izrune.Fragments
             {
                 Startloading();
                 IzruneHellper.Instance.CurrentStudentAmount = prices.price.Value;
-                await UserControl.Instance.ReNewPack(UserControl.Instance.CurrentStudent);
+                UserControl.Instance.CurrentStudent.Amount = prices.price.Value;
+                UserControl.Instance.CurrentStudent.PackageMonthCount = prices.MonthCount.Value;
+             await UserControl.Instance.ReNewPack(UserControl.Instance.CurrentStudent);
                 Intent intent = new Intent(this, typeof(ActivityPaymentCategory));
+                intent.PutExtra("Inner", "sddsd");
+
                 StartActivity(intent);
                 StopLoading();
             }
@@ -116,6 +120,7 @@ namespace Izrune.Fragments
 
             var Index = ServiceViews.IndexOf((sender as View));
 
+ 
              prices = PriceList.ElementAt(Index);
 
            

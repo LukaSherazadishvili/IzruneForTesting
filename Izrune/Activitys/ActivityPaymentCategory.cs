@@ -36,6 +36,8 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.Gradueition)]
         TextView grad;
 
+        private string InnerIncome;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -48,7 +50,7 @@ namespace Izrune.Activitys
                 grad.Visibility = ViewStates.Invisible;
             }
 
-            
+            InnerIncome = Intent.GetStringExtra("Inner");
 
             CardButton.Click += (s, e) =>
             {
@@ -84,11 +86,19 @@ namespace Izrune.Activitys
 
         public override void OnBackPressed()
         {
-            Intent intent = new Intent(this, typeof(MainActivity));
-            intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask | ActivityFlags.ClearTop);
-            UserControl.Instance.Resetregistration();
-            StartActivity(intent);
-            this.Finish();
+            if (String.IsNullOrEmpty(InnerIncome))
+            {
+
+                Intent intent = new Intent(this, typeof(MainActivity));
+                intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask | ActivityFlags.ClearTop);
+                UserControl.Instance.Resetregistration();
+                StartActivity(intent);
+                this.Finish();
+            }
+            else
+            {
+                this.Finish();
+            }
         }
     }
 }

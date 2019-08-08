@@ -113,8 +113,8 @@ namespace Izrune.Activitys
 
 
 
-                //if (e.Position != 0)
-                //{
+                if (e.Position != 0)
+                {
                     var Res = Statistic?.Where(i => i.ExamDate.Month == Month && i.ExamDate.Year == Year);
 
 
@@ -123,7 +123,14 @@ namespace Izrune.Activitys
                     recycler.SetAdapter(adapterr);
                     recycler.SetLayoutManager(new LinearLayoutManager(this));
                     
-              //  }
+              }
+                else
+                {
+                    var adapterr = new ExamStatisticRecyclerAdapter(Statistic.ToList());
+
+                    recycler.SetAdapter(adapterr);
+                    recycler.SetLayoutManager(new LinearLayoutManager(this));
+                }
 
 
              
@@ -132,10 +139,10 @@ namespace Izrune.Activitys
 
 
            
-                var adapter = new ExamStatisticRecyclerAdapter(Statistic?.ToList());
+                //var adapter = new ExamStatisticRecyclerAdapter(Statistic?.ToList());
 
-                recycler.SetAdapter(adapter);
-                recycler.SetLayoutManager(new LinearLayoutManager(this));
+                //recycler.SetAdapter(adapter);
+                //recycler.SetLayoutManager(new LinearLayoutManager(this));
                 
 
 
