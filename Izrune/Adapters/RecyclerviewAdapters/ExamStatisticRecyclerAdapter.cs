@@ -44,6 +44,7 @@ namespace Izrune.Adapters.RecyclerviewAdapters
                 (holder as StatisticViewHolder).CorrectAnswer.Text = StudentsStatisticlist.ElementAt(position).CorrectAnswersCount.ToString();
                 (holder as StatisticViewHolder).IncorectAnswer.Text = StudentsStatisticlist.ElementAt(position).IncorrectAnswersCount.ToString();
                 (holder as StatisticViewHolder).Points.Text = StudentsStatisticlist.ElementAt(position).Point.ToString();
+                (holder as StatisticViewHolder).SkipedAnswers.Text = StudentsStatisticlist.ElementAt(position).SkippedQuestionsCount.ToString();
                 (holder as StatisticViewHolder).Time.Text = StudentsStatisticlist.ElementAt(position).TestTimeInSecconds.ToString();
             }
         }
