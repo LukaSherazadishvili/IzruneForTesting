@@ -58,9 +58,9 @@ namespace Izrune.iOS.CollectionViewCells
         {
             Question = question;
 
-            InitCollectionViews();
+            //InitCollectionViews();
 
-            questionImagesCollectionView.ReloadData();
+            //questionImagesCollectionView.ReloadData();
             SetCellHeight(question);
             questionLbl.Text = $"{index}{ GetStringFromHtml(question.title)}";
             //commentLbl.Text = $"{ GetStringFromHtml(question.Description)}";
