@@ -33,9 +33,10 @@ namespace Izrune.iOS
 
             InitNotifications();
 
+            #if DEBUG
             userNameTextField.Text = "tikitiki";
             passwordTextField.Text = "samisami";
-
+            #endif
             this.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
 
             InitUI();
