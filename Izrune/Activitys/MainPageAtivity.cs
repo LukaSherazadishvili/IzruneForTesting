@@ -66,6 +66,9 @@ namespace Izrune.Activitys
 
             var header = navigationView.GetHeaderView(0);
 
+
+            
+
             header.FindViewById<TextView>(Resource.Id.UserNameLastNametxt).Text = $"{Result.Name} {Result.LastName}";
             header.FindViewById<TextView>(Resource.Id.ProfileNumber).Text = $"{Result.ProfileNumber}";
             header.FindViewById<ImageView>(Resource.Id.NavBackButton).Click += (s, e) =>
