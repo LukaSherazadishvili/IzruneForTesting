@@ -60,13 +60,16 @@ namespace Izrune.iOS.CollectionViewCells
 
             //InitCollectionViews();
 
+            //questionImagesCollectionView.ReloadData();
             SetCellHeight(question);
             questionLbl.Text = $"{index}{ GetStringFromHtml(question.title)}";
             //commentLbl.Text = $"{ GetStringFromHtml(question.Description)}";
 
             imagesCollectionViewHeight.Constant = imagesCollectioHeight;
 
-            questionImagesCollectionView.Frame = new CGRect(0, 0, questionImagesCollectionView.Frame.Width,
+            //System.Diagnostics.Debug.WriteLine(imagesCollectionViewHeight.Constant);
+
+            questionImagesCollectionView.Frame = new CGRect(questionLbl.Frame.X, questionLbl.Frame.Height+19, questionImagesCollectionView.Frame.Width,
                 imagesCollectioHeight);
 
             answerCollectionViewHeight.Constant = answersCollectioHeight;
@@ -76,15 +79,15 @@ namespace Izrune.iOS.CollectionViewCells
 
             if (IsResultCell)
             {
-                System.Diagnostics.Debug.WriteLine("dedistrakiii");
+                commentLbl.Text = $"{ GetStringFromHtml(Question?.Description)}";
                 ShowBottomLine();
             }
+
+            Debug.WriteLine($"Images Height = {imagesCollectioHeight}  AnswersHeight = {answersCollectioHeight}");
         }
 
         public void SkipQuestion()
         {
-
-
             var answers = Question?.Answers?.ToList();
             var correctAnswer = answers?.IndexOf(answers?.FirstOrDefault(x => x.IsRight == true));
             var answerCell = answerCollectionView.CellForItem(NSIndexPath.FromRowSection((System.nint)correctAnswer, 0)) as AnswerCollectionViewCell;
@@ -95,6 +98,9 @@ namespace Izrune.iOS.CollectionViewCells
         {
             SetCellHeight(finalQuestion);
 
+            InitCollectionViewSettings();
+
+            questionImagesCollectionView.ReloadData();
             questionLbl.Text = $"{index}{ GetStringFromHtml(finalQuestion.title)}";
             commentLbl.Text = $"{ GetStringFromHtml(finalQuestion.Description)}";
             //questionLbl.Text = $"{index}{finalQuestion.title}";
@@ -133,23 +139,23 @@ namespace Izrune.iOS.CollectionViewCells
             answerCollectionView.DataSource = this;
         }
 
-        private void CalculateImagesCollectionViewHeight(IQuestion question)
-        {
-            var imagesCount = question?.images?.Count();
-            if (question?.images == null || imagesCount == 0)
-                imagesCollectioHeight = 90;
+        //private void CalculateImagesCollectionViewHeight(IQuestion question)
+        //{
+        //    var imagesCount = question?.images?.Count();
+        //    if (question?.images == null || imagesCount == 0)
+        //        imagesCollectioHeight = 90;
 
-            if (imagesCount > 0 && imagesCount <= 2)
-                imagesCollectioHeight = 90;
+        //    if (imagesCount > 0 && imagesCount <= 2)
+        //        imagesCollectioHeight = 90;
 
-            else
-                imagesCollectioHeight = 90;
+        //    else
+        //        imagesCollectioHeight = 90;
 
-            imagesCollectionViewHeight.Constant = imagesCollectioHeight;
+        //    imagesCollectionViewHeight.Constant = imagesCollectioHeight;
 
-            questionImagesCollectionView.Frame = new CGRect(0, 0, questionImagesCollectionView.Frame.Width,
-                imagesCollectioHeight);
-        }
+        //    questionImagesCollectionView.Frame = new CGRect(0, 0, questionImagesCollectionView.Frame.Width,
+        //        imagesCollectioHeight);
+        //}
 
         public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {

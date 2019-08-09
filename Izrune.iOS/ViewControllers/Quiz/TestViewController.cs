@@ -76,12 +76,10 @@ namespace Izrune.iOS
 
             await LoadDataAsync();
 
-            //InitTotalTimer(IsTotalTime? 29 : 0);
-
             if (IsTotalTime)
-                InitTotalTimer(29, 60);
+                InitTotalTimer(TotalMinutes, TotalSecondes);
             else
-                InitTotalTimer(1, 30);
+                InitTotalTimer(SeparatedMinutes, SeparatedSecondes);
 
             InitCircular(IsTotalTime? 1800 : 90, 0);
 
@@ -314,6 +312,9 @@ namespace Izrune.iOS
 
                 navVc.NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
                 navVc.PushViewController(resultTab, true);
+
+                timer?.Stop();
+
             });
         }
 
@@ -449,11 +450,13 @@ namespace Izrune.iOS
 
             foreach (var item in data?.Answers)
             {
-                var height = item.title.GetStringHeight((float)questionCollectionView.Frame.Width - 60, 64, 15);
+                var height = item.title.GetStringHeight((float)questionCollectionView.Frame.Width - 72, 72, 15);
                 answersHeight += height + 40;
             }
 
             totalHeight = titleHeight + imagesHeight + answersHeight + 60 ;
+
+            Debug.WriteLine($"{data?.Answers?.ElementAt(0)?.title} || Height {totalHeight}");
         }
 
         private int totalMinutes;
@@ -493,6 +496,7 @@ namespace Izrune.iOS
                                 return;
                             AlredyGoToResult = true;
                             await GoToResultPage();
+                            timer.Stop();
                         }
                         else
                         {
@@ -503,6 +507,7 @@ namespace Izrune.iOS
                                     return;
                                 AlredyGoToResult = true;
                                 await GoToResultPage();
+                                timer.Stop();
                             }
                                 
                         }
@@ -765,7 +770,7 @@ namespace Izrune.iOS
                         return;
                     }
                     await UpdateTimerAndCircular(TimeSpan.FromSeconds(diff));
-                }
+                }//24:13
                 else
                 {
                     if (currentIndex == AllQuestions?.Count - 1)
