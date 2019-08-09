@@ -48,7 +48,7 @@ namespace Izrune.Activitys
             BackButton.Click += BackButton_Click;
             BotBacButton.Click += BackButton_Click;
 
-            //var rrrrr = await MpdcContainer.Instance.Get<IStatisticServices>().GetDiplomaStatisticAsync();
+            var rrrrr = await MpdcContainer.Instance.Get<IStatisticServices>().GetDiplomaStatisticAsync();
 
             //var kk = rrrrr.ToList();
 

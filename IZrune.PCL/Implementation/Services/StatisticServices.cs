@@ -196,11 +196,11 @@ namespace IZrune.PCL.Implementation.Services
                 for (int i = 0; i < Years.Count; i++)
                 {
 
-                    var After = new DateTime(Years.ElementAt(i).ExamDate.Year, 6, 30);
-                    var FromDate = new DateTime(Years.ElementAt(i).ExamDate.Year - 1, 9, 1);
+                    var After = Years.ElementAt(i).ExamDate;
+                    var FromDate = new DateTime(Years.ElementAt(i).ExamDate.Year - 1);
 
 
-                    var filtered = Result.Where(x => x.ExamDate <= After && x.ExamDate >= FromDate).ToList();
+                    var filtered = Result.Where(x => x.ExamDate.Year <= After.Year && x.ExamDate.Year >=FromDate.Year).ToList();
                     var levanaYleProgramistiaTasks = filtered.Select(o => Task<IStudentsStatistic>.Run(async () => await GetCurrentTestDiplomaInfo(o.Id)));
 
                     await Task.WhenAll(levanaYleProgramistiaTasks);

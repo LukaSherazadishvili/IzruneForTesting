@@ -158,8 +158,9 @@ namespace Izrune.Fragments
 
             };
 
-           
-            
+
+        
+
             StopLoading();
             
         }
