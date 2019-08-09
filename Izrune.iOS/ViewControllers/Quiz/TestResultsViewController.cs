@@ -17,6 +17,7 @@ using MpdcViewExtentions;
 using XLPagerTabStrip;
 using System.Globalization;
 using MPDC.iOS.Utils;
+using IZrune.PCL.Enum;
 
 namespace Izrune.iOS
 {
@@ -37,6 +38,8 @@ namespace Izrune.iOS
 
         public bool Hideheader = true;
         private CultureInfo cultureInfo;
+
+        public bool IsSummTest { get; set; }
 
         public async override void ViewDidLoad()
         {
@@ -127,7 +130,7 @@ namespace Izrune.iOS
                 {
                     var diplomeService = ServiceContainer.ServiceContainer.Instance.Get<IStatisticServices>();
 
-                    StudentsStatistics = (await diplomeService.GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezTest))?.ToList();
+                    StudentsStatistics = (await diplomeService.GetStudentStatisticsAsync(IsSummTest? QuezCategory.QuezExam : QuezCategory.QuezTest))?.ToList();
 
                     foreach (var item in StudentsStatistics)
                     {

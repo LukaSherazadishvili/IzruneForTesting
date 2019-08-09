@@ -450,11 +450,13 @@ namespace Izrune.iOS
 
             foreach (var item in data?.Answers)
             {
-                var height = item.title.GetStringHeight((float)questionCollectionView.Frame.Width - 60, 64, 15);
+                var height = item.title.GetStringHeight((float)questionCollectionView.Frame.Width - 72, 72, 15);
                 answersHeight += height + 40;
             }
 
             totalHeight = titleHeight + imagesHeight + answersHeight + 60 ;
+
+            Debug.WriteLine($"{data?.Answers?.ElementAt(0)?.title} || Height {totalHeight}");
         }
 
         private int totalMinutes;

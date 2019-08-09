@@ -71,6 +71,7 @@ namespace Izrune.iOS
         {
             diplomeVc = Storyboard.InstantiateViewController(DiplomeViewController.StoryboardId) as DiplomeViewController;
             resultVc = Storyboard.InstantiateViewController(TestResultsViewController.StoryboardId) as TestResultsViewController;
+            resultVc.IsSummTest = true;
             examTabVc = Storyboard.InstantiateViewController(ExamTabViewController.StoryboardId) as ExamTabViewController;
         }
 
@@ -141,7 +142,7 @@ namespace Izrune.iOS
             if (sumTestsView.GestureRecognizers == null || sumTestsView.GestureRecognizers?.Length == 0)
             {
                 sumTestsView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
-
+                
                     if (IsPacketActive)
                         this.NavigationController.PushViewController(resultVc, true);
                     else
