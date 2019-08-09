@@ -457,7 +457,7 @@ namespace Izrune.iOS
             totalHeight = titleHeight + imagesHeight + answersHeight + 60 ;
 
             Debug.WriteLine($"{data?.Answers?.ElementAt(0)?.title} || Height {totalHeight}");
-        }
+        } 
 
         private int totalMinutes;
         private int totalSecondes;
