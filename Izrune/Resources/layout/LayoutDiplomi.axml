@@ -54,10 +54,11 @@
 						android:layout_height="match_parent"/>
 				</LinearLayout>
 			</LinearLayout>
-			<FFImageLoading.Views.ImageViewAsync				
+			<FFImageLoading.Views.ImageViewAsync	
+					android:layout_gravity="center"
 				android:id="@+id/Diplom"
-				android:layout_width="match_parent"
-				android:layout_height="180dp"
+				android:layout_width="300dp"
+				android:layout_height="200dp"
 				android:visibility="gone"
 				android:scaleType="fitXY"
 				/>
@@ -275,5 +276,13 @@
 		</LinearLayout>
     </ScrollView>
 </LinearLayout>
-
+	<com.airbnb.lottie.LottieAnimationView	
+								android:id="@+id/FireWorckLottie"
+								app:lottie_fileName="fireWorksAnimation.json"
+								android:visibility="gone"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:lottie_loop="false"
+                                app:lottie_autoPlay="false"
+                                android:layout_gravity="center" />
 	</FrameLayout>

@@ -11,7 +11,11 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Izrune.Attributes;
+using IZrune.PCL.Abstraction.Services;
 using IZrune.PCL.Helpers;
+using MpdcContainer = ServiceContainer.ServiceContainer;
+
+
 
 namespace Izrune.Activitys
 {
@@ -43,10 +47,12 @@ namespace Izrune.Activitys
         string SmsCode;
         private string ExamType;
         private string TimeType;
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override  void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
+        
+        
 
             ExamType = Intent.GetStringExtra("ExamType");
             TimeType = Intent.GetStringExtra("TimeType");
@@ -83,9 +89,13 @@ namespace Izrune.Activitys
             this.Finish();
         }
 
-        private void AgreeButton_Click(object sender, EventArgs e)
+        private async void AgreeButton_Click(object sender, EventArgs e)
         {
-            if (SmsCode == SmsEditext.Text)
+            Startloading(true);
+            var Result = await MpdcContainer.Instance.Get<IQuezServices>().CheckSmsCode(SmsEditext.Text);
+            StopLoading();
+            
+            if (Result)
             {
                 Intent intent = new Intent(this,typeof(QuezActivity));
                 intent.SetFlags(ActivityFlags.NewTask);

@@ -176,7 +176,8 @@ namespace IZrune.PCL.Implementation.Services
                 new KeyValuePair<string, string>($"bdate{i+1}", $"{student.ElementAt(i).Bdate.Year}-{student.ElementAt(i).Bdate.Month}-{student.ElementAt(i).Bdate.Day}"),
                 new KeyValuePair<string, string>($"school_id{i+1}", student.ElementAt(i).SchoolId.ToString()),
                 new KeyValuePair<string, string>($"class{i+1}", student.ElementAt(i).Class.ToString()),
-                new KeyValuePair<string, string>($"sdate{i+1}", student.ElementAt(i).PackageStartDate.ToShortDateString()),
+                new KeyValuePair<string, string>($"sdate{i+1}", student.ElementAt(i).Promocode=="0"||string.IsNullOrEmpty(student.ElementAt(i).Promocode)?                 $" {DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}":
+                         $"{DateTime.Now.Year}-{9}-{1}"),
                 new KeyValuePair<string, string>($"months{i+1}", student.ElementAt(i).PackageMonthCount.ToString()),
                  new KeyValuePair<string, string>($"amount{i+1}", student.ElementAt(i).Amount.ToString()),
                   new KeyValuePair<string, string>($"promo{i+1}", student.ElementAt(i).Promocode)

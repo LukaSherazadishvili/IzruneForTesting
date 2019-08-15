@@ -118,7 +118,7 @@ namespace IZrune.PCL.Helpers
 
         public async Task<int> GetSmsCode()
         {
-           var result= await MpdcContainer.Instance.Get<IQuezServices>().GetSmsCodeAsync(UserControl.Instance.GetCurrentUser().Id);
+           var result= await MpdcContainer.Instance.Get<IQuezServices>().GetSmsCodeAsync(UserControl.Instance.Parent.id);
 
             return result;
         }

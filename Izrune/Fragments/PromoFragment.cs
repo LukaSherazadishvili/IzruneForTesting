@@ -61,6 +61,8 @@ namespace Izrune.Fragments
 
         int MonthCount;
 
+        int Price;
+
         bool IsSucces = false;
 
         public override void OnViewCreated(View view, Bundle savedInstanceState)
@@ -98,13 +100,13 @@ namespace Izrune.Fragments
                 CloseKeyboard();
                 if (IsSucces)
                 {
-                    UserControl.Instance.SetPromoPack(MonthCount, MonthCount * 1, PromoCod.PrommoCode);
+                    UserControl.Instance.SetPromoPack(MonthCount, Price, PromoCod.PrommoCode);
                     Intent intent = new Intent(this, typeof(RullesActivity));
                     StartActivity(intent);
                 }
                 else
                 {
-                    Toast.MakeText(this, "გთხოვთ შეიყვანოთ პრომო კოდი სწორად", ToastLength.Long).Show();
+                 //   Toast.MakeText(this, "გთხოვთ შეიყვანოთ პრომო კოდი სწორად", ToastLength.Long).Show();
                 }
             };
 
@@ -138,8 +140,9 @@ namespace Izrune.Fragments
                 var Result = PromoCod.Prices.ElementAt(e.Position).EndDate?.Subtract(PromoCod.Prices.ElementAt(e.Position).StartDate.Value);
 
                 PromoResult.Text = $"{PromoCod.Prices.ElementAt(e.Position).Period}-{PromoCod.Prices.ElementAt(e.Position).price}₾";
+                Price= PromoCod.Prices.ElementAt(e.Position).price.Value;
 
-                MonthCount = MonthDifference(PromoCod.Prices.ElementAt(e.Position).EndDate.Value, PromoCod.Prices.ElementAt(e.Position).StartDate.Value);
+                MonthCount = PromoCod.Prices.ElementAt(e.Position).MonthCount.Value; /*MonthDifference(PromoCod.Prices.ElementAt(e.Position).EndDate.Value, PromoCod.Prices.ElementAt(e.Position).StartDate.Value)+1*/;
             }
         }
 

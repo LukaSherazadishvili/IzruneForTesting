@@ -7,6 +7,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Text;
 using Android.Views;
 using Android.Widget;
 using FFImageLoading;
@@ -25,6 +26,10 @@ namespace Izrune.Helpers
            
         };
 
+        public static void SetHtml(this TextView textView, string html)
+        {
+            textView.SetText(Html.FromHtml(html), TextView.BufferType.Spannable);
+        }
 
         public static IEnumerable<T> DistinctBy<T, TKey>(this IEnumerable<T> items, Func<T, TKey> property)
         {

@@ -139,6 +139,7 @@ namespace Izrune.Activitys
             //intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask  |ActivityFlags.ClearTop );
             //StartActivity(intent);
             UserControl.Instance.CurrentStudent = UserControl.Instance.MyRegistrationStudent.LastOrDefault();
+            UserControl.Instance.MyRegistrationStudent.Remove(UserControl.Instance.MyRegistrationStudent.LastOrDefault());
             Finish();
     }
     }

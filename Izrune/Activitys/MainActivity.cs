@@ -45,19 +45,7 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.HeaderText)]
         TextView HeaderText;
 
-        //[MapControl(Resource.Id.MenuContainer)]
-        //LinearLayout MenuContainer;
-
-        //[MapControl(Resource.Id.MenuRecyclerView)]
-        //RecyclerView MenuRecycler;
-
-        //private List<MenuItemClass> MenuItems = new List<MenuItemClass>()
-        //{
-        //    new MenuItemClass(){Image=Resource.Drawable.homeicon ,MenuTitle="შესვლა"},
-        //    new MenuItemClass(){Image=Resource.Drawable.homeicon ,MenuTitle="სიახლე"},
-        //    new MenuItemClass(){Image=Resource.Drawable.homeicon ,MenuTitle="გაიგეთ მეტი"},
-        //    new MenuItemClass(){Image=Resource.Drawable.homeicon ,MenuTitle="კონტაქტი"},
-        //};
+       
 
         protected  override void OnCreate(Bundle savedInstanceState)
         {

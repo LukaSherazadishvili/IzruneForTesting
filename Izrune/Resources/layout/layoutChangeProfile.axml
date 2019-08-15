@@ -81,7 +81,7 @@
 			android:layout_marginRight="30dp"
 			android:textSize="12dp"
 			android:textColor="#FFFFFF"	
-            android:text="მშობლის (მზრუნველის) მონაცემების რედაქტიურება" />
+            android:text="მშობლის (მზრუნველის) მონაცემების რედაქტირება" />
     </RelativeLayout>
 
 	<RelativeLayout

@@ -72,7 +72,7 @@ namespace Izrune.Fragments
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
-
+            promoEdit.Text = "";
             BotbackButton.Visibility = ViewStates.Gone;
 
             if (!string.IsNullOrEmpty(PromoCod.PrommoCode))
@@ -94,16 +94,18 @@ namespace Izrune.Fragments
             {
                 if (IsSucces)
                 {
-                    IzruneHellper.Instance.CurrentStudentAmount = MonthCount;
 
-                  await UserControl.Instance.ReNewPack(UserControl.Instance.CurrentStudent);
+                    UserControl.Instance.CurrentStudent.Promocode = PromoCod.PrommoCode;
+
+
+                   await UserControl.Instance.ReNewPack(UserControl.Instance.CurrentStudent);
                     Intent intent = new Intent(this, typeof(ActivityPaymentCategory));
                     intent.PutExtra("Inner", "sddsd");
                     StartActivity(intent);
                 }
                 else
                 {
-                    Toast.MakeText(this, "გთხოვთ შეიყვანეტ პრომოკოდი სწორად", ToastLength.Long).Show();
+                    //Toast.MakeText(this, "გთხოვთ შეიყვანეტ პრომოკოდი სწორად", ToastLength.Long).Show();
                 }
             };
 
@@ -135,11 +137,17 @@ namespace Izrune.Fragments
 
         private void MonthSpiner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            var Result = PromoCod.Prices.ElementAt(e.Position).EndDate?.Subtract(PromoCod.Prices.ElementAt(e.Position).StartDate.Value);
+            if (PromoCod.PrommoCode != "")
+            {
+                var Result = PromoCod.Prices.ElementAt(e.Position).EndDate?.Subtract(PromoCod.Prices.ElementAt(e.Position).StartDate.Value);
 
-            PromoResult.Text = $"{PromoCod.Prices.ElementAt(e.Position).Period}-{PromoCod.Prices.ElementAt(e.Position).price}₾";
+                PromoResult.Text = $"{PromoCod.Prices.ElementAt(e.Position).Period}-{PromoCod.Prices.ElementAt(e.Position).price}₾";
 
-            MonthCount = MonthDifference(PromoCod.Prices.ElementAt(e.Position).EndDate.Value, PromoCod.Prices.ElementAt(e.Position).StartDate.Value);
+                MonthCount = MonthDifference(PromoCod.Prices.ElementAt(e.Position).EndDate.Value, PromoCod.Prices.ElementAt(e.Position).StartDate.Value);
+
+                UserControl.Instance.CurrentStudent.Amount = PromoCod.Prices.ElementAt(e.Position).price.Value;
+                UserControl.Instance.CurrentStudent.PackageMonthCount = PromoCod.Prices.ElementAt(e.Position).MonthCount.Value; ;
+            }
         }
 
         private int MonthDifference(DateTime lValue, DateTime rValue)

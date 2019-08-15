@@ -15,6 +15,9 @@ using IZrune.PCL.Helpers;
 using Java.Util;
 using static Android.App.DatePickerDialog;
 using IZrune.PCL.Abstraction.Models;
+using Izrune.Adapters.SpinerAdapter;
+using Izrune.Fragments.DialogFrag;
+using IZrune.PCL.Abstraction.Services;
 
 namespace Izrune.Activitys.InnerActivity
 {
@@ -22,6 +25,9 @@ namespace Izrune.Activitys.InnerActivity
     class InnerRegisterStudentPartTwo:MPDCBaseActivity
     {
         protected override int LayoutResource { get; } = Resource.Layout.layoutRegistrationStudent;
+
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get; set; }
 
         [MapControl(Resource.Id.Container)]
         FrameLayout container;
@@ -47,10 +53,23 @@ namespace Izrune.Activitys.InnerActivity
         [MapControl(Resource.Id.StudentClass)]
         Spinner StudentClass;
 
+        [MapControl(Resource.Id.SchoolContainer)]
+        FrameLayout SchoolContainer;
+
+        [MapControl(Resource.Id.CityContainer)]
+        FrameLayout CityContainer;
+
+        [MapControl(Resource.Id.ClassContainer)]
+        FrameLayout ClassContainer;
+
+
+
+
         private IEnumerable<IZrune.PCL.Abstraction.Models.IRegion> Regions;
         private IRegion CurrentRegion;
         private ISchool CurrentSchool;
 
+        int CurrentClass = 0;
 
         protected async override void OnCreate(Bundle savedInstanceState)
         {
@@ -60,22 +79,45 @@ namespace Izrune.Activitys.InnerActivity
 
             Regions = await MpdcContainer.Instance.Get<IZrune.PCL.Abstraction.Services.IRegistrationServices>().GetRegionsAsync();
 
+            var Regionss = Regions.Select(i => i.title).ToList();
+            Regionss.Insert(0, "*ქალაქი/მუნიციპალიტეტი");
+
             var DataAdapter = new ArrayAdapter<string>(this,
             Android.Resource.Layout.SimpleSpinnerDropDownItem,
-           Regions.Select(i => i.title).ToList());
+           Regionss);
 
             List<int> Classes = new List<int>()
             {
                 1,2,3,4,5,6,7,8,9,10,11,12
             };
 
-            var ClassDataAdapter = new ArrayAdapter<int>(this,
+            var Classess = Classes.Select(i => $" {i} კლასი").ToList();
+            Classess.Insert(0, "კლასი");
+
+            var ClassDataAdapter = new ArrayAdapter<string>(this,
            Android.Resource.Layout.SimpleSpinnerDropDownItem,
-          Classes);
+          Classess);
+
+
+
+
 
             StudentClass.Adapter = ClassDataAdapter;
 
-            StudentClass.ItemSelected += StudentClass_ItemSelected;
+            StudentClass.ItemSelected += (s, e) =>
+            {
+                if (e.Position != 0)
+                {
+                    ClassContainer.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
+                    CurrentClass = Classes.ElementAt(e.Position - 1);
+
+
+                }
+                else
+                    CurrentClass = 0;
+            };
+
+
             City.Adapter = DataAdapter;
             City.ItemSelected += City_ItemSelected;
 
@@ -84,35 +126,120 @@ namespace Izrune.Activitys.InnerActivity
             NextButton.Click += NextButton_Click;
         }
 
-        private void StudentClass_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
-        {
-            SelectedClass = e.Position + 1;
-        }
 
-        private void School_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+
+        private async void School_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            CurrentSchool = CurrentRegion.Schools.ElementAt(e.Position);
+            if (e.Position != 0)
+            {
+                SchoolContainer.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
+                var index = e.Position - 1;
+                CurrentSchool = CurrentRegion.Schools.ElementAt(index);
+
+                Startloading(true);
+                var Result = await MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(CurrentSchool.id);
+
+
+                if (!string.IsNullOrEmpty(Result.PrommoCode))
+                {
+                    var transcation = FragmentManager.BeginTransaction();
+                    SchoolAlert dialog = new SchoolAlert();
+                    dialog.Show(transcation, "Image Dialog");
+
+                }
+                StopLoading();
+            }
+            else
+                CurrentSchool = null;
         }
 
         int SelectedClass;
 
-        private void NextButton_Click(object sender, EventArgs e)
+        private async void NextButton_Click(object sender, EventArgs e)
         {
+            CloseKeyboard();
+            if (CurrentSchool == null)
+            {
+                SchoolContainer.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+            }
+            if (CurrentRegion == null)
+            {
+                CityContainer.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
+            }
+            if (!(CurrentClass > 0))
+            {
+                ClassContainer.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
 
 
-            UserControl.Instance.RegistrationStudentPartTwo(CurrentRegion.id, CurrentSchool.id, SelectedClass, Village.Text);
+            }
 
-            UserControl.Instance.AddStudent();
-           
+
+            if (CurrentSchool != null && CurrentRegion != null && CurrentClass > 0)
+            {
+
+                UserControl.Instance.RegistrationStudentPartTwo(CurrentRegion.id, CurrentSchool.id, CurrentClass, Village.Text);
+
+
+
+
+             var Result=  await UserControl.Instance.AddStudent();
+
+                if (Result)
+                {
+                    ShowAlert("", "მოსწავლე წარმატებით დაემატა");
+                }
+               
+            }
+
+
         }
 
         private void City_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            CurrentRegion = Regions.ElementAt(e.Position);
-            var DataAdapter = new ArrayAdapter<string>(this,
-            Android.Resource.Layout.SimpleSpinnerDropDownItem,
-           CurrentRegion.Schools.Select(i => i.title).ToList());
-            School.Adapter = DataAdapter;
+
+
+
+            if (e.Position != 0)
+            {
+                CurrentRegion = Regions.ElementAt(e.Position - 1);
+                CityContainer.SetBackgroundResource(Resource.Drawable.izrune_editext_back);
+
+                var Resukt = CurrentRegion.Schools.Select(i => i.title)?.ToList();
+
+                Resukt.Insert(0, "*სკოლა");
+
+
+
+                //  var DataAdapter = new ArrayAdapter<string>(this,
+                // Resource.Layout.ItemDropDownSpiner,
+                //  Resukt
+                //);
+
+                //  DataAdapter.SetDropDownViewResource(Resource.Layout.ItemDropDownSpiner);
+
+                MySpinnerAdapter DataAdapter = new MySpinnerAdapter(this, Resukt);
+
+
+                School.Adapter = DataAdapter;
+
+                School.ItemSelected -= School_ItemSelected;
+                School.ItemSelected += School_ItemSelected;
+            }
+            else
+            {
+                CurrentRegion = null;
+                List<string> Resukt = new List<string>();
+                Resukt.Insert(0, "*სკოლა");
+
+
+                var DataAdapter = new ArrayAdapter<string>(this,
+                Resource.Layout.ItemDropDownSpiner,
+                Resukt
+              );
+
+
+                School.Adapter = DataAdapter;
+            }
         }
 
 
@@ -128,8 +255,42 @@ namespace Izrune.Activitys.InnerActivity
         }
         public override void OnBackPressed()
         {
+
             base.OnBackPressed();
         }
 
+
+        private void ShowAlert(string title, string text)
+        {
+            var transcation = FragmentManager.BeginTransaction();
+            warningDialogFragment dialog = new warningDialogFragment(title, text, false) {CHangePage=()=> {
+                Intent intent = new Intent(this, typeof(MainPageAtivity));
+                intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask | ActivityFlags.ClearTop);
+                intent.PutExtra("FromAddStudent", "s");
+
+                UserControl.Instance.Resetregistration();
+
+                StartActivity(intent);
+
+            } };
+            dialog.Show(transcation, "Image Dialog");
+        }
+
+
     }
+
+
 }
+
+
+
+
+//private void NextButton_Click(object sender, EventArgs e)
+//{
+
+
+//    UserControl.Instance.RegistrationStudentPartTwo(CurrentRegion.id, CurrentSchool.id, SelectedClass, Village.Text);
+
+//    UserControl.Instance.AddStudent();
+
+//}

@@ -385,21 +385,22 @@
 				android:textSize="12dp"
                 android:id="@+id/textView4"
                 android:fontFamily="@font/bpg_mrgvlovani"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:textColor="#FFFFFF"
-                android:text="ტესტების სტრუქტურა - ტესტი შედგება 20კითხვისგან, თითოეულ კითხვას აქვს 4 სავარაუდოპასუხი"
+				
+                android:text="ტესტების სტრუქტურა - ტესტი შედგება 20 კითხვისგან , თითოეულ კითხვას აქვს 4 სავარაუდო პასუხი"
 				android:padding="1dp"/>
 
             <TextView
 						android:textSize="12dp"
                 android:id="@+id/textView20"
                 android:fontFamily="@font/bpg_mrgvlovani"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
-                android:text="ქულების სისტემა - სწორი პასუხი - 5 ქულა,არასწორი პასუხი - 0 ქულა, კითხვის გამოტოვება -2 ქულა"
+                android:text="ქულების სისტემა - სწორი პასუხი - 5 ქულა , არასწორი პასუხი - 0 ქულა , კითხვის გამოტოვება - 2 ქულა"
 				android:padding="1dp"/>
         </LinearLayout>
     </LinearLayout>

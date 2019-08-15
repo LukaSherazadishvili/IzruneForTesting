@@ -12,6 +12,8 @@ using Android.Widget;
 using Izrune.Activitys;
 using Izrune.Activitys.InnerActivity;
 using Izrune.Attributes;
+using IZrune.PCL;
+using IZrune.PCL.Helpers;
 
 namespace Izrune.Fragments
 {
@@ -55,16 +57,28 @@ namespace Izrune.Fragments
                 StartActivity(intent);
             };
 
-            AddStudent.Click += (s, e) =>
-            {
-                Intent intent = new Intent(this, typeof(InnerRegisterStudent));
-                StartActivity(intent);
-            };
+
+           
+                AddStudent.Click += AddStudent_Click;
+           
             ChangePassword.Click += (s, e) =>
             {
                 Intent intent = new Intent(this, typeof(ChangePasswordActivity));
                 StartActivity(intent);
             };
+        }
+
+        private void AddStudent_Click(object sender, EventArgs e)
+        {
+            if (UserControl.Instance.Parent.Students.Count() < 11)
+            {
+                Intent intent = new Intent(this, typeof(InnerRegisterStudent));
+                StartActivity(intent);
+            }
+            else
+                AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "10-ზე მეტი მოსწავლის რეგისტრაცია ერთ პროფილზე არ არის შესაძლებელი");
+
+
         }
     }
 }

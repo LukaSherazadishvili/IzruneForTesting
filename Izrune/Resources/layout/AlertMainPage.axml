@@ -73,7 +73,7 @@
 		android:padding="1dp"
 		android:fontFamily="@font/bpg_mrgvlovani"
         android:textAlignment="center"
-        android:text="“ყურადღება“, “ტესტის გასავლელად განაახლეთ პაკეტი”" />
+        android:text="ყურადღება, ტესტის გასავლელად განაახლეთ პაკეტი" />
 
 		<FrameLayout
 			android:id="@+id/ChangePaymentButton"

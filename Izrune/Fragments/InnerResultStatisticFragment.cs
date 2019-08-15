@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Com.Airbnb.Lottie;
 using FFImageLoading.Views;
 using Izrune.Activitys;
 using Izrune.Adapters.RecyclerviewAdapters;
@@ -70,6 +71,10 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.BadgesRecyclerView)]
         RecyclerView BadgesRecycler;
 
+        [MapControl(Resource.Id.FireWorckLottie)]
+        LottieAnimationView Fireworck;
+
+
         [MapControl(Resource.Id.Container)]
         protected override FrameLayout MainFrame { get; set; }
 
@@ -124,6 +129,15 @@ namespace Izrune.Fragments
               
             }
 
+            if (Result.Stars == 5)
+            {
+                Fireworck.Visibility = ViewStates.Visible;
+                Fireworck.PlayAnimation();
+            }
+            else
+            {
+                Fireworck.Visibility = ViewStates.Gone;
+            }
 
             for (int i = 0; i < 5; i++)
             {

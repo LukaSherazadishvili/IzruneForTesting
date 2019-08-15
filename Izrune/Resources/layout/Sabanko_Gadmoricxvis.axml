@@ -166,11 +166,11 @@
                         android:text="თარიღი:" />
 
                     <TextView
-                        android:id="@+id/textView44"
+                        android:id="@+id/DateTExtView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bpg_mrgvlovani"
-                        android:text="24.04.2019" />
+                        android:text="" />
                 </LinearLayout>
 
             </LinearLayout>

@@ -100,10 +100,27 @@ namespace Izrune.Activitys
                     
 
                 }
+                else
+                {
 
-                
+                    var Res = Statistic.Where(i => i.ExamDate.Year == Year );
 
-               
+
+
+
+                    var adapterr = new ExamStatisticRecyclerAdapter(Res?.ToList());
+
+                    recycler.SetAdapter(adapterr);
+                    recycler.SetLayoutManager(new LinearLayoutManager(this));
+
+
+
+
+                }
+
+
+
+
 
             };
 

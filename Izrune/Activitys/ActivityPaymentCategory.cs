@@ -56,6 +56,7 @@ namespace Izrune.Activitys
             {
 
                 Intent intent = new Intent(this,typeof(OnlinePayActivity));
+                intent.PutExtra("PayemantString", InnerIncome);
                 StartActivity(intent);
 
             };

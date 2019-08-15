@@ -11,6 +11,7 @@ using Android.Support.V7.Widget;
 using Android.Text;
 using Android.Views;
 using Android.Widget;
+using Com.Airbnb.Lottie;
 using FFImageLoading.Views;
 using Izrune.Activitys;
 using Izrune.Attributes;
@@ -24,6 +25,9 @@ namespace Izrune.Fragments
     class QuezFragment : MPDCBaseFragment
     {
         protected override int LayoutResource { get; } = Resource.Layout.LayoutItemQuestion;
+
+        [MapControl(Resource.Id.Container)]
+        protected override FrameLayout MainFrame { get ; set ; }
 
         [MapControl(Resource.Id.ContainerForAnswers)]
         LinearLayout ContainerForAnswer;
@@ -43,6 +47,10 @@ namespace Izrune.Fragments
 
         [MapControl(Resource.Id.SkipQuestion)]
         LinearLayout SkipButton;
+
+
+
+
 
        public Action ChangeResultPage { get; set; }
 
@@ -74,7 +82,7 @@ namespace Izrune.Fragments
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-           
+            
 
         }
 
@@ -84,7 +92,9 @@ namespace Izrune.Fragments
         {
             base.OnViewCreated(view, savedInstanceState);
 
-            QuestionTitle.Text = question.title.Replace("span style=\"color:", "font color='").Replace(";\"", "'").Replace("</span>", "</font>"); ;
+            (Activity as QuezActivity).RunOnUiThread(() => { 
+            // QuestionTitle.Text = question.title.Replace("span style=\"color:", "font color='").Replace(";\"", "'").Replace("</span>", "</font>"); ;
+            QuestionTitle.SetHtml(question.title);
             if (question.images.ToList().Count > 1)
             {
                 ImagesGrid.Visibility = ViewStates.Visible;
@@ -118,25 +128,72 @@ namespace Izrune.Fragments
             {
                 var AnswerView = LayoutInflater.Inflate(Resource.Layout.ItemQuezAnswer, null);
 
-                AnswerView.FindViewById<TextView>(Resource.Id.AnswerTxt).Text =question.Answers.ElementAt(i).title.Replace("span style=\"color:", "font color='").Replace(";\"", "'").Replace("</span>", "</font>");
+                    AnswerView.FindViewById<TextView>(Resource.Id.AnswerTxt).SetHtml(question.Answers.ElementAt(i).title);
+                //AnswerView.FindViewById<TextView>(Resource.Id.AnswerTxt).Text =question.Answers.ElementAt(i).title.Replace("span style=\"color:", "font color='").Replace(";\"", "'").Replace("</span>", "</font>");
                 AnswerView.FindViewById<TextView>(Resource.Id.AnswerVersionSimbol).Text = QuestionVersioSimbols.ElementAt(i);
                 AnswerView.Click += AnswerView_Click;
                 MyViews.Add(AnswerView);
                 ContainerForAnswer.AddView(AnswerView);
             }
 
-           
+          
             SkipButton.Click += SkipButton_Click;
+            });
+        }
+
+      
+        public  void CheckQuestion()
+        {
+            (Activity as QuezActivity).RunOnUiThread(() =>
+            {
+                        foreach(var item in MyViews)
+                {
+                    item.Click -= AnswerView_Click;
+                }
+
+
+
+                SkipButton.Click -= SkipButton_Click;
+
+                CorrectAnswerIndex = 0;
+
+                foreach (var items in question.Answers)
+                {
+                    CorrectAnswerIndex++;
+
+                    if (items.IsRight)
+                    {
+                        var CorrectAnswerView = MyViews[CorrectAnswerIndex - 1];
+
+                        CorrectAnswerView.FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesCorrectAnswerLine);
+                        CorrectAnswerView.FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesCorrectButtonBackground);
+
+                        CorrectAnswerIndex = 0;
+                        break;
+                    }
+
+                }
+
+              
+
+
+            });
         }
 
         private async  void SkipButton_Click(object sender, EventArgs e)
         {
             try
             {
+                SkipButton.Click -= SkipButton_Click;
                 
                 (Activity as QuezActivity).RunOnUiThread(() =>
                 {
 
+
+                    foreach (var item in MyViews)
+                    {
+                        item.Click -= AnswerView_Click;
+                    }
 
 
                     CorrectAnswerIndex = 0;
@@ -163,7 +220,7 @@ namespace Izrune.Fragments
                 });
                 await QuezControll.Instance.AddQuestion();
 
-                await Task.Delay(2000);
+                await Task.Delay(1000);
                 question = AnswerClick?.Invoke();
                 if (question == null && testType != "1")
                 {
@@ -181,7 +238,7 @@ namespace Izrune.Fragments
                 }
                 else
                 {
-                    QuestionTitle.Text = question.title;
+                    QuestionTitle.SetHtml(question.title);
 
                     ContainerForAnswer.RemoveAllViews();
                     MyViews.Clear();
@@ -217,7 +274,7 @@ namespace Izrune.Fragments
                     for (int i = 0; i < question.Answers.Count(); i++)
                     {
                         var AnswerView = LayoutInflater.Inflate(Resource.Layout.ItemQuezAnswer, null);
-                        AnswerView.FindViewById<TextView>(Resource.Id.AnswerTxt).Text = question.Answers.ElementAt(i).title;
+                        AnswerView.FindViewById<TextView>(Resource.Id.AnswerTxt).SetHtml(question.Answers.ElementAt(i).title);
                         AnswerView.FindViewById<TextView>(Resource.Id.AnswerVersionSimbol).Text = QuestionVersioSimbols.ElementAt(i);
 
                         AnswerView.Click += AnswerView_Click;
@@ -225,10 +282,11 @@ namespace Izrune.Fragments
                         ContainerForAnswer.AddView(AnswerView);
                     }
                 }
+                SkipButton.Click += SkipButton_Click;
             }
             catch(Exception ex)
             {
-                Toast.MakeText(this, ex.Message.ToString(), ToastLength.Long).Show();
+              //  Toast.MakeText(this, ex.Message.ToString(), ToastLength.Long).Show();
             }
         }
 
@@ -317,10 +375,11 @@ namespace Izrune.Fragments
                 {
                     items.Click -= AnswerView_Click;
                 }
+                Startloading(true);
                 await QuezControll.Instance.AddQuestion(question.Answers.ToList().ElementAt(Index).id);
                 await Task.Delay(500);
 
-
+                StopLoading();
 
 
 
@@ -400,11 +459,14 @@ namespace Izrune.Fragments
             }
             catch(Exception ex)
             {
-                Toast.MakeText(this, ex.Message.ToString(), ToastLength.Long).Show();
+               // Toast.MakeText(this, ex.Message.ToString(), ToastLength.Long).Show();
             }
            
 
         }
+
+       
+
 
         private void MainImage_Click(object sender, EventArgs e)
         {

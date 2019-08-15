@@ -12,11 +12,15 @@ using Android.Views;
 using Android.Webkit;
 using Android.Widget;
 using Izrune.Attributes;
+using Izrune.WebViewClasses;
 using IZrune.PCL.Abstraction.Models;
 using IZrune.PCL.Helpers;
+using Java.Lang;
 
 namespace Izrune.Activitys
 {
+ 
+
 
     [Activity(Label = "IZrune", Theme = "@style/AppTheme", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = false)]
     class OnlinePayActivity : MPDCBaseActivity
@@ -24,45 +28,7 @@ namespace Izrune.Activitys
         IPay CurrentPay;
 
 
-        public class MyWebViewClient : WebViewClient
-        {
-          public IPay clientPayment { get; set; }
-            public Action ChangeActyvity { get; set; }
-          
-            public override bool ShouldOverrideUrlLoading(WebView view, string url)
-            {
-
-                if (url == "http://www.izrune.ge/")
-                    {
-                    ChangeActyvity?.Invoke();
-                }
-                else
-                {
-                    view.LoadUrl(url);
-                    
-                }
-              
-            
-
-                return true;
-            }
-            public override void OnPageStarted(WebView view, string url, Android.Graphics.Bitmap favicon)
-            {
-                base.OnPageStarted(view, url, favicon);
-            }
-            public override void OnPageFinished(WebView view, string url)
-            {
-                base.OnPageFinished(view, url);
-            }
-            public override void OnReceivedError(WebView view, [GeneratedEnum] ClientError errorCode, string description, string failingUrl)
-            {
-                base.OnReceivedError(view, errorCode, description, failingUrl);
-            }
-
-
-
-
-        }
+      
 
         protected override int LayoutResource { get; } = Resource.Layout.LayoutOnlinePay;
 
@@ -75,44 +41,59 @@ namespace Izrune.Activitys
 
 
         private static string MainUrl = "";
+        OnlinePayWebView WebViewclnt;
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-          
 
+            var Result = Intent.GetStringExtra("PayemantString");
+           
 
             CurrentPay = UserControl.Instance.GetPaymentInformation();
+
+
             string Url = CurrentPay.CurrentUserPayURl;
 
-            if (MainUrl == "")
-            {
-                MainUrl = CurrentPay.CurrentUserPayURl;
-            }
+            if (!string.IsNullOrEmpty(Result))
+            await UserControl.Instance.ReNewPack(UserControl.Instance.CurrentStudent);
+            else
+            await UserControl.Instance.ReNewPack();
 
 
-            MWebView.Settings.JavaScriptEnabled = true;
-            MWebView.SetWebViewClient(new MyWebViewClient()
+            MainUrl = CurrentPay.CurrentUserPayURl;
+            
+            WebViewclnt = new OnlinePayWebView()
             {
-                clientPayment = CurrentPay,
+                //clientPayment = CurrentPay,
+                LoadUrl = MainUrl,
                 ChangeActyvity = (() =>
                 {
-                    Intent intent = new Intent(this, typeof(LogInActivity));
+
+                    Intent intent = new Intent(this, typeof(MainActivity));
                     StartActivity(intent);
 
                 })
-            });
+            };
 
-            if (Url == "http://www.izrune.ge/")
-            {
-                MWebView.LoadUrl(MainUrl);
-            }
-            else
-            {
-                MWebView.LoadUrl(Url);
-            }
-           
+            MWebView.Settings.JavaScriptEnabled = true;
+            MWebView.SetWebViewClient(WebViewclnt);
+
+
+
+            //if (Url == "http://www.izrune.ge/")
+            //{
+            //    MWebView.LoadUrl(MainUrl);
+            //}
+            //else
+            //{
+            //    MWebView.LoadUrl(MainUrl);
+            //}
+
+            MWebView.LoadUrl(MainUrl);
+
+
 
             BackButton.Click += BackButton_Click;
         }
@@ -124,8 +105,12 @@ namespace Izrune.Activitys
 
         public override void OnBackPressed()
         {
-            
+           // MWebView.LoadUrl("");
+            //Intent intent = new Intent(this, typeof(ActivityPaymentCategory));
+            //intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask | ActivityFlags.ClearTop);
+            //StartActivity(intent);
             this.Finish();
+          
         }
     }
 

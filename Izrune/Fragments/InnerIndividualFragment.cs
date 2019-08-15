@@ -102,6 +102,7 @@ namespace Izrune.Fragments
 
                 StartActivity(intent);
                 StopLoading();
+                IsChec = false;
             }
             else
             {

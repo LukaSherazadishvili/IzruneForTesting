@@ -22,7 +22,7 @@ namespace IZrune.PCL.Abstraction.Services
 
         Task<bool> RecoverUserNamedAsync(string PhoneNumber);
 
-        Task AddStudent(IStudent student);
+        Task<bool> AddStudent(IStudent student);
 
         Task<bool> EditePassword( string oldPassword, string NewPassword);
 

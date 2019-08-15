@@ -31,6 +31,9 @@ namespace Izrune.Activitys
 
         protected override int LayoutResource { get; } = Resource.Layout.layoutQuez;
 
+        [MapControl(Resource.Id.MainFuckingContainer)]
+        protected override FrameLayout MainFrame { get ; set ; }
+
         [MapControl(Resource.Id.QuestionProgressbar)]
          ProgressBar progBar;
 
@@ -72,13 +75,17 @@ namespace Izrune.Activitys
         string TimeType;
         string ExamType;
         ShedulerRecyclerAdapter Adapter;
-        protected async  override void OnCreate(Bundle savedInstanceState)
+        protected   override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             try
             {
-                Startloading();
+               
+
+               
+
+              //  Startloading();
 
                 var Res = await MpdcContainer.Instance.Get<IUserServices>().GetBadgesAsync();
 
@@ -100,7 +107,7 @@ namespace Izrune.Activitys
                 else
                     BadgesRecycler.Visibility = ViewStates.Gone;
 
-                StopLoading();
+               // StopLoading();
 
 
 
@@ -167,7 +174,7 @@ namespace Izrune.Activitys
 
 
                 var FragmentQuestion = new QuezFragment(QuezControll.Instance.GetCurrentQuestion(), ExamType);
-
+                    CurrentFragment = FragmentQuestion;
                 FragmentQuestion.AnswerClick = () =>
                 {
 
@@ -200,47 +207,28 @@ namespace Izrune.Activitys
 
                 ChangeFragmentPage(FragmentQuestion, Resource.Id.ContainerQuestion);
 
-                #region end
-                //RunOnUiThread(async () =>
-                //{
-                //    while (CircProgress < EndProgress)
-                //    {
-
-                //        progBar.Progress = CircProgress++;
-
-                //        await Task.Delay(1000);
-                //    }
-
-                //});
-
-                //Task.Run(async() => {
-
-
-                //});
-                #endregion
 
 
 
 
-               
+
 
                     StartTimer();
 
-                    
+            //    StopLoading();
 
-           
+
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Toast.MakeText(this, ex.Message.ToString(), ToastLength.Long).Show();
-                this.Finish();
+               // Toast.MakeText(this, ex.Message.ToString(), ToastLength.Long).Show();
+              //  this.Finish();
             }
         }
 
 
-
-
+        private QuezFragment CurrentFragment;
         private  void StartTimer()
         {
                     RunOnUiThread(async () =>
@@ -272,6 +260,8 @@ namespace Izrune.Activitys
                                 }
                                 if (Progr == 0)
                                 {
+                                CurrentFragment.CheckQuestion();
+                                await Task.Delay(1500);
 
                                     Position++;
                                     if (TimeType != "1")
@@ -284,6 +274,7 @@ namespace Izrune.Activitys
                                     }
                                     await QuezControll.Instance.AddQuestion();
                                     var frg = new QuezFragment(QuezControll.Instance.GetCurrentQuestion(), ExamType);
+                                    CurrentFragment = frg;
                                     frg.ChangeResultPage = () =>
                                     {
                                         ChangeFragmentPage(new DiplomaFragment(), Resource.Id.MainFuckingContainer);
@@ -384,16 +375,16 @@ namespace Izrune.Activitys
                 ComeFromPause = true;
                 ResuMeTime = DateTime.Now.Subtract(PausedTime);
 
-                ChangeTime();
+                 ChangeTime();
 
-
+             //   StartTimer();
 
             }
 
         }
 
         bool ComeFromPause = false;
-        public async void ChangeTime()
+        public  void ChangeTime()
         {
             if (ComeFromPause)
             {
@@ -422,7 +413,9 @@ namespace Izrune.Activitys
                 }
                 else
                 {
-                    if (!(ResuMeTime.Hours> 0)){
+                    RunOnUiThread(async() => {
+                    if (!(ResuMeTime.Hours > 0))
+                    {
 
                         var TotalTimeInSecond = (ResuMeTime.Minutes * 60) + ResuMeTime.Seconds;
 
@@ -439,33 +432,35 @@ namespace Izrune.Activitys
 
                             SkippedQuestionCount += (TotalTimeInSecond - ((minit * 60) + Sec)) / 90;
 
-                            Sec = (90 - (TotalTimeInSecond - ((minit * 60) + Sec))) % 90;
-
+                                if (TotalTimeInSecond < 90)
+                                    Sec = (90 - (TotalTimeInSecond - ((minit * 60) + Sec))) % 90;
+                                else
+                                    Sec = 90 - ((TotalTimeInSecond - ((minit * 60) + Sec)) % 90);
                             //   Progr = TotalTimeInSecond;
 
-                            CircProgress =90-Sec ;
+                            CircProgress = 90 - Sec;
                             Progr = Sec;
                             minit = Sec / 60;
 
                             Sec %= 60;
-                            
+
 
 
                         }
                         else
                         {
 
-                          
 
-                           
+
+
 
                             var CurrentTimeInSecond = (minit * 60) + Sec;
 
-                            
 
-                            CurrentTimeInSecond = CurrentTimeInSecond-TotalTimeInSecond  ;
+
+                            CurrentTimeInSecond = CurrentTimeInSecond - TotalTimeInSecond;
                             Progr = CurrentTimeInSecond;
-                            CircProgress =90-CurrentTimeInSecond;
+                            CircProgress = 90 - CurrentTimeInSecond;
 
                             Sec = CurrentTimeInSecond % 60;
                             minit = CurrentTimeInSecond / 60;
@@ -473,7 +468,7 @@ namespace Izrune.Activitys
                         }
 
                         Position += SkippedQuestionCount;
-                        if(Position>20)
+                        if (Position > 20)
                         {
                             OnBackPressed();
                             return;
@@ -499,8 +494,9 @@ namespace Izrune.Activitys
 
 
                                 }
+                                    Startloading(true);
                                 await QuezControll.Instance.AddQuestion();
-
+                                    StopLoading();
                             }
 
                             var frg = new QuezFragment(QuezControll.Instance.GetCurrentQuestion(), ExamType);
@@ -540,16 +536,18 @@ namespace Izrune.Activitys
 
 
                             ChangeFragmentPage(frg, Resource.Id.ContainerQuestion);
+
                         }
                         StartTimer();
 
-
+                   
 
                     }
                     else
                     {
                         OnBackPressed();
                     }
+                    });
                 }
 
             }
@@ -582,23 +580,25 @@ namespace Izrune.Activitys
 
         public void PlayAnimation( )
         {
-            likesLottie.SetAnimation("like.json");
-            likesLottie.Visibility = ViewStates.Visible;
-            likesLottie.PlayAnimation();
+          
+               likesLottie.SetAnimation("like.json");
+                likesLottie.Visibility = ViewStates.Visible;
+                likesLottie.PlayAnimation();
         }
 
         public void PlayAnimationTwo()
         {
-            likesLottie.SetAnimation("sssss.json");
+            
+                likesLottie.SetAnimation("sssss.json");
             likesLottie.Visibility = ViewStates.Visible;
             likesLottie.PlayAnimation();
         }
 
-        public void StopAnimation()
-        {
-            likesLottie.Visibility = ViewStates.Gone;
+        //public void StopAnimation()
+        //{
+        //    likesLottie.Visibility = ViewStates.Gone;
             
-        }
+        //}
 
 
 

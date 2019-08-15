@@ -42,6 +42,7 @@ namespace Izrune.Fragments
 
 
         public IStudent CurrentStudent;
+        private int CurrentStudentPosition=0;
         public override async void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
@@ -58,7 +59,7 @@ namespace Izrune.Fragments
             StudentSpiner.ItemSelected += (s, e) =>
             {
 
-              
+                CurrentStudentPosition = e.Position;
 
                 CurrentStudent = Result.Students.ElementAt(e.Position);
                 UserControl.Instance.SeTSelectedStudent(CurrentStudent.id);
@@ -95,7 +96,7 @@ namespace Izrune.Fragments
                 }
                 else
                 {
-                    (Activity as MainPageAtivity).ShowMyDialog("", "სტატისტიკის სანახავად განაახლეთ პაკეტი");
+                    (Activity as MainPageAtivity).ChangePage(CurrentStudentPosition);
                   //  AppCore.Instance.Alertdialog.ShowAlerDialog("", "სტატისტიკის სანახავად განაახლეთ პაკეტი");
                   
                 }
@@ -110,7 +111,7 @@ namespace Izrune.Fragments
                 }
                 else
                 {
-                    (Activity as MainPageAtivity).ShowMyDialog("", "სტატისტიკის სანახავად განაახლეთ პაკეტი");
+                    (Activity as MainPageAtivity).ChangePage(CurrentStudentPosition);
                 }
               
             };
@@ -125,7 +126,7 @@ namespace Izrune.Fragments
                 }
                 else
                 {
-                    (Activity as MainPageAtivity).ShowMyDialog("", "სტატისტიკის სანახავად განაახლეთ პაკეტი");
+                    (Activity as MainPageAtivity).ChangePage(CurrentStudentPosition);
                 }
             };
 
@@ -139,7 +140,7 @@ namespace Izrune.Fragments
                 }
                 else
                 {
-                    (Activity as MainPageAtivity).ShowMyDialog("", "სტატისტიკის სანახავად განაახლეთ პაკეტი");
+                    (Activity as MainPageAtivity).ChangePage(CurrentStudentPosition);
                 }
             };
 

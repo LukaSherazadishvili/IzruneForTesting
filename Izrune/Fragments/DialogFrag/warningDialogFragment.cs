@@ -18,7 +18,7 @@ namespace Izrune.Fragments.DialogFrag
         private string Text { get; set; }
         private bool Iswarming;
 
-
+        public Action CHangePage { get; set; }
 
         public warningDialogFragment(string title,string text,bool iswarm)
         {
@@ -61,6 +61,13 @@ namespace Izrune.Fragments.DialogFrag
             {
                 Console.WriteLine();
             }
+        }
+
+
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
+            CHangePage?.Invoke();
         }
     }
 }

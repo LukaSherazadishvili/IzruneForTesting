@@ -83,7 +83,7 @@ namespace Izrune.Activitys
                 }
             }
 
-            if (NewsPassword.Text != RepNewsPassword.Text||!IsGeorgianKeyword)
+            if (NewsPassword.Text != RepNewsPassword.Text||IsGeorgianKeyword|| (NewsPassword.Text.Length<7))
             {
                 NewsPassword.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
                 RepNewsPassword.SetBackgroundResource(Resource.Drawable.InvalidEditTextBackground);
@@ -94,6 +94,10 @@ namespace Izrune.Activitys
                 if (NewsPassword.Text != RepNewsPassword.Text)
                 {
                     ShowAlert("შეცდომა", "პაროლები არ ემთხვევა ერთმანეთს");
+                }
+                if (NewsPassword.Text.Length < 7)
+                {
+                    ShowAlert("შეცდომა", "პაროლში უნდა შედგებოდეს მინიმუმ 7 სიმბოლოსგან");
                 }
             }
             else

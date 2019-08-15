@@ -100,7 +100,8 @@ namespace IZrune.PCL.Implementation.Services
             var FormContent = new FormUrlEncodedContent(new[]
                     {
                        new KeyValuePair<string,string>($"student_id1",Student.id.ToString()),
-                         new KeyValuePair<string,string>($"sdate1",$"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}"),
+                         new KeyValuePair<string,string>($"sdate1",Student.Promocode=="0"||string.IsNullOrWhiteSpace(Student.Promocode)?$" {DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}":
+                         $"{DateTime.Now.Year}-{9}-{1}"),
                          new KeyValuePair<string,string>($"months1",Student.PackageMonthCount.ToString()),
                           new KeyValuePair<string,string>($"amount1",Student.Amount.ToString()),
                            new KeyValuePair<string,string>($"promo1",Student.Promocode.ToString()),

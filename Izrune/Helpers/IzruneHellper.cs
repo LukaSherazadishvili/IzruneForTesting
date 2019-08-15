@@ -39,6 +39,8 @@ namespace Izrune.Helpers
 
         public IStudentsStatistic CurrentStatistic { get; set; }
 
+        public int CurrentStudentPosition;
+
        public List<string> Monthes = new List<string>
             {
            "თვე",

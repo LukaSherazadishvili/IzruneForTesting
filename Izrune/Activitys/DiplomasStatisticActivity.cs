@@ -39,54 +39,61 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.BottmomBack)]
         LinearLayout BotBacButton;
 
-
+        [MapControl(Resource.Id.BackImage)]
+        ImageView BackArrow;
 
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             BackButton.Click += BackButton_Click;
-            BotBacButton.Click += BackButton_Click;
+            BackArrow.Click += BackButton_Click;
 
-            var rrrrr = await MpdcContainer.Instance.Get<IStatisticServices>().GetDiplomaStatisticAsync();
+            //var rrrrr = await MpdcContainer.Instance.Get<IStatisticServices>().GetDiplomaStatisticAsync();
 
             //var kk = rrrrr.ToList();
-
-            Startloading();
-            var Statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam);
-
-            var Result = Statistic.Select(i => i.ExamDate).ToList();
-            
-
-
-           var test= Result.DistinctBy(i=>i.Year);
-
-            var DataAdapter = new ArrayAdapter<string>(this,
-               Android.Resource.Layout.SimpleSpinnerDropDownItem,
-               test.Select(i=>$"{i.Year}-{i.Year-1} სასწავლო წელი").ToList());
-
-            DateSpinner.Adapter = DataAdapter;
-            var manager = new GridLayoutManager(this, 2);
-
-            DateSpinner.ItemSelected += (s, e) =>
+            try
             {
-                var CurrentDate = test.ElementAt(e.Position);
+                Startloading();
+                var Statistic = await MpdcContainer.Instance.Get<IStatisticServices>().GetStudentStatisticsAsync(IZrune.PCL.Enum.QuezCategory.QuezExam);
 
-                var StatResult = Statistic.Where(i=>i.DiplomaUrl!="").ToList();
+                var Result = Statistic.Select(i => i.ExamDate).ToList();
 
-                var FinalResult = StatResult.Where(i => i.ExamDate.Year <= CurrentDate.Year && i.ExamDate.Year >= CurrentDate.Year - 1);
 
-                var adapter = new DiplomaRecyclerViewAdapter(FinalResult.ToList());
 
-                DiplomaRecycler.SetAdapter(adapter);
-                DiplomaRecycler.SetLayoutManager(manager);
-                adapter.OnDiplomaClikc = (() =>
+                var test = Result.DistinctBy(i => i.Year);
+
+                var DataAdapter = new ArrayAdapter<string>(this,
+                   Android.Resource.Layout.SimpleSpinnerDropDownItem,
+                   test.Select(i => $"{i.Year}-{i.Year - 1} სასწავლო წელი").ToList());
+
+                DateSpinner.Adapter = DataAdapter;
+                var manager = new GridLayoutManager(this, 2);
+
+                DateSpinner.ItemSelected += (s, e) =>
                 {
-                    Intent intent = new Intent(this, typeof(InnerDiplomaStatisticActivity));
-                    StartActivity(intent);
-                });
-            };
-            StopLoading();
+                    var CurrentDate = test.ElementAt(e.Position);
+
+                    var StatResult = Statistic.Where(i => i.DiplomaUrl != "").ToList();
+
+                    var FinalResult = StatResult.Where(i => i.ExamDate.Year <= CurrentDate.Year && i.ExamDate.Year >= CurrentDate.Year - 1);
+
+                    var adapter = new DiplomaRecyclerViewAdapter(FinalResult.ToList());
+
+                    DiplomaRecycler.SetAdapter(adapter);
+                    DiplomaRecycler.SetLayoutManager(manager);
+                    adapter.OnDiplomaClikc = (() =>
+                    {
+                        Intent intent = new Intent(this, typeof(InnerDiplomaStatisticActivity));
+                        StartActivity(intent);
+                    });
+                };
+                StopLoading();
+            }
+            catch(Exception ex)
+            {
+                OnBackPressed();
+            }
         }
 
         private void BackButton_Click(object sender, EventArgs e)

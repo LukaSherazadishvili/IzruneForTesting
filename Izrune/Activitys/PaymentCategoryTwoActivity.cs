@@ -35,10 +35,14 @@ namespace Izrune.Activitys
         [MapControl(Resource.Id.AmounTxt)]
         TextView Amount;
 
+        [MapControl(Resource.Id.DateTExtView)]
+        TextView DateTextview;
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            DateTextview.Text = DateTime.Now.ToShortDateString();
 
             BackButton.Click += (s, e) =>
             {
@@ -58,11 +62,13 @@ namespace Izrune.Activitys
                await UserControl.Instance.GetCurrentUser();
 
                 ProfileNumber.Text = UserControl.Instance.Parent.ProfileNumber.ToString();
+
+                UserControl.Instance.LogOut();
             }
             else
             {
                 var CurrentUSer = UserControl.Instance.Parent;
-                Amount.Text = IzruneHellper.Instance.CurrentStudentAmount.ToString();
+                Amount.Text = UserControl.Instance.CurrentStudent.Amount.ToString();
                 Name.Text = $"{CurrentUSer.Name} {CurrentUSer.LastName}";
 
                 ProfileNumber.Text = CurrentUSer.ProfileNumber.ToString();
@@ -73,6 +79,8 @@ namespace Izrune.Activitys
 
         public override void OnBackPressed()
         {
+           // if(Parent)
+
             base.OnBackPressed();
             this.Finish();
         }

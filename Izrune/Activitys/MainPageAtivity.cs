@@ -54,13 +54,28 @@ namespace Izrune.Activitys
 
             Startloading();
 
-           
+            var PageMaper = Intent.GetStringExtra("FromAddStudent");
 
-            ChangeFragmentPage(new MainPageTestFragment(), MainContainer.Id);
-            navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
-            Hamburger.Click += Hamburger_Click;
+            if (string.IsNullOrEmpty(PageMaper))
+            {
+                ChangeFragmentPage(new MainPageTestFragment(), MainContainer.Id);
+                navigationView.NavigationItemSelected -= NavigationView_NavigationItemSelected;
+                Hamburger.Click -= Hamburger_Click;
+                navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
+                Hamburger.Click += Hamburger_Click;
+            }
+            else
+            {
+                navigationView.NavigationItemSelected -= NavigationView_NavigationItemSelected;
+                Hamburger.Click -= Hamburger_Click;
+                navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
+                Hamburger.Click += Hamburger_Click;
+                HeaderText.Text = "";
+                ChangeFragmentPage(new InnerChangePackFragment() {CurrentStudentPosition= UserControl.Instance.Parent.Students.Count() - 1 }, MainContainer.Id);
+                drawer.CloseDrawers();
 
-            
+              //  ChangePage(UserControl.Instance.Parent.Students.Count() - 1);
+            }
 
             var Result = await UserControl.Instance.GetCurrentUser();
 
@@ -146,7 +161,7 @@ namespace Izrune.Activitys
         }
 
 
-        public void ChangePage()
+        public void ChangePage(int position)
         {
            
 
@@ -154,7 +169,7 @@ namespace Izrune.Activitys
             MainPageAlertDialog dialog = new MainPageAlertDialog() {ChangeFragment=()=> {
 
                 HeaderText.Text = "";
-                ChangeFragmentPage(new InnerChangePackFragment(), MainContainer.Id);
+                ChangeFragmentPage(new InnerChangePackFragment() {CurrentStudentPosition=position }, MainContainer.Id);
                 drawer.CloseDrawers();
 
             } };
@@ -166,10 +181,10 @@ namespace Izrune.Activitys
         public override void OnBackPressed()
         {
             UserControl.Instance.LogOut();
-            //Intent intent = new Intent(this, typeof(LogInActivity));
-            //intent.SetFlags(ActivityFlags.NewTask);
-            //StartActivity(intent);
-
+            Intent intent = new Intent(this, typeof(MainActivity));
+            intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask | ActivityFlags.ClearTop);
+            UserControl.Instance.Resetregistration();
+            StartActivity(intent);
 
             this.Finish();
         }

@@ -51,7 +51,10 @@ namespace Izrune.Fragments
         public int CurrentId { get; set; }
 
 
+        public int CurrentStudentPosition { get; set; } = 0;
+
         private List<MPDCBaseFragment> FragmentList = new List<MPDCBaseFragment>();
+
 
 
         float Density;
@@ -63,9 +66,9 @@ namespace Izrune.Fragments
         }
 
         int StudentId;
-        
 
 
+        bool IsFirstUse = false;
         public override async void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
@@ -77,9 +80,26 @@ namespace Izrune.Fragments
             StudentSpiner.Adapter = DataAdapter;
             StudentSpiner.ItemSelected += async(s, e) =>
             {
-                StudentId = CurrentUser.Students.ElementAt(e.Position).id;
-                CurrentId = CurrentUser.Students.ElementAt(e.Position).SchoolId;
-
+                if (IsFirstUse)
+                {
+                    StudentId = CurrentUser.Students.ElementAt(e.Position).id;
+                    CurrentId = CurrentUser.Students.ElementAt(e.Position).SchoolId;
+                }
+                else
+                {
+                    if (e.Position >= CurrentStudentPosition)
+                    {
+                        var sdsds = CurrentUser.Students.ElementAt(e.Position);
+                        StudentId = CurrentUser.Students.ElementAt(e.Position).id;
+                        CurrentId = CurrentUser.Students.ElementAt(e.Position).SchoolId;
+                    }
+                    else
+                    {
+                        var sdsds = CurrentUser.Students.ElementAt(CurrentStudentPosition);
+                        StudentId = CurrentUser.Students.ElementAt(CurrentStudentPosition).id;
+                        CurrentId = CurrentUser.Students.ElementAt(CurrentStudentPosition).SchoolId;
+                    }
+                }
                 UserControl.Instance.SeTSelectedStudent(StudentId);
 
                
@@ -102,7 +122,7 @@ namespace Izrune.Fragments
                 pager.PageSelected += Pager_PageSelected;
             };
 
-
+            StudentSpiner.SetSelection(CurrentStudentPosition);
 
             //var Result = MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(CurrentId);
             //var Individualserv = MpdcContainer.Instance.Get<IUserServices>().GetPromoCodeAsync(0);

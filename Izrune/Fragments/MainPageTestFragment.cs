@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Izrune.Helpers;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -68,7 +68,7 @@ namespace Izrune.Fragments
 
 
         IParent Result;
-
+        private int CurrentStudentPosition;
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -99,6 +99,8 @@ namespace Izrune.Fragments
          
             StudSpiner.ItemSelected += async (s, e) =>
             {
+                CurrentStudentPosition = e.Position;
+
                 UserControl.Instance.SeTSelectedStudent(Result.Students.ElementAt(e.Position).id);
 
                 var TimeResult = await QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezExam);
@@ -176,7 +178,8 @@ namespace Izrune.Fragments
             }
             else
             {
-                (Activity as MainPageAtivity).ChangePage();
+               
+                (Activity as MainPageAtivity).ChangePage(CurrentStudentPosition);
             }
 
         }
@@ -190,7 +193,8 @@ namespace Izrune.Fragments
             }
             else
             {
-                (Activity as MainPageAtivity).ChangePage();
+               
+                (Activity as MainPageAtivity).ChangePage(CurrentStudentPosition);
             }
         }
 

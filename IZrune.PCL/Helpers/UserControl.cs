@@ -207,10 +207,11 @@ namespace IZrune.PCL.Helpers
             RegistrationUser = null;
         }
 
-        public async void AddStudent()
+        public async Task<bool> AddStudent()
         {
-            await MpdcContainer.Instance.Get<IUserServices>().AddStudent(RegistrationStudent);
+          var Result=  await MpdcContainer.Instance.Get<IUserServices>().AddStudent(RegistrationStudent);
             Parent = await MpdcContainer.Instance.Get<IUserServices>().GetUserAsync();
+            return Result;
         }
 
         public int GetAllPackagePrice()
@@ -249,6 +250,8 @@ namespace IZrune.PCL.Helpers
            CUrrentPaimentInformation = await MpdcContainer.Instance.Get<IPaymentService>().GetPaymentUrlsAsync(MyRegistrationStudent);
 
         }
+
+
 
         public async Task ReNewPack(IStudent CurrentStudent)
         {

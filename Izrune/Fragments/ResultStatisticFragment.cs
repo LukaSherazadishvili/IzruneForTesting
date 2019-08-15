@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Com.Airbnb.Lottie;
 using FFImageLoading.Views;
 using Izrune.Activitys;
 using Izrune.Adapters.RecyclerviewAdapters;
@@ -66,6 +67,11 @@ namespace Izrune.Fragments
         [MapControl(Resource.Id.BadgesRecyclerView)]
         RecyclerView BadgesRecycler;
 
+        [MapControl(Resource.Id.FireWorckLottie)]
+        LottieAnimationView Fireworck;
+
+
+
         [MapControl(Resource.Id.Container)]
         protected override FrameLayout MainFrame { get; set; }
 
@@ -117,6 +123,18 @@ namespace Izrune.Fragments
                 SkippedAnswer.Text = QuisInfo.SkipedAnswers.ToString();
                 PointTxt.Text = QuisInfo.text_title;
                 Mark.Text = QuisInfo.text_description;
+
+                if (QuisInfo.Stars == 5)
+                {
+                    Fireworck.Visibility = ViewStates.Visible;
+                    Fireworck.PlayAnimation();
+                }
+                else
+                {
+                    Fireworck.Visibility = ViewStates.Gone;
+                }
+
+
 
                 if (!string.IsNullOrEmpty(Result.EgmuUrl))
                 {

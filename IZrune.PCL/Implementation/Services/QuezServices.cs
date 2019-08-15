@@ -22,6 +22,33 @@ namespace IZrune.PCL.Implementation.Services
         private string TestCode;
         private QuezCategory categor;
 
+        public async Task<bool> CheckSmsCode(string SmsCode)
+        {
+            try
+            {
+                var FormContent = new FormUrlEncodedContent(new[]
+                   {
+                new KeyValuePair<string,string>("parent_id",UserControl.Instance.Parent.id.ToString()),
+                 new KeyValuePair<string,string>("sms_code",SmsCode),
+            });
+
+
+                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=checkSmsCode&hashcode=1c20e2be31dd7524a829b3149542d6c5", FormContent);
+                var jsn = await Data.Content.ReadAsStringAsync();
+
+                var Result = JsonConvert.DeserializeObject<ChesmsDto>(jsn);
+
+                return Result.Code == 0 ? true : false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
+
+
         public async Task<string> GetDiploma()
         {
             try

@@ -17,7 +17,7 @@ namespace IZrune.PCL.Implementation.Services
 {
    public class UserServices : IUserServices
     {
-        public async Task AddStudent(IStudent student)
+        public async Task<bool> AddStudent(IStudent student)
         {
             try
             {
@@ -41,11 +41,13 @@ namespace IZrune.PCL.Implementation.Services
                 var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=addStudent&hashcode=d529edb90d98f79c0c0e2e799933c1c4", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
 
-                AppCore.Instance.Alertdialog.ShowSaccessDialog("გილოცავთ", "მოსწავლე წარმატებით დაემატა");
+            //    AppCore.Instance.Alertdialog.ShowSaccessDialog("გილოცავთ", "მოსწავლე წარმატებით დაემატა");
+                return true;
             }
             catch(Exception ex)
             {
                 AppCore.Instance.Alertdialog.ShowAlerDialog("შეცდომა", "მოსწავლის დამატება ვერ მოხერხდა");
+                return false;
             }
         }
 
@@ -370,7 +372,7 @@ namespace IZrune.PCL.Implementation.Services
 
         private int MonthDifference(DateTime lValue, DateTime rValue)
         {
-            return (lValue.Month - rValue.Month) + 12 * (lValue.Year - rValue.Year);
+            return (lValue.Month - rValue.Month) + 12 * (lValue.Year - rValue.Year)+1;
         }
     }
 }
