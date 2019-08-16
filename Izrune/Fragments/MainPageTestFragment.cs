@@ -171,30 +171,48 @@ namespace Izrune.Fragments
 
         private void TrainigTestButton_Click(object sender, EventArgs e)
         {
-            if (UserControl.Instance.CurrentStudent?.PakEndDate.Value > DateTime.Now )
+            try
             {
-                Intent intent = new Intent(this, typeof(TrainigTestActivity));
-                StartActivity(intent);
+                if (UserControl.Instance.CurrentStudent?.PakEndDate.Value > DateTime.Now)
+                {
+                    Intent intent = new Intent(this, typeof(TrainigTestActivity));
+                    StartActivity(intent);
+                }
+                else
+                {
+
+                    (Activity as MainPageAtivity).ChangePage(CurrentStudentPosition);
+                }
             }
-            else
+            catch(Exception ex)
             {
-               
+                if(UserControl.Instance.CurrentStudent?.PakEndDate==null)
                 (Activity as MainPageAtivity).ChangePage(CurrentStudentPosition);
+
             }
 
         }
 
         private void ExamtestButton_Click(object sender, EventArgs e)
         {
-            if (UserControl.Instance.CurrentStudent?.PakEndDate.Value >DateTime.Now )
+            try
             {
-                Intent intent = new Intent(this, typeof(ExamTestActivity));
-                StartActivity(intent);
+                if (UserControl.Instance.CurrentStudent?.PakEndDate.Value > DateTime.Now)
+                {
+                    Intent intent = new Intent(this, typeof(ExamTestActivity));
+                    StartActivity(intent);
+                }
+                else
+                {
+
+                    (Activity as MainPageAtivity).ChangePage(CurrentStudentPosition);
+                }
             }
-            else
+            catch (Exception ex)
             {
-               
-                (Activity as MainPageAtivity).ChangePage(CurrentStudentPosition);
+                if (UserControl.Instance.CurrentStudent?.PakEndDate == null)
+                    (Activity as MainPageAtivity).ChangePage(CurrentStudentPosition);
+
             }
         }
 

@@ -67,7 +67,8 @@ namespace IZrune.PCL.Implementation.Services
                 var temp = new List<KeyValuePair<string, string>>()
                        {
                         new KeyValuePair<string,string>($"student_id{i+1}",Students.ElementAt(i).id.ToString()),
-                         new KeyValuePair<string,string>($"sdate{i+1}",$"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}"),
+                         new KeyValuePair<string,string>($"sdate{i+1}",Students.ElementAt(i).Promocode=="0"||string.IsNullOrWhiteSpace(Students.ElementAt(i).Promocode)?$" {DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}":
+                         $"{DateTime.Now.Year}-{9}-{1}"),
                          new KeyValuePair<string,string>($"months{i+1}",Students.ElementAt(i).PackageMonthCount.ToString()),
                           new KeyValuePair<string,string>($"amount{i+1}",Students.ElementAt(i).Amount.ToString()),
                            new KeyValuePair<string,string>($"promo{i+1}",Students.ElementAt(i).Promocode.ToString()),
