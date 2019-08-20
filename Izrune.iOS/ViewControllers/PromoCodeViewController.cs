@@ -159,8 +159,10 @@ namespace Izrune.iOS
 
                     if(currStudent != null)
                     {
-                        UserControl.Instance.CurrentStudent.Amount = PromoInfo.Prices.ElementAt((int)index).price.Value;
-                        UserControl.Instance.CurrentStudent.PackageMonthCount = PromoInfo.Prices.ElementAt((int)index).MonthCount.Value;
+                        currStudent.Amount = PromoInfo.Prices.ElementAt((int)index).price.Value;
+                        currStudent.PackageMonthCount = PromoInfo.Prices.ElementAt((int)index).MonthCount.Value;
+                        currStudent.Promocode = PromoInfo.PrommoCode;
+                    
                     }
 
                     if (IsPeriodSelected && IsPromoValid)
