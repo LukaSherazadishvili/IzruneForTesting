@@ -120,7 +120,8 @@ namespace Izrune.iOS
 
                                 ShowLoading();
                                 SelectedStudent.Promocode = PromoVc.PromoCode;
-                                await UserControl.Instance.ReNewPack(SelectedStudent);
+
+                                await UserControl.Instance.ReNewPack(UserControl.Instance.CurrentStudent);
                                 EndLoading();
                             }
 
@@ -134,7 +135,7 @@ namespace Izrune.iOS
                                 SelectedStudent.PackageMonthCount = SelectedPrice.MonthCount.Value;
 
 
-                                await UserControl.Instance.ReNewPack(SelectedStudent);
+                                await UserControl.Instance.ReNewPack(UserControl.Instance.CurrentStudent);
                                 EndLoading();
                             }
 
@@ -406,7 +407,7 @@ namespace Izrune.iOS
 
                 await GetPromoDataAsync(SelectedStudent.SchoolId);
 
-
+                UserControl.Instance.SeTSelectedStudent(Students[(int)index].id);
                 PromoVc.PromoInfo = PromoCode;
                 PromoVc.UpdateDropdownDataSource();
                 if(IsPromoSelected)
