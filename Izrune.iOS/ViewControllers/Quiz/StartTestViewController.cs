@@ -61,17 +61,18 @@ namespace Izrune.iOS
 
             await LoadDataAsync();
 
-            SelectedStudent = Students[0];
+            SelectedStudent = Students?[0];
 
             InitGestures();
 
-            InitDroDown();
+            if(SelectedStudent != null)
+            {
+                InitDroDown();
+                UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
+                UserNameDropDown.SelectRow(0);
+            }
 
             View.LayoutIfNeeded();
-
-            UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
-
-            UserNameDropDown.SelectRow(0);
 
             var result = DateTime.Now - SelectedStudent?.PakEndDate;
 
@@ -148,13 +149,15 @@ namespace Izrune.iOS
 
             var array = Students?.Select(x => x.Name + " " + x.LastName)?.ToArray();
 
-            UserNameDropDown.DataSource = array;
-
+            if (array != null || array?.Length != 0)
+                UserNameDropDown.DataSource = array;
+            else
+                return;
             UserNameDropDown.SelectionAction = (nint index, string name) =>
             {
                 currentIndex = index;
                 userNameLbl.Text = name;
-                SelectedStudent = Students[(int)index];
+                SelectedStudent = Students?[(int)index];
 
                 UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
 

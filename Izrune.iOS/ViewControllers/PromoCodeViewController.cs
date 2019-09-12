@@ -66,6 +66,7 @@ namespace Izrune.iOS
                     if(IsPacketSelected && IsPromoValid)
                     {
                         SelectPromoPack(PacketIndex);
+
                     }
                     
                     PromoCode = PromoInfo.PrommoCode;
@@ -151,7 +152,20 @@ namespace Izrune.iOS
                     IsPeriodSelected = true;
                     monthLbl.Text = name;
 
-                    if(IsPeriodSelected && IsPromoValid)
+                    //SelectedPrice.MonthCount = PromoInfo.Prices.ElementAt((int)index).price.Value;
+                    //SelectedPrice.price = PromoInfo.Prices.ElementAt((int)index).MonthCount.Value;
+
+                    var currStudent = UserControl.Instance.CurrentStudent;
+
+                    if(currStudent != null)
+                    {
+                        currStudent.Amount = PromoInfo.Prices.ElementAt((int)index).price.Value;
+                        currStudent.PackageMonthCount = PromoInfo.Prices.ElementAt((int)index).MonthCount.Value;
+                        currStudent.Promocode = PromoInfo.PrommoCode;
+                    
+                    }
+
+                    if (IsPeriodSelected && IsPromoValid)
                     {
                         SelectPromoPack(index);
                     }
