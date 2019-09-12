@@ -47,7 +47,7 @@ namespace Izrune.iOS
             InitUI();
             await LoadDataAsync();
             InitForm(CurrentStudent);
-            InitViewCOntrollers();
+            //InitViewCOntrollers();
 
             View.LayoutIfNeeded();
 
@@ -129,6 +129,8 @@ namespace Izrune.iOS
                 {
                     if (IsPacketActive)
                     {
+                        diplomeVc = Storyboard.InstantiateViewController(DiplomeViewController.StoryboardId) as DiplomeViewController;
+                        
                         diplomeVc.Student = CurrentStudent;
                         diplomeVc.ShouldLoadData = true;
                         this.NavigationController.PushViewController(diplomeVc, true);
@@ -142,9 +144,14 @@ namespace Izrune.iOS
             if (sumTestsView.GestureRecognizers == null || sumTestsView.GestureRecognizers?.Length == 0)
             {
                 sumTestsView.AddGestureRecognizer(new UITapGestureRecognizer(() => {
-                
+
                     if (IsPacketActive)
+                    {
+                        resultVc = Storyboard.InstantiateViewController(TestResultsViewController.StoryboardId) as TestResultsViewController;
+                        resultVc.IsSummTest = true;
+                        
                         this.NavigationController.PushViewController(resultVc, true);
+                    }
                     else
                         ShowAlert();
                 }));
@@ -156,6 +163,7 @@ namespace Izrune.iOS
 
                     if (IsPacketActive)
                     {
+                        examTabVc = Storyboard.InstantiateViewController(ExamTabViewController.StoryboardId) as ExamTabViewController;
                         examTabVc.HideHeader = false;
 
                         this.NavigationController.PushViewController(examTabVc, true);
