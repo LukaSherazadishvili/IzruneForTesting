@@ -30,7 +30,14 @@ namespace Izrune.Fragments
 
         public override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
+            try
+            {
+                base.OnCreate(savedInstanceState);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         [MapControl(Resource.Id.StatisticecyclerView)]
@@ -38,18 +45,25 @@ namespace Izrune.Fragments
 
         public override  void OnViewCreated(View view, Bundle savedInstanceState)
         {
-            base.OnViewCreated(view, savedInstanceState);
-            Activity.RunOnUiThread(async() => {
-                Startloading(true);
-                var Result =await MpdcContainer.Instance.Get<IStatisticServices>().GetFinalQuestionResult();
+            try
+            {
+                base.OnViewCreated(view, savedInstanceState);
+                Activity.RunOnUiThread(async () =>
+                {
+                    Startloading(true);
+                    var Result = await MpdcContainer.Instance.Get<IStatisticServices>().GetFinalQuestionResult();
 
-         
-            var adapter = new QuestionStatisticAdapter((Result as IEnumerable<IFinalQuestion>).ToList(), this);
-            StatisticRecyclerView.SetLayoutManager(new LinearLayoutManager(this));
-            StatisticRecyclerView.SetAdapter(adapter);
-                StopLoading();
-            });
 
+                    var adapter = new QuestionStatisticAdapter((Result as IEnumerable<IFinalQuestion>).ToList(), this);
+                    StatisticRecyclerView.SetLayoutManager(new LinearLayoutManager(this));
+                    StatisticRecyclerView.SetAdapter(adapter);
+                    StopLoading();
+                });
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
     }

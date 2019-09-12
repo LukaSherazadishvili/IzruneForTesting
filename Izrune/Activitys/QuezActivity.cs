@@ -77,10 +77,11 @@ namespace Izrune.Activitys
         ShedulerRecyclerAdapter Adapter;
         protected   override async void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
-
             try
             {
+                base.OnCreate(savedInstanceState);
+
+          
                
 
                
@@ -231,38 +232,58 @@ namespace Izrune.Activitys
         private QuezFragment CurrentFragment;
         private  void StartTimer()
         {
-                    RunOnUiThread(async () =>
+            try
+            {
+                RunOnUiThread(async () =>
+                {
+                    while (Progr > 0 && Position < 20)
                     {
-                        while (Progr > 0 && Position < 20)
-                            {
-                                if (IsOnbackPressed)
-                                    break;
+                        if (IsOnbackPressed)
+                            break;
 
-                            if (IsOnPaused)
-                                break;
+                        if (IsOnPaused)
+                            break;
 
                             //    ChangeTime(ref minit, ref Sec);
-                                Progr--;
-                                Sec--;
-                                if (Sec == 0)
-                                {
-                                    if (minit != 0)
-                                    {
-                                        minit--;
-                                        Sec = 60;
-                                    }
-                                }
-                                progBar.Progress = CircProgress++;
+                            Progr--;
+                        Sec--;
+                        if (Sec == 0)
+                        {
+                            if (minit != 0)
+                            {
+                                minit--;
+                                Sec = 60;
+                            }
+                        }
+                        progBar.Progress = CircProgress++;
 
-                                if (Progr == 0 && TimeType == "1" && Position < 19)
-                                {
-                                    OnBackPressed();
-                                }
-                                if (Progr == 0)
-                                {
-                                CurrentFragment.CheckQuestion();
-                                await Task.Delay(1500);
+                        if (Progr == 0 && TimeType == "1" && Position < 19)
+                        {
+                            OnBackPressed();
+                        }
+                        if (Progr == 0)
+                        {
+                            CurrentFragment.CheckQuestion();
+                            await Task.Delay(1500);
 
+                            Position++;
+                            if (TimeType != "1")
+                            {
+                                Progr = CurrentTime;
+                                Sec = CurrentTime % 60;
+                                minit = CurrentTime / 60;
+                                CircProgress = 0;
+                                progBar.Progress = 0;
+                            }
+                            await QuezControll.Instance.AddQuestion();
+                            var frg = new QuezFragment(QuezControll.Instance.GetCurrentQuestion(), ExamType);
+                            CurrentFragment = frg;
+                            frg.ChangeResultPage = () =>
+                                {
+                                    ChangeFragmentPage(new DiplomaFragment(), Resource.Id.MainFuckingContainer);
+                                };
+                            frg.AnswerClick = () =>
+                                {
                                     Position++;
                                     if (TimeType != "1")
                                     {
@@ -272,9 +293,230 @@ namespace Izrune.Activitys
                                         CircProgress = 0;
                                         progBar.Progress = 0;
                                     }
-                                    await QuezControll.Instance.AddQuestion();
+                                    if (Position < 20)
+                                    {
+                                        foreach (var items in Sheduler)
+                                        {
+                                            items.IsCurrent = false;
+                                        }
+
+                                        Sheduler.ElementAt(Position).AlreadeBe = true;
+                                        Sheduler.ElementAt(Position).IsCurrent = true;
+                                        Adapter.NotifyDataSetChanged();
+                                        if (Position <= 18)
+                                            ShedulRecycler.ScrollToPosition(Position + 1);
+                                        else
+                                            ShedulRecycler.ScrollToPosition(Position);
+                                    }
+
+                                    return QuezControll.Instance.GetCurrentQuestion();
+                                };
+
+
+
+
+
+
+
+
+                            if (Position < 20)
+                            {
+                                foreach (var items in Sheduler)
+                                {
+                                    items.IsCurrent = false;
+                                }
+                                Sheduler.ElementAt(Position).AlreadeBe = true;
+                                Sheduler.ElementAt(Position).IsCurrent = true;
+                                Adapter.NotifyDataSetChanged();
+                                if (Position <= 18)
+                                    ShedulRecycler.ScrollToPosition(Position + 1);
+                                else
+                                    ShedulRecycler.ScrollToPosition(Position);
+
+                                ChangeFragmentPage(frg, Resource.Id.ContainerQuestion);
+                            }
+                        }
+
+                        TimerTxt.Text = string.Format($"{minit.ToString().PadLeft(2, '0')}:{Sec.ToString().PadLeft(2, '0')}");
+                        await Task.Delay(1000);
+
+                    }
+                });
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+
+
+
+
+        DateTime PausedTime;
+        bool IsOnPaused = false;
+        bool IsOnbackPressed = false;
+        protected override void OnPause()
+        {
+            base.OnPause();
+          
+            if (!IsOnbackPressed)
+            {
+                IsOnPaused = true;
+                var sss = Progr;
+                IsOpenedFromPaused = true;
+           
+                PausedTime = DateTime.Now;
+            }
+
+          
+        }
+
+        bool IsOpenedFromPaused = false;
+        private TimeSpan ResuMeTime;
+        protected override void OnResume()
+        {
+            try
+            {
+                base.OnResume();
+                if (IsOpenedFromPaused)
+                {
+                    IsOnPaused = false;
+                    ComeFromPause = true;
+                    ResuMeTime = DateTime.Now.Subtract(PausedTime);
+
+                    ChangeTime();
+
+                    //   StartTimer();
+
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+        bool ComeFromPause = false;
+        public  void ChangeTime()
+        {
+            try
+            {
+                if (ComeFromPause)
+                {
+                    ComeFromPause = false;
+
+                    if (TimeType == "1")
+                    {
+
+                        if (ResuMeTime.Seconds > Sec)
+                        {
+                            minit--;
+                            Sec = 60 - (ResuMeTime.Seconds - Sec);
+                        }
+                        else
+                            Sec -= ResuMeTime.Seconds - 1;
+
+                        if (!((minit - ResuMeTime.Minutes) < 0))
+                        {
+                            minit -= ResuMeTime.Minutes;
+                        }
+                        else
+                        {
+                            OnBackPressed();
+                        }
+                        StartTimer();
+                    }
+                    else
+                    {
+                        RunOnUiThread(async () =>
+                        {
+                            if (!(ResuMeTime.Hours > 0))
+                            {
+
+                                var TotalTimeInSecond = (ResuMeTime.Minutes * 60) + ResuMeTime.Seconds;
+
+                                if (TotalTimeInSecond > 1800)
+                                {
+                                    OnBackPressed();
+                                    return;
+                                }
+                                var SkippedQuestionCount = 0;
+
+                                if (TotalTimeInSecond > ((minit * 60) + Sec))
+                                {
+                                    SkippedQuestionCount++;
+
+                                    SkippedQuestionCount += (TotalTimeInSecond - ((minit * 60) + Sec)) / 90;
+
+                                    if (TotalTimeInSecond < 90)
+                                        Sec = (90 - (TotalTimeInSecond - ((minit * 60) + Sec))) % 90;
+                                    else
+                                        Sec = 90 - ((TotalTimeInSecond - ((minit * 60) + Sec)) % 90);
+                                    //   Progr = TotalTimeInSecond;
+
+                                    CircProgress = 90 - Sec;
+                                    Progr = Sec;
+                                    minit = Sec / 60;
+
+                                    Sec %= 60;
+
+
+
+                                }
+                                else
+                                {
+
+
+
+
+
+                                    var CurrentTimeInSecond = (minit * 60) + Sec;
+
+
+
+                                    CurrentTimeInSecond = CurrentTimeInSecond - TotalTimeInSecond;
+                                    Progr = CurrentTimeInSecond;
+                                    CircProgress = 90 - CurrentTimeInSecond;
+
+                                    Sec = CurrentTimeInSecond % 60;
+                                    minit = CurrentTimeInSecond / 60;
+
+                                }
+
+                                Position += SkippedQuestionCount;
+                                if (Position > 20)
+                                {
+                                    OnBackPressed();
+                                    return;
+                                }
+
+                                if (SkippedQuestionCount > 0)
+                                {
+                                    for (int i = 0; i <= Position; i++)
+                                    {
+                                        if (Position < 20)
+                                        {
+                                            foreach (var items in Sheduler)
+                                            {
+                                                items.IsCurrent = false;
+                                            }
+                                            Sheduler.ElementAt(i).AlreadeBe = true;
+                                            Sheduler.ElementAt(i).IsCurrent = true;
+                                            Adapter.NotifyDataSetChanged();
+                                            if (Position <= 18)
+                                                ShedulRecycler.ScrollToPosition(i + 1);
+                                            else
+                                                ShedulRecycler.ScrollToPosition(i);
+
+
+                                        }
+                                        Startloading(true);
+                                        await QuezControll.Instance.AddQuestion();
+                                        StopLoading();
+                                    }
+
                                     var frg = new QuezFragment(QuezControll.Instance.GetCurrentQuestion(), ExamType);
-                                    CurrentFragment = frg;
                                     frg.ChangeResultPage = () =>
                                     {
                                         ChangeFragmentPage(new DiplomaFragment(), Resource.Id.MainFuckingContainer);
@@ -310,245 +552,25 @@ namespace Izrune.Activitys
                                     };
 
 
-
-
-
-
-
-
-                    if (Position < 20)
-                    {
-                        foreach (var items in Sheduler)
-                        {
-                            items.IsCurrent = false;
-                        }
-                        Sheduler.ElementAt(Position).AlreadeBe = true;
-                        Sheduler.ElementAt(Position).IsCurrent = true;
-                        Adapter.NotifyDataSetChanged();
-                        if (Position <= 18)
-                            ShedulRecycler.ScrollToPosition(Position + 1);
-                        else
-                            ShedulRecycler.ScrollToPosition(Position);
-
-                        ChangeFragmentPage(frg, Resource.Id.ContainerQuestion);
-                    }
-                }
-
-                TimerTxt.Text = string.Format($"{minit.ToString().PadLeft(2, '0')}:{Sec.ToString().PadLeft(2, '0')}");
-                await Task.Delay(1000);
-
-            }
-    });
-        }
-
-
-
-
-
-        DateTime PausedTime;
-        bool IsOnPaused = false;
-        bool IsOnbackPressed = false;
-        protected override void OnPause()
-        {
-            base.OnPause();
-          
-            if (!IsOnbackPressed)
-            {
-                IsOnPaused = true;
-                var sss = Progr;
-                IsOpenedFromPaused = true;
-           
-                PausedTime = DateTime.Now;
-            }
-
-          
-        }
-
-        bool IsOpenedFromPaused = false;
-        private TimeSpan ResuMeTime;
-        protected override void OnResume()
-        {
-            base.OnResume();
-            if (IsOpenedFromPaused)
-            {
-                IsOnPaused = false;
-                ComeFromPause = true;
-                ResuMeTime = DateTime.Now.Subtract(PausedTime);
-
-                 ChangeTime();
-
-             //   StartTimer();
-
-            }
-
-        }
-
-        bool ComeFromPause = false;
-        public  void ChangeTime()
-        {
-            if (ComeFromPause)
-            {
-                ComeFromPause = false;
-
-                if (TimeType == "1")
-                {
-
-                    if (ResuMeTime.Seconds > Sec)
-                    {
-                        minit--;
-                        Sec = 60 - (ResuMeTime.Seconds - Sec);
-                    }
-                    else
-                        Sec -= ResuMeTime.Seconds - 1;
-
-                    if (!((minit - ResuMeTime.Minutes)<0))
-                    {
-                        minit -= ResuMeTime.Minutes;
-                    }
-                    else
-                    {
-                        OnBackPressed();
-                    }
-                    StartTimer();
-                }
-                else
-                {
-                    RunOnUiThread(async() => {
-                    if (!(ResuMeTime.Hours > 0))
-                    {
-
-                        var TotalTimeInSecond = (ResuMeTime.Minutes * 60) + ResuMeTime.Seconds;
-
-                        if (TotalTimeInSecond > 1800)
-                        {
-                            OnBackPressed();
-                            return;
-                        }
-                        var SkippedQuestionCount = 0;
-
-                        if (TotalTimeInSecond > ((minit * 60) + Sec))
-                        {
-                            SkippedQuestionCount++;
-
-                            SkippedQuestionCount += (TotalTimeInSecond - ((minit * 60) + Sec)) / 90;
-
-                                if (TotalTimeInSecond < 90)
-                                    Sec = (90 - (TotalTimeInSecond - ((minit * 60) + Sec))) % 90;
-                                else
-                                    Sec = 90 - ((TotalTimeInSecond - ((minit * 60) + Sec)) % 90);
-                            //   Progr = TotalTimeInSecond;
-
-                            CircProgress = 90 - Sec;
-                            Progr = Sec;
-                            minit = Sec / 60;
-
-                            Sec %= 60;
-
-
-
-                        }
-                        else
-                        {
-
-
-
-
-
-                            var CurrentTimeInSecond = (minit * 60) + Sec;
-
-
-
-                            CurrentTimeInSecond = CurrentTimeInSecond - TotalTimeInSecond;
-                            Progr = CurrentTimeInSecond;
-                            CircProgress = 90 - CurrentTimeInSecond;
-
-                            Sec = CurrentTimeInSecond % 60;
-                            minit = CurrentTimeInSecond / 60;
-
-                        }
-
-                        Position += SkippedQuestionCount;
-                        if (Position > 20)
-                        {
-                            OnBackPressed();
-                            return;
-                        }
-
-                        if (SkippedQuestionCount > 0)
-                        {
-                            for (int i = 0; i <= Position; i++)
-                            {
-                                if (Position < 20)
-                                {
-                                    foreach (var items in Sheduler)
-                                    {
-                                        items.IsCurrent = false;
-                                    }
-                                    Sheduler.ElementAt(i).AlreadeBe = true;
-                                    Sheduler.ElementAt(i).IsCurrent = true;
-                                    Adapter.NotifyDataSetChanged();
-                                    if (Position <= 18)
-                                        ShedulRecycler.ScrollToPosition(i + 1);
-                                    else
-                                        ShedulRecycler.ScrollToPosition(i);
-
+                                    ChangeFragmentPage(frg, Resource.Id.ContainerQuestion);
 
                                 }
-                                    Startloading(true);
-                                await QuezControll.Instance.AddQuestion();
-                                    StopLoading();
+                                StartTimer();
+
+
+
                             }
-
-                            var frg = new QuezFragment(QuezControll.Instance.GetCurrentQuestion(), ExamType);
-                            frg.ChangeResultPage = () =>
+                            else
                             {
-                                ChangeFragmentPage(new DiplomaFragment(), Resource.Id.MainFuckingContainer);
-                            };
-                            frg.AnswerClick = () =>
-                            {
-                                Position++;
-                                if (TimeType != "1")
-                                {
-                                    Progr = CurrentTime;
-                                    Sec = CurrentTime % 60;
-                                    minit = CurrentTime / 60;
-                                    CircProgress = 0;
-                                    progBar.Progress = 0;
-                                }
-                                if (Position < 20)
-                                {
-                                    foreach (var items in Sheduler)
-                                    {
-                                        items.IsCurrent = false;
-                                    }
-
-                                    Sheduler.ElementAt(Position).AlreadeBe = true;
-                                    Sheduler.ElementAt(Position).IsCurrent = true;
-                                    Adapter.NotifyDataSetChanged();
-                                    if (Position <= 18)
-                                        ShedulRecycler.ScrollToPosition(Position + 1);
-                                    else
-                                        ShedulRecycler.ScrollToPosition(Position);
-                                }
-
-                                return QuezControll.Instance.GetCurrentQuestion();
-                            };
-
-
-                            ChangeFragmentPage(frg, Resource.Id.ContainerQuestion);
-
-                        }
-                        StartTimer();
-
-                   
-
+                                OnBackPressed();
+                            }
+                        });
                     }
-                    else
-                    {
-                        OnBackPressed();
-                    }
-                    });
+
                 }
+            }
+            catch(Exception ex)
+            {
 
             }
         }
@@ -573,8 +595,7 @@ namespace Izrune.Activitys
             }
             catch(Exception ex)
             {
-                Toast.MakeText(this, ex.Message.ToString(), ToastLength.Long).Show();
-                this.Finish();
+               
             }
         }
 

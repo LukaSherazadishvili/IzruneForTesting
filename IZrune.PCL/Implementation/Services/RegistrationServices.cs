@@ -113,7 +113,7 @@ namespace IZrune.PCL.Implementation.Services
                 {
                     using(HttpClient client=new HttpClient())
                     {
-                        var data = await IzruneWebClient.Instance.GetDataAsync<RegionRootDTO>("http://izrune.ge/api.php?op=getRegistrationInfo&hashcode=41942a09e43e2260815b542325397d4e");
+                        var data = await IzruneWebClient.Instance.GetDataAsync<RegionRootDTO>("https://izrune.ge/api.php?op=getRegistrationInfo&hashcode=41942a09e43e2260815b542325397d4e");
                          ReginResult = data
                              .regions
                              .Select(i => new Region()
@@ -190,7 +190,7 @@ namespace IZrune.PCL.Implementation.Services
 
                 var FormContent = new FormUrlEncodedContent(KeyValuePairsList);
 
-                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=register&hashcode=4e5e0ccbab0da8c25637b0aa14e6cbbd", FormContent);
+                var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=register&hashcode=4e5e0ccbab0da8c25637b0aa14e6cbbd", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
 
                 PaymentRootDTO Result = null;

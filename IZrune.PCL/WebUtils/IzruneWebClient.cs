@@ -40,8 +40,8 @@ namespace IZrune.PCL.WebUtils
             httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             httpClient.DefaultRequestHeaders.TryAddWithoutValidation("ContentType", "application/json");
-          
-                var response = await httpClient.PostAsync(url, content);
+
+            var response = await httpClient.PostAsync(url, content);
            
             return response;
         }
@@ -52,8 +52,13 @@ namespace IZrune.PCL.WebUtils
             try
             {
                 httpClient = new HttpClient();
+                // System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls;
+
+
+
                 httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                 httpClient.DefaultRequestHeaders.TryAddWithoutValidation("ContentType", "application/json");
+
                 var response = await httpClient.GetStringAsync(uri);
                 return JsonConvert.DeserializeObject<T>(response);
             }

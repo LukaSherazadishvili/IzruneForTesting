@@ -186,12 +186,26 @@ namespace Izrune.Fragments
 
         public static implicit operator Android.App.Activity(MPDCBaseFragment fragment)
         {
-            return fragment.Activity;
+            try
+            {
+                return fragment.Activity;
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
         }
 
         public static implicit operator Context(MPDCBaseFragment fragment)
         {
-            return fragment.Context;
+            try
+            {
+                return fragment.Context;
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
         }
 
     }

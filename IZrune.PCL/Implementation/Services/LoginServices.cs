@@ -25,7 +25,7 @@ namespace IZrune.PCL.Implementation.Services
                 new KeyValuePair<string, string>("password",password)
 
             });
-                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=login&hashcode=b1188c7b5e9abe809bd538c48aa08222", FormContent);
+                var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=login&hashcode=b1188c7b5e9abe809bd538c48aa08222", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
                 var Result = JsonConvert.DeserializeObject<StatusCodeDTO>(jsn);
 

@@ -50,48 +50,54 @@ namespace Izrune.Activitys
 
         protected  override async void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
-
-            Startloading();
-
-            var PageMaper = Intent.GetStringExtra("FromAddStudent");
-
-            if (string.IsNullOrEmpty(PageMaper))
+            try
             {
-                ChangeFragmentPage(new MainPageTestFragment(), MainContainer.Id);
-                navigationView.NavigationItemSelected -= NavigationView_NavigationItemSelected;
-                Hamburger.Click -= Hamburger_Click;
-                navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
-                Hamburger.Click += Hamburger_Click;
+                base.OnCreate(savedInstanceState);
+
+                Startloading();
+
+                var PageMaper = Intent.GetStringExtra("FromAddStudent");
+
+                if (string.IsNullOrEmpty(PageMaper))
+                {
+                    ChangeFragmentPage(new MainPageTestFragment(), MainContainer.Id);
+                    navigationView.NavigationItemSelected -= NavigationView_NavigationItemSelected;
+                    Hamburger.Click -= Hamburger_Click;
+                    navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
+                    Hamburger.Click += Hamburger_Click;
+                }
+                else
+                {
+                    navigationView.NavigationItemSelected -= NavigationView_NavigationItemSelected;
+                    Hamburger.Click -= Hamburger_Click;
+                    navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
+                    Hamburger.Click += Hamburger_Click;
+                    HeaderText.Text = "";
+                    ChangeFragmentPage(new InnerChangePackFragment() { CurrentStudentPosition = UserControl.Instance.Parent.Students.Count() - 1 }, MainContainer.Id);
+                    drawer.CloseDrawers();
+
+                    //  ChangePage(UserControl.Instance.Parent.Students.Count() - 1);
+                }
+
+                var Result = await UserControl.Instance.GetCurrentUser();
+
+                var header = navigationView.GetHeaderView(0);
+
+
+
+
+                header.FindViewById<TextView>(Resource.Id.UserNameLastNametxt).Text = $"{Result.Name} {Result.LastName}";
+                header.FindViewById<TextView>(Resource.Id.ProfileNumber).Text = $"{Result.ProfileNumber}";
+                header.FindViewById<ImageView>(Resource.Id.NavBackButton).Click += (s, e) =>
+                {
+                    drawer.CloseDrawer(navigationView);
+                };
+                StopLoading();
             }
-            else
+            catch(Exception ex)
             {
-                navigationView.NavigationItemSelected -= NavigationView_NavigationItemSelected;
-                Hamburger.Click -= Hamburger_Click;
-                navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
-                Hamburger.Click += Hamburger_Click;
-                HeaderText.Text = "";
-                ChangeFragmentPage(new InnerChangePackFragment() {CurrentStudentPosition= UserControl.Instance.Parent.Students.Count() - 1 }, MainContainer.Id);
-                drawer.CloseDrawers();
 
-              //  ChangePage(UserControl.Instance.Parent.Students.Count() - 1);
             }
-
-            var Result = await UserControl.Instance.GetCurrentUser();
-
-            var header = navigationView.GetHeaderView(0);
-
-
-            
-
-            header.FindViewById<TextView>(Resource.Id.UserNameLastNametxt).Text = $"{Result.Name} {Result.LastName}";
-            header.FindViewById<TextView>(Resource.Id.ProfileNumber).Text = $"{Result.ProfileNumber}";
-            header.FindViewById<ImageView>(Resource.Id.NavBackButton).Click += (s, e) =>
-            {
-                drawer.CloseDrawer(navigationView);
-            };
-            StopLoading();
-
             //FullNametxt.Text = ;
             //ProfNumber.Text = $"{Result.ProfileNumber}";
 
@@ -106,9 +112,16 @@ namespace Izrune.Activitys
 
         public void ShowMyDialog(string title,string text)
         {
-            var transcation = FragmentManager.BeginTransaction();
-            warningDialogFragment dialog = new warningDialogFragment(title, text, true);
-            dialog.Show(transcation, "Image Dialog");
+            try
+            {
+                var transcation = FragmentManager.BeginTransaction();
+                warningDialogFragment dialog = new warningDialogFragment(title, text, true);
+                dialog.Show(transcation, "Image Dialog");
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void NavigationView_NavigationItemSelected(object sender, NavigationView.NavigationItemSelectedEventArgs e)
@@ -163,17 +176,27 @@ namespace Izrune.Activitys
 
         public void ChangePage(int position)
         {
-           
+            try
+            {
 
-            var transcation = FragmentManager.BeginTransaction();
-            MainPageAlertDialog dialog = new MainPageAlertDialog() {ChangeFragment=()=> {
+                var transcation = FragmentManager.BeginTransaction();
+                MainPageAlertDialog dialog = new MainPageAlertDialog()
+                {
+                    ChangeFragment = () =>
+                    {
 
-                HeaderText.Text = "";
-                ChangeFragmentPage(new InnerChangePackFragment() {CurrentStudentPosition=position }, MainContainer.Id);
-                drawer.CloseDrawers();
+                        HeaderText.Text = "";
+                        ChangeFragmentPage(new InnerChangePackFragment() { CurrentStudentPosition = position }, MainContainer.Id);
+                        drawer.CloseDrawers();
 
-            } };
-            dialog.Show(transcation, "Image Dialog");
+                    }
+                };
+                dialog.Show(transcation, "Image Dialog");
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
       

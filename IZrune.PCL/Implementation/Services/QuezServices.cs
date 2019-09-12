@@ -33,7 +33,7 @@ namespace IZrune.PCL.Implementation.Services
             });
 
 
-                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=checkSmsCode&hashcode=1c20e2be31dd7524a829b3149542d6c5", FormContent);
+                var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=checkSmsCode&hashcode=1c20e2be31dd7524a829b3149542d6c5", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
 
                 var Result = JsonConvert.DeserializeObject<ChesmsDto>(jsn);
@@ -60,7 +60,7 @@ namespace IZrune.PCL.Implementation.Services
             });
 
            
-                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getDiploma&hashcode=19b556311f007d86ad7c921626e5da83", FormContent);
+                var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=getDiploma&hashcode=19b556311f007d86ad7c921626e5da83", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
 
                 var Result = JsonConvert.DeserializeObject<DiplomaDTO>(jsn);
@@ -83,7 +83,7 @@ namespace IZrune.PCL.Implementation.Services
 
             });
 
-                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getEgmuUrl&hashcode=2d56f16f329559e972c51f1b6ed5401c", FormContent);
+                var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=getEgmuUrl&hashcode=2d56f16f329559e972c51f1b6ed5401c", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
 
                 var Result = JsonConvert.DeserializeObject<EgmuDTO>(jsn);
@@ -106,7 +106,7 @@ namespace IZrune.PCL.Implementation.Services
                 new KeyValuePair<string, string>("test_type",TestType.ConverEnumToInt())
 
             });
-                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getNextTestDate&hashcode=7a16e984f8df40c478a47cb356092b92", FormContent);
+                var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=getNextTestDate&hashcode=7a16e984f8df40c478a47cb356092b92", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
                 var Result = JsonConvert.DeserializeObject<TransferModels.NextTestDateDTO>(jsn);
                 DateTime.TryParse(Result.date, out DateTime date);
@@ -136,7 +136,7 @@ namespace IZrune.PCL.Implementation.Services
                 new KeyValuePair<string, string>("test_type",TestType.ConverEnumToInt())
 
             });
-                    var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getTest&hashcode=26e0c75cd4f8b1242b620a46aa701431", FormContent);
+                    var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=getTest&hashcode=26e0c75cd4f8b1242b620a46aa701431", FormContent);
                     var jsn = await Data.Content.ReadAsStringAsync();
                     var Result = JsonConvert.DeserializeObject<TransferModels.QuestionRootDTO>(jsn);
                     TestCode = Result.test_id;
@@ -187,7 +187,7 @@ namespace IZrune.PCL.Implementation.Services
             });
 
            
-            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getQuestionResult&hashcode=d7dd618dcab06b6f868e4cc69c81e1bd", FormContent);
+            var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=getQuestionResult&hashcode=d7dd618dcab06b6f868e4cc69c81e1bd", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
 
         }
@@ -204,7 +204,7 @@ namespace IZrune.PCL.Implementation.Services
             QuisResultInfo QuesResult = new QuisResultInfo();
             try
             {
-                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getTestInfo&hashcode=1218b084b72f42914d4c868a2eec191b", FormContent);
+                var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=getTestInfo&hashcode=1218b084b72f42914d4c868a2eec191b", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
                 var Result = JsonConvert.DeserializeObject<QuisResultInfoRootDTO>(jsn);
                 var info = Result.info;
@@ -237,7 +237,7 @@ namespace IZrune.PCL.Implementation.Services
 
             });
 
-                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getSmsCode&hashcode=379c81983cb70e54978a50cef15f4308", FormContent);
+                var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=getSmsCode&hashcode=379c81983cb70e54978a50cef15f4308", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
                 var Result = JsonConvert.DeserializeObject<SmsCodeDTO>(jsn);
 

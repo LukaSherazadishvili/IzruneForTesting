@@ -25,7 +25,7 @@ namespace IZrune.PCL.Implementation.Services
                          
                      });
            
-            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getPaymentHistory&hashcode=e733269189a8065cc61d5d43b2f39c9d", FormContent);
+            var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=getPaymentHistory&hashcode=e733269189a8065cc61d5d43b2f39c9d", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
 
             var Result = JsonConvert.DeserializeObject<PaymentHistoryRootDTO>(jsn);
@@ -81,7 +81,7 @@ namespace IZrune.PCL.Implementation.Services
         var FormContent = new FormUrlEncodedContent(KeyValuePairsList);
 
 
-        var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=renew&hashcode=6baf003058e14cc0c2031b07ff673871", FormContent);
+        var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=renew&hashcode=6baf003058e14cc0c2031b07ff673871", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
 
             var Result = JsonConvert.DeserializeObject<PaymentRootDTO>(jsn);
@@ -112,7 +112,7 @@ namespace IZrune.PCL.Implementation.Services
 
 
 
-            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=renew&hashcode=6baf003058e14cc0c2031b07ff673871", FormContent);
+            var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=renew&hashcode=6baf003058e14cc0c2031b07ff673871", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
 
             var Result = JsonConvert.DeserializeObject<PaymentRootDTO>(jsn);

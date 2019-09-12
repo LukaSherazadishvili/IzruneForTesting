@@ -38,7 +38,7 @@ namespace IZrune.PCL.Implementation.Services
                    new KeyValuePair<string,string>("months",student.PackageMonthCount.ToString())
                 });
 
-                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=addStudent&hashcode=d529edb90d98f79c0c0e2e799933c1c4", FormContent);
+                var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=addStudent&hashcode=d529edb90d98f79c0c0e2e799933c1c4", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
 
             //    AppCore.Instance.Alertdialog.ShowSaccessDialog("გილოცავთ", "მოსწავლე წარმატებით დაემატა");
@@ -61,7 +61,7 @@ namespace IZrune.PCL.Implementation.Services
                 
                 });
 
-            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=editPassword&hashcode=0912a1be35b2f263eb97149b2e67f40a", FormContent);
+            var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=editPassword&hashcode=0912a1be35b2f263eb97149b2e67f40a", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<RecoverStatusDTO>(jsn);
 
@@ -91,7 +91,7 @@ namespace IZrune.PCL.Implementation.Services
                   new KeyValuePair<string,string>("city",City),
                   new KeyValuePair<string,string>("village",Village)
                 });
-                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=editParentProfile&hashcode=0a3110bbe8a96c91eb33bf6072598368", FormContent);
+                var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=editParentProfile&hashcode=0a3110bbe8a96c91eb33bf6072598368", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
 
                 AppCore.Instance.Alertdialog.ShowSaccessDialog("გილოცავთ", "წარმატებით მოხდა თქვენი პროფილის შეცვლა");
@@ -115,7 +115,7 @@ namespace IZrune.PCL.Implementation.Services
                    new KeyValuePair<string,string>("school_id",SchoolId.ToString())
                 });
 
-            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=editStudentProfile&hashcode=892c21e1d80fd2f7c1bd78e8a63f704f", FormContent);
+            var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=editStudentProfile&hashcode=892c21e1d80fd2f7c1bd78e8a63f704f", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
         }
 
@@ -130,7 +130,7 @@ namespace IZrune.PCL.Implementation.Services
 
                 });
 
-                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getBadges&hashcode=706e22fc8ead8176ef5ed2d51c130349", FormContent);
+                var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=getBadges&hashcode=706e22fc8ead8176ef5ed2d51c130349", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
                 var Result = JsonConvert.DeserializeObject<BadgesRootDTO>(jsn);
 
@@ -165,7 +165,7 @@ namespace IZrune.PCL.Implementation.Services
                  {
                 new KeyValuePair<string,string>("id",SchoolId.ToString()),
                 });
-                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getPromoCode&hashcode=52c490da82162ed3cfaff1d7f5bb9287", FormContent);
+                var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=getPromoCode&hashcode=52c490da82162ed3cfaff1d7f5bb9287", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
                 if (SchoolId != 0)
                 {
@@ -248,7 +248,7 @@ namespace IZrune.PCL.Implementation.Services
                          new KeyValuePair<string,string>("token",AppCore.Instance.CurrentUserToken),
                     });
 
-                    var Data =await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=getUser&hashcode=bab8e7bb7604c16794517613e2078e2e", FormContent);
+                    var Data =await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=getUser&hashcode=bab8e7bb7604c16794517613e2078e2e", FormContent);
                     var jsn =await Data.Content.ReadAsStringAsync();
                     var DTO = JsonConvert.DeserializeObject<ParentStatusDTO>(jsn);
 
@@ -308,7 +308,7 @@ namespace IZrune.PCL.Implementation.Services
                 new KeyValuePair<string,string>("parent_id",UserControl.Instance.GetCurrentUser().Result.id.ToString()),
 
                 });
-                var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=isAdmin&hashcode=a4fa29df9923e514100d8d71cb58cedd", FormContent);
+                var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=isAdmin&hashcode=a4fa29df9923e514100d8d71cb58cedd", FormContent);
                 var jsn = await Data.Content.ReadAsStringAsync();
                 var Result = JsonConvert.DeserializeObject<IsAdminDto>(jsn);
 
@@ -334,7 +334,7 @@ namespace IZrune.PCL.Implementation.Services
                          new KeyValuePair<string,string>("phone",PhoneNumber),
                     });
 
-            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=recoverPassword&hashcode=f8da048644f6752faca46da3d3d38229", FormContent);
+            var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=recoverPassword&hashcode=f8da048644f6752faca46da3d3d38229", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
 
             var Result = JsonConvert.DeserializeObject<RecoverStatusDTO>(jsn);
@@ -356,7 +356,7 @@ namespace IZrune.PCL.Implementation.Services
                          new KeyValuePair<string,string>("phone",PhoneNumber),
                     });
 
-            var Data = await IzruneWebClient.Instance.GetPostData("http://izrune.ge/api.php?op=recoverUsername&hashcode=82a93889e6a50556b3c1805dd55d59e9", FormContent);
+            var Data = await IzruneWebClient.Instance.GetPostData("https://izrune.ge/api.php?op=recoverUsername&hashcode=82a93889e6a50556b3c1805dd55d59e9", FormContent);
             var jsn = await Data.Content.ReadAsStringAsync();
             var Result = JsonConvert.DeserializeObject<RecoverStatusDTO>(jsn);
 

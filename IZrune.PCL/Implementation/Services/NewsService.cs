@@ -17,7 +17,7 @@ namespace IZrune.PCL.Implementation.Services
         {
             try
             {
-                var Data = await IzruneWebClient.Instance.GetDataAsync<MoreInfoDTO>("http://izrune.ge/api.php?op=getMoreInfo&hashcode=4bb9341135d155cf4f1079d7b146895b");
+                var Data = await IzruneWebClient.Instance.GetDataAsync<MoreInfoDTO>("https://izrune.ge/api.php?op=getMoreInfo&hashcode=4bb9341135d155cf4f1079d7b146895b");
               
                 
 
@@ -33,7 +33,7 @@ namespace IZrune.PCL.Implementation.Services
         {
             try
             {
-                var Data = await IzruneWebClient.Instance.GetDataAsync<NewsRootDTO>("http://izrune.ge/api.php?op=getNews&hashcode=fa32492c23bfeebaf25dc3a817d91bfa");
+                var Data = await IzruneWebClient.Instance.GetDataAsync<NewsRootDTO>("https://izrune.ge/api.php?op=getNews&hashcode=fa32492c23bfeebaf25dc3a817d91bfa");
                 var jsn = Data.news;
 
                 var Result = jsn.Select(i => new News()

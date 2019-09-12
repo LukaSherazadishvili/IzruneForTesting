@@ -81,8 +81,14 @@ namespace Izrune.Fragments
 
         public override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
-            
+            try
+            {
+                base.OnCreate(savedInstanceState);
+            }
+            catch(Exception ex)
+            {
+
+            }
 
         }
 
@@ -90,94 +96,122 @@ namespace Izrune.Fragments
 
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
-            base.OnViewCreated(view, savedInstanceState);
-
-            (Activity as QuezActivity).RunOnUiThread(() => { 
-            // QuestionTitle.Text = question.title.Replace("span style=\"color:", "font color='").Replace(";\"", "'").Replace("</span>", "</font>"); ;
-            QuestionTitle.SetHtml(question.title);
-            if (question.images.ToList().Count > 1)
+            try
             {
-                ImagesGrid.Visibility = ViewStates.Visible;
-                ImageViews.Clear();
-                foreach(var items in question.images)
+                base.OnViewCreated(view, savedInstanceState);
+           
+                (Activity as QuezActivity).RunOnUiThread(() =>
                 {
-                  
-                    var Images = LayoutInflater.Inflate(Resource.Layout.ItemQuestionImage, null);
-                    Images.FindViewById<ImageViewAsync>(Resource.Id.CardImage).LoadImage(items);
-                    ImageViews.Add(Images);
-                    Images.Click += Images_Click;
-                    ImagesGrid.AddView(Images);
-
-                }
-
-              
-
-            }
-            if (question.images.ToList().Count == 1)
-            {
-                ImageCard.Visibility = ViewStates.Visible;
-                MainImage.LoadImage(question.images.ElementAt(0));
-            }
-            else
-            {
-                ImageCard.Visibility = ViewStates.Gone;
-                ImagesGrid.Visibility = ViewStates.Gone;
-            }
-
-           for(int i = 0; i < question.Answers.Count(); i ++)
-            {
-                var AnswerView = LayoutInflater.Inflate(Resource.Layout.ItemQuezAnswer, null);
-
-                    AnswerView.FindViewById<TextView>(Resource.Id.AnswerTxt).SetHtml(question.Answers.ElementAt(i).title);
-                //AnswerView.FindViewById<TextView>(Resource.Id.AnswerTxt).Text =question.Answers.ElementAt(i).title.Replace("span style=\"color:", "font color='").Replace(";\"", "'").Replace("</span>", "</font>");
-                AnswerView.FindViewById<TextView>(Resource.Id.AnswerVersionSimbol).Text = QuestionVersioSimbols.ElementAt(i);
-                AnswerView.Click += AnswerView_Click;
-                MyViews.Add(AnswerView);
-                ContainerForAnswer.AddView(AnswerView);
-            }
-
-          
-            SkipButton.Click += SkipButton_Click;
-            });
-        }
-
-      
-        public  void CheckQuestion()
-        {
-            (Activity as QuezActivity).RunOnUiThread(() =>
-            {
-                        foreach(var item in MyViews)
-                {
-                    item.Click -= AnswerView_Click;
-                }
-
-
-
-                SkipButton.Click -= SkipButton_Click;
-
-                CorrectAnswerIndex = 0;
-
-                foreach (var items in question.Answers)
-                {
-                    CorrectAnswerIndex++;
-
-                    if (items.IsRight)
+                    // QuestionTitle.Text = question.title.Replace("span style=\"color:", "font color='").Replace(";\"", "'").Replace("</span>", "</font>"); ;
+                    QuestionTitle.SetHtml(question.title);
+                    if (question.images.ToList().Count > 1)
                     {
-                        var CorrectAnswerView = MyViews[CorrectAnswerIndex - 1];
+                        ImagesGrid.Visibility = ViewStates.Visible;
+                        ImageViews.Clear();
+                        foreach (var items in question.images)
+                        {
 
-                        CorrectAnswerView.FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesCorrectAnswerLine);
-                        CorrectAnswerView.FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesCorrectButtonBackground);
+                            var Images = LayoutInflater.Inflate(Resource.Layout.ItemQuestionImage, null);
+                            Images.FindViewById<ImageViewAsync>(Resource.Id.CardImage).LoadImage(items);
+                            ImageViews.Add(Images);
+                            Images.Click += Images_Click;
+                            ImagesGrid.AddView(Images);
 
-                        CorrectAnswerIndex = 0;
-                        break;
+                        }
+
+
+
+                    }
+                    if (question.images.ToList().Count == 1)
+                    {
+                        ImageCard.Visibility = ViewStates.Visible;
+                        MainImage.LoadImage(question.images.ElementAt(0));
+                    }
+                    else
+                    {
+                        ImageCard.Visibility = ViewStates.Gone;
+                        ImagesGrid.Visibility = ViewStates.Gone;
                     }
 
-                }
+                    for (int i = 0; i < question.Answers.Count(); i++)
+                    {
+                        var AnswerView = LayoutInflater.Inflate(Resource.Layout.ItemQuezAnswer, null);
 
-              
+                        AnswerView.FindViewById<TextView>(Resource.Id.AnswerTxt).SetHtml(question.Answers.ElementAt(i).title);
+                        //AnswerView.FindViewById<TextView>(Resource.Id.AnswerTxt).Text =question.Answers.ElementAt(i).title.Replace("span style=\"color:", "font color='").Replace(";\"", "'").Replace("</span>", "</font>");
+                        AnswerView.FindViewById<TextView>(Resource.Id.AnswerVersionSimbol).Text = QuestionVersioSimbols.ElementAt(i);
+                        AnswerView.Click += AnswerView_Click;
+                        MyViews.Add(AnswerView);
+                        ContainerForAnswer.AddView(AnswerView);
+                    }
 
 
-            });
+                    SkipButton.Click += SkipButton_Click;
+                });
+            }
+            catch(Exception ex)
+            {
+                
+            }
+        }
+
+        public override void OnDetach()
+        {
+            base.OnDetach();
+            ChangeResultPage = null;
+            SkipQuestion = null;
+            AnswerClick = null;
+            question = null;
+        }
+
+        public override void OnDestroyView()
+        {
+            base.OnDestroyView();
+        }
+
+        public  void CheckQuestion()
+        {
+            try
+            {
+                (Activity as QuezActivity).RunOnUiThread(() =>
+                {
+                    foreach (var item in MyViews)
+                    {
+                        item.Click -= AnswerView_Click;
+                    }
+
+
+
+                    SkipButton.Click -= SkipButton_Click;
+
+                    CorrectAnswerIndex = 0;
+
+                    foreach (var items in question.Answers)
+                    {
+                        CorrectAnswerIndex++;
+
+                        if (items.IsRight)
+                        {
+                            var CorrectAnswerView = MyViews[CorrectAnswerIndex - 1];
+
+                            CorrectAnswerView.FindViewById<FrameLayout>(Resource.Id.QuesSimbol).SetBackgroundResource(Resource.Drawable.QuesCorrectAnswerLine);
+                            CorrectAnswerView.FindViewById<FrameLayout>(Resource.Id.QuesButton).SetBackgroundResource(Resource.Drawable.QuesCorrectButtonBackground);
+
+                            CorrectAnswerIndex = 0;
+                            break;
+                        }
+
+                    }
+
+
+
+
+                });
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private async  void SkipButton_Click(object sender, EventArgs e)
@@ -470,7 +504,14 @@ namespace Izrune.Fragments
 
         private void MainImage_Click(object sender, EventArgs e)
         {
-            (Activity as QuezActivity).OpenDialog(CurrentImageUrl);
+            try
+            {
+                (Activity as QuezActivity).OpenDialog(CurrentImageUrl);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
     }
 }

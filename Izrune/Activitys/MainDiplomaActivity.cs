@@ -54,37 +54,43 @@ namespace Izrune.Activitys
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
-
-          
-
-            var adapter = new TabAdapter(SupportFragmentManager, FrmList, Headers);
-            ResultPagePagerAdapter PagerAdapter = new ResultPagePagerAdapter(SupportFragmentManager, FrmList, Headers);
-
-            Tabs.SetupWithViewPager(Pager);
-            Pager.Adapter = PagerAdapter;
-
-            BackButton.Click += BackButton_Click;
-
-            var Result = await QuezControll.Instance.GetExamInfoAsync();
-
-            if(!string.IsNullOrEmpty(Result.DiplomaURl))
+            try
             {
-                ShareButton.Visibility = ViewStates.Visible;
-                ShareButton.Click += (s, e) =>
+                base.OnCreate(savedInstanceState);
+
+
+
+                var adapter = new TabAdapter(SupportFragmentManager, FrmList, Headers);
+                ResultPagePagerAdapter PagerAdapter = new ResultPagePagerAdapter(SupportFragmentManager, FrmList, Headers);
+
+                Tabs.SetupWithViewPager(Pager);
+                Pager.Adapter = PagerAdapter;
+
+                BackButton.Click += BackButton_Click;
+
+                var Result = await QuezControll.Instance.GetExamInfoAsync();
+
+                if (!string.IsNullOrEmpty(Result.DiplomaURl))
                 {
-                    var SharingIntent = new Intent();
-                    SharingIntent.SetAction(Intent.ActionSend);
-                    SharingIntent.SetType("text/plain");
+                    ShareButton.Visibility = ViewStates.Visible;
+                    ShareButton.Click += (s, e) =>
+                    {
+                        var SharingIntent = new Intent();
+                        SharingIntent.SetAction(Intent.ActionSend);
+                        SharingIntent.SetType("text/plain");
                     //  SharingIntent.PutExtra(Intent.ExtraSubject, "Subject");
                     SharingIntent.PutExtra(Intent.ExtraText, Result.DiplomaURl);
                     // SharingIntent.PutExtra(Intent.ExtraTitle, "Subject");
                     StartActivity(Intent.CreateChooser(SharingIntent, "sharing option"));
-                };
+                    };
+                }
+
+
             }
+            catch(Exception e)
+            {
 
-          
-
+            }
         }
 
        
@@ -104,9 +110,11 @@ namespace Izrune.Activitys
         public override void OnBackPressed()
         {
             Intent intent = new Intent(this, typeof(MainPageAtivity));
-            intent.SetFlags(ActivityFlags.NewTask);
+            intent.SetFlags(ActivityFlags.ClearTop);
             StartActivity(intent);
+         
             this.Finish();
+            
         }
 
 

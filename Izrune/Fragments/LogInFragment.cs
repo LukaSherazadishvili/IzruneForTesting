@@ -59,13 +59,15 @@ namespace Izrune.Fragments
             var username = pref.GetString("UserName", string.Empty);
             var password = pref.GetString("Password", string.Empty);
 
+           /// pref.Edit().Clear().Commit();
 
-            if (!(string.IsNullOrEmpty(username) && string.IsNullOrEmpty(password))){
+
+            if (!(string.IsNullOrEmpty(username) && string.IsNullOrEmpty(password)))
+            {
 
                 UserName.Text = username;
                 Password.Text = password;
             }
-
             Intent intent = new Intent(this, typeof(ForgotPasswordOrUserNameActivity));
             Forgotpas.Click += (s, e) =>
             {
@@ -96,7 +98,7 @@ namespace Izrune.Fragments
                 {
                     //var Result = await UserControl.Instance.GetCurrentUser();
                     IzruneHellper.Instance.SaveUserNamePassword(UserName.Text, Password.Text);
-
+                   
                     var intentt = new Intent(this, typeof(MainPageAtivity));
                     StartActivity(intentt);
                 }

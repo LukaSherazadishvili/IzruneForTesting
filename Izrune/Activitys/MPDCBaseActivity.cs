@@ -38,45 +38,51 @@ namespace Izrune.Activitys
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
-            SetContentView(LayoutResource);
-            MapControls();
-            AppInfo.Instance.CurrentContext = this;
-
-            AlertService serv = new AlertService()
+            try
             {
-                AlertEVent = (title, text) =>
-                {
-                    var transcation = FragmentManager.BeginTransaction();
-                    warningDialogFragment dialog = new warningDialogFragment(title, text, true);
-                    dialog.Show(transcation, "Image Dialog");
-                },
-                SacssesAler = (title, text) =>
-                {
-                    var transcation = FragmentManager.BeginTransaction();
-                    warningDialogFragment dialog = new warningDialogFragment(title, text, false);
-                    dialog.Show(transcation, "Image Dialog");
-                }
+                base.OnCreate(savedInstanceState);
+                
+                SetContentView(LayoutResource);
+                MapControls();
+                AppInfo.Instance.CurrentContext = this;
 
-            };
-            AppCore.Instance.Alertdialog = serv;
-            var currentView = FindViewById(Android.Resource.Id.Content);
-            currentView.Focusable = true;
-            currentView.FocusableInTouchMode = true;
+                AlertService serv = new AlertService()
+                {
+                    AlertEVent = (title, text) =>
+                    {
+                        var transcation = FragmentManager.BeginTransaction();
+                        warningDialogFragment dialog = new warningDialogFragment(title, text, true);
+                        dialog.Show(transcation, "Image Dialog");
+                    },
+                    SacssesAler = (title, text) =>
+                    {
+                        var transcation = FragmentManager.BeginTransaction();
+                        warningDialogFragment dialog = new warningDialogFragment(title, text, false);
+                        dialog.Show(transcation, "Image Dialog");
+                    }
+
+                };
+                AppCore.Instance.Alertdialog = serv;
+                var currentView = FindViewById(Android.Resource.Id.Content);
+                currentView.Focusable = true;
+                currentView.FocusableInTouchMode = true;
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         protected void Startloading(bool transparent = false)
         {
             try
             {
-                try
-                {
+               
                     scale1.AnimationEnd -= Scale1_AnimationEnd;
                     scale2.AnimationEnd -= Scale2_AnimationEnd;
                     scale1.End();
                     scale2.End();
-                }
-                catch (Exception) { }
+              
                 FrameLayout loadingFrame = new FrameLayout(this)
                 {
                     LayoutParameters = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MatchParent, FrameLayout.LayoutParams.MatchParent)
@@ -178,18 +184,27 @@ namespace Izrune.Activitys
 
         private void MapControls()
         {
-            Type type = GetType();
-            type.GetRuntimeFields().Where(o => o.IsDefined(typeof(MapControlAttribute))).ForEach(f => {
-                var attr = f.GetCustomAttribute<MapControlAttribute>();
-                View theView = FindViewById(attr.Resource);
-                f.SetValue(this, theView);
-            });
+            try
+            {
+                Type type = GetType();
+                type.GetRuntimeFields().Where(o => o.IsDefined(typeof(MapControlAttribute))).ForEach(f =>
+                {
+                    var attr = f.GetCustomAttribute<MapControlAttribute>();
+                    View theView = FindViewById(attr.Resource);
+                    f.SetValue(this, theView);
+                });
 
-            type.GetRuntimeProperties().Where(o => o.CanWrite && o.IsDefined(typeof(MapControlAttribute))).ForEach(p => {
-                var attr = p.GetCustomAttribute<MapControlAttribute>();
-                View theView = FindViewById(attr.Resource);
-                p.SetValue(this, theView);
-            });
+                type.GetRuntimeProperties().Where(o => o.CanWrite && o.IsDefined(typeof(MapControlAttribute))).ForEach(p =>
+                {
+                    var attr = p.GetCustomAttribute<MapControlAttribute>();
+                    View theView = FindViewById(attr.Resource);
+                    p.SetValue(this, theView);
+                });
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         protected void CloseKeyboard()
@@ -205,30 +220,37 @@ namespace Izrune.Activitys
 
         public void ChangeFragmentPage(Fragments.MPDCBaseFragment fragment, int layoutId)
         {
-            Android.Support.V4.App.Fragment frag = null;
-            int stackCount = SupportFragmentManager.BackStackEntryCount;
-            for (int i = stackCount; i >= 0; i--)
+            try
             {
-                SupportFragmentManager.PopBackStackImmediate();
+                Android.Support.V4.App.Fragment frag = null;
+                int stackCount = SupportFragmentManager.BackStackEntryCount;
+                for (int i = stackCount; i >= 0; i--)
+                {
+                    SupportFragmentManager.PopBackStackImmediate();
+                }
+
+                SupportFragmentManager.Fragments.Clear();
+
+                if (SupportFragmentManager.BackStackEntryCount > 0)
+                {
+                    frag = SupportFragmentManager.Fragments.Last();
+                }
+
+
+                var transaction = SupportFragmentManager
+                     .BeginTransaction()
+                    .Replace(layoutId, fragment)
+                    .AddToBackStack(null);
+
+                if (frag != null)
+                    transaction = transaction.Hide(frag);
+
+                transaction.Commit();
             }
-
-            SupportFragmentManager.Fragments.Clear();
-
-            if (SupportFragmentManager.BackStackEntryCount > 0)
+            catch(Exception ex)
             {
-                frag = SupportFragmentManager.Fragments.Last();
+
             }
-
-
-            var transaction = SupportFragmentManager
-                 .BeginTransaction()
-                .Replace(layoutId, fragment)
-                .AddToBackStack(null);
-
-            if (frag != null)
-                transaction = transaction.Hide(frag);
-
-            transaction.Commit();
         }
 
     }
