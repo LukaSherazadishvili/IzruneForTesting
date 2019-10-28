@@ -73,6 +73,12 @@ namespace Izrune.Fragments
         {
             base.OnCreate(savedInstanceState);
         }
+
+
+
+
+        TimeSpan TimeResult;
+
         public async override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
@@ -103,7 +109,7 @@ namespace Izrune.Fragments
 
                 UserControl.Instance.SeTSelectedStudent(Result.Students.ElementAt(e.Position).id);
 
-                var TimeResult = await QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezExam);
+                TimeResult = await QuezControll.Instance.GetExamDate(IZrune.PCL.Enum.QuezCategory.QuezExam);
 
                 if (TimeResult.Days <= 0 && TimeResult.Hours <= 0 && TimeResult.Minutes <= 0 || Result.IsAdmin)
                 {
@@ -192,6 +198,8 @@ namespace Izrune.Fragments
             }
 
         }
+
+       
 
         private void ExamtestButton_Click(object sender, EventArgs e)
         {
