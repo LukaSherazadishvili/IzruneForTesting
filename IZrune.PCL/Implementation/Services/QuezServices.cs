@@ -99,10 +99,12 @@ namespace IZrune.PCL.Implementation.Services
 
         public async Task<TimeSpan> GetExamDate(QuezCategory TestType)
         {
-           
+
+            try
+            {
                 var FormContent = new FormUrlEncodedContent(new[]
-                       {
-                new KeyValuePair<string,string>("student_id",UserControl.Instance.CurrentStudent.id.ToString()),
+                      {
+                new KeyValuePair<string,string>("student_id",UserControl.Instance.CurrentStudent?.id.ToString()),
                 new KeyValuePair<string, string>("test_type",TestType.ConverEnumToInt())
 
             });
@@ -113,6 +115,13 @@ namespace IZrune.PCL.Implementation.Services
                 var CurResult = date.Subtract(DateTime.Now);
 
                 return CurResult;
+
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new TimeSpan();
+            }
             
            
         }

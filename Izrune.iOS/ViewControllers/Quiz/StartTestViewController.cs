@@ -68,7 +68,7 @@ namespace Izrune.iOS
             if(SelectedStudent != null)
             {
                 InitDroDown();
-                UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
+                //UserControl.Instance.SeTSelectedStudent(SelectedStudent.id);
                 UserNameDropDown.SelectRow(0);
             }
 
@@ -100,13 +100,17 @@ namespace Izrune.iOS
 
             Parent = await UserControl.Instance.GetCurrentUser();
 
+            Students = (Parent.Students)?.ToList();
+
+            UserControl.Instance.SeTSelectedStudent(Students.FirstOrDefault().id);
+
             examDate = (await QuezControll.Instance.GetExamDate(QuezCategory.QuezExam));
 
             testDate = (await QuezControll.Instance.GetExamDate(QuezCategory.QuezTest));
 
             InitSummTimer();
 
-            Students = (await UserControl.Instance.GetCurrentUserStudents())?.ToList();
+           
 
             contentView.Hidden = false;
         }
